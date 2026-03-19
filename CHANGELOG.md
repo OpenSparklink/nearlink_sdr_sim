@@ -7,6 +7,14 @@
 
 ## [Unreleased]
 
+## [0.16.0] - 2026-03-20
+
+### Added
+
+- `sim/link_sim.py`: Phase 8 多帧类型 + 信道 + 均衡器综合仿真
+- FT1/FT2/FT3/FT4 在 AWGN 和 Rayleigh+MMSE 下的 BER/FER 对比
+- CLI: `uv run python -m nearlink_sdr.sim.link_sim phase8`
+
 ## [0.15.0] - 2026-03-20
 
 ### Added

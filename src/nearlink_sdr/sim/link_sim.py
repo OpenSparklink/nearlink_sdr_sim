@@ -1240,6 +1240,85 @@ def run_phase7_simulation():
     print("\nBER/FER curves saved to ber_phase7.png")
 
 
+# ── Phase 8: 多帧类型 + 信道 + 均衡器综合仿真 ──
+
+
+def run_phase8_simulation():
+    """Phase 8: 多帧类型在不同信道条件下的 BER/FER 综合对比。"""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    snr_range = np.arange(0, 20, 1)
+
+    print("=== Phase 8 Multi-Frame-Type Channel Simulation ===")
+    print()
+
+    configs = [
+        # AWGN 基线: 各帧类型
+        {"frame_type": 1, "mcs_index": 8, "channel_type": "awgn",
+         "eq_method": "none", "label": "FT1 GFSK AWGN"},
+        {"frame_type": 2, "mcs_index": 5, "channel_type": "awgn",
+         "eq_method": "none", "label": "FT2 MCS5 R=5/8 AWGN"},
+        {"frame_type": 2, "mcs_index": 7, "channel_type": "awgn",
+         "eq_method": "none", "label": "FT2 MCS7 R=7/8 AWGN"},
+        {"frame_type": 3, "mcs_index": 0, "channel_type": "awgn",
+         "eq_method": "none", "label": "FT3 MCS0 R=1/4 AWGN"},
+        {"frame_type": 4, "mcs_index": 0, "channel_type": "awgn",
+         "eq_method": "none", "label": "FT4 MCS0 R=1/4 AWGN"},
+        # Rayleigh + MMSE 均衡
+        {"frame_type": 2, "mcs_index": 7, "channel_type": "rayleigh",
+         "eq_method": "mmse", "label": "FT2 MCS7 Rayleigh+MMSE"},
+        {"frame_type": 3, "mcs_index": 0, "channel_type": "rayleigh",
+         "eq_method": "mmse", "label": "FT3 MCS0 Rayleigh+MMSE"},
+        {"frame_type": 4, "mcs_index": 0, "channel_type": "rayleigh",
+         "eq_method": "mmse", "label": "FT4 MCS0 Rayleigh+MMSE"},
+    ]
+
+    results = []
+    for i, cfg in enumerate(configs):
+        print(f"[{i+1}/{len(configs)}] {cfg['label']}...")
+        res = sim_pipeline_channel_link(
+            frame_type=cfg["frame_type"],
+            mcs_index=cfg["mcs_index"],
+            n_data_bytes=10,
+            channel_type=cfg["channel_type"],
+            eq_method=cfg["eq_method"],
+            snr_range_db=snr_range,
+            n_frames=50,
+        )
+        results.append((cfg["label"], res))
+        for s, b, f in zip(res["snr_db"][::5], res["ber"][::5], res["fer"][::5], strict=False):
+            print(f"  Eb/N0={s:5.1f} dB  BER={b:.5f}  FER={f:.3f}")
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 6))
+    markers = ["o-", "s-", "^-", "d-", "x-", "^--", "d--", "x--"]
+
+    for (label, res), mk in zip(results, markers, strict=False):
+        ber_plot = [max(b, 1e-6) for b in res["ber"]]
+        ax1.semilogy(res["snr_db"], ber_plot, mk, label=label, markersize=4)
+    ax1.set_xlabel("Eb/N0 (dB)")
+    ax1.set_ylabel("Bit Error Rate")
+    ax1.set_title("SparkLink SLE - Phase 8 Multi-FT BER")
+    ax1.legend(fontsize=6)
+    ax1.grid(True, which="both", ls="--", alpha=0.5)
+    ax1.set_ylim(bottom=1e-5)
+
+    for (label, res), mk in zip(results, markers, strict=False):
+        fer_plot = [max(f, 1e-4) for f in res["fer"]]
+        ax2.semilogy(res["snr_db"], fer_plot, mk, label=label, markersize=4)
+    ax2.set_xlabel("Eb/N0 (dB)")
+    ax2.set_ylabel("Frame Error Rate")
+    ax2.set_title("SparkLink SLE - Phase 8 Multi-FT FER")
+    ax2.legend(fontsize=6)
+    ax2.grid(True, which="both", ls="--", alpha=0.5)
+    ax2.set_ylim(bottom=1e-4)
+
+    fig.tight_layout()
+    fig.savefig("ber_phase8.png", dpi=150)
+    print("\nBER/FER curves saved to ber_phase8.png")
+
+
 if __name__ == "__main__":
     import sys
     if len(sys.argv) > 1 and sys.argv[1] == "phase2":
@@ -1254,5 +1333,7 @@ if __name__ == "__main__":
         run_phase6_simulation()
     elif len(sys.argv) > 1 and sys.argv[1] == "phase7":
         run_phase7_simulation()
+    elif len(sys.argv) > 1 and sys.argv[1] == "phase8":
+        run_phase8_simulation()
     else:
         run_phase1_simulation()
