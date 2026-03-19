@@ -84,12 +84,12 @@ class GFSKDemodulator:
         # 频率鉴别：取相邻采样点的相位差
         phase_diff = np.angle(signal[1:] * np.conj(signal[:-1]))
 
-        # 按符号累积频率
-        n_symbols = len(phase_diff) // self.sps
+        # 按符号累积频率 (包含末尾不足一个完整符号的部分)
+        n_symbols = -(-len(phase_diff) // self.sps)  # ceiling division
         bits = np.zeros(n_symbols, dtype=int)
         for i in range(n_symbols):
             start = i * self.sps
-            end = start + self.sps
+            end = min(start + self.sps, len(phase_diff))
             segment = phase_diff[start:end]
             bits[i] = 1 if np.sum(segment) > 0 else 0
 

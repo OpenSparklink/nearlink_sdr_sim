@@ -11,7 +11,7 @@ from fractions import Fraction
 
 import numpy as np
 
-from nearlink_sdr.common.code_block_seg import segment_without_crc
+from nearlink_sdr.common.code_block_seg import segment_with_crc, segment_without_crc
 from nearlink_sdr.common.crc import (
     CRC24A_POLY,
     CRC32_POLY,
@@ -26,7 +26,12 @@ from nearlink_sdr.phy.gfsk import GFSKModulator
 from nearlink_sdr.phy.psk import PSKModulator
 
 # Head 编码后固定码长
-_HEAD_CODED_LEN = 64
+_HEAD_CODED_LEN = {1: 0, 2: 64, 3: 256, 4: 256}
+
+
+def _head_len(frame_type: int) -> int:
+    """返回头部编码后的码长。"""
+    return _HEAD_CODED_LEN[frame_type]
 
 # 调制类型字符串映射
 _MOD_STR = {
@@ -116,15 +121,18 @@ def encode_payload(data_bits: np.ndarray, cfg: TxConfig) -> np.ndarray:
         coded = with_crc
     else:
         # 码块分割 + Polar 编码
-        segments = segment_without_crc(with_crc, cfg.rate_str, crc_len=cfg.crc_len)
+        if cfg.frame_type in (3, 4):
+            segments = segment_with_crc(with_crc, cfg.rate_str)
+        else:
+            segments = segment_without_crc(with_crc, cfg.rate_str, crc_len=cfg.crc_len)
         coded_blocks: list[np.ndarray] = []
         for n_code, info in segments:
             enc = PolarEncoder(n_code, len(info))
             coded_blocks.append(enc.encode(np.asarray(info, dtype=np.int8)))
         coded = np.concatenate(coded_blocks)
 
-    # 加扰 (offset = HEAD_CODED_LEN for FT2+, 0 for FT1)
-    offset = _HEAD_CODED_LEN if cfg.frame_type >= 2 else 0
+    # 加扰 (offset = head coded len)
+    offset = _head_len(cfg.frame_type)
     sc = scramble_sequence(offset + len(coded), cfg.whitening_seed)
     return np.asarray(coded, dtype=np.uint8) ^ sc[offset: offset + len(coded)]
 
@@ -145,10 +153,10 @@ def encode_head(ctrl_info_bits: np.ndarray, cfg: TxConfig) -> np.ndarray:
         # FT1: 不经过 Polar 编码
         coded = np.asarray(ctrl_info_bits, dtype=np.uint8)
     else:
-        # FT2+: Polar(64, K) 编码
+        # FT2: Polar(64, K), FT3/4: Polar(256, K)
         coded = polar_encode_control(
             np.asarray(ctrl_info_bits, dtype=np.int8),
-            n_coded=_HEAD_CODED_LEN,
+            n_coded=_head_len(cfg.frame_type),
         )
 
     # 加扰 (offset=0, head 在加扰序列起始位置)

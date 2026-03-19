@@ -10,7 +10,7 @@ from dataclasses import dataclass
 
 import numpy as np
 
-from nearlink_sdr.common.code_block_seg import segment_without_crc
+from nearlink_sdr.common.code_block_seg import segment_with_crc, segment_without_crc
 from nearlink_sdr.common.crc import (
     crc_check,
 )
@@ -21,11 +21,16 @@ from nearlink_sdr.phy.control_info import polar_decode_control
 from nearlink_sdr.phy.frame import FrameConfig, symbols_to_data_bits
 from nearlink_sdr.phy.gfsk import GFSKDemodulator
 from nearlink_sdr.phy.psk import rrc_filter
-from nearlink_sdr.phy.sync_sequence import sync_signal_1, sync_signal_2
+from nearlink_sdr.phy.sync_sequence import (
+    sync_signal_1,
+    sync_signal_2,
+    sync_signal_3,
+    sync_signal_4,
+)
 from nearlink_sdr.phy.tx_pipeline import TxConfig
 
 # Head 编码后固定码长
-_HEAD_CODED_LEN = 64
+_HEAD_CODED_LEN = {1: 0, 2: 64, 3: 256, 4: 256}
 
 # 调制类型字符串映射
 _MOD_STR = {
@@ -59,17 +64,20 @@ def decode_payload(scrambled_bits: np.ndarray, cfg: TxConfig,
     (data_bits, crc_ok) : 原始数据比特 和 CRC 校验结果
     """
     # 解扰
-    offset = _HEAD_CODED_LEN if cfg.frame_type >= 2 else 0
+    offset = _HEAD_CODED_LEN[cfg.frame_type]
     sc = scramble_sequence(offset + len(scrambled_bits), cfg.whitening_seed)
     coded = np.asarray(scrambled_bits, dtype=np.uint8) ^ sc[offset: offset + len(scrambled_bits)]
 
     if cfg.is_uncoded:
         data_with_crc = coded.astype(np.int8)
     else:
-        # 用 segment_without_crc 确定分段结构 (K/N 对)
+        # 用分段函数确定分段结构
         b_len = n_info_bits + cfg.crc_len
         dummy = np.zeros(b_len, dtype=int)
-        segments = segment_without_crc(dummy, cfg.rate_str, crc_len=cfg.crc_len)
+        if cfg.frame_type in (3, 4):
+            segments = segment_with_crc(dummy, cfg.rate_str)
+        else:
+            segments = segment_without_crc(dummy, cfg.rate_str, crc_len=cfg.crc_len)
 
         # 按 N 切分编码比特, 逐块 Polar 解码
         pos = 0
@@ -83,6 +91,10 @@ def decode_payload(scrambled_bits: np.ndarray, cfg: TxConfig,
             info_blocks.append(dec.decode(llr))
             pos += n_code
         data_with_crc = np.concatenate(info_blocks)
+
+        # FT3/FT4: segment_with_crc 在前端补零对齐, 解码后取尾部有效比特
+        if cfg.frame_type in (3, 4):
+            data_with_crc = data_with_crc[-b_len:]
 
     # CRC 校验
     ok = crc_check(data_with_crc, cfg.crc_poly, cfg.crc_len, seed=cfg.crc_seed)
@@ -109,9 +121,12 @@ def decode_head(scrambled_bits: np.ndarray, cfg: TxConfig) -> tuple[np.ndarray, 
     if cfg.frame_type == 1:
         return coded.astype(np.int8), True
 
-    # Polar 解码 → k = ctrl_bits_len + 12 (CRC12)
-    k_info = cfg.ctrl_bits_len + 12
-    decoded = polar_decode_control(coded.astype(np.int_), k_info, n_coded=_HEAD_CODED_LEN)
+    # Polar 解码
+    n_coded = _HEAD_CODED_LEN[cfg.frame_type]
+    # A 组 (FT2): CRC12, B 组 (FT3/4): CRC24B
+    head_crc_len = 24 if cfg.frame_type >= 3 else 12
+    k_info = cfg.ctrl_bits_len + head_crc_len
+    decoded = polar_decode_control(coded.astype(np.int_), k_info, n_coded=n_coded)
     return decoded, True
 
 
@@ -130,14 +145,27 @@ def frame_sync(iq_signal: np.ndarray, cfg: TxConfig) -> int:
     if cfg.frame_type == 1:
         # FT1: 32 比特同步序列
         sync_bits = sync_signal_1(cfg.pid)
-        # GFSK - 比特级相关
         sync_ref = 2.0 * sync_bits.astype(np.float64) - 1.0
         signal = 2.0 * np.real(iq_signal).astype(np.float64) - 1.0
-    else:
+    elif cfg.frame_type == 2:
         # FT2: 64 比特同步序列 → QPSK 符号
         sync_bits = sync_signal_2(cfg.pid)
         from nearlink_sdr.phy.psk import PSKModulator
         mod = PSKModulator(mod_type="QPSK", sps=1)
+        sync_ref = mod.map_symbols(sync_bits)
+        signal = iq_signal
+    elif cfg.frame_type == 3:
+        # FT3: 62 比特同步序列 → BPSK 符号
+        sync_bits = sync_signal_3(cfg.pid if cfg.pid else 0)
+        from nearlink_sdr.phy.psk import PSKModulator
+        mod = PSKModulator(mod_type="BPSK", sps=1)
+        sync_ref = mod.map_symbols(sync_bits)
+        signal = iq_signal
+    else:
+        # FT4: 126 比特同步序列 → BPSK 符号
+        sync_bits = sync_signal_4(cfg.pid if cfg.pid else 0)
+        from nearlink_sdr.phy.psk import PSKModulator
+        mod = PSKModulator(mod_type="BPSK", sps=1)
         sync_ref = mod.map_symbols(sync_bits)
         signal = iq_signal
 
@@ -198,7 +226,10 @@ def rx_chain(
         # 计算编码后总比特数
         b_len = n_data_bits + cfg.crc_len
         dummy = np.zeros(b_len, dtype=int)
-        segments = segment_without_crc(dummy, cfg.rate_str, crc_len=cfg.crc_len)
+        if cfg.frame_type in (3, 4):
+            segments = segment_with_crc(dummy, cfg.rate_str)
+        else:
+            segments = segment_without_crc(dummy, cfg.rate_str, crc_len=cfg.crc_len)
         total_coded_bits = sum(n for n, _ in segments)
 
     frame_cfg = FrameConfig(
@@ -210,9 +241,11 @@ def rx_chain(
         mod_type=cfg.mod_str,
     )
 
+    head_coded = _HEAD_CODED_LEN[cfg.frame_type]
+    n_ctrl_coded = head_coded if head_coded > 0 else cfg.ctrl_bits_len + 12
     ctrl_bits_demod, data_bits_demod = symbols_to_data_bits(
         symbols, frame_cfg,
-        n_ctrl_coded_bits=_HEAD_CODED_LEN if cfg.frame_type >= 2 else cfg.ctrl_bits_len + 12,
+        n_ctrl_coded_bits=n_ctrl_coded,
         n_data_bits=total_coded_bits,
     )
 
