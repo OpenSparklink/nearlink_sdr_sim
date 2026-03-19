@@ -21,7 +21,6 @@ from nearlink_sdr.phy.control_info import (
     _int_to_bits,
 )
 
-
 # =========================================================================
 # 辅助函数
 # =========================================================================
@@ -139,7 +138,7 @@ class TestA2:
                            rx_sn=1, flow_ctrl=0, sys_mgmt_rx=1,
                            reserved=3, data_length=2047)
         bits = ci.pack(self.SYNC_SEED)
-        lqi, ci2 = ControlInfoA2.unpack(bits, self.SYNC_SEED, has_lqi=False)
+        _lqi, ci2 = ControlInfoA2.unpack(bits, self.SYNC_SEED, has_lqi=False)
         assert ci2 == ci
 
     def test_roundtrip_with_lqi(self):

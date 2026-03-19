@@ -16,7 +16,6 @@ from nearlink_sdr.common.crc import (
     CRC12_POLY,
     CRC24B_POLY,
     crc_attach,
-    crc_calculate,
     crc_check,
 )
 
@@ -111,9 +110,12 @@ class ControlInfoA1:
                has_lqi: bool = False) -> tuple[int | None, ControlInfoA1]:
         lqi, info = _a_group_unpack(bits, sync_seed, has_lqi)
         off = 0
-        broadcast_type = _bits_to_int(info[off:off + 3]); off += 3
-        packet_type = _bits_to_int(info[off:off + 3]); off += 3
-        reserved = _bits_to_int(info[off:off + 6]); off += 6
+        broadcast_type = _bits_to_int(info[off:off + 3])
+        off += 3
+        packet_type = _bits_to_int(info[off:off + 3])
+        off += 3
+        reserved = _bits_to_int(info[off:off + 6])
+        off += 6
         data_length = _bits_to_int(info[off:off + 8])
         return lqi, cls(broadcast_type, packet_type, reserved, data_length)
 
@@ -151,13 +153,20 @@ class ControlInfoA2:
                has_lqi: bool = False) -> tuple[int | None, ControlInfoA2]:
         lqi, info = _a_group_unpack(bits, sync_seed, has_lqi)
         off = 0
-        packet_type = _bits_to_int(info[off:off + 2]); off += 2
-        empty_packet = _bits_to_int(info[off:off + 1]); off += 1
-        tx_sn = _bits_to_int(info[off:off + 1]); off += 1
-        rx_sn = _bits_to_int(info[off:off + 1]); off += 1
-        flow_ctrl = _bits_to_int(info[off:off + 1]); off += 1
-        sys_mgmt_rx = _bits_to_int(info[off:off + 1]); off += 1
-        reserved = _bits_to_int(info[off:off + 2]); off += 2
+        packet_type = _bits_to_int(info[off:off + 2])
+        off += 2
+        empty_packet = _bits_to_int(info[off:off + 1])
+        off += 1
+        tx_sn = _bits_to_int(info[off:off + 1])
+        off += 1
+        rx_sn = _bits_to_int(info[off:off + 1])
+        off += 1
+        flow_ctrl = _bits_to_int(info[off:off + 1])
+        off += 1
+        sys_mgmt_rx = _bits_to_int(info[off:off + 1])
+        off += 1
+        reserved = _bits_to_int(info[off:off + 2])
+        off += 2
         data_length = _bits_to_int(info[off:off + 11])
         return lqi, cls(packet_type, empty_packet, tx_sn, rx_sn,
                         flow_ctrl, sys_mgmt_rx, reserved, data_length)
@@ -196,13 +205,20 @@ class ControlInfoA3:
                has_lqi: bool = False) -> tuple[int | None, ControlInfoA3]:
         lqi, info = _a_group_unpack(bits, sync_seed, has_lqi)
         off = 0
-        packet_type = _bits_to_int(info[off:off + 2]); off += 2
-        empty_packet = _bits_to_int(info[off:off + 1]); off += 1
-        tx_sn = _bits_to_int(info[off:off + 5]); off += 5
-        rx_sn = _bits_to_int(info[off:off + 5]); off += 5
-        flow_ctrl = _bits_to_int(info[off:off + 1]); off += 1
-        async_sched = _bits_to_int(info[off:off + 1]); off += 1
-        reserved = _bits_to_int(info[off:off + 2]); off += 2
+        packet_type = _bits_to_int(info[off:off + 2])
+        off += 2
+        empty_packet = _bits_to_int(info[off:off + 1])
+        off += 1
+        tx_sn = _bits_to_int(info[off:off + 5])
+        off += 5
+        rx_sn = _bits_to_int(info[off:off + 5])
+        off += 5
+        flow_ctrl = _bits_to_int(info[off:off + 1])
+        off += 1
+        async_sched = _bits_to_int(info[off:off + 1])
+        off += 1
+        reserved = _bits_to_int(info[off:off + 2])
+        off += 2
         data_length = _bits_to_int(info[off:off + 11])
         return lqi, cls(packet_type, empty_packet, tx_sn, rx_sn,
                         flow_ctrl, async_sched, reserved, data_length)
@@ -241,13 +257,20 @@ class ControlInfoA4:
                has_lqi: bool = False) -> tuple[int | None, ControlInfoA4]:
         lqi, info = _a_group_unpack(bits, sync_seed, has_lqi)
         off = 0
-        packet_type = _bits_to_int(info[off:off + 2]); off += 2
-        empty_packet = _bits_to_int(info[off:off + 1]); off += 1
-        tx_sn = _bits_to_int(info[off:off + 1]); off += 1
-        rx_sn = _bits_to_int(info[off:off + 8]); off += 8
-        flow_ctrl = _bits_to_int(info[off:off + 1]); off += 1
-        async_sched = _bits_to_int(info[off:off + 1]); off += 1
-        reserved = _bits_to_int(info[off:off + 3]); off += 3
+        packet_type = _bits_to_int(info[off:off + 2])
+        off += 2
+        empty_packet = _bits_to_int(info[off:off + 1])
+        off += 1
+        tx_sn = _bits_to_int(info[off:off + 1])
+        off += 1
+        rx_sn = _bits_to_int(info[off:off + 8])
+        off += 8
+        flow_ctrl = _bits_to_int(info[off:off + 1])
+        off += 1
+        async_sched = _bits_to_int(info[off:off + 1])
+        off += 1
+        reserved = _bits_to_int(info[off:off + 3])
+        off += 3
         data_length = _bits_to_int(info[off:off + 11])
         return lqi, cls(packet_type, empty_packet, tx_sn, rx_sn,
                         flow_ctrl, async_sched, reserved, data_length)
@@ -286,13 +309,20 @@ class ControlInfoA5:
                has_lqi: bool = False) -> tuple[int | None, ControlInfoA5]:
         lqi, info = _a_group_unpack(bits, sync_seed, has_lqi)
         off = 0
-        packet_type = _bits_to_int(info[off:off + 2]); off += 2
-        empty_packet = _bits_to_int(info[off:off + 1]); off += 1
-        tx_sn = _bits_to_int(info[off:off + 1]); off += 1
-        rx_sn = _bits_to_int(info[off:off + 1]); off += 1
-        flow_ctrl = _bits_to_int(info[off:off + 1]); off += 1
-        async_sched = _bits_to_int(info[off:off + 1]); off += 1
-        reserved = _bits_to_int(info[off:off + 2]); off += 2
+        packet_type = _bits_to_int(info[off:off + 2])
+        off += 2
+        empty_packet = _bits_to_int(info[off:off + 1])
+        off += 1
+        tx_sn = _bits_to_int(info[off:off + 1])
+        off += 1
+        rx_sn = _bits_to_int(info[off:off + 1])
+        off += 1
+        flow_ctrl = _bits_to_int(info[off:off + 1])
+        off += 1
+        async_sched = _bits_to_int(info[off:off + 1])
+        off += 1
+        reserved = _bits_to_int(info[off:off + 2])
+        off += 2
         data_length = _bits_to_int(info[off:off + 11])
         return lqi, cls(packet_type, empty_packet, tx_sn, rx_sn,
                         flow_ctrl, async_sched, reserved, data_length)
@@ -329,12 +359,18 @@ class ControlInfoA6:
                has_lqi: bool = False) -> tuple[int | None, ControlInfoA6]:
         lqi, info = _a_group_unpack(bits, sync_seed, has_lqi)
         off = 0
-        packet_type = _bits_to_int(info[off:off + 2]); off += 2
-        packet_sn = _bits_to_int(info[off:off + 5]); off += 5
-        packet_group = _bits_to_int(info[off:off + 3]); off += 3
-        end_indicator = _bits_to_int(info[off:off + 1]); off += 1
-        sys_mgmt_rx = _bits_to_int(info[off:off + 1]); off += 1
-        reserved = _bits_to_int(info[off:off + 5]); off += 5
+        packet_type = _bits_to_int(info[off:off + 2])
+        off += 2
+        packet_sn = _bits_to_int(info[off:off + 5])
+        off += 5
+        packet_group = _bits_to_int(info[off:off + 3])
+        off += 3
+        end_indicator = _bits_to_int(info[off:off + 1])
+        off += 1
+        sys_mgmt_rx = _bits_to_int(info[off:off + 1])
+        off += 1
+        reserved = _bits_to_int(info[off:off + 5])
+        off += 5
         data_length = _bits_to_int(info[off:off + 11])
         return lqi, cls(packet_type, packet_sn, packet_group,
                         end_indicator, sys_mgmt_rx, reserved, data_length)
@@ -365,9 +401,12 @@ class ControlInfoA7:
                has_lqi: bool = False) -> tuple[int | None, ControlInfoA7]:
         lqi, info = _a_group_unpack(bits, sync_seed, has_lqi)
         off = 0
-        packet_sn = _bits_to_int(info[off:off + 5]); off += 5
-        packet_group = _bits_to_int(info[off:off + 3]); off += 3
-        reserved = _bits_to_int(info[off:off + 9]); off += 9
+        packet_sn = _bits_to_int(info[off:off + 5])
+        off += 5
+        packet_group = _bits_to_int(info[off:off + 3])
+        off += 3
+        reserved = _bits_to_int(info[off:off + 9])
+        off += 9
         data_length = _bits_to_int(info[off:off + 11])
         return lqi, cls(packet_sn, packet_group, reserved, data_length)
 
@@ -428,12 +467,18 @@ class ControlInfoB1:
     def unpack(cls, bits: NDArray[np.int_], llid: int) -> ControlInfoB1:
         info = _b_group_check(bits, llid)
         off = 0
-        frame_format = _bits_to_int(info[off:off + 1]); off += 1
-        harq_feedback = _bits_to_int(info[off:off + 8]); off += 8
-        packet_sn = _bits_to_int(info[off:off + 1]); off += 1
-        mcs = _bits_to_int(info[off:off + 4]); off += 4
-        data_length = _bits_to_int(info[off:off + 11]); off += 11
-        flow_ctrl = _bits_to_int(info[off:off + 1]); off += 1
+        frame_format = _bits_to_int(info[off:off + 1])
+        off += 1
+        harq_feedback = _bits_to_int(info[off:off + 8])
+        off += 8
+        packet_sn = _bits_to_int(info[off:off + 1])
+        off += 1
+        mcs = _bits_to_int(info[off:off + 4])
+        off += 4
+        data_length = _bits_to_int(info[off:off + 11])
+        off += 11
+        flow_ctrl = _bits_to_int(info[off:off + 1])
+        off += 1
         upper_link = _bits_to_int(info[off:off + 1])
         return cls(frame_format, harq_feedback, packet_sn, mcs,
                    data_length, flow_ctrl, upper_link)
@@ -461,8 +506,10 @@ class ControlInfoB2:
     def unpack(cls, bits: NDArray[np.int_], llid: int) -> ControlInfoB2:
         info = _b_group_check(bits, llid)
         off = 0
-        harq_feedback = _bits_to_int(info[off:off + 25]); off += 25
-        flow_ctrl = _bits_to_int(info[off:off + 1]); off += 1
+        harq_feedback = _bits_to_int(info[off:off + 25])
+        off += 25
+        flow_ctrl = _bits_to_int(info[off:off + 1])
+        off += 1
         upper_link = _bits_to_int(info[off:off + 1])
         return cls(harq_feedback, flow_ctrl, upper_link)
 
@@ -495,11 +542,16 @@ class ControlInfoB3:
     def unpack(cls, bits: NDArray[np.int_], llid: int) -> ControlInfoB3:
         info = _b_group_check(bits, llid)
         off = 0
-        packet_group = _bits_to_int(info[off:off + 5]); off += 5
-        packet_sn = _bits_to_int(info[off:off + 5]); off += 5
-        mcs = _bits_to_int(info[off:off + 4]); off += 4
-        data_length = _bits_to_int(info[off:off + 11]); off += 11
-        flow_ctrl = _bits_to_int(info[off:off + 1]); off += 1
+        packet_group = _bits_to_int(info[off:off + 5])
+        off += 5
+        packet_sn = _bits_to_int(info[off:off + 5])
+        off += 5
+        mcs = _bits_to_int(info[off:off + 4])
+        off += 4
+        data_length = _bits_to_int(info[off:off + 11])
+        off += 11
+        flow_ctrl = _bits_to_int(info[off:off + 1])
+        off += 1
         max_sn_indicator = _bits_to_int(info[off:off + 1])
         return cls(packet_group, packet_sn, mcs, data_length,
                    flow_ctrl, max_sn_indicator)
@@ -535,12 +587,18 @@ class ControlInfoB4:
     def unpack(cls, bits: NDArray[np.int_], llid: int) -> ControlInfoB4:
         info = _b_group_check(bits, llid)
         off = 0
-        broadcast_group_id = _bits_to_int(info[off:off + 5]); off += 5
-        data_update = _bits_to_int(info[off:off + 1]); off += 1
-        packet_sn = _bits_to_int(info[off:off + 4]); off += 4
-        mcs = _bits_to_int(info[off:off + 4]); off += 4
-        data_length = _bits_to_int(info[off:off + 11]); off += 11
-        flow_ctrl = _bits_to_int(info[off:off + 1]); off += 1
+        broadcast_group_id = _bits_to_int(info[off:off + 5])
+        off += 5
+        data_update = _bits_to_int(info[off:off + 1])
+        off += 1
+        packet_sn = _bits_to_int(info[off:off + 4])
+        off += 4
+        mcs = _bits_to_int(info[off:off + 4])
+        off += 4
+        data_length = _bits_to_int(info[off:off + 11])
+        off += 11
+        flow_ctrl = _bits_to_int(info[off:off + 1])
+        off += 1
         max_sn_indicator = _bits_to_int(info[off:off + 1])
         return cls(broadcast_group_id, data_update, packet_sn, mcs,
                    data_length, flow_ctrl, max_sn_indicator)
@@ -580,14 +638,22 @@ class ControlInfoB5:
     def unpack(cls, bits: NDArray[np.int_], llid: int) -> ControlInfoB5:
         info = _b_group_check(bits, llid)
         off = 0
-        reserved = _bits_to_int(info[off:off + 7]); off += 7
-        msg_type = _bits_to_int(info[off:off + 3]); off += 3
-        accessible = _bits_to_int(info[off:off + 1]); off += 1
-        queryable = _bits_to_int(info[off:off + 1]); off += 1
-        directed_content = _bits_to_int(info[off:off + 1]); off += 1
-        undirected_content = _bits_to_int(info[off:off + 1]); off += 1
-        data_update = _bits_to_int(info[off:off + 1]); off += 1
-        mcs = _bits_to_int(info[off:off + 4]); off += 4
+        reserved = _bits_to_int(info[off:off + 7])
+        off += 7
+        msg_type = _bits_to_int(info[off:off + 3])
+        off += 3
+        accessible = _bits_to_int(info[off:off + 1])
+        off += 1
+        queryable = _bits_to_int(info[off:off + 1])
+        off += 1
+        directed_content = _bits_to_int(info[off:off + 1])
+        off += 1
+        undirected_content = _bits_to_int(info[off:off + 1])
+        off += 1
+        data_update = _bits_to_int(info[off:off + 1])
+        off += 1
+        mcs = _bits_to_int(info[off:off + 4])
+        off += 4
         data_length = _bits_to_int(info[off:off + 8])
         return cls(reserved, msg_type, accessible, queryable,
                    directed_content, undirected_content, data_update,

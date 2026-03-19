@@ -10,6 +10,9 @@ dependencies = [
     "pytest>=9.0.2",
     "pytest-cov>=7.0.0",
     "scipy>=1.17.1",
+    "attrs>=24.3.0",
+    "cattrs>=23.1.2",
+    "lsprotocol==2025.0.0",
 ]
 
 [tool.pytest.ini_options]
@@ -23,6 +26,13 @@ build-backend = "hatchling.build"
 [dependency-groups]
 dev = [
     "ruff>=0.15.6",
+    {include-group = "docs"},
+]
+docs = [
+    "sphinx>=8.0,<9.0",
+    "myst-parser>=4.0",
+    "sphinx-rtd-theme>=3.0",
+    "sphinx-autodoc2>=0.5",
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -53,3 +63,6 @@ ignore = [
 
 [tool.ruff.lint.isort]
 known-first-party = ["nearlink_sdr"]
+
+[tool.esbonio.sphinx]
+pythonCommand = ["uv", "run", "--group", "docs", "python"]

@@ -1,10 +1,11 @@
 """PRBS 发生器测试 + 标准 14 章测试向量验证"""
 
+import typing
+
 import numpy as np
 import pytest
 
 from nearlink_sdr.common.prbs import prbs11, prbs17
-
 
 # =========================================================================
 # PRBS11 基本测试
@@ -209,7 +210,7 @@ class TestTVParameters:
     """验证测试向量参数表中的配置一致性。"""
 
     # 表 73 部分参数
-    TV_PARAMS = [
+    TV_PARAMS: typing.ClassVar = [
         # (TV_ID, FrameType, ControlType, ControlLen, DataLenByte, CRCbits, WhiteningSeed)
         (101, 1, "A1", 20, 32, 24, 0x4E),
         (102, 1, "A3", 28, 33, 32, 0x49),
