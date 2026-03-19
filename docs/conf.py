@@ -9,6 +9,7 @@ extensions = [
     "autodoc2",
     "sphinx.ext.intersphinx",
     "sphinx.ext.viewcode",
+    "sphinx.ext.mathjax",
 ]
 
 # -- MyST 配置 ----------------------------------------------------------------
@@ -17,6 +18,8 @@ myst_enable_extensions = [
     "colon_fence",
     "fieldlist",
     "deflist",
+    "dollarmath",
+    "amsmath",
 ]
 
 # -- autodoc2 配置 -------------------------------------------------------------
@@ -39,6 +42,38 @@ language = "zh_CN"
 
 html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]
+
+# -- LaTeX / PDF 输出配置 ------------------------------------------------------
+
+latex_engine = "xelatex"
+
+latex_elements = {
+    "papersize": "a4paper",
+    "pointsize": "11pt",
+    "preamble": r"""
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont{HarmonyOS Sans SC}
+\setCJKsansfont{HarmonyOS Sans SC}
+\setCJKmonofont{HarmonyOS Sans SC}
+\setmainfont{HarmonyOS Sans}
+\setsansfont{HarmonyOS Sans}
+\usepackage{amsmath,amssymb}
+""",
+    "figure_align": "htbp",
+}
+
+latex_use_xindy = False
+
+latex_documents = [
+    (
+        "index",
+        "nearlink-sdr.tex",
+        "nearlink-sdr 技术文档",
+        author,
+        "manual",
+    ),
+]
 
 # -- intersphinx 配置 ----------------------------------------------------------
 

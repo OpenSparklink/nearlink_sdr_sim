@@ -16,6 +16,9 @@
 **[设计说明](explanation/architecture.md)**
 : 系统架构、与标准条款的映射关系、关键设计决策的阐述。
 
+**[物理层原理](explanation/principles.md)**
+: Polar 编码、PSK/GFSK 调制、信道模型、均衡器等核心算法的数学推导。
+
 ```{toctree}
 :maxdepth: 2
 :hidden:
@@ -25,6 +28,7 @@ how-to/index
 reference/index
 explanation/architecture
 explanation/standard-mapping
+explanation/principles
 changelog
 apidocs/index
 ```

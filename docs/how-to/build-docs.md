@@ -16,6 +16,19 @@ uv run sphinx-build -b html docs docs/_build/html
 
 构建产物在 `docs/_build/html/` 目录下, 用浏览器打开 `index.html` 即可阅读。
 
+## 构建 PDF
+
+使用 XeLaTeX 编译, 字体为 HarmonyOS Sans SC:
+
+```bash
+uv run --group docs sphinx-build -b latex docs docs/_build/latex
+cd docs/_build/latex && make
+```
+
+生成的 PDF 位于 `docs/_build/latex/nearlink-sdr.pdf`。
+
+需要系统安装 TeX Live (含 `xelatex`) 和 HarmonyOS Sans SC 字体。
+
 ## 实时预览
 
 开发文档时, 使用 `sphinx-autobuild` 自动重建并刷新浏览器:
