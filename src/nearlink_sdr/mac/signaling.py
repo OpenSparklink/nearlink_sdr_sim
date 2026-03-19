@@ -8,6 +8,22 @@ from __future__ import annotations
 from typing import Any
 
 from nearlink_sdr.mac.frame import ControlFrame
+from nearlink_sdr.mac.link_control import (
+    ChannelReportConfig,
+    ClockAccuracyRequest,
+    ClockAccuracyResponse,
+    CrcSwitchIndication,
+    CrcSwitchRequest,
+    DataLengthRequest,
+    DataLengthResponse,
+    FeatureExchangeRequest,
+    FeatureExchangeResponse,
+    IntervalUpdateRequest,
+    IntervalUpdateResponse,
+    LinkDisconnect,
+    SignalingReject,
+    VersionExchange,
+)
 from nearlink_sdr.mac.power_control import (
     PowerChangeIndication,
     PowerControlRequest,
@@ -20,9 +36,23 @@ from nearlink_sdr.mac.power_control import (
 
 # data_type_index -> (名称, 信令类, 字节长度)
 _SIGNALING_REGISTRY: dict[int, tuple[str, type, int]] = {
+    0x0001: ("收发间隔更新请求", IntervalUpdateRequest, 1),
+    0x0002: ("收发间隔更新响应", IntervalUpdateResponse, 8),
+    0x0003: ("信令被拒指示", SignalingReject, 3),
+    0x000A: ("特性交互请求", FeatureExchangeRequest, 10),
+    0x000B: ("特性交互响应", FeatureExchangeResponse, 10),
+    0x000D: ("版本交互指示", VersionExchange, 5),
+    0x000E: ("数据长度请求", DataLengthRequest, 8),
+    0x000F: ("数据长度响应", DataLengthResponse, 8),
+    0x0010: ("信道上报指示", ChannelReportConfig, 3),
+    0x0015: ("CRC切换请求", CrcSwitchRequest, 12),
+    0x0016: ("CRC切换指示", CrcSwitchIndication, 16),
     0x0019: ("功率控制请求", PowerControlRequest, 3),
     0x001A: ("功率控制响应", PowerControlResponse, 4),
     0x001B: ("功率变化指示", PowerChangeIndication, 4),
+    0x001C: ("时钟精度请求", ClockAccuracyRequest, 1),
+    0x001D: ("时钟精度响应", ClockAccuracyResponse, 1),
+    0x001E: ("链路断开指示", LinkDisconnect, 4),
 }
 
 

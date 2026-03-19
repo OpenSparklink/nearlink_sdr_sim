@@ -9,6 +9,22 @@ from nearlink_sdr.mac.frame import (
     SegmentType,
     SyncDataFrame,
 )
+from nearlink_sdr.mac.link_control import (
+    ChannelReportConfig,
+    ClockAccuracyRequest,
+    ClockAccuracyResponse,
+    CrcSwitchIndication,
+    CrcSwitchRequest,
+    DataLengthRequest,
+    DataLengthResponse,
+    FeatureExchangeRequest,
+    FeatureExchangeResponse,
+    IntervalUpdateRequest,
+    IntervalUpdateResponse,
+    LinkDisconnect,
+    SignalingReject,
+    VersionExchange,
+)
 from nearlink_sdr.mac.power_control import (
     Bandwidth,
     FreqDensity,
@@ -245,3 +261,226 @@ class TestMuxFrame:
         msg = decode_signaling(restored)
         assert isinstance(msg, PowerControlRequest)
         assert msg.tx_power_change == 5
+
+
+# ============================================================================
+# 7.3.2 链路控制信令编解码
+# ============================================================================
+
+
+class TestIntervalUpdate:
+    def test_request_roundtrip(self):
+        req = IntervalUpdateRequest(interval_type=5)
+        data = req.pack()
+        assert len(data) == 1
+        restored = IntervalUpdateRequest.unpack(data)
+        assert restored.interval_type == 5
+
+    def test_response_roundtrip(self):
+        resp = IntervalUpdateResponse(link_id=0xABCDEF, interval_type=3,
+                                      effective_slot=1000)
+        data = resp.pack()
+        assert len(data) == 8
+        restored = IntervalUpdateResponse.unpack(data)
+        assert restored.link_id == 0xABCDEF
+        assert restored.interval_type == 3
+        assert restored.effective_slot == 1000
+
+    def test_request_signaling_registry(self):
+        req = IntervalUpdateRequest(interval_type=0)
+        frame = encode_signaling(req)
+        assert frame.data_type_index == 0x0001
+        decoded = decode_signaling(frame)
+        assert isinstance(decoded, IntervalUpdateRequest)
+        assert decoded.interval_type == 0
+
+    def test_response_signaling_registry(self):
+        resp = IntervalUpdateResponse(link_id=1, interval_type=15,
+                                      effective_slot=0)
+        frame = encode_signaling(resp)
+        assert frame.data_type_index == 0x0002
+        decoded = decode_signaling(frame)
+        assert isinstance(decoded, IntervalUpdateResponse)
+        assert decoded.interval_type == 15
+
+
+class TestSignalingRejectMsg:
+    def test_roundtrip(self):
+        msg = SignalingReject(rejected_index=0x0019, error_reason=42)
+        data = msg.pack()
+        assert len(data) == 3
+        restored = SignalingReject.unpack(data)
+        assert restored.rejected_index == 0x0019
+        assert restored.error_reason == 42
+
+    def test_signaling_registry(self):
+        msg = SignalingReject(rejected_index=0x000E, error_reason=1)
+        frame = encode_signaling(msg)
+        decoded = decode_signaling(frame)
+        assert isinstance(decoded, SignalingReject)
+        assert decoded.rejected_index == 0x000E
+
+
+class TestFeatureExchange:
+    def test_request_roundtrip(self):
+        features = (1 << 79) | (1 << 0)
+        req = FeatureExchangeRequest(feature_set=features)
+        data = req.pack()
+        assert len(data) == 10
+        restored = FeatureExchangeRequest.unpack(data)
+        assert restored.feature_set == features
+
+    def test_response_roundtrip(self):
+        resp = FeatureExchangeResponse(feature_set=0xFF00FF00FF)
+        data = resp.pack()
+        restored = FeatureExchangeResponse.unpack(data)
+        assert restored.feature_set == 0xFF00FF00FF
+
+    def test_signaling_registry(self):
+        req = FeatureExchangeRequest(feature_set=0)
+        frame = encode_signaling(req)
+        decoded = decode_signaling(frame)
+        assert isinstance(decoded, FeatureExchangeRequest)
+        assert decoded.feature_set == 0
+
+
+class TestVersionExchange:
+    def test_roundtrip(self):
+        msg = VersionExchange(spec_version=2, company_id=0x1234,
+                              sub_version=0x5678)
+        data = msg.pack()
+        assert len(data) == 5
+        restored = VersionExchange.unpack(data)
+        assert restored.spec_version == 2
+        assert restored.company_id == 0x1234
+        assert restored.sub_version == 0x5678
+
+    def test_signaling_registry(self):
+        msg = VersionExchange(spec_version=1, company_id=0,
+                              sub_version=0)
+        frame = encode_signaling(msg)
+        decoded = decode_signaling(frame)
+        assert isinstance(decoded, VersionExchange)
+        assert decoded.spec_version == 1
+
+
+class TestDataLength:
+    def test_request_roundtrip(self):
+        req = DataLengthRequest(max_rx_bytes=251, max_rx_time=2120,
+                                max_tx_bytes=251, max_tx_time=2120)
+        data = req.pack()
+        assert len(data) == 8
+        restored = DataLengthRequest.unpack(data)
+        assert restored.max_rx_bytes == 251
+        assert restored.max_tx_time == 2120
+
+    def test_response_roundtrip(self):
+        resp = DataLengthResponse(max_rx_bytes=2047, max_rx_time=65535,
+                                  max_tx_bytes=31, max_tx_time=346)
+        data = resp.pack()
+        restored = DataLengthResponse.unpack(data)
+        assert restored.max_rx_bytes == 2047
+        assert restored.max_tx_bytes == 31
+
+    def test_signaling_registry(self):
+        req = DataLengthRequest(100, 500, 100, 500)
+        frame = encode_signaling(req)
+        assert frame.data_type_index == 0x000E
+        decoded = decode_signaling(frame)
+        assert isinstance(decoded, DataLengthRequest)
+        assert decoded.max_rx_bytes == 100
+
+
+class TestChannelReport:
+    def test_roundtrip(self):
+        msg = ChannelReportConfig(enable=1, min_interval=10,
+                                  max_delay=30)
+        data = msg.pack()
+        assert len(data) == 3
+        restored = ChannelReportConfig.unpack(data)
+        assert restored.enable == 1
+        assert restored.min_interval == 10
+        assert restored.max_delay == 30
+
+
+class TestCrcSwitch:
+    def test_request_roundtrip(self):
+        req = CrcSwitchRequest(link_id=0x123456, tx_crc_type=1,
+                               rx_crc_type=0, tx_crc_init=0x87654321,
+                               rx_crc_init=0x12345678)
+        data = req.pack()
+        assert len(data) == 12
+        restored = CrcSwitchRequest.unpack(data)
+        assert restored.link_id == 0x123456
+        assert restored.tx_crc_type == 1
+        assert restored.rx_crc_type == 0
+        assert restored.tx_crc_init == 0x87654321
+        assert restored.rx_crc_init == 0x12345678
+
+    def test_indication_roundtrip(self):
+        ind = CrcSwitchIndication(link_id=0xABC, tx_crc_type=0,
+                                  rx_crc_type=1, tx_crc_init=0,
+                                  rx_crc_init=0xFFFFFFFF,
+                                  effective_slot=999)
+        data = ind.pack()
+        assert len(data) == 16
+        restored = CrcSwitchIndication.unpack(data)
+        assert restored.link_id == 0xABC
+        assert restored.rx_crc_type == 1
+        assert restored.rx_crc_init == 0xFFFFFFFF
+        assert restored.effective_slot == 999
+
+
+class TestClockAccuracy:
+    def test_request_roundtrip(self):
+        req = ClockAccuracyRequest(accuracy=50)
+        data = req.pack()
+        assert len(data) == 1
+        restored = ClockAccuracyRequest.unpack(data)
+        assert restored.accuracy == 50
+
+    def test_response_roundtrip(self):
+        resp = ClockAccuracyResponse(accuracy=100)
+        data = resp.pack()
+        restored = ClockAccuracyResponse.unpack(data)
+        assert restored.accuracy == 100
+
+
+class TestLinkDisconnect:
+    def test_roundtrip(self):
+        msg = LinkDisconnect(link_id=0x654321, error_reason=0x13)
+        data = msg.pack()
+        assert len(data) == 4
+        restored = LinkDisconnect.unpack(data)
+        assert restored.link_id == 0x654321
+        assert restored.error_reason == 0x13
+
+    def test_signaling_registry(self):
+        msg = LinkDisconnect(link_id=1, error_reason=0)
+        frame = encode_signaling(msg)
+        assert frame.data_type_index == 0x001E
+        decoded = decode_signaling(frame)
+        assert isinstance(decoded, LinkDisconnect)
+        assert decoded.link_id == 1
+
+
+class TestSignalingRegistryExpanded:
+    """验证扩展后的信令注册表覆盖 17 种信令类型。"""
+
+    def test_total_registered_count(self):
+        items = list_registered()
+        assert len(items) >= 17
+
+    def test_all_indices_present(self):
+        items = list_registered()
+        indices = {idx for idx, _, _ in items}
+        expected = {0x0001, 0x0002, 0x0003, 0x000A, 0x000B, 0x000D,
+                    0x000E, 0x000F, 0x0010, 0x0015, 0x0016,
+                    0x0019, 0x001A, 0x001B, 0x001C, 0x001D, 0x001E}
+        assert expected.issubset(indices)
+
+    def test_names_lookup(self):
+        assert get_signaling_name(0x0001) == "收发间隔更新请求"
+        assert get_signaling_name(0x0003) == "信令被拒指示"
+        assert get_signaling_name(0x000D) == "版本交互指示"
+        assert get_signaling_name(0x001E) == "链路断开指示"
