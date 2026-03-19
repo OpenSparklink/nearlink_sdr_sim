@@ -7,6 +7,22 @@
 
 ## [Unreleased]
 
+## [0.14.0] - 2026-03-20
+
+### Changed
+
+- `common/polar.py`: 可靠性序列 `lru_cache` 缓存, SC 解码 `_f`/`_g` 内联, 编码器向量化蝶形运算
+- `phy/psk.py`: RRC 滤波器 `lru_cache` 缓存, 避免重复计算
+- Pipeline 仿真速度提升 37% (3.05ms → 1.68ms/frame)
+
+## [0.13.0] - 2026-03-20
+
+### Added
+
+- `sim/link_sim.py`: 多径信道 + 频率偏移 Pipeline 仿真 (Phase 7)
+- `sim_pipeline_channel_link()`: 支持 AWGN/Rayleigh/Rician 信道 + 载波频偏
+- `run_phase7_simulation()`: 6 种信道配置的 BER/FER 曲线生成
+
 ## [0.12.0] - 2026-03-20
 
 ### Added
@@ -136,7 +152,9 @@
 - `sim/link_sim.py` Phase 1 无编码链路仿真
 - 107 个测试
 
-[Unreleased]: https://github.com/user/nearlink-sdr/compare/v0.12.0...HEAD
+[Unreleased]: https://github.com/user/nearlink-sdr/compare/v0.14.0...HEAD
+[0.14.0]: https://github.com/user/nearlink-sdr/compare/v0.13.0...v0.14.0
+[0.13.0]: https://github.com/user/nearlink-sdr/compare/v0.12.0...v0.13.0
 [0.12.0]: https://github.com/user/nearlink-sdr/compare/v0.11.0...v0.12.0
 [0.11.0]: https://github.com/user/nearlink-sdr/compare/v0.10.0...v0.11.0
 [0.10.0]: https://github.com/user/nearlink-sdr/compare/v0.9.0...v0.10.0

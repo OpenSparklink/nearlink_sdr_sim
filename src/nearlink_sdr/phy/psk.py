@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 import numpy as np
 
 # TXS-10002-2025 6.2.1.2 PSK调制
@@ -6,6 +8,7 @@ import numpy as np
 SLE_RRC_BETA = 0.4
 
 
+@lru_cache(maxsize=8)
 def rrc_filter(beta: float, sps: int, span: int = 10) -> np.ndarray:
     """生成平方根升余弦脉冲成型滤波器。
 

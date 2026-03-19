@@ -57,7 +57,7 @@ class TestReliabilitySequence:
         seq_1024 = RELIABILITY_SEQ_1024
         seq_64 = _get_reliability_sequence(64)
         filtered = [q for q in seq_1024 if q < 64]
-        assert seq_64 == filtered
+        assert list(seq_64) == filtered
 
 
 # ── Frozen/info set tests ──

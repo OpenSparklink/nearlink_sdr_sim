@@ -97,6 +97,7 @@ tests/            # 测试文件, 与 src 模块一一对应
 | 6.10 | RX 接收流水线 | 完成 | `phy/rx_pipeline.py` |
 | 6.3 | FT1/FT3/FT4 帧类型全链路支持 | 完成 | `phy/tx_pipeline.py`, `phy/rx_pipeline.py` |
 | - | 全链路 Pipeline 仿真 | 完成 | `sim/link_sim.py` (Phase 6) |
+| - | 多径信道 + 频偏 Pipeline 仿真 | 完成 | `sim/link_sim.py` (Phase 7) |
 
 ## 硬件约束 (USRP E310)
 

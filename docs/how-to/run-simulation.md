@@ -106,3 +106,37 @@ result = sim_pipeline_link(frame_type=4, mcs_index=0)
 uv run python -m nearlink_sdr.sim.link_sim phase6
 # 结果保存到 ber_phase6.png
 ```
+
+## 信道损伤仿真
+
+使用 `sim_pipeline_channel_link` 模拟衰落信道和载波频偏对链路的影响:
+
+```python
+import numpy as np
+from nearlink_sdr.sim.link_sim import sim_pipeline_channel_link
+
+# Rayleigh 平坦衰落
+result = sim_pipeline_channel_link(
+    frame_type=2,
+    mcs_index=7,
+    channel_type="rayleigh",
+    snr_range_db=np.arange(0, 20, 2),
+    n_frames=50,
+)
+
+# AWGN + 500Hz 载波频偏
+result = sim_pipeline_channel_link(
+    frame_type=2,
+    mcs_index=7,
+    channel_type="awgn",
+    cfo_hz=500.0,
+    snr_range_db=np.arange(0, 16, 2),
+)
+```
+
+批量信道损伤仿真:
+
+```bash
+uv run python -m nearlink_sdr.sim.link_sim phase7
+# 结果保存到 ber_phase7.png
+```

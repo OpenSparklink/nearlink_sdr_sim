@@ -57,6 +57,7 @@ nearlink_sdr/
 | Phase 4 | 多径信道 + 均衡器 | `sim_multipath_coded_link` |
 | Phase 5 | 跳频仿真 | `sim_hopping_link` |
 | Phase 6 | 全链路 Pipeline 仿真 | `sim_pipeline_link` |
+| Phase 7 | 多径信道 + 频偏 Pipeline 仿真 | `sim_pipeline_channel_link` |
 
 每个阶段的仿真函数可独立调用, 也可通过 `run_phaseN_simulation()` 批量执行。
 

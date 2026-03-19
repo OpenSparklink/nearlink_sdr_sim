@@ -1033,6 +1033,197 @@ def run_phase6_simulation():
     print("\nBER/FER curves saved to ber_phase6.png")
 
 
+# ── Phase 7: 多径信道 + 频率偏移 Pipeline 仿真 ──
+
+
+def _apply_cfo(signal: np.ndarray, cfo_hz: float, sample_rate: float) -> np.ndarray:
+    """对 IQ 信号施加载波频率偏移。"""
+    if cfo_hz == 0.0:
+        return signal
+    t = np.arange(len(signal)) / sample_rate
+    return signal * np.exp(1j * 2 * np.pi * cfo_hz * t)
+
+
+def sim_pipeline_channel_link(
+    frame_type: int = 2,
+    mcs_index: int = 7,
+    n_data_bytes: int = 10,
+    channel_type: str = "awgn",
+    rician_k_db: float = 6.0,
+    cfo_hz: float = 0.0,
+    snr_range_db: np.ndarray | None = None,
+    n_frames: int = 20,
+    sps: int = 4,
+    seed: int = 42,
+) -> dict:
+    """全链路 Pipeline 仿真 — 支持多径信道和频率偏移。
+
+    在 tx_chain 输出的 IQ 信号上依次施加:
+      1. 衰落信道 (Rayleigh / Rician / 多径)
+      2. 载波频率偏移
+      3. AWGN 噪声
+    然后送入 rx_chain 解码。
+
+    Args:
+        frame_type: 帧类型 (1-4)。
+        mcs_index: MCS 索引。
+        n_data_bytes: 数据长度 (字节)。
+        channel_type: "awgn" | "rayleigh" | "rician" | "multipath"。
+        rician_k_db: Rician K 因子 (dB)。
+        cfo_hz: 载波频率偏移 (Hz), 典型 SLE 值 0 ~ 数百 Hz。
+        snr_range_db: Eb/N0 扫描范围。
+        n_frames: 每个 SNR 点的仿真帧数。
+        sps: 每符号采样数。
+        seed: 随机种子。
+
+    Returns:
+        {"snr_db": [...], "ber": [...], "fer": [...]}
+    """
+    from nearlink_sdr.phy.channel import ChannelConfig
+    from nearlink_sdr.phy.rx_pipeline import rx_chain
+    from nearlink_sdr.phy.tx_pipeline import TxConfig, tx_chain
+
+    if snr_range_db is None:
+        snr_range_db = np.arange(0, 20, 2)
+
+    rng = np.random.default_rng(seed)
+
+    # SLE 符号速率 1 Msps, 采样率 = sps * 符号速率
+    sample_rate = sps * 1e6
+
+    # 帧类型参数
+    if frame_type == 1:
+        ctrl_bits_len, crc_len, head_crc_len, pilot_interval = 20, 24, 12, 0
+    elif frame_type == 2:
+        ctrl_bits_len, crc_len, head_crc_len, pilot_interval = 28, 24, 12, 8
+    else:
+        ctrl_bits_len, crc_len, head_crc_len, pilot_interval = 27, 24, 24, 4
+
+    cfg = TxConfig(
+        frame_type=frame_type,
+        mcs_index=mcs_index,
+        pid=0x123456 if frame_type <= 2 else 0,
+        whitening_seed=0x52,
+        crc_seed=0x555555,
+        crc_len=crc_len,
+        ctrl_bits_len=ctrl_bits_len,
+        pilot_interval=pilot_interval,
+        sps=sps,
+    )
+
+    n_data_bits = n_data_bytes * 8
+    ber_list, fer_list = [], []
+
+    for snr in snr_range_db:
+        total_errors, total_bits, frame_errors = 0, 0, 0
+
+        for _ in range(n_frames):
+            head_bits = rng.integers(0, 2, ctrl_bits_len + head_crc_len, dtype=np.int8)
+            data_bits = rng.integers(0, 2, n_data_bits, dtype=int)
+
+            iq = tx_chain(head_bits, data_bits, cfg)
+
+            # 施加信道损伤
+            frame_seed = int(rng.integers(0, 2**31))
+            ch_cfg = ChannelConfig(
+                snr_db=float(snr),
+                channel_type=channel_type,
+                rician_k_db=rician_k_db,
+                seed=frame_seed,
+            )
+            ch = ChannelModel(config=ch_cfg)
+
+            rx_iq = ch.apply_awgn(iq) if channel_type == "awgn" else ch.apply_fading(iq)
+
+            # 施加频率偏移
+            rx_iq = _apply_cfo(rx_iq, cfo_hz, sample_rate)
+
+            result = rx_chain(rx_iq, cfg, n_data_bytes)
+
+            errors = int(np.sum(result.data_bits[:n_data_bits] != data_bits))
+            total_errors += errors
+            total_bits += n_data_bits
+            if not result.crc_ok:
+                frame_errors += 1
+
+        ber = total_errors / total_bits if total_bits > 0 else 0.0
+        fer = frame_errors / n_frames
+        ber_list.append(ber)
+        fer_list.append(fer)
+
+    return {"snr_db": snr_range_db.tolist(), "ber": ber_list, "fer": fer_list}
+
+
+def run_phase7_simulation():
+    """Phase 7: 多径信道 + 频率偏移 Pipeline BER/FER 仿真。"""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    snr_range = np.arange(0, 20, 1)
+
+    print("=== Phase 7 Channel Impairment Pipeline Simulation ===")
+    print()
+
+    configs = [
+        {"channel_type": "awgn", "cfo_hz": 0.0,
+         "label": "AWGN (baseline)"},
+        {"channel_type": "rayleigh", "cfo_hz": 0.0,
+         "label": "Rayleigh flat"},
+        {"channel_type": "rician", "cfo_hz": 0.0,
+         "label": "Rician K=6dB"},
+        {"channel_type": "awgn", "cfo_hz": 100.0,
+         "label": "AWGN + CFO 100Hz"},
+        {"channel_type": "awgn", "cfo_hz": 500.0,
+         "label": "AWGN + CFO 500Hz"},
+        {"channel_type": "rayleigh", "cfo_hz": 100.0,
+         "label": "Rayleigh + CFO 100Hz"},
+    ]
+
+    results = []
+    for i, cfg in enumerate(configs):
+        print(f"[{i+1}/{len(configs)}] {cfg['label']}...")
+        res = sim_pipeline_channel_link(
+            frame_type=2,
+            mcs_index=7,
+            n_data_bytes=10,
+            channel_type=cfg["channel_type"],
+            cfo_hz=cfg["cfo_hz"],
+            snr_range_db=snr_range,
+            n_frames=50,
+        )
+        results.append((cfg["label"], res))
+        for s, b, f in zip(res["snr_db"][::5], res["ber"][::5], res["fer"][::5], strict=False):
+            print(f"  Eb/N0={s:5.1f} dB  BER={b:.5f}  FER={f:.3f}")
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
+    markers = ["o-", "s-", "^-", "d--", "x--", "v-"]
+
+    for (label, res), mk in zip(results, markers, strict=False):
+        ber_plot = [max(b, 1e-6) for b in res["ber"]]
+        ax1.semilogy(res["snr_db"], ber_plot, mk, label=label, markersize=4)
+    ax1.set_xlabel("Eb/N0 (dB)")
+    ax1.set_ylabel("Bit Error Rate")
+    ax1.set_title("SparkLink SLE - Phase 7 Channel Impairment BER (FT2 MCS7)")
+    ax1.legend(fontsize=7)
+    ax1.grid(True, which="both", ls="--", alpha=0.5)
+    ax1.set_ylim(bottom=1e-5)
+
+    for (label, res), mk in zip(results, markers, strict=False):
+        fer_plot = [max(f, 1e-4) for f in res["fer"]]
+        ax2.semilogy(res["snr_db"], fer_plot, mk, label=label, markersize=4)
+    ax2.set_xlabel("Eb/N0 (dB)")
+    ax2.set_ylabel("Frame Error Rate")
+    ax2.set_title("SparkLink SLE - Phase 7 Channel Impairment FER (FT2 MCS7)")
+    ax2.legend(fontsize=7)
+    ax2.grid(True, which="both", ls="--", alpha=0.5)
+    ax2.set_ylim(bottom=1e-4)
+
+    fig.tight_layout()
+    fig.savefig("ber_phase7.png", dpi=150)
+    print("\nBER/FER curves saved to ber_phase7.png")
+
+
 if __name__ == "__main__":
     import sys
     if len(sys.argv) > 1 and sys.argv[1] == "phase2":
@@ -1045,5 +1236,7 @@ if __name__ == "__main__":
         run_phase5_simulation()
     elif len(sys.argv) > 1 and sys.argv[1] == "phase6":
         run_phase6_simulation()
+    elif len(sys.argv) > 1 and sys.argv[1] == "phase7":
+        run_phase7_simulation()
     else:
         run_phase1_simulation()

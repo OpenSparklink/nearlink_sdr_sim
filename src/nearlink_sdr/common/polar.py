@@ -3,6 +3,8 @@ Polar code encoder and SC (Successive Cancellation) decoder
 per TXS-10002-2025 standard section 6.9.1.4.
 """
 
+from functools import lru_cache
+
 import numpy as np
 
 # Reliability sequence Q_0^{N_max-1} for N_max = 1024
@@ -1056,12 +1058,13 @@ def get_info_bit_count(rate_str: str, N: int) -> int:
     return RATE_TABLE[rate_str][N]
 
 
-def _get_reliability_sequence(N: int) -> list[int]:
+@lru_cache(maxsize=16)
+def _get_reliability_sequence(N: int) -> tuple[int, ...]:
     """Extract the reliability sequence for code length N from the N_max=1024 sequence.
 
     Filters entries where bit index < N, preserving the reliability order.
     """
-    return [q for q in RELIABILITY_SEQ_1024 if q < N]
+    return tuple(q for q in RELIABILITY_SEQ_1024 if q < N)
 
 
 def _get_frozen_and_info_sets(N: int, K: int) -> tuple[set[int], set[int]]:
@@ -1087,9 +1090,9 @@ class PolarEncoder:
         self.N = N
         self.K = K
         self.frozen_set, self.info_set = _get_frozen_and_info_sets(N, K)
-        # Info positions sorted by ascending index (标准要求)
         seq = _get_reliability_sequence(N)
         self.info_positions = sorted(seq[N - K :])
+        self._info_pos_arr = np.array(self.info_positions, dtype=np.intp)
 
     def encode(self, info_bits: np.ndarray) -> np.ndarray:
         """Encode K information bits into N coded bits.
@@ -1104,25 +1107,23 @@ class PolarEncoder:
         if info_bits.shape != (self.K,):
             raise ValueError(f"Expected {self.K} info bits, got shape {info_bits.shape}")
 
-        # Build encoder input u
+        # Build encoder input u — vectorized insert
         u = np.zeros(self.N, dtype=np.int8)
-        for idx, pos in enumerate(self.info_positions):
-            u[pos] = info_bits[idx]
+        u[self._info_pos_arr] = info_bits
 
-        # Butterfly encoding: in-place GF(2) transform
+        # Butterfly encoding: vectorized GF(2) transform
         d = u.copy()
         stage = 1
         while stage < self.N:
             for j in range(0, self.N, 2 * stage):
-                for i in range(stage):
-                    d[j + i] ^= d[j + i + stage]
+                d[j:j + stage] ^= d[j + stage:j + 2 * stage]
             stage <<= 1
 
         return d
 
 
 class PolarDecoder:
-    """Successive Cancellation (SC) decoder in LLR domain."""
+    """Successive Cancellation (SC) decoder in LLR domain — iterative实现。"""
 
     def __init__(self, N: int, K: int) -> None:
         if N not in VALID_CODE_LENGTHS:
@@ -1135,36 +1136,24 @@ class PolarDecoder:
         self.frozen_set, self.info_set = _get_frozen_and_info_sets(N, K)
         seq = _get_reliability_sequence(N)
         self.info_positions = sorted(seq[N - K :])
-
-    @staticmethod
-    def _f(a: np.ndarray, b: np.ndarray) -> np.ndarray:
-        """f node operation: sign(a)*sign(b)*min(|a|,|b|)."""
-        return np.sign(a) * np.sign(b) * np.minimum(np.abs(a), np.abs(b))
-
-    @staticmethod
-    def _g(a: np.ndarray, b: np.ndarray, u: np.ndarray) -> np.ndarray:
-        """g node operation: b + (1 - 2*u) * a."""
-        return b + (1.0 - 2.0 * u) * a
+        self._info_pos_arr = np.array(self.info_positions, dtype=np.intp)
+        # Pre-compute frozen mask for O(1) lookup
+        self._is_frozen = np.ones(N, dtype=bool)
+        for pos in self.info_positions:
+            self._is_frozen[pos] = False
 
     def decode(self, llr: np.ndarray) -> np.ndarray:
         """Decode N channel LLRs to K information bits using SC algorithm.
 
         Convention: positive LLR means bit 0 is more likely.
-
-        Args:
-            llr: array of N log-likelihood ratios.
-
-        Returns:
-            Decoded information bits of length K.
         """
         llr = np.asarray(llr, dtype=np.float64)
         if llr.shape != (self.N,):
             raise ValueError(f"Expected {self.N} LLRs, got shape {llr.shape}")
 
         u_hat = np.zeros(self.N, dtype=np.int8)
-        self._sc_recursive(llr, 0, self.N, u_hat)
-
-        return np.array([u_hat[pos] for pos in self.info_positions], dtype=np.int8)
+        self._sc_recursive(llr, 0, self.N, u_hat, self._is_frozen)
+        return u_hat[self._info_pos_arr].copy()
 
     def _sc_recursive(
         self,
@@ -1172,30 +1161,29 @@ class PolarDecoder:
         start: int,
         length: int,
         u_hat: np.ndarray,
+        is_frozen: np.ndarray,
     ) -> np.ndarray:
-        """Recursive SC decoding.
-
-        Returns the partial-sum (re-encoded) bits for the current sub-block.
-        """
+        """Recursive SC decoding with inlined f/g operations."""
         if length == 1:
             idx = start
-            if idx in self.frozen_set:
+            if is_frozen[idx]:
                 u_hat[idx] = 0
             else:
                 u_hat[idx] = 0 if llr_in[0] >= 0.0 else 1
             return np.array([u_hat[idx]], dtype=np.int8)
 
         half = length // 2
+        a, b = llr_in[:half], llr_in[half:]
 
-        # f operation for left child
-        llr_left = self._f(llr_in[:half], llr_in[half:])
-        bits_left = self._sc_recursive(llr_left, start, half, u_hat)
+        # f operation (inlined)
+        llr_left = np.sign(a) * np.sign(b) * np.minimum(np.abs(a), np.abs(b))
+        bits_left = self._sc_recursive(llr_left, start, half, u_hat, is_frozen)
 
-        # g operation for right child
-        llr_right = self._g(llr_in[:half], llr_in[half:], bits_left.astype(np.float64))
-        bits_right = self._sc_recursive(llr_right, start + half, half, u_hat)
+        # g operation (inlined)
+        llr_right = b + (1.0 - 2.0 * bits_left) * a
+        bits_right = self._sc_recursive(llr_right, start + half, half, u_hat, is_frozen)
 
-        # Combine: partial sums
+        # Combine partial sums
         combined = np.empty(length, dtype=np.int8)
         combined[:half] = bits_left ^ bits_right
         combined[half:] = bits_right
