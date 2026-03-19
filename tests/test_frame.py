@@ -5,15 +5,13 @@ import pytest
 
 from nearlink_sdr.phy.frame import (
     FrameConfig,
-    FrameFields,
+    _bits_to_symbols_count,
+    _demodulate_symbols,
+    _modulate_bits,
     assemble_frame_bits,
     frame_to_symbols,
     symbols_to_data_bits,
-    _modulate_bits,
-    _demodulate_symbols,
-    _bits_to_symbols_count,
 )
-
 
 # ── FrameConfig tests ──
 

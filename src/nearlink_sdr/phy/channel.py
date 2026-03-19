@@ -7,9 +7,9 @@ SparkLink SLE 工作于 2.4 GHz ISM 频段,典型场景为室内短距通信。
   - 最大多普勒频移: < 50 Hz (行人速度)
 """
 
-import numpy as np
 from dataclasses import dataclass, field
 
+import numpy as np
 
 # ── 典型室内功率时延谱 (PDP) ──
 

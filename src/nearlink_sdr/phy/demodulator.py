@@ -1,4 +1,3 @@
-import numpy as np
 
 class SLEDemodulator:
     def __init__(self, sps=4):

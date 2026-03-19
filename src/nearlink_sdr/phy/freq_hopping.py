@@ -10,7 +10,6 @@
 
 from __future__ import annotations
 
-import numpy as np
 from dataclasses import dataclass, field
 
 # ---------------------------------------------------------------------------
@@ -79,7 +78,7 @@ def channel_to_freq(channel_num: int, band: str = BAND_2400) -> float:
 def freq_to_channel(freq_mhz: float, band: str = BAND_2400) -> int:
     """中心频率 (MHz) 转射频信道号。"""
     p = _BAND_PARAMS[band]
-    return int(round(freq_mhz - p["f_band_low"])) + p["n_offset"]
+    return round(freq_mhz - p["f_band_low"]) + p["n_offset"]
 
 
 # ---------------------------------------------------------------------------

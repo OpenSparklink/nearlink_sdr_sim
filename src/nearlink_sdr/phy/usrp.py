@@ -14,19 +14,15 @@ TX/RX 流接口以及与现有 PHY 模块的集成 Pipeline。
 
 from __future__ import annotations
 
-import time
 import logging
-import threading
-from dataclasses import dataclass, field
-from typing import Callable
+from collections.abc import Callable
+from dataclasses import dataclass
 
 import numpy as np
 
 from nearlink_sdr.phy.freq_hopping import (
-    channel_to_freq,
     BAND_2400,
-    BAND_5100,
-    BAND_5800,
+    channel_to_freq,
 )
 
 logger = logging.getLogger(__name__)
@@ -635,7 +631,6 @@ class RXStream:
         self._streamer.issue_stream_cmd(stream_cmd)
 
         samples = np.zeros(num_samps, dtype=np.complex64)
-        buf_size = self._recv_buffer.shape[1]
         collected = 0
 
         while collected < num_samps:

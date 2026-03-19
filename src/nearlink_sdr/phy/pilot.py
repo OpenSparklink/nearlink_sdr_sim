@@ -92,11 +92,9 @@ def insert_pilots(
         # We need to check if the very last symbol of the output is a pilot
         total_data_inserted = n_data
         n_pilots = len(pilot_positions)
-        if n_pilots > 0:
-            # Check if last inserted data filled exactly to a pilot boundary
-            if total_data_inserted % pilot_interval == 0:
-                # Last symbol is a pilot → remove it
-                output = output[:-1]
+        if n_pilots > 0 and total_data_inserted % pilot_interval == 0:
+            # Last symbol is a pilot → remove it
+            output = output[:-1]
 
     return output, len(output)
 

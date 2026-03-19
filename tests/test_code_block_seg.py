@@ -1,18 +1,17 @@
 """Tests for code block segmentation per TXS-10002-2025."""
 
 import math
+
 import numpy as np
 import pytest
 
 from nearlink_sdr.common.code_block_seg import (
-    RATE_TABLE_2,
     _SEG_TABLE_20,
-    segment_without_crc,
+    RATE_TABLE_2,
     segment_with_crc,
-    _get_rate_value,
+    segment_without_crc,
 )
 from nearlink_sdr.common.polar import RATE_TABLE
-
 
 # ── Rate table 2 tests ──
 
@@ -22,11 +21,11 @@ class TestRateTable2:
         assert set(RATE_TABLE_2.keys()) == {"5/8", "3/4", "7/8"}
 
     def test_code_lengths(self):
-        for rate_str, entries in RATE_TABLE_2.items():
+        for _rate_str, entries in RATE_TABLE_2.items():
             assert set(entries.keys()) == {64, 128, 256, 512, 1024}
 
     def test_k_less_than_n(self):
-        for rate_str, entries in RATE_TABLE_2.items():
+        for _rate_str, entries in RATE_TABLE_2.items():
             for N, K in entries.items():
                 assert K < N
 
@@ -114,7 +113,7 @@ class TestSegmentWithCRC:
     def test_single_block_no_crc(self):
         """When B <= K_cb, single block without per-block CRC."""
         rate_str = "1/2"
-        K_cb = RATE_TABLE[rate_str][1024]  # 512
+        _K_cb = RATE_TABLE[rate_str][1024]  # 512
         bits = np.ones(100, dtype=np.int8)
         segs = segment_with_crc(bits, rate_str)
         # Should be single (possibly sub-segmented) set of blocks

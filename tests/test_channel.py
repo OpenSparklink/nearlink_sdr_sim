@@ -2,8 +2,12 @@
 
 import numpy as np
 import pytest
+
 from nearlink_sdr.phy.channel import (
-    ChannelModel, ChannelConfig, PDP_2TAP, PDP_INDOOR_OFFICE,
+    PDP_2TAP,
+    PDP_INDOOR_OFFICE,
+    ChannelConfig,
+    ChannelModel,
 )
 
 
@@ -113,7 +117,7 @@ class TestRicianFlat:
         ch = ChannelModel(config=cfg)
         taps = ch.get_channel_taps(1000)
         # K 很小时, 信道系数的实部和虚部方差近似相等
-        r, i_part = np.real(taps.flatten()), np.imag(taps.flatten())
+        _r, _i_part = np.real(taps.flatten()), np.imag(taps.flatten())
         # 对于准静态, 只有一个系数, 不好验证统计。跳过。
         assert taps.shape == (1, 1000)
 

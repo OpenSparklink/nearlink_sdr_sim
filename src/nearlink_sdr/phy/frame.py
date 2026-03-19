@@ -4,14 +4,18 @@ Supports frame types 1-4 with preamble, sync sequence, control info,
 data payload, and pilot insertion.
 """
 
-import numpy as np
 from dataclasses import dataclass, field
 
+import numpy as np
+
+from nearlink_sdr.phy.pilot import insert_pilots, remove_pilots
 from nearlink_sdr.phy.preamble import generate_preamble
 from nearlink_sdr.phy.sync_sequence import (
-    sync_signal_1, sync_signal_2, sync_signal_3, sync_signal_4,
+    sync_signal_1,
+    sync_signal_2,
+    sync_signal_3,
+    sync_signal_4,
 )
-from nearlink_sdr.phy.pilot import insert_pilots, remove_pilots
 
 
 @dataclass
@@ -136,7 +140,6 @@ def frame_to_symbols(
     symbol_count = 0
 
     # Preamble symbols (phase alternating [π/4, 0])
-    n_preamble = len(fields.preamble_bits)
     preamble_phases = np.where(
         fields.preamble_bits == 0,
         np.pi / 4,

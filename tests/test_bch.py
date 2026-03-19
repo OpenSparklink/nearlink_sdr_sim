@@ -1,9 +1,11 @@
 import numpy as np
-import pytest
 
 from nearlink_sdr.common.bch import (
-    BCH_31_26_GEN, BCH_63_24_GEN,
-    _gf2_poly_mod, bch_31_26_encode, bch_63_24_encode,
+    BCH_31_26_GEN,
+    BCH_63_24_GEN,
+    _gf2_poly_mod,
+    bch_31_26_encode,
+    bch_63_24_encode,
 )
 
 

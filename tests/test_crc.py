@@ -1,8 +1,13 @@
 import numpy as np
-import pytest
+
 from nearlink_sdr.common.crc import (
-    crc_calculate, crc_attach, crc_check,
-    CRC12_POLY, CRC24A_POLY, CRC24B_POLY, CRC32_POLY,
+    CRC12_POLY,
+    CRC24A_POLY,
+    CRC24B_POLY,
+    CRC32_POLY,
+    crc_attach,
+    crc_calculate,
+    crc_check,
 )
 
 

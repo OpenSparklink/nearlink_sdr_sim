@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class SLEModulator:
     def __init__(self, sps=4):
         self.sps = sps # Samples per symbol

@@ -20,5 +20,36 @@ pythonpath = ["src"]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[dependency-groups]
+dev = [
+    "ruff>=0.15.6",
+]
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/nearlink_sdr"]
+
+[tool.ruff]
+target-version = "py314"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "UP",   # pyupgrade
+    "B",    # flake8-bugbear
+    "SIM",  # flake8-simplify
+    "RUF",  # ruff-specific
+]
+ignore = [
+    "E501",   # 行长度由 line-length 控制
+    "RUF002", # 允许中文全角标点
+    "RUF003", # 允许中文注释中的 CJK 字符
+    "B023",   # 允许闭包中引用循环变量 (仿真代码常用)
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["nearlink_sdr"]

@@ -9,11 +9,10 @@ from nearlink_sdr.common.polar import (
     VALID_CODE_LENGTHS,
     PolarDecoder,
     PolarEncoder,
-    get_info_bit_count,
-    _get_reliability_sequence,
     _get_frozen_and_info_sets,
+    _get_reliability_sequence,
+    get_info_bit_count,
 )
-
 
 # ── Reliability sequence tests ──
 

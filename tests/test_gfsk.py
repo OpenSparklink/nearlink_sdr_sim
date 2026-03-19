@@ -1,6 +1,6 @@
 import numpy as np
-import pytest
-from nearlink_sdr.phy.gfsk import GFSKModulator, GFSKDemodulator
+
+from nearlink_sdr.phy.gfsk import GFSKDemodulator, GFSKModulator
 
 
 class TestGFSK:

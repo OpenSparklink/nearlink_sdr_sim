@@ -2,14 +2,14 @@
 
 import numpy as np
 
-from nearlink_sdr.phy.gfsk import GFSKModulator, GFSKDemodulator
-from nearlink_sdr.phy.psk import PSKModulator, PSKDemodulator
+from nearlink_sdr.common.polar import PolarDecoder, PolarEncoder, get_info_bit_count
 from nearlink_sdr.phy.channel import ChannelModel
+from nearlink_sdr.phy.gfsk import GFSKDemodulator, GFSKModulator
 from nearlink_sdr.phy.preamble import generate_preamble
+from nearlink_sdr.phy.psk import PSKDemodulator, PSKModulator
 from nearlink_sdr.phy.sync_sequence import (
-    sync_signal_1, sync_signal_2, sync_signal_3, sync_signal_4,
+    sync_signal_1,
 )
-from nearlink_sdr.common.polar import PolarEncoder, PolarDecoder, get_info_bit_count
 
 
 def _ber(tx: np.ndarray, rx: np.ndarray) -> float:
@@ -106,21 +106,21 @@ def run_phase1_simulation():
     # GFSK (帧类型1)
     print("[1/3] GFSK link simulation...")
     gfsk_result = sim_gfsk_link(num_data_bits=5000, snr_range_db=snr_range)
-    for s, b in zip(gfsk_result["snr_db"], gfsk_result["ber"]):
+    for s, b in zip(gfsk_result["snr_db"], gfsk_result["ber"], strict=False):
         print(f"  SNR={s:2d} dB  BER={b:.5f}")
 
     # BPSK (帧类型3/4)
     print("[2/3] BPSK link simulation...")
     bpsk_result = sim_psk_link(num_data_bits=5000, mod_type="BPSK",
                                frame_type=3, snr_range_db=snr_range)
-    for s, b in zip(bpsk_result["snr_db"], bpsk_result["ber"]):
+    for s, b in zip(bpsk_result["snr_db"], bpsk_result["ber"], strict=False):
         print(f"  SNR={s:2d} dB  BER={b:.5f}")
 
     # QPSK (帧类型2)
     print("[3/3] QPSK link simulation...")
     qpsk_result = sim_psk_link(num_data_bits=5000, mod_type="QPSK",
                                frame_type=2, snr_range_db=snr_range)
-    for s, b in zip(qpsk_result["snr_db"], qpsk_result["ber"]):
+    for s, b in zip(qpsk_result["snr_db"], qpsk_result["ber"], strict=False):
         print(f"  SNR={s:2d} dB  BER={b:.5f}")
 
     # BER曲线
@@ -139,7 +139,7 @@ def run_phase1_simulation():
     ax.set_ylim(bottom=1e-5)
     fig.tight_layout()
     fig.savefig("ber_phase1.png", dpi=150)
-    print(f"\nBER curve saved to ber_phase1.png")
+    print("\nBER curve saved to ber_phase1.png")
 
 
 # ── Phase 2: Polar编码链路仿真 ──
@@ -250,7 +250,7 @@ def run_phase2_simulation():
         )
         results.append((cfg["label"], res))
         # 打印部分结果
-        for s, b, f in zip(res["snr_db"][::4], res["ber"][::4], res["fer"][::4]):
+        for s, b, f in zip(res["snr_db"][::4], res["ber"][::4], res["fer"][::4], strict=False):
             print(f"  Eb/N0={s:5.1f} dB  BER={b:.5f}  FER={f:.3f}")
 
     # 也运行无编码 BPSK 作为对比
@@ -262,7 +262,7 @@ def run_phase2_simulation():
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
 
     markers = ["o-", "s-", "^-", "d-"]
-    for (label, res), mk in zip(results, markers):
+    for (label, res), mk in zip(results, markers, strict=False):
         ber_plot = [max(b, 1e-6) for b in res["ber"]]
         ax1.semilogy(res["snr_db"], ber_plot, mk, label=label, markersize=3)
 
@@ -275,7 +275,7 @@ def run_phase2_simulation():
     ax1.grid(True, which="both", ls="--", alpha=0.5)
     ax1.set_ylim(bottom=1e-5)
 
-    for (label, res), mk in zip(results, markers):
+    for (label, res), mk in zip(results, markers, strict=False):
         fer_plot = [max(f, 1e-4) for f in res["fer"]]
         ax2.semilogy(res["snr_db"], fer_plot, mk, label=label, markersize=3)
     ax2.set_xlabel("Eb/N0 (dB)")
@@ -287,7 +287,7 @@ def run_phase2_simulation():
 
     fig.tight_layout()
     fig.savefig("ber_phase2.png", dpi=150)
-    print(f"\nBER/FER curves saved to ber_phase2.png")
+    print("\nBER/FER curves saved to ber_phase2.png")
 
 
 # ── Phase 3: 帧级端到端仿真 ──
@@ -317,7 +317,9 @@ def sim_frame_link(
         {"snr_db": [...], "ber": [...], "fer": [...]}
     """
     from nearlink_sdr.phy.frame import (
-        FrameConfig, assemble_frame_bits, frame_to_symbols,
+        FrameConfig,
+        assemble_frame_bits,
+        frame_to_symbols,
     )
     from nearlink_sdr.phy.pilot import remove_pilots
 
@@ -380,10 +382,7 @@ def sim_frame_link(
 
             # 提取数据符号并去除导频
             data_rx = rx_symbols[data_start:]
-            if pilot_interval > 0:
-                data_syms = remove_pilots(data_rx, pilot_interval)
-            else:
-                data_syms = data_rx
+            data_syms = remove_pilots(data_rx, pilot_interval) if pilot_interval > 0 else data_rx
 
             # 解调为LLR (BPSK/QPSK)
             if mod_type == "BPSK":
@@ -461,13 +460,13 @@ def run_phase3_simulation():
             snr_range_db=snr_range,
         )
         results.append((cfg["label"], res))
-        for s, b, f in zip(res["snr_db"][::4], res["ber"][::4], res["fer"][::4]):
+        for s, b, f in zip(res["snr_db"][::4], res["ber"][::4], res["fer"][::4], strict=False):
             print(f"  Eb/N0={s:5.1f} dB  BER={b:.5f}  FER={f:.3f}")
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
     markers = ["o-", "s-", "^-", "d-"]
 
-    for (label, res), mk in zip(results, markers):
+    for (label, res), mk in zip(results, markers, strict=False):
         ber_plot = [max(b, 1e-6) for b in res["ber"]]
         ax1.semilogy(res["snr_db"], ber_plot, mk, label=label, markersize=3)
     ax1.set_xlabel("Eb/N0 (dB)")
@@ -477,7 +476,7 @@ def run_phase3_simulation():
     ax1.grid(True, which="both", ls="--", alpha=0.5)
     ax1.set_ylim(bottom=1e-5)
 
-    for (label, res), mk in zip(results, markers):
+    for (label, res), mk in zip(results, markers, strict=False):
         fer_plot = [max(f, 1e-4) for f in res["fer"]]
         ax2.semilogy(res["snr_db"], fer_plot, mk, label=label, markersize=3)
     ax2.set_xlabel("Eb/N0 (dB)")
@@ -489,7 +488,7 @@ def run_phase3_simulation():
 
     fig.tight_layout()
     fig.savefig("ber_phase3.png", dpi=150)
-    print(f"\nBER/FER curves saved to ber_phase3.png")
+    print("\nBER/FER curves saved to ber_phase3.png")
 
 
 # ── Phase 4: 多径信道 + 均衡仿真 ──
@@ -522,7 +521,7 @@ def sim_channel_eq_link(
     Returns:
         {"snr_db": [...], "ber": [...], "fer": [...]}
     """
-    from nearlink_sdr.phy.channel import ChannelConfig, PDP_2TAP
+    from nearlink_sdr.phy.channel import PDP_2TAP, ChannelConfig
     from nearlink_sdr.phy.equalizer import equalize_1tap, equalize_mmse_freq
 
     if snr_range_db is None:
@@ -658,13 +657,13 @@ def run_phase4_simulation():
             n_frames=30,
         )
         results.append((cfg["label"], res))
-        for s, b, f in zip(res["snr_db"][::3], res["ber"][::3], res["fer"][::3]):
+        for s, b, f in zip(res["snr_db"][::3], res["ber"][::3], res["fer"][::3], strict=False):
             print(f"  Eb/N0={s:5.1f} dB  BER={b:.5f}  FER={f:.3f}")
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
     markers = ["o-", "s--", "s-", "^--", "^-", "d--", "d-"]
 
-    for (label, res), mk in zip(results, markers):
+    for (label, res), mk in zip(results, markers, strict=False):
         ber_plot = [max(b, 1e-6) for b in res["ber"]]
         ax1.semilogy(res["snr_db"], ber_plot, mk, label=label, markersize=3)
     ax1.set_xlabel("Eb/N0 (dB)")
@@ -674,7 +673,7 @@ def run_phase4_simulation():
     ax1.grid(True, which="both", ls="--", alpha=0.5)
     ax1.set_ylim(bottom=1e-5)
 
-    for (label, res), mk in zip(results, markers):
+    for (label, res), mk in zip(results, markers, strict=False):
         fer_plot = [max(f, 1e-4) for f in res["fer"]]
         ax2.semilogy(res["snr_db"], fer_plot, mk, label=label, markersize=3)
     ax2.set_xlabel("Eb/N0 (dB)")
@@ -686,7 +685,7 @@ def run_phase4_simulation():
 
     fig.tight_layout()
     fig.savefig("ber_phase4.png", dpi=150)
-    print(f"\nBER/FER curves saved to ber_phase4.png")
+    print("\nBER/FER curves saved to ber_phase4.png")
 
 
 # ── Phase 5: 跳频链路仿真 ──
@@ -722,7 +721,8 @@ def sim_hopping_link(
     from nearlink_sdr.phy.channel import ChannelConfig
     from nearlink_sdr.phy.equalizer import equalize_1tap
     from nearlink_sdr.phy.freq_hopping import (
-        FreqTable, generate_hopping_sequence, channel_to_freq,
+        FreqTable,
+        generate_hopping_sequence,
     )
 
     if snr_range_db is None:
@@ -752,7 +752,7 @@ def sim_hopping_link(
     for snr in snr_range_db:
         total_errors, total_bits, frame_errors = 0, 0, 0
 
-        for hop_i, ch_num in enumerate(hop_seq):
+        for _hop_i, _ch_num in enumerate(hop_seq):
             info = rng.integers(0, 2, size=K, dtype=np.int8)
             coded = enc.encode(info)
             tx = (1 - 2 * coded.astype(np.float64)).astype(complex)
@@ -807,6 +807,7 @@ def run_phase5_simulation():
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
+
     from nearlink_sdr.phy.freq_hopping import derive_hop_param2
 
     snr_range = np.arange(-2, 14, 2)
@@ -841,13 +842,13 @@ def run_phase5_simulation():
         )
         results.append((cfg["label"], res))
         print(f"  Channels used: {len(res['channels_used'])}")
-        for s, b, f in zip(res["snr_db"][::2], res["ber"][::2], res["fer"][::2]):
+        for s, b, f in zip(res["snr_db"][::2], res["ber"][::2], res["fer"][::2], strict=False):
             print(f"  Eb/N0={s:5.1f} dB  BER={b:.5f}  FER={f:.3f}")
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
     markers = ["o-", "s--", "^-", "d-"]
 
-    for (label, res), mk in zip(results, markers):
+    for (label, res), mk in zip(results, markers, strict=False):
         ber_plot = [max(b, 1e-6) for b in res["ber"]]
         ax1.semilogy(res["snr_db"], ber_plot, mk, label=label, markersize=4)
     ax1.set_xlabel("Eb/N0 (dB)")
@@ -857,7 +858,7 @@ def run_phase5_simulation():
     ax1.grid(True, which="both", ls="--", alpha=0.5)
     ax1.set_ylim(bottom=1e-5)
 
-    for (label, res), mk in zip(results, markers):
+    for (label, res), mk in zip(results, markers, strict=False):
         fer_plot = [max(f, 1e-4) for f in res["fer"]]
         ax2.semilogy(res["snr_db"], fer_plot, mk, label=label, markersize=4)
     ax2.set_xlabel("Eb/N0 (dB)")
@@ -869,7 +870,7 @@ def run_phase5_simulation():
 
     fig.tight_layout()
     fig.savefig("ber_phase5.png", dpi=150)
-    print(f"\nBER/FER curves saved to ber_phase5.png")
+    print("\nBER/FER curves saved to ber_phase5.png")
 
 
 if __name__ == "__main__":

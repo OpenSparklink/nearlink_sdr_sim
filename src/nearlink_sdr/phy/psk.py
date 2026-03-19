@@ -1,6 +1,4 @@
 import numpy as np
-from scipy.signal import firwin
-
 
 # TXS-10002-2025 6.2.1.2 PSK调制
 # 滚降系数 beta = 0.4

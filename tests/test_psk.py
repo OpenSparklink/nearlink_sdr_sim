@@ -1,6 +1,7 @@
 import numpy as np
 import pytest
-from nearlink_sdr.phy.psk import PSKModulator, PSKDemodulator, rrc_filter, SLE_RRC_BETA
+
+from nearlink_sdr.phy.psk import PSKDemodulator, PSKModulator, rrc_filter
 
 
 class TestRRCFilter:

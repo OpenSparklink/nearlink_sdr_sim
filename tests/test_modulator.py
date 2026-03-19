@@ -1,6 +1,7 @@
-import pytest
 import numpy as np
+
 from nearlink_sdr.phy.modulator import SLEModulator
+
 
 def test_bpsk_modulation():
     modulator = SLEModulator(sps=4)

@@ -3,7 +3,6 @@ import numpy as np
 from nearlink_sdr.common.bch import bch_31_26_encode, bch_63_24_encode
 from nearlink_sdr.common.m_sequence import generate_m_sequence, m31_sequence, m63_sequence
 
-
 # TXS-10002-2025 6.2.3 同步序列/同步信号
 
 # ---- 广播帧固定同步序列 ----
@@ -179,7 +178,4 @@ def sync_signal_1_validate(sync_32: np.ndarray) -> bool:
         return False
 
     # 条件3: 不能和广播帧相同
-    if np.array_equal(sync_32, SYNC1_BROADCAST):
-        return False
-
-    return True
+    return not np.array_equal(sync_32, SYNC1_BROADCAST)

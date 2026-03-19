@@ -2,9 +2,13 @@ import numpy as np
 import pytest
 
 from nearlink_sdr.phy.sync_sequence import (
-    SYNC1_BROADCAST, SYNC2_BROADCAST,
-    sync_signal_1, sync_signal_2, sync_signal_3, sync_signal_4,
+    SYNC1_BROADCAST,
+    SYNC2_BROADCAST,
+    sync_signal_1,
     sync_signal_1_validate,
+    sync_signal_2,
+    sync_signal_3,
+    sync_signal_4,
 )
 
 

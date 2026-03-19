@@ -2,8 +2,10 @@ import numpy as np
 import pytest
 
 from nearlink_sdr.phy.preamble import (
-    gfsk_preamble_bits, psk_preamble_phases, psk_preamble_symbols,
-    generate_preamble, PREAMBLE_CONFIG,
+    generate_preamble,
+    gfsk_preamble_bits,
+    psk_preamble_phases,
+    psk_preamble_symbols,
 )
 
 

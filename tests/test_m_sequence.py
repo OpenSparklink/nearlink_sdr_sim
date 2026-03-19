@@ -1,6 +1,6 @@
 import numpy as np
-import pytest
-from nearlink_sdr.common.m_sequence import m31_sequence, m63_sequence, generate_m_sequence
+
+from nearlink_sdr.common.m_sequence import generate_m_sequence, m31_sequence, m63_sequence
 
 
 class TestMSequence:

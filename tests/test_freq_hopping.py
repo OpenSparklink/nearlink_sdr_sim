@@ -1,22 +1,30 @@
 """跳频序列与频率管理模块测试 — 对标 TXS-10002-2025 6.10.3 / 8.1.2。"""
 
-import pytest
 import numpy as np
+import pytest
 
 from nearlink_sdr.phy.freq_hopping import (
-    BAND_2400, BAND_5100, BAND_5800,
-    _BAND_PARAMS, _2M_PHYS_2400, _4M_PHYS_2400,
-    channel_to_freq, freq_to_channel,
+    _2M_PHYS_2400,
+    _4M_PHYS_2400,
+    BAND_2400,
+    BAND_5100,
+    BAND_5800,
+    MEAS_HOP_ASCENDING,
+    MEAS_HOP_DESCENDING,
+    MEAS_HOP_RANDOM,
     FreqTable,
-    _bit_reverse_byte, _reverse_16,
-    hopping_prng, derive_hop_param2,
-    data_link_hop, _available_freq_map,
-    mgmt_frame_hop,
-    MEAS_HOP_ASCENDING, MEAS_HOP_DESCENDING, MEAS_HOP_RANDOM,
     MeasLinkHopper,
+    _available_freq_map,
+    _bit_reverse_byte,
+    _reverse_16,
+    channel_to_freq,
+    data_link_hop,
+    derive_hop_param2,
+    freq_to_channel,
     generate_hopping_sequence,
+    hopping_prng,
+    mgmt_frame_hop,
 )
-
 
 # ====================================================================
 # 8.1.2 信道频率映射
@@ -228,7 +236,7 @@ class TestDeriveHopParam2:
     def test_64bit_sync_takes_low32(self):
         """64 位同步序列: 取低 32 位, 再 low16 XOR high16。"""
         sync = 0x1122334455667788
-        low32 = sync & 0xFFFFFFFF  # 0x55667788
+        _low32 = sync & 0xFFFFFFFF  # 0x55667788
         expected = (0x7788) ^ (0x5566)
         assert derive_hop_param2(sync, 64) == expected
 

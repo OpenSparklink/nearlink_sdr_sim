@@ -1,13 +1,10 @@
 """Tests for pilot insertion/extraction per TXS-10002-2025."""
 
 import numpy as np
-import pytest
 
 from nearlink_sdr.phy.pilot import (
-    PILOT_PHASE_DEG,
-    EVEN_ROTATION_DEG,
-    pilot_symbol,
     insert_pilots,
+    pilot_symbol,
     remove_pilots,
 )
 
@@ -58,25 +55,25 @@ class TestInsertPilots:
 
     def test_insert_every_4(self):
         data = np.ones(8, dtype=complex)
-        out, count = insert_pilots(data, 4, "BPSK", omit_last_pilot=False)
+        _, count = insert_pilots(data, 4, "BPSK", omit_last_pilot=False)
         # 8 data + 2 pilots = 10
         assert count == 10
 
     def test_insert_every_16(self):
         data = np.ones(32, dtype=complex)
-        out, count = insert_pilots(data, 16, "QPSK", omit_last_pilot=False)
+        _, count = insert_pilots(data, 16, "QPSK", omit_last_pilot=False)
         # 32 data + 2 pilots = 34
         assert count == 34
 
     def test_omit_last_pilot(self):
         data = np.ones(16, dtype=complex)
-        out, count = insert_pilots(data, 4, "BPSK", omit_last_pilot=True)
+        _, count = insert_pilots(data, 4, "BPSK", omit_last_pilot=True)
         # 16 data + 4 pilots - 1 omitted = 19
         assert count == 19
 
     def test_partial_last_group(self):
         data = np.ones(6, dtype=complex)
-        out, count = insert_pilots(data, 4, "BPSK", omit_last_pilot=False)
+        _, count = insert_pilots(data, 4, "BPSK", omit_last_pilot=False)
         # 4 data + 1 pilot + 2 data = 7
         assert count == 7
 

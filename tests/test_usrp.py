@@ -6,33 +6,29 @@
 import numpy as np
 import pytest
 
-from nearlink_sdr.phy.usrp import (
-    USRPConfig,
-    USRPDevice,
-    TXStream,
-    RXStream,
-    SLETransceiver,
-    MockUSRP,
-    MockStreamer,
-    MockStreamCmd,
-    MockStreamMode,
-    MockRXMetadata,
-    MockTXMetadata,
-    E310_FREQ_MIN_HZ,
-    E310_FREQ_MAX_HZ,
-    E310_RX_GAIN_MAX,
-    E310_TX_GAIN_MAX,
-    E310_BW_MAX_HZ,
-    SLE_BANDWIDTHS_MHZ,
-    uhd_available,
-)
 from nearlink_sdr.phy.freq_hopping import (
-    channel_to_freq,
     BAND_2400,
     BAND_5100,
     BAND_5800,
+    channel_to_freq,
 )
-
+from nearlink_sdr.phy.usrp import (
+    E310_RX_GAIN_MAX,
+    E310_TX_GAIN_MAX,
+    SLE_BANDWIDTHS_MHZ,
+    MockRXMetadata,
+    MockStreamCmd,
+    MockStreamer,
+    MockStreamMode,
+    MockTXMetadata,
+    MockUSRP,
+    RXStream,
+    SLETransceiver,
+    TXStream,
+    USRPConfig,
+    USRPDevice,
+    uhd_available,
+)
 
 # =========================================================================
 # USRPConfig 测试
@@ -591,11 +587,11 @@ class TestUSRPPhyIntegration:
         xcvr.close()
 
     def test_hopping_sequence_transmit(self):
-        from nearlink_sdr.phy.gfsk import GFSKModulator
         from nearlink_sdr.phy.freq_hopping import (
             FreqTable,
             generate_hopping_sequence,
         )
+        from nearlink_sdr.phy.gfsk import GFSKModulator
 
         cfg = USRPConfig(sample_rate_hz=1e6)
         dev = USRPDevice(config=cfg, use_mock=True)

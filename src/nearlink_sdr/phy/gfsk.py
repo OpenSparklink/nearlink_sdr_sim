@@ -1,6 +1,4 @@
 import numpy as np
-from scipy.signal import lfilter
-
 
 # TXS-10002-2025 6.2.1.1 GFSK调制
 # BT = 0.5, 调制系数 h 在 0.45~0.55 之间

@@ -1,9 +1,10 @@
 """Code block segmentation per TXS-10002-2025 sections 6.9.1.2 and 6.9.1.3."""
 
 import math
+
 import numpy as np
 
-from nearlink_sdr.common.crc import crc_calculate, CRC24B_POLY
+from nearlink_sdr.common.crc import CRC24B_POLY, crc_calculate
 from nearlink_sdr.common.polar import RATE_TABLE
 
 # Table 24: alternative rate matching table for 6.9.1.2 (without CRC segmentation)
@@ -90,7 +91,7 @@ def segment_without_crc(
 
     # Step 1: determine N_1024
     threshold = R * (1024 + 512 + 256 + 128)
-    if B > threshold:
+    if threshold < B:
         N_1024 = math.floor(
             (B - (512 + 256 + 128 + 8) * R) / (1024 * R)
         )
@@ -100,20 +101,14 @@ def segment_without_crc(
         K_m = B
 
     # Step 2: Table 20 lookup
-    if K_m <= 0:
-        index = 0
-    else:
-        index = math.floor((K_m - 1) / (128 * R))
+    index = 0 if K_m <= 0 else math.floor((K_m - 1) / (128 * R))
 
     index = min(index, 14)  # clamp to table range
     N_512, N_256, N_128 = _SEG_TABLE_20[index]
 
     # Step 3: N_64
     remaining = K_m - N_512 * K_512 - N_256 * K_256 - N_128 * K_128
-    if remaining > 0:
-        N_64 = math.ceil(remaining / K_64)
-    else:
-        N_64 = 0
+    N_64 = math.ceil(remaining / K_64) if remaining > 0 else 0
 
     # Build output segments
     segments = []
@@ -184,7 +179,7 @@ def segment_with_crc(
         K_cb = k_table[1024]
 
     # Determine number of code blocks
-    if B <= K_cb:
+    if K_cb >= B:
         C = 1
         L = 0
     else:
@@ -200,10 +195,7 @@ def segment_with_crc(
         segments.append((1024, bits.copy()))
     else:
         for r in range(C):
-            if r <= C - 2:
-                K_r = K_cb
-            else:
-                K_r = B - (C - 1) * (K_cb - L) + L
+            K_r = K_cb if r <= C - 2 else B - (C - 1) * (K_cb - L) + L
 
             # Extract info bits for this segment
             info_len = K_r - L
@@ -217,7 +209,7 @@ def segment_with_crc(
 
     # For the last segment, apply further sub-segmentation per the standard
     if len(segments) > 0:
-        last_N, last_bits = segments[-1]
+        _, last_bits = segments[-1]
         sub_segs = _subsegment_last_block(last_bits, rate_str)
         if sub_segs is not None:
             segments = segments[:-1] + sub_segs
@@ -261,7 +253,7 @@ def _subsegment_last_block(
 
     if K_r > threshold_1024:
         # Pad to K_1024 and encode with rate R, code length 1024
-        pad_len = K_1024 - K_r if K_1024 > K_r else 0
+        pad_len = K_1024 - K_r if K_r < K_1024 else 0
         if pad_len > 0:
             padded = np.concatenate([np.zeros(pad_len, dtype=np.int8), bits])
         else:

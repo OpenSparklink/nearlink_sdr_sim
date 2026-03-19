@@ -2,14 +2,14 @@
 
 import numpy as np
 import pytest
+
 from nearlink_sdr.phy.equalizer import (
-    equalize_zf,
+    equalize_1tap,
     equalize_mmse_freq,
     equalize_mmse_time,
-    equalize_1tap,
+    equalize_zf,
     estimate_channel_freq,
 )
-from nearlink_sdr.phy.channel import ChannelModel, ChannelConfig, PDP_2TAP
 
 
 class TestFrequencyDomainZF:
