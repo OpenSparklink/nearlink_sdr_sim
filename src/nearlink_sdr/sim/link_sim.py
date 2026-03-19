@@ -689,6 +689,189 @@ def run_phase4_simulation():
     print(f"\nBER/FER curves saved to ber_phase4.png")
 
 
+# ── Phase 5: 跳频链路仿真 ──
+
+
+def sim_hopping_link(
+    hop_param2: int = 0xABCD,
+    n_hops: int = 20,
+    rate_str: str = "1/2",
+    code_length: int = 256,
+    snr_range_db: np.ndarray | None = None,
+    bandwidth_mhz: int = 1,
+    blocked_ratio: float = 0.0,
+    seed: int = 42,
+) -> dict:
+    """跳频链路仿真: 数据帧在多个跳频信道间传输, 每跳独立衰落。
+
+    流程: 生成跳频序列 → 每跳: Polar编码 → BPSK调制 → 独立 Rayleigh 信道 → 均衡 → 解码
+
+    Args:
+        hop_param2: 跳频参数 2。
+        n_hops: 每个 SNR 点的跳频次数 (帧数)。
+        rate_str: Polar 码率。
+        code_length: Polar 码长。
+        snr_range_db: SNR 范围。
+        bandwidth_mhz: 信道带宽 1/2/4 MHz。
+        blocked_ratio: 被阻塞信道占比 (0~1)。
+        seed: 随机种子。
+
+    Returns:
+        {"snr_db": [...], "ber": [...], "fer": [...], "channels_used": [...]}
+    """
+    from nearlink_sdr.phy.channel import ChannelConfig
+    from nearlink_sdr.phy.equalizer import equalize_1tap
+    from nearlink_sdr.phy.freq_hopping import (
+        FreqTable, generate_hopping_sequence, channel_to_freq,
+    )
+
+    if snr_range_db is None:
+        snr_range_db = np.arange(-2, 14, 2)
+
+    rng = np.random.default_rng(seed)
+    K = get_info_bit_count(rate_str, code_length)
+    enc = PolarEncoder(code_length, K)
+    dec = PolarDecoder(code_length, K)
+
+    # 频率表: 按比例阻塞部分信道
+    ft = FreqTable(band="2400", bandwidth_mhz=bandwidth_mhz)
+    all_ch = ft.full_table()
+    n_blocked = int(len(all_ch) * blocked_ratio)
+    if n_blocked > 0:
+        blocked_idx = rng.choice(len(all_ch), n_blocked, replace=False)
+        ft.blocked_channels = {all_ch[i] for i in blocked_idx}
+
+    # 生成跳频序列
+    hop_seq = generate_hopping_sequence(
+        n_hops, hop_param2, ft, link_type="data", start_slot=0,
+    )
+
+    ber_list, fer_list = [], []
+    channels_used = sorted(set(hop_seq))
+
+    for snr in snr_range_db:
+        total_errors, total_bits, frame_errors = 0, 0, 0
+
+        for hop_i, ch_num in enumerate(hop_seq):
+            info = rng.integers(0, 2, size=K, dtype=np.int8)
+            coded = enc.encode(info)
+            tx = (1 - 2 * coded.astype(np.float64)).astype(complex)
+
+            # 每跳独立 Rayleigh 衰落 (模拟跳频分集效果)
+            frame_seed = int(rng.integers(0, 2**31))
+            cfg = ChannelConfig(
+                snr_db=float(snr),
+                channel_type="rayleigh",
+                seed=frame_seed,
+            )
+            ch = ChannelModel(config=cfg)
+            noise_var = ch.noise_variance
+
+            taps = ch.get_channel_taps(len(tx))
+            h = taps[0, :]
+            faded = tx * h
+            sig_power = max(np.mean(np.abs(faded) ** 2), 1e-20)
+            n_power = sig_power / (10.0 ** (float(snr) / 10.0))
+            noise = np.sqrt(n_power / 2) * (
+                ch._rng.standard_normal(len(tx))
+                + 1j * ch._rng.standard_normal(len(tx))
+            )
+            rx = faded + noise
+
+            eq = equalize_1tap(rx, h, noise_var=noise_var, method="mmse")
+
+            llr = np.real(eq) * 2.0 / max(noise_var, 1e-10)
+            llr = llr[:code_length]
+            decoded = dec.decode(llr.real)
+            errors = int(np.sum(decoded != info))
+            total_errors += errors
+            total_bits += K
+            if errors > 0:
+                frame_errors += 1
+
+        ber = total_errors / total_bits if total_bits > 0 else 0.0
+        fer = frame_errors / n_hops
+        ber_list.append(ber)
+        fer_list.append(fer)
+
+    return {
+        "snr_db": snr_range_db.tolist(),
+        "ber": ber_list,
+        "fer": fer_list,
+        "channels_used": channels_used,
+    }
+
+
+def run_phase5_simulation():
+    """Phase 5: 跳频链路仿真 — 比较不同跳频配置的 BER/FER。"""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from nearlink_sdr.phy.freq_hopping import derive_hop_param2
+
+    snr_range = np.arange(-2, 14, 2)
+
+    print("=== Phase 5 Frequency Hopping Link Simulation ===")
+    print()
+
+    hp2 = derive_hop_param2(0xDEADBEEF, 32)
+
+    configs = [
+        {"bandwidth_mhz": 1, "blocked_ratio": 0.0,
+         "label": "1 MHz, no blocking"},
+        {"bandwidth_mhz": 1, "blocked_ratio": 0.3,
+         "label": "1 MHz, 30% blocked"},
+        {"bandwidth_mhz": 2, "blocked_ratio": 0.0,
+         "label": "2 MHz, no blocking"},
+        {"bandwidth_mhz": 4, "blocked_ratio": 0.0,
+         "label": "4 MHz, no blocking"},
+    ]
+
+    results = []
+    for i, cfg in enumerate(configs):
+        print(f"[{i + 1}/{len(configs)}] {cfg['label']}...")
+        res = sim_hopping_link(
+            hop_param2=hp2,
+            n_hops=30,
+            rate_str="1/2",
+            code_length=256,
+            snr_range_db=snr_range,
+            bandwidth_mhz=cfg["bandwidth_mhz"],
+            blocked_ratio=cfg["blocked_ratio"],
+        )
+        results.append((cfg["label"], res))
+        print(f"  Channels used: {len(res['channels_used'])}")
+        for s, b, f in zip(res["snr_db"][::2], res["ber"][::2], res["fer"][::2]):
+            print(f"  Eb/N0={s:5.1f} dB  BER={b:.5f}  FER={f:.3f}")
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
+    markers = ["o-", "s--", "^-", "d-"]
+
+    for (label, res), mk in zip(results, markers):
+        ber_plot = [max(b, 1e-6) for b in res["ber"]]
+        ax1.semilogy(res["snr_db"], ber_plot, mk, label=label, markersize=4)
+    ax1.set_xlabel("Eb/N0 (dB)")
+    ax1.set_ylabel("Bit Error Rate")
+    ax1.set_title("SparkLink SLE - Phase 5 Hopping BER")
+    ax1.legend(fontsize=7)
+    ax1.grid(True, which="both", ls="--", alpha=0.5)
+    ax1.set_ylim(bottom=1e-5)
+
+    for (label, res), mk in zip(results, markers):
+        fer_plot = [max(f, 1e-4) for f in res["fer"]]
+        ax2.semilogy(res["snr_db"], fer_plot, mk, label=label, markersize=4)
+    ax2.set_xlabel("Eb/N0 (dB)")
+    ax2.set_ylabel("Frame Error Rate")
+    ax2.set_title("SparkLink SLE - Phase 5 Hopping FER")
+    ax2.legend(fontsize=7)
+    ax2.grid(True, which="both", ls="--", alpha=0.5)
+    ax2.set_ylim(bottom=1e-4)
+
+    fig.tight_layout()
+    fig.savefig("ber_phase5.png", dpi=150)
+    print(f"\nBER/FER curves saved to ber_phase5.png")
+
+
 if __name__ == "__main__":
     import sys
     if len(sys.argv) > 1 and sys.argv[1] == "phase2":
@@ -697,5 +880,7 @@ if __name__ == "__main__":
         run_phase3_simulation()
     elif len(sys.argv) > 1 and sys.argv[1] == "phase4":
         run_phase4_simulation()
+    elif len(sys.argv) > 1 and sys.argv[1] == "phase5":
+        run_phase5_simulation()
     else:
         run_phase1_simulation()
