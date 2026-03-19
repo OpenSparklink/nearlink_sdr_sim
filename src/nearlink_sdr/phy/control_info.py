@@ -25,18 +25,18 @@ from nearlink_sdr.common.crc import (
 
 
 def _int_to_bits(value: int, width: int) -> NDArray[np.int_]:
-    """将无符号整数转为高位在前的比特数组。"""
+    """将无符号整数转为低位在前 (LSB-first) 的比特数组。"""
     bits = np.zeros(width, dtype=int)
     for i in range(width):
-        bits[i] = (value >> (width - 1 - i)) & 1
+        bits[i] = (value >> i) & 1
     return bits
 
 
 def _bits_to_int(bits: NDArray[np.int_]) -> int:
-    """将高位在前的比特数组转为无符号整数。"""
+    """将低位在前 (LSB-first) 的比特数组转为无符号整数。"""
     val = 0
-    for b in bits:
-        val = (val << 1) | int(b)
+    for i, b in enumerate(bits):
+        val |= int(b) << i
     return val
 
 
