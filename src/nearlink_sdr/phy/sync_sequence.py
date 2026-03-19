@@ -8,24 +8,114 @@ from nearlink_sdr.common.m_sequence import generate_m_sequence, m31_sequence, m6
 # ---- 广播帧固定同步序列 ----
 
 # 同步信号1: 0x5A2BDA62, LSB first
-SYNC1_BROADCAST = np.array([
-    0, 1, 0, 0, 0, 1, 1, 0,  # 0x62
-    0, 1, 0, 1, 1, 0, 1, 1,  # 0xDA
-    1, 1, 0, 1, 0, 1, 0, 0,  # 0x2B
-    0, 1, 0, 1, 1, 0, 1, 0,  # 0x5A
-], dtype=int)
+SYNC1_BROADCAST = np.array(
+    [
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,  # 0x62
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,  # 0xDA
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,  # 0x2B
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,  # 0x5A
+    ],
+    dtype=int,
+)
 
 # 同步信号2: 0x7DE7585C6D226540, LSB first
-SYNC2_BROADCAST = np.array([
-    0, 0, 0, 0, 0, 0, 1, 0,  # 0x40
-    1, 0, 1, 0, 0, 1, 1, 0,  # 0x65
-    0, 1, 0, 0, 0, 1, 0, 0,  # 0x22
-    1, 0, 1, 1, 0, 1, 1, 0,  # 0x6D
-    0, 0, 1, 1, 1, 0, 1, 0,  # 0x5C
-    0, 0, 0, 1, 1, 0, 1, 0,  # 0x58
-    1, 1, 1, 0, 0, 1, 1, 1,  # 0xE7
-    1, 0, 1, 1, 1, 1, 1, 0,  # 0x7D
-], dtype=int)
+SYNC2_BROADCAST = np.array(
+    [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,  # 0x40
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,  # 0x65
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,  # 0x22
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,  # 0x6D
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,  # 0x5C
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,  # 0x58
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,  # 0xE7
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,  # 0x7D
+    ],
+    dtype=int,
+)
 
 # 同步信号1 m序列参数: 5阶LFSR, 初始值全1
 # 反馈多项式 x^5 + x^3 + 1 (M31 index 1, 见标准图5)
@@ -33,8 +123,8 @@ _SYNC1_M_TAPS = 0b101001
 _SYNC1_M_INIT = 0b11111
 
 # 同步信号2 m序列参数: 6阶LFSR, 初始值全1
-# 反馈多项式 x^6 + x + 1
-_SYNC2_M_TAPS = 0b1000011
+# 反馈多项式 x^6 + x^5 + 1 (标准图5, M63 index 1)
+_SYNC2_M_TAPS = 0b1100001
 _SYNC2_M_INIT = 0b111111
 
 
@@ -67,9 +157,9 @@ def sync_signal_1(link_id_24: int | None = None) -> np.ndarray:
 
     # 第一步: 前面补"10" → Ã(d) = 1 + d^2*A(d)
     a_tilde = np.zeros(26, dtype=int)
-    a_tilde[0] = 1      # 常数项1
-    a_tilde[1] = 0      # d^1项为0
-    a_tilde[2:26] = a   # d^2*A(d)
+    a_tilde[0] = 1  # 常数项1
+    a_tilde[1] = 0  # d^1项为0
+    a_tilde[2:26] = a  # d^2*A(d)
 
     # 第二步: BCH(31,26)编码
     codeword_31 = bch_31_26_encode(a_tilde)

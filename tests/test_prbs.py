@@ -13,7 +13,6 @@ from nearlink_sdr.common.prbs import prbs11, prbs17
 
 
 class TestPRBS11:
-
     def test_period_2047(self):
         """PRBS11 周期应为 2^11 - 1 = 2047。"""
         seq = prbs11(2047 * 2, seed=0x7FF)
@@ -54,7 +53,6 @@ class TestPRBS11:
 
 
 class TestPRBS17:
-
     def test_default_seed_first_output(self):
         seq = prbs17(5, seed=0x1FFFF)
         assert seq[0] == 1
@@ -63,7 +61,7 @@ class TestPRBS17:
         """PRBS17 周期应为 2^17 - 1 = 131071。"""
         period = 131071
         seq = prbs17(period + 100, seed=0x1FFFF)
-        assert np.array_equal(seq[:100], seq[period:period + 100])
+        assert np.array_equal(seq[:100], seq[period : period + 100])
 
     def test_output_values_binary(self):
         seq = prbs17(500, seed=0x1FFFF)
@@ -175,7 +173,7 @@ class TestTV101:
         # PRBS11 生成 HeadBits + PyLdBits, 连续不复位
         total_bits = self.CTRL_LEN + self.DATA_LEN_BYTES * 8
         seq = prbs11(total_bits, seed=self.TV_ID)
-        pyld_bits = seq[self.CTRL_LEN:]
+        pyld_bits = seq[self.CTRL_LEN :]
         assert len(pyld_bits) == 256
 
         # 附录 H: PyLdBits (256 bits) 第一个 32-bit word: F4C4FAE2
@@ -190,11 +188,19 @@ class TestTV101:
         """验证完整 256 比特 PyLdBits。"""
         total_bits = self.CTRL_LEN + 256
         seq = prbs11(total_bits, seed=self.TV_ID)
-        pyld = seq[self.CTRL_LEN:]
+        pyld = seq[self.CTRL_LEN :]
 
         # 附录 H 所有 256 比特 (8 个 32-bit words)
-        words = [0xF4C4FAE2, 0xE2AD0321, 0x5383B1AE, 0xB68D9779,
-                 0xB56C1B8E, 0x4F8E36DD, 0x4CAFC219, 0xFD0120B4]
+        words = [
+            0xF4C4FAE2,
+            0xE2AD0321,
+            0x5383B1AE,
+            0xB68D9779,
+            0xB56C1B8E,
+            0x4F8E36DD,
+            0x4CAFC219,
+            0xFD0120B4,
+        ]
         expected = []
         for w in words:
             expected.extend(self._hex_to_bits_lsb(w, 32))
@@ -224,8 +230,7 @@ class TestTVParameters:
     def test_control_len_matches_type(self, tv_id, ft, ct, clen, dlen, crc, ws):
         """控制信息长度应与控制类型对应。"""
         # A 组 frame type 1 不含 LQI
-        a_group_len_no_lqi = {"A1": 20, "A2": 20, "A3": 28, "A4": 28,
-                              "A5": 20, "A6": 28, "A7": 28}
+        a_group_len_no_lqi = {"A1": 20, "A2": 20, "A3": 28, "A4": 28, "A5": 20, "A6": 28, "A7": 28}
         # A 组 frame type 2 含 LQI (8 bit) + Polar 编码前
         a_group_len_with_lqi = {k: v + 8 for k, v in a_group_len_no_lqi.items()}
 
@@ -295,6 +300,50 @@ class TestSyncWordFromPID:
         assert list(sync) == expected, f"TV{tv_id}: bchOut^pnSeq mismatch"
 
 
+class TestSyncWord2FromPID:
+    """验证 PID -> BCH(63,24) -> m63 XOR -> SyncWord 链路。
+
+    使用附录 H 中 TV201/TV209 的 PID + SyncWord 数据进行交叉验证。
+    """
+
+    @staticmethod
+    def _hex_to_bits_lsb(hex_val: int, nbits: int) -> list[int]:
+        return [(hex_val >> i) & 1 for i in range(nbits)]
+
+    # (TV_ID, PID_24, SyncWord_lo32, SyncWord_hi32)
+    TV_SYNC2_DATA: typing.ClassVar = [
+        (201, 0x879012, 0xE55A0AAD, 0x2FDC9E2C),
+        (209, 0x234567, 0x98FEDFD8, 0x3DEAF7FB),
+    ]
+
+    @pytest.mark.parametrize("tv_id,pid,sw_lo,sw_hi", TV_SYNC2_DATA)
+    def test_sync_signal_2_matches_tv(self, tv_id, pid, sw_lo, sw_hi):
+        """sync_signal_2(PID) 应产生附录 H 给出的 64-bit SyncWord。"""
+        from nearlink_sdr.phy.sync_sequence import sync_signal_2
+
+        sync = sync_signal_2(pid)
+        expected = self._hex_to_bits_lsb(sw_lo, 32) + self._hex_to_bits_lsb(sw_hi, 32)
+        assert list(sync) == expected, f"TV{tv_id}: SyncWord mismatch"
+
+    @pytest.mark.parametrize("tv_id,pid,sw_lo,sw_hi", TV_SYNC2_DATA)
+    def test_bchout_xor_pnseq_equals_syncword(self, tv_id, pid, sw_lo, sw_hi):
+        """bchOut XOR pnSeq 应等于 SyncWord 的低 63 位。"""
+        from nearlink_sdr.common.bch import bch_63_24_encode
+        from nearlink_sdr.common.m_sequence import generate_m_sequence
+
+        pid_bits = np.array(self._hex_to_bits_lsb(pid, 24), dtype=int)
+        bch_out = bch_63_24_encode(pid_bits)
+
+        m_seq = generate_m_sequence(6, 0b1100001, 0b111111, 63)
+        scrambled = bch_out ^ m_seq
+
+        sync = np.zeros(64, dtype=int)
+        sync[:63] = scrambled
+
+        expected = self._hex_to_bits_lsb(sw_lo, 32) + self._hex_to_bits_lsb(sw_hi, 32)
+        assert list(sync) == expected, f"TV{tv_id}: bchOut^pnSeq mismatch"
+
+
 # =========================================================================
 # TV103 端到端验证 (FrameType 1, A1, PID=0x123456)
 # =========================================================================
@@ -335,11 +384,9 @@ class TestTV103:
 
         total_bits = self.CTRL_LEN + self.DATA_LEN_BYTES * 8
         seq = prbs11(total_bits, seed=self.TV_ID)
-        pyld_bits = seq[self.CTRL_LEN:]
+        pyld_bits = seq[self.CTRL_LEN :]
 
-        txpyld = crc_attach(
-            np.array(pyld_bits, dtype=int), CRC24A_POLY, 24, seed=0x555555
-        )
+        txpyld = crc_attach(np.array(pyld_bits, dtype=int), CRC24A_POLY, 24, seed=0x555555)
 
         HEAD_A1 = 32
         sc = scramble_sequence(HEAD_A1 + len(txpyld), self.WHITENING_SEED)
@@ -393,11 +440,9 @@ class TestTV102:
 
         total_bits = self.CTRL_LEN + self.DATA_LEN_BYTES * 8
         seq = prbs11(total_bits, seed=self.TV_ID)
-        pyld_bits = seq[self.CTRL_LEN:]
+        pyld_bits = seq[self.CTRL_LEN :]
 
-        txpyld = crc_attach(
-            np.array(pyld_bits, dtype=int), CRC32_POLY, 32, seed=0x12345678
-        )
+        txpyld = crc_attach(np.array(pyld_bits, dtype=int), CRC32_POLY, 32, seed=0x12345678)
 
         HEAD_A3 = 40  # A3 txHead = 28 ctrl + 12 CRC = 40 bits
         sc = scramble_sequence(HEAD_A3 + len(txpyld), self.WHITENING_SEED)
@@ -450,11 +495,9 @@ class TestTV104:
 
         total_bits = self.CTRL_LEN + self.DATA_LEN_BYTES * 8
         seq = prbs11(total_bits, seed=self.TV_ID)
-        pyld_bits = seq[self.CTRL_LEN:]
+        pyld_bits = seq[self.CTRL_LEN :]
 
-        txpyld = crc_attach(
-            np.array(pyld_bits, dtype=int), CRC32_POLY, 32, seed=0x12345678
-        )
+        txpyld = crc_attach(np.array(pyld_bits, dtype=int), CRC32_POLY, 32, seed=0x12345678)
 
         HEAD_A3 = 40
         sc = scramble_sequence(HEAD_A3 + len(txpyld), self.WHITENING_SEED)
@@ -475,3 +518,105 @@ class TestTV104:
             expected.extend(self._hex_to_bits_lsb(w2, 32))
 
         assert list(txpyldw[:312]) == expected[:312]
+
+
+# =========================================================================
+# TV209 端到端验证 (FrameType 2, A1, MCS 11)
+# =========================================================================
+
+
+class TestTV209:
+    """验证 TV209 (FrameType 2, A1, PSK8) Polar 编码链路。
+
+    参数:
+      TV_ID=209, PID=0x234567, ControlType=A1, HeadBits=28bit
+      DataLen=1Byte=8bit, CRC=24bit, CRCSeed=0x555555
+      WhiteningSeed=0x55(=85)
+
+    帧类型2处理链:
+      PyLdBits → CRC24A → txPyLd(32) → Polar(64,32) → txPyLdC(64) → scramble → txPyLdW(64)
+      HeadBits → CRC12  → txHead(40) → Polar(64,40) → txHeadC(64) → scramble → txHeadW(64)
+      加扰偏移: txHeadW offset=0, txPyLdW offset=64
+    """
+
+    TV_ID = 209
+    WHITENING_SEED = 85
+    CTRL_LEN = 28
+
+    @staticmethod
+    def _hex_to_bits_lsb(hex_val: int, nbits: int) -> list[int]:
+        return [(hex_val >> i) & 1 for i in range(nbits)]
+
+    def test_txpyld_from_prbs11(self):
+        """PRBS11(seed=209) 在 offset=28 产生 PyLdBits=0x05,
+        CRC24A(seed=0x555555) 附加后 txPyLd = 0xE5FAEA05。"""
+        from nearlink_sdr.common.crc import CRC24A_POLY, crc_attach
+
+        seq = prbs11(self.CTRL_LEN + 8, seed=self.TV_ID)
+        pyld_bits = seq[self.CTRL_LEN :]
+        pb_val = sum(int(b) << i for i, b in enumerate(pyld_bits))
+        assert pb_val == 0x05
+
+        txpyld = crc_attach(np.array(pyld_bits, dtype=int), CRC24A_POLY, 24, seed=0x555555)
+        tp_val = sum(int(b) << i for i, b in enumerate(txpyld))
+        assert tp_val == 0xE5FAEA05
+
+    def test_txpyldc_polar_encoding(self):
+        """txPyLd(32) 经 Polar(64,32) 编码后应等于标准附录 H 的 txPyLdC。"""
+        from nearlink_sdr.common.polar import PolarEncoder
+
+        txpyld_bits = np.array(self._hex_to_bits_lsb(0xE5FAEA05, 32), dtype=np.int8)
+        enc = PolarEncoder(64, 32)
+        coded = enc.encode(txpyld_bits)
+
+        expected_lo = 0x9DE61094
+        expected_hi = 0x9D19EF94
+        expected = self._hex_to_bits_lsb(expected_lo, 32) + self._hex_to_bits_lsb(expected_hi, 32)
+        assert list(coded) == expected
+
+    def test_txpyldw_scrambled(self):
+        """txPyLdC 经加扰 (offset=64, seed=85) 后应等于 txPyLdW。"""
+        from nearlink_sdr.common.scrambler import scramble_sequence
+
+        txpyldc = np.array(
+            self._hex_to_bits_lsb(0x9DE61094, 32) + self._hex_to_bits_lsb(0x9D19EF94, 32),
+            dtype=np.uint8,
+        )
+        HEAD_C_LEN = 64
+        sc = scramble_sequence(HEAD_C_LEN + 64, self.WHITENING_SEED)
+        txpyldw = txpyldc ^ sc[HEAD_C_LEN : HEAD_C_LEN + 64]
+
+        expected = self._hex_to_bits_lsb(0x7E1E6702, 32) + self._hex_to_bits_lsb(0x4DB206D2, 32)
+        assert list(txpyldw) == expected
+
+    def test_txhead_recovered(self):
+        """从标准 txHeadW 反推 txHead，验证 Polar(64,40) 编码链路完整性。
+
+        txHeadW XOR scramble[0:64] = txHeadC,
+        Polar decode(txHeadC) 冻结位全为0, 信息位 = txHead(40)。
+        """
+        from nearlink_sdr.common.polar import PolarEncoder
+        from nearlink_sdr.common.scrambler import scramble_sequence
+
+        # 从标准 txHeadW 恢复 txHeadC
+        sc = scramble_sequence(64, self.WHITENING_SEED)
+        txheadw = np.array(
+            self._hex_to_bits_lsb(0x23A043D9, 32) + self._hex_to_bits_lsb(0x147E7C5E, 32),
+            dtype=np.uint8,
+        )
+        txheadc = txheadw ^ sc[:64].astype(np.uint8)
+
+        # 验证 txHeadC
+        hc_lo = sum(int(b) << i for i, b in enumerate(txheadc[:32]))
+        hc_hi = sum(int(b) << i for i, b in enumerate(txheadc[32:64]))
+        assert hc_lo == 0x93C6E4E4
+        assert hc_hi == 0x5C6F4D2B
+
+        # 正向验证: txHead -> Polar(64,40) -> txHeadC
+        txhead = np.array(
+            self._hex_to_bits_lsb(0x2010945B, 32) + self._hex_to_bits_lsb(0x4E, 8),
+            dtype=np.int8,
+        )
+        enc = PolarEncoder(64, 40)
+        coded = enc.encode(txhead)
+        assert list(coded) == list(txheadc)
