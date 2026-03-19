@@ -59,6 +59,7 @@ class ChannelModel:
         else:
             self.cfg = ChannelConfig(snr_db=snr_db)
         self._rng = np.random.default_rng(self.cfg.seed)
+        self._last_taps: np.ndarray | None = None
 
     # ── 公共接口 ──
 
@@ -67,21 +68,32 @@ class ChannelModel:
         return self._add_noise(signal, self.cfg.snr_db)
 
     def apply_fading(self, signal: np.ndarray) -> np.ndarray:
-        """按 config 类型应用衰落 + AWGN。"""
+        """按 config 类型应用衰落 + AWGN, 同时缓存信道系数到 last_taps。"""
         ct = self.cfg.channel_type
+        n = len(signal)
         if ct == "awgn":
+            self._last_taps = np.ones((1, n), dtype=complex)
             return self._add_noise(signal, self.cfg.snr_db)
         elif ct == "rayleigh":
-            faded = self._rayleigh_flat(signal)
-            return self._add_noise(faded, self.cfg.snr_db)
+            h = self._gen_rayleigh_coeffs(n)
+            self._last_taps = h.reshape(1, -1)
+            return self._add_noise(signal * h, self.cfg.snr_db)
         elif ct == "rician":
-            faded = self._rician_flat(signal)
-            return self._add_noise(faded, self.cfg.snr_db)
+            h = self._gen_rician_coeffs(n)
+            self._last_taps = h.reshape(1, -1)
+            return self._add_noise(signal * h, self.cfg.snr_db)
         elif ct == "multipath":
-            faded = self._multipath(signal)
+            taps = self._gen_multipath_taps(n)
+            self._last_taps = taps
+            faded = self._apply_multipath_taps(signal, taps)
             return self._add_noise(faded, self.cfg.snr_db)
         else:
             raise ValueError(f"Unknown channel type: {ct}")
+
+    @property
+    def last_taps(self) -> np.ndarray | None:
+        """上一次 apply_fading 使用的信道系数, 供均衡器使用。"""
+        return self._last_taps
 
     def get_channel_taps(self, n_symbols: int) -> np.ndarray:
         """返回信道抽头系数矩阵 (n_taps × n_symbols), 用于均衡器。
@@ -111,10 +123,12 @@ class ChannelModel:
 
     def _rayleigh_flat(self, signal: np.ndarray) -> np.ndarray:
         h = self._gen_rayleigh_coeffs(len(signal))
+        self._last_taps = h.reshape(1, -1)
         return signal * h
 
     def _rician_flat(self, signal: np.ndarray) -> np.ndarray:
         h = self._gen_rician_coeffs(len(signal))
+        self._last_taps = h.reshape(1, -1)
         return signal * h
 
     def _gen_rayleigh_coeffs(self, n: int) -> np.ndarray:
@@ -144,13 +158,18 @@ class ChannelModel:
     def _multipath(self, signal: np.ndarray) -> np.ndarray:
         """应用多径信道 (FIR 卷积模型)。"""
         taps = self._gen_multipath_taps(len(signal))
+        self._last_taps = taps
+        return self._apply_multipath_taps(signal, taps)
+
+    @staticmethod
+    def _apply_multipath_taps(signal: np.ndarray, taps: np.ndarray) -> np.ndarray:
+        """用给定的抽头系数对信号做 FIR 多径卷积。"""
         n_taps = taps.shape[0]
         n = len(signal)
         out = np.zeros(n, dtype=complex)
         for k in range(n_taps):
-            delay = self.cfg.pdp[k][0] if k < len(self.cfg.pdp) else k
+            delay = k
             if delay < n:
-                # 每个抽头的信道系数乘以延迟信号
                 shifted = np.zeros(n, dtype=complex)
                 shifted[delay:] = signal[:n - delay]
                 out += taps[k, :n] * shifted

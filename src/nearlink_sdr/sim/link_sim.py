@@ -1051,18 +1051,19 @@ def sim_pipeline_channel_link(
     channel_type: str = "awgn",
     rician_k_db: float = 6.0,
     cfo_hz: float = 0.0,
+    eq_method: str = "none",
     snr_range_db: np.ndarray | None = None,
     n_frames: int = 20,
     sps: int = 4,
     seed: int = 42,
 ) -> dict:
-    """全链路 Pipeline 仿真 — 支持多径信道和频率偏移。
+    """全链路 Pipeline 仿真 — 支持多径信道、频率偏移和均衡器。
 
     在 tx_chain 输出的 IQ 信号上依次施加:
       1. 衰落信道 (Rayleigh / Rician / 多径)
       2. 载波频率偏移
       3. AWGN 噪声
-    然后送入 rx_chain 解码。
+    然后可选地进行均衡, 最后送入 rx_chain 解码。
 
     Args:
         frame_type: 帧类型 (1-4)。
@@ -1070,7 +1071,8 @@ def sim_pipeline_channel_link(
         n_data_bytes: 数据长度 (字节)。
         channel_type: "awgn" | "rayleigh" | "rician" | "multipath"。
         rician_k_db: Rician K 因子 (dB)。
-        cfo_hz: 载波频率偏移 (Hz), 典型 SLE 值 0 ~ 数百 Hz。
+        cfo_hz: 载波频率偏移 (Hz)。
+        eq_method: "none" | "zf" | "mmse", 仅对衰落信道有效。
         snr_range_db: Eb/N0 扫描范围。
         n_frames: 每个 SNR 点的仿真帧数。
         sps: 每符号采样数。
@@ -1080,6 +1082,7 @@ def sim_pipeline_channel_link(
         {"snr_db": [...], "ber": [...], "fer": [...]}
     """
     from nearlink_sdr.phy.channel import ChannelConfig
+    from nearlink_sdr.phy.equalizer import equalize_1tap, equalize_mmse_freq
     from nearlink_sdr.phy.rx_pipeline import rx_chain
     from nearlink_sdr.phy.tx_pipeline import TxConfig, tx_chain
 
@@ -1138,6 +1141,18 @@ def sim_pipeline_channel_link(
             # 施加频率偏移
             rx_iq = _apply_cfo(rx_iq, cfo_hz, sample_rate)
 
+            # 均衡 (genie-aided: 使用 apply_fading 缓存的信道系数)
+            if eq_method != "none" and channel_type not in ("awgn",):
+                noise_var = ch.noise_variance
+                taps = ch.last_taps
+                if channel_type in ("rayleigh", "rician"):
+                    h = taps[0, :]
+                    rx_iq = equalize_1tap(rx_iq, h, noise_var, method=eq_method)
+                elif channel_type == "multipath":
+                    h_time = taps[:, 0]
+                    h_freq = np.fft.fft(h_time, len(rx_iq))
+                    rx_iq = equalize_mmse_freq(rx_iq, h_freq, noise_var)
+
             result = rx_chain(rx_iq, cfg, n_data_bytes)
 
             errors = int(np.sum(result.data_bits[:n_data_bits] != data_bits))
@@ -1166,18 +1181,18 @@ def run_phase7_simulation():
     print()
 
     configs = [
-        {"channel_type": "awgn", "cfo_hz": 0.0,
+        {"channel_type": "awgn", "cfo_hz": 0.0, "eq_method": "none",
          "label": "AWGN (baseline)"},
-        {"channel_type": "rayleigh", "cfo_hz": 0.0,
-         "label": "Rayleigh flat"},
-        {"channel_type": "rician", "cfo_hz": 0.0,
-         "label": "Rician K=6dB"},
-        {"channel_type": "awgn", "cfo_hz": 100.0,
-         "label": "AWGN + CFO 100Hz"},
-        {"channel_type": "awgn", "cfo_hz": 500.0,
+        {"channel_type": "rayleigh", "cfo_hz": 0.0, "eq_method": "none",
+         "label": "Rayleigh (no eq)"},
+        {"channel_type": "rayleigh", "cfo_hz": 0.0, "eq_method": "mmse",
+         "label": "Rayleigh + MMSE eq"},
+        {"channel_type": "rician", "cfo_hz": 0.0, "eq_method": "none",
+         "label": "Rician K=6dB (no eq)"},
+        {"channel_type": "rician", "cfo_hz": 0.0, "eq_method": "mmse",
+         "label": "Rician K=6dB + MMSE eq"},
+        {"channel_type": "awgn", "cfo_hz": 500.0, "eq_method": "none",
          "label": "AWGN + CFO 500Hz"},
-        {"channel_type": "rayleigh", "cfo_hz": 100.0,
-         "label": "Rayleigh + CFO 100Hz"},
     ]
 
     results = []
@@ -1189,6 +1204,7 @@ def run_phase7_simulation():
             n_data_bytes=10,
             channel_type=cfg["channel_type"],
             cfo_hz=cfg["cfo_hz"],
+            eq_method=cfg["eq_method"],
             snr_range_db=snr_range,
             n_frames=50,
         )

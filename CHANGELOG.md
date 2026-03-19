@@ -7,6 +7,19 @@
 
 ## [Unreleased]
 
+## [0.15.0] - 2026-03-20
+
+### Added
+
+- `phy/channel.py`: `last_taps` 属性, `apply_fading` 缓存信道系数供均衡器复用
+- `sim/link_sim.py`: `sim_pipeline_channel_link()` 支持 `eq_method` 参数 (none/zf/mmse)
+- 平坦衰落 (Rayleigh/Rician) 采用 `equalize_1tap`, 多径采用 `equalize_mmse_freq`
+- Rayleigh + MMSE 均衡: BER 从 ~16% 错误地板降至 0 (5dB 即收敛)
+
+### Fixed
+
+- 修复 `sim_pipeline_channel_link` 中均衡器使用独立随机信道系数的问题
+
 ## [0.14.0] - 2026-03-20
 
 ### Changed

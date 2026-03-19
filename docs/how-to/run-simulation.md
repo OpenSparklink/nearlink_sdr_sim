@@ -109,17 +109,28 @@ uv run python -m nearlink_sdr.sim.link_sim phase6
 
 ## 信道损伤仿真
 
-使用 `sim_pipeline_channel_link` 模拟衰落信道和载波频偏对链路的影响:
+使用 `sim_pipeline_channel_link` 模拟衰落信道、载波频偏和均衡对链路的影响:
 
 ```python
 import numpy as np
 from nearlink_sdr.sim.link_sim import sim_pipeline_channel_link
 
-# Rayleigh 平坦衰落
+# Rayleigh 平坦衰落, 无均衡
 result = sim_pipeline_channel_link(
     frame_type=2,
     mcs_index=7,
     channel_type="rayleigh",
+    eq_method="none",
+    snr_range_db=np.arange(0, 20, 2),
+    n_frames=50,
+)
+
+# Rayleigh + MMSE 均衡 (genie-aided)
+result = sim_pipeline_channel_link(
+    frame_type=2,
+    mcs_index=7,
+    channel_type="rayleigh",
+    eq_method="mmse",
     snr_range_db=np.arange(0, 20, 2),
     n_frames=50,
 )
@@ -134,7 +145,7 @@ result = sim_pipeline_channel_link(
 )
 ```
 
-批量信道损伤仿真:
+批量信道损伤仿真 (含均衡对比):
 
 ```bash
 uv run python -m nearlink_sdr.sim.link_sim phase7
