@@ -108,6 +108,25 @@ run_phase1_simulation()
 # 输出 BER 数据并保存 ber_phase1.png
 ```
 
+## 全链路 Pipeline 仿真
+
+调用 `sim_pipeline_link` 进行端到端仿真, 覆盖 CRC、Polar 编码、加扰、调制、帧组装等全部物理层处理:
+
+```python
+import numpy as np
+from nearlink_sdr.sim.link_sim import sim_pipeline_link
+
+result = sim_pipeline_link(
+    frame_type=2,
+    mcs_index=7,
+    n_data_bytes=10,
+    snr_range_db=np.arange(0, 12, 2),
+    n_frames=20,
+)
+for snr, ber in zip(result["snr_db"], result["ber"]):
+    print(f"SNR={snr:2.0f} dB  BER={ber:.5f}")
+```
+
 ## 下一步
 
 - 阅读 [操作指南](../how-to/index.md) 了解具体任务的操作方法

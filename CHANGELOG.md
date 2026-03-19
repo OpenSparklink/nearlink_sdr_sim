@@ -7,6 +7,54 @@
 
 ## [Unreleased]
 
+## [0.12.0] - 2026-03-20
+
+### Added
+
+- `sim/link_sim.py`: 全链路 Pipeline 仿真 (Phase 6), 使用 `tx_chain`/`rx_chain` 端到端 BER/FER 仿真
+- `sim_pipeline_link()`: 支持 FT1(GFSK)/FT2(QPSK)/FT3(QPSK)/FT4(BPSK) 全帧类型
+- `run_phase6_simulation()`: 5 种 MCS/帧类型配置的 BER/FER 曲线生成
+
+### Fixed
+
+- FT3/4 仿真中 `m_seq_index` 误传 PID 导致 `KeyError`, 修正为 0-5 范围
+
+## [0.11.0] - 2026-03-20
+
+### Added
+
+- TX/RX Pipeline 全面支持 FT1(GFSK 无 Polar)/FT3(Polar 256 + segment_with_crc)/FT4 帧类型
+- `test_ft_pipeline.py`: FT1(5)/FT3(4)/FT4(4)/帧同步(2) 共 15 个测试
+- 帧同步支持 FT3(`sync_signal_3`) 和 FT4(`sync_signal_4`)
+
+### Fixed
+
+- `gfsk.py`: 解调器末尾不完整符号导致 off-by-one, 改用向上取整
+- `rx_pipeline.py`: FT3/4 头部使用 CRC24B(非 CRC12), 修正 `k_info` 计算
+- `rx_pipeline.py`: FT3/4 payload 解码后剥离 Polar 前端补零
+
+## [0.10.0] - 2026-03-20
+
+### Added
+
+- TV202(MCS7 多码块)/TV205(MCS6)/TV206(MCS6 大载荷)/TV209(MCS11 8PSK) 全链路 pipeline 测试
+- RX roundtrip + loopback 测试覆盖 TV202/205/206/209
+
+### Fixed
+
+- `frame.py`: 8PSK 解调缺失, 添加星座点逆映射
+- `frame.py`: 8PSK 调制比特数非 3 倍数时自动补零对齐
+- `frame.py`: `_bits_to_symbols_count` 添加 8PSK 支持 (3 bits/symbol)
+
+## [0.9.0] - 2026-03-19
+
+### Added
+
+- `phy/rx_pipeline.py`: 完整 RX 接收流水线, 支持帧同步、头部解码、载荷解码
+- `rx_chain()`: IQ 信号到数据比特的完整解码链路
+- `decode_head()` / `decode_payload()` / `frame_sync()` 子函数
+- 14 个 RX pipeline 测试
+
 ## [0.8.0] - 2026-03-19
 
 ### Added
@@ -88,7 +136,11 @@
 - `sim/link_sim.py` Phase 1 无编码链路仿真
 - 107 个测试
 
-[Unreleased]: https://github.com/user/nearlink-sdr/compare/v0.8.0...HEAD
+[Unreleased]: https://github.com/user/nearlink-sdr/compare/v0.12.0...HEAD
+[0.12.0]: https://github.com/user/nearlink-sdr/compare/v0.11.0...v0.12.0
+[0.11.0]: https://github.com/user/nearlink-sdr/compare/v0.10.0...v0.11.0
+[0.10.0]: https://github.com/user/nearlink-sdr/compare/v0.9.0...v0.10.0
+[0.9.0]: https://github.com/user/nearlink-sdr/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/user/nearlink-sdr/compare/v0.7.0...v0.8.0
 [0.7.0]: https://github.com/user/nearlink-sdr/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.com/user/nearlink-sdr/compare/v0.5.0...v0.6.0

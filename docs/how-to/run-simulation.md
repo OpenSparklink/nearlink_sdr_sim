@@ -69,3 +69,40 @@ from nearlink_sdr.sim.link_sim import run_phase1_simulation
 run_phase1_simulation()
 # 结果保存到 ber_phase1.png
 ```
+
+## 全链路 Pipeline 仿真
+
+使用 `sim_pipeline_link` 运行端到端 Pipeline 仿真, 内部调用完整的 `tx_chain` → AWGN 信道 → `rx_chain` 链路:
+
+```python
+import numpy as np
+from nearlink_sdr.sim.link_sim import sim_pipeline_link
+
+# FT2 QPSK MCS7 (码率 7/8)
+result = sim_pipeline_link(
+    frame_type=2,
+    mcs_index=7,
+    n_data_bytes=10,
+    snr_range_db=np.arange(0, 16, 2),
+    n_frames=50,
+)
+for snr, ber, fer in zip(result["snr_db"], result["ber"], result["fer"]):
+    print(f"Eb/N0={snr:5.1f} dB  BER={ber:.5f}  FER={fer:.3f}")
+```
+
+支持所有帧类型:
+
+```python
+# FT1 GFSK (无编码)
+result = sim_pipeline_link(frame_type=1, mcs_index=8)
+
+# FT4 BPSK MCS0 (码率 1/4, 高编码增益)
+result = sim_pipeline_link(frame_type=4, mcs_index=0)
+```
+
+批量仿真并生成 BER/FER 曲线图:
+
+```bash
+uv run python -m nearlink_sdr.sim.link_sim phase6
+# 结果保存到 ber_phase6.png
+```

@@ -26,6 +26,8 @@
 | {py:mod}`nearlink_sdr.phy.pilot` | 导频 |
 | {py:mod}`nearlink_sdr.phy.frame` | 帧结构 |
 | {py:mod}`nearlink_sdr.phy.control_info` | 控制信息 |
+| {py:mod}`nearlink_sdr.phy.tx_pipeline` | TX 发射流水线 |
+| {py:mod}`nearlink_sdr.phy.rx_pipeline` | RX 接收流水线 |
 | {py:mod}`nearlink_sdr.phy.channel` | 信道模型 |
 | {py:mod}`nearlink_sdr.phy.equalizer` | 均衡器 |
 | {py:mod}`nearlink_sdr.phy.freq_hopping` | 跳频 |

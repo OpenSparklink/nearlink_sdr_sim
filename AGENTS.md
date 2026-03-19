@@ -40,10 +40,18 @@ tests/            # 测试文件, 与 src 模块一一对应
 - 运行方式: `uv run pytest tests/ -v --tb=short`
 
 ### 提交规范
-- 每个阶段完成后提交, commit message 格式使用 Angular Commit Convention
+- 每个阶段完成后提交, commit message 格式使用 Angular Commit Convention:
+  - `feat: <描述>` 新功能
+  - `fix: <描述>` 修复
+  - `docs: <描述>` 文档
+  - `refactor: <描述>` 重构
+  - `perf: <描述>` 性能优化
+  - `test: <描述>` 测试
+  - `chore: <描述>` 构建/工具
+- 如有 body, 使用中文, 用 `-` 列出具体变更
 - 提交前必须通过 lint 检查和全量测试
-- 提交修改前更新changelog.md
-- 添加新功能或修改要更新文档,文档依据 [diataxis](https://diataxis.fr/) 标准
+- 提交修改前更新 CHANGELOG.md
+- 添加新功能或修改要更新文档, 文档依据 [diataxis](https://diataxis.fr/) 标准
 
 ### 分阶段开发
 - 每个阶段完成后闭环验证: 编码 -> 测试 -> lint -> 提交
