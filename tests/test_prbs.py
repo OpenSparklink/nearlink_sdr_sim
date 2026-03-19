@@ -875,3 +875,381 @@ class TestTV206:
         expected = self._hex_pairs_to_bits(expected_pairs, 1984)
         assert len(txpyldw) == 1984, f"Expected 1984 bits, got {len(txpyldw)}"
         assert list(txpyldw) == expected
+
+
+# =========================================================================
+# TV201 验证 (FrameType 2, A3, MCS 7, PID=0x879012, dLen=1)
+# =========================================================================
+
+
+class TestTV201:
+    """验证 TV201 (FrameType 2, A3, MCS7 rate 7/8, 最小载荷 1 字节)。
+
+    参数:
+      TV_ID=201, PID=0x879012, ControlType=A3, HeadBits=36bit
+      DataLen=1Byte=8bit, CRC=24bit, CRCSeed=0x123456
+      WhiteningSeed=0x52(=82)
+
+    txPyLd(32) → Polar(64,32) → txPyLdC(64) → scramble(offset=64) → txPyLdW(64)
+    txHead(48) → Polar(64,48) → txHeadC(64) → scramble(offset=0) → txHeadW(64)
+    """
+
+    TV_ID = 201
+    WHITENING_SEED = 0x52
+    CTRL_LEN = 36
+    DATA_LEN_BYTES = 1
+    CRC_SEED = 0x123456
+    HEAD_C_LEN = 64
+
+    @staticmethod
+    def _hex_to_bits_lsb(hex_val: int, nbits: int) -> list[int]:
+        return [(hex_val >> i) & 1 for i in range(nbits)]
+
+    def test_txpyld(self):
+        """PRBS11 生成 8 比特载荷, CRC24A 附加后 txPyLd = 32 比特。"""
+        from nearlink_sdr.common.crc import CRC24A_POLY, crc_attach
+
+        seq = prbs11(self.CTRL_LEN + self.DATA_LEN_BYTES * 8, seed=self.TV_ID)
+        pyld_bits = seq[self.CTRL_LEN:]
+        txpyld = crc_attach(np.array(pyld_bits, dtype=int), CRC24A_POLY, 24, seed=self.CRC_SEED)
+        tp_val = sum(int(b) << i for i, b in enumerate(txpyld))
+        assert tp_val == 0x7E0AAC16
+
+    def test_txpyldc(self):
+        """txPyLd(32) 经 Polar(64,32) 编码后等于标准 txPyLdC。"""
+        from nearlink_sdr.common.polar import PolarEncoder
+
+        txpyld_bits = np.array(self._hex_to_bits_lsb(0x7E0AAC16, 32), dtype=np.int8)
+        enc = PolarEncoder(64, 32)
+        coded = enc.encode(txpyld_bits)
+
+        expected = self._hex_to_bits_lsb(0x6FC92D8B, 32) + self._hex_to_bits_lsb(0x7E723C30, 32)
+        assert list(coded) == expected
+
+    def test_txpyldw(self):
+        """txPyLdC 经加扰后等于标准 txPyLdW。"""
+        from nearlink_sdr.common.scrambler import scramble_sequence
+
+        txpyldc = np.array(
+            self._hex_to_bits_lsb(0x6FC92D8B, 32) + self._hex_to_bits_lsb(0x7E723C30, 32),
+            dtype=np.uint8,
+        )
+        sc = scramble_sequence(self.HEAD_C_LEN + 64, self.WHITENING_SEED)
+        txpyldw = txpyldc ^ sc[self.HEAD_C_LEN : self.HEAD_C_LEN + 64]
+
+        expected = self._hex_to_bits_lsb(0xBD44EA7B, 32) + self._hex_to_bits_lsb(0xD94F9D67, 32)
+        assert list(txpyldw) == expected
+
+    def test_txhead(self):
+        """txHead(48) 经 Polar(64,48) 编码后等于标准 txHeadC。"""
+        from nearlink_sdr.common.polar import PolarEncoder
+
+        txhead = np.array(
+            self._hex_to_bits_lsb(0x03DE9497, 32) + self._hex_to_bits_lsb(0x00003380, 16),
+            dtype=np.int8,
+        )
+        enc = PolarEncoder(64, 48)
+        coded = enc.encode(txhead)
+
+        expected = self._hex_to_bits_lsb(0xE82429AB, 32) + self._hex_to_bits_lsb(0x20DF226C, 32)
+        assert list(coded) == expected
+
+    def test_txheadw(self):
+        """txHeadC 经加扰 (offset=0) 后等于标准 txHeadW。"""
+        from nearlink_sdr.common.scrambler import scramble_sequence
+
+        txheadc = np.array(
+            self._hex_to_bits_lsb(0xE82429AB, 32) + self._hex_to_bits_lsb(0x20DF226C, 32),
+            dtype=np.uint8,
+        )
+        sc = scramble_sequence(64, self.WHITENING_SEED)
+        txheadw = txheadc ^ sc[:64]
+
+        expected = self._hex_to_bits_lsb(0x8ACF4966, 32) + self._hex_to_bits_lsb(0xCFF3B24E, 32)
+        assert list(txheadw) == expected
+
+
+# =========================================================================
+# TV203 端到端验证 (FrameType 2, A3, MCS 9, PID=0x879012)
+# =========================================================================
+
+
+class TestTV203:
+    """验证 TV203 (FrameType 2, A3, PSK8 rate 5/8) 全链路。
+
+    参数:
+      TV_ID=203, PID=0x879012, ControlType=A3, HeadBits=36bit
+      DataLen=68Byte=544bit, CRC=24bit, CRCSeed=0x123456
+      WhiteningSeed=0x55(=85), MCS=9 (rate 5/8)
+      txPyLdC = 960 bits (15 lines), txPyLdW = 960 bits
+    """
+
+    TV_ID = 203
+    WHITENING_SEED = 0x55
+    CTRL_LEN = 36
+    DATA_LEN_BYTES = 68
+    CRC_SEED = 0x123456
+    HEAD_C_LEN = 64
+
+    @staticmethod
+    def _hex_pairs_to_bits(pairs: list[tuple[int, int]], total_bits: int) -> list[int]:
+        bits = []
+        for lo, hi in pairs:
+            bits.extend([(lo >> i) & 1 for i in range(32)])
+            bits.extend([(hi >> i) & 1 for i in range(32)])
+        return bits[:total_bits]
+
+    def test_txpyldw_full_chain(self):
+        """PRBS11 → CRC → 分段 → Polar → 加扰, 输出应等于 txPyLdW(960)。"""
+        from nearlink_sdr.common.code_block_seg import segment_without_crc
+        from nearlink_sdr.common.crc import CRC24A_POLY, crc_attach
+        from nearlink_sdr.common.polar import PolarEncoder
+        from nearlink_sdr.common.scrambler import scramble_sequence
+
+        seq = prbs11(self.CTRL_LEN + self.DATA_LEN_BYTES * 8, seed=self.TV_ID)
+        pyld_bits = seq[self.CTRL_LEN:]
+        txpyld = crc_attach(np.array(pyld_bits, dtype=int), CRC24A_POLY, 24, seed=self.CRC_SEED)
+
+        segments = segment_without_crc(txpyld, "5/8", crc_len=24)
+        coded_bits = []
+        for N, info in segments:
+            enc = PolarEncoder(N, len(info))
+            coded_bits.extend(enc.encode(np.array(info, dtype=np.int8)))
+
+        txpyldc = np.array(coded_bits, dtype=np.uint8)
+        sc = scramble_sequence(self.HEAD_C_LEN + len(txpyldc), self.WHITENING_SEED)
+        txpyldw = txpyldc ^ sc[self.HEAD_C_LEN: self.HEAD_C_LEN + len(txpyldc)]
+
+        expected_pairs = [
+            (0xE3F19CD9, 0xCCAA5200),
+            (0xF7956D40, 0xC3EDA26A),
+            (0x9FB93B2D, 0x51D6B109),
+            (0xCBF03ECA, 0x822B81A7),
+            (0x44FAFF38, 0xD6C87B25),
+            (0xC4594255, 0x989311A4),
+            (0x5CCCFC14, 0x3CBDCA11),
+            (0x66B2FBDD, 0x36474E43),
+            (0x81AC86CF, 0x4AF30155),
+            (0x00C321AE, 0xA2A3159E),
+            (0xBFBB7B49, 0xB45FDBDC),
+            (0x2075F474, 0x902320BB),
+            (0x5DD3F0C2, 0xD6E122CE),
+            (0x0C15282E, 0x7ABF01D0),
+            (0x4039AB87, 0x99C9652C),
+        ]
+        expected = self._hex_pairs_to_bits(expected_pairs, 960)
+        assert len(txpyldw) == 960, f"Expected 960 bits, got {len(txpyldw)}"
+        assert list(txpyldw) == expected
+
+    def test_txheadc_polar(self):
+        """txHead(48) 经 Polar(64,48) 编码后等于标准 txHeadC。"""
+        from nearlink_sdr.common.polar import PolarEncoder
+
+        txhead = np.array(
+            self._hex_pairs_to_bits([(0x88643E99, 0x00003760)], 48),
+            dtype=np.int8,
+        )
+        enc = PolarEncoder(64, 48)
+        coded = enc.encode(txhead)
+
+        expected = self._hex_pairs_to_bits([(0x2D877741, 0x2543D5D0)], 64)
+        assert list(coded) == expected
+
+
+# =========================================================================
+# TV207 端到端验证 (FrameType 2, A7, MCS 10, PID=0x123456)
+# =========================================================================
+
+
+class TestTV207:
+    """验证 TV207 (FrameType 2, A7, PSK8 rate 3/4) 全链路。
+
+    参数:
+      TV_ID=207, PID=0x123456, ControlType=A7, HeadBits=36bit
+      DataLen=178Byte=1424bit, CRC=24bit, CRCSeed=0x123456
+      WhiteningSeed=0x52(=82), MCS=10 (rate 3/4)
+      txPyLdC = 1984 bits (31 lines), txPyLdW = 1984 bits
+    """
+
+    TV_ID = 207
+    WHITENING_SEED = 0x52
+    CTRL_LEN = 36
+    DATA_LEN_BYTES = 178
+    CRC_SEED = 0x123456
+    HEAD_C_LEN = 64
+
+    @staticmethod
+    def _hex_pairs_to_bits(pairs: list[tuple[int, int]], total_bits: int) -> list[int]:
+        bits = []
+        for lo, hi in pairs:
+            bits.extend([(lo >> i) & 1 for i in range(32)])
+            bits.extend([(hi >> i) & 1 for i in range(32)])
+        return bits[:total_bits]
+
+    def test_txpyldw_full_chain(self):
+        """PRBS11 → CRC → 分段 → Polar → 加扰, 输出应等于 txPyLdW(1984)。"""
+        from nearlink_sdr.common.code_block_seg import segment_without_crc
+        from nearlink_sdr.common.crc import CRC24A_POLY, crc_attach
+        from nearlink_sdr.common.polar import PolarEncoder
+        from nearlink_sdr.common.scrambler import scramble_sequence
+
+        seq = prbs11(self.CTRL_LEN + self.DATA_LEN_BYTES * 8, seed=self.TV_ID)
+        pyld_bits = seq[self.CTRL_LEN:]
+        txpyld = crc_attach(np.array(pyld_bits, dtype=int), CRC24A_POLY, 24, seed=self.CRC_SEED)
+
+        segments = segment_without_crc(txpyld, "3/4", crc_len=24)
+        coded_bits = []
+        for N, info in segments:
+            enc = PolarEncoder(N, len(info))
+            coded_bits.extend(enc.encode(np.array(info, dtype=np.int8)))
+
+        txpyldc = np.array(coded_bits, dtype=np.uint8)
+        sc = scramble_sequence(self.HEAD_C_LEN + len(txpyldc), self.WHITENING_SEED)
+        txpyldw = txpyldc ^ sc[self.HEAD_C_LEN: self.HEAD_C_LEN + len(txpyldc)]
+
+        expected_pairs = [
+            (0xE5E438C4, 0x17EA0E29),
+            (0x6DB27262, 0xD3794B30),
+            (0x7F5CBE7D, 0x4AEB5D23),
+            (0x65FDBCBA, 0x94B52DF8),
+            (0x5108FADF, 0xB4DB6E4A),
+            (0x46047F7C, 0xBA3F8FEF),
+            (0xE2252497, 0xD811AA3C),
+            (0xA4619B5B, 0xB3F5AA4A),
+            (0x0F47447E, 0x7CA63051),
+            (0xD8E94A1A, 0xD9857760),
+            (0xEEAEECE4, 0x5046D623),
+            (0x01501BDD, 0xDD55EEBF),
+            (0x752B4F16, 0xD42900CE),
+            (0x4BCEDAFB, 0x7775DF5B),
+            (0x1E015AA8, 0xB878A5C1),
+            (0x1D19B157, 0x388BAD22),
+            (0x0A6B0C2B, 0xCC26C232),
+            (0x700BFF29, 0xE267B641),
+            (0x1435D783, 0x2FB95808),
+            (0x668D93EF, 0x5D7C175B),
+            (0x10684795, 0x14C7703A),
+            (0xE6D0C809, 0x3F8981DF),
+            (0x17E4B8E5, 0xD83C8992),
+            (0x3EC64EFC, 0x2194C979),
+            (0x1E703B43, 0xAB097B06),
+            (0xF247EE06, 0xF9BC0509),
+            (0xE2B78314, 0xFF952AC1),
+            (0x0457A264, 0x761FA5F4),
+            (0x8B16B96B, 0x748AFA1E),
+            (0xFA26ACEF, 0x78194BE8),
+            (0x8DC56A71, 0x50587EEE),
+        ]
+        expected = self._hex_pairs_to_bits(expected_pairs, 1984)
+        assert len(txpyldw) == 1984, f"Expected 1984 bits, got {len(txpyldw)}"
+        assert list(txpyldw) == expected
+
+    def test_txheadc_polar(self):
+        """txHead(48) 经 Polar(64,48) 编码后等于标准 txHeadC。"""
+        from nearlink_sdr.common.polar import PolarEncoder
+
+        txhead = np.array(
+            self._hex_pairs_to_bits([(0x64CC3F9A, 0x000086D1)], 48),
+            dtype=np.int8,
+        )
+        enc = PolarEncoder(64, 48)
+        coded = enc.encode(txhead)
+
+        expected = self._hex_pairs_to_bits([(0xF1D237B4, 0xF9439A80)], 64)
+        assert list(coded) == expected
+
+
+# =========================================================================
+# TV213 端到端验证 (FrameType 2, A5, MCS 8, PID=0x654321)
+# =========================================================================
+
+
+class TestTV213:
+    """验证 TV213 (FrameType 2, A5, QPSK rate 1/1 无编码) 全链路。
+
+    参数:
+      TV_ID=213, PID=0x654321, ControlType=A5, HeadBits=28bit
+      DataLen=123Byte=984bit, CRC=32bit, CRCSeed=0x87654321
+      WhiteningSeed=0x43(=67), MCS=8 (rate 1/1, 不经过 Polar 编码)
+      txPyLdC = txPyLd (无编码), txPyLdW = 1016 bits (16 lines)
+    """
+
+    TV_ID = 213
+    WHITENING_SEED = 0x43
+    CTRL_LEN = 28
+    DATA_LEN_BYTES = 123
+    CRC_SEED = 0x87654321
+    CRC_LEN = 32
+    HEAD_C_LEN = 64
+
+    @staticmethod
+    def _hex_pairs_to_bits(pairs: list[tuple[int, int]], total_bits: int) -> list[int]:
+        bits = []
+        for lo, hi in pairs:
+            bits.extend([(lo >> i) & 1 for i in range(32)])
+            bits.extend([(hi >> i) & 1 for i in range(32)])
+        return bits[:total_bits]
+
+    def test_txpyld_uncoded(self):
+        """MCS=8 rate 1/1, CRC32 附加后 txPyLdC 应等于 txPyLd。"""
+        from nearlink_sdr.common.crc import CRC32_POLY, crc_attach
+
+        seq = prbs11(self.CTRL_LEN + self.DATA_LEN_BYTES * 8, seed=self.TV_ID)
+        pyld_bits = seq[self.CTRL_LEN:]
+        txpyld = crc_attach(np.array(pyld_bits, dtype=int), CRC32_POLY, self.CRC_LEN, seed=self.CRC_SEED)
+
+        assert len(txpyld) == 1016  # 984 + 32
+
+        last_word_lo = sum(int(b) << i for i, b in enumerate(txpyld[960:992]))
+        last_word_hi = sum(int(b) << i for i, b in enumerate(txpyld[992:1016]))
+        assert last_word_lo == 0xFF416899
+        assert last_word_hi == 0x00B54034
+
+    def test_txpyldw_full_chain(self):
+        """PRBS11 → CRC32 → 加扰 (无编码), 输出应等于 txPyLdW(1016)。"""
+        from nearlink_sdr.common.crc import CRC32_POLY, crc_attach
+        from nearlink_sdr.common.scrambler import scramble_sequence
+
+        seq = prbs11(self.CTRL_LEN + self.DATA_LEN_BYTES * 8, seed=self.TV_ID)
+        pyld_bits = seq[self.CTRL_LEN:]
+        txpyld = crc_attach(np.array(pyld_bits, dtype=int), CRC32_POLY, self.CRC_LEN, seed=self.CRC_SEED)
+
+        # MCS=8 rate 1/1: txPyLdC = txPyLd, 无 Polar 编码
+        txpyldc = np.array(txpyld, dtype=np.uint8)
+        sc = scramble_sequence(self.HEAD_C_LEN + len(txpyldc), self.WHITENING_SEED)
+        txpyldw = txpyldc ^ sc[self.HEAD_C_LEN: self.HEAD_C_LEN + len(txpyldc)]
+
+        expected_pairs = [
+            (0x700C12F6, 0x706D3D53),
+            (0xDBD21258, 0x1A6043AE),
+            (0x95F54EB0, 0x2218CC4A),
+            (0x5130FEE9, 0x2183EE49),
+            (0x8D01A5B9, 0x113C7829),
+            (0x7A4B4C8B, 0xB5D7DEF5),
+            (0x2C08C7D4, 0x60F705AF),
+            (0x4B405805, 0x9F71910A),
+            (0x7A4FCF49, 0x49380B62),
+            (0xE5584F3F, 0xF10043D1),
+            (0x7DEF9A95, 0x48F7BD1A),
+            (0x9772737F, 0xFE638C4B),
+            (0xB340A011, 0x54FD8D6E),
+            (0x83942A94, 0xE3FC3965),
+            (0xE8CECA96, 0xF64B5ACA),
+            (0xB31C0480, 0x0050D230),
+        ]
+        expected = self._hex_pairs_to_bits(expected_pairs, 1016)
+        assert list(txpyldw) == expected
+
+    def test_txheadc_polar(self):
+        """txHead(40) 经 Polar(64,40) 编码后等于标准 txHeadC。"""
+        from nearlink_sdr.common.polar import PolarEncoder
+
+        txhead = np.array(
+            self._hex_pairs_to_bits([(0x00F69558, 0x00000044)], 40),
+            dtype=np.int8,
+        )
+        enc = PolarEncoder(64, 40)
+        coded = enc.encode(txhead)
+
+        expected = self._hex_pairs_to_bits([(0x90F61E2D, 0x5050DE8B)], 64)
+        assert list(coded) == expected
