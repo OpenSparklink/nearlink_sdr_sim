@@ -492,11 +492,210 @@ def run_phase3_simulation():
     print(f"\nBER/FER curves saved to ber_phase3.png")
 
 
+# ── Phase 4: 多径信道 + 均衡仿真 ──
+
+
+def sim_channel_eq_link(
+    channel_type: str = "rayleigh",
+    rician_k_db: float = 6.0,
+    eq_method: str = "mmse",
+    rate_str: str = "1/2",
+    code_length: int = 256,
+    snr_range_db: np.ndarray | None = None,
+    n_frames: int = 20,
+    seed: int = 42,
+) -> dict:
+    """多径信道 + 均衡器 + Polar编码 BPSK 链路仿真。
+
+    流程: 信息比特 → Polar编码 → BPSK调制 → 信道(衰落+AWGN) → 均衡 → LLR → 解码
+
+    Args:
+        channel_type: "awgn" / "rayleigh" / "rician" / "multipath"。
+        rician_k_db: Rician K 因子。
+        eq_method: "zf" / "mmse" / "none" (不均衡)。
+        rate_str: Polar 码率。
+        code_length: Polar 码长。
+        snr_range_db: SNR 范围。
+        n_frames: 每个 SNR 点的帧数。
+        seed: 随机种子。
+
+    Returns:
+        {"snr_db": [...], "ber": [...], "fer": [...]}
+    """
+    from nearlink_sdr.phy.channel import ChannelConfig, PDP_2TAP
+    from nearlink_sdr.phy.equalizer import equalize_1tap, equalize_mmse_freq
+
+    if snr_range_db is None:
+        snr_range_db = np.arange(-2, 12, 1)
+
+    K = get_info_bit_count(rate_str, code_length)
+    enc = PolarEncoder(code_length, K)
+    dec = PolarDecoder(code_length, K)
+
+    rng = np.random.default_rng(seed)
+    ber_list, fer_list = [], []
+
+    for snr in snr_range_db:
+        total_errors, total_bits, frame_errors = 0, 0, 0
+
+        for _ in range(n_frames):
+            info = rng.integers(0, 2, size=K, dtype=np.int8)
+            coded = enc.encode(info)
+
+            # BPSK 调制: 0 → +1, 1 → -1
+            tx = (1 - 2 * coded.astype(np.float64)).astype(complex)
+
+            # 信道
+            frame_seed = int(rng.integers(0, 2**31))
+            cfg = ChannelConfig(
+                snr_db=float(snr),
+                channel_type=channel_type,
+                rician_k_db=rician_k_db,
+                pdp=list(PDP_2TAP),
+                seed=frame_seed,
+            )
+            ch = ChannelModel(config=cfg)
+            noise_var = ch.noise_variance
+
+            if channel_type == "multipath":
+                taps = ch.get_channel_taps(len(tx))
+                # 手动应用多径: 对每条路径做延迟卷积
+                n_sig = len(tx)
+                faded = np.zeros(n_sig, dtype=complex)
+                for tap_i, (delay, _) in enumerate(PDP_2TAP):
+                    if delay < n_sig and tap_i < taps.shape[0]:
+                        shifted = np.zeros(n_sig, dtype=complex)
+                        shifted[delay:] = tx[:n_sig - delay]
+                        faded += taps[tap_i, :n_sig] * shifted
+                # 手动加噪
+                sig_power = np.mean(np.abs(faded) ** 2) if np.mean(np.abs(faded) ** 2) > 1e-20 else 1.0
+                n_power = sig_power / (10.0 ** (float(snr) / 10.0)) if snr > -50 else sig_power * 100
+                noise = np.sqrt(n_power / 2) * (ch._rng.standard_normal(n_sig) + 1j * ch._rng.standard_normal(n_sig))
+                rx = faded + noise
+
+                if eq_method == "none":
+                    eq = rx
+                else:
+                    h_time = taps[:, 0]
+                    h_freq = np.fft.fft(h_time, len(rx))
+                    if eq_method == "mmse":
+                        eq = equalize_mmse_freq(rx, h_freq, noise_var)
+                    else:
+                        from nearlink_sdr.phy.equalizer import equalize_zf
+                        eq = equalize_zf(rx, h_freq)
+            elif channel_type in ("rayleigh", "rician"):
+                taps = ch.get_channel_taps(len(tx))
+                h = taps[0, :]
+                # 手动应用平坦衰落 + 加噪
+                faded = tx * h
+                sig_power = np.mean(np.abs(faded) ** 2) if np.mean(np.abs(faded) ** 2) > 1e-20 else 1.0
+                n_power = sig_power / (10.0 ** (float(snr) / 10.0)) if snr > -50 else sig_power * 100
+                noise = np.sqrt(n_power / 2) * (ch._rng.standard_normal(len(tx)) + 1j * ch._rng.standard_normal(len(tx)))
+                rx = faded + noise
+
+                if eq_method == "none":
+                    eq = rx
+                else:
+                    eq = equalize_1tap(rx, h, noise_var=noise_var, method=eq_method)
+            else:
+                rx = ch.apply_fading(tx)
+                eq = rx
+
+            # 软 LLR: BPSK +1→bit0, -1→bit1, LLR = 2*real(y)/sigma^2
+            noise_var = ch.noise_variance
+            if noise_var < 1e-10:
+                noise_var = 1e-10
+            llr = np.real(eq) * 2.0 / noise_var
+            llr = llr[:code_length]
+            if len(llr) < code_length:
+                llr = np.concatenate([llr, np.zeros(code_length - len(llr))])
+
+            decoded = dec.decode(llr.real)
+            errors = int(np.sum(decoded != info))
+            total_errors += errors
+            total_bits += K
+            if errors > 0:
+                frame_errors += 1
+
+        ber = total_errors / total_bits if total_bits > 0 else 0.0
+        fer = frame_errors / n_frames
+        ber_list.append(ber)
+        fer_list.append(fer)
+
+    return {"snr_db": snr_range_db.tolist(), "ber": ber_list, "fer": fer_list}
+
+
+def run_phase4_simulation():
+    """Phase 4: 不同信道模型 + 均衡器的 BER/FER 比较。"""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    snr_range = np.arange(-2, 12, 1)
+
+    print("=== Phase 4 Channel & Equalizer Simulation ===")
+    print()
+
+    configs = [
+        {"channel_type": "awgn", "eq_method": "none", "label": "AWGN (baseline)"},
+        {"channel_type": "rayleigh", "eq_method": "none", "label": "Rayleigh (no eq)"},
+        {"channel_type": "rayleigh", "eq_method": "mmse", "label": "Rayleigh + MMSE eq"},
+        {"channel_type": "rician", "eq_method": "none", "label": "Rician K=6dB (no eq)"},
+        {"channel_type": "rician", "eq_method": "mmse", "label": "Rician K=6dB + MMSE eq"},
+        {"channel_type": "multipath", "eq_method": "none", "label": "Multipath (no eq)"},
+        {"channel_type": "multipath", "eq_method": "mmse", "label": "Multipath + MMSE eq"},
+    ]
+
+    results = []
+    for i, cfg in enumerate(configs):
+        print(f"[{i+1}/{len(configs)}] {cfg['label']}...")
+        res = sim_channel_eq_link(
+            channel_type=cfg["channel_type"],
+            eq_method=cfg["eq_method"],
+            rate_str="1/2",
+            code_length=256,
+            snr_range_db=snr_range,
+            n_frames=30,
+        )
+        results.append((cfg["label"], res))
+        for s, b, f in zip(res["snr_db"][::3], res["ber"][::3], res["fer"][::3]):
+            print(f"  Eb/N0={s:5.1f} dB  BER={b:.5f}  FER={f:.3f}")
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
+    markers = ["o-", "s--", "s-", "^--", "^-", "d--", "d-"]
+
+    for (label, res), mk in zip(results, markers):
+        ber_plot = [max(b, 1e-6) for b in res["ber"]]
+        ax1.semilogy(res["snr_db"], ber_plot, mk, label=label, markersize=3)
+    ax1.set_xlabel("Eb/N0 (dB)")
+    ax1.set_ylabel("Bit Error Rate")
+    ax1.set_title("SparkLink SLE - Phase 4 Channel BER")
+    ax1.legend(fontsize=6)
+    ax1.grid(True, which="both", ls="--", alpha=0.5)
+    ax1.set_ylim(bottom=1e-5)
+
+    for (label, res), mk in zip(results, markers):
+        fer_plot = [max(f, 1e-4) for f in res["fer"]]
+        ax2.semilogy(res["snr_db"], fer_plot, mk, label=label, markersize=3)
+    ax2.set_xlabel("Eb/N0 (dB)")
+    ax2.set_ylabel("Frame Error Rate")
+    ax2.set_title("SparkLink SLE - Phase 4 Channel FER")
+    ax2.legend(fontsize=6)
+    ax2.grid(True, which="both", ls="--", alpha=0.5)
+    ax2.set_ylim(bottom=1e-4)
+
+    fig.tight_layout()
+    fig.savefig("ber_phase4.png", dpi=150)
+    print(f"\nBER/FER curves saved to ber_phase4.png")
+
+
 if __name__ == "__main__":
     import sys
     if len(sys.argv) > 1 and sys.argv[1] == "phase2":
         run_phase2_simulation()
     elif len(sys.argv) > 1 and sys.argv[1] == "phase3":
         run_phase3_simulation()
+    elif len(sys.argv) > 1 and sys.argv[1] == "phase4":
+        run_phase4_simulation()
     else:
         run_phase1_simulation()
