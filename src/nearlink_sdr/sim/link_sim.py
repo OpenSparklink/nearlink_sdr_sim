@@ -873,6 +873,166 @@ def run_phase5_simulation():
     print("\nBER/FER curves saved to ber_phase5.png")
 
 
+# ── Phase 6: 全链路 Pipeline 仿真 ──
+
+
+def sim_pipeline_link(
+    frame_type: int = 2,
+    mcs_index: int = 7,
+    n_data_bytes: int = 10,
+    snr_range_db: np.ndarray | None = None,
+    n_frames: int = 20,
+    sps: int = 4,
+    seed: int = 42,
+) -> dict:
+    """使用 tx_chain / rx_chain 的全链路端到端仿真。
+
+    Args:
+        frame_type: 帧类型 (1-4)
+        mcs_index: MCS 索引
+        n_data_bytes: 数据长度 (字节)
+        snr_range_db: Eb/N0 扫描范围 (dB)
+        n_frames: 每个 SNR 点的仿真帧数
+        sps: 每符号采样数
+        seed: 随机种子
+
+    Returns:
+        {"snr_db": [...], "ber": [...], "fer": [...]}
+    """
+    from nearlink_sdr.phy.rx_pipeline import rx_chain
+    from nearlink_sdr.phy.tx_pipeline import TxConfig, tx_chain
+
+    if snr_range_db is None:
+        snr_range_db = np.arange(0, 16, 2)
+
+    rng = np.random.default_rng(seed)
+
+    # 根据帧类型确定配置
+    if frame_type == 1:
+        ctrl_bits_len = 20
+        crc_len = 24
+        head_crc_len = 12
+        pilot_interval = 0
+    elif frame_type == 2:
+        ctrl_bits_len = 28
+        crc_len = 24
+        head_crc_len = 12
+        pilot_interval = 8
+    else:  # FT3/FT4
+        ctrl_bits_len = 27
+        crc_len = 24
+        head_crc_len = 24
+        pilot_interval = 4
+
+    cfg = TxConfig(
+        frame_type=frame_type,
+        mcs_index=mcs_index,
+        pid=0x123456 if frame_type <= 2 else 0,  # FT3/4 用 m_seq_index
+        whitening_seed=0x52,
+        crc_seed=0x555555,
+        crc_len=crc_len,
+        ctrl_bits_len=ctrl_bits_len,
+        pilot_interval=pilot_interval,
+        sps=sps,
+    )
+
+    n_data_bits = n_data_bytes * 8
+    ber_list, fer_list = [], []
+
+    for snr in snr_range_db:
+        total_errors, total_bits, frame_errors = 0, 0, 0
+        ch = ChannelModel(snr_db=float(snr))
+
+        for _ in range(n_frames):
+            # 生成随机控制信息和数据
+            head_bits = rng.integers(0, 2, ctrl_bits_len + head_crc_len, dtype=np.int8)
+            data_bits = rng.integers(0, 2, n_data_bits, dtype=int)
+
+            # TX
+            iq = tx_chain(head_bits, data_bits, cfg)
+
+            # AWGN 信道
+            rx_iq = ch.apply_awgn(iq)
+
+            # RX
+            result = rx_chain(rx_iq, cfg, n_data_bytes)
+
+            # 统计
+            errors = int(np.sum(result.data_bits[:n_data_bits] != data_bits))
+            total_errors += errors
+            total_bits += n_data_bits
+            if not result.crc_ok:
+                frame_errors += 1
+
+        ber = total_errors / total_bits if total_bits > 0 else 0.0
+        fer = frame_errors / n_frames
+        ber_list.append(ber)
+        fer_list.append(fer)
+
+    return {"snr_db": snr_range_db.tolist(), "ber": ber_list, "fer": fer_list}
+
+
+def run_phase6_simulation():
+    """Phase 6: 全链路 Pipeline BER/FER 仿真 — 不同 MCS + 帧类型。"""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    snr_range = np.arange(0, 16, 1)
+
+    print("=== Phase 6 Full Pipeline Link Simulation ===")
+    print()
+
+    configs = [
+        {"frame_type": 2, "mcs_index": 5, "label": "FT2 MCS5 QPSK R=5/8"},
+        {"frame_type": 2, "mcs_index": 7, "label": "FT2 MCS7 QPSK R=7/8"},
+        {"frame_type": 2, "mcs_index": 8, "label": "FT2 MCS8 QPSK R=1/1"},
+        {"frame_type": 4, "mcs_index": 0, "label": "FT4 MCS0 BPSK R=1/4"},
+        {"frame_type": 1, "mcs_index": 8, "label": "FT1 GFSK uncoded"},
+    ]
+
+    results = []
+    for i, cfg in enumerate(configs):
+        print(f"[{i+1}/{len(configs)}] {cfg['label']}...")
+        res = sim_pipeline_link(
+            frame_type=cfg["frame_type"],
+            mcs_index=cfg["mcs_index"],
+            n_data_bytes=10,
+            snr_range_db=snr_range,
+            n_frames=50,
+        )
+        results.append((cfg["label"], res))
+        for s, b, f in zip(res["snr_db"][::4], res["ber"][::4], res["fer"][::4], strict=False):
+            print(f"  Eb/N0={s:5.1f} dB  BER={b:.5f}  FER={f:.3f}")
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
+    markers = ["o-", "s-", "^-", "d-", "x-"]
+
+    for (label, res), mk in zip(results, markers, strict=False):
+        ber_plot = [max(b, 1e-6) for b in res["ber"]]
+        ax1.semilogy(res["snr_db"], ber_plot, mk, label=label, markersize=4)
+    ax1.set_xlabel("Eb/N0 (dB)")
+    ax1.set_ylabel("Bit Error Rate")
+    ax1.set_title("SparkLink SLE - Phase 6 Pipeline BER")
+    ax1.legend(fontsize=7)
+    ax1.grid(True, which="both", ls="--", alpha=0.5)
+    ax1.set_ylim(bottom=1e-5)
+
+    for (label, res), mk in zip(results, markers, strict=False):
+        fer_plot = [max(f, 1e-4) for f in res["fer"]]
+        ax2.semilogy(res["snr_db"], fer_plot, mk, label=label, markersize=4)
+    ax2.set_xlabel("Eb/N0 (dB)")
+    ax2.set_ylabel("Frame Error Rate")
+    ax2.set_title("SparkLink SLE - Phase 6 Pipeline FER")
+    ax2.legend(fontsize=7)
+    ax2.grid(True, which="both", ls="--", alpha=0.5)
+    ax2.set_ylim(bottom=1e-4)
+
+    fig.tight_layout()
+    fig.savefig("ber_phase6.png", dpi=150)
+    print("\nBER/FER curves saved to ber_phase6.png")
+
+
 if __name__ == "__main__":
     import sys
     if len(sys.argv) > 1 and sys.argv[1] == "phase2":
@@ -883,5 +1043,7 @@ if __name__ == "__main__":
         run_phase4_simulation()
     elif len(sys.argv) > 1 and sys.argv[1] == "phase5":
         run_phase5_simulation()
+    elif len(sys.argv) > 1 and sys.argv[1] == "phase6":
+        run_phase6_simulation()
     else:
         run_phase1_simulation()
