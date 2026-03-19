@@ -142,10 +142,6 @@ def run_phase1_simulation():
     print(f"\nBER curve saved to ber_phase1.png")
 
 
-if __name__ == "__main__":
-    run_phase1_simulation()
-
-
 # ── Phase 2: Polar编码链路仿真 ──
 
 
@@ -294,9 +290,213 @@ def run_phase2_simulation():
     print(f"\nBER/FER curves saved to ber_phase2.png")
 
 
+# ── Phase 3: 帧级端到端仿真 ──
+
+
+def sim_frame_link(
+    frame_type: int = 2,
+    num_data_bits: int = 200,
+    rate_str: str = "1/2",
+    code_length: int = 256,
+    pilot_interval: int = 4,
+    snr_range_db: np.ndarray | None = None,
+    seed: int = 42,
+) -> dict:
+    """完整帧级仿真: 帧组装 → Polar编码 → PSK调制(含导频) → AWGN → 解调 → 解码 → BER。
+
+    Args:
+        frame_type: 2, 3, or 4.
+        num_data_bits: 数据负载比特数.
+        rate_str: Polar码率.
+        code_length: Polar码长.
+        pilot_interval: 导频插入间隔 (0, 4, 8, 16).
+        snr_range_db: SNR扫描范围.
+        seed: 随机种子.
+
+    Returns:
+        {"snr_db": [...], "ber": [...], "fer": [...]}
+    """
+    from nearlink_sdr.phy.frame import (
+        FrameConfig, assemble_frame_bits, frame_to_symbols,
+    )
+    from nearlink_sdr.phy.pilot import remove_pilots
+
+    if snr_range_db is None:
+        snr_range_db = np.arange(-2, 10, 1)
+
+    K = get_info_bit_count(rate_str, code_length)
+    enc = PolarEncoder(code_length, K)
+    dec = PolarDecoder(code_length, K)
+
+    rng = np.random.default_rng(seed)
+
+    # 每帧的数据比特分成码块
+    n_blocks = max(1, num_data_bits // K)
+
+    mod_type = {2: "QPSK", 3: "QPSK", 4: "BPSK"}[frame_type]
+    config = FrameConfig(
+        frame_type=frame_type,
+        pilot_interval=pilot_interval,
+        mod_type=mod_type,
+    )
+
+    ber_list = []
+    fer_list = []
+
+    for snr in snr_range_db:
+        total_bit_errors = 0
+        total_bits = 0
+        frame_errors = 0
+
+        for _ in range(n_blocks):
+            info = rng.integers(0, 2, size=K, dtype=np.int8)
+
+            # Polar编码
+            coded = enc.encode(info)
+
+            # 调制 + 帧组装
+            ctrl_bits = np.zeros(64 if frame_type == 2 else 256, dtype=np.int8)
+            fields = assemble_frame_bits(ctrl_bits, coded, config)
+            tx_symbols = frame_to_symbols(fields, config)
+
+            # AWGN信道
+            snr_linear = 10.0 ** (float(snr) / 10.0)
+            R_val = K / code_length
+            noise_var = 1.0 / (2.0 * R_val * snr_linear) if snr_linear > 0 else 1e10
+            noise = rng.normal(0, np.sqrt(noise_var), size=len(tx_symbols)) + \
+                    1j * rng.normal(0, np.sqrt(noise_var), size=len(tx_symbols))
+            rx_symbols = tx_symbols + noise
+
+            # 提取数据段(从末尾反推)
+            data_syms_count = code_length // (2 if mod_type == "QPSK" else 1)
+            if pilot_interval > 0:
+                n_data_pilots = data_syms_count // pilot_interval
+                if data_syms_count % pilot_interval == 0 and n_data_pilots > 0:
+                    n_data_pilots -= 1  # 末尾导频省略
+                data_section_len = data_syms_count + n_data_pilots
+            else:
+                data_section_len = data_syms_count
+            data_start = len(tx_symbols) - data_section_len
+
+            # 提取数据符号并去除导频
+            data_rx = rx_symbols[data_start:]
+            if pilot_interval > 0:
+                data_syms = remove_pilots(data_rx, pilot_interval)
+            else:
+                data_syms = data_rx
+
+            # 解调为LLR (BPSK/QPSK)
+            if mod_type == "BPSK":
+                # 取虚部 (bit 0→90°→imag=1, bit 1→-90°→imag=-1)
+                llr = np.zeros(min(code_length, len(data_syms)))
+                for i in range(len(llr)):
+                    sym = data_syms[i]
+                    if i % 2 == 1:
+                        sym *= np.exp(1j * np.pi / 2)
+                    llr[i] = np.imag(sym) * 2.0 / noise_var
+            else:
+                # QPSK: 2 bits per symbol
+                llr = np.zeros(min(code_length, len(data_syms) * 2))
+                for i in range(min(len(data_syms), code_length // 2)):
+                    sym = data_syms[i]
+                    if i % 2 == 1:
+                        sym *= np.exp(1j * np.deg2rad(45.0))
+                    # I/Q to LLR: b0→imag, b1→real
+                    llr[2*i] = np.imag(sym) * 2.0 / noise_var
+                    llr[2*i+1] = np.real(sym) * 2.0 / noise_var
+
+            # 补齐到码长
+            if len(llr) < code_length:
+                llr = np.concatenate([llr, np.zeros(code_length - len(llr))])
+            llr = llr[:code_length]
+
+            # SC解码
+            decoded = dec.decode(llr)
+
+            bit_errors = int(np.sum(decoded != info))
+            total_bit_errors += bit_errors
+            total_bits += K
+            if bit_errors > 0:
+                frame_errors += 1
+
+        ber = total_bit_errors / total_bits if total_bits > 0 else 0.0
+        fer = frame_errors / n_blocks
+        ber_list.append(ber)
+        fer_list.append(fer)
+
+    return {
+        "snr_db": snr_range_db.tolist(),
+        "ber": ber_list,
+        "fer": fer_list,
+    }
+
+
+def run_phase3_simulation():
+    """Phase 3 帧级仿真: 不同帧类型、导频配置的 BER/FER。"""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    snr_range = np.arange(-2, 8, 0.5)
+
+    print("=== Phase 3 Frame-Level Simulation ===")
+    print()
+
+    configs = [
+        {"frame_type": 2, "pilot_interval": 0, "label": "Type2 QPSK no-pilot"},
+        {"frame_type": 2, "pilot_interval": 4, "label": "Type2 QPSK pilot=4"},
+        {"frame_type": 3, "pilot_interval": 4, "label": "Type3 QPSK pilot=4"},
+        {"frame_type": 4, "pilot_interval": 4, "label": "Type4 BPSK pilot=4"},
+    ]
+
+    results = []
+    for i, cfg in enumerate(configs):
+        print(f"[{i+1}/{len(configs)}] {cfg['label']}...")
+        res = sim_frame_link(
+            frame_type=cfg["frame_type"],
+            num_data_bits=3000,
+            rate_str="1/2",
+            code_length=256,
+            pilot_interval=cfg["pilot_interval"],
+            snr_range_db=snr_range,
+        )
+        results.append((cfg["label"], res))
+        for s, b, f in zip(res["snr_db"][::4], res["ber"][::4], res["fer"][::4]):
+            print(f"  Eb/N0={s:5.1f} dB  BER={b:.5f}  FER={f:.3f}")
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
+    markers = ["o-", "s-", "^-", "d-"]
+
+    for (label, res), mk in zip(results, markers):
+        ber_plot = [max(b, 1e-6) for b in res["ber"]]
+        ax1.semilogy(res["snr_db"], ber_plot, mk, label=label, markersize=3)
+    ax1.set_xlabel("Eb/N0 (dB)")
+    ax1.set_ylabel("Bit Error Rate")
+    ax1.set_title("SparkLink SLE - Phase 3 Frame-Level BER")
+    ax1.legend(fontsize=7)
+    ax1.grid(True, which="both", ls="--", alpha=0.5)
+    ax1.set_ylim(bottom=1e-5)
+
+    for (label, res), mk in zip(results, markers):
+        fer_plot = [max(f, 1e-4) for f in res["fer"]]
+        ax2.semilogy(res["snr_db"], fer_plot, mk, label=label, markersize=3)
+    ax2.set_xlabel("Eb/N0 (dB)")
+    ax2.set_ylabel("Frame Error Rate")
+    ax2.set_title("SparkLink SLE - Phase 3 Frame-Level FER")
+    ax2.legend(fontsize=7)
+    ax2.grid(True, which="both", ls="--", alpha=0.5)
+    ax2.set_ylim(bottom=1e-4)
+
+    fig.tight_layout()
+    fig.savefig("ber_phase3.png", dpi=150)
+    print(f"\nBER/FER curves saved to ber_phase3.png")
+
+
 if __name__ == "__main__":
     import sys
     if len(sys.argv) > 1 and sys.argv[1] == "phase2":
         run_phase2_simulation()
+    elif len(sys.argv) > 1 and sys.argv[1] == "phase3":
+        run_phase3_simulation()
     else:
         run_phase1_simulation()
