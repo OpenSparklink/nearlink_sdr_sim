@@ -21,7 +21,7 @@
 src/nearlink_sdr/
 ├── common/       # 通用编码模块 (CRC, BCH, Polar, m序列, 码块分割)
 ├── phy/          # 物理层模块 (调制解调, 帧结构, 导频, 同步序列, 跳频, USRP接口)
-├── mac/          # MAC 层 (待实现)
+├── mac/          # MAC 层 (功率控制信令, 帧结构, 信令注册)
 └── sim/          # 链路仿真
 tests/            # 测试文件, 与 src 模块一一对应
 ```
@@ -72,8 +72,17 @@ tests/            # 测试文件, 与 src 模块一一对应
 | 8.3.5 | PRBS11/PRBS17 伪随机序列 | 完成 | `common/prbs.py` |
 | 14 | 测试向量 TV101-TV104 (帧类型1) | 完成 | `tests/test_prbs.py` |
 | 14 | 测试向量 TV201/TV209 (帧类型2) | 完成 | `tests/test_prbs.py` |
-| 6.8 | 功率控制 | 待实现 | - |
-| 9 | MAC 层协议栈 | 待实现 | - |
+| 14 | 测试向量 TV202 (帧类型2 多码块) | 完成 | `tests/test_prbs.py` |
+| 14 | 测试向量 TV206 (帧类型2 大载荷) | 完成 | `tests/test_prbs.py` |
+| 14 | SyncWord2 验证 (5组PID) | 完成 | `tests/test_prbs.py` |
+| 7.2.13 | 功率控制流程 | 完成 | `mac/power_control.py` |
+| 7.3.2.27 | PowerControlRequest 信令 | 完成 | `mac/power_control.py` |
+| 7.3.2.28 | PowerControlResponse 信令 | 完成 | `mac/power_control.py` |
+| 7.3.2.29 | PowerChangeIndication 信令 | 完成 | `mac/power_control.py` |
+| 7.3.2 | 控制面帧结构 | 完成 | `mac/frame.py` |
+| 7.3.3 | 数据面帧结构 | 完成 | `mac/frame.py` |
+| 7.3.4 | 复用帧 | 完成 | `mac/frame.py` |
+| 7.3 | 信令注册与编解码 | 完成 | `mac/signaling.py` |
 
 ## 硬件约束 (USRP E310)
 
