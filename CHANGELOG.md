@@ -7,6 +7,15 @@
 
 ## [Unreleased]
 
+## [0.17.0] - 2026-03-20
+
+### Added
+
+- `docs/explanation/principles.md`: 物理层原理讲解, 含 Polar 编码/SC 解码、PSK/GFSK 调制、信道模型、均衡器、CRC、码块分割、加扰等数学推导
+- `docs/conf.py`: LaTeX/PDF 输出配置, 使用 XeLaTeX + HarmonyOS Sans SC 字体
+- `docs/how-to/build-docs.md`: PDF 构建说明
+- MyST 数学公式扩展 (dollarmath, amsmath)
+
 ## [0.16.0] - 2026-03-20
 
 ### Added
