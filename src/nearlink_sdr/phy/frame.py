@@ -303,6 +303,18 @@ def _modulate_bits(bits: np.ndarray, mod_type: str) -> np.ndarray:
         return symbols
     elif mod_type == "GFSK":
         return bits.astype(np.int8)
+    elif mod_type == "8PSK":
+        # 3 bits per symbol
+        from nearlink_sdr.phy.psk import _8PSK_MAP, _8PSK_ROTATION
+
+        n_sym = len(bits) // 3
+        symbols = np.zeros(n_sym, dtype=complex)
+        for i in range(n_sym):
+            idx = (int(bits[3 * i]) << 2) | (int(bits[3 * i + 1]) << 1) | int(bits[3 * i + 2])
+            symbols[i] = _8PSK_MAP[idx]
+            if i % 2 == 1:
+                symbols[i] *= _8PSK_ROTATION
+        return symbols
     else:
         raise ValueError(f"Unsupported mod_type: {mod_type}")
 

@@ -40,8 +40,10 @@ tests/            # 测试文件, 与 src 模块一一对应
 - 运行方式: `uv run pytest tests/ -v --tb=short`
 
 ### 提交规范
-- 每个阶段完成后提交, commit message 格式: `Phase N: 简要描述`
+- 每个阶段完成后提交, commit message 格式使用 Angular Commit Convention
 - 提交前必须通过 lint 检查和全量测试
+- 提交修改前更新changelog.md
+- 添加新功能或修改要更新文档,文档依据 [diataxis](https://diataxis.fr/) 标准
 
 ### 分阶段开发
 - 每个阶段完成后闭环验证: 编码 -> 测试 -> lint -> 提交
@@ -83,6 +85,7 @@ tests/            # 测试文件, 与 src 模块一一对应
 | 7.3.3 | 数据面帧结构 | 完成 | `mac/frame.py` |
 | 7.3.4 | 复用帧 | 完成 | `mac/frame.py` |
 | 7.3 | 信令注册与编解码 | 完成 | `mac/signaling.py` |
+| 6.10 | TX 发射流水线 | 完成 | `phy/tx_pipeline.py` |
 
 ## 硬件约束 (USRP E310)
 
