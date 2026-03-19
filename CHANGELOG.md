@@ -2,6 +2,21 @@
 
 本项目遵循 TXS-10002-2025 SparkLink SLE 标准, 分阶段构建链路级仿真与硬件对接系统。
 
+## Phase 7 — 标准合规补全: 加扰/MCS/控制信息
+
+- 新增 `common/scrambler.py`: 7bit LFSR 信道比特加扰 (标准 6.10.4)
+  - 多项式 x^7 + x^4 + 1, 周期 127
+  - 广播种子 / 数据链路种子生成
+- 新增 `common/mcs.py`: MCS 表与速率匹配 (标准 6.10.5 / 6.10.6)
+  - 13 级 MCS (MCS0-MCS12), BPSK / QPSK / 8PSK
+  - 速率匹配表 1 (6 种码率) / 表 2 (3 种码率)
+  - `RateConfig` 工厂方法自动推导 Kcb / Ncb
+- 新增 `phy/control_info.py`: 物理层控制信息 A/B 组 (标准 6.4)
+  - A1-A7: 帧类型 1/2, CRC12, 支持 LQI 可选
+  - B1-B5: 帧类型 3/4, CRC24B + LLID 异或
+  - 比特级打包 / 解包 / CRC 校验
+- 新增 109 个测试 (22 + 43 + 44), 全量 518 测试通过
+
 ## Phase 6 — USRP E310 硬件接口层 (153eed4)
 
 - 新增 `phy/usrp.py`: USRP E310 硬件接口封装

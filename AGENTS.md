@@ -61,7 +61,10 @@ tests/            # 测试文件, 与 src 模块一一对应
 | 6.10.1 | Polar 编解码 | 完成 | `common/polar.py` |
 | 6.10.2 | 码块分割 | 完成 | `common/code_block_seg.py` |
 | 6.10.3 | 跳频序列 | 完成 | `phy/freq_hopping.py` |
-| 6.10.4 | 信道比特加扰 | 待实现 | - |
+| 6.4 | 物理层控制信息 A/B 组 | 完成 | `phy/control_info.py` |
+| 6.10.4 | 信道比特加扰 | 完成 | `common/scrambler.py` |
+| 6.10.5 | MCS 表 | 完成 | `common/mcs.py` |
+| 6.10.6 | 速率匹配表 | 完成 | `common/mcs.py` |
 | 6.11 | BCH 编码 | 完成 | `common/bch.py` |
 | 8.1.2 | 射频信道与频率表 | 完成 | `phy/freq_hopping.py` |
 | - | 信道模型与均衡器 | 完成 | `phy/channel.py`, `phy/equalizer.py` |
