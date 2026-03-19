@@ -139,13 +139,8 @@ def segment_without_crc(
             seg_bits = bits[pos : pos + K_64]
             pos += K_64
         else:
-            # Last N_64 block takes remaining bits, may need zero padding
+            # Last N_64 block takes remaining bits (may be < K_64)
             seg_bits = bits[pos:]
-            if len(seg_bits) < K_64:
-                seg_bits = np.concatenate([
-                    np.zeros(K_64 - len(seg_bits), dtype=np.int8),
-                    seg_bits,
-                ])
             pos = len(bits)
         segments.append((64, seg_bits))
 
