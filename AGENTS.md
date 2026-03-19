@@ -58,7 +58,7 @@ tests/            # 测试文件, 与 src 模块一一对应
 | 6.5/6.6 | 同步信号 | 完成 | `phy/sync_sequence.py` |
 | 6.7 | 导频 | 完成 | `phy/pilot.py` |
 | 6.9 | CRC | 完成 | `common/crc.py` |
-| 6.10.1 | Polar 编解码 | 完成 | `common/polar.py` |
+| 6.10.1 | Polar 编解码 | 修复 | `common/polar.py` (信息位按索引升序) |
 | 6.10.2 | 码块分割 | 完成 | `common/code_block_seg.py` |
 | 6.10.3 | 跳频序列 | 完成 | `phy/freq_hopping.py` |
 | 6.4 | 物理层控制信息 A/B 组 | 完成 | `phy/control_info.py` |
@@ -70,9 +70,10 @@ tests/            # 测试文件, 与 src 模块一一对应
 | - | 信道模型与均衡器 | 完成 | `phy/channel.py`, `phy/equalizer.py` |
 | - | USRP E310 硬件接口 | 完成 | `phy/usrp.py` |
 | 8.3.5 | PRBS11/PRBS17 伪随机序列 | 完成 | `common/prbs.py` |
-| 14 | 测试向量验证 (TV101-TV104) | 完成 | `tests/test_prbs.py` |
-| - | 功率控制 | 待实现 | - |
-| - | MAC 层协议栈 | 待实现 | - |
+| 14 | 测试向量 TV101-TV104 (帧类型1) | 完成 | `tests/test_prbs.py` |
+| 14 | 测试向量 TV201/TV209 (帧类型2) | 完成 | `tests/test_prbs.py` |
+| 6.8 | 功率控制 | 待实现 | - |
+| 9 | MAC 层协议栈 | 待实现 | - |
 
 ## 硬件约束 (USRP E310)
 
