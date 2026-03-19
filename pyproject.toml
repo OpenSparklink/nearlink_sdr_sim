@@ -1,0 +1,24 @@
+[project]
+name = "nearlink-sdr"
+version = "0.1.0"
+description = "SparkLink SLE PHY/MAC link-level simulation conforming to TXS-10002-2025"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "matplotlib>=3.10.8",
+    "numpy>=2.4.3",
+    "pytest>=9.0.2",
+    "pytest-cov>=7.0.0",
+    "scipy>=1.17.1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/nearlink_sdr"]
