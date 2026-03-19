@@ -14,7 +14,7 @@ from nearlink_sdr.phy.rx_pipeline import (
     rx_chain,
 )
 from nearlink_sdr.phy.tx_pipeline import TxConfig, encode_head, encode_payload, tx_chain
-from tests.tv_frame2_data import TV201, TV203, TV207, TV213
+from tests.tv_frame2_data import TV201, TV202, TV203, TV205, TV206, TV207, TV209, TV213
 
 
 def _hex_to_bits_lsb(hex_val: int, nbits: int) -> list[int]:
@@ -160,6 +160,114 @@ class TestDecodePayloadTV213:
         assert list(decoded) == list(head_bits)
 
 
+class TestDecodePayloadTV202:
+    """TV202: MCS7 rate 7/8, 多码块。"""
+
+    CFG = TxConfig(
+        frame_type=2, mcs_index=7,
+        pid=TV202["group"]["pid"],
+        whitening_seed=TV202["wt_seed"],
+        crc_seed=TV202["crc_seed"],
+        crc_len=24,
+        ctrl_bits_len=TV202["ctrl_bits"],
+    )
+
+    def test_decode_payload_roundtrip(self):
+        data_bits = _make_pyld_bits(202, TV202["ctrl_bits"], TV202["dLen"])
+        scrambled = encode_payload(data_bits, self.CFG)
+        decoded, ok = decode_payload(scrambled, self.CFG, TV202["dLen"] * 8)
+        assert ok
+        assert list(decoded) == list(data_bits)
+
+    def test_decode_head_roundtrip(self):
+        head_bits = _make_head_bits(TV202)
+        scrambled = encode_head(head_bits, self.CFG)
+        decoded, ok = decode_head(scrambled, self.CFG)
+        assert ok
+        assert list(decoded) == list(head_bits)
+
+
+class TestDecodePayloadTV205:
+    """TV205: MCS6 rate 3/4, 小载荷。"""
+
+    CFG = TxConfig(
+        frame_type=2, mcs_index=6,
+        pid=TV205["group"]["pid"],
+        whitening_seed=TV205["wt_seed"],
+        crc_seed=TV205["crc_seed"],
+        crc_len=24,
+        ctrl_bits_len=TV205["ctrl_bits"],
+    )
+
+    def test_decode_payload_roundtrip(self):
+        data_bits = _make_pyld_bits(205, TV205["ctrl_bits"], TV205["dLen"])
+        scrambled = encode_payload(data_bits, self.CFG)
+        decoded, ok = decode_payload(scrambled, self.CFG, TV205["dLen"] * 8)
+        assert ok
+        assert list(decoded) == list(data_bits)
+
+    def test_decode_head_roundtrip(self):
+        head_bits = _make_head_bits(TV205)
+        scrambled = encode_head(head_bits, self.CFG)
+        decoded, ok = decode_head(scrambled, self.CFG)
+        assert ok
+        assert list(decoded) == list(head_bits)
+
+
+class TestDecodePayloadTV206:
+    """TV206: MCS6 rate 3/4, 大载荷。"""
+
+    CFG = TxConfig(
+        frame_type=2, mcs_index=6,
+        pid=TV206["group"]["pid"],
+        whitening_seed=TV206["wt_seed"],
+        crc_seed=TV206["crc_seed"],
+        crc_len=24,
+        ctrl_bits_len=TV206["ctrl_bits"],
+    )
+
+    def test_decode_payload_roundtrip(self):
+        data_bits = _make_pyld_bits(206, TV206["ctrl_bits"], TV206["dLen"])
+        scrambled = encode_payload(data_bits, self.CFG)
+        decoded, ok = decode_payload(scrambled, self.CFG, TV206["dLen"] * 8)
+        assert ok
+        assert list(decoded) == list(data_bits)
+
+    def test_decode_head_roundtrip(self):
+        head_bits = _make_head_bits(TV206)
+        scrambled = encode_head(head_bits, self.CFG)
+        decoded, ok = decode_head(scrambled, self.CFG)
+        assert ok
+        assert list(decoded) == list(head_bits)
+
+
+class TestDecodePayloadTV209:
+    """TV209: MCS11 rate 7/8, 8PSK。"""
+
+    CFG = TxConfig(
+        frame_type=2, mcs_index=11,
+        pid=TV209["group"]["pid"],
+        whitening_seed=TV209["wt_seed"],
+        crc_seed=TV209["crc_seed"],
+        crc_len=24,
+        ctrl_bits_len=TV209["ctrl_bits"],
+    )
+
+    def test_decode_payload_roundtrip(self):
+        data_bits = _make_pyld_bits(209, TV209["ctrl_bits"], TV209["dLen"])
+        scrambled = encode_payload(data_bits, self.CFG)
+        decoded, ok = decode_payload(scrambled, self.CFG, TV209["dLen"] * 8)
+        assert ok
+        assert list(decoded) == list(data_bits)
+
+    def test_decode_head_roundtrip(self):
+        head_bits = _make_head_bits(TV209)
+        scrambled = encode_head(head_bits, self.CFG)
+        decoded, ok = decode_head(scrambled, self.CFG)
+        assert ok
+        assert list(decoded) == list(head_bits)
+
+
 # =========================================================================
 # TX → RX 闭环测试 (无信道噪声)
 # =========================================================================
@@ -196,6 +304,18 @@ class TestTxRxLoopback:
     def test_tv213_loopback(self):
         """TV213 (MCS8 rate 1/1, CRC32) 闭环。"""
         self._run_loopback(TV213, mcs=8, crc_len=32)
+
+    def test_tv202_loopback(self):
+        """TV202 (MCS7 rate 7/8, 多码块) 闭环。"""
+        self._run_loopback(TV202, mcs=7, crc_len=24)
+
+    def test_tv205_loopback(self):
+        """TV205 (MCS6 rate 3/4, 小载荷) 闭环。"""
+        self._run_loopback(TV205, mcs=6, crc_len=24)
+
+    def test_tv209_loopback(self):
+        """TV209 (MCS11 rate 7/8, 8PSK) 闭环。"""
+        self._run_loopback(TV209, mcs=11, crc_len=24)
 
 
 # =========================================================================

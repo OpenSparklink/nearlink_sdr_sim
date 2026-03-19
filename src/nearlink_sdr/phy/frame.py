@@ -307,6 +307,10 @@ def _modulate_bits(bits: np.ndarray, mod_type: str) -> np.ndarray:
         # 3 bits per symbol
         from nearlink_sdr.phy.psk import _8PSK_MAP, _8PSK_ROTATION
 
+        # 补零对齐到 3 的倍数
+        remainder = len(bits) % 3
+        if remainder:
+            bits = np.concatenate([bits, np.zeros(3 - remainder, dtype=bits.dtype)])
         n_sym = len(bits) // 3
         symbols = np.zeros(n_sym, dtype=complex)
         for i in range(n_sym):
@@ -349,6 +353,24 @@ def _demodulate_symbols(symbols: np.ndarray, mod_type: str) -> np.ndarray:
         return bits
     elif mod_type == "GFSK":
         return symbols.astype(np.int8)
+    elif mod_type == "8PSK":
+        from nearlink_sdr.phy.psk import _8PSK_MAP, _8PSK_ROTATION
+
+        bits = np.zeros(len(symbols) * 3, dtype=np.int8)
+        # 构建逆映射: 星座点相位 → 3-bit 索引
+        map_phases = np.array([np.angle(_8PSK_MAP[k]) for k in range(8)])
+        for i in range(len(symbols)):
+            sym = symbols[i]
+            if i % 2 == 1:
+                sym *= np.conj(_8PSK_ROTATION)  # 撤销偶数位旋转
+            phase = np.angle(sym)
+            # 找到最近的星座点
+            diffs = np.abs(np.exp(1j * map_phases) - np.exp(1j * phase))
+            idx = int(np.argmin(diffs))
+            bits[3 * i] = (idx >> 2) & 1
+            bits[3 * i + 1] = (idx >> 1) & 1
+            bits[3 * i + 2] = idx & 1
+        return bits
     else:
         raise ValueError(f"Unsupported mod_type: {mod_type}")
 
@@ -357,4 +379,6 @@ def _bits_to_symbols_count(n_bits: int, mod_type: str) -> int:
     """Calculate number of symbols for given number of bits."""
     if mod_type == "QPSK":
         return n_bits // 2
+    elif mod_type == "8PSK":
+        return n_bits // 3
     return n_bits

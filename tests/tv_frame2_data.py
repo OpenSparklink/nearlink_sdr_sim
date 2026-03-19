@@ -258,7 +258,7 @@ TV204 = {
     ],
 }
 
-# --- TV205: FT=2, A3, MCS=6, dLen=1 — OCR (not yet PDF verified) ---
+# --- TV205: FT=2, A3, MCS=6, dLen=1 — PDF verified ---
 TV205 = {
     "tv_id": 205,
     "frame_type": 2,
@@ -270,10 +270,17 @@ TV205 = {
     "group": GROUP_A,
     "crc_seed": 0x00123456,
     "wt_seed": 0x63,
-    # dLen=1B → very short payload — OCR, HeadBits/txHead not yet extracted
+    # PDF verified
+    "HeadBits": (0x03769596, 0x00000000),
+    "txHead": (0x03769596, 0x00005990),
+    "txHeadC": (0x820A43B9, 0x4AA448D4),
+    "txHeadW": (0x217BBF82, 0x85CC1D20),
+    "txPyLd_val": 0x1B262C58,  # 32 bits
+    "txPyLdC": (0x57624075, 0x1C290B3E),  # 64 bits
+    "txPyLdW": (0x0A0E59DC, 0xF9BB0F72),  # 64 bits
 }
 
-# --- TV206: FT=2, A3, MCS=6, dLen=177 — OCR (not yet PDF verified) ---
+# --- TV206: FT=2, A3, MCS=6, dLen=177 — PDF verified ---
 TV206 = {
     "tv_id": 206,
     "frame_type": 2,
@@ -285,6 +292,11 @@ TV206 = {
     "group": GROUP_A,
     "crc_seed": 0x00123456,
     "wt_seed": 0x65,  # PDF verified
+    # PDF verified
+    "HeadBits": (0x63B96B96, 0x00000001),
+    "txHead": (0x63B96B96, 0x000063A1),
+    "txHeadC": (0x2C788B0D, 0x64A9001F),
+    "txHeadW": (0x9E380286, 0x53B6C3A3),
     "txPyLd": [  # 1440 bits, 23 lines (last one 16 bits) — OCR
         (0x66DFB42C, 0x2BD0925B),
         (0xDCD5F046, 0x58070361),
@@ -310,11 +322,38 @@ TV206 = {
         (0x02617C91, 0x6C7BB2AF),
         # last line: partial 0000004A (32 bits only) — OCR
     ],
-    "txPyLdC": [  # 1984 bits = 31 lines — OCR, partially readable
+    "txPyLdC": [  # 1984 bits = 31 lines — PDF verified
         (0x001B30AF, 0xC3876D94),
         (0x72C19E48, 0x9654183D),
         (0xCA695F8C, 0xFFDDE743),
-        # remaining lines — OCR, partially readable
+        (0x20F5E307, 0xED5BC9FC),
+        (0x8346B950, 0xBB30DA2D),
+        (0x17B3C1F2, 0x9E69BA31),
+        (0xBEAF4D1D, 0xE39D58F8),
+        (0x8EDF1B10, 0xBD525F31),
+        (0x59946979, 0xF6C5BB2C),
+        (0xF20F779E, 0x05CBA726),
+        (0x26F53E7B, 0xDC194639),
+        (0x1085B50D, 0xB394CE35),
+        (0xDC618654, 0xC8CEF943),
+        (0x6844B801, 0x41EBC608),
+        (0x637B9666, 0x2B60B590),
+        (0x01FE8916, 0x8A725596),
+        (0xBEEE8B62, 0xC7A55DB6),
+        (0x4124AD84, 0x24C1C158),
+        (0x2A9F71E7, 0x550F6D24),
+        (0x6086844B, 0x3F841EBC),
+        (0xFFA96922, 0x44920AF4),
+        (0x8E7579F3, 0x6BEC9655),
+        (0xE09EAA47, 0x647EF6B5),
+        (0xBCCAFE77, 0xFF11B76C),
+        (0x7435BD27, 0x477744F5),
+        (0xDB1DB205, 0x6F72CCFA),
+        (0x5D397557, 0x226EE18D),
+        (0x9698BBF3, 0x70A949B0),
+        (0x715D26D7, 0xA92F98C3),
+        (0x872A64F5, 0xCA671A8B),
+        (0xB4C666EB, 0x4436961B),
     ],
     "txPyLdW": [  # 1984 bits — OCR
         (0xF69E6FE5, 0x1546F708),
@@ -516,11 +555,11 @@ TV209 = {
     "crc_seed": 0x00555555,
     "wt_seed": 0x55,
     # PDF verified (已在 TestTV209 中完成验证)
+    "HeadBits": (0x0010945B, 0x00000000),
+    "txHead": (0x2010945B, 0x0000004E),
     "txPyLd_val": 0xE5FAEA05,  # 32 bits
     "txPyLdC": (0x9DE61094, 0x9D19EF94),  # 64 bits
     "txPyLdW": (0x7E1E6702, 0x4DB206D2),  # 64 bits
-    "txHead_val": 0x2010945B,
-    "txHead_hi": 0x4E,
     "txHeadC": (0x93C6E4E4, 0x5C6F4D2B),  # 64 bits
     "txHeadW": (0x23A043D9, 0x147E7C5E),  # 64 bits
 }
