@@ -239,3 +239,239 @@ class TestTVParameters:
         """加扰种子应在 7 位范围内 (0-127)。"""
         for tv_id, _, _, _, _, _, ws in self.TV_PARAMS:
             assert 0 <= ws <= 127, f"TV{tv_id}: whitening seed {ws} 超限"
+
+
+# =========================================================================
+# PID -> SyncWord 链路验证 (sync_signal_1)
+# =========================================================================
+
+
+class TestSyncWordFromPID:
+    """验证 PID -> BCH(31,26) -> m31 XOR -> SyncWord 链路。
+
+    使用附录 H 中 TV101-TV104 的 PID + SyncWord 数据进行交叉验证。
+    """
+
+    @staticmethod
+    def _hex_to_bits_lsb(hex_val: int, nbits: int) -> list[int]:
+        return [(hex_val >> i) & 1 for i in range(nbits)]
+
+    # (TV_ID, PID_24, SyncWord_32_hex)
+    TV_SYNC_DATA: typing.ClassVar = [
+        (101, 0x873456, 0x27C8F4C6),
+        (102, 0x785643, 0x58357C92),
+        (103, 0x123456, 0x199CF4C6),
+        (104, 0x400001, 0x6CD4259A),
+    ]
+
+    @pytest.mark.parametrize("tv_id,pid,sync_hex", TV_SYNC_DATA)
+    def test_sync_signal_1_matches_tv(self, tv_id, pid, sync_hex):
+        """sync_signal_1(PID) 应产生附录 H 给出的 SyncWord。"""
+        from nearlink_sdr.phy.sync_sequence import sync_signal_1
+
+        sync = sync_signal_1(pid)
+        expected = self._hex_to_bits_lsb(sync_hex, 32)
+        assert list(sync) == expected, f"TV{tv_id}: SyncWord mismatch"
+
+    @pytest.mark.parametrize("tv_id,pid,sync_hex", TV_SYNC_DATA)
+    def test_bchout_xor_pnseq_equals_syncword(self, tv_id, pid, sync_hex):
+        """bchOut XOR pnSeq 应等于 SyncWord 的低 31 位。"""
+        from nearlink_sdr.common.bch import bch_31_26_encode
+        from nearlink_sdr.common.m_sequence import generate_m_sequence
+
+        pid_bits = np.array(self._hex_to_bits_lsb(pid, 24), dtype=int)
+        a_tilde = np.zeros(26, dtype=int)
+        a_tilde[0] = 1
+        a_tilde[2:26] = pid_bits
+        bch_out = bch_31_26_encode(a_tilde)
+
+        m_seq = generate_m_sequence(5, 0b101001, 0b11111, 31)
+        scrambled = bch_out ^ m_seq
+
+        sync = np.zeros(32, dtype=int)
+        sync[:31] = scrambled
+
+        expected = self._hex_to_bits_lsb(sync_hex, 32)
+        assert list(sync) == expected, f"TV{tv_id}: bchOut^pnSeq mismatch"
+
+
+# =========================================================================
+# TV103 端到端验证 (FrameType 1, A1, PID=0x123456)
+# =========================================================================
+
+
+class TestTV103:
+    """验证 TV103 (FrameType 1, A1, GFSK) 部分节点数据。
+
+    参数:
+      TV_ID=103, PID=0x123456, ControlType=A1, ControlLen=20bit
+      DataLen=34Byte=272bit, CRC=24bit, CRCSeed=0x555555
+      WhiteningSeed=0x4E
+    """
+
+    TV_ID = 103
+    WHITENING_SEED = 0x4E
+    DATA_LEN_BYTES = 34
+    CTRL_LEN = 20
+
+    @staticmethod
+    def _hex_to_bits_lsb(hex_val: int, nbits: int) -> list[int]:
+        return [(hex_val >> i) & 1 for i in range(nbits)]
+
+    def test_prbs11_generates_correct_length(self):
+        """PRBS11 种子为 TV_ID=103, 生成 20 + 272 = 292 比特。"""
+        total = self.CTRL_LEN + self.DATA_LEN_BYTES * 8
+        seq = prbs11(total, seed=self.TV_ID)
+        assert len(seq) == total
+
+    def test_txpyldw_full(self):
+        """txPyLdW 全部 296 比特匹配附录 H。
+
+        加扰序列连续作用于整帧: 头部 32 比特 + 载荷 296 比特。
+        载荷加扰从偏移 32 (A1 txHead 长度) 开始。
+        """
+        from nearlink_sdr.common.crc import CRC24A_POLY, crc_attach
+        from nearlink_sdr.common.scrambler import scramble_sequence
+
+        total_bits = self.CTRL_LEN + self.DATA_LEN_BYTES * 8
+        seq = prbs11(total_bits, seed=self.TV_ID)
+        pyld_bits = seq[self.CTRL_LEN:]
+
+        txpyld = crc_attach(
+            np.array(pyld_bits, dtype=int), CRC24A_POLY, 24, seed=0x555555
+        )
+
+        HEAD_A1 = 32
+        sc = scramble_sequence(HEAD_A1 + len(txpyld), self.WHITENING_SEED)
+        txpyldw = txpyld.astype(np.uint8) ^ sc[HEAD_A1 : HEAD_A1 + len(txpyld)]
+
+        assert len(txpyldw) == 296
+
+        # 附录 H TV103 txPyLdW 全部 5 个 64-bit words
+        expected_words = [
+            (0x61F4912E, 0xBD856BB1),
+            (0x330DE301, 0x0DBF9624),
+            (0x62096F60, 0x6749415C),
+            (0x35152A16, 0x5DB914A6),
+            (0x4D7C6722, 0x00000081),
+        ]
+        expected = []
+        for w1, w2 in expected_words:
+            expected.extend(self._hex_to_bits_lsb(w1, 32))
+            expected.extend(self._hex_to_bits_lsb(w2, 32))
+
+        assert list(txpyldw[:296]) == expected[:296]
+
+
+# =========================================================================
+# TV102 端到端验证 (FrameType 1, A3, PID=0x785643)
+# =========================================================================
+
+
+class TestTV102:
+    """验证 TV102 (FrameType 1, A3, GFSK) txPyLdW。
+
+    参数:
+      TV_ID=102, PID=0x785643, ControlType=A3, ControlLen=28bit
+      DataLen=33Byte=264bit, CRC=32bit, CRCSeed=0x12345678
+      WhiteningSeed=0x49
+    """
+
+    TV_ID = 102
+    WHITENING_SEED = 0x49
+    DATA_LEN_BYTES = 33
+    CTRL_LEN = 28
+
+    @staticmethod
+    def _hex_to_bits_lsb(hex_val: int, nbits: int) -> list[int]:
+        return [(hex_val >> i) & 1 for i in range(nbits)]
+
+    def test_txpyldw_full(self):
+        """txPyLdW 全部 296 比特匹配附录 H。"""
+        from nearlink_sdr.common.crc import CRC32_POLY, crc_attach
+        from nearlink_sdr.common.scrambler import scramble_sequence
+
+        total_bits = self.CTRL_LEN + self.DATA_LEN_BYTES * 8
+        seq = prbs11(total_bits, seed=self.TV_ID)
+        pyld_bits = seq[self.CTRL_LEN:]
+
+        txpyld = crc_attach(
+            np.array(pyld_bits, dtype=int), CRC32_POLY, 32, seed=0x12345678
+        )
+
+        HEAD_A3 = 40  # A3 txHead = 28 ctrl + 12 CRC = 40 bits
+        sc = scramble_sequence(HEAD_A3 + len(txpyld), self.WHITENING_SEED)
+        txpyldw = txpyld.astype(np.uint8) ^ sc[HEAD_A3 : HEAD_A3 + len(txpyld)]
+
+        assert len(txpyldw) == 296
+
+        expected_words = [
+            (0x24616E17, 0xE90F015D),
+            (0x57F03768, 0x6104D566),
+            (0x85D9BEAE, 0x5330ADDD),
+            (0xE64773ED, 0x67234E05),
+            (0x6E2B4FDB, 0x000000FB),
+        ]
+        expected = []
+        for w1, w2 in expected_words:
+            expected.extend(self._hex_to_bits_lsb(w1, 32))
+            expected.extend(self._hex_to_bits_lsb(w2, 32))
+
+        assert list(txpyldw[:296]) == expected[:296]
+
+
+# =========================================================================
+# TV104 端到端验证 (FrameType 1, A3, PID=0x400001)
+# =========================================================================
+
+
+class TestTV104:
+    """验证 TV104 (FrameType 1, A3, GFSK) txPyLdW。
+
+    参数:
+      TV_ID=104, PID=0x400001, ControlType=A3, ControlLen=28bit
+      DataLen=35Byte=280bit, CRC=32bit, CRCSeed=0x12345678
+      WhiteningSeed=0x49
+    """
+
+    TV_ID = 104
+    WHITENING_SEED = 0x49
+    DATA_LEN_BYTES = 35
+    CTRL_LEN = 28
+
+    @staticmethod
+    def _hex_to_bits_lsb(hex_val: int, nbits: int) -> list[int]:
+        return [(hex_val >> i) & 1 for i in range(nbits)]
+
+    def test_txpyldw_full(self):
+        """txPyLdW 全部 312 比特匹配附录 H。"""
+        from nearlink_sdr.common.crc import CRC32_POLY, crc_attach
+        from nearlink_sdr.common.scrambler import scramble_sequence
+
+        total_bits = self.CTRL_LEN + self.DATA_LEN_BYTES * 8
+        seq = prbs11(total_bits, seed=self.TV_ID)
+        pyld_bits = seq[self.CTRL_LEN:]
+
+        txpyld = crc_attach(
+            np.array(pyld_bits, dtype=int), CRC32_POLY, 32, seed=0x12345678
+        )
+
+        HEAD_A3 = 40
+        sc = scramble_sequence(HEAD_A3 + len(txpyld), self.WHITENING_SEED)
+        txpyldw = txpyld.astype(np.uint8) ^ sc[HEAD_A3 : HEAD_A3 + len(txpyld)]
+
+        assert len(txpyldw) == 312
+
+        expected_words = [
+            (0xB55BD41D, 0x91DC728A),
+            (0x4FDF2503, 0x9400F7F3),
+            (0xC8D698D9, 0xA435CFC0),
+            (0x629580CA, 0xF19AC5F1),
+            (0xFD6BAC00, 0x00F5524E),
+        ]
+        expected = []
+        for w1, w2 in expected_words:
+            expected.extend(self._hex_to_bits_lsb(w1, 32))
+            expected.extend(self._hex_to_bits_lsb(w2, 32))
+
+        assert list(txpyldw[:312]) == expected[:312]

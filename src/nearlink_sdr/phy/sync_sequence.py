@@ -28,8 +28,8 @@ SYNC2_BROADCAST = np.array([
 ], dtype=int)
 
 # 同步信号1 m序列参数: 5阶LFSR, 初始值全1
-# 反馈多项式 x^5 + x^2 + 1 (与BCH(31,26)生成多项式相同)
-_SYNC1_M_TAPS = 0b100101
+# 反馈多项式 x^5 + x^3 + 1 (M31 index 1, 见标准图5)
+_SYNC1_M_TAPS = 0b101001
 _SYNC1_M_INIT = 0b11111
 
 # 同步信号2 m序列参数: 6阶LFSR, 初始值全1
