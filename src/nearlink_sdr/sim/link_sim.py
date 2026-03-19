@@ -1,4 +1,4 @@
-"""TXS-10002-2025 Phase 1 链路仿真: GFSK/PSK 无编码端到端仿真。"""
+"""TXS-10002-2025 链路仿真: GFSK/PSK 无编码 + Polar编码端到端仿真。"""
 
 import numpy as np
 
@@ -9,6 +9,7 @@ from nearlink_sdr.phy.preamble import generate_preamble
 from nearlink_sdr.phy.sync_sequence import (
     sync_signal_1, sync_signal_2, sync_signal_3, sync_signal_4,
 )
+from nearlink_sdr.common.polar import PolarEncoder, PolarDecoder, get_info_bit_count
 
 
 def _ber(tx: np.ndarray, rx: np.ndarray) -> float:
@@ -143,3 +144,159 @@ def run_phase1_simulation():
 
 if __name__ == "__main__":
     run_phase1_simulation()
+
+
+# ── Phase 2: Polar编码链路仿真 ──
+
+
+def sim_polar_coded_psk_link(
+    num_info_bits: int = 1000,
+    mod_type: str = "BPSK",
+    rate_str: str = "1/2",
+    code_length: int = 256,
+    snr_range_db: np.ndarray | None = None,
+    sps: int = 4,
+    seed: int = 42,
+) -> dict:
+    """Polar编码PSK链路仿真。
+
+    流程: 信息比特 → Polar编码 → BPSK/QPSK调制 → AWGN信道 → 解调(软判决LLR) → SC解码 → BER
+
+    返回:
+        {"snr_db": [...], "ber": [...], "fer": [...]}
+    """
+    if snr_range_db is None:
+        snr_range_db = np.arange(-2, 12, 1)
+
+    K = get_info_bit_count(rate_str, code_length)
+    enc = PolarEncoder(code_length, K)
+    dec = PolarDecoder(code_length, K)
+
+    rng = np.random.default_rng(seed)
+
+    # 将总信息比特分成多个码块
+    n_blocks = max(1, num_info_bits // K)
+
+    ber_list = []
+    fer_list = []
+
+    for snr in snr_range_db:
+        total_bit_errors = 0
+        total_bits = 0
+        frame_errors = 0
+
+        for _ in range(n_blocks):
+            info = rng.integers(0, 2, size=K, dtype=np.int8)
+            coded = enc.encode(info)
+
+            # BPSK映射: 0 → +1, 1 → -1
+            bpsk = 1.0 - 2.0 * coded.astype(np.float64)
+
+            # AWGN信道
+            snr_linear = 10.0 ** (float(snr) / 10.0)
+            # 对于码率R的编码, Eb/N0 = SNR / R
+            R_val = K / code_length
+            noise_var = 1.0 / (2.0 * R_val * snr_linear) if snr_linear > 0 else 1e10
+            noise = rng.normal(0, np.sqrt(noise_var), size=code_length)
+            received = bpsk + noise
+
+            # LLR计算: LLR = 2*y/sigma^2
+            llr = 2.0 * received / noise_var
+
+            # SC解码
+            decoded = dec.decode(llr)
+
+            # 统计
+            bit_errors = int(np.sum(decoded != info))
+            total_bit_errors += bit_errors
+            total_bits += K
+            if bit_errors > 0:
+                frame_errors += 1
+
+        ber = total_bit_errors / total_bits if total_bits > 0 else 0.0
+        fer = frame_errors / n_blocks
+        ber_list.append(ber)
+        fer_list.append(fer)
+
+    return {
+        "snr_db": snr_range_db.tolist(),
+        "ber": ber_list,
+        "fer": fer_list,
+        "code_params": f"N={code_length}, K={K}, R={rate_str}",
+    }
+
+
+def run_phase2_simulation():
+    """Phase 2 综合仿真: Polar编码 BPSK/QPSK BER/FER 曲线。"""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    snr_range = np.arange(-2, 10, 0.5)
+
+    print("=== Phase 2 Polar Coded Link Simulation ===")
+    print()
+
+    configs = [
+        {"rate_str": "1/2", "code_length": 256, "mod_type": "BPSK", "label": "Polar(256,112) R=1/2 BPSK"},
+        {"rate_str": "1/2", "code_length": 512, "mod_type": "BPSK", "label": "Polar(512,224) R=1/2 BPSK"},
+        {"rate_str": "3/4", "code_length": 256, "mod_type": "BPSK", "label": "Polar(256,176) R=3/4 BPSK"},
+        {"rate_str": "1/4", "code_length": 256, "mod_type": "BPSK", "label": "Polar(256,48) R=1/4 BPSK"},
+    ]
+
+    results = []
+    for i, cfg in enumerate(configs):
+        print(f"[{i+1}/{len(configs)}] {cfg['label']}...")
+        res = sim_polar_coded_psk_link(
+            num_info_bits=5000,
+            snr_range_db=snr_range,
+            **{k: v for k, v in cfg.items() if k != "label"},
+        )
+        results.append((cfg["label"], res))
+        # 打印部分结果
+        for s, b, f in zip(res["snr_db"][::4], res["ber"][::4], res["fer"][::4]):
+            print(f"  Eb/N0={s:5.1f} dB  BER={b:.5f}  FER={f:.3f}")
+
+    # 也运行无编码 BPSK 作为对比
+    print(f"[{len(configs)+1}/{len(configs)+1}] Uncoded BPSK (reference)...")
+    uncoded = sim_psk_link(num_data_bits=5000, mod_type="BPSK",
+                           frame_type=3, snr_range_db=snr_range)
+
+    # BER 曲线
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
+
+    markers = ["o-", "s-", "^-", "d-"]
+    for (label, res), mk in zip(results, markers):
+        ber_plot = [max(b, 1e-6) for b in res["ber"]]
+        ax1.semilogy(res["snr_db"], ber_plot, mk, label=label, markersize=3)
+
+    uncoded_ber = [max(b, 1e-6) for b in uncoded["ber"]]
+    ax1.semilogy(uncoded["snr_db"], uncoded_ber, "x--", label="Uncoded BPSK", markersize=3)
+    ax1.set_xlabel("Eb/N0 (dB)")
+    ax1.set_ylabel("Bit Error Rate")
+    ax1.set_title("SparkLink SLE PHY - Phase 2 BER")
+    ax1.legend(fontsize=7)
+    ax1.grid(True, which="both", ls="--", alpha=0.5)
+    ax1.set_ylim(bottom=1e-5)
+
+    for (label, res), mk in zip(results, markers):
+        fer_plot = [max(f, 1e-4) for f in res["fer"]]
+        ax2.semilogy(res["snr_db"], fer_plot, mk, label=label, markersize=3)
+    ax2.set_xlabel("Eb/N0 (dB)")
+    ax2.set_ylabel("Frame Error Rate")
+    ax2.set_title("SparkLink SLE PHY - Phase 2 FER")
+    ax2.legend(fontsize=7)
+    ax2.grid(True, which="both", ls="--", alpha=0.5)
+    ax2.set_ylim(bottom=1e-4)
+
+    fig.tight_layout()
+    fig.savefig("ber_phase2.png", dpi=150)
+    print(f"\nBER/FER curves saved to ber_phase2.png")
+
+
+if __name__ == "__main__":
+    import sys
+    if len(sys.argv) > 1 and sys.argv[1] == "phase2":
+        run_phase2_simulation()
+    else:
+        run_phase1_simulation()
