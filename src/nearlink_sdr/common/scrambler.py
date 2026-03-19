@@ -1,6 +1,6 @@
 """信道比特加扰 -- TXS-10002-2025 标准 6.10.4
 
-使用 7bit LFSR, 生成多项式 x^7 + x^4 + 1。
+使用 7bit 左移 Galois LFSR, 生成多项式 x^7 + x^4 + 1。
 对编码后的比特序列进行异或加扰, 用于数据白化。
 """
 
@@ -9,18 +9,20 @@ from __future__ import annotations
 import numpy as np
 from numpy.typing import NDArray
 
+# Galois LFSR 反馈掩码: x^4 + x^0 → 位 4 和位 0
+_GALOIS_MASK = 0x11
+
 
 def _lfsr_step(state: int) -> tuple[int, int]:
-    """LFSR 单步: 输出 1bit, 返回 (output_bit, new_state)。
+    """Galois LFSR 单步: 输出 1bit, 返回 (output_bit, new_state)。
 
-    多项式 x^7 + x^4 + 1, 寄存器位编号 0..6。
-    输出位: 寄存器 0 (LSB)。
-    反馈: 寄存器 0 XOR 寄存器 4, 写入寄存器 6。
+    左移 Galois LFSR, 多项式 x^7 + x^4 + 1。
+    输出位: 寄存器 6 (MSB)。
+    反馈: 输出位异或到寄存器位 0 和位 4。
     """
-    output = state & 1
-    feedback = ((state >> 0) ^ (state >> 4)) & 1
-    new_state = (state >> 1) | (feedback << 6)
-    return output, new_state
+    output = (state >> 6) & 1
+    state = ((state << 1) & 0x7F) ^ (output * _GALOIS_MASK)
+    return output, state
 
 
 def scramble_sequence(length: int, seed: int) -> NDArray[np.uint8]:

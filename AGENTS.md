@@ -69,6 +69,8 @@ tests/            # 测试文件, 与 src 模块一一对应
 | 8.1.2 | 射频信道与频率表 | 完成 | `phy/freq_hopping.py` |
 | - | 信道模型与均衡器 | 完成 | `phy/channel.py`, `phy/equalizer.py` |
 | - | USRP E310 硬件接口 | 完成 | `phy/usrp.py` |
+| 8.3.5 | PRBS11/PRBS17 伪随机序列 | 完成 | `common/prbs.py` |
+| 14 | 测试向量验证 (TV101) | 完成 | `tests/test_prbs.py` |
 | - | 功率控制 | 待实现 | - |
 | - | MAC 层协议栈 | 待实现 | - |
 

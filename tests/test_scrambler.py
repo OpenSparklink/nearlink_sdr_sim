@@ -52,23 +52,20 @@ class TestScrambleSequence:
         np.testing.assert_array_equal(chunk1, chunk2)
 
     def test_lfsr_first_bits_known(self):
-        """手动计算 seed=1 (state=0b0000001) 的前几个输出
-        bit0=1, fb=1^0=1, new=0b1000000
-        bit0=0, fb=0^0=0, new=0b0100000
-        bit0=0, fb=0^0=0, new=0b0010000
-        """
-        seq = scramble_sequence(3, 1)
-        np.testing.assert_array_equal(seq[:3], [1, 0, 0])
+        """seed=1: Galois LFSR 输出 MSB, 前 7 步输出全 0 (状态左移到 bit6 才输出 1)"""
+        seq = scramble_sequence(7, 1)
+        np.testing.assert_array_equal(seq[:6], [0, 0, 0, 0, 0, 0])
+        assert seq[6] == 1
 
     def test_seed_0x41_first_bits(self):
-        """seed=0x41=0b1000001 手动验证
-        state=0b1000001: out=1, fb=(1^0)=1, new=0b1100000
-        state=0b1100000: out=0, fb=(0^1)=1, new=0b1110000
-        state=0b1110000: out=0, fb=(0^1)=1, new=0b1111000
-        state=0b1111000: out=0, fb=(0^1)=1, new=0b1111100
+        """seed=0x41=0b1000001: bit6=1, 首次输出 1
+        step 0: out=1, state=(0x82&0x7F)^0x11=0x02^0x11=0x13
+        step 1: out=0, state=0x26
+        step 2: out=0, state=0x4C
+        step 3: out=1 (0x4C bit6=1)
         """
         seq = scramble_sequence(4, 0x41)
-        np.testing.assert_array_equal(seq[:4], [1, 0, 0, 0])
+        np.testing.assert_array_equal(seq[:4], [1, 0, 0, 1])
 
 
 class TestScrambleDescramble:

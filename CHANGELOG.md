@@ -2,6 +2,15 @@
 
 本项目遵循 TXS-10002-2025 SparkLink SLE 标准, 分阶段构建链路级仿真与硬件对接系统。
 
+## Phase 8 — PRBS 发生器与测试向量验证 + 加扰器修正
+
+- 新增 `common/prbs.py`: PRBS11 (x^11+x^2+1) / PRBS17 (x^17+x^3+1) 发生器 (标准 8.3.5)
+- 修正 `common/scrambler.py`: 由右移 Fibonacci LFSR 改为左移 Galois LFSR
+  - 输出从 MSB (bit6), 反馈异或到 bit0 和 bit4 (mask=0x11)
+  - 经标准附录 H TV101 测试向量端到端验证
+- 新增 TV101 端到端验证: PRBS11→HeadBits→CRC12→加扰→txHeadW, 全流程匹配附录 H
+- 新增 24 个测试, 全量 542 测试通过
+
 ## Phase 7 — 标准合规补全: 加扰/MCS/控制信息
 
 - 新增 `common/scrambler.py`: 7bit LFSR 信道比特加扰 (标准 6.10.4)
