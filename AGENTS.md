@@ -86,6 +86,7 @@ tests/            # 测试文件, 与 src 模块一一对应
 | 7.3.4 | 复用帧 | 完成 | `mac/frame.py` |
 | 7.3 | 信令注册与编解码 | 完成 | `mac/signaling.py` |
 | 6.10 | TX 发射流水线 | 完成 | `phy/tx_pipeline.py` |
+| 6.10 | RX 接收流水线 | 完成 | `phy/rx_pipeline.py` |
 
 ## 硬件约束 (USRP E310)
 
