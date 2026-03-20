@@ -9,6 +9,15 @@
 
 ### Added
 
+- `sim/link_sim.py` Phase 12: AMC 自适应调制编码 + HARQ 重传 + 跳频多径仿真
+  - sim_amc_throughput: 全 MCS (0-12) 吞吐量与 FER 扫描, AMC 包络线选择
+  - sim_harq_link: HARQ 重传链路仿真, 对比有/无重传 FER 与吞吐量
+  - sim_hopping_multipath_link: 跳频 vs 固定信道 Rayleigh 衰落 FER 对比
+  - run_phase12_simulation: 6 子图可视化 (FER/吞吐量/MCS 选择/HARQ/跳频)
+- `tests/test_link_sim_mac.py`: 15 个 Phase 12 仿真测试
+  - TestAmcThroughput: AMC 吞吐量包络、MCS 选择、FER 单调性
+  - TestHarqLink: HARQ FER 改善、平均传输次数约束、吞吐量
+  - TestHoppingMultipathLink: 跳频链路 FER 范围与长度一致性
 - `mac/security_manager.py`: 安全流程集成管理模块 (标准 9.2-9.4)
   - ECDHKeyPair: P-256 椭圆曲线密钥对生成与 ECDH 共享密钥计算
   - PairingManager: 配对状态机, 驱动 G/T 节点间配对信令交互

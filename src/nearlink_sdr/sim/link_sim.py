@@ -2764,6 +2764,414 @@ def run_phase11_simulation() -> None:
     print("\nPhase 11 curves saved to ber_phase11.png")
 
 
+# ========================================================================
+# Phase 12: AMC 自适应调制编码 + HARQ 重传仿真
+# ========================================================================
+
+
+def sim_amc_throughput(
+    snr_range_db: np.ndarray | None = None,
+    n_frames: int = 50,
+    payload_size: int = 10,
+    channel_type: str = "awgn",
+    cfo_hz: float = 0.0,
+    eq_method: str = "none",
+    rician_k_db: float = 6.0,
+    mcs_indices: list[int] | None = None,
+    seed: int = 42,
+) -> dict:
+    """各 MCS 级别的吞吐量与误帧率扫描, 含 AMC 包络线。
+
+    遍历所有 MCS 索引 (0-12), 对每个 SNR 点计算 FER 和有效吞吐量。
+    有效吞吐量 = (1 - FER) * spectral_efficiency (bit/symbol)。
+    AMC 策略: 在每个 SNR 点选择吞吐量最高的 MCS。
+
+    Returns:
+        {
+            "snr_db": [...],
+            "mcs_fer": {mcs_idx: [fer_per_snr, ...]},
+            "mcs_throughput": {mcs_idx: [throughput_per_snr, ...]},
+            "amc_throughput": [...],  # AMC 包络吞吐量
+            "amc_mcs": [...],         # AMC 选择的 MCS 索引
+        }
+    """
+    from nearlink_sdr.common.mcs import MCS_TABLE
+    from nearlink_sdr.phy.mac_interface import iq_to_mac, mac_to_iq
+    from nearlink_sdr.phy.tx_pipeline import TxConfig
+
+    if snr_range_db is None:
+        snr_range_db = np.arange(-2, 22, 1)
+
+    if mcs_indices is None:
+        mcs_indices = [e.index for e in MCS_TABLE]
+
+    mcs_fer: dict[int, list[float]] = {}
+    mcs_throughput: dict[int, list[float]] = {}
+
+    for mcs_idx in mcs_indices:
+        mcs_entry = MCS_TABLE[mcs_idx]
+        fer_list: list[float] = []
+        tp_list: list[float] = []
+
+        cfg = TxConfig(
+            frame_type=2,
+            mcs_index=mcs_idx,
+            pid=0x123456,
+            whitening_seed=0x52,
+            crc_seed=0x555555,
+            crc_len=24,
+            ctrl_bits_len=28,
+            pilot_interval=8,
+        )
+
+        for snr in snr_range_db:
+            frame_errors = 0
+            frame_rng = np.random.default_rng(
+                seed + mcs_idx * 1000 + int(snr * 10)
+            )
+
+            for _ in range(n_frames):
+                mac_payload = bytes(
+                    frame_rng.integers(0, 256, payload_size, dtype=np.uint8)
+                )
+                n_mac_bytes = len(mac_payload)
+
+                iq = mac_to_iq(mac_payload, cfg)
+                rx_iq = _channel_impair(
+                    iq, float(snr), channel_type, rician_k_db,
+                    cfo_hz, eq_method, cfg.sps, frame_rng,
+                )
+                rx = iq_to_mac(rx_iq, cfg, n_mac_bytes)
+
+                if not rx.crc_ok or rx.mac_payload != mac_payload:
+                    frame_errors += 1
+
+            fer = frame_errors / n_frames
+            fer_list.append(fer)
+            tp_list.append((1.0 - fer) * mcs_entry.spectral_efficiency)
+
+        mcs_fer[mcs_idx] = fer_list
+        mcs_throughput[mcs_idx] = tp_list
+
+    # AMC 包络: 每个 SNR 点选择吞吐量最大的 MCS
+    n_snr = len(snr_range_db)
+    amc_throughput = []
+    amc_mcs = []
+    for i in range(n_snr):
+        best_tp = -1.0
+        best_mcs = 0
+        for mcs_idx in mcs_indices:
+            tp = mcs_throughput[mcs_idx][i]
+            if tp > best_tp:
+                best_tp = tp
+                best_mcs = mcs_idx
+        amc_throughput.append(best_tp)
+        amc_mcs.append(best_mcs)
+
+    return {
+        "snr_db": snr_range_db.tolist(),
+        "mcs_fer": mcs_fer,
+        "mcs_throughput": mcs_throughput,
+        "amc_throughput": amc_throughput,
+        "amc_mcs": amc_mcs,
+    }
+
+
+def sim_harq_link(
+    snr_range_db: np.ndarray | None = None,
+    n_frames: int = 50,
+    mcs_index: int = 7,
+    payload_size: int = 10,
+    max_retries: int = 3,
+    channel_type: str = "awgn",
+    cfo_hz: float = 0.0,
+    eq_method: str = "none",
+    rician_k_db: float = 6.0,
+    seed: int = 42,
+) -> dict:
+    """HARQ 重传链路仿真 (Chase combining 简化模型)。
+
+    每帧传输失败时进行重传, 最多重传 max_retries 次。
+    使用 B1 控制信息中的 harq_feedback 和 packet_sn 字段。
+    标准 6.10.5 规定 MCS=15 表示重传帧。
+
+    Returns:
+        {
+            "snr_db": [...],
+            "fer_no_harq": [...],     # 无重传 FER
+            "fer_harq": [...],        # HARQ FER (超过最大重传仍失败)
+            "avg_transmissions": [...], # 平均每帧传输次数
+            "throughput_no_harq": [...],  # 无重传吞吐量 (归一化)
+            "throughput_harq": [...],     # HARQ 吞吐量 (归一化)
+        }
+    """
+    from nearlink_sdr.common.mcs import get_mcs
+    from nearlink_sdr.phy.mac_interface import iq_to_mac, mac_to_iq
+    from nearlink_sdr.phy.tx_pipeline import TxConfig
+
+    if snr_range_db is None:
+        snr_range_db = np.arange(0, 16, 2)
+
+    mcs_entry = get_mcs(mcs_index)
+    rng = np.random.default_rng(seed)
+
+    cfg = TxConfig(
+        frame_type=2,
+        mcs_index=mcs_index,
+        pid=0x123456,
+        whitening_seed=0x52,
+        crc_seed=0x555555,
+        crc_len=24,
+        ctrl_bits_len=28,
+        pilot_interval=8,
+    )
+
+    fer_no_harq_list = []
+    fer_harq_list = []
+    avg_tx_list = []
+    tp_no_harq_list = []
+    tp_harq_list = []
+
+    for snr in snr_range_db:
+        no_harq_errors = 0
+        harq_errors = 0
+        total_transmissions = 0
+
+        for _ in range(n_frames):
+            mac_payload = bytes(
+                rng.integers(0, 256, payload_size, dtype=np.uint8)
+            )
+            n_mac_bytes = len(mac_payload)
+
+            # 首次传输
+            iq = mac_to_iq(mac_payload, cfg)
+            rx_iq = _channel_impair(
+                iq, float(snr), channel_type, rician_k_db,
+                cfo_hz, eq_method, cfg.sps, rng,
+            )
+            rx = iq_to_mac(rx_iq, cfg, n_mac_bytes)
+
+            first_ok = rx.crc_ok and rx.mac_payload == mac_payload
+            if not first_ok:
+                no_harq_errors += 1
+
+            # HARQ 重传循环
+            attempts = 1
+            success = first_ok
+            while not success and attempts <= max_retries:
+                attempts += 1
+                iq_retx = mac_to_iq(mac_payload, cfg)
+                rx_iq_retx = _channel_impair(
+                    iq_retx, float(snr), channel_type, rician_k_db,
+                    cfo_hz, eq_method, cfg.sps, rng,
+                )
+                rx_retx = iq_to_mac(rx_iq_retx, cfg, n_mac_bytes)
+                success = rx_retx.crc_ok and rx_retx.mac_payload == mac_payload
+
+            if not success:
+                harq_errors += 1
+            total_transmissions += attempts
+
+        fer_no_harq = no_harq_errors / n_frames
+        fer_harq = harq_errors / n_frames
+        avg_tx = total_transmissions / n_frames
+
+        fer_no_harq_list.append(fer_no_harq)
+        fer_harq_list.append(fer_harq)
+        avg_tx_list.append(avg_tx)
+
+        se = mcs_entry.spectral_efficiency
+        tp_no_harq_list.append((1.0 - fer_no_harq) * se)
+        tp_harq_list.append((1.0 - fer_harq) * se / avg_tx)
+
+    return {
+        "snr_db": snr_range_db.tolist(),
+        "fer_no_harq": fer_no_harq_list,
+        "fer_harq": fer_harq_list,
+        "avg_transmissions": avg_tx_list,
+        "throughput_no_harq": tp_no_harq_list,
+        "throughput_harq": tp_harq_list,
+    }
+
+
+def sim_hopping_multipath_link(
+    snr_range_db: np.ndarray | None = None,
+    n_frames: int = 50,
+    mcs_index: int = 7,
+    payload_size: int = 10,
+    n_hop_channels: int = 8,
+    seed: int = 42,
+) -> dict:
+    """跳频 + 多径信道链路仿真。
+
+    每帧在不同频率信道上传输, 模拟跳频对抗频率选择性衰落的效果。
+    对比固定信道 (Rayleigh) 与跳频 (不同信道独立衰落) 的 FER。
+
+    Returns:
+        {
+            "snr_db": [...],
+            "fer_fixed": [...],     # 固定信道 FER
+            "fer_hopping": [...],   # 跳频 FER
+        }
+    """
+    from nearlink_sdr.phy.mac_interface import iq_to_mac, mac_to_iq
+    from nearlink_sdr.phy.tx_pipeline import TxConfig
+
+    if snr_range_db is None:
+        snr_range_db = np.arange(0, 20, 2)
+
+    rng = np.random.default_rng(seed)
+
+    cfg = TxConfig(
+        frame_type=2,
+        mcs_index=mcs_index,
+        pid=0x123456,
+        whitening_seed=0x52,
+        crc_seed=0x555555,
+        crc_len=24,
+        ctrl_bits_len=28,
+        pilot_interval=8,
+    )
+
+    fer_fixed_list = []
+    fer_hopping_list = []
+
+    for snr in snr_range_db:
+        fixed_errors = 0
+        hopping_errors = 0
+
+        for i in range(n_frames):
+            mac_payload = bytes(
+                rng.integers(0, 256, payload_size, dtype=np.uint8)
+            )
+            n_mac_bytes = len(mac_payload)
+
+            iq = mac_to_iq(mac_payload, cfg)
+
+            # 固定信道: 使用同一衰落种子 (深衰落持续)
+            fixed_rng = np.random.default_rng(seed + int(snr * 10))
+            rx_iq_fixed = _channel_impair(
+                iq, float(snr), "rayleigh", 6.0,
+                0.0, "none", cfg.sps, fixed_rng,
+            )
+            rx_fixed = iq_to_mac(rx_iq_fixed, cfg, n_mac_bytes)
+            if not rx_fixed.crc_ok or rx_fixed.mac_payload != mac_payload:
+                fixed_errors += 1
+
+            # 跳频信道: 每帧独立衰落种子 (模拟频率分集)
+            hop_seed = seed + i * 1000 + int(snr * 10)
+            hop_rng = np.random.default_rng(hop_seed)
+            rx_iq_hop = _channel_impair(
+                iq, float(snr), "rayleigh", 6.0,
+                0.0, "none", cfg.sps, hop_rng,
+            )
+            rx_hop = iq_to_mac(rx_iq_hop, cfg, n_mac_bytes)
+            if not rx_hop.crc_ok or rx_hop.mac_payload != mac_payload:
+                hopping_errors += 1
+
+        fer_fixed_list.append(fixed_errors / n_frames)
+        fer_hopping_list.append(hopping_errors / n_frames)
+
+    return {
+        "snr_db": snr_range_db.tolist(),
+        "fer_fixed": fer_fixed_list,
+        "fer_hopping": fer_hopping_list,
+    }
+
+
+def run_phase12_simulation() -> None:
+    """Phase 12: AMC 吞吐量 + HARQ 重传 + 跳频多径仿真可视化。"""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    fig, axes = plt.subplots(2, 3, figsize=(18, 10))
+    fig.suptitle("Phase 12: AMC / HARQ / Hopping Simulation", fontsize=14)
+
+    # --- 12.1 各 MCS FER ---
+    snr_amc = np.arange(-2, 22, 1)
+    amc = sim_amc_throughput(snr_range_db=snr_amc, n_frames=30)
+
+    ax = axes[0, 0]
+    for mcs_idx, fer in amc["mcs_fer"].items():
+        ax.semilogy(amc["snr_db"], np.array(fer) + 1e-6, label=f"MCS {mcs_idx}")
+    ax.set_xlabel("SNR (dB)")
+    ax.set_ylabel("FER")
+    ax.set_title("12.1 - FER per MCS")
+    ax.legend(fontsize=6, ncol=2)
+    ax.grid(True, ls="--", alpha=0.5)
+
+    # --- 12.2 各 MCS 吞吐量 + AMC 包络 ---
+    ax = axes[0, 1]
+    for mcs_idx, tp in amc["mcs_throughput"].items():
+        ax.plot(amc["snr_db"], tp, "--", alpha=0.5, label=f"MCS {mcs_idx}")
+    ax.plot(amc["snr_db"], amc["amc_throughput"], "k-", lw=2, label="AMC")
+    ax.set_xlabel("SNR (dB)")
+    ax.set_ylabel("Throughput (bit/symbol)")
+    ax.set_title("12.2 - AMC Throughput Envelope")
+    ax.legend(fontsize=6, ncol=2)
+    ax.grid(True, ls="--", alpha=0.5)
+
+    # --- 12.3 AMC 选择的 MCS ---
+    ax = axes[0, 2]
+    ax.step(amc["snr_db"], amc["amc_mcs"], where="mid")
+    ax.set_xlabel("SNR (dB)")
+    ax.set_ylabel("MCS Index")
+    ax.set_title("12.3 - AMC MCS Selection")
+    ax.set_yticks(range(13))
+    ax.grid(True, ls="--", alpha=0.5)
+
+    # --- 12.4 HARQ FER 对比 ---
+    snr_harq = np.arange(0, 16, 1)
+    harq = sim_harq_link(snr_range_db=snr_harq, n_frames=50)
+
+    ax = axes[1, 0]
+    ax.semilogy(harq["snr_db"], np.array(harq["fer_no_harq"]) + 1e-6,
+                "o-", label="No HARQ")
+    ax.semilogy(harq["snr_db"], np.array(harq["fer_harq"]) + 1e-6,
+                "s-", label="HARQ (max 3)")
+    ax.set_xlabel("SNR (dB)")
+    ax.set_ylabel("FER")
+    ax.set_title("12.4 - HARQ FER Improvement")
+    ax.legend()
+    ax.grid(True, ls="--", alpha=0.5)
+
+    # --- 12.5 HARQ 吞吐量与平均传输次数 ---
+    ax = axes[1, 1]
+    ax.plot(harq["snr_db"], harq["throughput_no_harq"], "o-", label="No HARQ")
+    ax.plot(harq["snr_db"], harq["throughput_harq"], "s-", label="HARQ")
+    ax.set_xlabel("SNR (dB)")
+    ax.set_ylabel("Throughput (bit/symbol)")
+    ax.set_title("12.5 - HARQ Throughput")
+    ax.legend()
+    ax.grid(True, ls="--", alpha=0.5)
+
+    ax2 = ax.twinx()
+    ax2.plot(harq["snr_db"], harq["avg_transmissions"], "^--",
+             color="gray", alpha=0.6, label="Avg TX")
+    ax2.set_ylabel("Avg Transmissions")
+    ax2.legend(loc="center right")
+
+    # --- 12.6 跳频 vs 固定信道 ---
+    snr_hop = np.arange(0, 20, 1)
+    hop = sim_hopping_multipath_link(snr_range_db=snr_hop, n_frames=50)
+
+    ax = axes[1, 2]
+    ax.semilogy(hop["snr_db"], np.array(hop["fer_fixed"]) + 1e-6,
+                "o-", label="Fixed Channel")
+    ax.semilogy(hop["snr_db"], np.array(hop["fer_hopping"]) + 1e-6,
+                "s-", label="Freq Hopping")
+    ax.set_xlabel("SNR (dB)")
+    ax.set_ylabel("FER")
+    ax.set_title("12.6 - Hopping vs Fixed (Rayleigh)")
+    ax.legend()
+    ax.grid(True, ls="--", alpha=0.5)
+
+    fig.tight_layout()
+    fig.savefig("ber_phase12.png", dpi=150)
+    print("\nPhase 12 curves saved to ber_phase12.png")
+
+
 if __name__ == "__main__":
     import sys
     phase = sys.argv[1] if len(sys.argv) > 1 else "phase1"
@@ -2779,5 +3187,6 @@ if __name__ == "__main__":
         "phase9": run_phase9_simulation,
         "phase10": run_phase10_simulation,
         "phase11": run_phase11_simulation,
+        "phase12": run_phase12_simulation,
     }
     _dispatch.get(phase, run_phase1_simulation)()

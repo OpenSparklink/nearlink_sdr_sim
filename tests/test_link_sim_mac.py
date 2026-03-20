@@ -8,8 +8,11 @@ import numpy as np
 
 from nearlink_sdr.sim.link_sim import (
     sim_access_scheduled_link,
+    sim_amc_throughput,
     sim_encrypted_vs_plain,
     sim_event_group_timing,
+    sim_harq_link,
+    sim_hopping_multipath_link,
     sim_mac_data_link,
     sim_mac_mux_link,
     sim_mac_signaling_link,
@@ -464,3 +467,174 @@ class TestPairingSignalingPhy:
         assert "snr_db" in result
         assert "signaling_success_rate" in result
         assert len(result["signaling_success_rate"]) == 1
+
+
+# =========================================================================
+# Phase 12: AMC + HARQ + 跳频多径
+# =========================================================================
+
+
+class TestAmcThroughput:
+    """sim_amc_throughput AMC 吞吐量扫描测试。"""
+
+    def test_returns_expected_keys(self):
+        result = sim_amc_throughput(
+            snr_range_db=np.array([10.0]),
+            n_frames=5,
+            mcs_indices=[0, 4, 8],
+        )
+        assert "snr_db" in result
+        assert "mcs_fer" in result
+        assert "mcs_throughput" in result
+        assert "amc_throughput" in result
+        assert "amc_mcs" in result
+
+    def test_mcs_count_matches(self):
+        indices = [0, 4, 8]
+        result = sim_amc_throughput(
+            snr_range_db=np.array([10.0, 20.0]),
+            n_frames=5,
+            mcs_indices=indices,
+        )
+        assert len(result["mcs_fer"]) == len(indices)
+        assert len(result["mcs_throughput"]) == len(indices)
+        for idx in indices:
+            assert idx in result["mcs_fer"]
+            assert len(result["mcs_fer"][idx]) == 2
+
+    def test_high_snr_high_mcs_throughput(self):
+        """高 SNR 下高阶 MCS 应比低阶 MCS 吞吐量高。"""
+        result = sim_amc_throughput(
+            snr_range_db=np.array([30.0]),
+            n_frames=10,
+            mcs_indices=[0, 8],
+        )
+        tp_0 = result["mcs_throughput"][0][0]
+        tp_8 = result["mcs_throughput"][8][0]
+        assert tp_8 > tp_0
+
+    def test_amc_envelope_ge_individual(self):
+        """AMC 包络吞吐量不低于任何单个 MCS。"""
+        result = sim_amc_throughput(
+            snr_range_db=np.array([5.0, 15.0, 25.0]),
+            n_frames=10,
+            mcs_indices=[0, 4, 8],
+        )
+        for i in range(3):
+            for idx in [0, 4, 8]:
+                assert result["amc_throughput"][i] >= result["mcs_throughput"][idx][i] - 1e-9
+
+    def test_amc_mcs_is_valid_index(self):
+        indices = [0, 4, 8, 12]
+        result = sim_amc_throughput(
+            snr_range_db=np.array([10.0]),
+            n_frames=5,
+            mcs_indices=indices,
+        )
+        assert result["amc_mcs"][0] in indices
+
+    def test_fer_monotone_trend(self):
+        """FER 应随 SNR 升高呈下降趋势 (宽 SNR 范围)。"""
+        result = sim_amc_throughput(
+            snr_range_db=np.array([0.0, 10.0, 20.0, 30.0]),
+            n_frames=20,
+            mcs_indices=[4],
+        )
+        fer = result["mcs_fer"][4]
+        # 首点 FER 不低于末点 FER
+        assert fer[0] >= fer[-1]
+
+
+class TestHarqLink:
+    """sim_harq_link HARQ 重传链路仿真测试。"""
+
+    def test_returns_expected_keys(self):
+        result = sim_harq_link(
+            snr_range_db=np.array([10.0]),
+            n_frames=10,
+        )
+        expected = {
+            "snr_db", "fer_no_harq", "fer_harq",
+            "avg_transmissions", "throughput_no_harq", "throughput_harq",
+        }
+        assert set(result.keys()) == expected
+
+    def test_harq_fer_le_no_harq(self):
+        """HARQ FER 不高于无重传 FER。"""
+        result = sim_harq_link(
+            snr_range_db=np.array([6.0]),
+            n_frames=50,
+            max_retries=3,
+        )
+        assert result["fer_harq"][0] <= result["fer_no_harq"][0] + 1e-9
+
+    def test_avg_transmissions_bound(self):
+        """平均传输次数在 [1, 1+max_retries] 之间。"""
+        max_retries = 3
+        result = sim_harq_link(
+            snr_range_db=np.array([5.0]),
+            n_frames=20,
+            max_retries=max_retries,
+        )
+        assert 1.0 <= result["avg_transmissions"][0] <= 1.0 + max_retries
+
+    def test_high_snr_single_transmission(self):
+        """高 SNR 下平均传输次数应接近 1。"""
+        result = sim_harq_link(
+            snr_range_db=np.array([30.0]),
+            n_frames=20,
+        )
+        assert result["avg_transmissions"][0] <= 1.1
+        assert result["fer_harq"][0] == 0.0
+
+    def test_throughput_positive(self):
+        """吞吐量不为负。"""
+        result = sim_harq_link(
+            snr_range_db=np.array([0.0, 10.0, 20.0]),
+            n_frames=10,
+        )
+        for tp in result["throughput_harq"]:
+            assert tp >= 0.0
+        for tp in result["throughput_no_harq"]:
+            assert tp >= 0.0
+
+
+class TestHoppingMultipathLink:
+    """sim_hopping_multipath_link 跳频多径链路仿真测试。"""
+
+    def test_returns_expected_keys(self):
+        result = sim_hopping_multipath_link(
+            snr_range_db=np.array([10.0]),
+            n_frames=10,
+        )
+        assert "snr_db" in result
+        assert "fer_fixed" in result
+        assert "fer_hopping" in result
+
+    def test_fer_values_in_range(self):
+        result = sim_hopping_multipath_link(
+            snr_range_db=np.array([5.0, 15.0]),
+            n_frames=10,
+        )
+        for fer in result["fer_fixed"]:
+            assert 0.0 <= fer <= 1.0
+        for fer in result["fer_hopping"]:
+            assert 0.0 <= fer <= 1.0
+
+    def test_high_snr_low_fer(self):
+        """高 SNR 下跳频 FER 应不为全 1 (Rayleigh 无均衡时仍可能有较高 FER)。"""
+        result = sim_hopping_multipath_link(
+            snr_range_db=np.array([30.0]),
+            n_frames=20,
+        )
+        assert result["fer_hopping"][0] < 1.0
+
+    def test_length_consistency(self):
+        snr = np.array([5.0, 10.0, 15.0])
+        result = sim_hopping_multipath_link(
+            snr_range_db=snr,
+            n_frames=5,
+        )
+        assert len(result["snr_db"]) == 3
+        assert len(result["fer_fixed"]) == 3
+        assert len(result["fer_hopping"]) == 3

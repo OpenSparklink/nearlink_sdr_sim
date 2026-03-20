@@ -136,6 +136,7 @@ tests/            # 测试文件, 与 src 模块一一对应
 | - | MAC 帧级端到端仿真 | 完成 | `sim/link_sim.py` (Phase 9) |
 | - | 多链路调度仿真 | 完成 | `sim/link_sim.py` (Phase 10) |
 | - | 接入→配对→加密端到端仿真 | 完成 | `sim/link_sim.py` (Phase 11) |
+| - | AMC + HARQ + 跳频多径仿真 | 完成 | `sim/link_sim.py` (Phase 12) |
 | 9.2 | 配对信令 | 完成 | `mac/security.py` |
 | 9.3/9.4 | 安全子系统加密模块 | 完成 | `mac/crypto.py` |
 | 9.2-9.4 | 安全流程集成 (配对+加密) | 完成 | `mac/security_manager.py` |
