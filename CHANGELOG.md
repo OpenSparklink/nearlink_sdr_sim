@@ -7,6 +7,13 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Polar SC 解码器改用预分配二维数组, 消除递归中的数组分配开销
+- 加扰器 LFSR 输出使用周期缓存 + `np.tile`, 消除逐比特 Python 循环
+- 移除 14 个 `run_phase*` 可视化冗余测试 (原占测试总时长 96%)
+- 测试时间: 170s → 6s (提速 28 倍)
+
 ### Added
 
 - Phase 14 双节点端到端仿真 (`sim/link_sim.py`)

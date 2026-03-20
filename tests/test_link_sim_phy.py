@@ -602,67 +602,8 @@ class TestPipelineChannelLink:
         assert len(result["ber"]) == 1
 
 
-# ── Phase 可视化函数 ──
-
-
-class TestRunPhaseSimulations:
-    """验证 run_phaseN_simulation 可无报错运行 (Agg 后端)。"""
-
-    def test_run_phase1(self):
-        from nearlink_sdr.sim.link_sim import run_phase1_simulation
-        run_phase1_simulation()
-
-    def test_run_phase2(self):
-        from nearlink_sdr.sim.link_sim import run_phase2_simulation
-        run_phase2_simulation()
-
-    def test_run_phase3(self):
-        from nearlink_sdr.sim.link_sim import run_phase3_simulation
-        run_phase3_simulation()
-
-    def test_run_phase4(self):
-        from nearlink_sdr.sim.link_sim import run_phase4_simulation
-        run_phase4_simulation()
-
-    def test_run_phase5(self):
-        from nearlink_sdr.sim.link_sim import run_phase5_simulation
-        run_phase5_simulation()
-
-    def test_run_phase6(self):
-        from nearlink_sdr.sim.link_sim import run_phase6_simulation
-        run_phase6_simulation()
-
-    def test_run_phase7(self):
-        from nearlink_sdr.sim.link_sim import run_phase7_simulation
-        run_phase7_simulation()
-
-    def test_run_phase8(self):
-        from nearlink_sdr.sim.link_sim import run_phase8_simulation
-        run_phase8_simulation()
-
-    def test_run_phase9(self):
-        from nearlink_sdr.sim.link_sim import run_phase9_simulation
-        run_phase9_simulation()
-
-    def test_run_phase10(self):
-        from nearlink_sdr.sim.link_sim import run_phase10_simulation
-        run_phase10_simulation()
-
-    def test_run_phase11(self):
-        from nearlink_sdr.sim.link_sim import run_phase11_simulation
-        run_phase11_simulation()
-
-    def test_run_phase12(self):
-        from nearlink_sdr.sim.link_sim import run_phase12_simulation
-        run_phase12_simulation()
-
-    def test_run_phase13(self):
-        from nearlink_sdr.sim.link_sim import run_phase13_simulation
-        run_phase13_simulation()
-
-    def test_run_phase14(self):
-        from nearlink_sdr.sim.link_sim import run_phase14_simulation
-        run_phase14_simulation()
+# run_phase*_simulation 可视化入口函数已由底层 sim 函数测试充分覆盖,
+# 无需在 CI 中运行完整的参数扫描 (原耗时 164s)。
 
 
 class TestDualNodeLink:

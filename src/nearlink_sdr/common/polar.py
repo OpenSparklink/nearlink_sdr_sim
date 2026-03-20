@@ -1123,7 +1123,10 @@ class PolarEncoder:
 
 
 class PolarDecoder:
-    """Successive Cancellation (SC) decoder in LLR domain — iterative实现。"""
+    """Successive Cancellation (SC) decoder in LLR domain。
+
+    使用预分配的二维数组存储中间 LLR 和 partial sums, 避免递归中频繁分配内存。
+    """
 
     def __init__(self, N: int, K: int) -> None:
         if N not in VALID_CODE_LENGTHS:
@@ -1137,10 +1140,12 @@ class PolarDecoder:
         seq = _get_reliability_sequence(N)
         self.info_positions = sorted(seq[N - K :])
         self._info_pos_arr = np.array(self.info_positions, dtype=np.intp)
-        # Pre-compute frozen mask for O(1) lookup
         self._is_frozen = np.ones(N, dtype=bool)
         for pos in self.info_positions:
             self._is_frozen[pos] = False
+        # 预分配 (n+1) 层, 每层 N 元素
+        self._L = np.zeros((self.n + 1, N), dtype=np.float64)
+        self._B = np.zeros((self.n + 1, N), dtype=np.int8)
 
     def decode(self, llr: np.ndarray) -> np.ndarray:
         """Decode N channel LLRs to K information bits using SC algorithm.
@@ -1151,40 +1156,47 @@ class PolarDecoder:
         if llr.shape != (self.N,):
             raise ValueError(f"Expected {self.N} LLRs, got shape {llr.shape}")
 
-        u_hat = np.zeros(self.N, dtype=np.int8)
-        self._sc_recursive(llr, 0, self.N, u_hat, self._is_frozen)
-        return u_hat[self._info_pos_arr].copy()
+        self._L[0, :self.N] = llr
+        self._sc(0, self.N, 0)
+        return self._B[self.n, :self.N][self._info_pos_arr].copy()
 
-    def _sc_recursive(
-        self,
-        llr_in: np.ndarray,
-        start: int,
-        length: int,
-        u_hat: np.ndarray,
-        is_frozen: np.ndarray,
-    ) -> np.ndarray:
-        """Recursive SC decoding with inlined f/g operations."""
+    def _sc(self, start: int, length: int, depth: int) -> None:
+        """递归 SC 解码, 使用预分配数组避免内存分配。"""
+        L = self._L
+        B = self._B
+
         if length == 1:
-            idx = start
-            if is_frozen[idx]:
-                u_hat[idx] = 0
+            if self._is_frozen[start]:
+                B[self.n, start] = 0
             else:
-                u_hat[idx] = 0 if llr_in[0] >= 0.0 else 1
-            return np.array([u_hat[idx]], dtype=np.int8)
+                B[self.n, start] = 0 if L[depth, start] >= 0.0 else 1
+            return
 
-        half = length // 2
-        a, b = llr_in[:half], llr_in[half:]
+        half = length >> 1
+        mid = start + half
+        end = start + length
+        d1 = depth + 1
 
-        # f operation (inlined)
-        llr_left = np.sign(a) * np.sign(b) * np.minimum(np.abs(a), np.abs(b))
-        bits_left = self._sc_recursive(llr_left, start, half, u_hat, is_frozen)
+        # f 操作: 计算左子 LLR (写入 L[depth+1, start:mid])
+        a = L[depth, start:mid]
+        b = L[depth, mid:end]
+        dst = L[d1, start:mid]
+        np.minimum(np.abs(a), np.abs(b), out=dst)
+        dst *= np.sign(a) * np.sign(b)
 
-        # g operation (inlined)
-        llr_right = b + (1.0 - 2.0 * bits_left) * a
-        bits_right = self._sc_recursive(llr_right, start + half, half, u_hat, is_frozen)
+        self._sc(start, half, d1)
 
-        # Combine partial sums
-        combined = np.empty(length, dtype=np.int8)
-        combined[:half] = bits_left ^ bits_right
-        combined[half:] = bits_right
-        return combined
+        # g 操作: 计算右子 LLR (写入 L[depth+1, mid:end])
+        left_bits = B[d1, start:mid]
+        dst = L[d1, mid:end]
+        np.subtract(1.0, 2.0 * left_bits, out=dst)
+        dst *= a
+        dst += b
+
+        self._sc(mid, half, d1)
+
+        # 合并 partial sums
+        left = B[d1, start:mid]
+        right = B[d1, mid:end]
+        B[depth, start:mid] = left ^ right
+        B[depth, mid:end] = right

@@ -25,6 +25,27 @@ def _lfsr_step(state: int) -> tuple[int, int]:
     return output, state
 
 
+_PERIOD = 127  # 7-bit 原始多项式周期
+
+# 预计算所有 128 个种子的完整 127 步输出序列
+_SEED_CACHE: dict[int, NDArray[np.uint8]] = {}
+
+
+def _precompute_period(seed: int) -> NDArray[np.uint8]:
+    """计算种子对应的完整 LFSR 周期输出。"""
+    if seed in _SEED_CACHE:
+        return _SEED_CACHE[seed]
+    period = _PERIOD if seed != 0 else 1
+    out = np.empty(period, dtype=np.uint8)
+    state = seed
+    for i in range(period):
+        out[i] = (state >> 6) & 1
+        output = out[i]
+        state = ((state << 1) & 0x7F) ^ (output * _GALOIS_MASK)
+    _SEED_CACHE[seed] = out
+    return out
+
+
 def scramble_sequence(length: int, seed: int) -> NDArray[np.uint8]:
     """生成指定长度的加扰序列。
 
@@ -42,12 +63,15 @@ def scramble_sequence(length: int, seed: int) -> NDArray[np.uint8]:
     """
     if not 0 <= seed <= 127:
         raise ValueError(f"seed 必须在 0..127 范围内, 收到 {seed}")
-    seq = np.empty(length, dtype=np.uint8)
-    state = seed
-    for i in range(length):
-        bit, state = _lfsr_step(state)
-        seq[i] = bit
-    return seq
+    if length == 0:
+        return np.empty(0, dtype=np.uint8)
+    period_seq = _precompute_period(seed)
+    period = len(period_seq)
+    if length <= period:
+        return period_seq[:length].copy()
+    # 重复拼接
+    repeats = length // period + 1
+    return np.tile(period_seq, repeats)[:length].copy()
 
 
 def scramble(bits: NDArray[np.uint8], seed: int) -> NDArray[np.uint8]:
