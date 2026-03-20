@@ -83,6 +83,7 @@ nearlink_sdr/
 | Phase 10 | 多链路调度仿真 | `sim_multi_link`, `sim_access_scheduled_link`, `sim_event_group_timing`, `sim_superframe_capacity` |
 | Phase 11 | 安全通信端到端仿真 | `sim_secure_link`, `sim_encrypted_vs_plain`, `sim_pairing_signaling_phy` |
 | Phase 12 | AMC / HARQ / 跳频多径 | `sim_amc_throughput`, `sim_harq_link`, `sim_hopping_multipath_link` |
+| Phase 13 | QoS ARQ / AMC 自适应 / 流控 | `sim_qos_arq_link`, `sim_qos_amc_adaptive`, `sim_qos_flow_control` |
 
 每个阶段的仿真函数可独立调用, 也可通过 `run_phaseN_simulation()` 批量执行。
 

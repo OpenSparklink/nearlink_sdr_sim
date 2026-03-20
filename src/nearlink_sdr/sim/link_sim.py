@@ -3172,6 +3172,433 @@ def run_phase12_simulation() -> None:
     print("\nPhase 12 curves saved to ber_phase12.png")
 
 
+# ===================================================================
+# Phase 13: QoS 驱动的 ARQ/HARQ + 流控 + AMC 仿真
+# ===================================================================
+
+
+def sim_qos_arq_link(
+    snr_range_db: np.ndarray | None = None,
+    n_frames: int = 50,
+    mcs_index: int = 7,
+    payload_size: int = 10,
+    max_retries: int = 3,
+    channel_type: str = "awgn",
+    rician_k_db: float = 6.0,
+    seed: int = 42,
+) -> dict:
+    """QoS 管理器驱动的 ARQ 重传链路仿真。
+
+    使用 QosLink 封装实现自动 ARQ 重传, 对比无 QoS 管理时的 FER。
+    验证 QosManager 的序列号管理、重传决策和链路质量跟踪。
+
+    Returns:
+        {
+            "snr_db": [...],
+            "fer_no_arq": [...],       # 无重传 FER
+            "fer_qos_arq": [...],      # QoS ARQ FER
+            "avg_transmissions": [...], # 平均每帧传输次数
+            "throughput_no_arq": [...],
+            "throughput_qos_arq": [...],
+        }
+    """
+    from nearlink_sdr.common.mcs import get_mcs
+    from nearlink_sdr.mac.frame import AsyncDataFrame
+    from nearlink_sdr.mac.qos import ArqState, LinkType, QosManager, TxDecision
+    from nearlink_sdr.phy.mac_interface import iq_to_mac, mac_to_iq
+    from nearlink_sdr.phy.tx_pipeline import TxConfig
+
+    if snr_range_db is None:
+        snr_range_db = np.arange(0, 16, 2)
+
+    mcs_entry = get_mcs(mcs_index)
+    rng = np.random.default_rng(seed)
+
+    cfg = TxConfig(
+        frame_type=2,
+        mcs_index=mcs_index,
+        pid=0x123456,
+        whitening_seed=0x52,
+        crc_seed=0x555555,
+        crc_len=24,
+        ctrl_bits_len=28,
+        pilot_interval=8,
+    )
+
+    fer_no_arq_list = []
+    fer_qos_arq_list = []
+    avg_tx_list = []
+    tp_no_arq = []
+    tp_qos_arq = []
+
+    for snr in snr_range_db:
+        no_arq_errors = 0
+        qos_arq_errors = 0
+        total_transmissions = 0
+
+        for _ in range(n_frames):
+            mac_payload = bytes(
+                rng.integers(0, 256, payload_size, dtype=np.uint8)
+            )
+            frame = AsyncDataFrame(segment_type=0, data=mac_payload)
+            mac_bytes = frame.pack()
+            n_mac_bytes = len(mac_bytes)
+
+            # 无 ARQ 单次传输
+            iq = mac_to_iq(mac_bytes, cfg)
+            rx_iq = _channel_impair(
+                iq, float(snr), channel_type, rician_k_db,
+                0.0, "none", cfg.sps, rng,
+            )
+            rx = iq_to_mac(rx_iq, cfg, n_mac_bytes)
+            first_ok = rx.crc_ok and rx.mac_payload == mac_bytes
+            if not first_ok:
+                no_arq_errors += 1
+
+            # QoS ARQ 重传
+            qos = QosManager(
+                arq=ArqState(frame_type=2, link_type=LinkType.SYNC,
+                             max_retransmit=max_retries),
+            )
+            qos.submit_data(mac_payload)
+            _decision, _item = qos.prepare_tx()
+            attempts = 1
+            success = first_ok
+
+            while not success and attempts <= max_retries:
+                feedback = qos.on_tx_feedback(crc_ok=False)
+                if feedback == TxDecision.NEW_DATA:
+                    break
+
+                attempts += 1
+                iq_retx = mac_to_iq(mac_bytes, cfg)
+                rx_iq_retx = _channel_impair(
+                    iq_retx, float(snr), channel_type, rician_k_db,
+                    0.0, "none", cfg.sps, rng,
+                )
+                rx_retx = iq_to_mac(rx_iq_retx, cfg, n_mac_bytes)
+                success = rx_retx.crc_ok and rx_retx.mac_payload == mac_bytes
+
+            if success:
+                qos.on_tx_feedback(crc_ok=True)
+            else:
+                qos_arq_errors += 1
+
+            total_transmissions += attempts
+
+        fer_no_arq = no_arq_errors / n_frames
+        fer_qos_arq = qos_arq_errors / n_frames
+        avg_tx = total_transmissions / n_frames
+
+        fer_no_arq_list.append(fer_no_arq)
+        fer_qos_arq_list.append(fer_qos_arq)
+        avg_tx_list.append(avg_tx)
+
+        se = mcs_entry.spectral_efficiency
+        tp_no_arq.append((1.0 - fer_no_arq) * se)
+        tp_qos_arq.append((1.0 - fer_qos_arq) * se / max(avg_tx, 1.0))
+
+    return {
+        "snr_db": snr_range_db.tolist(),
+        "fer_no_arq": fer_no_arq_list,
+        "fer_qos_arq": fer_qos_arq_list,
+        "avg_transmissions": avg_tx_list,
+        "throughput_no_arq": tp_no_arq,
+        "throughput_qos_arq": tp_qos_arq,
+    }
+
+
+def sim_qos_amc_adaptive(
+    snr_sequence: np.ndarray | None = None,
+    n_frames_per_snr: int = 20,
+    payload_size: int = 10,
+    channel_type: str = "awgn",
+    rician_k_db: float = 6.0,
+    seed: int = 42,
+) -> dict:
+    """QoS 链路质量跟踪驱动的 AMC 自适应仿真。
+
+    模拟 SNR 随时间变化的场景, QoS 管理器根据 FER
+    反馈自动调整 MCS, 验证 AMC 跟踪性能。
+
+    Returns:
+        {
+            "snr_trace": [...],
+            "mcs_trace": [...],
+            "fer_trace": [...],
+            "throughput_trace": [...],
+        }
+    """
+    from nearlink_sdr.common.mcs import get_mcs
+    from nearlink_sdr.mac.qos import LinkQualityTracker
+    from nearlink_sdr.phy.mac_interface import iq_to_mac, mac_to_iq
+    from nearlink_sdr.phy.tx_pipeline import TxConfig
+
+    if snr_sequence is None:
+        snr_sequence = np.concatenate([
+            np.full(n_frames_per_snr, 5),
+            np.full(n_frames_per_snr, 12),
+            np.full(n_frames_per_snr, 3),
+            np.full(n_frames_per_snr, 18),
+            np.full(n_frames_per_snr, 8),
+        ])
+
+    rng = np.random.default_rng(seed)
+    tracker = LinkQualityTracker(window_size=8)
+    tracker._current_mcs = 5
+
+    snr_trace = []
+    mcs_trace = []
+    fer_trace = []
+    tp_trace = []
+
+    for snr in snr_sequence:
+        mcs_idx = tracker.current_mcs
+        mcs_entry = get_mcs(mcs_idx)
+
+        cfg = TxConfig(
+            frame_type=2,
+            mcs_index=mcs_idx,
+            pid=0x123456,
+            whitening_seed=0x52,
+            crc_seed=0x555555,
+            crc_len=24,
+            ctrl_bits_len=28,
+            pilot_interval=8,
+        )
+
+        mac_payload = bytes(
+            rng.integers(0, 256, payload_size, dtype=np.uint8)
+        )
+        from nearlink_sdr.mac.frame import AsyncDataFrame
+        frame = AsyncDataFrame(segment_type=0, data=mac_payload)
+        mac_bytes = frame.pack()
+        n_mac_bytes = len(mac_bytes)
+
+        iq = mac_to_iq(mac_bytes, cfg)
+        rx_iq = _channel_impair(
+            iq, float(snr), channel_type, rician_k_db,
+            0.0, "none", cfg.sps, rng,
+        )
+        rx = iq_to_mac(rx_iq, cfg, n_mac_bytes)
+        crc_ok = rx.crc_ok and rx.mac_payload == mac_bytes
+
+        tracker.record(crc_ok)
+        tracker.apply_suggestion()
+
+        snr_trace.append(float(snr))
+        mcs_trace.append(mcs_idx)
+        fer_trace.append(tracker.fer)
+        tp_trace.append(
+            (1.0 if crc_ok else 0.0) * mcs_entry.spectral_efficiency
+        )
+
+    return {
+        "snr_trace": snr_trace,
+        "mcs_trace": mcs_trace,
+        "fer_trace": fer_trace,
+        "throughput_trace": tp_trace,
+    }
+
+
+def sim_qos_flow_control(
+    n_frames: int = 100,
+    burst_size: int = 10,
+    snr_db: float = 15.0,
+    mcs_index: int = 7,
+    payload_size: int = 10,
+    high_watermark: int = 8,
+    low_watermark: int = 2,
+    channel_type: str = "awgn",
+    rician_k_db: float = 6.0,
+    seed: int = 42,
+) -> dict:
+    """QoS 流控机制仿真。
+
+    模拟突发数据到达场景, 验证流控背压机制对缓冲区占用和丢包的影响。
+
+    Returns:
+        {
+            "frame_idx": [...],
+            "buffer_occupancy": [...],
+            "flow_ctrl_bit": [...],
+            "paused": [...],
+            "tx_success": [...],
+        }
+    """
+    from nearlink_sdr.mac.frame import AsyncDataFrame
+    from nearlink_sdr.mac.qos import FlowController, Priority, TxQueue, TxQueueItem
+    from nearlink_sdr.phy.mac_interface import iq_to_mac, mac_to_iq
+    from nearlink_sdr.phy.tx_pipeline import TxConfig
+
+    rng = np.random.default_rng(seed)
+    cfg = TxConfig(
+        frame_type=2,
+        mcs_index=mcs_index,
+        pid=0x123456,
+        whitening_seed=0x52,
+        crc_seed=0x555555,
+        crc_len=24,
+        ctrl_bits_len=28,
+        pilot_interval=8,
+    )
+
+    flow = FlowController(
+        buffer_high_watermark=high_watermark,
+        buffer_low_watermark=low_watermark,
+    )
+    tx_queue = TxQueue(max_size=32)
+
+    frame_idx = []
+    buffer_occ = []
+    fc_bit = []
+    paused = []
+    tx_success_list = []
+
+    for i in range(n_frames):
+        # 每隔 burst_size 帧产生一批数据
+        if i % burst_size == 0:
+            n_burst = rng.integers(3, burst_size + 1)
+            for _ in range(n_burst):
+                payload = bytes(
+                    rng.integers(0, 256, payload_size, dtype=np.uint8)
+                )
+                item = TxQueueItem(priority=Priority.NORMAL, data=payload)
+                if tx_queue.push(item):
+                    flow.enqueue()
+
+        # 发送一帧 (如果有数据且未暂停)
+        tx_ok = False
+        if not flow.is_paused and not tx_queue.is_empty:
+            item = tx_queue.pop()
+            flow.dequeue()
+
+            frame = AsyncDataFrame(segment_type=0, data=item.data)
+            mac_bytes = frame.pack()
+            n_mac_bytes = len(mac_bytes)
+
+            iq = mac_to_iq(mac_bytes, cfg)
+            rx_iq = _channel_impair(
+                iq, snr_db, channel_type, rician_k_db,
+                0.0, "none", cfg.sps, rng,
+            )
+            rx = iq_to_mac(rx_iq, cfg, n_mac_bytes)
+            tx_ok = rx.crc_ok
+
+        frame_idx.append(i)
+        buffer_occ.append(flow.buffer_count)
+        fc_bit.append(flow.flow_ctrl_bit)
+        paused.append(flow.is_paused)
+        tx_success_list.append(tx_ok)
+
+    return {
+        "frame_idx": frame_idx,
+        "buffer_occupancy": buffer_occ,
+        "flow_ctrl_bit": fc_bit,
+        "paused": paused,
+        "tx_success": tx_success_list,
+    }
+
+
+def run_phase13_simulation() -> None:
+    """Phase 13: QoS 驱动的 ARQ + AMC 自适应 + 流控仿真可视化。"""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    fig, axes = plt.subplots(2, 3, figsize=(18, 10))
+    fig.suptitle("Phase 13: QoS ARQ / AMC Adaptive / Flow Control", fontsize=14)
+
+    # --- 13.1 QoS ARQ FER 对比 ---
+    snr_arq = np.arange(0, 16, 1)
+    arq = sim_qos_arq_link(snr_range_db=snr_arq, n_frames=30)
+
+    ax = axes[0, 0]
+    ax.semilogy(arq["snr_db"], np.array(arq["fer_no_arq"]) + 1e-6,
+                "o-", label="No ARQ")
+    ax.semilogy(arq["snr_db"], np.array(arq["fer_qos_arq"]) + 1e-6,
+                "s-", label="QoS ARQ")
+    ax.set_xlabel("SNR (dB)")
+    ax.set_ylabel("FER")
+    ax.set_title("13.1 - QoS ARQ FER")
+    ax.legend()
+    ax.grid(True, ls="--", alpha=0.5)
+
+    # --- 13.2 QoS ARQ 吞吐量 ---
+    ax = axes[0, 1]
+    ax.plot(arq["snr_db"], arq["throughput_no_arq"], "o-", label="No ARQ")
+    ax.plot(arq["snr_db"], arq["throughput_qos_arq"], "s-", label="QoS ARQ")
+    ax.set_xlabel("SNR (dB)")
+    ax.set_ylabel("Throughput (bit/symbol)")
+    ax.set_title("13.2 - QoS ARQ Throughput")
+    ax.legend()
+    ax.grid(True, ls="--", alpha=0.5)
+
+    ax2 = ax.twinx()
+    ax2.plot(arq["snr_db"], arq["avg_transmissions"], "^--",
+             color="gray", alpha=0.6, label="Avg TX")
+    ax2.set_ylabel("Avg Transmissions")
+    ax2.legend(loc="center right")
+
+    # --- 13.3 AMC 自适应 MCS 跟踪 ---
+    amc = sim_qos_amc_adaptive(n_frames_per_snr=20)
+
+    ax = axes[0, 2]
+    frames = range(len(amc["snr_trace"]))
+    ax.plot(list(frames), amc["snr_trace"], "-", alpha=0.5, label="SNR")
+    ax.set_xlabel("Frame Index")
+    ax.set_ylabel("SNR (dB)")
+    ax.set_title("13.3 - AMC Adaptive MCS Tracking")
+    ax.legend(loc="upper left")
+    ax.grid(True, ls="--", alpha=0.5)
+
+    ax2 = ax.twinx()
+    ax2.step(list(frames), amc["mcs_trace"], "r-", where="mid", label="MCS")
+    ax2.set_ylabel("MCS Index")
+    ax2.set_yticks(range(13))
+    ax2.legend(loc="upper right")
+
+    # --- 13.4 AMC 帧吞吐量 ---
+    ax = axes[1, 0]
+    ax.plot(list(frames), amc["throughput_trace"], "-", alpha=0.7)
+    ax.set_xlabel("Frame Index")
+    ax.set_ylabel("Throughput (bit/symbol)")
+    ax.set_title("13.4 - AMC Frame Throughput")
+    ax.grid(True, ls="--", alpha=0.5)
+
+    # --- 13.5 流控缓冲区占用 ---
+    fc = sim_qos_flow_control(n_frames=100)
+
+    ax = axes[1, 1]
+    ax.bar(fc["frame_idx"], fc["buffer_occupancy"], width=1.0, alpha=0.7,
+           label="Buffer")
+    ax.axhline(y=8, color="r", ls="--", alpha=0.5, label="High WM")
+    ax.axhline(y=2, color="g", ls="--", alpha=0.5, label="Low WM")
+    ax.set_xlabel("Frame Index")
+    ax.set_ylabel("Buffer Occupancy")
+    ax.set_title("13.5 - Flow Control Buffer")
+    ax.legend(fontsize=8)
+    ax.grid(True, ls="--", alpha=0.3)
+
+    # --- 13.6 流控暂停与传输成功 ---
+    ax = axes[1, 2]
+    ax.fill_between(fc["frame_idx"], [int(p) for p in fc["paused"]],
+                     alpha=0.3, color="red", label="Paused")
+    ax.step(fc["frame_idx"], fc["flow_ctrl_bit"], "b-", where="mid",
+            label="flow_ctrl", alpha=0.7)
+    success_frames = [i for i, s in zip(fc["frame_idx"], fc["tx_success"], strict=False) if s]
+    ax.scatter(success_frames, [1.1] * len(success_frames), c="green",
+               s=5, label="TX OK")
+    ax.set_xlabel("Frame Index")
+    ax.set_title("13.6 - Flow Control & TX Status")
+    ax.legend(fontsize=8)
+    ax.grid(True, ls="--", alpha=0.3)
+
+    fig.tight_layout()
+    fig.savefig("ber_phase13.png", dpi=150)
+    print("\nPhase 13 curves saved to ber_phase13.png")
+
+
 if __name__ == "__main__":
     import sys
     phase = sys.argv[1] if len(sys.argv) > 1 else "phase1"
@@ -3188,5 +3615,6 @@ if __name__ == "__main__":
         "phase10": run_phase10_simulation,
         "phase11": run_phase11_simulation,
         "phase12": run_phase12_simulation,
+        "phase13": run_phase13_simulation,
     }
     _dispatch.get(phase, run_phase1_simulation)()

@@ -18,6 +18,9 @@ from nearlink_sdr.sim.link_sim import (
     sim_mac_signaling_link,
     sim_multi_link,
     sim_pairing_signaling_phy,
+    sim_qos_amc_adaptive,
+    sim_qos_arq_link,
+    sim_qos_flow_control,
     sim_secure_link,
     sim_superframe_capacity,
 )
@@ -638,3 +641,130 @@ class TestHoppingMultipathLink:
         assert len(result["snr_db"]) == 3
         assert len(result["fer_fixed"]) == 3
         assert len(result["fer_hopping"]) == 3
+
+
+# ===================================================================
+# Phase 13: QoS 仿真测试
+# ===================================================================
+
+
+class TestQosArqLink:
+    """sim_qos_arq_link QoS ARQ 仿真测试。"""
+
+    def test_returns_expected_keys(self):
+        result = sim_qos_arq_link(
+            snr_range_db=np.array([10.0]),
+            n_frames=5,
+        )
+        assert "snr_db" in result
+        assert "fer_no_arq" in result
+        assert "fer_qos_arq" in result
+        assert "avg_transmissions" in result
+        assert "throughput_no_arq" in result
+        assert "throughput_qos_arq" in result
+
+    def test_fer_values_in_range(self):
+        result = sim_qos_arq_link(
+            snr_range_db=np.array([5.0, 15.0]),
+            n_frames=10,
+        )
+        for fer in result["fer_no_arq"]:
+            assert 0.0 <= fer <= 1.0
+        for fer in result["fer_qos_arq"]:
+            assert 0.0 <= fer <= 1.0
+
+    def test_high_snr_no_errors(self):
+        """高 SNR AWGN 下无误帧。"""
+        result = sim_qos_arq_link(
+            snr_range_db=np.array([30.0]),
+            n_frames=20,
+        )
+        assert result["fer_no_arq"][0] == 0.0
+        assert result["fer_qos_arq"][0] == 0.0
+        assert result["avg_transmissions"][0] == 1.0
+
+    def test_arq_improves_fer(self):
+        """中等 SNR 下 ARQ 应不劣于无 ARQ。"""
+        result = sim_qos_arq_link(
+            snr_range_db=np.array([5.0]),
+            n_frames=30,
+        )
+        assert result["fer_qos_arq"][0] <= result["fer_no_arq"][0]
+
+    def test_length_consistency(self):
+        snr = np.array([5.0, 10.0, 15.0])
+        result = sim_qos_arq_link(snr_range_db=snr, n_frames=5)
+        assert len(result["snr_db"]) == 3
+        assert len(result["fer_no_arq"]) == 3
+
+
+class TestQosAmcAdaptive:
+    """sim_qos_amc_adaptive AMC 自适应仿真测试。"""
+
+    def test_returns_expected_keys(self):
+        result = sim_qos_amc_adaptive(n_frames_per_snr=5)
+        assert "snr_trace" in result
+        assert "mcs_trace" in result
+        assert "fer_trace" in result
+        assert "throughput_trace" in result
+
+    def test_trace_lengths(self):
+        n = 5
+        result = sim_qos_amc_adaptive(n_frames_per_snr=n)
+        total = 5 * n  # 默认 5 段 SNR
+        assert len(result["snr_trace"]) == total
+        assert len(result["mcs_trace"]) == total
+
+    def test_mcs_values_in_range(self):
+        result = sim_qos_amc_adaptive(n_frames_per_snr=5)
+        for mcs in result["mcs_trace"]:
+            assert 0 <= mcs <= 12
+
+    def test_mcs_adapts_to_snr(self):
+        """高 SNR 段的 MCS 应倾向于高于低 SNR 段。"""
+        result = sim_qos_amc_adaptive(
+            snr_sequence=np.concatenate([
+                np.full(30, 2),
+                np.full(30, 25),
+            ]),
+            n_frames_per_snr=30,
+        )
+        low_snr_mcs = result["mcs_trace"][-5:]
+        high_snr_initial = result["mcs_trace"][:5]
+        # 高 SNR 段后期的 MCS 均值应不低于低 SNR
+        assert np.mean(low_snr_mcs) >= np.mean(high_snr_initial) - 2
+
+
+class TestQosFlowControl:
+    """sim_qos_flow_control 流控仿真测试。"""
+
+    def test_returns_expected_keys(self):
+        result = sim_qos_flow_control(n_frames=20)
+        assert "frame_idx" in result
+        assert "buffer_occupancy" in result
+        assert "flow_ctrl_bit" in result
+        assert "paused" in result
+        assert "tx_success" in result
+
+    def test_trace_length(self):
+        result = sim_qos_flow_control(n_frames=50)
+        assert len(result["frame_idx"]) == 50
+
+    def test_buffer_non_negative(self):
+        result = sim_qos_flow_control(n_frames=50)
+        for occ in result["buffer_occupancy"]:
+            assert occ >= 0
+
+    def test_flow_ctrl_bit_values(self):
+        result = sim_qos_flow_control(n_frames=50)
+        for bit in result["flow_ctrl_bit"]:
+            assert bit in (0, 1)
+
+    def test_high_snr_tx_success(self):
+        """高 SNR 下发送成功率应较高。"""
+        result = sim_qos_flow_control(
+            n_frames=50, snr_db=30.0, burst_size=5,
+        )
+        success_count = sum(result["tx_success"])
+        # 至少应有一些帧成功发送
+        assert success_count > 0

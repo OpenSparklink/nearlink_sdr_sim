@@ -153,3 +153,4 @@
 | 多链路调度仿真 (Phase 10) | `sim.link_sim` | 完成 |
 | 接入→配对→加密端到端仿真 (Phase 11) | `sim.link_sim` | 完成 |
 | AMC + HARQ + 跳频多径仿真 (Phase 12) | `sim.link_sim` | 完成 |
+| QoS ARQ / AMC 自适应 / 流控仿真 (Phase 13) | `sim.link_sim` | 完成 |
