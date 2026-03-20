@@ -202,11 +202,19 @@ tests/            # 测试文件, 与 src 模块一一对应
 | 7.2.23 | 窄带跳频测量 | 完成 | `mac/link_manager.py` |
 | 7.2.24 | 超宽带脉冲测量与感知 | 完成 | `mac/link_manager.py` |
 | 7.2.25 | 窄带跳频感知 | 完成 | `mac/link_manager.py` |
+| 8.2.1 | 输出功率等级 | 完成 | `phy/rf_compliance.py` |
+| 8.2.2 | 调制精度 (GFSK频偏/PSK EVM/频率容限/时钟) | 完成 | `phy/rf_compliance.py` |
+| 8.2.3 | 无用发射 (GFSK杂散/PSK频谱模板) | 完成 | `phy/rf_compliance.py` |
+| 8.3.1 | 接收灵敏度与最大输入电平 | 完成 | `phy/rf_compliance.py` |
+| 8.3.2 | 接收机选择性 | 完成 | `phy/rf_compliance.py` |
+| 8.3.4 | RSSI 测量精度 | 完成 | `phy/rf_compliance.py` |
+| 8.4 | UWB 射频 (信道/频谱/NRMSE) | 完成 | `phy/rf_compliance.py` |
+| 6.6.3 | 系统管理帧发送调度 | 完成 | `mac/smf_scheduler.py` |
 
 ## 测试质量
 
-- 2070 个测试用例, 全部通过 (crypto 依赖测试除外)
-- 整体覆盖率 91%, 核心模块覆盖率 97%+, 测试执行时间 4.45 秒
+- 2195 个测试用例, 全部通过 (crypto 依赖测试除外)
+- 整体覆盖率 91%, 核心模块覆盖率 97%+, 测试执行时间 4.33 秒
 - 标准第 14 章测试向量全部验证通过
 
 ## 硬件约束 (USRP E310)

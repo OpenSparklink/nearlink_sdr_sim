@@ -9,6 +9,26 @@
 
 ### Added
 
+- 射频合规参数校验模块 (`phy/rf_compliance.py`) -- 标准 8.2 ~ 8.4
+  - 8.2.1 输出功率等级分类与步进校验
+  - 8.2.2.1 GFSK 频率偏差校验 (7 种符号速率)
+  - 8.2.2.2 PSK EVM 校验 (BPSK/QPSK/8PSK)
+  - 8.2.2.3 频率容限校验 (2.4GHz/5GHz/sub-1GHz)
+  - 8.2.2.4/5 时钟精度校验 (激活态/休眠态)
+  - 8.2.3 GFSK 频段内杂散限值 / PSK 频谱模板
+  - 8.3.1 参考灵敏度查表 (GFSK + PSK 13 种 MCS × 7 带宽)
+  - 8.3.2 接收机选择性 / 频段外选择性 / 干扰互调
+  - 8.3.4 RSSI 测量精度
+  - 8.4 UWB 信道频率 / 频谱模板 / NRMSE 校验
+  - RFComplianceReport 综合校验报告
+- SMF 发送调度模块 (`mac/smf_scheduler.py`) -- 标准 6.6.3
+  - 6.6.3.1.1 通过接入启动调度 (smf_params_from_access)
+  - 6.6.3.1.2 通过广播启动调度 (smf_params_from_broadcast)
+  - SMFTransmitScheduler: 周期性发送计划 / 频点轮换 / 帧构建
+  - 链路信令/偏移信令注册与管理
+  - 调度参数动态更新
+- 125 个新测试用例 (`tests/test_rf_compliance.py` 93 个 + `tests/test_smf_scheduler.py` 32 个)
+
 - UWB 脉冲波形模块 (`phy/uwb_pulse.py`) -- 标准 6.2.1.4
   - UWBPulseConfig: 500MHz/1300MHz 带宽配置
   - kaiser_pulse: Kaiser 窗脉冲波形生成
