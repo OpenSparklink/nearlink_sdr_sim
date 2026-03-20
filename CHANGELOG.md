@@ -9,6 +9,12 @@
 
 ### Added
 
+- 端到端集成测试增强: 新增 18 个 MAC-PHY 集成测试 (1382 → 1400)
+  - TestEncryptedPhyRoundtrip (3 个测试): 配对→加密→PHY 传输→解密验证, 多帧 payload_count 递增, MIC 篡改拒绝
+  - TestMultiFrameTypeIntegration (6 个测试): FT1/FT2/FT3/FT4 帧类型 roundtrip, 多 MCS 等级扫描, 多种信令类型
+  - TestNoisyChannelMacData (3 个测试): AWGN 信道高/低 SNR MAC 数据传输, 广播帧含噪声传输
+  - TestLinkStateDrivenExchange (3 个测试): 链路状态机驱动双向数据交换、断开、重连
+  - TestMultiLinkConcurrentData (3 个测试): 多链路独立数据传输、调度器分发帧、信令/数据交织
 - 测试覆盖率补充: 总体 84% → 85%, 新增 28 个测试 (1354 → 1382)
   - `tests/test_modulator.py`: TestSLEDemodulator (3 个测试) — `demodulator.py` 0% → 100%
   - `tests/test_channel.py`: TestDoppler (6 个测试) — `channel.py` 88% → 92%

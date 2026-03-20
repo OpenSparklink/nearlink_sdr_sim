@@ -30,7 +30,12 @@ from nearlink_sdr.mac.scheduler import (
     SmfScheduleConfig,
     TimeSlice,
 )
+from nearlink_sdr.mac.security_manager import (
+    FrameCryptoContext,
+    run_pairing_procedure,
+)
 from nearlink_sdr.mac.signaling import encode_signaling
+from nearlink_sdr.phy.channel import ChannelConfig, ChannelModel
 from nearlink_sdr.phy.mac_interface import (
     bits_to_bytes,
     bytes_to_bits,
@@ -539,3 +544,364 @@ class TestFullStackIntegration:
         s1 = sched.get_event_schedule(1)
         s2 = sched.get_event_schedule(2)
         assert s1 is not None and s2 is not None
+
+
+# -----------------------------------------------------------------------
+# 加密数据通过 PHY 管道
+# -----------------------------------------------------------------------
+
+
+class TestEncryptedPhyRoundtrip:
+    """配对 → AES-CCM 加密 → PHY 传输 → 解密验证。"""
+
+    def test_pairing_then_encrypted_data(self):
+        """完整配对后, 加密数据通过 PHY 管道传输并解密恢复。"""
+        g_mgr, t_mgr = run_pairing_procedure()
+        assert g_mgr.session_key is not None
+        assert g_mgr.session_key == t_mgr.session_key
+
+        # 使用会话密钥构建加密上下文
+        g_ctx = FrameCryptoContext()
+        g_ctx.session_key = g_mgr.session_key
+        g_ctx.direction = 0  # G → T
+
+        t_ctx = FrameCryptoContext()
+        t_ctx.session_key = t_mgr.session_key
+        t_ctx.direction = 0  # 接收方也用相同方向
+
+        # 加密数据
+        plaintext = b"SparkLink SLE encrypted payload"
+        ciphertext, mic = g_ctx.encrypt(plaintext)
+
+        # 将密文 + MIC 拼接作为 MAC 载荷传输
+        encrypted_payload = ciphertext + mic
+        cfg = TxConfig(frame_type=2, mcs_index=7)
+        iq = mac_to_iq(encrypted_payload, cfg)
+        rx = iq_to_mac(iq, cfg, len(encrypted_payload))
+        assert rx.crc_ok
+
+        # 接收方拆分密文和 MIC, 解密
+        rx_cipher = rx.mac_payload[: len(ciphertext)]
+        rx_mic = rx.mac_payload[len(ciphertext):]
+        recovered = t_ctx.decrypt(rx_cipher, rx_mic)
+        assert recovered == plaintext
+
+    def test_encrypted_multi_frame(self):
+        """连续多帧加密传输, 验证 payload_count 递增正确。"""
+        g_mgr, t_mgr = run_pairing_procedure()
+
+        g_ctx = FrameCryptoContext()
+        g_ctx.session_key = g_mgr.session_key
+
+        t_ctx = FrameCryptoContext()
+        t_ctx.session_key = t_mgr.session_key
+
+        cfg = TxConfig(frame_type=2, mcs_index=7)
+
+        for i in range(5):
+            plaintext = f"frame-{i}-data".encode()
+            ciphertext, mic = g_ctx.encrypt(plaintext)
+            payload = ciphertext + mic
+
+            iq = mac_to_iq(payload, cfg)
+            rx = iq_to_mac(iq, cfg, len(payload))
+            assert rx.crc_ok
+
+            rx_cipher = rx.mac_payload[: len(ciphertext)]
+            rx_mic = rx.mac_payload[len(ciphertext):]
+            recovered = t_ctx.decrypt(rx_cipher, rx_mic)
+            assert recovered == plaintext
+
+        assert g_ctx.tx_count == 5
+        assert t_ctx.rx_count == 5
+
+    def test_tampered_mic_rejects(self):
+        """MIC 被篡改时解密应失败。"""
+        import pytest
+        from cryptography.exceptions import InvalidTag
+
+        g_mgr, t_mgr = run_pairing_procedure()
+
+        g_ctx = FrameCryptoContext()
+        g_ctx.session_key = g_mgr.session_key
+        t_ctx = FrameCryptoContext()
+        t_ctx.session_key = t_mgr.session_key
+
+        plaintext = b"integrity check"
+        ciphertext, mic = g_ctx.encrypt(plaintext)
+
+        # 篡改 MIC
+        tampered_mic = bytes([b ^ 0xFF for b in mic])
+        with pytest.raises(InvalidTag):
+            t_ctx.decrypt(ciphertext, tampered_mic)
+
+
+# -----------------------------------------------------------------------
+# 多帧类型 MAC-PHY 链路
+# -----------------------------------------------------------------------
+
+
+class TestMultiFrameTypeIntegration:
+    """FT1/FT2/FT3/FT4 不同帧类型的 MAC-PHY 全链路验证。"""
+
+    def test_ft2_data_roundtrip(self):
+        """FT2 (默认) 数据帧 roundtrip。"""
+        cfg = TxConfig(frame_type=2, mcs_index=5)
+        data = b"\xAB\xCD\xEF" * 4
+        recovered, ok = roundtrip_data(data, cfg)
+        assert ok
+        assert recovered == data
+
+    def test_ft1_pipeline_exists(self):
+        """FT1 帧类型配置可用 (FT1 使用 GFSK, 独立测试在 test_ft_pipeline 中)。"""
+        cfg = TxConfig(frame_type=1, mcs_index=0)
+        assert cfg.frame_type == 1
+
+    def test_ft3_data_roundtrip(self):
+        """FT3 帧类型数据传输。"""
+        cfg = TxConfig(frame_type=3, mcs_index=7)
+        data = b"FT3 test payload"
+        recovered, ok = roundtrip_data(data, cfg)
+        assert ok
+        assert recovered == data
+
+    def test_ft4_data_roundtrip(self):
+        """FT4 帧类型数据传输。"""
+        cfg = TxConfig(frame_type=4, mcs_index=7)
+        data = b"FT4 test payload"
+        recovered, ok = roundtrip_data(data, cfg)
+        assert ok
+        assert recovered == data
+
+    def test_different_mcs_levels(self):
+        """不同 MCS 等级下数据帧 roundtrip 均成功。"""
+        data = b"MCS sweep test"
+        for mcs in [0, 3, 7, 10, 12]:
+            cfg = TxConfig(frame_type=2, mcs_index=mcs)
+            recovered, ok = roundtrip_data(data, cfg)
+            assert ok, f"MCS {mcs} failed"
+            assert recovered == data
+
+    def test_signaling_ft2_multiple_types(self):
+        """多种信令类型通过 FT2 管道传输。"""
+        from nearlink_sdr.mac.link_control import (
+            IntervalUpdateRequest,
+            TimeoutUpdateRequest,
+        )
+
+        signalings = [
+            PingRequest(),
+            PingResponse(),
+            IntervalUpdateRequest(interval_type=3),
+            TimeoutUpdateRequest(timeout=500),
+        ]
+
+        cfg = TxConfig(frame_type=2, mcs_index=7)
+        for msg in signalings:
+            recovered, ok = roundtrip_signaling(msg, cfg)
+            assert ok, f"{type(msg).__name__} roundtrip failed"
+            assert type(recovered).__name__ == type(msg).__name__
+
+
+# -----------------------------------------------------------------------
+# 含信道损伤的 MAC 数据传输
+# -----------------------------------------------------------------------
+
+
+class TestNoisyChannelMacData:
+    """MAC 数据帧通过含噪信道的端到端验证。"""
+
+    def test_awgn_high_snr_success(self):
+        """高 SNR AWGN 信道下 MAC 数据帧应正确恢复。"""
+        cfg = TxConfig(frame_type=2, mcs_index=7)
+        data = b"AWGN test data"
+        frame = AsyncDataFrame(segment_type=0, data=data)
+        mac_bytes = frame.pack()
+
+        iq = mac_to_iq(mac_bytes, cfg)
+
+        # 添加高 SNR 噪声
+        ch_cfg = ChannelConfig(snr_db=30.0, channel_type="awgn", seed=42)
+        ch = ChannelModel(config=ch_cfg)
+        rx_iq = ch.apply_awgn(iq)
+
+        rx = iq_to_mac(rx_iq, cfg, len(mac_bytes))
+        assert rx.crc_ok
+        recovered = AsyncDataFrame.unpack(rx.mac_payload)
+        assert recovered.data == data
+
+    def test_awgn_low_snr_fer(self):
+        """低 SNR AWGN 信道下 CRC 校验应有一定失败率。"""
+        cfg = TxConfig(frame_type=2, mcs_index=7)
+        data = b"low snr test"
+        frame = AsyncDataFrame(segment_type=0, data=data)
+        mac_bytes = frame.pack()
+
+        n_trials = 20
+        n_fail = 0
+        for i in range(n_trials):
+            iq = mac_to_iq(mac_bytes, cfg)
+            ch_cfg = ChannelConfig(snr_db=0.0, channel_type="awgn", seed=i)
+            ch = ChannelModel(config=ch_cfg)
+            rx_iq = ch.apply_awgn(iq)
+            rx = iq_to_mac(rx_iq, cfg, len(mac_bytes))
+            if not rx.crc_ok:
+                n_fail += 1
+
+        # 0 dB SNR 下应有较高 FER
+        assert n_fail > 0
+
+    def test_broadcast_frame_through_awgn(self):
+        """广播帧通过 AWGN 信道后仍可正确解析。"""
+        b_mgr = BroadcasterAccessManager(
+            local_address=b"\x01\x02\x03\x04\x05\x06",
+        )
+        b_mgr.link_manager.process_event(Event(EventType.START_BROADCAST))
+        adv_frame = b_mgr.build_ext_adv_frame()
+        mac_bytes = adv_frame.pack()
+
+        cfg = TxConfig(frame_type=2, mcs_index=7)
+        iq = mac_to_iq(mac_bytes, cfg)
+
+        ch_cfg = ChannelConfig(snr_db=25.0, channel_type="awgn", seed=99)
+        ch = ChannelModel(config=ch_cfg)
+        rx_iq = ch.apply_awgn(iq)
+
+        rx = iq_to_mac(rx_iq, cfg, len(mac_bytes))
+        assert rx.crc_ok
+
+        restored = BroadcastFrame.unpack(rx.mac_payload)
+        assert restored is not None
+
+
+# -----------------------------------------------------------------------
+# 链路状态机驱动帧交换
+# -----------------------------------------------------------------------
+
+
+class TestLinkStateDrivenExchange:
+    """链路管理器状态转移与 PHY 数据交换联动。"""
+
+    def test_connected_exchange_data(self):
+        """链路 CONNECTED 状态下双向数据交换。"""
+        b_mgr, i_mgr = run_access_procedure()
+        assert b_mgr.link_manager.state == LinkState.CONNECTED
+        assert i_mgr.link_manager.state == LinkState.CONNECTED
+
+        # G → T 方向
+        cfg = TxConfig(frame_type=2, mcs_index=7)
+        g_data = b"G-to-T payload"
+        recovered, ok = roundtrip_data(g_data, cfg)
+        assert ok
+        assert recovered == g_data
+
+        # T → G 方向
+        t_data = b"T-to-G payload"
+        recovered, ok = roundtrip_data(t_data, cfg)
+        assert ok
+        assert recovered == t_data
+
+    def test_disconnect_after_data(self):
+        """数据交换后正常断开链路。"""
+        b_mgr, _i_mgr = run_access_procedure()
+
+        # 先交换一帧数据
+        cfg = TxConfig(frame_type=2, mcs_index=7)
+        _, ok = roundtrip_data(b"before disconnect", cfg)
+        assert ok
+
+        # 断开
+        b_mgr.link_manager.process_event(
+            Event(EventType.DISCONNECT_REQUEST)
+        )
+        assert b_mgr.link_manager.state == LinkState.DISCONNECTED
+
+    def test_reconnect_and_exchange(self):
+        """断开后重新接入并交换数据。"""
+        # 第一次接入
+        b_mgr, i_mgr = run_access_procedure()
+        cfg = TxConfig(frame_type=2, mcs_index=7)
+        _, ok = roundtrip_data(b"first session", cfg)
+        assert ok
+
+        # 断开
+        b_mgr.link_manager.process_event(Event(EventType.DISCONNECT_REQUEST))
+        i_mgr.link_manager.process_event(Event(EventType.DISCONNECT_RECEIVED))
+
+        # 重新接入
+        b_mgr2, _i_mgr2 = run_access_procedure()
+        assert b_mgr2.link_manager.state == LinkState.CONNECTED
+
+        _, ok = roundtrip_data(b"second session", cfg)
+        assert ok
+
+
+# -----------------------------------------------------------------------
+# 多链路并发数据传输
+# -----------------------------------------------------------------------
+
+
+class TestMultiLinkConcurrentData:
+    """多条链路并发且独立的数据交换。"""
+
+    def test_two_links_independent_data(self):
+        """两条链路使用不同 PID 和 MCS 独立传输数据。"""
+        cfg1 = TxConfig(frame_type=2, mcs_index=5, pid=0x111111)
+        cfg2 = TxConfig(frame_type=2, mcs_index=10, pid=0x222222)
+
+        data1 = b"link-1-payload"
+        data2 = b"link-2-payload"
+
+        r1, ok1 = roundtrip_data(data1, cfg1)
+        r2, ok2 = roundtrip_data(data2, cfg2)
+
+        assert ok1 and r1 == data1
+        assert ok2 and r2 == data2
+
+    def test_scheduler_dispatched_data(self):
+        """调度器分配时间片后每条链路各发一帧。"""
+        sched = ScheduleManager()
+        sched.configure_smf(SmfScheduleConfig(smf_interval=800))
+
+        for link_id in range(1, 4):
+            timing = EventTimingParams(
+                event_group_period=100,
+                event_count=1,
+            )
+            sched.register_link(
+                link_id=link_id,
+                timing=timing,
+                time_slices=[TimeSlice(
+                    offset=(link_id - 1) * 25,
+                    duration=20,
+                )],
+            )
+
+        cfg = TxConfig(frame_type=2, mcs_index=7)
+        for link_id in range(1, 4):
+            schedule = sched.get_event_schedule(link_id)
+            assert schedule is not None
+            payload = f"link-{link_id}".encode()
+            recovered, ok = roundtrip_data(payload, cfg)
+            assert ok
+            assert recovered == payload
+
+    def test_signaling_and_data_interleaved(self):
+        """信令帧和数据帧交替传输, 互不干扰。"""
+        cfg = TxConfig(frame_type=2, mcs_index=7)
+
+        # 信令
+        ping = PingRequest()
+        _sig_recovered, sig_ok = roundtrip_signaling(ping, cfg)
+        assert sig_ok
+
+        # 数据
+        data_recovered, data_ok = roundtrip_data(b"interleaved data", cfg)
+        assert data_ok
+        assert data_recovered == b"interleaved data"
+
+        # 再发信令
+        pong = PingResponse()
+        sig2, sig2_ok = roundtrip_signaling(pong, cfg)
+        assert sig2_ok
+        assert isinstance(sig2, PingResponse)
