@@ -36,6 +36,8 @@
 - 移除 14 个 `run_phase*` 可视化冗余测试 (原占测试总时长 96%)
 - 测试时间: 170s → 6s (提速 28 倍)
 
+## [0.26.0]
+
 ### Added
 
 - Phase 14 双节点端到端仿真 (`sim/link_sim.py`)
@@ -45,6 +47,12 @@
   - `_run_dual_frames()`: 多 SNR 帧传输内部辅助函数
   - `run_phase14_simulation()`: 2x2 可视化 (FER/BER、明文/密文、MCS 历史、成功率)
   - `tests/test_link_sim_phy.py`: 5 个测试 (TestDualNodeLink + test_run_phase14)
+- 测试覆盖率补充: 96% (345 miss, 新增 32 个测试, 1621 → 1653)
+  - `tests/test_node.py`: 新增 10 个测试 — 配对完成/失败流程、加密收发、信令发送、默认回调
+  - `tests/test_security.py`: 新增 14 个测试 — 全部 pack/unpack 输入校验 ValueError 路径
+  - `tests/test_crypto.py`: 新增 2 个测试 — NO_INPUT/PASSWORD_VERIFY 鉴权方式确认码
+  - `tests/test_channel.py`: 新增 4 个测试 — 私有方法 (rayleigh/rician/multipath) 和零功率噪声
+  - `tests/test_measurement.py`: 新增 2 个测试 — TYPE_2 扰动索引循环覆盖
 
 ### Fixed
 
@@ -59,13 +67,6 @@
   - `R_adj <= 0` 守卫 (所有标准速率 R_adj > 0)
   - `_subsegment_last_block` 子分段路径 (K_1024 > threshold_1024 恒成立)
   - `_find_rate_str` 辅助函数及 5 个关联测试
-
-- 测试覆盖率补充: 96% (345 miss, 新增 32 个测试, 1621 → 1653)
-  - `tests/test_node.py`: 新增 10 个测试 — 配对完成/失败流程、加密收发、信令发送、默认回调
-  - `tests/test_security.py`: 新增 14 个测试 — 全部 pack/unpack 输入校验 ValueError 路径
-  - `tests/test_crypto.py`: 新增 2 个测试 — NO_INPUT/PASSWORD_VERIFY 鉴权方式确认码
-  - `tests/test_channel.py`: 新增 4 个测试 — 私有方法 (rayleigh/rician/multipath) 和零功率噪声
-  - `tests/test_measurement.py`: 新增 2 个测试 — TYPE_2 扰动索引循环覆盖
 
 ## [0.25.0]
 
