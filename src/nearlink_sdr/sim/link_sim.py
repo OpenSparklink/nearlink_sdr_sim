@@ -1322,17 +1322,69 @@ def run_phase8_simulation():
 # ── Phase 9: MAC 帧级端到端仿真 ──
 
 
+def _channel_impair(
+    iq: np.ndarray,
+    snr_db: float,
+    channel_type: str,
+    rician_k_db: float,
+    cfo_hz: float,
+    eq_method: str,
+    sps: int,
+    rng: np.random.Generator,
+) -> np.ndarray:
+    """对 IQ 信号施加信道损伤 (衰落/噪声/频偏) 并可选均衡。"""
+    from nearlink_sdr.phy.channel import ChannelConfig
+    from nearlink_sdr.phy.equalizer import equalize_1tap, equalize_mmse_freq
+
+    frame_seed = int(rng.integers(0, 2**31))
+    ch_cfg = ChannelConfig(
+        snr_db=snr_db,
+        channel_type=channel_type,
+        rician_k_db=rician_k_db,
+        seed=frame_seed,
+    )
+    ch = ChannelModel(config=ch_cfg)
+
+    rx_iq = ch.apply_awgn(iq) if channel_type == "awgn" else ch.apply_fading(iq)
+
+    if cfo_hz != 0.0:
+        sample_rate = sps * 1e6
+        rx_iq = _apply_cfo(rx_iq, cfo_hz, sample_rate)
+
+    if eq_method != "none" and channel_type not in ("awgn",):
+        noise_var = ch.noise_variance
+        taps = ch.last_taps
+        if channel_type in ("rayleigh", "rician"):
+            h = taps[0, :]
+            rx_iq = equalize_1tap(rx_iq, h, noise_var, method=eq_method)
+        elif channel_type == "multipath":
+            h_time = taps[:, 0]
+            h_freq = np.fft.fft(h_time, len(rx_iq))
+            rx_iq = equalize_mmse_freq(rx_iq, h_freq, noise_var)
+
+    return rx_iq
+
+
 def sim_mac_signaling_link(
     snr_range_db: np.ndarray | None = None,
     n_frames: int = 50,
     mcs_index: int = 7,
     channel_type: str = "awgn",
+    cfo_hz: float = 0.0,
+    eq_method: str = "none",
+    rician_k_db: float = 6.0,
     seed: int = 42,
 ) -> dict:
     """MAC 信令帧端到端仿真: 信令编码 → IQ → 信道 → IQ → 信令解码。
 
     每帧随机选取一种信令类型进行编码,
     经过 PHY 发射/接收流水线和信道后, 统计信令解码成功率。
+
+    Args:
+        channel_type: "awgn" | "rayleigh" | "rician" | "multipath"。
+        cfo_hz: 载波频率偏移 (Hz)。
+        eq_method: "none" | "zf" | "mmse"。
+        rician_k_db: Rician K 因子 (dB)。
 
     Returns:
         {"snr_db": [...], "signaling_success_rate": [...]}
@@ -1377,7 +1429,6 @@ def sim_mac_signaling_link(
     success_rates = []
 
     for snr in snr_range_db:
-        ch = ChannelModel(snr_db=float(snr))
         successes = 0
 
         for i in range(n_frames):
@@ -1387,7 +1438,10 @@ def sim_mac_signaling_link(
             n_mac_bytes = len(mac_bytes)
 
             iq = signaling_to_iq(msg, cfg)
-            rx_iq = ch.apply_awgn(iq)
+            rx_iq = _channel_impair(
+                iq, float(snr), channel_type, rician_k_db,
+                cfo_hz, eq_method, cfg.sps, rng,
+            )
 
             recovered, ok = iq_to_signaling(rx_iq, cfg, n_mac_bytes)
             if (
@@ -1408,6 +1462,9 @@ def sim_mac_data_link(
     n_frames: int = 50,
     mcs_index: int = 7,
     channel_type: str = "awgn",
+    cfo_hz: float = 0.0,
+    eq_method: str = "none",
+    rician_k_db: float = 6.0,
     seed: int = 42,
 ) -> dict:
     """MAC 异步数据帧端到端仿真: 数据编码 → IQ → 信道 → IQ → 数据解码。
@@ -1416,11 +1473,10 @@ def sim_mac_data_link(
 
     Args:
         payload_sizes: 要测试的载荷大小列表 (字节)。
-        snr_range_db: SNR 范围。
-        n_frames: 每个 (SNR, size) 组合的帧数。
-        mcs_index: MCS 索引。
-        channel_type: 信道类型。
-        seed: 随机种子。
+        channel_type: "awgn" | "rayleigh" | "rician" | "multipath"。
+        cfo_hz: 载波频率偏移 (Hz)。
+        eq_method: "none" | "zf" | "mmse"。
+        rician_k_db: Rician K 因子 (dB)。
 
     Returns:
         {"snr_db": [...], "results": {size: {"fer": [...], "byte_ber": [...]}}}
@@ -1453,7 +1509,6 @@ def sim_mac_data_link(
         fer_list, byte_ber_list = [], []
 
         for snr in snr_range_db:
-            ch = ChannelModel(snr_db=float(snr))
             frame_errors, total_byte_errors, total_bytes = 0, 0, 0
 
             for _ in range(n_frames):
@@ -1463,7 +1518,10 @@ def sim_mac_data_link(
                 n_mac_bytes = len(mac_bytes)
 
                 iq = mac_to_iq(mac_bytes, cfg)
-                rx_iq = ch.apply_awgn(iq)
+                rx_iq = _channel_impair(
+                    iq, float(snr), channel_type, rician_k_db,
+                    cfo_hz, eq_method, cfg.sps, rng,
+                )
                 rx = iq_to_mac(rx_iq, cfg, n_mac_bytes)
 
                 if not rx.crc_ok:
@@ -1498,11 +1556,21 @@ def sim_mac_mux_link(
     n_frames: int = 50,
     mcs_index: int = 7,
     data_size: int = 10,
+    channel_type: str = "awgn",
+    cfo_hz: float = 0.0,
+    eq_method: str = "none",
+    rician_k_db: float = 6.0,
     seed: int = 42,
 ) -> dict:
     """MAC 复用帧端到端仿真: 控制帧+数据帧复用 → IQ → 信道 → IQ → 解码。
 
     每帧包含一条信令和一段数据, 验证复用帧在信道传输后的完整性。
+
+    Args:
+        channel_type: "awgn" | "rayleigh" | "rician" | "multipath"。
+        cfo_hz: 载波频率偏移 (Hz)。
+        eq_method: "none" | "zf" | "mmse"。
+        rician_k_db: Rician K 因子 (dB)。
 
     Returns:
         {"snr_db": [...], "mux_success_rate": [...], "data_match_rate": [...]}
@@ -1532,7 +1600,6 @@ def sim_mac_mux_link(
     mux_success_list, data_match_list = [], []
 
     for snr in snr_range_db:
-        ch = ChannelModel(snr_db=float(snr))
         mux_ok_count, data_ok_count = 0, 0
 
         for _ in range(n_frames):
@@ -1544,7 +1611,10 @@ def sim_mac_mux_link(
             n_mac_bytes = len(mac_bytes)
 
             iq = mac_to_iq(mac_bytes, cfg)
-            rx_iq = ch.apply_awgn(iq)
+            rx_iq = _channel_impair(
+                iq, float(snr), channel_type, rician_k_db,
+                cfo_hz, eq_method, cfg.sps, rng,
+            )
             rx = iq_to_mac(rx_iq, cfg, n_mac_bytes)
 
             if rx.crc_ok:
@@ -1570,7 +1640,7 @@ def sim_mac_mux_link(
 
 
 def run_phase9_simulation():
-    """Phase 9: MAC 帧级端到端仿真 — 信令、数据、复用帧。"""
+    """Phase 9: MAC 帧级端到端仿真 — 信令、数据、复用帧 (含信道损伤)。"""
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
@@ -1580,76 +1650,118 @@ def run_phase9_simulation():
     print("=== Phase 9 MAC Frame-Level Simulation ===")
     print()
 
-    # 信令帧仿真
+    # ── 信令帧: AWGN vs Rayleigh vs Rayleigh+MMSE ──
+    sig_configs = [
+        {"channel_type": "awgn", "eq_method": "none", "cfo_hz": 0.0,
+         "label": "AWGN"},
+        {"channel_type": "rayleigh", "eq_method": "none", "cfo_hz": 0.0,
+         "label": "Rayleigh (no eq)"},
+        {"channel_type": "rayleigh", "eq_method": "mmse", "cfo_hz": 0.0,
+         "label": "Rayleigh + MMSE"},
+        {"channel_type": "awgn", "eq_method": "none", "cfo_hz": 500.0,
+         "label": "AWGN + CFO 500Hz"},
+    ]
     print("[1/3] MAC signaling frame simulation...")
-    sig_result = sim_mac_signaling_link(snr_range_db=snr_range, n_frames=100)
-    for s, r in zip(sig_result["snr_db"][::4], sig_result["signaling_success_rate"][::4],
-                    strict=False):
-        print(f"  SNR={s:2.0f} dB  Success={r:.3f}")
+    sig_results = []
+    for cfg in sig_configs:
+        print(f"  {cfg['label']}...")
+        res = sim_mac_signaling_link(
+            snr_range_db=snr_range, n_frames=100,
+            channel_type=cfg["channel_type"],
+            eq_method=cfg["eq_method"],
+            cfo_hz=cfg["cfo_hz"],
+        )
+        sig_results.append((cfg["label"], res))
+        for s, r in zip(res["snr_db"][::4], res["signaling_success_rate"][::4],
+                        strict=False):
+            print(f"    SNR={s:2.0f} dB  Success={r:.3f}")
 
-    # 数据帧仿真
+    # ── 数据帧: AWGN vs Rayleigh+MMSE ──
     print("[2/3] MAC data frame simulation...")
-    data_result = sim_mac_data_link(
-        payload_sizes=[4, 10, 27],
-        snr_range_db=snr_range,
-        n_frames=100,
-    )
-    for size, metrics in data_result["results"].items():
-        print(f"  Payload {size}B:")
-        for s, f, b in zip(
-            data_result["snr_db"][::4], metrics["fer"][::4],
-            metrics["byte_ber"][::4], strict=False,
-        ):
-            print(f"    SNR={s:2.0f} dB  FER={f:.3f}  ByteBER={b:.5f}")
+    data_configs = [
+        {"channel_type": "awgn", "eq_method": "none", "label": "AWGN"},
+        {"channel_type": "rayleigh", "eq_method": "mmse", "label": "Rayleigh+MMSE"},
+    ]
+    data_results = []
+    for dcfg in data_configs:
+        print(f"  {dcfg['label']}...")
+        res = sim_mac_data_link(
+            payload_sizes=[4, 10, 27],
+            snr_range_db=snr_range, n_frames=100,
+            channel_type=dcfg["channel_type"],
+            eq_method=dcfg["eq_method"],
+        )
+        data_results.append((dcfg["label"], res))
+        for size, metrics in res["results"].items():
+            for s, f in zip(res["snr_db"][::4], metrics["fer"][::4], strict=False):
+                print(f"    {dcfg['label']} {size}B  SNR={s:2.0f} dB  FER={f:.3f}")
 
-    # 复用帧仿真
+    # ── 复用帧: AWGN vs Rayleigh+MMSE ──
     print("[3/3] MAC mux frame simulation...")
-    mux_result = sim_mac_mux_link(snr_range_db=snr_range, n_frames=100)
-    for s, m, d in zip(
-        mux_result["snr_db"][::4], mux_result["mux_success_rate"][::4],
-        mux_result["data_match_rate"][::4], strict=False,
-    ):
-        print(f"  SNR={s:2.0f} dB  MuxOK={m:.3f}  DataMatch={d:.3f}")
+    mux_configs = [
+        {"channel_type": "awgn", "eq_method": "none", "label": "AWGN"},
+        {"channel_type": "rayleigh", "eq_method": "mmse", "label": "Rayleigh+MMSE"},
+    ]
+    mux_results = []
+    for mcfg in mux_configs:
+        print(f"  {mcfg['label']}...")
+        res = sim_mac_mux_link(
+            snr_range_db=snr_range, n_frames=100, data_size=10,
+            channel_type=mcfg["channel_type"],
+            eq_method=mcfg["eq_method"],
+        )
+        mux_results.append((mcfg["label"], res))
+        for s, m, d in zip(
+            res["snr_db"][::4], res["mux_success_rate"][::4],
+            res["data_match_rate"][::4], strict=False,
+        ):
+            print(f"    {mcfg['label']}  SNR={s:2.0f} dB  MuxOK={m:.3f}  DataMatch={d:.3f}")
 
-    # 绘图
+    # ── 绘图 ──
     fig, axes = plt.subplots(1, 3, figsize=(18, 5))
 
-    # 信令成功率
+    # 信令成功率 (多信道对比)
     ax = axes[0]
-    ax.plot(sig_result["snr_db"], sig_result["signaling_success_rate"], "o-",
-            label="Signaling decode", markersize=4)
+    markers = ["o-", "s--", "s-", "v-"]
+    for (label, res), mk in zip(sig_results, markers, strict=False):
+        ax.plot(res["snr_db"], res["signaling_success_rate"], mk,
+                label=label, markersize=4)
     ax.set_xlabel("Eb/N0 (dB)")
     ax.set_ylabel("Success Rate")
-    ax.set_title("Phase 9 - Signaling Frame")
-    ax.legend()
+    ax.set_title("Phase 9 - Signaling (Channel Comparison)")
+    ax.legend(fontsize=7)
     ax.grid(True, ls="--", alpha=0.5)
     ax.set_ylim(-0.05, 1.05)
 
-    # 数据帧 FER
+    # 数据帧 FER (AWGN vs Rayleigh+MMSE, 多载荷)
     ax = axes[1]
-    markers = ["o-", "s-", "^-"]
-    for (size, metrics), mk in zip(data_result["results"].items(), markers,
-                                   strict=False):
-        fer_plot = [max(f, 1e-4) for f in metrics["fer"]]
-        ax.semilogy(data_result["snr_db"], fer_plot, mk,
-                    label=f"{size}B payload", markersize=4)
+    line_styles = ["o-", "s-", "^-", "o--", "s--", "^--"]
+    idx = 0
+    for label, res in data_results:
+        for size, metrics in res["results"].items():
+            fer_plot = [max(f, 1e-4) for f in metrics["fer"]]
+            ax.semilogy(res["snr_db"], fer_plot, line_styles[idx % len(line_styles)],
+                        label=f"{label} {size}B", markersize=3)
+            idx += 1
     ax.set_xlabel("Eb/N0 (dB)")
     ax.set_ylabel("Frame Error Rate")
     ax.set_title("Phase 9 - Data Frame FER")
-    ax.legend()
+    ax.legend(fontsize=6)
     ax.grid(True, which="both", ls="--", alpha=0.5)
     ax.set_ylim(bottom=1e-4)
 
-    # 复用帧
+    # 复用帧 (不同信道)
     ax = axes[2]
-    ax.plot(mux_result["snr_db"], mux_result["mux_success_rate"], "o-",
-            label="Mux CRC OK", markersize=4)
-    ax.plot(mux_result["snr_db"], mux_result["data_match_rate"], "s-",
-            label="Data match", markersize=4)
+    line_styles = ["o-", "s-", "o--", "s--"]
+    for i, (label, res) in enumerate(mux_results):
+        ax.plot(res["snr_db"], res["mux_success_rate"],
+                line_styles[i * 2], label=f"{label} CRC OK", markersize=4)
+        ax.plot(res["snr_db"], res["data_match_rate"],
+                line_styles[i * 2 + 1], label=f"{label} Data match", markersize=4)
     ax.set_xlabel("Eb/N0 (dB)")
     ax.set_ylabel("Success Rate")
-    ax.set_title("Phase 9 - Mux Frame")
-    ax.legend()
+    ax.set_title("Phase 9 - Mux Frame (Channel Comparison)")
+    ax.legend(fontsize=6)
     ax.grid(True, ls="--", alpha=0.5)
     ax.set_ylim(-0.05, 1.05)
 

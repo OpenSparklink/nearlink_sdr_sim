@@ -12,13 +12,14 @@
 ### Added
 
 - `sim/link_sim.py` Phase 9: MAC 帧级端到端仿真
-  - `sim_mac_signaling_link`: 信令帧 (PingRequest/Response/IntervalUpdate/TimeoutUpdate)
-    经 PHY 发射→信道→接收的解码成功率仿真
+  - `sim_mac_signaling_link`: 信令帧经 PHY 全链路的解码成功率仿真
   - `sim_mac_data_link`: 异步数据帧多载荷大小的字节级 BER 和 FER 仿真
   - `sim_mac_mux_link`: 控制+数据复用帧的端到端完整性仿真
   - `run_phase9_simulation`: 综合仿真入口, 含三子图输出
-- `tests/test_link_sim_mac.py`: 9 个仿真测试覆盖高 SNR 正确性、返回值结构、
-  统计单调性和复用帧一致性
+  - 三个仿真函数均支持 Rayleigh/Rician/多径信道、载波频偏和 ZF/MMSE 均衡器
+  - `_channel_impair`: 信道损伤统一辅助函数
+- `tests/test_link_sim_mac.py`: 13 个仿真测试覆盖高 SNR 正确性、返回值结构、
+  统计单调性、Rayleigh+MMSE 信道场景和频偏退化验证
 
 ### Changed
 

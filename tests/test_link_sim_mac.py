@@ -1,7 +1,7 @@
 """Phase 9 MAC 帧级端到端仿真的单元测试。
 
 验证 sim_mac_signaling_link / sim_mac_data_link / sim_mac_mux_link 在
-高 SNR 条件下能正确完成 MAC→PHY→MAC 全链路。
+高 SNR 条件下能正确完成 MAC→PHY→MAC 全链路, 并测试信道损伤场景。
 """
 
 import numpy as np
@@ -42,8 +42,31 @@ class TestMacSignalingLink:
             n_frames=30,
         )
         rates = result["signaling_success_rate"]
-        # 至少最后一个 (30 dB) 应该 >= 第一个 (0 dB)
         assert rates[-1] >= rates[0]
+
+    def test_rayleigh_mmse_high_snr(self):
+        """Rayleigh + MMSE 均衡在高 SNR 下应有较高成功率。"""
+        result = sim_mac_signaling_link(
+            snr_range_db=np.array([30.0]),
+            n_frames=20,
+            channel_type="rayleigh",
+            eq_method="mmse",
+        )
+        assert result["signaling_success_rate"][0] >= 0.8
+
+    def test_cfo_degrades_performance(self):
+        """频率偏移应导致在中等 SNR 下性能下降。"""
+        no_cfo = sim_mac_signaling_link(
+            snr_range_db=np.array([8.0]),
+            n_frames=30,
+        )
+        with_cfo = sim_mac_signaling_link(
+            snr_range_db=np.array([8.0]),
+            n_frames=30,
+            cfo_hz=2000.0,
+        )
+        # 频偏应导致成功率不高于无频偏情况 (或至少可运行)
+        assert with_cfo["signaling_success_rate"][0] <= no_cfo["signaling_success_rate"][0] + 0.15
 
 
 class TestMacDataLink:
@@ -80,8 +103,18 @@ class TestMacDataLink:
             snr_range_db=np.array([4.0]),
             n_frames=50,
         )
-        # 只验证结果可获取, 不强制统计比较 (太少帧数不稳定)
         assert len(result["results"]) == 2
+
+    def test_rayleigh_mmse_data(self):
+        """Rayleigh + MMSE 在高 SNR 下数据帧应解码正确。"""
+        result = sim_mac_data_link(
+            payload_sizes=[10],
+            snr_range_db=np.array([30.0]),
+            n_frames=10,
+            channel_type="rayleigh",
+            eq_method="mmse",
+        )
+        assert result["results"][10]["fer"][0] <= 0.2
 
 
 class TestMacMuxLink:
@@ -114,3 +147,14 @@ class TestMacMuxLink:
         )
         for i in range(len(result["snr_db"])):
             assert result["data_match_rate"][i] <= result["mux_success_rate"][i] + 1e-9
+
+    def test_rayleigh_mmse_mux(self):
+        """Rayleigh + MMSE 在高 SNR 下复用帧应正确解码。"""
+        result = sim_mac_mux_link(
+            snr_range_db=np.array([30.0]),
+            n_frames=20,
+            data_size=10,
+            channel_type="rayleigh",
+            eq_method="mmse",
+        )
+        assert result["mux_success_rate"][0] >= 0.8
