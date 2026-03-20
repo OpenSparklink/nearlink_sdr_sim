@@ -19,6 +19,7 @@
   - build_uwb_sync_field / build_uwb_measurement_field / build_uwb_pulse_measurement_frame:
     超宽带脉冲测量帧 (6.3.11)
 - `tests/test_measurement_frame.py`: 34 个测量帧结构测试
+- `docs/how-to/sdr-deployment.md`: SDR E310 部署规划与 MAC 层基础设施分析
 - `mac/security.py`: 新增配对信令模块 (标准 9.2)
   - 16 个配对消息类型 (0x0133-0x0149): PairingInitiate, PairingRequest,
     PairingResponse, PairingConfirm, PairingInitialInfo, TNodeConfirmCode,
