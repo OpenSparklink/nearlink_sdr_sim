@@ -30,7 +30,9 @@ from nearlink_sdr.mac.broadcast import (
     DiscoveryAccessEntry,
     DiscoveryAccessResourceConfig,
     GTNegotiation,
+    NonLinkedBroadcastLinkInfo,
     QueryRequestFilterInfo,
+    SystemMgmtFrameInfo,
     TransportIndicationInfo,
 )
 from nearlink_sdr.mac.link_manager import (
@@ -741,6 +743,171 @@ class InitiatorAccessManager:
     @property
     def phase(self) -> AccessPhase:
         return self._phase
+
+
+# ── 非链接态广播管理 (7.1.7.2) ──
+
+
+@dataclass
+class NonConnectedBroadcastConfig:
+    """非链接态广播传输配置。"""
+    # 广播链路信息
+    transmission_type: int = 0           # 0=异步, 1=同步
+    service_adapt_mode: int = 0          # 0=周期, 1=非周期
+    system_slot_seq: int = 0
+    event_group_offset: int = 0
+    event_group_set_id: int = 0
+    event_group_count: int = 1
+    event_group_interval: int = 10
+    event_group_period: int = 160
+    event_period: int = 40
+    event_count: int = 1
+    sync_anchor_delay: int = 0
+    sync_ref_delay: int = 0
+    base_link_id: int = 0x000001
+    frame_type: int = 2
+    bandwidth: int = 0
+    pilot_density: int = 0
+    sdu_max: int = 128
+    sdu_period: int = 1000
+    pdu_max: int = 256
+    new_packet_count: int = 1
+    crc_type: int = 0
+    crc_base_init: int = 0
+    hop_map: bytes = b"\xFF" * 10
+    is_5g: bool = False
+    # 系统管理帧信息
+    smf_baseline_slot: int = 0
+    smf_offset: int = 300
+    smf_access_addr: int = 0x000001
+    smf_period: int = 800
+    smf_frame_type: int = 2
+    smf_bandwidth: int = 0
+    smf_pilot_density: int = 0
+    smf_channel_table: bytes = b"\x00\x01\x02"
+    # 加密参数 (可选)
+    encrypted: bool = False
+    giv: bytes = b""
+    gskd: bytes = b""
+
+
+@dataclass
+class NonConnectedBroadcastManager:
+    """非链接态广播管理器 (标准 7.1.7.2)。
+
+    通过携带非链接态广播信息和启动系统管理帧信息的扩展广播帧
+    建立非链接态广播传输。
+    """
+    config: NonConnectedBroadcastConfig = field(
+        default_factory=NonConnectedBroadcastConfig,
+    )
+    local_address: bytes = b"\x00" * 6
+
+    def build_non_connected_broadcast_frame(self) -> BroadcastFrame:
+        """构建携带非链接态广播信息的扩展广播帧。
+
+        帧中包含两种数据:
+        - UNLINKED_BROADCAST_LINK (0x06): NonLinkedBroadcastLinkInfo
+        - SYSTEM_MGMT_FRAME (0x05): SystemMgmtFrameInfo
+
+        Returns:
+            构建好的 BroadcastFrame。
+        """
+        cfg = self.config
+
+        link_info = NonLinkedBroadcastLinkInfo(
+            transmission_type=cfg.transmission_type,
+            service_adapt_mode=cfg.service_adapt_mode,
+            system_slot_seq=cfg.system_slot_seq,
+            event_group_offset=cfg.event_group_offset,
+            event_group_set_id=cfg.event_group_set_id,
+            event_group_count=cfg.event_group_count,
+            event_group_interval=cfg.event_group_interval,
+            event_group_period=cfg.event_group_period,
+            event_period=cfg.event_period,
+            event_count=cfg.event_count,
+            sync_anchor_delay=cfg.sync_anchor_delay,
+            sync_ref_delay=cfg.sync_ref_delay,
+            base_link_id=cfg.base_link_id,
+            frame_type=cfg.frame_type,
+            bandwidth=cfg.bandwidth,
+            pilot_density=cfg.pilot_density,
+            sdu_max=cfg.sdu_max,
+            sdu_period=cfg.sdu_period,
+            pdu_max=cfg.pdu_max,
+            new_packet_count=cfg.new_packet_count,
+            crc_type=cfg.crc_type,
+            crc_base_init=cfg.crc_base_init,
+            hop_map=cfg.hop_map,
+            giv=cfg.giv if cfg.encrypted else b"",
+            gskd=cfg.gskd if cfg.encrypted else b"",
+            is_5g=cfg.is_5g,
+        )
+
+        smf_info = SystemMgmtFrameInfo(
+            baseline_slot=cfg.smf_baseline_slot,
+            offset=cfg.smf_offset,
+            access_addr=cfg.smf_access_addr,
+            period=cfg.smf_period,
+            frame_type=cfg.smf_frame_type,
+            bandwidth=cfg.smf_bandwidth,
+            pilot_density=cfg.smf_pilot_density,
+            channel_count=len(cfg.smf_channel_table),
+            channel_table=cfg.smf_channel_table,
+        )
+
+        data_items: list[tuple[int, bytes]] = [
+            (BroadcastDataType.UNLINKED_BROADCAST_LINK, link_info.pack()),
+            (BroadcastDataType.SYSTEM_MGMT_FRAME, smf_info.pack()),
+        ]
+
+        return BroadcastFrame(
+            structure_indication=0x11,
+            local_addr_type=0,
+            peer_addr_type=0,
+            local_addr=self.local_address,
+            irk_id=0,
+            peer_addr=b"\x00" * 6,
+            data_items=data_items,
+        )
+
+
+@dataclass
+class NonConnectedBroadcastResult:
+    """解析非链接态广播帧的结果。"""
+    link_info: NonLinkedBroadcastLinkInfo
+    smf_info: SystemMgmtFrameInfo
+    broadcaster_addr: bytes
+
+
+def parse_non_connected_broadcast(
+    frame: BroadcastFrame,
+) -> NonConnectedBroadcastResult | None:
+    """解析扩展广播帧中的非链接态广播信息 (7.1.7.2)。
+
+    Args:
+        frame: 收到的扩展广播帧。
+
+    Returns:
+        解析结果; 若帧中不包含非链接态广播信息则返回 None。
+    """
+    link_info: NonLinkedBroadcastLinkInfo | None = None
+    smf_info: SystemMgmtFrameInfo | None = None
+
+    for data_type, data_bytes in frame.data_items:
+        if data_type == BroadcastDataType.UNLINKED_BROADCAST_LINK:
+            link_info = NonLinkedBroadcastLinkInfo.unpack(data_bytes)
+        elif data_type == BroadcastDataType.SYSTEM_MGMT_FRAME:
+            smf_info = SystemMgmtFrameInfo.unpack(data_bytes)
+
+    if link_info is None or smf_info is None:
+        return None
+
+    return NonConnectedBroadcastResult(
+        link_info=link_info,
+        smf_info=smf_info,
+        broadcaster_addr=frame.local_addr,
+    )
 
 
 # ── 端到端接入流程 (仿真/测试用) ──

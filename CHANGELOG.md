@@ -9,6 +9,20 @@
 
 ### Added
 
+- UWB 脉冲波形模块 (`phy/uwb_pulse.py`) -- 标准 6.2.1.4
+  - UWBPulseConfig: 500MHz/1300MHz 带宽配置
+  - kaiser_pulse: Kaiser 窗脉冲波形生成
+  - chip_modulate: 芯片调制 (r(t)·cos 载波调制)
+  - normalized_cross_correlation: 归一化互相关函数
+  - validate_pulse: 脉冲波形验证 (主瓣/旁瓣)
+- 非链接态广播传输 (`mac/access.py`) -- 标准 7.1.7.2
+  - NonConnectedBroadcastConfig: 非链接态广播配置
+  - NonConnectedBroadcastManager: 构建携带非链接态广播信息的扩展广播帧
+  - parse_non_connected_broadcast: 解析非链接态广播帧
+  - 支持加密/非加密传输 (GIV/GSKD)
+  - 支持 2.4GHz/5.xGHz 跳频地图
+- 49 个新测试用例 (`tests/test_uwb_pulse.py` 29 个, `tests/test_non_connected_broadcast.py` 20 个)
+
 - 链路管理扩展方法 (`mac/link_manager.py`) -- 标准 7.2.20 ~ 7.2.25
   - 7.2.20 广播链路管理: 建立/参数更新/跳频地图更新/断开
   - 7.2.21 系统管理帧链路管理: 参数更新请求/指示, 时间片更新, 信令终止
