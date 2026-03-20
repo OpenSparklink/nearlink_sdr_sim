@@ -9,6 +9,11 @@
 
 ### Added
 
+- `tests/test_mac_phy_integration.py`: MAC-PHY 集成联调测试扩展 (12 个新测试)
+  - TestBroadcastFramePhy: 广播帧/扩展广播帧/接入响应帧通过 PHY pipeline 全链路
+  - TestAccessPhyIntegration: 接入流程各阶段帧经 PHY encode/decode 的端到端验证
+  - TestSchedulerPhyIntegration: 调度器事件调度表驱动的帧传输与时序一致性
+  - TestFullStackIntegration: 接入+调度器+PHY 完整协议栈联调
 - `mac/scheduler.py`: 新增时序调度器模块 (标准 6.3/6.6/7.2)
   - SlotCounter: 30 bit 系统时隙计数器 (Tsys=125μs)
   - EventTimingParams: 事件组计时参数

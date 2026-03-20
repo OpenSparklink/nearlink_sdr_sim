@@ -129,6 +129,7 @@ tests/            # 测试文件, 与 src 模块一一对应
 | 7.3.2.93-2.107 | 窄带感知信令 | 完成 | `mac/link_control.py` |
 | 7.3.2.108-2.114 | 配置更新与UWB扩展感知 | 完成 | `mac/link_control.py` |
 | - | MAC-PHY 集成适配层 | 完成 | `phy/mac_interface.py` |
+| - | MAC-PHY 集成联调测试 | 完成 | `tests/test_mac_phy_integration.py` |
 | - | 全链路 Pipeline 仿真 | 完成 | `sim/link_sim.py` (Phase 6) |
 | - | 多径信道 + 频偏 Pipeline 仿真 | 完成 | `sim/link_sim.py` (Phase 7) |
 | - | 均衡器集成到 Pipeline 仿真 | 完成 | `sim/link_sim.py`, `phy/channel.py` |
