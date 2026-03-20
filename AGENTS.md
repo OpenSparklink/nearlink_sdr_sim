@@ -139,6 +139,12 @@ tests/            # 测试文件, 与 src 模块一一对应
 | 6.2.3.5 | 同步信号 5 (GFSK 安全随机) | 完成 | `phy/sync_sequence.py` |
 | 6.2.3.6 | 同步信号 6 (BPSK 安全随机) | 完成 | `phy/sync_sequence.py` |
 | 6.2.4 | 位置信息测量信号 | 完成 | `phy/measurement.py` |
+| 6.3.6 | 半可靠组播反馈 | 完成 | `phy/measurement_frame.py` |
+| 6.3.7 | 测量帧类型 1 | 完成 | `phy/measurement_frame.py` |
+| 6.3.8 | 测量帧类型 2 | 完成 | `phy/measurement_frame.py` |
+| 6.3.9 | 测量帧类型 3 | 完成 | `phy/measurement_frame.py` |
+| 6.3.10 | 测量帧类型 4 | 完成 | `phy/measurement_frame.py` |
+| 6.3.11 | 超宽带脉冲测量帧 | 完成 | `phy/measurement_frame.py` |
 
 ## 硬件约束 (USRP E310)
 

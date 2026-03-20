@@ -9,6 +9,16 @@
 
 ### Added
 
+- `phy/measurement_frame.py`: 新增测量帧结构组装模块 (标准 6.3.6-6.3.11)
+  - build_nack_feedback: 半可靠组播 NACK 反馈序列 (6.3.6)
+  - equalization_guard: 均衡保护序列 (6.3.7)
+  - build_measurement_frame_1: 测量帧类型 1 组装, 先发/后发节点 (6.3.7)
+  - build_measurement_frame_2: 测量帧类型 2 (纯测量信号) (6.3.8)
+  - build_measurement_frame_3: 测量帧类型 3, 位置测量初始化 (6.3.9)
+  - build_measurement_frame_4: 测量帧类型 4, UWB 初始化同步 (6.3.10)
+  - build_uwb_sync_field / build_uwb_measurement_field / build_uwb_pulse_measurement_frame:
+    超宽带脉冲测量帧 (6.3.11)
+- `tests/test_measurement_frame.py`: 34 个测量帧结构测试
 - `mac/security.py`: 新增配对信令模块 (标准 9.2)
   - 16 个配对消息类型 (0x0133-0x0149): PairingInitiate, PairingRequest,
     PairingResponse, PairingConfirm, PairingInitialInfo, TNodeConfirmCode,
