@@ -22,7 +22,7 @@
 - `node.py` 接收端不再调用 `on_tx_feedback()`, 修复接收侧 QoS 状态污染
 - 仿真循环中 ARQ 重传锁定问题: FER 测量模式下每帧独立, 失败后清除 ARQ 挂起状态
 
-## 
+## [0.25.0]
 
 ### Added
 - SLE 节点实体类 (`node.py`): 统一收发接口, 整合 MAC/PHY 各模块
