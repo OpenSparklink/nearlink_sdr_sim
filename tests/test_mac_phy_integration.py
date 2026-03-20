@@ -22,6 +22,7 @@ from nearlink_sdr.mac.broadcast import (
 from nearlink_sdr.mac.frame import AsyncDataFrame
 from nearlink_sdr.mac.link_control import PingRequest, PingResponse
 from nearlink_sdr.mac.link_manager import Event, EventType, LinkState
+from nearlink_sdr.mac.qos import TxDecision
 from nearlink_sdr.mac.scheduler import (
     EventGroupScheduler,
     EventTimingParams,
@@ -37,6 +38,7 @@ from nearlink_sdr.mac.security_manager import (
 from nearlink_sdr.mac.signaling import encode_signaling
 from nearlink_sdr.phy.channel import ChannelConfig, ChannelModel
 from nearlink_sdr.phy.mac_interface import (
+    QosLink,
     bits_to_bytes,
     bytes_to_bits,
     iq_to_mac,
@@ -905,3 +907,155 @@ class TestMultiLinkConcurrentData:
         sig2, sig2_ok = roundtrip_signaling(pong, cfg)
         assert sig2_ok
         assert isinstance(sig2, PingResponse)
+
+
+# -----------------------------------------------------------------------
+# QosLink 集成测试
+# -----------------------------------------------------------------------
+
+
+class TestQosLinkBasic:
+    """QosLink 基本发送/接收闭环。"""
+
+    def test_submit_transmit_receive(self):
+        """提交数据 → 发射 IQ → 接收解码, 全链路验证。"""
+        link = QosLink(cfg=TxConfig(frame_type=2, mcs_index=7))
+        payload = b"qos-test-data"
+        assert link.submit(payload)
+
+        iq, decision = link.transmit()
+        assert iq is not None
+        assert decision == TxDecision.NEW_DATA
+
+        from nearlink_sdr.mac.frame import AsyncDataFrame
+
+        frame = AsyncDataFrame(segment_type=0, data=payload)
+        n_bytes = len(frame.pack())
+
+        data, ok = link.receive(iq, n_bytes)
+        assert ok
+        assert data == payload
+
+    def test_empty_queue_returns_none(self):
+        """队列为空时 transmit 返回 None。"""
+        link = QosLink()
+        iq, decision = link.transmit()
+        assert iq is None
+        assert decision == TxDecision.EMPTY
+
+    def test_ctrl_fields_populated(self):
+        """发送后控制信息字段正确填充。"""
+        link = QosLink()
+        link.submit(b"ctrl-check")
+        link.transmit()
+        fields = link.qos.get_ctrl_fields()
+        assert "tx_sn" in fields
+        assert "flow_ctrl" in fields
+
+    def test_stats_tracking(self):
+        """统计信息正确记录。"""
+        link = QosLink(cfg=TxConfig(frame_type=2, mcs_index=5))
+        link.submit(b"count-test")
+        link.transmit()
+        stats = link.stats
+        assert stats["tx_count"] == 1
+        assert stats["retx_count"] == 0
+        assert stats["queue_size"] == 0
+
+
+class TestQosLinkArq:
+    """QosLink ARQ 重传验证。"""
+
+    def test_ack_advances_sn(self):
+        """ACK 后序列号翻转。"""
+        link = QosLink(cfg=TxConfig(frame_type=2, mcs_index=7))
+        link.submit(b"ack-test")
+        link.transmit()
+        assert link.qos.arq.tx_sn == 0
+        link.process_feedback(crc_ok=True)
+        assert link.qos.arq.tx_sn == 1
+
+    def test_nack_triggers_retransmit(self):
+        """NACK 后重传同一数据。"""
+        link = QosLink(cfg=TxConfig(frame_type=2, mcs_index=7))
+        link.submit(b"retx-test")
+        link.transmit()
+        link.process_feedback(crc_ok=False)
+        assert link.pending_retransmit
+
+        iq2, decision2 = link.transmit()
+        assert iq2 is not None
+        assert decision2 == TxDecision.RETRANSMIT
+        assert link.stats["retx_count"] == 1
+
+    def test_multiple_packets_sequential(self):
+        """多个数据包按序发送和确认。"""
+        link = QosLink(cfg=TxConfig(frame_type=2, mcs_index=7))
+        for i in range(3):
+            link.submit(f"pkt-{i}".encode())
+
+        from nearlink_sdr.mac.frame import AsyncDataFrame
+
+        for i in range(3):
+            iq, decision = link.transmit()
+            assert decision == TxDecision.NEW_DATA
+
+            frame = AsyncDataFrame(segment_type=0, data=f"pkt-{i}".encode())
+            n_bytes = len(frame.pack())
+            data, ok = link.receive(iq, n_bytes)
+            assert ok
+            assert data == f"pkt-{i}".encode()
+
+        assert link.stats["tx_count"] == 3
+
+
+class TestQosLinkQuality:
+    """QosLink 链路质量跟踪。"""
+
+    def test_fer_tracking(self):
+        """多次反馈后 FER 正确统计。"""
+        link = QosLink()
+        for _ in range(10):
+            link.submit(b"x")
+            link.transmit()
+            link.process_feedback(crc_ok=True)
+        assert link.qos.quality.fer == 0.0
+
+    def test_mcs_suggestion(self):
+        """链路质量好时建议提升 MCS。"""
+        link = QosLink()
+        link.qos.quality._current_mcs = 5
+        for _ in range(32):
+            link.qos.quality.record(True)
+        assert link.qos.quality.suggest_mcs_adjustment() == 1
+
+    def test_recommended_mcs_property(self):
+        """recommended_mcs 属性可用。"""
+        link = QosLink()
+        mcs = link.recommended_mcs
+        assert 0 <= mcs <= 12
+
+
+class TestQosLinkFlowControl:
+    """QosLink 流控验证。"""
+
+    def test_flow_ctrl_bit_after_submit(self):
+        """提交数据后 flow_ctrl 为 1。"""
+        link = QosLink()
+        link.submit(b"flow-test")
+        assert link.qos.flow.flow_ctrl_bit == 1
+
+    def test_flow_ctrl_cleared_after_transmit(self):
+        """发送后 flow_ctrl 应清零 (队列为空)。"""
+        link = QosLink()
+        link.submit(b"flow-test")
+        link.transmit()
+        assert link.qos.flow.flow_ctrl_bit == 0
+
+    def test_backpressure(self):
+        """超过高水位线时触发背压。"""
+        link = QosLink()
+        link.qos.flow.buffer_high_watermark = 3
+        for _ in range(3):
+            link.submit(b"x")
+        assert link.qos.flow.is_paused

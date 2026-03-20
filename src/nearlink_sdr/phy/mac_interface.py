@@ -2,6 +2,8 @@
 
 将 MAC 层帧对象与 PHY 层发射/接收流水线打通，
 提供字节级到比特级的转换和完整的发收链路。
+
+QoS 集成: QosLink 类封装了带 ARQ/HARQ/流控的端到端数据链路。
 """
 
 from __future__ import annotations
@@ -13,6 +15,16 @@ import numpy as np
 from nearlink_sdr.mac.frame import (
     AsyncDataFrame,
     ControlFrame,
+)
+from nearlink_sdr.mac.qos import (
+    ArqState,
+    FlowController,
+    HarqController,
+    LinkQualityTracker,
+    Priority,
+    QosManager,
+    TxDecision,
+    TxQueue,
 )
 from nearlink_sdr.mac.signaling import decode_signaling, encode_signaling
 from nearlink_sdr.phy.control_info import ControlInfoA2
@@ -199,3 +211,140 @@ def roundtrip_data(
 
     recovered = AsyncDataFrame.unpack(rx.mac_payload)
     return recovered.data, True
+
+
+# -----------------------------------------------------------------------
+# QoS 集成链路
+# -----------------------------------------------------------------------
+
+
+class QosLink:
+    """带 QoS 管理的端到端数据链路。
+
+    封装 ARQ 序列号管理、HARQ 反馈、流控和链路质量跟踪。
+    调用方通过 submit / transmit / receive 方法实现自动重传驱动。
+
+    Parameters
+    ----------
+    cfg : 发射参数配置
+    frame_type : 帧类型 (1-4), 决定 ARQ SN 位宽
+    max_pdu : 单 PDU 最大字节数
+    """
+
+    def __init__(
+        self,
+        cfg: TxConfig | None = None,
+        frame_type: int = 2,
+        max_pdu: int = 256,
+    ) -> None:
+        if cfg is None:
+            cfg = TxConfig(frame_type=frame_type, mcs_index=7)
+        self.cfg = cfg
+        self.max_pdu = max_pdu
+        self.qos = QosManager(
+            arq=ArqState(frame_type=frame_type),
+            harq=HarqController(),
+            flow=FlowController(),
+            quality=LinkQualityTracker(),
+            tx_queue=TxQueue(),
+        )
+        self._tx_count = 0
+        self._rx_count = 0
+        self._retx_count = 0
+
+    def submit(
+        self, data: bytes, priority: Priority = Priority.NORMAL
+    ) -> bool:
+        """提交数据到发送队列。"""
+        return self.qos.submit_data(data, priority)
+
+    def transmit(self) -> tuple[np.ndarray | None, TxDecision]:
+        """从队列取数据并生成 IQ 信号。
+
+        Returns
+        -------
+        (IQ 信号或 None, 发送决策)
+        """
+        decision, item = self.qos.prepare_tx()
+
+        if decision == TxDecision.EMPTY:
+            return None, decision
+
+        if decision == TxDecision.NEW_DATA and item is not None:
+            data = item.data
+        elif decision == TxDecision.RETRANSMIT:
+            data = self.qos.arq._last_tx_data
+        else:
+            data = self.qos.arq._last_tx_data
+
+        if not data:
+            return None, TxDecision.EMPTY
+
+        frame = AsyncDataFrame(segment_type=0, data=data)
+        mac_bytes = frame.pack()
+
+        fields = self.qos.get_ctrl_fields()
+        ctrl = ControlInfoA2(
+            packet_type=fields.get("packet_type", 0),
+            empty_packet=fields["empty_packet"],
+            tx_sn=fields["tx_sn"],
+            rx_sn=fields["rx_sn"],
+            flow_ctrl=fields["flow_ctrl"],
+            sys_mgmt_rx=0,
+            reserved=0,
+            data_length=len(mac_bytes),
+        )
+
+        iq = mac_to_iq(mac_bytes, self.cfg, ctrl_info=ctrl)
+        self._tx_count += 1
+        if decision == TxDecision.RETRANSMIT:
+            self._retx_count += 1
+
+        return iq, decision
+
+    def receive(self, iq: np.ndarray, n_mac_bytes: int) -> tuple[bytes, bool]:
+        """接收 IQ 信号并处理 ARQ 反馈。
+
+        Returns
+        -------
+        (恢复的数据, CRC 是否通过)
+        """
+        rx = iq_to_mac(iq, self.cfg, n_mac_bytes)
+        self._rx_count += 1
+
+        self.qos.on_tx_feedback(rx.crc_ok)
+
+        if not rx.crc_ok:
+            return b"", False
+
+        try:
+            recovered = AsyncDataFrame.unpack(rx.mac_payload)
+            return recovered.data, True
+        except Exception:
+            return b"", False
+
+    def process_feedback(self, crc_ok: bool) -> TxDecision:
+        """外部反馈处理 (对端发来 CRC 结果)。"""
+        return self.qos.on_tx_feedback(crc_ok)
+
+    @property
+    def pending_retransmit(self) -> bool:
+        """当前是否有待重传数据。"""
+        return self.qos.arq.pending_ack
+
+    @property
+    def recommended_mcs(self) -> int:
+        """基于链路质量建议的 MCS。"""
+        return self.qos.quality.apply_suggestion()
+
+    @property
+    def stats(self) -> dict[str, int | float]:
+        """链路统计信息。"""
+        return {
+            "tx_count": self._tx_count,
+            "rx_count": self._rx_count,
+            "retx_count": self._retx_count,
+            "queue_size": self.qos.tx_queue.size,
+            "fer": self.qos.quality.fer,
+            "current_mcs": self.qos.quality.current_mcs,
+        }

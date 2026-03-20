@@ -16,7 +16,8 @@
   - LinkQualityTracker: 滑动窗口 FER 估计, AMC MCS 自适应建议, LQI 字段编解码
   - TxQueue: 5 级优先级发送队列, 重传优先, 容量限制
   - QosManager: 集成管理器, 统一 ARQ/HARQ/流控/质量跟踪/队列, 提供控制信息字段接口
-  - 69 个测试 (`tests/test_qos.py`), 全部通过
+  - QosLink (`phy/mac_interface.py`): 带 QoS 管理的端到端数据链路封装, 自动填充控制信息字段
+  - 82 个测试 (`tests/test_qos.py` + QosLink 集成测试), 全部通过
 - 端到端集成测试增强: 新增 18 个 MAC-PHY 集成测试 (1382 → 1400)
   - TestEncryptedPhyRoundtrip (3 个测试): 配对→加密→PHY 传输→解密验证, 多帧 payload_count 递增, MIC 篡改拒绝
   - TestMultiFrameTypeIntegration (6 个测试): FT1/FT2/FT3/FT4 帧类型 roundtrip, 多 MCS 等级扫描, 多种信令类型
