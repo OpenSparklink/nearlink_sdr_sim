@@ -971,6 +971,68 @@ class BroadcastFrame:
 
 
 # ---------------------------------------------------------------------------
+# 7.1.5 广播帧过滤
+# ---------------------------------------------------------------------------
+
+
+class FilterOp(IntEnum):
+    """过滤条件组合运算符"""
+    AND = 0
+    OR = 1
+    NOT = 2
+
+
+@dataclass
+class FilterCondition:
+    """单个过滤条件"""
+    field_name: str          # 匹配字段: address, name, uuid, service_data, vendor_data
+    value: bytes = b""       # 匹配值
+    negate: bool = False     # 是否取反
+
+
+@dataclass
+class BroadcastFilter:
+    """广播帧过滤器 (7.1.5)
+
+    支持按设备地址、设备名称、服务UUID、服务数据和厂商数据等信息
+    的单个条件或多个条件的与/或/非组合过滤。
+    """
+    conditions: list[FilterCondition] = field(default_factory=list)
+    operator: FilterOp = FilterOp.AND
+
+    def match(self, frame: BroadcastFrame) -> bool:
+        """检查广播帧是否满足过滤条件"""
+        if not self.conditions:
+            return True
+
+        results = [self._eval_condition(c, frame) for c in self.conditions]
+
+        if self.operator == FilterOp.AND:
+            return all(results)
+        elif self.operator == FilterOp.OR:
+            return any(results)
+        else:  # NOT: 对第一个条件取反
+            return not results[0] if results else True
+
+    @staticmethod
+    def _eval_condition(cond: FilterCondition, frame: BroadcastFrame) -> bool:
+        matched = False
+        if cond.field_name == "address":
+            matched = frame.local_addr == cond.value
+        elif cond.field_name == "name":
+            for _dtype, content in frame.data_items:
+                if content == cond.value:
+                    matched = True
+                    break
+        elif cond.field_name in ("uuid", "service_data", "vendor_data"):
+            for _dtype, content in frame.data_items:
+                if cond.value in content:
+                    matched = True
+                    break
+        return not matched if cond.negate else matched
+
+
+# ---------------------------------------------------------------------------
 # 7.1.4.10 非链接态窄带跳频测量信息配置
 # ---------------------------------------------------------------------------
 

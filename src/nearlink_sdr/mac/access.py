@@ -81,6 +81,53 @@ class NegotiatedRole:
     negotiated: bool = False           # 是否经过协商 (vs 默认分配)
 
 
+
+# ---------------------------------------------------------------------------
+# 7.1.6 接入白名单
+# ---------------------------------------------------------------------------
+
+
+@dataclass
+class AccessWhitelist:
+    """接入白名单 (7.1.6)
+
+    广播设备设置白名单后, 只接收白名单中设备的接入请求。
+    接入设备设置白名单后, 只向白名单中设备发起接入。
+    """
+    _addresses: set[bytes] = field(default_factory=set)
+    enabled: bool = False
+
+    def add(self, address: bytes) -> None:
+        """添加一个设备地址 (6 字节)"""
+        self._addresses.add(bytes(address[:6]))
+
+    def remove(self, address: bytes) -> None:
+        """移除一个设备地址"""
+        self._addresses.discard(bytes(address[:6]))
+
+    def clear(self) -> None:
+        """清空白名单"""
+        self._addresses.clear()
+
+    def contains(self, address: bytes) -> bool:
+        """检查地址是否在白名单中"""
+        return bytes(address[:6]) in self._addresses
+
+    def check(self, address: bytes) -> bool:
+        """检查是否允许该地址的接入
+
+        白名单未启用时允许所有地址; 启用后仅允许白名单内地址。
+        """
+        if not self.enabled:
+            return True
+        return self.contains(address)
+
+    @property
+    def addresses(self) -> list[bytes]:
+        return sorted(self._addresses)
+
+
+
 def negotiate_gt_role(
     broadcaster_pref: int,
     broadcaster_negotiable: bool,
@@ -159,6 +206,7 @@ class BroadcasterAccessManager:
     access_crc_init: int = 0
     hop_map: bytes = b"\xFF" * 10
     smf_channel_table: bytes = b"\x00\x01\x02"
+    whitelist: AccessWhitelist = field(default_factory=AccessWhitelist)
     # 内部状态
     _phase: AccessPhase = AccessPhase.IDLE
     _pending_requests: list[dict[str, Any]] = field(default_factory=list)
@@ -232,6 +280,11 @@ class BroadcasterAccessManager:
             以及 (若接受且角色为 G) AccessBasicInfo 或 TransportIndicationInfo。
         """
         self._phase = AccessPhase.RSP_WINDOW
+
+        # 白名单检查 (7.1.6)
+        if not self.whitelist.check(peer_address):
+            log.info("接入请求被白名单拒绝: %s", peer_address.hex())
+            return None, False
 
         # 解析接入请求
         req = AccessRequestInfo.unpack(request_data)
@@ -369,6 +422,7 @@ class InitiatorAccessManager:
     config: AccessConfig = field(default_factory=AccessConfig)
     link_manager: LinkManager = field(default_factory=LinkManager)
     local_address: bytes = b"\x00" * 6
+    whitelist: AccessWhitelist = field(default_factory=AccessWhitelist)
     # 解析出的广播方信息
     _adv_frame: BroadcastFrame | None = None
     _discovery_config: DiscoveryAccessResourceConfig | None = None
@@ -379,6 +433,7 @@ class InitiatorAccessManager:
         """处理收到的可接入扩展广播帧 (阶段 b 准备)。
 
         解析发现接入资源配置, 提取请求窗口参数。
+        白名单启用时, 仅处理白名单中设备的广播帧 (7.1.6)。
 
         Args:
             frame: 收到的广播帧。
@@ -386,6 +441,11 @@ class InitiatorAccessManager:
         Returns:
             True 表示帧中包含有效的接入资源配置。
         """
+        # 白名单检查 (7.1.6)
+        if not self.whitelist.check(frame.local_addr):
+            log.info("广播帧被白名单过滤: %s", frame.local_addr.hex())
+            return False
+
         self._adv_frame = frame
         for data_type, data_bytes in frame.data_items:
             if data_type == BroadcastDataType.DISCOVERY_ACCESS_RESOURCE:

@@ -9,6 +9,25 @@
 
 ### Added
 
+- 广播帧过滤器 (`mac/broadcast.py`) -- 标准 7.1.5
+  - BroadcastFilter: 支持地址/名称/UUID/服务数据/厂商数据过滤
+  - FilterCondition: 单条件定义, 支持取反
+  - FilterOp: AND/OR/NOT 组合运算
+- 接入白名单 (`mac/access.py`) -- 标准 7.1.6
+  - AccessWhitelist: 设备地址白名单, 启用后仅允许白名单内设备接入
+  - 集成到 BroadcasterAccessManager 和 InitiatorAccessManager
+- 控制面流程便捷方法 (`mac/link_manager.py`) -- 标准 7.2.4-7.2.12
+  - 特性交互 (7.2.4): request/respond_feature_exchange
+  - 版本交互 (7.2.5): request_version_exchange
+  - 数据长度更新 (7.2.6): request/respond_data_length_update
+  - 信道质量上报配置 (7.2.7): configure_channel_report
+  - 跳频表更新 (7.2.8): update_hop_table
+  - 跳频地图更新 (7.2.9): update_hop_map
+  - 最少可用信道 (7.2.10): request_min_channels
+  - CRC 切换 (7.2.11): request/indicate_crc_switch
+  - 物理层更新 (7.2.12): request/indicate_phy_update
+- 新增测试: BroadcastFilter 11 项, AccessWhitelist 10 项, 控制面流程 15 项
+
 - 系统管理帧编解码模块 (`mac/smf.py`) -- 标准 6.6
   - SMFHeader: 分段指示 + 信令编号
   - ScheduleSignaling: 调度信令 (生效时隙/间隔/帧类型/带宽/频点表)

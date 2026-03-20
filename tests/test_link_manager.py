@@ -485,3 +485,127 @@ class TestDormantTransitions:
         assert mgr.state == LinkState.CONNECTED
         assert cb.dormant_count == 2
         assert cb.wakeup_count == 2
+
+
+# -----------------------------------------------------------------------
+# 测试: 控制面流程便捷方法 (7.2.4 - 7.2.12)
+# -----------------------------------------------------------------------
+
+class TestControlPlaneProcedures:
+    """控制面流程便捷方法测试。"""
+
+    def test_feature_exchange_request(self):
+        mgr, _ = make_manager()
+        connect_as_t_node(mgr)
+        frame = mgr.request_feature_exchange(feature_set=0xFF)
+        assert frame is not None
+        assert frame.data_type_index == 0x000A
+
+    def test_feature_exchange_response(self):
+        mgr, _ = make_manager()
+        connect_as_t_node(mgr)
+        frame = mgr.respond_feature_exchange(feature_set=0xAB)
+        assert frame is not None
+        assert frame.data_type_index == 0x000B
+
+    def test_version_exchange(self):
+        mgr, _ = make_manager()
+        connect_as_t_node(mgr)
+        frame = mgr.request_version_exchange(
+            spec_version=1, company_id=0x1234, sub_version=5,
+        )
+        assert frame is not None
+        assert frame.data_type_index == 0x000D
+
+    def test_data_length_request(self):
+        mgr, _ = make_manager()
+        connect_as_t_node(mgr)
+        frame = mgr.request_data_length_update(
+            max_tx_bytes=100, max_tx_time=1000,
+        )
+        assert frame is not None
+        assert frame.data_type_index == 0x000E
+
+    def test_data_length_response(self):
+        mgr, _ = make_manager()
+        connect_as_t_node(mgr)
+        frame = mgr.respond_data_length_update(
+            max_rx_bytes=200, max_rx_time=2000,
+        )
+        assert frame is not None
+        assert frame.data_type_index == 0x000F
+
+    def test_channel_report_config(self):
+        mgr, _ = make_manager()
+        connect_as_g_node(mgr)
+        frame = mgr.configure_channel_report(
+            enable=1, min_interval=10, max_delay=10,
+        )
+        assert frame is not None
+        assert frame.data_type_index == 0x0010
+
+    def test_hop_table_update(self):
+        mgr, _ = make_manager()
+        connect_as_g_node(mgr)
+        frame = mgr.update_hop_table(
+            effective_slot=5, channel_count=2,
+            channel_table=b"\x01\x02",
+        )
+        assert frame is not None
+
+    def test_hop_map_update(self):
+        mgr, _ = make_manager()
+        connect_as_g_node(mgr)
+        frame = mgr.update_hop_map(
+            effective_slot=10, hop_map=b"\xFF\x00",
+        )
+        assert frame is not None
+
+    def test_min_channels(self):
+        mgr, _ = make_manager()
+        connect_as_t_node(mgr)
+        frame = mgr.request_min_channels(
+            frame_type=1, bandwidth=0,
+            pilot_density=0, min_channels=5,
+        )
+        assert frame is not None
+
+    def test_crc_switch_request(self):
+        mgr, _ = make_manager()
+        connect_as_t_node(mgr)
+        frame = mgr.request_crc_switch(tx_crc_type=1)
+        assert frame is not None
+        assert frame.data_type_index == 0x0015
+
+    def test_crc_switch_indication(self):
+        mgr, _ = make_manager()
+        connect_as_g_node(mgr)
+        frame = mgr.indicate_crc_switch(
+            tx_crc_type=1, effective_slot=5,
+        )
+        assert frame is not None
+        assert frame.data_type_index == 0x0016
+
+    def test_phy_update_request(self):
+        mgr, _ = make_manager()
+        connect_as_t_node(mgr)
+        frame = mgr.request_phy_update(
+            tx_frame_type=1, rx_frame_type=2,
+        )
+        assert frame is not None
+        assert frame.data_type_index == 0x0017
+
+    def test_phy_update_indication(self):
+        mgr, _ = make_manager()
+        connect_as_g_node(mgr)
+        frame = mgr.indicate_phy_update(
+            tx_frame_type=1, rx_frame_type=2,
+            effective_slot=100,
+        )
+        assert frame is not None
+        assert frame.data_type_index == 0x0018
+
+    def test_procedure_not_connected_raises(self):
+        mgr, _ = make_manager()
+        with pytest.raises(InvalidState):
+            mgr.request_feature_exchange(feature_set=0x01)

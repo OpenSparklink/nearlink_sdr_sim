@@ -426,6 +426,175 @@ class LinkManager:
             return True
         return False
 
+    # ---------------------------------------------------------------
+    # 7.2.4 - 7.2.12 控制面流程便捷方法
+    # ---------------------------------------------------------------
+
+    def request_feature_exchange(self, feature_set: int) -> ControlFrame | None:
+        """发起特性交互 (7.2.4)
+
+        Args:
+            feature_set: 本端支持特性集 (80-bit 位图)
+        """
+        from nearlink_sdr.mac.link_control import FeatureExchangeRequest
+        msg = FeatureExchangeRequest(feature_set=feature_set)
+        return self.send_signaling(msg)
+
+    def respond_feature_exchange(self, feature_set: int) -> ControlFrame | None:
+        """回复特性交互 (7.2.4)"""
+        from nearlink_sdr.mac.link_control import FeatureExchangeResponse
+        msg = FeatureExchangeResponse(feature_set=feature_set)
+        return self.send_signaling(msg)
+
+    def request_version_exchange(
+        self, spec_version: int = 0, company_id: int = 0, sub_version: int = 0,
+    ) -> ControlFrame | None:
+        """发起版本交互 (7.2.5)"""
+        from nearlink_sdr.mac.link_control import VersionExchange
+        msg = VersionExchange(
+            spec_version=spec_version,
+            company_id=company_id,
+            sub_version=sub_version,
+        )
+        return self.send_signaling(msg)
+
+    def request_data_length_update(
+        self, max_rx_bytes: int = 251, max_rx_time: int = 2120,
+        max_tx_bytes: int = 251, max_tx_time: int = 2120,
+    ) -> ControlFrame | None:
+        """发起数据长度更新 (7.2.6)"""
+        from nearlink_sdr.mac.link_control import DataLengthRequest
+        msg = DataLengthRequest(
+            max_rx_bytes=max_rx_bytes, max_rx_time=max_rx_time,
+            max_tx_bytes=max_tx_bytes, max_tx_time=max_tx_time,
+        )
+        return self.send_signaling(msg)
+
+    def respond_data_length_update(
+        self, max_rx_bytes: int = 251, max_rx_time: int = 2120,
+        max_tx_bytes: int = 251, max_tx_time: int = 2120,
+    ) -> ControlFrame | None:
+        """回复数据长度更新 (7.2.6)"""
+        from nearlink_sdr.mac.link_control import DataLengthResponse
+        msg = DataLengthResponse(
+            max_rx_bytes=max_rx_bytes, max_rx_time=max_rx_time,
+            max_tx_bytes=max_tx_bytes, max_tx_time=max_tx_time,
+        )
+        return self.send_signaling(msg)
+
+    def configure_channel_report(
+        self, enable: int = 1, min_interval: int = 5, max_delay: int = 5,
+    ) -> ControlFrame | None:
+        """配置信道质量上报 (7.2.7), 由 G 节点发送"""
+        from nearlink_sdr.mac.link_control import ChannelReportConfig
+        msg = ChannelReportConfig(
+            enable=enable, min_interval=min_interval, max_delay=max_delay,
+        )
+        return self.send_signaling(msg)
+
+    def update_hop_table(
+        self, effective_slot: int = 0,
+        channel_count: int = 0, channel_table: bytes = b"",
+    ) -> ControlFrame | None:
+        """更新跳频频点表 (7.2.8), 由 G 节点发送"""
+        from nearlink_sdr.mac.link_control import HopTableUpdate
+        msg = HopTableUpdate(
+            effective_slot=effective_slot,
+            channel_count=channel_count,
+            channel_table=channel_table,
+        )
+        return self.send_signaling(msg)
+
+    def update_hop_map(
+        self, effective_slot: int = 0, hop_map: bytes = b"",
+    ) -> ControlFrame | None:
+        """更新跳频地图 (7.2.9), 由 G 节点发送"""
+        from nearlink_sdr.mac.link_control import HopMapUpdate
+        msg = HopMapUpdate(
+            effective_slot=effective_slot,
+            hop_map=hop_map,
+        )
+        return self.send_signaling(msg)
+
+    def request_min_channels(
+        self, frame_type: int = 0, bandwidth: int = 0,
+        pilot_density: int = 0, min_channels: int = 2,
+    ) -> ControlFrame | None:
+        """最少可用信道请求 (7.2.10), 由 T 节点发送"""
+        from nearlink_sdr.mac.link_control import MinAvailableChannels
+        msg = MinAvailableChannels(
+            frame_type=frame_type,
+            bandwidth=bandwidth,
+            pilot_density=pilot_density,
+            min_channels=min_channels,
+        )
+        return self.send_signaling(msg)
+
+    def request_crc_switch(
+        self, link_id: int = 0, tx_crc_type: int = 0, rx_crc_type: int = 0,
+        tx_crc_init: int = 0, rx_crc_init: int = 0,
+    ) -> ControlFrame | None:
+        """请求 CRC 切换 (7.2.11)"""
+        from nearlink_sdr.mac.link_control import CrcSwitchRequest
+        msg = CrcSwitchRequest(
+            link_id=link_id,
+            tx_crc_type=tx_crc_type,
+            rx_crc_type=rx_crc_type,
+            tx_crc_init=tx_crc_init,
+            rx_crc_init=rx_crc_init,
+        )
+        return self.send_signaling(msg)
+
+    def indicate_crc_switch(
+        self, link_id: int = 0, tx_crc_type: int = 0, rx_crc_type: int = 0,
+        tx_crc_init: int = 0, rx_crc_init: int = 0, effective_slot: int = 0,
+    ) -> ControlFrame | None:
+        """指示 CRC 切换 (7.2.11), 由 G 节点直接切换"""
+        from nearlink_sdr.mac.link_control import CrcSwitchIndication
+        msg = CrcSwitchIndication(
+            link_id=link_id,
+            tx_crc_type=tx_crc_type,
+            rx_crc_type=rx_crc_type,
+            tx_crc_init=tx_crc_init,
+            rx_crc_init=rx_crc_init,
+            effective_slot=effective_slot,
+        )
+        return self.send_signaling(msg)
+
+    def request_phy_update(
+        self, tx_frame_type: int = 0, rx_frame_type: int = 0,
+        tx_bandwidth: int = 0, rx_bandwidth: int = 0,
+        tx_pilot_density: int = 0, rx_pilot_density: int = 0,
+        tx_feedback_type: int = 0, rx_feedback_type: int = 0,
+    ) -> ControlFrame | None:
+        """请求物理层类型更新 (7.2.12)"""
+        from nearlink_sdr.mac.link_control import PhyUpdateRequest
+        msg = PhyUpdateRequest(
+            tx_frame_type=tx_frame_type, rx_frame_type=rx_frame_type,
+            tx_bandwidth=tx_bandwidth, rx_bandwidth=rx_bandwidth,
+            tx_pilot_density=tx_pilot_density, rx_pilot_density=rx_pilot_density,
+            tx_feedback_type=tx_feedback_type, rx_feedback_type=rx_feedback_type,
+        )
+        return self.send_signaling(msg)
+
+    def indicate_phy_update(
+        self, tx_frame_type: int = 0, rx_frame_type: int = 0,
+        tx_bandwidth: int = 0, rx_bandwidth: int = 0,
+        tx_pilot_density: int = 0, rx_pilot_density: int = 0,
+        tx_feedback_type: int = 0, rx_feedback_type: int = 0,
+        effective_slot: int = 0,
+    ) -> ControlFrame | None:
+        """指示物理层类型更新 (7.2.12), 由 G 节点直接更新"""
+        from nearlink_sdr.mac.link_control import PhyUpdateIndication
+        msg = PhyUpdateIndication(
+            tx_frame_type=tx_frame_type, rx_frame_type=rx_frame_type,
+            tx_bandwidth=tx_bandwidth, rx_bandwidth=rx_bandwidth,
+            tx_pilot_density=tx_pilot_density, rx_pilot_density=rx_pilot_density,
+            tx_feedback_type=tx_feedback_type, rx_feedback_type=rx_feedback_type,
+            effective_slot=effective_slot,
+        )
+        return self.send_signaling(msg)
+
 
 # -----------------------------------------------------------------------
 # 异常

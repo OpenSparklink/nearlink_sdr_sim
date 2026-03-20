@@ -8,12 +8,14 @@ from __future__ import annotations
 from nearlink_sdr.mac.access import (
     AccessConfig,
     AccessPhase,
+    AccessWhitelist,
     BroadcasterAccessManager,
     InitiatorAccessManager,
     negotiate_gt_role,
     run_access_procedure,
 )
 from nearlink_sdr.mac.broadcast import (
+    AccessRequestInfo,
     AccessResponseType,
     BroadcastDataType,
     BroadcastFrame,
@@ -433,3 +435,83 @@ class TestAccessProcedure:
         # 发起方: IDLE→SCANNING→ACCESSING→CONNECTED
         i_log = i_mgr.link_manager.event_log
         assert len(i_log) >= 3
+
+
+# -----------------------------------------------------------------------
+# 接入白名单 (7.1.6)
+# -----------------------------------------------------------------------
+
+class TestAccessWhitelist:
+    """白名单功能测试。"""
+
+    def test_disabled_allows_all(self):
+        wl = AccessWhitelist()
+        assert wl.check(b"\x01\x02\x03\x04\x05\x06") is True
+        assert wl.check(b"\xFF" * 6) is True
+
+    def test_enabled_empty_blocks_all(self):
+        wl = AccessWhitelist(enabled=True)
+        assert wl.check(b"\x01\x02\x03\x04\x05\x06") is False
+
+    def test_add_and_check(self):
+        wl = AccessWhitelist(enabled=True)
+        addr = b"\x01\x02\x03\x04\x05\x06"
+        wl.add(addr)
+        assert wl.check(addr) is True
+        assert wl.check(b"\xFF" * 6) is False
+
+    def test_remove(self):
+        wl = AccessWhitelist(enabled=True)
+        addr = b"\x01\x02\x03\x04\x05\x06"
+        wl.add(addr)
+        wl.remove(addr)
+        assert wl.check(addr) is False
+
+    def test_clear(self):
+        wl = AccessWhitelist(enabled=True)
+        wl.add(b"\x01" * 6)
+        wl.add(b"\x02" * 6)
+        wl.clear()
+        assert wl.addresses == []
+
+    def test_contains(self):
+        wl = AccessWhitelist()
+        addr = b"\xAA\xBB\xCC\xDD\xEE\xFF"
+        wl.add(addr)
+        assert wl.contains(addr) is True
+        assert wl.contains(b"\x00" * 6) is False
+
+    def test_addresses_sorted(self):
+        wl = AccessWhitelist()
+        wl.add(b"\x02" * 6)
+        wl.add(b"\x01" * 6)
+        assert wl.addresses == [b"\x01" * 6, b"\x02" * 6]
+
+    def test_truncates_to_6_bytes(self):
+        wl = AccessWhitelist(enabled=True)
+        long_addr = b"\x01\x02\x03\x04\x05\x06\x07\x08"
+        wl.add(long_addr)
+        assert wl.contains(b"\x01\x02\x03\x04\x05\x06") is True
+
+    def test_broadcaster_whitelist_rejects(self):
+        """广播方白名单拒绝非白名单地址的接入请求。"""
+        mgr = BroadcasterAccessManager(local_address=b"\xAA" * 6)
+        mgr.whitelist.enabled = True
+        mgr.whitelist.add(b"\x11" * 6)
+        req_info = AccessRequestInfo(structure_indication=0x00)
+        resp, accepted = mgr.handle_access_request(
+            req_info.pack(), b"\x22" * 6,
+        )
+        assert accepted is False
+        assert resp is None
+
+    def test_broadcaster_whitelist_accepts(self):
+        """广播方白名单接受白名单内地址。"""
+        mgr = BroadcasterAccessManager(local_address=b"\xAA" * 6)
+        mgr.whitelist.enabled = True
+        mgr.whitelist.add(b"\x22" * 6)
+        req_info = AccessRequestInfo(structure_indication=0x00)
+        _resp, accepted = mgr.handle_access_request(
+            req_info.pack(), b"\x22" * 6,
+        )
+        assert accepted is True

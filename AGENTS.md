@@ -175,11 +175,22 @@ tests/            # 测试文件, 与 src 模块一一对应
 | - | USRP 环回仿真测试 | 完成 | `tests/test_usrp_sim.py` |
 | 6.10.7 | 安全随机函数 | 完成 | `mac/crypto.py` |
 | 7.2.14 | 休眠与唤醒状态机 | 完成 | `mac/link_manager.py` |
+| 7.1.5 | 广播帧过滤 | 完成 | `mac/broadcast.py` |
+| 7.1.6 | 接入白名单 | 完成 | `mac/access.py` |
+| 7.2.4 | 特性交互流程 | 完成 | `mac/link_manager.py` |
+| 7.2.5 | 版本交互流程 | 完成 | `mac/link_manager.py` |
+| 7.2.6 | 数据长度更新 | 完成 | `mac/link_manager.py` |
+| 7.2.7 | 信道质量上报配置 | 完成 | `mac/link_manager.py` |
+| 7.2.8 | 跳频表更新 | 完成 | `mac/link_manager.py` |
+| 7.2.9 | 跳频地图更新 | 完成 | `mac/link_manager.py` |
+| 7.2.10 | 最少可用信道 | 完成 | `mac/link_manager.py` |
+| 7.2.11 | CRC 切换 | 完成 | `mac/link_manager.py` |
+| 7.2.12 | 物理层更新 | 完成 | `mac/link_manager.py` |
 
 ## 测试质量
 
-- 1799 个测试用例, 全部通过
-- 整体覆盖率 91%, 核心模块覆盖率 97%+, 测试执行时间 4.26 秒
+- 1833 个测试用例, 全部通过
+- 整体覆盖率 91%, 核心模块覆盖率 97%+, 测试执行时间 4.29 秒
 - 标准第 14 章测试向量全部验证通过
 
 ## 硬件约束 (USRP E310)

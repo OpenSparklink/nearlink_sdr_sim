@@ -10,10 +10,13 @@ from nearlink_sdr.mac.broadcast import (
     AccessResponseType,
     AddrType,
     BroadcastDataType,
+    BroadcastFilter,
     BroadcastFrame,
     DiscoveryAccessEntry,
     DiscoveryAccessResourceConfig,
     ExtAdvResourceConfig,
+    FilterCondition,
+    FilterOp,
     GTNegotiation,
     NonLinkedBroadcastLinkInfo,
     QueryRequestFilterInfo,
@@ -585,3 +588,125 @@ class TestQueryRequestFilterInfo:
         packed = info.pack()
         # 1 (count_16) + 2 (uuid16) + 1 (count_128) + 16 (uuid128) = 20
         assert len(packed) == 20
+
+
+# -----------------------------------------------------------------------
+# 广播帧过滤器 (7.1.5)
+# -----------------------------------------------------------------------
+
+class TestBroadcastFilter:
+    """广播帧过滤功能测试。"""
+
+    def _make_frame(self, addr: bytes = b"\x01\x02\x03\x04\x05\x06",
+                    data_items=None) -> BroadcastFrame:
+        return BroadcastFrame(
+            structure_indication=0x00,
+            local_addr_type=0, peer_addr_type=0,
+            local_addr=addr, irk_id=0,
+            peer_addr=b"\x00" * 6,
+            data_items=data_items or [],
+        )
+
+    def test_empty_filter_matches_all(self):
+        f = BroadcastFilter()
+        frame = self._make_frame()
+        assert f.match(frame) is True
+
+    def test_address_match(self):
+        addr = b"\x01\x02\x03\x04\x05\x06"
+        f = BroadcastFilter(
+            conditions=[FilterCondition(field_name="address", value=addr)],
+        )
+        assert f.match(self._make_frame(addr=addr)) is True
+        assert f.match(self._make_frame(addr=b"\xFF" * 6)) is False
+
+    def test_address_negate(self):
+        addr = b"\x01\x02\x03\x04\x05\x06"
+        f = BroadcastFilter(
+            conditions=[FilterCondition("address", addr, negate=True)],
+        )
+        assert f.match(self._make_frame(addr=addr)) is False
+        assert f.match(self._make_frame(addr=b"\xFF" * 6)) is True
+
+    def test_name_match(self):
+        name = b"SLE-Device"
+        f = BroadcastFilter(
+            conditions=[FilterCondition("name", name)],
+        )
+        frame_with = self._make_frame(data_items=[(0x01, name)])
+        frame_without = self._make_frame(data_items=[(0x01, b"Other")])
+        assert f.match(frame_with) is True
+        assert f.match(frame_without) is False
+
+    def test_uuid_match(self):
+        uuid = b"\x12\x34"
+        f = BroadcastFilter(
+            conditions=[FilterCondition("uuid", uuid)],
+        )
+        frame_hit = self._make_frame(data_items=[(0x02, b"\x00\x12\x34\xFF")])
+        frame_miss = self._make_frame(data_items=[(0x02, b"\x00\x56\x78")])
+        assert f.match(frame_hit) is True
+        assert f.match(frame_miss) is False
+
+    def test_and_operator(self):
+        addr = b"\x01\x02\x03\x04\x05\x06"
+        name = b"Test"
+        f = BroadcastFilter(
+            conditions=[
+                FilterCondition("address", addr),
+                FilterCondition("name", name),
+            ],
+            operator=FilterOp.AND,
+        )
+        both = self._make_frame(addr=addr, data_items=[(0x01, name)])
+        addr_only = self._make_frame(addr=addr)
+        assert f.match(both) is True
+        assert f.match(addr_only) is False
+
+    def test_or_operator(self):
+        addr = b"\x01\x02\x03\x04\x05\x06"
+        name = b"Test"
+        f = BroadcastFilter(
+            conditions=[
+                FilterCondition("address", addr),
+                FilterCondition("name", name),
+            ],
+            operator=FilterOp.OR,
+        )
+        addr_only = self._make_frame(addr=addr)
+        name_only = self._make_frame(
+            addr=b"\xFF" * 6, data_items=[(0x01, name)],
+        )
+        neither = self._make_frame(addr=b"\xFF" * 6)
+        assert f.match(addr_only) is True
+        assert f.match(name_only) is True
+        assert f.match(neither) is False
+
+    def test_not_operator(self):
+        addr = b"\x01\x02\x03\x04\x05\x06"
+        f = BroadcastFilter(
+            conditions=[FilterCondition("address", addr)],
+            operator=FilterOp.NOT,
+        )
+        assert f.match(self._make_frame(addr=addr)) is False
+        assert f.match(self._make_frame(addr=b"\xFF" * 6)) is True
+
+    def test_service_data_match(self):
+        svc = b"\xAB\xCD"
+        f = BroadcastFilter(
+            conditions=[FilterCondition("service_data", svc)],
+        )
+        hit = self._make_frame(data_items=[(0x10, b"\x00\xAB\xCD\xFF")])
+        miss = self._make_frame(data_items=[(0x10, b"\x00\x00")])
+        assert f.match(hit) is True
+        assert f.match(miss) is False
+
+    def test_vendor_data_match(self):
+        vendor = b"\x01\x02"
+        f = BroadcastFilter(
+            conditions=[FilterCondition("vendor_data", vendor)],
+        )
+        hit = self._make_frame(data_items=[(0x20, b"\x01\x02\x03")])
+        miss = self._make_frame(data_items=[(0x20, b"\x04\x05")])
+        assert f.match(hit) is True
+        assert f.match(miss) is False
