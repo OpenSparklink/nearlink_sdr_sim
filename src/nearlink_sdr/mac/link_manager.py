@@ -696,6 +696,250 @@ class LinkManager:
         )
         return self.send_signaling(msg)
 
+    # ---------------------------------------------------------------
+    # 7.2.19 同步等时链路管理
+    # ---------------------------------------------------------------
+
+    def request_isochronous_link_setup(
+        self,
+        event_group_set_id: int = 0,
+        event_group_id: int = 0,
+        effective_slot: int = 0,
+        event_group_period: int = 0,
+        event_period: int = 0,
+        intra_event_interval: int = 0,
+        inter_event_interval: int = 0,
+        event_count: int = 1,
+        sync_anchor_delay: int = 0,
+        sync_ref_delay: int = 0,
+        scheduling_slot: int = 0,
+        tx_rx_indication: int = 0,
+        tx_adapt_mode: int = 0,
+        rx_adapt_mode: int = 0,
+        tx_link_id: int = 0,
+        rx_link_id: int = 0,
+        tx_frame_type: int = 0,
+        rx_frame_type: int = 0,
+        tx_bandwidth: int = 0,
+        rx_bandwidth: int = 0,
+        tx_pilot_density: int = 0,
+        rx_pilot_density: int = 0,
+        tx_sdu_max: int = 0,
+        rx_sdu_max: int = 0,
+        tx_sdu_period: int = 0,
+        rx_sdu_period: int = 0,
+        tx_pdu_max: int = 0,
+        rx_pdu_max: int = 0,
+        tx_max_time_offset: int = 0,
+        rx_max_time_offset: int = 0,
+        tx_new_pkt_count: int = 1,
+        rx_new_pkt_count: int = 1,
+        tx_crc_init: int = 0,
+        rx_crc_init: int = 0,
+        tx_discard_period: int = 3,
+        rx_discard_period: int = 3,
+        tx_crc_type: int = 0,
+        rx_crc_type: int = 0,
+        tx_feedback_type: int = 0,
+        rx_feedback_type: int = 0,
+    ) -> ControlFrame | None:
+        """发起同步等时链路建链 (7.2.19.1)"""
+        from nearlink_sdr.mac.link_control import IsochronousLinkSetup
+        msg = IsochronousLinkSetup(
+            event_group_set_id=event_group_set_id,
+            event_group_id=event_group_id,
+            effective_slot=effective_slot,
+            event_group_period=event_group_period,
+            event_period=event_period,
+            intra_event_interval=intra_event_interval,
+            inter_event_interval=inter_event_interval,
+            event_count=event_count,
+            sync_anchor_delay=sync_anchor_delay,
+            sync_ref_delay=sync_ref_delay,
+            scheduling_slot=scheduling_slot,
+            tx_rx_indication=tx_rx_indication,
+            tx_adapt_mode=tx_adapt_mode,
+            rx_adapt_mode=rx_adapt_mode,
+            tx_link_id=tx_link_id,
+            rx_link_id=rx_link_id,
+            tx_frame_type=tx_frame_type,
+            rx_frame_type=rx_frame_type,
+            tx_bandwidth=tx_bandwidth,
+            rx_bandwidth=rx_bandwidth,
+            tx_pilot_density=tx_pilot_density,
+            rx_pilot_density=rx_pilot_density,
+            tx_sdu_max=tx_sdu_max,
+            rx_sdu_max=rx_sdu_max,
+            tx_sdu_period=tx_sdu_period,
+            rx_sdu_period=rx_sdu_period,
+            tx_pdu_max=tx_pdu_max,
+            rx_pdu_max=rx_pdu_max,
+            tx_max_time_offset=tx_max_time_offset,
+            rx_max_time_offset=rx_max_time_offset,
+            tx_new_pkt_count=tx_new_pkt_count,
+            rx_new_pkt_count=rx_new_pkt_count,
+            tx_crc_init=tx_crc_init,
+            rx_crc_init=rx_crc_init,
+            tx_discard_period=tx_discard_period,
+            rx_discard_period=rx_discard_period,
+            tx_crc_type=tx_crc_type,
+            rx_crc_type=rx_crc_type,
+            tx_feedback_type=tx_feedback_type,
+            rx_feedback_type=rx_feedback_type,
+        )
+        return self.send_signaling(msg)
+
+    def request_isochronous_param_exchange(
+        self,
+        event_group_set_id: int = 0,
+        event_group_id: int = 0,
+        event_group_period: int = 0,
+        event_period: int = 0,
+        intra_event_interval: int = 0,
+        inter_event_interval: int = 0,
+        event_count: int = 1,
+        sync_anchor_delay: int = 0,
+        sync_ref_delay: int = 0,
+        param_tag_id: int = 0,
+        tx_rx_indication: int = 0,
+        tx_adapt_mode: int = 0,
+        rx_adapt_mode: int = 0,
+        tx_link_id: int = 0,
+        rx_link_id: int = 0,
+        tx_frame_type: int = 0,
+        rx_frame_type: int = 0,
+        tx_bandwidth: int = 0,
+        rx_bandwidth: int = 0,
+        tx_pilot_density: int = 0,
+        rx_pilot_density: int = 0,
+        tx_sdu_max: int = 0,
+        rx_sdu_max: int = 0,
+        tx_sdu_period: int = 0,
+        rx_sdu_period: int = 0,
+        tx_pdu_max: int = 0,
+        rx_pdu_max: int = 0,
+        tx_max_time_offset: int = 0,
+        rx_max_time_offset: int = 0,
+        tx_new_pkt_count: int = 1,
+        rx_new_pkt_count: int = 1,
+        tx_crc_init: int = 0,
+        rx_crc_init: int = 0,
+        tx_discard_period: int = 3,
+        rx_discard_period: int = 3,
+        tx_crc_type: int = 0,
+        rx_crc_type: int = 0,
+        tx_feedback_type: int = 0,
+        rx_feedback_type: int = 0,
+    ) -> ControlFrame | None:
+        """发起同步等时参数交互请求 (7.2.19.2)"""
+        from nearlink_sdr.mac.link_control import IsochronousParamExchangeRequest
+        msg = IsochronousParamExchangeRequest(
+            event_group_set_id=event_group_set_id,
+            event_group_id=event_group_id,
+            event_group_period=event_group_period,
+            event_period=event_period,
+            intra_event_interval=intra_event_interval,
+            inter_event_interval=inter_event_interval,
+            event_count=event_count,
+            sync_anchor_delay=sync_anchor_delay,
+            sync_ref_delay=sync_ref_delay,
+            param_tag_id=param_tag_id,
+            tx_rx_indication=tx_rx_indication,
+            tx_adapt_mode=tx_adapt_mode,
+            rx_adapt_mode=rx_adapt_mode,
+            tx_link_id=tx_link_id,
+            rx_link_id=rx_link_id,
+            tx_frame_type=tx_frame_type,
+            rx_frame_type=rx_frame_type,
+            tx_bandwidth=tx_bandwidth,
+            rx_bandwidth=rx_bandwidth,
+            tx_pilot_density=tx_pilot_density,
+            rx_pilot_density=rx_pilot_density,
+            tx_sdu_max=tx_sdu_max,
+            rx_sdu_max=rx_sdu_max,
+            tx_sdu_period=tx_sdu_period,
+            rx_sdu_period=rx_sdu_period,
+            tx_pdu_max=tx_pdu_max,
+            rx_pdu_max=rx_pdu_max,
+            tx_max_time_offset=tx_max_time_offset,
+            rx_max_time_offset=rx_max_time_offset,
+            tx_new_pkt_count=tx_new_pkt_count,
+            rx_new_pkt_count=rx_new_pkt_count,
+            tx_crc_init=tx_crc_init,
+            rx_crc_init=rx_crc_init,
+            tx_discard_period=tx_discard_period,
+            rx_discard_period=rx_discard_period,
+            tx_crc_type=tx_crc_type,
+            rx_crc_type=rx_crc_type,
+            tx_feedback_type=tx_feedback_type,
+            rx_feedback_type=rx_feedback_type,
+        )
+        return self.send_signaling(msg)
+
+    def respond_isochronous_param_exchange(
+        self, **kwargs: int,
+    ) -> ControlFrame | None:
+        """回复同步等时参数交互 (7.2.19.2)"""
+        from nearlink_sdr.mac.link_control import IsochronousParamExchangeResponse
+        defaults = {
+            "event_group_set_id": 0, "event_group_id": 0,
+            "event_group_period": 0, "event_period": 0,
+            "intra_event_interval": 0, "inter_event_interval": 0,
+            "event_count": 1, "sync_anchor_delay": 0, "sync_ref_delay": 0,
+            "param_tag_id": 0, "tx_rx_indication": 0,
+            "tx_adapt_mode": 0, "rx_adapt_mode": 0,
+            "tx_link_id": 0, "rx_link_id": 0,
+            "tx_frame_type": 0, "rx_frame_type": 0,
+            "tx_bandwidth": 0, "rx_bandwidth": 0,
+            "tx_pilot_density": 0, "rx_pilot_density": 0,
+            "tx_sdu_max": 0, "rx_sdu_max": 0,
+            "tx_sdu_period": 0, "rx_sdu_period": 0,
+            "tx_pdu_max": 0, "rx_pdu_max": 0,
+            "tx_max_time_offset": 0, "rx_max_time_offset": 0,
+            "tx_new_pkt_count": 1, "rx_new_pkt_count": 1,
+            "tx_crc_init": 0, "rx_crc_init": 0,
+            "tx_discard_period": 3, "rx_discard_period": 3,
+            "tx_crc_type": 0, "rx_crc_type": 0,
+            "tx_feedback_type": 0, "rx_feedback_type": 0,
+        }
+        defaults.update(kwargs)
+        msg = IsochronousParamExchangeResponse(**defaults)
+        return self.send_signaling(msg)
+
+    def request_isochronous_param_update(
+        self,
+        param_tag_id: int = 0,
+        event_group_set_id: int = 0,
+        event_group_id: int = 0,
+    ) -> ControlFrame | None:
+        """发起同步等时参数更新请求 (7.2.19.3)"""
+        from nearlink_sdr.mac.link_control import IsochronousParamUpdateRequest
+        msg = IsochronousParamUpdateRequest(
+            param_tag_id=param_tag_id,
+            event_group_set_id=event_group_set_id,
+            event_group_id=event_group_id,
+        )
+        return self.send_signaling(msg)
+
+    def indicate_isochronous_param_update(
+        self,
+        param_tag_id: int = 0,
+        event_group_set_id: int = 0,
+        event_group_id: int = 0,
+        effective_ref_slot: int = 0,
+        event_group_offset: int = 0,
+    ) -> ControlFrame | None:
+        """发送同步等时参数更新指示 (7.2.19.3)"""
+        from nearlink_sdr.mac.link_control import IsochronousParamUpdateIndication
+        msg = IsochronousParamUpdateIndication(
+            param_tag_id=param_tag_id,
+            event_group_set_id=event_group_set_id,
+            event_group_id=event_group_id,
+            effective_ref_slot=effective_ref_slot,
+            event_group_offset=event_group_offset,
+        )
+        return self.send_signaling(msg)
+
 
 # -----------------------------------------------------------------------
 # 异常

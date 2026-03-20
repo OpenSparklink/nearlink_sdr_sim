@@ -9,6 +9,18 @@
 
 ### Added
 
+- 异步/同步数据链路传输规程 (`phy/data_link.py`) -- 标准 6.5.1 ~ 6.5.3
+  - AsyncDataLinkParams / SyncDataLinkParams: 异步/同步数据链路参数模型
+  - AsyncFlowControl / SyncFlowControl: 流控决策 (单播/组播/双向组播/反馈组播)
+  - SyncDataDiscard: 同步数据丢弃机制 (本地基准值/发送序列号/有效载荷计数)
+  - EventGroupSet: 事件组集合调度 (6.5.2.5)
+  - PeriodicServiceAdaptor: 周期适配 SDU 分段/重组/时间同步 (6.5.3.2)
+  - AperiodicServiceAdaptor: 非周期适配分片/重组 (6.5.3.3)
+- 同步等时链路管理 (`mac/link_manager.py`) -- 标准 7.2.19
+  - request_isochronous_link_setup: 建链请求 (7.2.19.1)
+  - request/respond_isochronous_param_exchange: 参数交互 (7.2.19.2)
+  - request/indicate_isochronous_param_update: 参数更新 (7.2.19.3)
+
 - 发现流程管理器 (`mac/access.py`) -- 标准 7.1.2
   - DiscoveryManager: 查询请求/响应流程, 支持白名单过滤
   - 广播设备端查询请求处理和响应构造
