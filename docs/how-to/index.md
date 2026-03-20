@@ -6,6 +6,7 @@
 run-simulation
 add-modulation
 qos-management
+node-usage
 sdr-deployment
 build-docs
 ```

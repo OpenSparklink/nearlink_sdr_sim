@@ -59,6 +59,12 @@
 |------|------|
 | {py:mod}`nearlink_sdr.sim.link_sim` | 链路仿真 |
 
+## 节点实体
+
+| 模块 | 功能 |
+|------|------|
+| {py:mod}`nearlink_sdr.node` | SLE 节点实体 (统一收发接口) |
+
 ## 完整 API 文档
 
 ```{toctree}

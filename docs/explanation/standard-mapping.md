@@ -154,3 +154,4 @@
 | 接入→配对→加密端到端仿真 (Phase 11) | `sim.link_sim` | 完成 |
 | AMC + HARQ + 跳频多径仿真 (Phase 12) | `sim.link_sim` | 完成 |
 | QoS ARQ / AMC 自适应 / 流控仿真 (Phase 13) | `sim.link_sim` | 完成 |
+| SLE 节点实体 (统一收发接口) | `node` | 完成 |

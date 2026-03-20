@@ -87,6 +87,28 @@ nearlink_sdr/
 
 每个阶段的仿真函数可独立调用, 也可通过 `run_phaseN_simulation()` 批量执行。
 
+### node -- 节点实体
+
+`node` 模块提供顶层 `SleNode` 类, 将所有 MAC/PHY 组件整合为统一的收发接口:
+
+| 类 | 职责 |
+|-----|------|
+| `NodeConfig` | 节点参数配置 (地址、角色、帧类型、MCS、带宽、加密等) |
+| `SleNode` | 节点主体, 管理完整链路生命周期 |
+| `NodeCallback` | 事件回调接口 (状态变迁、连接、断开) |
+| `TxResult` / `RxResult` | 发射/接收结果数据 |
+
+`SleNode` 内部组件关系:
+
+```
+SleNode
+├── LinkManager      链路状态机 (IDLE → BROADCASTING/SCANNING → CONNECTED → DISCONNECTED)
+├── QosManager       QoS 管理 (ARQ + HARQ + 流控 + 质量跟踪 + 发送队列)
+├── PairingManager   配对流程驱动 (ECDH 密钥交换)
+├── FrameCryptoContext  帧级加密上下文 (AES-CCM)
+└── TxConfig         发射参数 (帧类型 + MCS + 导频 + 加扰)
+```
+
 ## 信号处理链路
 
 SparkLink SLE 的发射处理链路 (`tx_chain`):
