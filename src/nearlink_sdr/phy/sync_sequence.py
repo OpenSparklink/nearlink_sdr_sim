@@ -291,24 +291,9 @@ def _secure_random_sequence(
     返回:
         256比特数组
     """
-    from nearlink_sdr.mac.crypto import KdfType, kdf
+    from nearlink_sdr.mac.crypto import KdfType, secure_random_256
 
-    kt = KdfType(kdf_type)
-    m = time_param.to_bytes(4, "big")
-    mac1 = kdf(kt, seed, m)  # 128 bits
-
-    if kt == KdfType.AES_CMAC:
-        # AES-CMAC 输出128位, 需要拼接两次
-        # 第二次使用 time_param + 1 区分
-        m2 = (time_param + 1).to_bytes(4, "big")
-        mac2 = kdf(kt, seed, m2)
-        full = mac1 + mac2  # 256 bits
-    else:
-        # HMAC-SM3 可直接输出256位, 但 kdf() 已截取低128位
-        # 同样拼接两次
-        m2 = (time_param + 1).to_bytes(4, "big")
-        mac2 = kdf(kt, seed, m2)
-        full = mac1 + mac2
+    full = secure_random_256(seed, time_param, KdfType(kdf_type))
 
     bits = np.zeros(256, dtype=int)
     for i in range(256):

@@ -9,6 +9,11 @@
 
 ### Added
 
+- `secure_random_256()` 安全随机函数 (标准 6.10.7), 基于 KDF 生成 256-bit 安全序列
+- `sync_sequence.py` 重构: 同步信号 5/6 改用 `crypto.secure_random_256` 公共 API
+- `link_manager.py` 新增休眠/唤醒状态机 (标准 7.2.14)
+  - DORMANT / WAKING 状态, ENTER_DORMANT / WAKE_UP / WAKE_COMPLETE 事件
+  - `is_dormant` 属性, `on_dormant_enter` / `on_wake_complete` 回调
 - USRP 环回仿真引擎 (`sim/usrp_sim.py`)
   - `LoopbackBuffer`: TX→RX 环回缓冲区, 支持信道模型注入
   - `USRPLoopbackSim`: 端到端仿真器, 集成 PHY/MAC 全链路

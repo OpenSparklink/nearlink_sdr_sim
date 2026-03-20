@@ -30,6 +30,7 @@ from nearlink_sdr.mac.crypto import (
     kdf,
     obfuscate,
     resolve_address,
+    secure_random_256,
 )
 
 # ---------------------------------------------------------------------------
@@ -653,3 +654,36 @@ class TestSecurityFlowIntegration:
             KdfType.AES_CMAC, link_key, g_div, t_div
         )
         assert len(sk) == 16
+
+
+class TestSecureRandom256:
+    """secure_random_256 (6.10.7) 测试"""
+
+    def test_output_length(self):
+        seed = os.urandom(16)
+        result = secure_random_256(seed, 0)
+        assert len(result) == 32
+
+    def test_deterministic(self):
+        seed = os.urandom(16)
+        a = secure_random_256(seed, 100)
+        b = secure_random_256(seed, 100)
+        assert a == b
+
+    def test_different_time_params(self):
+        seed = os.urandom(16)
+        a = secure_random_256(seed, 0)
+        b = secure_random_256(seed, 2)
+        assert a != b
+
+    def test_different_seeds(self):
+        a = secure_random_256(b"\x00" * 16, 0)
+        b = secure_random_256(b"\x01" + b"\x00" * 15, 0)
+        assert a != b
+
+    def test_is_two_kdf_outputs(self):
+        seed = os.urandom(16)
+        result = secure_random_256(seed, 10)
+        half1 = kdf(KdfType.AES_CMAC, seed, (10).to_bytes(4, "big"))
+        half2 = kdf(KdfType.AES_CMAC, seed, (11).to_bytes(4, "big"))
+        assert result == half1 + half2

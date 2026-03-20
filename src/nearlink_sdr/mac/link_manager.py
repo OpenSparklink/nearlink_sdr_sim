@@ -39,6 +39,7 @@ class LinkState(Enum):
     ACCESSING   -- 接入态，发送接入请求/等待响应（7.1.3）
     CONNECTED   -- 链接态，异步数据链路已建立
     PAIRING     -- 配对态，执行安全流程（9.2）
+    DORMANT     -- 休眠态，保持链路但停止数据传输（7.2.14）
     DISCONNECTED -- 链路已断开
     """
     IDLE = auto()
@@ -47,6 +48,7 @@ class LinkState(Enum):
     ACCESSING = auto()
     CONNECTED = auto()
     PAIRING = auto()
+    DORMANT = auto()
     DISCONNECTED = auto()
 
 
@@ -108,6 +110,10 @@ class EventType(Enum):
     DISCONNECT_REQUEST = auto()
     DISCONNECT_RECEIVED = auto()
     SUPERVISION_TIMEOUT = auto()
+    # 休眠/唤醒（7.2.14）
+    SLEEP_REQUEST = auto()
+    WAKE_REQUEST = auto()
+    WAKE_RECEIVED = auto()
 
 
 @dataclass
@@ -142,6 +148,12 @@ class LinkManagerCallback:
     def on_disconnected(self, reason: DisconnectReason) -> None:
         """链路断开。"""
 
+    def on_dormant(self) -> None:
+        """进入休眠态（7.2.14）。"""
+
+    def on_wakeup(self) -> None:
+        """从休眠态唤醒（7.2.14）。"""
+
 
 # -----------------------------------------------------------------------
 # 链路管理器
@@ -167,9 +179,14 @@ _VALID_TRANSITIONS: dict[LinkState, set[LinkState]] = {
     },
     LinkState.CONNECTED: {
         LinkState.PAIRING,
+        LinkState.DORMANT,
         LinkState.DISCONNECTED,
     },
     LinkState.PAIRING: {
+        LinkState.CONNECTED,
+        LinkState.DISCONNECTED,
+    },
+    LinkState.DORMANT: {
         LinkState.CONNECTED,
         LinkState.DISCONNECTED,
     },
@@ -222,6 +239,10 @@ class LinkManager:
     @property
     def is_connected(self) -> bool:
         return self.state == LinkState.CONNECTED
+
+    @property
+    def is_dormant(self) -> bool:
+        return self.state == LinkState.DORMANT
 
     @property
     def event_log(self) -> list[tuple[float, EventType, LinkState, LinkState]]:
@@ -344,6 +365,28 @@ class LinkManager:
         self._transition(LinkState.DISCONNECTED)
         self.callback.on_disconnected(DisconnectReason.LOCAL_REQUEST)
 
+    def _handle_sleep_request(self, event: Event) -> None:
+        """链接态发起休眠（7.2.14）。"""
+        self._transition(LinkState.DORMANT)
+        self.callback.on_dormant()
+
+    def _handle_wake_request(self, event: Event) -> None:
+        """本端请求唤醒（7.2.14）。"""
+        self._transition(LinkState.CONNECTED)
+        self._last_rx_time = time.monotonic()
+        self.callback.on_wakeup()
+
+    def _handle_wake_received(self, event: Event) -> None:
+        """收到对端唤醒指示（7.2.14）。"""
+        self._transition(LinkState.CONNECTED)
+        self._last_rx_time = time.monotonic()
+        self.callback.on_wakeup()
+
+    def _handle_dormant_disconnect(self, event: Event) -> None:
+        """休眠态断开链路。"""
+        self._transition(LinkState.DISCONNECTED)
+        self.callback.on_disconnected(DisconnectReason.LOCAL_REQUEST)
+
     # ---------------------------------------------------------------
     # 链接态便利方法 (7.2.x)
     # ---------------------------------------------------------------
@@ -437,9 +480,19 @@ _HANDLERS: dict[tuple[LinkState, EventType], _HandlerFunc] = {
     # CONNECTED → PAIRING
     (LinkState.CONNECTED, EventType.START_PAIRING):
         LinkManager._handle_start_pairing,
+    # CONNECTED → DORMANT (7.2.14)
+    (LinkState.CONNECTED, EventType.SLEEP_REQUEST):
+        LinkManager._handle_sleep_request,
     # PAIRING
     (LinkState.PAIRING, EventType.PAIRING_COMPLETE):
         LinkManager._handle_pairing_complete,
     (LinkState.PAIRING, EventType.PAIRING_FAILED):
         LinkManager._handle_pairing_failed,
+    # DORMANT (7.2.14)
+    (LinkState.DORMANT, EventType.WAKE_REQUEST):
+        LinkManager._handle_wake_request,
+    (LinkState.DORMANT, EventType.WAKE_RECEIVED):
+        LinkManager._handle_wake_received,
+    (LinkState.DORMANT, EventType.DISCONNECT_REQUEST):
+        LinkManager._handle_dormant_disconnect,
 }

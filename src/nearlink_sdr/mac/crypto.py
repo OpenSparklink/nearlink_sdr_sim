@@ -1,7 +1,8 @@
-"""安全子系统加密模块 -- TXS-10002-2025 标准 9.3
+"""安全子系统加密模块 -- TXS-10002-2025 标准 9.3 / 6.10.7
 
 实现 SLE 安全子系统的密码学功能:
 - KDF 密钥派生函数 (AES-CMAC / HMAC-SM3)
+- 安全随机函数 (6.10.7)
 - CCM Nonce 构建 (9.3.1.3)
 - AES-CCM 加解密 (9.3.1.3)
 - 初始化向量计算
@@ -99,6 +100,29 @@ def kdf(kdf_type: KdfType, key: bytes, msg: bytes) -> bytes:
     if kdf_type == KdfType.AES_CMAC:
         return aes_cmac(key, msg)
     return hmac_sm3(key, msg)
+
+
+def secure_random_256(
+    seed: bytes,
+    time_param: int,
+    kdf_type: KdfType = KdfType.AES_CMAC,
+) -> bytes:
+    """安全随机函数 (6.10.7), 生成256比特 (32字节) 安全序列。
+
+    对 KDF 调用两次 (分别使用 time_param 和 time_param+1 作为消息),
+    拼接两个 128-bit 输出得到 256-bit 安全序列。
+
+    参数:
+        seed: 128比特安全随机种子 (16字节)
+        time_param: 32比特时间参数 (如调度时隙号*2)
+        kdf_type: KDF 类型
+
+    返回:
+        32 字节安全序列
+    """
+    m1 = time_param.to_bytes(4, "big")
+    m2 = (time_param + 1).to_bytes(4, "big")
+    return kdf(kdf_type, seed, m1) + kdf(kdf_type, seed, m2)
 
 
 # ---------------------------------------------------------------------------

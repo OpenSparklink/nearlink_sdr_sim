@@ -30,6 +30,8 @@ class RecordingCallback(LinkManagerCallback):
         self.access_results: list[tuple[bool, Role | None]] = []
         self.signaling_msgs: list = []
         self.disconnect_reasons: list[DisconnectReason] = []
+        self.dormant_count: int = 0
+        self.wakeup_count: int = 0
 
     def on_state_changed(self, old, new):
         self.state_changes.append((old, new))
@@ -45,6 +47,12 @@ class RecordingCallback(LinkManagerCallback):
 
     def on_disconnected(self, reason):
         self.disconnect_reasons.append(reason)
+
+    def on_dormant(self):
+        self.dormant_count += 1
+
+    def on_wakeup(self):
+        self.wakeup_count += 1
 
 
 # -----------------------------------------------------------------------
@@ -412,3 +420,68 @@ class TestSupervisionCheck:
         mgr._last_rx_time = time.monotonic() - 1.0  # 1 秒前
         assert mgr.check_supervision_timeout() is True
         assert mgr.state == LinkState.DISCONNECTED
+
+
+# -----------------------------------------------------------------------
+# 测试：休眠与唤醒 (7.2.14)
+# -----------------------------------------------------------------------
+
+class TestDormantTransitions:
+
+    def test_connected_to_dormant(self):
+        mgr, cb = make_manager()
+        connect_as_t_node(mgr)
+        mgr.process_event(Event(EventType.SLEEP_REQUEST))
+        assert mgr.state == LinkState.DORMANT
+        assert mgr.is_dormant
+        assert cb.dormant_count == 1
+
+    def test_dormant_to_connected_local_wake(self):
+        mgr, cb = make_manager()
+        connect_as_t_node(mgr)
+        mgr.process_event(Event(EventType.SLEEP_REQUEST))
+        mgr.process_event(Event(EventType.WAKE_REQUEST))
+        assert mgr.state == LinkState.CONNECTED
+        assert not mgr.is_dormant
+        assert cb.wakeup_count == 1
+
+    def test_dormant_to_connected_remote_wake(self):
+        mgr, cb = make_manager()
+        connect_as_t_node(mgr)
+        mgr.process_event(Event(EventType.SLEEP_REQUEST))
+        mgr.process_event(Event(EventType.WAKE_RECEIVED))
+        assert mgr.state == LinkState.CONNECTED
+        assert cb.wakeup_count == 1
+
+    def test_dormant_disconnect(self):
+        mgr, cb = make_manager()
+        connect_as_t_node(mgr)
+        mgr.process_event(Event(EventType.SLEEP_REQUEST))
+        mgr.process_event(Event(EventType.DISCONNECT_REQUEST))
+        assert mgr.state == LinkState.DISCONNECTED
+        assert len(cb.disconnect_reasons) == 1
+
+    def test_sleep_not_connected_ignored(self):
+        mgr, cb = make_manager()
+        # IDLE 态发 SLEEP_REQUEST 应被忽略
+        mgr.process_event(Event(EventType.SLEEP_REQUEST))
+        assert mgr.state == LinkState.IDLE
+        assert cb.dormant_count == 0
+
+    def test_full_dormant_lifecycle(self):
+        mgr, cb = make_manager()
+        connect_as_t_node(mgr)
+        # 进入休眠
+        mgr.process_event(Event(EventType.SLEEP_REQUEST))
+        assert mgr.state == LinkState.DORMANT
+        # 唤醒
+        mgr.process_event(Event(EventType.WAKE_REQUEST))
+        assert mgr.state == LinkState.CONNECTED
+        # 再次休眠
+        mgr.process_event(Event(EventType.SLEEP_REQUEST))
+        assert mgr.state == LinkState.DORMANT
+        # 远端唤醒
+        mgr.process_event(Event(EventType.WAKE_RECEIVED))
+        assert mgr.state == LinkState.CONNECTED
+        assert cb.dormant_count == 2
+        assert cb.wakeup_count == 2
