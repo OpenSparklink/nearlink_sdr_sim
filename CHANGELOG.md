@@ -7,6 +7,18 @@
 
 ## [Unreleased]
 
+## [0.21.0] - 2025-07-15
+
+### Added
+
+- `phy/mac_interface.py`: MAC-PHY 集成适配层
+  - `bytes_to_bits` / `bits_to_bytes`: MAC 字节流与 PHY 比特数组互转
+  - `mac_to_iq` / `iq_to_mac`: MAC 帧到 IQ 信号的发射/接收适配
+  - `signaling_to_iq` / `iq_to_signaling`: 信令消息直接转 IQ 信号
+  - `roundtrip_signaling` / `roundtrip_data`: 端到端回环验证工具
+- `tests/test_mac_phy_integration.py`: 15 个集成测试覆盖比特转换、IQ 发射、
+  回环验证、信令与数据帧全链路
+
 ## [0.20.0] - 2025-07-14
 
 ### Added
