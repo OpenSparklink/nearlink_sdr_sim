@@ -940,6 +940,681 @@ class LinkManager:
         )
         return self.send_signaling(msg)
 
+    # -------------------------------------------------------------------
+    # 7.2.20  广播链路管理
+    # -------------------------------------------------------------------
+
+    def indicate_broadcast_link_setup(self, **kwargs) -> ControlFrame | None:
+        """发送链接态广播链路建立指示 (7.2.20)"""
+        from nearlink_sdr.mac.link_control import BroadcastLinkSetup
+        defaults: dict = {
+            "transmission_type": 0, "adapt_mode": 0,
+            "event_group_set_id": 0, "event_group_count": 1,
+            "event_group_id": 0, "effective_slot": 0,
+            "event_group_interval": 1, "event_group_period": 100,
+            "event_period": 10, "event_count": 1,
+            "base_link_id": 0, "frame_type": 0, "bandwidth": 0,
+            "pilot_density": 0, "sdu_max": 251, "sdu_period": 0,
+            "pdu_max": 251, "new_pkt_count": 1, "crc_type": 0,
+            "crc_base_init": 0, "hop_map": b"\xff" * 10,
+            "sync_anchor_delay": 0, "sync_ref_delay": 0,
+        }
+        defaults.update(kwargs)
+        return self.send_signaling(BroadcastLinkSetup(**defaults))
+
+    def indicate_broadcast_link_param_update(
+        self, **kwargs,
+    ) -> ControlFrame | None:
+        """发送广播链路参数更新指示 (7.2.20)"""
+        from nearlink_sdr.mac.link_control import BroadcastLinkParamUpdate
+        defaults: dict = {
+            "event_group_set_id": 0, "event_group_count": 1,
+            "event_group_id": 0, "event_group_period": 100,
+            "event_period": 10, "event_count": 1,
+            "frame_type": 0, "bandwidth": 0, "pilot_density": 0,
+            "sdu_max": 251, "new_pkt_count": 1, "adapt_mode": 0,
+            "sdu_period": 0, "pdu_max": 251, "crc_type": 0,
+            "crc_base_init": 0, "sync_anchor_delay": 0,
+            "sync_ref_delay": 0, "effective_ref_slot": 0,
+            "event_group_offset": 0,
+        }
+        defaults.update(kwargs)
+        return self.send_signaling(BroadcastLinkParamUpdate(**defaults))
+
+    def update_broadcast_hop_map(
+        self,
+        hop_map: bytes = b"\xff" * 10,
+        effective_slot: int = 0,
+    ) -> ControlFrame | None:
+        """发送广播链路跳频地图更新指示 (7.2.20)"""
+        from nearlink_sdr.mac.link_control import BroadcastHopMapUpdate
+        return self.send_signaling(
+            BroadcastHopMapUpdate(hop_map=hop_map,
+                                  effective_slot=effective_slot))
+
+    def indicate_broadcast_link_disconnect(
+        self,
+        link_id: int = 0,
+        error_reason: int = 0,
+    ) -> ControlFrame | None:
+        """发送广播链路断开指示 (7.2.20)"""
+        from nearlink_sdr.mac.link_control import BroadcastLinkDisconnect
+        return self.send_signaling(
+            BroadcastLinkDisconnect(link_id=link_id,
+                                    error_reason=error_reason))
+
+    # -------------------------------------------------------------------
+    # 7.2.21  系统管理帧链路管理
+    # -------------------------------------------------------------------
+
+    def request_smf_param_update(
+        self,
+        smf_period: int = 100,
+        smf_start_offset: int = 0,
+        link_id: int = 0,
+        frame_type: int = 0,
+        bandwidth: int = 0,
+        pilot_density: int = 0,
+        crc_type: int = 0,
+    ) -> ControlFrame | None:
+        """发送系统管理帧参数更新请求 (7.2.21)"""
+        from nearlink_sdr.mac.link_control import SMFParamUpdateRequest
+        return self.send_signaling(SMFParamUpdateRequest(
+            smf_period=smf_period, smf_start_offset=smf_start_offset,
+            link_id=link_id, frame_type=frame_type, bandwidth=bandwidth,
+            pilot_density=pilot_density, crc_type=crc_type))
+
+    def indicate_smf_param_update(
+        self,
+        smf_period: int = 100,
+        smf_start_offset: int = 0,
+        link_id: int = 0,
+        frame_type: int = 0,
+        bandwidth: int = 0,
+        pilot_density: int = 0,
+        crc_type: int = 0,
+        crc_init: int = 0,
+    ) -> ControlFrame | None:
+        """发送系统管理帧参数更新指示 (7.2.21)"""
+        from nearlink_sdr.mac.link_control import SMFParamUpdateIndication
+        return self.send_signaling(SMFParamUpdateIndication(
+            smf_period=smf_period, smf_start_offset=smf_start_offset,
+            link_id=link_id, frame_type=frame_type, bandwidth=bandwidth,
+            pilot_density=pilot_density, crc_type=crc_type,
+            crc_init=crc_init))
+
+    def request_smf_timeslot_update(
+        self,
+        link_id: int = 0,
+        current_offset: int = 0,
+        offsets: tuple[int, ...] = (0, 0, 0, 0),
+    ) -> ControlFrame | None:
+        """发送系统管理帧时间片更新请求 (7.2.21)"""
+        from nearlink_sdr.mac.link_control import SMFTimeSlotUpdateRequest
+        return self.send_signaling(SMFTimeSlotUpdateRequest(
+            link_id=link_id, current_offset=current_offset,
+            offsets=offsets))
+
+    def respond_smf_timeslot_update(
+        self,
+        link_id: int = 0,
+        offset: int = 0,
+        effective_slot: int = 0,
+    ) -> ControlFrame | None:
+        """发送系统管理帧时间片更新响应 (7.2.21)"""
+        from nearlink_sdr.mac.link_control import SMFTimeSlotUpdateResponse
+        return self.send_signaling(SMFTimeSlotUpdateResponse(
+            link_id=link_id, offset=offset,
+            effective_slot=effective_slot))
+
+    def terminate_smf_signaling(
+        self,
+        terminate_type: int = 0,
+    ) -> ControlFrame | None:
+        """发送系统管理帧信令传输终止 (7.2.21)"""
+        from nearlink_sdr.mac.link_control import SMFSignalingTerminate
+        return self.send_signaling(
+            SMFSignalingTerminate(terminate_type=terminate_type))
+
+    # -------------------------------------------------------------------
+    # 7.2.22  异步组播链路管理
+    # -------------------------------------------------------------------
+
+    def indicate_async_multicast_link_setup(
+        self, **kwargs,
+    ) -> ControlFrame | None:
+        """发送异步组播链路建链指示 (7.2.22)"""
+        from nearlink_sdr.mac.link_control import AsyncMulticastLinkSetup
+        defaults: dict = {
+            "event_group_set_id": 0, "event_group_id": 0,
+            "effective_slot": 0, "event_group_period": 100,
+            "event_period": 10, "intra_event_interval": 0,
+            "inter_event_interval": 0, "scheduling_slot": 0,
+            "tx_rx_indication": 0, "tx_link_id": 0, "rx_link_id": 0,
+            "tx_frame_type": 0, "rx_frame_type": 0,
+            "tx_bandwidth": 0, "rx_bandwidth": 0,
+            "tx_pilot_density": 0, "rx_pilot_density": 0,
+            "tx_sdu_max": 251, "rx_sdu_max": 251,
+            "tx_sdu_period": 0, "rx_sdu_period": 0,
+            "tx_pdu_max": 251, "rx_pdu_max": 251,
+            "tx_max_time_offset": 0, "rx_max_time_offset": 0,
+            "tx_crc_init": 0, "rx_crc_init": 0,
+            "tx_crc_type": 0, "rx_crc_type": 0,
+            "tx_feedback_type": 0, "rx_feedback_type": 0,
+        }
+        defaults.update(kwargs)
+        return self.send_signaling(AsyncMulticastLinkSetup(**defaults))
+
+    def request_async_multicast_param_exchange(
+        self,
+        payload: bytes = b"\x00" * 41,
+    ) -> ControlFrame | None:
+        """发送异步组播链路参数交互请求 (7.2.22)"""
+        from nearlink_sdr.mac.link_control import (
+            AsyncMulticastParamExchangeRequest,
+        )
+        return self.send_signaling(
+            AsyncMulticastParamExchangeRequest(payload=payload))
+
+    def respond_async_multicast_param_exchange(
+        self,
+        payload: bytes = b"\x00" * 41,
+    ) -> ControlFrame | None:
+        """发送异步组播链路参数交互响应 (7.2.22)"""
+        from nearlink_sdr.mac.link_control import (
+            AsyncMulticastParamExchangeResponse,
+        )
+        return self.send_signaling(
+            AsyncMulticastParamExchangeResponse(payload=payload))
+
+    def request_async_multicast_param_update(
+        self,
+        param_tag_id: int = 0,
+        event_group_set_id: int = 0,
+        event_group_id: int = 0,
+    ) -> ControlFrame | None:
+        """发送异步组播链路参数更新请求 (7.2.22)"""
+        from nearlink_sdr.mac.link_control import (
+            AsyncMulticastParamUpdateRequest,
+        )
+        return self.send_signaling(AsyncMulticastParamUpdateRequest(
+            param_tag_id=param_tag_id,
+            event_group_set_id=event_group_set_id,
+            event_group_id=event_group_id))
+
+    def indicate_async_multicast_param_update(
+        self,
+        param_tag_id: int = 0,
+        event_group_set_id: int = 0,
+        event_group_id: int = 0,
+        effective_ref_slot: int = 0,
+        event_group_offset: int = 0,
+    ) -> ControlFrame | None:
+        """发送异步组播链路参数更新指示 (7.2.22)"""
+        from nearlink_sdr.mac.link_control import (
+            AsyncMulticastParamUpdateIndication,
+        )
+        return self.send_signaling(AsyncMulticastParamUpdateIndication(
+            param_tag_id=param_tag_id,
+            event_group_set_id=event_group_set_id,
+            event_group_id=event_group_id,
+            effective_ref_slot=effective_ref_slot,
+            event_group_offset=event_group_offset))
+
+    def indicate_async_multicast_reconfig(
+        self, **kwargs,
+    ) -> ControlFrame | None:
+        """发送异步组播链路参数重配置指示 (7.2.22)"""
+        from nearlink_sdr.mac.link_control import AsyncMulticastReconfig
+        defaults: dict = {
+            "effective_ref_slot": 0, "event_group_offset": 0,
+            "event_group_period": 100, "event_period": 10,
+            "delay_period": 0, "timeout": 300,
+            "intra_event_interval": 0, "inter_event_interval": 0,
+            "event_count": 1, "payload_count": 0,
+            "scheduling_slot": 0, "tx_rx_indication": 0,
+            "tx_max_pdu": 251, "rx_max_pdu": 251,
+            "tx_max_time_offset": 0, "rx_max_time_offset": 0,
+        }
+        defaults.update(kwargs)
+        return self.send_signaling(AsyncMulticastReconfig(**defaults))
+
+    def disconnect_multicast(
+        self,
+        link_id: int = 0,
+    ) -> ControlFrame | None:
+        """发送组播链路断开指示 (7.2.22)"""
+        from nearlink_sdr.mac.link_control import MulticastDisconnect
+        return self.send_signaling(
+            MulticastDisconnect(link_id=link_id))
+
+    # -------------------------------------------------------------------
+    # 7.2.23  窄带跳频测量
+    # -------------------------------------------------------------------
+
+    def request_narrowband_meas_cap(self) -> ControlFrame | None:
+        """发送窄带跳频测量能力请求 (7.2.23)"""
+        from nearlink_sdr.mac.link_control import NarrowbandMeasCapRequest
+        return self.send_signaling(NarrowbandMeasCapRequest())
+
+    def respond_narrowband_meas_cap(
+        self,
+        payload: bytes = b"\x00" * 32,
+    ) -> ControlFrame | None:
+        """发送窄带跳频测量能力响应 (7.2.23)"""
+        from nearlink_sdr.mac.link_control import NarrowbandMeasCapResponse
+        return self.send_signaling(
+            NarrowbandMeasCapResponse(payload=payload))
+
+    def config_narrowband_meas(
+        self,
+        payload: bytes = b"",
+    ) -> ControlFrame | None:
+        """发送窄带跳频测量信号配置 (7.2.23)"""
+        from nearlink_sdr.mac.link_control import NarrowbandMeasConfig
+        return self.send_signaling(
+            NarrowbandMeasConfig(payload=payload))
+
+    def report_narrowband_meas(
+        self,
+        payload: bytes = b"",
+    ) -> ControlFrame | None:
+        """发送窄带跳频测量信息上报 (7.2.23)"""
+        from nearlink_sdr.mac.link_control import NarrowbandMeasReport
+        return self.send_signaling(
+            NarrowbandMeasReport(payload=payload))
+
+    def action_narrowband_meas(
+        self,
+        config_index: int = 0,
+        start_slot: int = 0,
+        action_config: int = 0,
+    ) -> ControlFrame | None:
+        """发送窄带跳频测量行为指示 (7.2.23)"""
+        from nearlink_sdr.mac.link_control import NarrowbandMeasAction
+        return self.send_signaling(NarrowbandMeasAction(
+            config_index=config_index, start_slot=start_slot,
+            action_config=action_config))
+
+    def request_coordinate(self) -> ControlFrame | None:
+        """发送坐标信息请求 (7.2.23)"""
+        from nearlink_sdr.mac.link_control import CoordinateRequest
+        return self.send_signaling(CoordinateRequest())
+
+    def report_coordinate(
+        self,
+        rel_x: int = 0, rel_y: int = 0, rel_z: int = 0,
+        abs_lon: int = 0, abs_lat: int = 0, abs_alt: int = 0,
+    ) -> ControlFrame | None:
+        """发送坐标信息上报 (7.2.23)"""
+        from nearlink_sdr.mac.link_control import CoordinateReport
+        return self.send_signaling(CoordinateReport(
+            rel_x=rel_x, rel_y=rel_y, rel_z=rel_z,
+            abs_lon=abs_lon, abs_lat=abs_lat, abs_alt=abs_alt))
+
+    def config_coordinate(
+        self,
+        rel_x: int = 0, rel_y: int = 0, rel_z: int = 0,
+        abs_lon: int = 0, abs_lat: int = 0, abs_alt: int = 0,
+    ) -> ControlFrame | None:
+        """发送坐标信息配置 (7.2.23)"""
+        from nearlink_sdr.mac.link_control import CoordinateConfig
+        return self.send_signaling(CoordinateConfig(
+            rel_x=rel_x, rel_y=rel_y, rel_z=rel_z,
+            abs_lon=abs_lon, abs_lat=abs_lat, abs_alt=abs_alt))
+
+    def request_narrowband_delay(self) -> ControlFrame | None:
+        """发送窄带跳频测量时延信息请求 (7.2.23)"""
+        from nearlink_sdr.mac.link_control import NarrowbandDelayRequest
+        return self.send_signaling(NarrowbandDelayRequest())
+
+    def respond_narrowband_delay(
+        self,
+        payload: bytes = b"",
+    ) -> ControlFrame | None:
+        """发送窄带跳频测量时延信息响应 (7.2.23)"""
+        from nearlink_sdr.mac.link_control import NarrowbandDelayResponse
+        return self.send_signaling(
+            NarrowbandDelayResponse(payload=payload))
+
+    # -------------------------------------------------------------------
+    # 7.2.24  超宽带脉冲测量与感知
+    # -------------------------------------------------------------------
+
+    def request_uwb_meas_cap(self) -> ControlFrame | None:
+        """发送超宽带脉冲测量能力请求 (7.2.24)"""
+        from nearlink_sdr.mac.link_control import UWBMeasCapRequest
+        return self.send_signaling(UWBMeasCapRequest())
+
+    def respond_uwb_meas_cap(
+        self,
+        payload: bytes = b"\x00" * 50,
+    ) -> ControlFrame | None:
+        """发送超宽带脉冲测量能力响应 (7.2.24)"""
+        from nearlink_sdr.mac.link_control import UWBMeasCapResponse
+        return self.send_signaling(
+            UWBMeasCapResponse(payload=payload))
+
+    def config_uwb_meas(
+        self,
+        payload: bytes = b"",
+    ) -> ControlFrame | None:
+        """发送超宽带脉冲测量配置 (7.2.24)"""
+        from nearlink_sdr.mac.link_control import UWBMeasConfig
+        return self.send_signaling(UWBMeasConfig(payload=payload))
+
+    def feedback_uwb_meas_config(
+        self,
+        config_index: int = 0,
+        status: int = 0,
+    ) -> ControlFrame | None:
+        """发送超宽带脉冲测量配置反馈 (7.2.24)"""
+        from nearlink_sdr.mac.link_control import UWBMeasConfigFeedback
+        return self.send_signaling(UWBMeasConfigFeedback(
+            config_index=config_index, status=status))
+
+    def report_uwb_meas(
+        self,
+        payload: bytes = b"",
+    ) -> ControlFrame | None:
+        """发送超宽带脉冲测量信息上报 (7.2.24)"""
+        from nearlink_sdr.mac.link_control import UWBMeasReport
+        return self.send_signaling(UWBMeasReport(payload=payload))
+
+    def action_uwb_meas(
+        self,
+        config_index: int = 0,
+        start_slot: int = 0,
+        action_config: int = 0,
+    ) -> ControlFrame | None:
+        """发送超宽带脉冲测量行为指示 (7.2.24)"""
+        from nearlink_sdr.mac.link_control import UWBMeasAction
+        return self.send_signaling(UWBMeasAction(
+            config_index=config_index, start_slot=start_slot,
+            action_config=action_config))
+
+    def request_uwb_sensing_cap(self) -> ControlFrame | None:
+        """发送超宽带脉冲感知能力请求 (7.2.24)"""
+        from nearlink_sdr.mac.link_control import UWBSensingCapRequest
+        return self.send_signaling(UWBSensingCapRequest())
+
+    def respond_uwb_sensing_cap(
+        self,
+        payload: bytes = b"\x00" * 51,
+    ) -> ControlFrame | None:
+        """发送超宽带脉冲感知能力响应 (7.2.24)"""
+        from nearlink_sdr.mac.link_control import UWBSensingCapResponse
+        return self.send_signaling(
+            UWBSensingCapResponse(payload=payload))
+
+    def config_uwb_sensing(
+        self,
+        payload: bytes = b"",
+    ) -> ControlFrame | None:
+        """发送超宽带脉冲感知配置 (7.2.24)"""
+        from nearlink_sdr.mac.link_control import UWBSensingConfig
+        return self.send_signaling(
+            UWBSensingConfig(payload=payload))
+
+    def feedback_uwb_sensing_config(
+        self,
+        config_index: int = 0,
+        status: int = 0,
+    ) -> ControlFrame | None:
+        """发送超宽带脉冲感知配置反馈 (7.2.24)"""
+        from nearlink_sdr.mac.link_control import UWBSensingConfigFeedback
+        return self.send_signaling(UWBSensingConfigFeedback(
+            config_index=config_index, status=status))
+
+    def report_uwb_sensing(
+        self,
+        payload: bytes = b"",
+    ) -> ControlFrame | None:
+        """发送超宽带脉冲感知信息上报 (7.2.24)"""
+        from nearlink_sdr.mac.link_control import UWBSensingReport
+        return self.send_signaling(
+            UWBSensingReport(payload=payload))
+
+    def action_uwb_sensing(
+        self,
+        config_index: int = 0,
+        start_slot: int = 0,
+        action_config: int = 0,
+    ) -> ControlFrame | None:
+        """发送超宽带脉冲感知行为指示 (7.2.24)"""
+        from nearlink_sdr.mac.link_control import UWBSensingAction
+        return self.send_signaling(UWBSensingAction(
+            config_index=config_index, start_slot=start_slot,
+            action_config=action_config))
+
+    def request_uwb_sensing_process(
+        self,
+        payload: bytes = b"\x00" * 16,
+    ) -> ControlFrame | None:
+        """发送超宽带脉冲感知流程请求 (7.2.24)"""
+        from nearlink_sdr.mac.link_control import UWBSensingProcessRequest
+        return self.send_signaling(
+            UWBSensingProcessRequest(payload=payload))
+
+    def feedback_uwb_sensing_process(
+        self,
+        process_index: int = 0,
+        status: int = 0,
+    ) -> ControlFrame | None:
+        """发送超宽带脉冲感知流程反馈 (7.2.24)"""
+        from nearlink_sdr.mac.link_control import UWBSensingProcessFeedback
+        return self.send_signaling(UWBSensingProcessFeedback(
+            process_index=process_index, status=status))
+
+    def request_uwb_proxy_sensing(
+        self,
+        proxy_index: int = 0,
+        sensing_index: int = 0,
+        meas_quantity: int = 0,
+        report_period: int = 0,
+        bandwidth: int = 0,
+    ) -> ControlFrame | None:
+        """发送超宽带脉冲代理感知请求 (7.2.24)"""
+        from nearlink_sdr.mac.link_control import UWBProxySensingRequest
+        return self.send_signaling(UWBProxySensingRequest(
+            proxy_index=proxy_index, sensing_index=sensing_index,
+            meas_quantity=meas_quantity, report_period=report_period,
+            bandwidth=bandwidth))
+
+    def feedback_uwb_proxy_sensing(
+        self,
+        proxy_index: int = 0,
+        sensing_index: int = 0,
+        status: int = 0,
+        meas_quantity1: int = 0,
+        meas_quantity2: int = 0,
+        bandwidth1: int = 0,
+        bandwidth2: int = 0,
+    ) -> ControlFrame | None:
+        """发送超宽带脉冲代理感知反馈 (7.2.24)"""
+        from nearlink_sdr.mac.link_control import UWBProxySensingFeedback
+        return self.send_signaling(UWBProxySensingFeedback(
+            proxy_index=proxy_index, sensing_index=sensing_index,
+            status=status, meas_quantity1=meas_quantity1,
+            meas_quantity2=meas_quantity2, bandwidth1=bandwidth1,
+            bandwidth2=bandwidth2))
+
+    # -------------------------------------------------------------------
+    # 7.2.25  窄带跳频感知
+    # -------------------------------------------------------------------
+
+    def request_narrowband_sensing(
+        self,
+        payload: bytes = b"\x00" * 16,
+    ) -> ControlFrame | None:
+        """发送窄带跳频感知流程请求 (7.2.25)"""
+        from nearlink_sdr.mac.link_control import NarrowbandSensingRequest
+        return self.send_signaling(
+            NarrowbandSensingRequest(payload=payload))
+
+    def feedback_narrowband_sensing(
+        self,
+        process_index: int = 0,
+        status: int = 0,
+    ) -> ControlFrame | None:
+        """发送窄带跳频感知流程反馈 (7.2.25)"""
+        from nearlink_sdr.mac.link_control import NarrowbandSensingFeedback
+        return self.send_signaling(NarrowbandSensingFeedback(
+            process_index=process_index, status=status))
+
+    def request_narrowband_sensing_cap(self) -> ControlFrame | None:
+        """发送窄带跳频感知能力请求 (7.2.25)"""
+        from nearlink_sdr.mac.link_control import (
+            NarrowbandSensingCapRequest,
+        )
+        return self.send_signaling(NarrowbandSensingCapRequest())
+
+    def respond_narrowband_sensing_cap(
+        self,
+        payload: bytes = b"\x00" * 50,
+    ) -> ControlFrame | None:
+        """发送窄带跳频感知能力响应 (7.2.25)"""
+        from nearlink_sdr.mac.link_control import (
+            NarrowbandSensingCapResponse,
+        )
+        return self.send_signaling(
+            NarrowbandSensingCapResponse(payload=payload))
+
+    def config_narrowband_sensing(
+        self,
+        payload: bytes = b"",
+    ) -> ControlFrame | None:
+        """发送窄带跳频感知配置 (7.2.25)"""
+        from nearlink_sdr.mac.link_control import NarrowbandSensingConfig
+        return self.send_signaling(
+            NarrowbandSensingConfig(payload=payload))
+
+    def feedback_narrowband_sensing_config(
+        self,
+        config_index: int = 0,
+        status: int = 0,
+    ) -> ControlFrame | None:
+        """发送窄带跳频感知配置反馈 (7.2.25)"""
+        from nearlink_sdr.mac.link_control import (
+            NarrowbandSensingConfigFeedback,
+        )
+        return self.send_signaling(NarrowbandSensingConfigFeedback(
+            config_index=config_index, status=status))
+
+    def report_narrowband_sensing(
+        self,
+        payload: bytes = b"",
+    ) -> ControlFrame | None:
+        """发送窄带跳频感知信息上报 (7.2.25)"""
+        from nearlink_sdr.mac.link_control import NarrowbandSensingReport
+        return self.send_signaling(
+            NarrowbandSensingReport(payload=payload))
+
+    def action_narrowband_sensing(
+        self,
+        config_index: int = 0,
+        start_slot: int = 0,
+        action_config: int = 0,
+    ) -> ControlFrame | None:
+        """发送窄带跳频感知行为指示 (7.2.25)"""
+        from nearlink_sdr.mac.link_control import NarrowbandSensingAction
+        return self.send_signaling(NarrowbandSensingAction(
+            config_index=config_index, start_slot=start_slot,
+            action_config=action_config))
+
+    def request_narrowband_proxy_sensing(
+        self,
+        proxy_index: int = 0,
+        sensing_index: int = 0,
+        meas_quantity: int = 0,
+        report_period: int = 0,
+        bandwidth: int = 0,
+    ) -> ControlFrame | None:
+        """发送窄带跳频代理感知请求 (7.2.25)"""
+        from nearlink_sdr.mac.link_control import (
+            NarrowbandProxySensingRequest,
+        )
+        return self.send_signaling(NarrowbandProxySensingRequest(
+            proxy_index=proxy_index, sensing_index=sensing_index,
+            meas_quantity=meas_quantity, report_period=report_period,
+            bandwidth=bandwidth))
+
+    def feedback_narrowband_proxy_sensing(
+        self,
+        proxy_index: int = 0,
+        sensing_index: int = 0,
+        status: int = 0,
+        meas_quantity1: int = 0,
+        meas_quantity2: int = 0,
+        bandwidth1: int = 0,
+        bandwidth2: int = 0,
+    ) -> ControlFrame | None:
+        """发送窄带跳频代理感知反馈 (7.2.25)"""
+        from nearlink_sdr.mac.link_control import (
+            NarrowbandProxySensingFeedback,
+        )
+        return self.send_signaling(NarrowbandProxySensingFeedback(
+            proxy_index=proxy_index, sensing_index=sensing_index,
+            status=status, meas_quantity1=meas_quantity1,
+            meas_quantity2=meas_quantity2, bandwidth1=bandwidth1,
+            bandwidth2=bandwidth2))
+
+    def request_narrowband_meas_config_update(
+        self,
+        payload: bytes = b"\x00" * 32,
+    ) -> ControlFrame | None:
+        """发送窄带跳频测量信号配置更新请求 (7.2.25)"""
+        from nearlink_sdr.mac.link_control import (
+            NarrowbandMeasConfigUpdateRequest,
+        )
+        return self.send_signaling(
+            NarrowbandMeasConfigUpdateRequest(payload=payload))
+
+    def indicate_narrowband_meas_config_update(
+        self,
+        payload: bytes = b"\x00" * 32,
+    ) -> ControlFrame | None:
+        """发送窄带跳频测量信号配置更新指示 (7.2.25)"""
+        from nearlink_sdr.mac.link_control import (
+            NarrowbandMeasConfigUpdateIndication,
+        )
+        return self.send_signaling(
+            NarrowbandMeasConfigUpdateIndication(payload=payload))
+
+    # -------------------------------------------------------------------
+    # 资源预留
+    # -------------------------------------------------------------------
+
+    def reserve_resource(
+        self,
+        config_index: int = 0,
+        effective_slot: int = 0,
+        event_group_period: int = 100,
+        event_period: int = 10,
+        event_length: int = 1,
+        event_count: int = 1,
+        scheduling_slot: int = 0,
+    ) -> ControlFrame | None:
+        """发送资源预留指示 (7.3.2.91)"""
+        from nearlink_sdr.mac.link_control import ResourceReservation
+        return self.send_signaling(ResourceReservation(
+            config_index=config_index, effective_slot=effective_slot,
+            event_group_period=event_group_period,
+            event_period=event_period, event_length=event_length,
+            event_count=event_count, scheduling_slot=scheduling_slot))
+
+    def terminate_resource_reservation(
+        self,
+        config_index: int = 0,
+        reason: int = 0,
+    ) -> ControlFrame | None:
+        """发送资源预留终止 (7.3.2.92)"""
+        from nearlink_sdr.mac.link_control import (
+            ResourceReservationTerminate,
+        )
+        return self.send_signaling(ResourceReservationTerminate(
+            config_index=config_index, reason=reason))
+
 
 # -----------------------------------------------------------------------
 # 异常

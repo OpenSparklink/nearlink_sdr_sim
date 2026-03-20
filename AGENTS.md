@@ -74,7 +74,7 @@ tests/            # 测试文件, 与 src 模块一一对应
 | 6.5/6.6 | 同步信号 | 完成 | `phy/sync_sequence.py` |
 | 6.7 | 导频 | 完成 | `phy/pilot.py` |
 | 6.9 | CRC | 完成 | `common/crc.py` |
-| 6.10.1 | Polar 编解码 | 修复 | `common/polar.py` (信息位按索引升序) |
+| 6.10.1 | Polar 编解码 | 完成 | `common/polar.py` |
 | 6.10.2 | 码块分割 | 完成 | `common/code_block_seg.py` |
 | 6.10.3 | 跳频序列 | 完成 | `phy/freq_hopping.py` |
 | 6.4 | 物理层控制信息 A/B 组 | 完成 | `phy/control_info.py` |
@@ -192,11 +192,17 @@ tests/            # 测试文件, 与 src 模块一一对应
 | 7.2.11 | CRC 切换 | 完成 | `mac/link_manager.py` |
 | 7.2.12 | 物理层更新 | 完成 | `mac/link_manager.py` |
 | 7.2.19 | 同步等时链路管理 | 完成 | `mac/link_manager.py` |
+| 7.2.20 | 广播链路管理 | 完成 | `mac/link_manager.py` |
+| 7.2.21 | 系统管理帧链路管理 | 完成 | `mac/link_manager.py` |
+| 7.2.22 | 异步组播链路管理 | 完成 | `mac/link_manager.py` |
+| 7.2.23 | 窄带跳频测量 | 完成 | `mac/link_manager.py` |
+| 7.2.24 | 超宽带脉冲测量与感知 | 完成 | `mac/link_manager.py` |
+| 7.2.25 | 窄带跳频感知 | 完成 | `mac/link_manager.py` |
 
 ## 测试质量
 
-- 1907 个测试用例, 全部通过
-- 整体覆盖率 91%, 核心模块覆盖率 97%+, 测试执行时间 4.30 秒
+- 1967 个测试用例, 全部通过
+- 整体覆盖率 91%, 核心模块覆盖率 97%+, 测试执行时间 4.45 秒
 - 标准第 14 章测试向量全部验证通过
 
 ## 硬件约束 (USRP E310)
