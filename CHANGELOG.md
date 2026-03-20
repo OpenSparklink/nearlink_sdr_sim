@@ -7,6 +7,18 @@
 
 ## [Unreleased]
 
+## [0.20.0] - 2025-07-14
+
+### Added
+
+- `mac/link_manager.py`: 链路管理状态机实现 (标准 7.1/7.2)
+  - 状态: IDLE / BROADCASTING / SCANNING / ACCESSING / CONNECTED / DISCONNECTED
+  - G/T 节点角色协商与切换 (7.1.7.1, 7.2.15)
+  - 事件驱动架构，支持广播、发现、接入、信令收发、断开全流程
+  - 监督超时检测、参数更新、回调接口
+- `tests/test_link_manager.py`: 27 个测试用例覆盖状态转换、接入流程、控制面信令、
+  角色切换、断开流程和完整生命周期
+
 ## [0.19.0] - 2025-07-14
 
 ### Added

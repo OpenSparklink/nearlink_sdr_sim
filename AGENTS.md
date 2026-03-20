@@ -103,6 +103,7 @@ tests/            # 测试文件, 与 src 模块一一对应
 | 7.3.2.45 | 广播链路断开 | 完成 | `mac/link_control.py` |
 | 7.3.2.51-2.55 | 角色切换/PING/时间偏移 | 完成 | `mac/link_control.py` |
 | 7.3.2.62-2.63 | 超时更新/组播断开 | 完成 | `mac/link_control.py` |
+| 7.1/7.2 | 链路管理状态机 | 完成 | `mac/link_manager.py` |
 | 6.10 | TX 发射流水线 | 完成 | `phy/tx_pipeline.py` |
 | 6.10 | RX 接收流水线 | 完成 | `phy/rx_pipeline.py` |
 | 6.3 | FT1/FT3/FT4 帧类型全链路支持 | 完成 | `phy/tx_pipeline.py`, `phy/rx_pipeline.py` |
