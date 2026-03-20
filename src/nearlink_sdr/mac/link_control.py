@@ -6,7 +6,7 @@
 from __future__ import annotations
 
 import struct
-from dataclasses import dataclass
+from dataclasses import dataclass, fields
 
 # ---------------------------------------------------------------------------
 # 7.3.2.2 收发间隔更新请求 (0x0000, 8 bits / 1 byte)
@@ -1152,3 +1152,857 @@ class MulticastDisconnect:
         if len(data) < cls.BYTE_LENGTH:
             raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
         return cls(int.from_bytes(data[:3], "big"))
+
+
+# ---------------------------------------------------------------------------
+# 7.3.2.35 链接态异步链路参数更新请求 (0x0020, 216 bits / 27 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class AsyncLinkParamRequest:
+    """链接态异步链路参数更新请求。"""
+    event_group_period_min: int   # 16 bits
+    event_group_period_max: int   # 16 bits
+    delay_period: int             # 16 bits
+    timeout: int                  # 16 bits (10ms)
+    expected_period_unit: int     # 8 bits
+    effective_ref_slot: int       # 32 bits
+    offsets: tuple[int, ...]      # 6 × 16 bits
+    time_slot_length: int         # 8 bits
+    time_slot_count: int          # 8 bits
+
+    DATA_TYPE_INDEX = 0x0020
+    BYTE_LENGTH = 27
+
+    def pack(self) -> bytes:
+        buf = struct.pack(">HHHH", self.event_group_period_min,
+                          self.event_group_period_max,
+                          self.delay_period, self.timeout)
+        buf += bytes([self.expected_period_unit & 0xFF])
+        buf += self.effective_ref_slot.to_bytes(4, "big")
+        offs = (self.offsets + (0,) * 6)[:6]
+        for o in offs:
+            buf += struct.pack(">H", o & 0xFFFF)
+        buf += bytes([self.time_slot_length & 0xFF, self.time_slot_count & 0xFF])
+        return buf
+
+    @classmethod
+    def unpack(cls, data: bytes) -> AsyncLinkParamRequest:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        egpm, egpx, dp, to = struct.unpack(">HHHH", data[0:8])
+        epu = data[8]
+        ers = int.from_bytes(data[9:13], "big")
+        offs = tuple(struct.unpack(">H", data[13 + i * 2:15 + i * 2])[0] for i in range(6))
+        tsl = data[25]
+        tsc = data[26]
+        return cls(egpm, egpx, dp, to, epu, ers, offs, tsl, tsc)
+
+
+# ---------------------------------------------------------------------------
+# 7.3.2.36 链接态异步链路参数更新响应 (0x0021, 216 bits / 27 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class AsyncLinkParamResponse:
+    """链接态异步链路参数更新响应 (与请求字段完全相同)。"""
+    event_group_period_min: int
+    event_group_period_max: int
+    delay_period: int
+    timeout: int
+    expected_period_unit: int
+    effective_ref_slot: int
+    offsets: tuple[int, ...]
+    time_slot_length: int
+    time_slot_count: int
+
+    DATA_TYPE_INDEX = 0x0021
+    BYTE_LENGTH = 27
+
+    def pack(self) -> bytes:
+        buf = struct.pack(">HHHH", self.event_group_period_min,
+                          self.event_group_period_max,
+                          self.delay_period, self.timeout)
+        buf += bytes([self.expected_period_unit & 0xFF])
+        buf += self.effective_ref_slot.to_bytes(4, "big")
+        offs = (self.offsets + (0,) * 6)[:6]
+        for o in offs:
+            buf += struct.pack(">H", o & 0xFFFF)
+        buf += bytes([self.time_slot_length & 0xFF, self.time_slot_count & 0xFF])
+        return buf
+
+    @classmethod
+    def unpack(cls, data: bytes) -> AsyncLinkParamResponse:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        egpm, egpx, dp, to = struct.unpack(">HHHH", data[0:8])
+        epu = data[8]
+        ers = int.from_bytes(data[9:13], "big")
+        offs = tuple(struct.unpack(">H", data[13 + i * 2:15 + i * 2])[0] for i in range(6))
+        tsl = data[25]
+        tsc = data[26]
+        return cls(egpm, egpx, dp, to, epu, ers, offs, tsl, tsc)
+
+
+# ---------------------------------------------------------------------------
+# 7.3.2.37 同步等时链路建链指示 (0x0022, 448 bits / 56 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class IsochronousLinkSetup:
+    """同步等时链路建链指示。"""
+    event_group_set_id: int       # 8
+    event_group_id: int           # 8
+    effective_slot: int           # 32
+    event_group_period: int       # 16
+    event_period: int             # 16
+    intra_event_interval: int     # 16
+    inter_event_interval: int     # 16
+    event_count: int              # 8
+    sync_anchor_delay: int        # 24
+    sync_ref_delay: int           # 24
+    scheduling_slot: int          # 3
+    tx_rx_indication: int         # 1
+    tx_adapt_mode: int            # 1
+    rx_adapt_mode: int            # 1
+    tx_link_id: int               # 24
+    rx_link_id: int               # 24
+    tx_frame_type: int            # 4
+    rx_frame_type: int            # 4
+    tx_bandwidth: int             # 2
+    rx_bandwidth: int             # 2
+    tx_pilot_density: int         # 2
+    rx_pilot_density: int         # 2
+    tx_sdu_max: int               # 12
+    rx_sdu_max: int               # 12
+    tx_sdu_period: int            # 20
+    rx_sdu_period: int            # 20
+    tx_pdu_max: int               # 11
+    rx_pdu_max: int               # 11
+    tx_max_time_offset: int       # 9
+    rx_max_time_offset: int       # 9
+    tx_new_pkt_count: int         # 4
+    rx_new_pkt_count: int         # 4
+    tx_crc_init: int              # 32
+    rx_crc_init: int              # 32
+    tx_discard_period: int        # 8
+    rx_discard_period: int        # 8
+    tx_crc_type: int              # 1
+    rx_crc_type: int              # 1
+    tx_feedback_type: int         # 6
+    rx_feedback_type: int         # 3
+
+    DATA_TYPE_INDEX = 0x0022
+    BYTE_LENGTH = 56
+
+    def pack(self) -> bytes:
+        buf = bytes([self.event_group_set_id & 0xFF, self.event_group_id & 0xFF])
+        buf += self.effective_slot.to_bytes(4, "big")
+        buf += struct.pack(">HHHHB", self.event_group_period, self.event_period,
+                           self.intra_event_interval, self.inter_event_interval,
+                           self.event_count)
+        buf += self.sync_anchor_delay.to_bytes(3, "big")
+        buf += self.sync_ref_delay.to_bytes(3, "big")
+        # 编码剩余位域 (23 bytes = 184 bits)
+        b = 0
+        b = (b << 3) | (self.scheduling_slot & 0x07)
+        b = (b << 2) | 0  # reserved
+        b = (b << 1) | (self.tx_rx_indication & 0x01)
+        b = (b << 1) | (self.tx_adapt_mode & 0x01)
+        b = (b << 1) | (self.rx_adapt_mode & 0x01)
+        b = (b << 24) | (self.tx_link_id & 0xFFFFFF)
+        b = (b << 24) | (self.rx_link_id & 0xFFFFFF)
+        b = (b << 4) | (self.tx_frame_type & 0x0F)
+        b = (b << 4) | (self.rx_frame_type & 0x0F)
+        b = (b << 2) | (self.tx_bandwidth & 0x03)
+        b = (b << 2) | (self.rx_bandwidth & 0x03)
+        b = (b << 2) | (self.tx_pilot_density & 0x03)
+        b = (b << 2) | (self.rx_pilot_density & 0x03)
+        b = (b << 12) | (self.tx_sdu_max & 0xFFF)
+        b = (b << 12) | (self.rx_sdu_max & 0xFFF)
+        b = (b << 20) | (self.tx_sdu_period & 0xFFFFF)
+        b = (b << 20) | (self.rx_sdu_period & 0xFFFFF)
+        b = (b << 11) | (self.tx_pdu_max & 0x7FF)
+        b = (b << 11) | (self.rx_pdu_max & 0x7FF)
+        b = (b << 9) | (self.tx_max_time_offset & 0x1FF)
+        b = (b << 9) | (self.rx_max_time_offset & 0x1FF)
+        b = (b << 4) | (self.tx_new_pkt_count & 0x0F)
+        b = (b << 4) | (self.rx_new_pkt_count & 0x0F)
+        buf += b.to_bytes(23, "big")
+        buf += self.tx_crc_init.to_bytes(4, "big")
+        buf += self.rx_crc_init.to_bytes(4, "big")
+        buf += bytes([self.tx_discard_period & 0xFF, self.rx_discard_period & 0xFF])
+        tail = ((self.tx_crc_type & 1) << 15
+                | (self.rx_crc_type & 1) << 14
+                | (self.tx_feedback_type & 0x3F) << 8
+                | (self.rx_feedback_type & 0x07) << 5)
+        buf += tail.to_bytes(2, "big")
+        return buf
+
+    @classmethod
+    def unpack(cls, data: bytes) -> IsochronousLinkSetup:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        egsi = data[0]
+        egi = data[1]
+        es = int.from_bytes(data[2:6], "big")
+        egp, ep, iei, iei2, ec = struct.unpack(">HHHHB", data[6:15])
+        sad = int.from_bytes(data[15:18], "big")
+        srd = int.from_bytes(data[18:21], "big")
+        b = int.from_bytes(data[21:44], "big")
+        rnpc = b & 0x0F
+        b >>= 4
+        tnpc = b & 0x0F
+        b >>= 4
+        rmto = b & 0x1FF
+        b >>= 9
+        tmto = b & 0x1FF
+        b >>= 9
+        rpm = b & 0x7FF
+        b >>= 11
+        tpm = b & 0x7FF
+        b >>= 11
+        rsp = b & 0xFFFFF
+        b >>= 20
+        tsp = b & 0xFFFFF
+        b >>= 20
+        rsm = b & 0xFFF
+        b >>= 12
+        tsm = b & 0xFFF
+        b >>= 12
+        rpd = b & 0x03
+        b >>= 2
+        tpd = b & 0x03
+        b >>= 2
+        rb = b & 0x03
+        b >>= 2
+        tb = b & 0x03
+        b >>= 2
+        rft = b & 0x0F
+        b >>= 4
+        tft = b & 0x0F
+        b >>= 4
+        rli = b & 0xFFFFFF
+        b >>= 24
+        tli = b & 0xFFFFFF
+        b >>= 24
+        ram = b & 0x01
+        b >>= 1
+        tam = b & 0x01
+        b >>= 1
+        tri = b & 0x01
+        b >>= 1
+        b >>= 2  # reserved
+        ss = b & 0x07
+        tci = int.from_bytes(data[44:48], "big")
+        rci = int.from_bytes(data[48:52], "big")
+        tdp = data[52]
+        rdp = data[53]
+        tail = int.from_bytes(data[54:56], "big")
+        tct = (tail >> 15) & 1
+        rct = (tail >> 14) & 1
+        tfb = (tail >> 8) & 0x3F
+        rfb = (tail >> 5) & 0x07
+        return cls(
+            egsi, egi, es, egp, ep, iei, iei2, ec, sad, srd,
+            ss, tri, tam, ram, tli, rli, tft, rft, tb, rb, tpd, rpd,
+            tsm, rsm, tsp, rsp, tpm, rpm, tmto, rmto, tnpc, rnpc,
+            tci, rci, tdp, rdp, tct, rct, tfb, rfb,
+        )
+
+
+# ---------------------------------------------------------------------------
+# 7.3.2.38 同步等时链路参数交互请求 (0x0023, 416 bits / 52 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class IsochronousParamExchangeRequest:
+    """同步等时链路参数交互请求。"""
+    event_group_set_id: int
+    event_group_id: int
+    event_group_period: int
+    event_period: int
+    intra_event_interval: int
+    inter_event_interval: int
+    event_count: int
+    sync_anchor_delay: int        # 24
+    sync_ref_delay: int           # 24
+    param_tag_id: int             # 4
+    tx_rx_indication: int         # 1
+    tx_adapt_mode: int            # 1
+    rx_adapt_mode: int            # 1
+    tx_link_id: int               # 24
+    rx_link_id: int               # 24
+    tx_frame_type: int            # 4
+    rx_frame_type: int            # 4
+    tx_bandwidth: int
+    rx_bandwidth: int
+    tx_pilot_density: int
+    rx_pilot_density: int
+    tx_sdu_max: int
+    rx_sdu_max: int
+    tx_sdu_period: int
+    rx_sdu_period: int
+    tx_pdu_max: int
+    rx_pdu_max: int
+    tx_max_time_offset: int
+    rx_max_time_offset: int
+    tx_new_pkt_count: int
+    rx_new_pkt_count: int
+    tx_crc_init: int
+    rx_crc_init: int
+    tx_discard_period: int
+    rx_discard_period: int
+    tx_crc_type: int
+    rx_crc_type: int
+    tx_feedback_type: int
+    rx_feedback_type: int
+
+    DATA_TYPE_INDEX = 0x0023
+    BYTE_LENGTH = 52
+
+    def pack(self) -> bytes:
+        buf = bytes([self.event_group_set_id & 0xFF, self.event_group_id & 0xFF])
+        buf += struct.pack(">HHHHB", self.event_group_period, self.event_period,
+                           self.intra_event_interval, self.inter_event_interval,
+                           self.event_count)
+        buf += self.sync_anchor_delay.to_bytes(3, "big")
+        buf += self.sync_ref_delay.to_bytes(3, "big")
+        b = 0
+        b = (b << 4) | (self.param_tag_id & 0x0F)
+        b = (b << 1) | 0  # reserved
+        b = (b << 1) | (self.tx_rx_indication & 0x01)
+        b = (b << 1) | (self.tx_adapt_mode & 0x01)
+        b = (b << 1) | (self.rx_adapt_mode & 0x01)
+        b = (b << 24) | (self.tx_link_id & 0xFFFFFF)
+        b = (b << 24) | (self.rx_link_id & 0xFFFFFF)
+        b = (b << 4) | (self.tx_frame_type & 0x0F)
+        b = (b << 4) | (self.rx_frame_type & 0x0F)
+        b = (b << 2) | (self.tx_bandwidth & 0x03)
+        b = (b << 2) | (self.rx_bandwidth & 0x03)
+        b = (b << 2) | (self.tx_pilot_density & 0x03)
+        b = (b << 2) | (self.rx_pilot_density & 0x03)
+        b = (b << 12) | (self.tx_sdu_max & 0xFFF)
+        b = (b << 12) | (self.rx_sdu_max & 0xFFF)
+        b = (b << 20) | (self.tx_sdu_period & 0xFFFFF)
+        b = (b << 20) | (self.rx_sdu_period & 0xFFFFF)
+        b = (b << 11) | (self.tx_pdu_max & 0x7FF)
+        b = (b << 11) | (self.rx_pdu_max & 0x7FF)
+        b = (b << 9) | (self.tx_max_time_offset & 0x1FF)
+        b = (b << 9) | (self.rx_max_time_offset & 0x1FF)
+        b = (b << 4) | (self.tx_new_pkt_count & 0x0F)
+        b = (b << 4) | (self.rx_new_pkt_count & 0x0F)
+        buf += b.to_bytes(23, "big")
+        buf += self.tx_crc_init.to_bytes(4, "big")
+        buf += self.rx_crc_init.to_bytes(4, "big")
+        buf += bytes([self.tx_discard_period & 0xFF, self.rx_discard_period & 0xFF])
+        tail = ((self.tx_crc_type & 1) << 15
+                | (self.rx_crc_type & 1) << 14
+                | (self.tx_feedback_type & 0x3F) << 8
+                | (self.rx_feedback_type & 0x07) << 5)
+        buf += tail.to_bytes(2, "big")
+        return buf
+
+    @classmethod
+    def unpack(cls, data: bytes) -> IsochronousParamExchangeRequest:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        egsi = data[0]
+        egi = data[1]
+        egp, ep, iei, iei2, ec = struct.unpack(">HHHHB", data[2:11])
+        sad = int.from_bytes(data[11:14], "big")
+        srd = int.from_bytes(data[14:17], "big")
+        b = int.from_bytes(data[17:40], "big")
+        rnpc = b & 0x0F
+        b >>= 4
+        tnpc = b & 0x0F
+        b >>= 4
+        rmto = b & 0x1FF
+        b >>= 9
+        tmto = b & 0x1FF
+        b >>= 9
+        rpm = b & 0x7FF
+        b >>= 11
+        tpm = b & 0x7FF
+        b >>= 11
+        rsp = b & 0xFFFFF
+        b >>= 20
+        tsp = b & 0xFFFFF
+        b >>= 20
+        rsm = b & 0xFFF
+        b >>= 12
+        tsm = b & 0xFFF
+        b >>= 12
+        rpd = b & 0x03
+        b >>= 2
+        tpd = b & 0x03
+        b >>= 2
+        rb = b & 0x03
+        b >>= 2
+        tb = b & 0x03
+        b >>= 2
+        rft = b & 0x0F
+        b >>= 4
+        tft = b & 0x0F
+        b >>= 4
+        rli = b & 0xFFFFFF
+        b >>= 24
+        tli = b & 0xFFFFFF
+        b >>= 24
+        ram = b & 0x01
+        b >>= 1
+        tam = b & 0x01
+        b >>= 1
+        tri = b & 0x01
+        b >>= 1
+        b >>= 1  # reserved
+        pti = b & 0x0F
+        tci = int.from_bytes(data[40:44], "big")
+        rci = int.from_bytes(data[44:48], "big")
+        tdp = data[48]
+        rdp = data[49]
+        tail = int.from_bytes(data[50:52], "big")
+        tct = (tail >> 15) & 1
+        rct = (tail >> 14) & 1
+        tfb = (tail >> 8) & 0x3F
+        rfb = (tail >> 5) & 0x07
+        return cls(
+            egsi, egi, egp, ep, iei, iei2, ec, sad, srd,
+            pti, tri, tam, ram, tli, rli, tft, rft, tb, rb, tpd, rpd,
+            tsm, rsm, tsp, rsp, tpm, rpm, tmto, rmto, tnpc, rnpc,
+            tci, rci, tdp, rdp, tct, rct, tfb, rfb,
+        )
+
+
+# ---------------------------------------------------------------------------
+# 7.3.2.39 同步等时链路参数交互响应 (0x0024, 416 bits / 52 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class IsochronousParamExchangeResponse(IsochronousParamExchangeRequest):
+    """同步等时链路参数交互响应 (与请求字段相同)。"""
+
+    DATA_TYPE_INDEX = 0x0024
+    BYTE_LENGTH = 52
+
+    @classmethod
+    def unpack(cls, data: bytes) -> IsochronousParamExchangeResponse:
+        req = IsochronousParamExchangeRequest.unpack(data)
+        return cls(**{f.name: getattr(req, f.name) for f in fields(req)})
+
+
+# ---------------------------------------------------------------------------
+# 7.3.2.40 同步等时链路参数更新请求 (0x0025, 24 bits / 3 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class IsochronousParamUpdateRequest:
+    """同步等时链路参数更新请求。"""
+    param_tag_id: int        # 4 bits
+    event_group_set_id: int  # 8 bits
+    event_group_id: int      # 8 bits
+
+    DATA_TYPE_INDEX = 0x0025
+    BYTE_LENGTH = 3
+
+    def pack(self) -> bytes:
+        b0 = (self.param_tag_id & 0x0F) << 4
+        return bytes([b0, self.event_group_set_id & 0xFF, self.event_group_id & 0xFF])
+
+    @classmethod
+    def unpack(cls, data: bytes) -> IsochronousParamUpdateRequest:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls((data[0] >> 4) & 0x0F, data[1], data[2])
+
+
+# ---------------------------------------------------------------------------
+# 7.3.2.41 同步等时链路参数更新指示 (0x0026, 72 bits / 9 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class IsochronousParamUpdateIndication:
+    """同步等时链路参数更新指示。"""
+    param_tag_id: int            # 4 bits
+    event_group_set_id: int      # 8 bits
+    event_group_id: int          # 8 bits
+    effective_ref_slot: int      # 32 bits
+    event_group_offset: int      # 16 bits
+
+    DATA_TYPE_INDEX = 0x0026
+    BYTE_LENGTH = 9
+
+    def pack(self) -> bytes:
+        b0 = (self.param_tag_id & 0x0F) << 4
+        buf = bytes([b0, self.event_group_set_id & 0xFF, self.event_group_id & 0xFF])
+        buf += self.effective_ref_slot.to_bytes(4, "big")
+        buf += struct.pack(">H", self.event_group_offset)
+        return buf
+
+    @classmethod
+    def unpack(cls, data: bytes) -> IsochronousParamUpdateIndication:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        pti = (data[0] >> 4) & 0x0F
+        egsi = data[1]
+        egi = data[2]
+        ers = int.from_bytes(data[3:7], "big")
+        ego = struct.unpack(">H", data[7:9])[0]
+        return cls(pti, egsi, egi, ers, ego)
+
+
+# ---------------------------------------------------------------------------
+# 7.3.2.42 链接态广播链路建立指示 (0x0027, 可变长)
+#   固定部分 + 80 bit 跳频地图 (2.4GHz) = 68 bytes
+# ---------------------------------------------------------------------------
+
+@dataclass
+class BroadcastLinkSetup:
+    """链接态广播链路建立指示 (2.4GHz 80-bit 跳频地图版本)。"""
+    transmission_type: int        # 1 bit
+    adapt_mode: int               # 1 bit
+    event_group_set_id: int       # 8
+    event_group_count: int        # 8
+    event_group_id: int           # 8
+    effective_slot: int           # 32
+    event_group_interval: int     # 8
+    event_group_period: int       # 16
+    event_period: int             # 16
+    event_count: int              # 8
+    base_link_id: int             # 24
+    frame_type: int               # 4
+    bandwidth: int                # 2
+    pilot_density: int            # 2
+    sdu_max: int                  # 12
+    sdu_period: int               # 20
+    pdu_max: int                  # 11
+    new_pkt_count: int            # 4
+    crc_type: int                 # 1
+    crc_base_init: int            # 32
+    hop_map: bytes                # 80 bits = 10 bytes
+    sync_anchor_delay: int        # 24
+    sync_ref_delay: int           # 24
+
+    DATA_TYPE_INDEX = 0x0027
+    BYTE_LENGTH = 44  # 不含可选加密字段
+
+    def pack(self) -> bytes:
+        b0 = ((self.transmission_type & 1) << 7
+              | (self.adapt_mode & 1) << 6)
+        buf = bytes([b0, self.event_group_set_id & 0xFF,
+                     self.event_group_count & 0xFF, self.event_group_id & 0xFF])
+        buf += self.effective_slot.to_bytes(4, "big")
+        buf += bytes([self.event_group_interval & 0xFF])
+        buf += struct.pack(">HHB", self.event_group_period,
+                           self.event_period, self.event_count)
+        buf += self.base_link_id.to_bytes(3, "big")
+        # 位域: frame_type(4) + bandwidth(2) + pilot_density(2) = 8 bits
+        b_cfg = ((self.frame_type & 0x0F) << 4
+                 | (self.bandwidth & 0x03) << 2
+                 | (self.pilot_density & 0x03))
+        buf += bytes([b_cfg])
+        # sdu_max(12) + sdu_period(20) = 32 bits
+        sp = ((self.sdu_max & 0xFFF) << 20) | (self.sdu_period & 0xFFFFF)
+        buf += sp.to_bytes(4, "big")
+        # pdu_max(11) + new_pkt_count(4) + crc_type(1) = 16 bits
+        pc = ((self.pdu_max & 0x7FF) << 5
+              | (self.new_pkt_count & 0x0F) << 1
+              | (self.crc_type & 1))
+        buf += pc.to_bytes(2, "big")
+        buf += self.crc_base_init.to_bytes(4, "big")
+        hm = self.hop_map[:10] if len(self.hop_map) >= 10 else self.hop_map + b"\x00" * (10 - len(self.hop_map))
+        buf += hm
+        buf += self.sync_anchor_delay.to_bytes(3, "big")
+        buf += self.sync_ref_delay.to_bytes(3, "big")
+        return buf
+
+    @classmethod
+    def unpack(cls, data: bytes) -> BroadcastLinkSetup:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        tt = (data[0] >> 7) & 1
+        am = (data[0] >> 6) & 1
+        egsi = data[1]
+        egc = data[2]
+        egi = data[3]
+        es = int.from_bytes(data[4:8], "big")
+        egi2 = data[8]
+        egp, ep, ec = struct.unpack(">HHB", data[9:14])
+        bli = int.from_bytes(data[14:17], "big")
+        bcfg = data[17]
+        ft = (bcfg >> 4) & 0x0F
+        bw = (bcfg >> 2) & 0x03
+        pd = bcfg & 0x03
+        sp = int.from_bytes(data[18:22], "big")
+        sm = (sp >> 20) & 0xFFF
+        spr = sp & 0xFFFFF
+        pc = int.from_bytes(data[22:24], "big")
+        pm = (pc >> 5) & 0x7FF
+        npc = (pc >> 1) & 0x0F
+        ct = pc & 1
+        cbi = int.from_bytes(data[24:28], "big")
+        hm = data[28:38]
+        sad = int.from_bytes(data[38:41], "big")
+        srd = int.from_bytes(data[41:44], "big") if len(data) >= 44 else 0
+        return cls(tt, am, egsi, egc, egi, es, egi2, egp, ep, ec,
+                   bli, ft, bw, pd, sm, spr, pm, npc, ct, cbi, hm, sad, srd)
+
+
+# ---------------------------------------------------------------------------
+# 7.3.2.43 广播链路参数更新指示 (0x0028, 240 bits / 30 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class BroadcastLinkParamUpdate:
+    """广播链路参数更新指示。"""
+    event_group_set_id: int
+    event_group_count: int
+    event_group_id: int
+    event_group_period: int       # 16
+    event_period: int             # 16
+    event_count: int              # 8
+    frame_type: int               # 4
+    bandwidth: int                # 2
+    pilot_density: int            # 2
+    sdu_max: int                  # 12
+    new_pkt_count: int            # 4
+    adapt_mode: int               # 1
+    sdu_period: int               # 20
+    pdu_max: int                  # 11
+    crc_type: int                 # 1
+    crc_base_init: int            # 32
+    sync_anchor_delay: int        # 24
+    sync_ref_delay: int           # 24
+    effective_ref_slot: int       # 32
+    event_group_offset: int       # 16
+
+    DATA_TYPE_INDEX = 0x0028
+    BYTE_LENGTH = 32
+
+    def pack(self) -> bytes:
+        buf = bytes([self.event_group_set_id & 0xFF,
+                     self.event_group_count & 0xFF,
+                     self.event_group_id & 0xFF])
+        buf += struct.pack(">HHB", self.event_group_period,
+                           self.event_period, self.event_count)
+        b_cfg = ((self.frame_type & 0x0F) << 4
+                 | (self.bandwidth & 0x03) << 2
+                 | (self.pilot_density & 0x03))
+        buf += bytes([b_cfg])
+        # sdu_max(12) + new_pkt_count(4) + adapt_mode(1) + reserved(7) = 24 bits
+        sm_np = ((self.sdu_max & 0xFFF) << 12
+                 | (self.new_pkt_count & 0x0F) << 8
+                 | (self.adapt_mode & 1) << 7)
+        buf += sm_np.to_bytes(3, "big")
+        # sdu_period(20) + pdu_max(11) + crc_type(1) = 32 bits
+        sp_pm = ((self.sdu_period & 0xFFFFF) << 12
+                 | (self.pdu_max & 0x7FF) << 1
+                 | (self.crc_type & 1))
+        buf += sp_pm.to_bytes(4, "big")
+        buf += self.crc_base_init.to_bytes(4, "big")
+        buf += self.sync_anchor_delay.to_bytes(3, "big")
+        buf += self.sync_ref_delay.to_bytes(3, "big")
+        buf += self.effective_ref_slot.to_bytes(4, "big")
+        buf += struct.pack(">H", self.event_group_offset)
+        return buf
+
+    @classmethod
+    def unpack(cls, data: bytes) -> BroadcastLinkParamUpdate:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        egsi, egc, egi = data[0], data[1], data[2]
+        egp, ep, ec = struct.unpack(">HHB", data[3:8])
+        bcfg = data[8]
+        ft = (bcfg >> 4) & 0x0F
+        bw = (bcfg >> 2) & 0x03
+        pd = bcfg & 0x03
+        sm_np = int.from_bytes(data[9:12], "big")
+        sm = (sm_np >> 12) & 0xFFF
+        npc = (sm_np >> 8) & 0x0F
+        am = (sm_np >> 7) & 1
+        sp_pm = int.from_bytes(data[12:16], "big")
+        spr = (sp_pm >> 12) & 0xFFFFF
+        pm = (sp_pm >> 1) & 0x7FF
+        ct = sp_pm & 1
+        cbi = int.from_bytes(data[16:20], "big")
+        sad = int.from_bytes(data[20:23], "big")
+        srd = int.from_bytes(data[23:26], "big")
+        ers = int.from_bytes(data[26:30], "big")
+        ego = 0
+        if len(data) >= 32:
+            ego = struct.unpack(">H", data[30:32])[0]
+        return cls(egsi, egc, egi, egp, ep, ec, ft, bw, pd,
+                   sm, npc, am, spr, pm, ct, cbi, sad, srd, ers, ego)
+
+
+# ---------------------------------------------------------------------------
+# 7.3.2.44 广播链路跳频地图更新指示 (0x0029, 112 bits / 14 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class BroadcastHopMapUpdate:
+    """广播链路跳频地图更新指示。"""
+    hop_map: bytes               # 80 bits = 10 bytes
+    effective_slot: int          # 32 bits
+
+    DATA_TYPE_INDEX = 0x0029
+    BYTE_LENGTH = 14
+
+    def pack(self) -> bytes:
+        hm = self.hop_map[:10] if len(self.hop_map) >= 10 else self.hop_map + b"\x00" * (10 - len(self.hop_map))
+        return hm + self.effective_slot.to_bytes(4, "big")
+
+    @classmethod
+    def unpack(cls, data: bytes) -> BroadcastHopMapUpdate:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(data[:10], int.from_bytes(data[10:14], "big"))
+
+
+# ---------------------------------------------------------------------------
+# 7.3.2.46 系统管理帧参数更新请求 (0x002B, 64 bits / 8 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class SMFParamUpdateRequest:
+    """系统管理帧参数更新请求。"""
+    smf_period: int              # 16 bits
+    smf_start_offset: int        # 8 bits
+    link_id: int                 # 24 bits
+    frame_type: int              # 4 bits
+    bandwidth: int               # 2 bits
+    pilot_density: int           # 2 bits
+    crc_type: int                # 1 bit
+
+    DATA_TYPE_INDEX = 0x002B
+    BYTE_LENGTH = 8
+
+    def pack(self) -> bytes:
+        buf = struct.pack(">HB", self.smf_period, self.smf_start_offset)
+        buf += self.link_id.to_bytes(3, "big")
+        b_cfg = ((self.frame_type & 0x0F) << 4
+                 | (self.bandwidth & 0x03) << 2
+                 | (self.pilot_density & 0x03))
+        b_tail = ((self.crc_type & 1) << 7)
+        buf += bytes([b_cfg, b_tail])
+        return buf
+
+    @classmethod
+    def unpack(cls, data: bytes) -> SMFParamUpdateRequest:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        sp = struct.unpack(">H", data[0:2])[0]
+        so = data[2]
+        li = int.from_bytes(data[3:6], "big")
+        ft = (data[6] >> 4) & 0x0F
+        bw = (data[6] >> 2) & 0x03
+        pd = data[6] & 0x03
+        ct = (data[7] >> 7) & 1
+        return cls(sp, so, li, ft, bw, pd, ct)
+
+
+# ---------------------------------------------------------------------------
+# 7.3.2.47 系统管理帧参数更新指示 (0x002C, 96 bits / 12 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class SMFParamUpdateIndication:
+    """系统管理帧参数更新指示。"""
+    smf_period: int
+    smf_start_offset: int
+    link_id: int
+    frame_type: int
+    bandwidth: int
+    pilot_density: int
+    crc_type: int
+    crc_init: int                # 32 bits -> 但标准说 96 bits total, 所以这里不含
+
+    DATA_TYPE_INDEX = 0x002C
+    BYTE_LENGTH = 12
+
+    def pack(self) -> bytes:
+        buf = struct.pack(">HB", self.smf_period, self.smf_start_offset)
+        buf += self.link_id.to_bytes(3, "big")
+        b_cfg = ((self.frame_type & 0x0F) << 4
+                 | (self.bandwidth & 0x03) << 2
+                 | (self.pilot_density & 0x03))
+        b_tail = ((self.crc_type & 1) << 7)
+        buf += bytes([b_cfg, b_tail])
+        buf += self.crc_init.to_bytes(4, "big")
+        return buf
+
+    @classmethod
+    def unpack(cls, data: bytes) -> SMFParamUpdateIndication:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        sp = struct.unpack(">H", data[0:2])[0]
+        so = data[2]
+        li = int.from_bytes(data[3:6], "big")
+        ft = (data[6] >> 4) & 0x0F
+        bw = (data[6] >> 2) & 0x03
+        pd = data[6] & 0x03
+        ct = (data[7] >> 7) & 1
+        ci = int.from_bytes(data[8:12], "big")
+        return cls(sp, so, li, ft, bw, pd, ct, ci)
+
+
+# ---------------------------------------------------------------------------
+# 7.3.2.48 系统管理帧时间片更新请求 (0x002D, 104 bits / 13 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class SMFTimeSlotUpdateRequest:
+    """系统管理帧时间片更新请求。"""
+    link_id: int              # 24 bits
+    current_offset: int       # 16 bits
+    offsets: tuple[int, ...]  # 4 × 16 bits
+
+    DATA_TYPE_INDEX = 0x002D
+    BYTE_LENGTH = 13
+
+    def pack(self) -> bytes:
+        buf = self.link_id.to_bytes(3, "big")
+        buf += struct.pack(">H", self.current_offset)
+        offs = (self.offsets + (0,) * 4)[:4]
+        for o in offs:
+            buf += struct.pack(">H", o & 0xFFFF)
+        return buf
+
+    @classmethod
+    def unpack(cls, data: bytes) -> SMFTimeSlotUpdateRequest:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        li = int.from_bytes(data[0:3], "big")
+        co = struct.unpack(">H", data[3:5])[0]
+        offs = tuple(struct.unpack(">H", data[5 + i * 2:7 + i * 2])[0] for i in range(4))
+        return cls(li, co, offs)
+
+
+# ---------------------------------------------------------------------------
+# 7.3.2.49 系统管理帧时间片更新响应 (0x002E, 72 bits / 9 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class SMFTimeSlotUpdateResponse:
+    """系统管理帧时间片更新响应。"""
+    link_id: int              # 24 bits
+    offset: int               # 16 bits
+    effective_slot: int       # 32 bits
+
+    DATA_TYPE_INDEX = 0x002E
+    BYTE_LENGTH = 9
+
+    def pack(self) -> bytes:
+        buf = self.link_id.to_bytes(3, "big")
+        buf += struct.pack(">H", self.offset)
+        buf += self.effective_slot.to_bytes(4, "big")
+        return buf
+
+    @classmethod
+    def unpack(cls, data: bytes) -> SMFTimeSlotUpdateResponse:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        li = int.from_bytes(data[0:3], "big")
+        o = struct.unpack(">H", data[3:5])[0]
+        es = int.from_bytes(data[5:9], "big")
+        return cls(li, o, es)

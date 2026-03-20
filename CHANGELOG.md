@@ -7,6 +7,23 @@
 
 ## [Unreleased]
 
+## [0.23.0] - 2025-07-15
+
+### Added
+
+- `mac/link_control.py`: 新增 14 个链路控制信令类型 (0x0020-0x002E)
+  - AsyncLinkParamRequest/Response: 链接态异步链路参数更新
+  - IsochronousLinkSetup: 同步等时链路建链指示 (56B, 40 字段位域编码)
+  - IsochronousParamExchangeRequest/Response: 同步等时参数交互 (52B)
+  - IsochronousParamUpdateRequest/Indication: 同步等时参数更新
+  - BroadcastLinkSetup: 链接态广播链路建立 (44B, 含 80-bit 跳频地图)
+  - BroadcastLinkParamUpdate: 广播链路参数更新 (32B)
+  - BroadcastHopMapUpdate: 广播链路跳频地图更新 (14B)
+  - SMFParamUpdateRequest/Indication: 系统管理帧参数更新
+  - SMFTimeSlotUpdateRequest/Response: 系统管理帧时间片更新
+- `mac/signaling.py`: 注册表扩展至 55 个信令类型
+- `tests/test_link_control_ext.py`: 新增 20+ 往返测试覆盖所有新信令
+
 ## [0.22.0] - 2025-07-15
 
 ### Added
