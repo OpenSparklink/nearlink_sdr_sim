@@ -19,6 +19,7 @@ from nearlink_sdr.mac.link_control import (
     DataLengthResponse,
     FeatureExchangeRequest,
     FeatureExchangeResponse,
+    IntervalUpdateIndication,
     IntervalUpdateRequest,
     IntervalUpdateResponse,
     LinkDisconnect,
@@ -277,11 +278,18 @@ class TestIntervalUpdate:
         assert restored.interval_type == 5
 
     def test_response_roundtrip(self):
-        resp = IntervalUpdateResponse(link_id=0xABCDEF, interval_type=3,
-                                      effective_slot=1000)
+        resp = IntervalUpdateResponse(interval_type=3)
         data = resp.pack()
-        assert len(data) == 8
+        assert len(data) == 1
         restored = IntervalUpdateResponse.unpack(data)
+        assert restored.interval_type == 3
+
+    def test_indication_roundtrip(self):
+        ind = IntervalUpdateIndication(link_id=0xABCDEF, interval_type=3,
+                                       effective_slot=1000)
+        data = ind.pack()
+        assert len(data) == 8
+        restored = IntervalUpdateIndication.unpack(data)
         assert restored.link_id == 0xABCDEF
         assert restored.interval_type == 3
         assert restored.effective_slot == 1000
@@ -289,18 +297,26 @@ class TestIntervalUpdate:
     def test_request_signaling_registry(self):
         req = IntervalUpdateRequest(interval_type=0)
         frame = encode_signaling(req)
-        assert frame.data_type_index == 0x0001
+        assert frame.data_type_index == 0x0000
         decoded = decode_signaling(frame)
         assert isinstance(decoded, IntervalUpdateRequest)
         assert decoded.interval_type == 0
 
     def test_response_signaling_registry(self):
-        resp = IntervalUpdateResponse(link_id=1, interval_type=15,
-                                      effective_slot=0)
+        resp = IntervalUpdateResponse(interval_type=15)
         frame = encode_signaling(resp)
-        assert frame.data_type_index == 0x0002
+        assert frame.data_type_index == 0x0001
         decoded = decode_signaling(frame)
         assert isinstance(decoded, IntervalUpdateResponse)
+        assert decoded.interval_type == 15
+
+    def test_indication_signaling_registry(self):
+        ind = IntervalUpdateIndication(link_id=1, interval_type=15,
+                                       effective_slot=0)
+        frame = encode_signaling(ind)
+        assert frame.data_type_index == 0x0002
+        decoded = decode_signaling(frame)
+        assert isinstance(decoded, IntervalUpdateIndication)
         assert decoded.interval_type == 15
 
 
@@ -465,22 +481,28 @@ class TestLinkDisconnect:
 
 
 class TestSignalingRegistryExpanded:
-    """验证扩展后的信令注册表覆盖 17 种信令类型。"""
+    """验证扩展后的信令注册表覆盖 38 种信令类型。"""
 
     def test_total_registered_count(self):
         items = list_registered()
-        assert len(items) >= 17
+        assert len(items) >= 38
 
     def test_all_indices_present(self):
         items = list_registered()
         indices = {idx for idx, _, _ in items}
-        expected = {0x0001, 0x0002, 0x0003, 0x000A, 0x000B, 0x000D,
-                    0x000E, 0x000F, 0x0010, 0x0015, 0x0016,
-                    0x0019, 0x001A, 0x001B, 0x001C, 0x001D, 0x001E}
+        expected = {0x0000, 0x0001, 0x0002, 0x0003, 0x0004, 0x0005,
+                    0x0006, 0x0007, 0x0008, 0x0009,
+                    0x000A, 0x000B, 0x000C, 0x000D,
+                    0x000E, 0x000F, 0x0010, 0x0011,
+                    0x0012, 0x0013, 0x0014,
+                    0x0015, 0x0016, 0x0017, 0x0018,
+                    0x0019, 0x001A, 0x001B, 0x001C, 0x001D, 0x001E,
+                    0x001F, 0x002A, 0x0030, 0x0031, 0x0032,
+                    0x0033, 0x0034, 0x003A, 0x003C, 0x003D}
         assert expected.issubset(indices)
 
     def test_names_lookup(self):
-        assert get_signaling_name(0x0001) == "收发间隔更新请求"
+        assert get_signaling_name(0x0000) == "收发间隔更新请求"
         assert get_signaling_name(0x0003) == "信令被拒指示"
         assert get_signaling_name(0x000D) == "版本交互指示"
         assert get_signaling_name(0x001E) == "链路断开指示"

@@ -7,6 +7,33 @@
 
 ## [Unreleased]
 
+## [0.19.0] - 2025-07-14
+
+### Added
+
+- `mac/link_control.py`: 新增 22 类控制面信令编解码, 覆盖安全流程、信道管理、PHY 更新、
+  角色切换、PING、超时更新、广播/组播断开等 (标准 7.3.2.6-7.3.2.63)
+- `mac/signaling.py`: 信令注册表从 17 扩展至 41 条目
+- `tests/test_link_control_ext.py`: 新增 28 个信令 roundtrip 和注册表测试
+
+### Fixed
+
+- `mac/link_control.py`: 修正 IntervalUpdateRequest DATA_TYPE_INDEX 从 0x0001 → 0x0000,
+  IntervalUpdateResponse 重命名为 IntervalUpdateIndication (0x0002),
+  新建正确的 IntervalUpdateResponse (0x0001, 1 字节)
+- `mac/link_control.py`: 修正 AsyncMulticastReconfig BYTE_LENGTH 从 31 → 30,
+  修正 struct unpack 偏移对齐
+- `mac/link_control.py`: 修正 AsyncUnicastUpdate pack 输出与标准 15 字节一致
+
+## [0.18.0] - 2025-07-14
+
+### Added
+
+- `mac/broadcast.py`: 广播帧编解码实现 (标准 7.1.4), 含 BroadcastFrame、
+  ExtAdvResourceConfig、DiscoveryAccessResourceConfig、AccessBasicInfo、
+  AccessRequestInfo、AccessResponseInfo、SystemMgmtFrameInfo 等 7 个数据类
+- `tests/test_broadcast.py`: 广播帧 20 个测试用例
+
 ## [0.17.0] - 2026-03-20
 
 ### Added
