@@ -9,6 +9,17 @@
 
 ### Added
 
+- 测试覆盖率提升: 85% → 96%, 新增 84 个测试 (1496 → 1580)
+  - `tests/test_link_sim_phy.py`: Phase 1-13 仿真测试 (74 个测试)
+    - `_ber` / `_apply_cfo` / `_channel_impair` 辅助函数测试
+    - `sim_gfsk_link` / `sim_psk_link` / `sim_polar_coded_psk_link` 无编码/编码 BER 仿真
+    - `sim_frame_link` 帧级仿真 (FT2/FT3/FT4, 多种导频配置)
+    - `sim_channel_eq_link` 信道均衡 (AWGN/Rayleigh/Rician/multipath, ZF/MMSE)
+    - `sim_hopping_link` 跳频链路 (多带宽, 信道阻塞)
+    - `sim_pipeline_link` / `sim_pipeline_channel_link` 全链路 Pipeline 仿真
+    - `run_phase1_simulation` ~ `run_phase13_simulation` 可视化函数验证
+  - `tests/test_measurement.py`: 测量信号补充测试 (10 个测试)
+    - 8 音信号, 无效参数边界, type2 扰动路径, 随机天线对排序
 - QoS 服务质量管理模块 (`mac/qos.py`): 实现标准 6.5 节数据传输质量控制
   - ArqState: 异步/同步链路 ARQ 序列号管理 (FT1 1-bit / FT3/FT4 5-bit SN), ACK/NACK 反馈处理
   - HarqController: TB 模式与 CBG 模式 HARQ 反馈编解码, 部分重传决策 (MCS=15)

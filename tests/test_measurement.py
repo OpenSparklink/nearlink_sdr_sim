@@ -229,6 +229,66 @@ class TestAntennaPairOrder:
         r2 = antenna_pair_order_random(3, 2, seed, 10, k=3)
         assert r1 == r2
 
+    def test_random_1x1_unchanged(self):
+        seed = b"\xAA" * 16
+        result = antenna_pair_order_random(1, 1, seed, 0, k=3)
+        assert result == [(0, 0)]
+
+    def test_random_different_slots(self):
+        seed = b"\xBB" * 16
+        r1 = antenna_pair_order_random(3, 3, seed, 0, k=4)
+        r2 = antenna_pair_order_random(3, 3, seed, 5, k=4)
+        assert sorted(r1) == sorted(r2)
+
+
+class TestMeasurementSignal1Extended:
+    """测试 type2 的非零 n_disturb_max 路径。"""
+
+    SEED = b"\xAA" * 16
+
+    def test_type2_nonzero_disturb(self):
+        seq = measurement_signal_1(
+            64, SecurityType.TYPE_2, seed=self.SEED,
+            slot_number=3, n_disturb_max=5,
+        )
+        assert set(seq).issubset({0, 1})
+
+    def test_type2_large_n(self):
+        seq = measurement_signal_1(
+            256, SecurityType.TYPE_2, seed=self.SEED,
+            slot_number=10, n_disturb_max=11,
+        )
+        assert len(seq) == 256
+
+    def test_type2_disturb_max_zero(self):
+        seq = measurement_signal_1(
+            32, SecurityType.TYPE_2, seed=self.SEED,
+            slot_number=0, n_disturb_max=0,
+        )
+        assert np.all(seq == 0)
+
+    def test_invalid_n_measur(self):
+        with pytest.raises(ValueError):
+            measurement_signal_1(17, SecurityType.TYPE_4)
+
+    def test_invalid_tones(self):
+        with pytest.raises(ValueError):
+            measurement_signal_2(3, 1, 5.0, 4e6)
+
+    def test_invalid_bandwidth(self):
+        with pytest.raises(ValueError):
+            measurement_signal_2(2, 3, 5.0, 4e6)
+
+    def test_invalid_phase_set(self):
+        with pytest.raises(ValueError):
+            measurement_signal_2(4, 2, 5.0, 8e6, phase_set=3)
+
+    def test_8tone(self):
+        sig = measurement_signal_2(8, 2, 5.0, 8e6, phase_set=1)
+        assert len(sig) > 0
+        sig2 = measurement_signal_2(8, 2, 5.0, 8e6, phase_set=2)
+        assert not np.allclose(sig, sig2)
+
     def test_random_different_slots(self):
         seed = b"\xDD" * 16
         r1 = antenna_pair_order_random(3, 2, seed, 0, k=3)

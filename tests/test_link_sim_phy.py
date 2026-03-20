@@ -1,0 +1,661 @@
+"""Phase 1-8 物理层链路仿真的单元测试。
+
+覆盖 sim_gfsk_link / sim_psk_link / sim_polar_coded_psk_link /
+sim_frame_link / sim_channel_eq_link / sim_hopping_link /
+sim_pipeline_link / sim_pipeline_channel_link 及辅助函数。
+"""
+
+import numpy as np
+
+from nearlink_sdr.sim.link_sim import (
+    _apply_cfo,
+    _ber,
+    _channel_impair,
+    sim_channel_eq_link,
+    sim_frame_link,
+    sim_gfsk_link,
+    sim_hopping_link,
+    sim_pipeline_channel_link,
+    sim_pipeline_link,
+    sim_polar_coded_psk_link,
+    sim_psk_link,
+)
+
+# ── 辅助函数 ──
+
+
+class TestBer:
+    def test_identical(self):
+        tx = np.array([0, 1, 0, 1])
+        assert _ber(tx, tx) == 0.0
+
+    def test_all_errors(self):
+        tx = np.array([0, 0, 0, 0])
+        rx = np.array([1, 1, 1, 1])
+        assert _ber(tx, rx) == 1.0
+
+    def test_half_errors(self):
+        tx = np.array([0, 0, 1, 1])
+        rx = np.array([0, 1, 1, 0])
+        assert _ber(tx, rx) == 0.5
+
+    def test_empty(self):
+        assert _ber(np.array([]), np.array([])) == 0.0
+
+    def test_different_lengths(self):
+        tx = np.array([0, 1, 0])
+        rx = np.array([0, 1])
+        assert _ber(tx, rx) == 0.0
+
+
+class TestApplyCfo:
+    def test_zero_cfo(self):
+        sig = np.ones(100, dtype=complex)
+        result = _apply_cfo(sig, 0.0, 1e6)
+        np.testing.assert_array_equal(result, sig)
+
+    def test_nonzero_cfo_rotates(self):
+        sig = np.ones(100, dtype=complex)
+        result = _apply_cfo(sig, 1000.0, 1e6)
+        assert result.dtype == complex
+        assert len(result) == len(sig)
+        # 相位应随时间旋转
+        assert not np.allclose(result, sig)
+
+    def test_cfo_preserves_amplitude(self):
+        sig = np.ones(50, dtype=complex) * 2.0
+        result = _apply_cfo(sig, 500.0, 1e6)
+        np.testing.assert_allclose(np.abs(result), 2.0, atol=1e-12)
+
+
+class TestChannelImpair:
+    def test_awgn_basic(self):
+        rng = np.random.default_rng(42)
+        iq = np.ones(64, dtype=complex)
+        result = _channel_impair(
+            iq, 30.0, "awgn", 6.0, 0.0, "none", 4, rng,
+        )
+        assert len(result) == len(iq)
+
+    def test_rayleigh_with_eq(self):
+        rng = np.random.default_rng(42)
+        iq = np.ones(64, dtype=complex)
+        result = _channel_impair(
+            iq, 20.0, "rayleigh", 6.0, 0.0, "mmse", 4, rng,
+        )
+        assert len(result) == len(iq)
+
+    def test_with_cfo(self):
+        rng = np.random.default_rng(42)
+        iq = np.ones(64, dtype=complex)
+        result = _channel_impair(
+            iq, 20.0, "awgn", 6.0, 500.0, "none", 4, rng,
+        )
+        assert len(result) == len(iq)
+
+    def test_multipath_mmse(self):
+        rng = np.random.default_rng(42)
+        iq = np.ones(128, dtype=complex)
+        result = _channel_impair(
+            iq, 20.0, "multipath", 6.0, 0.0, "mmse", 4, rng,
+        )
+        assert len(result) == len(iq)
+
+    def test_rician_no_eq(self):
+        rng = np.random.default_rng(42)
+        iq = np.ones(64, dtype=complex)
+        result = _channel_impair(
+            iq, 20.0, "rician", 6.0, 0.0, "none", 4, rng,
+        )
+        assert len(result) == len(iq)
+
+    def test_rayleigh_with_cfo_and_eq(self):
+        rng = np.random.default_rng(42)
+        iq = np.ones(64, dtype=complex)
+        result = _channel_impair(
+            iq, 20.0, "rayleigh", 6.0, 200.0, "mmse", 4, rng,
+        )
+        assert len(result) == len(iq)
+
+
+# ── Phase 1: 无编码 BER ──
+
+
+class TestGfskLink:
+    def test_returns_expected_keys(self):
+        result = sim_gfsk_link(
+            num_data_bits=200,
+            snr_range_db=np.array([0, 10]),
+        )
+        assert "snr_db" in result
+        assert "ber" in result
+        assert len(result["snr_db"]) == 2
+        assert len(result["ber"]) == 2
+
+    def test_high_snr_low_ber(self):
+        result = sim_gfsk_link(
+            num_data_bits=500,
+            snr_range_db=np.array([20.0]),
+        )
+        assert result["ber"][0] < 0.05
+
+    def test_ber_decreases_with_snr(self):
+        result = sim_gfsk_link(
+            num_data_bits=500,
+            snr_range_db=np.array([0.0, 8.0, 16.0]),
+        )
+        # BER 应大致随 SNR 递减
+        assert result["ber"][0] >= result["ber"][-1]
+
+    def test_default_snr_range(self):
+        result = sim_gfsk_link(num_data_bits=100)
+        assert len(result["snr_db"]) == 9
+
+
+class TestPskLink:
+    def test_qpsk_keys(self):
+        result = sim_psk_link(
+            num_data_bits=200,
+            mod_type="QPSK",
+            snr_range_db=np.array([0, 10]),
+        )
+        assert "snr_db" in result
+        assert "ber" in result
+        assert len(result["snr_db"]) == 2
+
+    def test_bpsk_high_snr(self):
+        result = sim_psk_link(
+            num_data_bits=500,
+            mod_type="BPSK",
+            snr_range_db=np.array([20.0]),
+        )
+        assert result["ber"][0] < 0.01
+
+    def test_qpsk_ber_trend(self):
+        result = sim_psk_link(
+            num_data_bits=500,
+            mod_type="QPSK",
+            snr_range_db=np.array([0.0, 10.0, 20.0]),
+        )
+        assert result["ber"][0] >= result["ber"][-1]
+
+    def test_frame_type_parameter(self):
+        """frame_type 参数不影响 PSK 仿真本身的正确性。"""
+        r2 = sim_psk_link(num_data_bits=200, frame_type=2,
+                          snr_range_db=np.array([10.0]))
+        r3 = sim_psk_link(num_data_bits=200, frame_type=3,
+                          snr_range_db=np.array([10.0]))
+        assert len(r2["ber"]) == 1
+        assert len(r3["ber"]) == 1
+
+    def test_default_snr_range(self):
+        result = sim_psk_link(num_data_bits=100)
+        assert len(result["snr_db"]) == 9
+
+
+# ── Phase 2: Polar 编码 BER ──
+
+
+class TestPolarCodedPskLink:
+    def test_returns_expected_keys(self):
+        result = sim_polar_coded_psk_link(
+            num_info_bits=128,
+            code_length=256,
+            snr_range_db=np.array([0, 5]),
+        )
+        assert "snr_db" in result
+        assert "ber" in result
+        assert "fer" in result
+        assert "code_params" in result
+
+    def test_high_snr_no_errors(self):
+        result = sim_polar_coded_psk_link(
+            num_info_bits=128,
+            code_length=256,
+            rate_str="1/2",
+            snr_range_db=np.array([12.0]),
+        )
+        assert result["ber"][0] == 0.0
+        assert result["fer"][0] == 0.0
+
+    def test_coding_gain(self):
+        """编码应在中等 SNR 下降低 BER。"""
+        coded = sim_polar_coded_psk_link(
+            num_info_bits=128,
+            code_length=256,
+            rate_str="1/2",
+            snr_range_db=np.array([4.0]),
+        )
+        uncoded = sim_psk_link(
+            num_data_bits=128,
+            mod_type="BPSK",
+            snr_range_db=np.array([4.0]),
+        )
+        assert coded["ber"][0] <= uncoded["ber"][0]
+
+    def test_fer_bounded(self):
+        result = sim_polar_coded_psk_link(
+            num_info_bits=128,
+            code_length=256,
+            snr_range_db=np.array([0.0, 10.0]),
+        )
+        for f in result["fer"]:
+            assert 0.0 <= f <= 1.0
+
+    def test_default_snr_range(self):
+        result = sim_polar_coded_psk_link(num_info_bits=64, code_length=128)
+        assert len(result["snr_db"]) == 14
+
+
+# ── Phase 3: 帧级仿真 ──
+
+
+class TestFrameLink:
+    def test_ft2_keys(self):
+        result = sim_frame_link(
+            frame_type=2,
+            num_data_bits=128,
+            code_length=256,
+            snr_range_db=np.array([0, 5]),
+        )
+        assert "snr_db" in result
+        assert "ber" in result
+        assert "fer" in result
+
+    def test_ft3_runs(self):
+        result = sim_frame_link(
+            frame_type=3,
+            num_data_bits=128,
+            code_length=256,
+            snr_range_db=np.array([5.0]),
+        )
+        assert len(result["ber"]) == 1
+
+    def test_ft4_runs(self):
+        result = sim_frame_link(
+            frame_type=4,
+            num_data_bits=128,
+            code_length=256,
+            snr_range_db=np.array([5.0]),
+        )
+        assert len(result["ber"]) == 1
+
+    def test_pilot_interval_zero(self):
+        result = sim_frame_link(
+            frame_type=2,
+            num_data_bits=128,
+            code_length=256,
+            pilot_interval=0,
+            snr_range_db=np.array([5.0]),
+        )
+        assert len(result["ber"]) == 1
+
+    def test_high_snr_low_ber(self):
+        result = sim_frame_link(
+            frame_type=2,
+            num_data_bits=128,
+            code_length=256,
+            snr_range_db=np.array([15.0]),
+        )
+        assert result["ber"][0] < 0.1
+
+    def test_default_snr_range(self):
+        result = sim_frame_link(num_data_bits=64, code_length=128)
+        assert len(result["snr_db"]) == 12
+
+
+# ── Phase 4: 信道 + 均衡 ──
+
+
+class TestChannelEqLink:
+    def test_awgn_keys(self):
+        result = sim_channel_eq_link(
+            channel_type="awgn",
+            snr_range_db=np.array([5.0, 10.0]),
+            n_frames=5,
+        )
+        assert "snr_db" in result
+        assert "ber" in result
+        assert "fer" in result
+
+    def test_rayleigh_no_eq(self):
+        result = sim_channel_eq_link(
+            channel_type="rayleigh",
+            eq_method="none",
+            snr_range_db=np.array([10.0]),
+            n_frames=5,
+        )
+        assert len(result["ber"]) == 1
+
+    def test_rayleigh_mmse_eq(self):
+        result = sim_channel_eq_link(
+            channel_type="rayleigh",
+            eq_method="mmse",
+            snr_range_db=np.array([10.0]),
+            n_frames=5,
+        )
+        assert len(result["ber"]) == 1
+
+    def test_rician(self):
+        result = sim_channel_eq_link(
+            channel_type="rician",
+            eq_method="mmse",
+            rician_k_db=6.0,
+            snr_range_db=np.array([10.0]),
+            n_frames=5,
+        )
+        assert len(result["ber"]) == 1
+
+    def test_multipath_no_eq(self):
+        result = sim_channel_eq_link(
+            channel_type="multipath",
+            eq_method="none",
+            snr_range_db=np.array([10.0]),
+            n_frames=5,
+        )
+        assert len(result["ber"]) == 1
+
+    def test_multipath_mmse(self):
+        result = sim_channel_eq_link(
+            channel_type="multipath",
+            eq_method="mmse",
+            snr_range_db=np.array([10.0]),
+            n_frames=5,
+        )
+        assert len(result["ber"]) == 1
+
+    def test_multipath_zf(self):
+        result = sim_channel_eq_link(
+            channel_type="multipath",
+            eq_method="zf",
+            snr_range_db=np.array([10.0]),
+            n_frames=5,
+        )
+        assert len(result["ber"]) == 1
+
+    def test_eq_improves_rayleigh(self):
+        no_eq = sim_channel_eq_link(
+            channel_type="rayleigh",
+            eq_method="none",
+            snr_range_db=np.array([8.0]),
+            n_frames=20,
+            seed=42,
+        )
+        with_eq = sim_channel_eq_link(
+            channel_type="rayleigh",
+            eq_method="mmse",
+            snr_range_db=np.array([8.0]),
+            n_frames=20,
+            seed=42,
+        )
+        assert with_eq["ber"][0] <= no_eq["ber"][0]
+
+
+# ── Phase 5: 跳频 ──
+
+
+class TestHoppingLink:
+    def test_keys(self):
+        result = sim_hopping_link(
+            n_hops=5,
+            snr_range_db=np.array([5.0, 10.0]),
+        )
+        assert "snr_db" in result
+        assert "ber" in result
+        assert "fer" in result
+        assert "channels_used" in result
+
+    def test_channels_used_nonempty(self):
+        result = sim_hopping_link(
+            n_hops=10,
+            snr_range_db=np.array([10.0]),
+        )
+        assert len(result["channels_used"]) > 0
+
+    def test_high_snr(self):
+        result = sim_hopping_link(
+            n_hops=10,
+            snr_range_db=np.array([20.0]),
+        )
+        assert result["ber"][0] < 0.1
+
+    def test_blocked_channels(self):
+        result = sim_hopping_link(
+            n_hops=10,
+            blocked_ratio=0.3,
+            snr_range_db=np.array([10.0]),
+        )
+        assert len(result["ber"]) == 1
+
+    def test_bandwidth_2mhz(self):
+        result = sim_hopping_link(
+            n_hops=5,
+            bandwidth_mhz=2,
+            snr_range_db=np.array([10.0]),
+        )
+        assert len(result["channels_used"]) > 0
+
+    def test_bandwidth_4mhz(self):
+        result = sim_hopping_link(
+            n_hops=5,
+            bandwidth_mhz=4,
+            snr_range_db=np.array([10.0]),
+        )
+        assert len(result["channels_used"]) > 0
+
+
+# ── Phase 6: Pipeline ──
+
+
+class TestPipelineLink:
+    def test_ft2_keys(self):
+        result = sim_pipeline_link(
+            frame_type=2,
+            mcs_index=7,
+            n_data_bytes=5,
+            snr_range_db=np.array([10.0, 20.0]),
+            n_frames=5,
+        )
+        assert "snr_db" in result
+        assert "ber" in result
+        assert "fer" in result
+
+    def test_ft1(self):
+        result = sim_pipeline_link(
+            frame_type=1,
+            mcs_index=8,
+            n_data_bytes=5,
+            snr_range_db=np.array([20.0]),
+            n_frames=5,
+        )
+        assert len(result["ber"]) == 1
+
+    def test_ft3(self):
+        result = sim_pipeline_link(
+            frame_type=3,
+            mcs_index=0,
+            n_data_bytes=5,
+            snr_range_db=np.array([15.0]),
+            n_frames=5,
+        )
+        assert len(result["ber"]) == 1
+
+    def test_ft4(self):
+        result = sim_pipeline_link(
+            frame_type=4,
+            mcs_index=0,
+            n_data_bytes=5,
+            snr_range_db=np.array([15.0]),
+            n_frames=5,
+        )
+        assert len(result["ber"]) == 1
+
+    def test_high_snr_low_fer(self):
+        result = sim_pipeline_link(
+            frame_type=2,
+            mcs_index=5,
+            n_data_bytes=5,
+            snr_range_db=np.array([30.0]),
+            n_frames=10,
+        )
+        assert result["fer"][0] < 0.5
+
+
+# ── Phase 7: 信道 + Pipeline ──
+
+
+class TestPipelineChannelLink:
+    def test_awgn_keys(self):
+        result = sim_pipeline_channel_link(
+            frame_type=2,
+            mcs_index=7,
+            n_data_bytes=5,
+            channel_type="awgn",
+            snr_range_db=np.array([10.0, 20.0]),
+            n_frames=5,
+        )
+        assert "snr_db" in result
+        assert "ber" in result
+        assert "fer" in result
+        assert len(result["snr_db"]) == 2
+
+    def test_rayleigh_no_eq(self):
+        result = sim_pipeline_channel_link(
+            frame_type=2,
+            mcs_index=7,
+            n_data_bytes=5,
+            channel_type="rayleigh",
+            eq_method="none",
+            snr_range_db=np.array([10.0]),
+            n_frames=5,
+        )
+        assert len(result["ber"]) == 1
+
+    def test_rayleigh_mmse(self):
+        result = sim_pipeline_channel_link(
+            frame_type=2,
+            mcs_index=7,
+            n_data_bytes=5,
+            channel_type="rayleigh",
+            eq_method="mmse",
+            snr_range_db=np.array([10.0]),
+            n_frames=5,
+        )
+        assert len(result["ber"]) == 1
+
+    def test_rician(self):
+        result = sim_pipeline_channel_link(
+            frame_type=2,
+            mcs_index=7,
+            n_data_bytes=5,
+            channel_type="rician",
+            eq_method="none",
+            snr_range_db=np.array([10.0]),
+            n_frames=5,
+        )
+        assert len(result["ber"]) == 1
+
+    def test_with_cfo(self):
+        result = sim_pipeline_channel_link(
+            frame_type=2,
+            mcs_index=7,
+            n_data_bytes=5,
+            channel_type="awgn",
+            cfo_hz=500.0,
+            snr_range_db=np.array([20.0]),
+            n_frames=5,
+        )
+        assert len(result["ber"]) == 1
+
+    def test_ft1(self):
+        result = sim_pipeline_channel_link(
+            frame_type=1,
+            mcs_index=8,
+            n_data_bytes=5,
+            channel_type="awgn",
+            snr_range_db=np.array([20.0]),
+            n_frames=5,
+        )
+        assert len(result["ber"]) == 1
+
+    def test_ft3(self):
+        result = sim_pipeline_channel_link(
+            frame_type=3,
+            mcs_index=0,
+            n_data_bytes=5,
+            channel_type="awgn",
+            snr_range_db=np.array([15.0]),
+            n_frames=5,
+        )
+        assert len(result["ber"]) == 1
+
+    def test_multipath_mmse(self):
+        result = sim_pipeline_channel_link(
+            frame_type=2,
+            mcs_index=7,
+            n_data_bytes=5,
+            channel_type="multipath",
+            eq_method="mmse",
+            snr_range_db=np.array([15.0]),
+            n_frames=5,
+        )
+        assert len(result["ber"]) == 1
+
+
+# ── Phase 可视化函数 ──
+
+
+class TestRunPhaseSimulations:
+    """验证 run_phaseN_simulation 可无报错运行 (Agg 后端)。"""
+
+    def test_run_phase1(self):
+        from nearlink_sdr.sim.link_sim import run_phase1_simulation
+        run_phase1_simulation()
+
+    def test_run_phase2(self):
+        from nearlink_sdr.sim.link_sim import run_phase2_simulation
+        run_phase2_simulation()
+
+    def test_run_phase3(self):
+        from nearlink_sdr.sim.link_sim import run_phase3_simulation
+        run_phase3_simulation()
+
+    def test_run_phase4(self):
+        from nearlink_sdr.sim.link_sim import run_phase4_simulation
+        run_phase4_simulation()
+
+    def test_run_phase5(self):
+        from nearlink_sdr.sim.link_sim import run_phase5_simulation
+        run_phase5_simulation()
+
+    def test_run_phase6(self):
+        from nearlink_sdr.sim.link_sim import run_phase6_simulation
+        run_phase6_simulation()
+
+    def test_run_phase7(self):
+        from nearlink_sdr.sim.link_sim import run_phase7_simulation
+        run_phase7_simulation()
+
+    def test_run_phase8(self):
+        from nearlink_sdr.sim.link_sim import run_phase8_simulation
+        run_phase8_simulation()
+
+    def test_run_phase9(self):
+        from nearlink_sdr.sim.link_sim import run_phase9_simulation
+        run_phase9_simulation()
+
+    def test_run_phase10(self):
+        from nearlink_sdr.sim.link_sim import run_phase10_simulation
+        run_phase10_simulation()
+
+    def test_run_phase11(self):
+        from nearlink_sdr.sim.link_sim import run_phase11_simulation
+        run_phase11_simulation()
+
+    def test_run_phase12(self):
+        from nearlink_sdr.sim.link_sim import run_phase12_simulation
+        run_phase12_simulation()
+
+    def test_run_phase13(self):
+        from nearlink_sdr.sim.link_sim import run_phase13_simulation
+        run_phase13_simulation()
