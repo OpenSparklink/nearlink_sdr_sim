@@ -9,6 +9,15 @@
 
 ### Added
 
+- `mac/scheduler.py`: 新增时序调度器模块 (标准 6.3/6.6/7.2)
+  - SlotCounter: 30 bit 系统时隙计数器 (Tsys=125μs)
+  - EventTimingParams: 事件组计时参数
+  - TimeSlice: 超帧内时间片配置
+  - Superframe: 超帧管理 (链路注册/冲突检测/活动区间)
+  - EventGroupScheduler: 事件组调度 (TX/RX 窗口计算)
+  - ScheduleManager: 综合调度管理器 (SMF + 事件组 + 收发间隔)
+  - MultiLevelInterval: 31 级多级收发间隔
+- `tests/test_scheduler.py`: 62 个调度器测试
 - `mac/access.py`: 新增接入流程管理模块 (标准 7.1.3)
   - negotiate_gt_role: GT 角色协商逻辑
   - BroadcasterAccessManager: 广播方接入管理 (阶段 a/c)

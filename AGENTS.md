@@ -136,6 +136,7 @@ tests/            # 测试文件, 与 src 模块一一对应
 | 9.2 | 配对信令 | 完成 | `mac/security.py` |
 | 9.3/9.4 | 安全子系统加密模块 | 完成 | `mac/crypto.py` |
 | 7.1.3 | 接入流程 | 完成 | `mac/access.py` |
+| 6.3/6.6/7.2 | 时序调度器 | 完成 | `mac/scheduler.py` |
 | 7.1.4.3/8/9 | 广播帧子信息结构 | 完成 | `mac/broadcast.py` |
 | 7.1.4.1/2/4/5/6/7 | 广播帧子信息 (资源配置/接入) | 完成 | `mac/broadcast.py` |
 | 6.2.3.5 | 同步信号 5 (GFSK 安全随机) | 完成 | `phy/sync_sequence.py` |
