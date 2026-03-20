@@ -9,6 +9,14 @@
 
 ### Added
 
+- QoS 服务质量管理模块 (`mac/qos.py`): 实现标准 6.5 节数据传输质量控制
+  - ArqState: 异步/同步链路 ARQ 序列号管理 (FT1 1-bit / FT3/FT4 5-bit SN), ACK/NACK 反馈处理
+  - HarqController: TB 模式与 CBG 模式 HARQ 反馈编解码, 部分重传决策 (MCS=15)
+  - FlowController: 发送缓冲区流控管理, 高/低水位背压机制
+  - LinkQualityTracker: 滑动窗口 FER 估计, AMC MCS 自适应建议, LQI 字段编解码
+  - TxQueue: 5 级优先级发送队列, 重传优先, 容量限制
+  - QosManager: 集成管理器, 统一 ARQ/HARQ/流控/质量跟踪/队列, 提供控制信息字段接口
+  - 69 个测试 (`tests/test_qos.py`), 全部通过
 - 端到端集成测试增强: 新增 18 个 MAC-PHY 集成测试 (1382 → 1400)
   - TestEncryptedPhyRoundtrip (3 个测试): 配对→加密→PHY 传输→解密验证, 多帧 payload_count 递增, MIC 篡改拒绝
   - TestMultiFrameTypeIntegration (6 个测试): FT1/FT2/FT3/FT4 帧类型 roundtrip, 多 MCS 等级扫描, 多种信令类型
