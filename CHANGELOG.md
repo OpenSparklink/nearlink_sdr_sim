@@ -9,6 +9,20 @@
 
 ### Added
 
+- 安全信息分发信令 (`mac/security.py`) -- 标准 9.3.3
+  - GNodeIRK(0x0143) / TNodeIRK(0x0144): 身份解析密钥分发 (解析算法 + IRK + IRKID)
+  - GNodeAddress(0x0145) / TNodeAddress(0x0146): 媒体接入层标识分发 (类型 + 地址)
+  - ResolutionAlgorithm / AddrType 枚举
+- 组播安全信令 (`mac/security.py`) -- 标准 9.3.2
+  - MulticastAlgorithmConfig(0x0148): 组播安全算法指示 (RAND + KDF类型 + 加密/完整性算法)
+  - MulticastKeyConfig(0x0149): 组播密钥配置 (C = Kg XOR GK)
+- 超宽带脉冲测量安全模块 (`phy/uwb_measurement_security.py`) -- 标准 9.5
+  - 9.5.2 KDF 消息构建 (256-bit: 预留 || Label || Context)
+  - 9.5.3 密钥派生: SLPKey -> ctsInitContent -> ctsKey / ctsValue / ctsGap
+  - 9.5.3 inputContext (128-bit) 打包: 物理信道/测距方式/码长/符号/天线等参数
+  - 9.5.4 TGap 生成: ctsGap 移位截取 + chip 变换
+  - 9.5.5 CTS 测量符号: 符号索引 + SC 加扰序列生成, ctsVCounter 推进
+- 66 个新测试用例 (`tests/test_security_ext.py`)
 - 射频合规参数校验模块 (`phy/rf_compliance.py`) -- 标准 8.2 ~ 8.4
   - 8.2.1 输出功率等级分类与步进校验
   - 8.2.2.1 GFSK 频率偏差校验 (7 种符号速率)

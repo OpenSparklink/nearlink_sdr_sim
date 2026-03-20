@@ -11,9 +11,9 @@ import math
 import numpy as np
 
 from nearlink_sdr.phy.measurement_tx import (
-    CIRConfig,
-    CSIFeedback,
+    UWB_CONFIG_TIME_GRANULARITY_TC,
     ChannelSpliceMode,
+    CIRConfig,
     EventFrameType,
     HoppingOrder,
     MeasBandwidth,
@@ -24,7 +24,6 @@ from nearlink_sdr.phy.measurement_tx import (
     TimeRefType,
     UWBMeasLinkParams,
     UWBMeasMode,
-    UWB_CONFIG_TIME_GRANULARITY_TC,
     angle_estimate,
     compute_csi_feedback,
     csi_to_rx_power,
@@ -37,7 +36,6 @@ from nearlink_sdr.phy.measurement_tx import (
     uwb_event_count_per_mode,
     uwb_event_sender,
 )
-
 
 # -----------------------------------------------------------------------
 # 枚举测试

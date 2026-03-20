@@ -418,3 +418,187 @@ class RtMessage(_TwoBytesMessage):
 
     DATA_TYPE_INDEX: int = 0x0149
     BYTE_LENGTH: int = 64
+
+
+# ---------------------------------------------------------------------------
+# 9.3.3 安全信息分发 — G 节点身份解析密钥 (0x0143, 18 字节)
+# ---------------------------------------------------------------------------
+
+class ResolutionAlgorithm:
+    """解析算法枚举 (标准 9.3.3)。"""
+    HMAC_SM3 = 0x01
+    AES_CMAC_128 = 0x02
+
+
+class AddrType:
+    """媒体接入层标识类型 (标准 9.3.3)。"""
+    UNION_ALLOCATED = 0x00
+    THIRD_PARTY_LOCAL = 0x02
+    UNION_RESERVED = 0x05
+    PRIVATE = 0x06
+
+
+@dataclass
+class GNodeIRK:
+    """G 节点身份解析密钥信息 (标准 9.3.3)。"""
+    resolution_algorithm: int  # 1 字节
+    irk: bytes                 # 16 字节 (128 bit)
+    irk_id: int                # 1 字节
+
+    DATA_TYPE_INDEX: int = 0x0143
+    BYTE_LENGTH: int = 18
+
+    def pack(self) -> bytes:
+        if len(self.irk) != 16:
+            raise ValueError("IRK 长度必须为 16 字节")
+        return struct.pack("B", self.resolution_algorithm) + self.irk + struct.pack("B", self.irk_id)
+
+    @classmethod
+    def unpack(cls, data: bytes) -> GNodeIRK:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(
+            resolution_algorithm=data[0],
+            irk=bytes(data[1:17]),
+            irk_id=data[17],
+        )
+
+
+# ---------------------------------------------------------------------------
+# 9.3.3 安全信息分发 — T 节点身份解析密钥 (0x0144, 18 字节)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class TNodeIRK:
+    """T 节点身份解析密钥信息 (标准 9.3.3)。"""
+    resolution_algorithm: int
+    irk: bytes  # 16 字节
+    irk_id: int
+
+    DATA_TYPE_INDEX: int = 0x0144
+    BYTE_LENGTH: int = 18
+
+    def pack(self) -> bytes:
+        if len(self.irk) != 16:
+            raise ValueError("IRK 长度必须为 16 字节")
+        return struct.pack("B", self.resolution_algorithm) + self.irk + struct.pack("B", self.irk_id)
+
+    @classmethod
+    def unpack(cls, data: bytes) -> TNodeIRK:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(
+            resolution_algorithm=data[0],
+            irk=bytes(data[1:17]),
+            irk_id=data[17],
+        )
+
+
+# ---------------------------------------------------------------------------
+# 9.3.3 安全信息分发 — G 节点媒体接入层标识 (0x0145, 7 字节)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class GNodeAddress:
+    """G 节点媒体接入层标识信息 (标准 9.3.3)。"""
+    addr_type: int   # 1 字节
+    addr: bytes      # 6 字节 (48 bit)
+
+    DATA_TYPE_INDEX: int = 0x0145
+    BYTE_LENGTH: int = 7
+
+    def pack(self) -> bytes:
+        if len(self.addr) != 6:
+            raise ValueError("地址长度必须为 6 字节")
+        return struct.pack("B", self.addr_type) + self.addr
+
+    @classmethod
+    def unpack(cls, data: bytes) -> GNodeAddress:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(addr_type=data[0], addr=bytes(data[1:7]))
+
+
+# ---------------------------------------------------------------------------
+# 9.3.3 安全信息分发 — T 节点媒体接入层标识 (0x0146, 7 字节)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class TNodeAddress:
+    """T 节点媒体接入层标识信息 (标准 9.3.3)。"""
+    addr_type: int
+    addr: bytes  # 6 字节
+
+    DATA_TYPE_INDEX: int = 0x0146
+    BYTE_LENGTH: int = 7
+
+    def pack(self) -> bytes:
+        if len(self.addr) != 6:
+            raise ValueError("地址长度必须为 6 字节")
+        return struct.pack("B", self.addr_type) + self.addr
+
+    @classmethod
+    def unpack(cls, data: bytes) -> TNodeAddress:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(addr_type=data[0], addr=bytes(data[1:7]))
+
+
+# ---------------------------------------------------------------------------
+# 9.3.2 组播安全算法指示 (0x0148, 19 字节)
+# 注: 数据类型索引与 RgMessage 相同, 协议通过状态机区分
+# ---------------------------------------------------------------------------
+
+@dataclass
+class MulticastAlgorithmConfig:
+    """组播安全算法指示消息 (标准 9.3.2)。"""
+    rand: bytes               # 16 字节 (128 bit)
+    kdf_type: int             # 1 字节
+    encryption_algo: int      # 1 字节
+    integrity_algo: int       # 1 字节
+
+    DATA_TYPE_INDEX: int = 0x0148
+    BYTE_LENGTH: int = 19
+
+    def pack(self) -> bytes:
+        if len(self.rand) != 16:
+            raise ValueError("RAND 长度必须为 16 字节")
+        return self.rand + struct.pack("BBB", self.kdf_type,
+                                       self.encryption_algo,
+                                       self.integrity_algo)
+
+    @classmethod
+    def unpack(cls, data: bytes) -> MulticastAlgorithmConfig:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(
+            rand=bytes(data[:16]),
+            kdf_type=data[16],
+            encryption_algo=data[17],
+            integrity_algo=data[18],
+        )
+
+
+# ---------------------------------------------------------------------------
+# 9.3.2 组播密钥配置 (0x0149, 16 字节)
+# 注: 数据类型索引与 RtMessage 相同, 协议通过状态机区分
+# ---------------------------------------------------------------------------
+
+@dataclass
+class MulticastKeyConfig:
+    """组播密钥配置消息 (标准 9.3.2)。"""
+    c: bytes  # 16 字节 (C = Kg XOR GK)
+
+    DATA_TYPE_INDEX: int = 0x0149
+    BYTE_LENGTH: int = 16
+
+    def pack(self) -> bytes:
+        if len(self.c) != 16:
+            raise ValueError("C 长度必须为 16 字节")
+        return self.c
+
+    @classmethod
+    def unpack(cls, data: bytes) -> MulticastKeyConfig:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(c=bytes(data[:16]))

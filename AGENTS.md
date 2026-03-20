@@ -210,11 +210,14 @@ tests/            # 测试文件, 与 src 模块一一对应
 | 8.3.4 | RSSI 测量精度 | 完成 | `phy/rf_compliance.py` |
 | 8.4 | UWB 射频 (信道/频谱/NRMSE) | 完成 | `phy/rf_compliance.py` |
 | 6.6.3 | 系统管理帧发送调度 | 完成 | `mac/smf_scheduler.py` |
+| 9.3.3 | 安全信息分发 (IRK/地址) | 完成 | `mac/security.py` |
+| 9.3.2 | 组播安全信令 | 完成 | `mac/security.py` |
+| 9.5 | UWB 脉冲测量安全 | 完成 | `phy/uwb_measurement_security.py` |
 
 ## 测试质量
 
-- 2195 个测试用例, 全部通过 (crypto 依赖测试除外)
-- 整体覆盖率 91%, 核心模块覆盖率 97%+, 测试执行时间 4.33 秒
+- 2261 个测试用例, 全部通过 (crypto 依赖测试除外)
+- 整体覆盖率 91%, 核心模块覆盖率 97%+, 测试执行时间 4.47 秒
 - 标准第 14 章测试向量全部验证通过
 
 ## 硬件约束 (USRP E310)
