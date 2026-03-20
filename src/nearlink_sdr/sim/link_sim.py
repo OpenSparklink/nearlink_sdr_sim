@@ -4012,6 +4012,432 @@ def run_phase14_simulation() -> None:
     print("\nPhase 14 curves saved to ber_phase14.png")
 
 
+# ── Phase 15: SleNode 集成仿真 ──
+
+
+def sim_node_hopping_link(
+    snr_db: float = 10.0,
+    n_frames: int = 100,
+    mcs_index: int = 7,
+    payload_size: int = 10,
+    seed: int = 42,
+) -> dict:
+    """SleNode 跳频数据链路仿真。
+
+    G 节点和 T 节点在跳频序列上逐帧通信,
+    每帧发送后推进时隙, 观察信道号变化和传输成功率。
+
+    Returns:
+        {
+            "channels": 使用过的信道号列表,
+            "unique_channels": 唯一信道数,
+            "success_count": 成功帧数,
+            "fer": 帧错误率,
+            "tx_powers": 各帧发射功率列表,
+        }
+    """
+    from nearlink_sdr.mac.frame import AsyncDataFrame
+    from nearlink_sdr.mac.link_manager import Role
+    from nearlink_sdr.node import NodeConfig, NodeRole, SleNode
+
+    rng = np.random.default_rng(seed)
+
+    g_addr = b"\x01\x02\x03\x04\x05\x06"
+    t_addr = b"\x0A\x0B\x0C\x0D\x0E\x0F"
+
+    g_node = SleNode(config=NodeConfig(
+        address=g_addr, role=NodeRole.G_NODE,
+        frame_type=2, mcs_index=mcs_index, max_retransmit=0,
+    ))
+    t_node = SleNode(config=NodeConfig(
+        address=t_addr, role=NodeRole.T_NODE,
+        frame_type=2, mcs_index=mcs_index, max_retransmit=0,
+    ))
+
+    g_node.start_advertising()
+    t_node.start_scanning()
+    t_node.connect(g_addr)
+    g_node.accept_connection(t_addr, Role.G_NODE)
+
+    channels = []
+    successes = 0
+    tx_powers = []
+
+    for _ in range(n_frames):
+        payload = bytes(rng.integers(0, 256, payload_size, dtype=np.uint8))
+        g_node.send(payload)
+        tx = g_node.transmit()
+
+        if tx.iq is None:
+            g_node._qos.arq.on_ack_received()
+            channels.append(-1)
+            tx_powers.append(g_node.tx_power_dbm)
+            g_node.advance_slot(1)
+            t_node.advance_slot(1)
+            continue
+
+        channels.append(tx.channel)
+        tx_powers.append(g_node.tx_power_dbm)
+
+        # 信道传输 (理想信道, 仅关注跳频流程)
+        ch = ChannelModel(snr_db=snr_db)
+        rx_iq = ch.apply_awgn(tx.iq)
+
+        frame = AsyncDataFrame(segment_type=0, data=payload)
+        n_mac = len(frame.pack())
+        rx = t_node.receive(rx_iq, n_mac)
+        g_node.process_feedback(rx.success)
+
+        if rx.success:
+            successes += 1
+        else:
+            g_node._qos.arq.on_ack_received()
+
+        g_node.advance_slot(1)
+        t_node.advance_slot(1)
+
+    unique_ch = len(set(c for c in channels if c >= 0))
+    return {
+        "channels": channels,
+        "unique_channels": unique_ch,
+        "success_count": successes,
+        "fer": 1.0 - successes / max(n_frames, 1),
+        "tx_powers": tx_powers,
+    }
+
+
+def sim_node_access_flow(seed: int = 42) -> dict:
+    """SleNode 完整接入流程仿真。
+
+    模拟 G 节点广播 → T 节点扫描/发现 → 接入 → 数据交换 → 断开。
+
+    Returns:
+        {
+            "g_state": G 节点最终状态,
+            "t_state": T 节点最终状态,
+            "broadcast_frame_valid": 广播帧是否有效,
+            "data_roundtrip_ok": 数据往返是否成功,
+            "scheduler_active": 调度器是否已注册链路,
+            "disconnect_ok": 断开是否成功,
+        }
+    """
+    from nearlink_sdr.mac.link_manager import Role
+    from nearlink_sdr.node import NodeConfig, NodeRole, NodeState, SleNode
+
+    g_addr = b"\x01\x02\x03\x04\x05\x06"
+    t_addr = b"\x0A\x0B\x0C\x0D\x0E\x0F"
+
+    g_node = SleNode(config=NodeConfig(
+        address=g_addr, role=NodeRole.G_NODE,
+        frame_type=2, mcs_index=5, max_retransmit=0,
+    ))
+    t_node = SleNode(config=NodeConfig(
+        address=t_addr, role=NodeRole.T_NODE,
+        frame_type=2, mcs_index=5, max_retransmit=0,
+    ))
+
+    # 1. 广播
+    adv_frame = g_node.start_advertising()
+    broadcast_valid = adv_frame is not None
+
+    # 2. 扫描 + 接入
+    t_node.start_scanning()
+    t_node.connect(g_addr)
+    g_node.accept_connection(t_addr, Role.G_NODE)
+
+    scheduler_active = 0 in g_node.scheduler.event_schedulers
+
+    # 3. 数据交换
+    payload = b"integration_test_data"
+    g_node.send(payload)
+    tx = g_node.transmit()
+    roundtrip_ok = False
+    if tx.iq is not None:
+        from nearlink_sdr.mac.frame import AsyncDataFrame
+        frame = AsyncDataFrame(segment_type=0, data=payload)
+        rx = t_node.receive(tx.iq, len(frame.pack()))
+        roundtrip_ok = rx.success and rx.data == payload
+
+    # 4. 断开
+    g_node.disconnect()
+    disconnect_ok = g_node.state == NodeState.DISCONNECTED
+
+    return {
+        "g_state": g_node.state.name,
+        "t_state": t_node.state.name,
+        "broadcast_frame_valid": broadcast_valid,
+        "data_roundtrip_ok": roundtrip_ok,
+        "scheduler_active": scheduler_active,
+        "disconnect_ok": disconnect_ok,
+    }
+
+
+def sim_node_channel_sweep(
+    snr_range_db: np.ndarray | None = None,
+    n_frames: int = 50,
+    mcs_index: int = 7,
+    payload_size: int = 10,
+    channel_type: str = "awgn",
+    seed: int = 42,
+) -> dict:
+    """SleNode 内置信道模型扫频仿真。
+
+    使用节点内置的 ChannelModel, 遍历 SNR 范围统计 FER。
+
+    Returns:
+        {"snr_db": [...], "fer": [...], "mcs_history": [...]}
+    """
+    from nearlink_sdr.mac.frame import AsyncDataFrame
+    from nearlink_sdr.mac.link_manager import Role
+    from nearlink_sdr.node import NodeConfig, NodeRole, SleNode
+    from nearlink_sdr.phy.channel import ChannelConfig
+
+    if snr_range_db is None:
+        snr_range_db = np.arange(0, 16, 2)
+
+    rng = np.random.default_rng(seed)
+
+    g_addr = b"\x01\x02\x03\x04\x05\x06"
+    t_addr = b"\x0A\x0B\x0C\x0D\x0E\x0F"
+
+    fer_list = []
+    mcs_history = []
+
+    for snr in snr_range_db:
+        g_node = SleNode(config=NodeConfig(
+            address=g_addr, role=NodeRole.G_NODE,
+            frame_type=2, mcs_index=mcs_index, max_retransmit=0,
+        ))
+        t_node = SleNode(config=NodeConfig(
+            address=t_addr, role=NodeRole.T_NODE,
+            frame_type=2, mcs_index=mcs_index, max_retransmit=0,
+            channel_config=ChannelConfig(
+                snr_db=float(snr), channel_type=channel_type,
+            ),
+        ))
+
+        g_node.start_advertising()
+        t_node.start_scanning()
+        t_node.connect(g_addr)
+        g_node.accept_connection(t_addr, Role.G_NODE)
+
+        errors = 0
+        for _ in range(n_frames):
+            payload = bytes(rng.integers(0, 256, payload_size, dtype=np.uint8))
+            g_node.send(payload)
+            tx = g_node.transmit()
+            if tx.iq is None:
+                errors += 1
+                g_node._qos.arq.on_ack_received()
+                continue
+
+            frame = AsyncDataFrame(segment_type=0, data=payload)
+            rx = t_node.receive(tx.iq, len(frame.pack()))
+            g_node.process_feedback(rx.success)
+            if not rx.success:
+                errors += 1
+                g_node._qos.arq.on_ack_received()
+
+        fer_list.append(errors / n_frames)
+        mcs_history.append(g_node.config.mcs_index)
+
+    return {
+        "snr_db": snr_range_db.tolist(),
+        "fer": fer_list,
+        "mcs_history": mcs_history,
+    }
+
+
+def sim_node_power_adapt(
+    snr_db: float = 8.0,
+    n_frames: int = 80,
+    payload_size: int = 10,
+    seed: int = 42,
+) -> dict:
+    """SleNode 功率自适应仿真。
+
+    节点逐帧通信, 根据反馈结果动态调整发射功率。
+
+    Returns:
+        {
+            "frame_idx": [...],
+            "power_history": [...],
+            "success_history": [...],
+            "fer": float,
+        }
+    """
+    from nearlink_sdr.mac.frame import AsyncDataFrame
+    from nearlink_sdr.mac.link_manager import Role
+    from nearlink_sdr.node import NodeConfig, NodeRole, SleNode
+
+    rng = np.random.default_rng(seed)
+
+    g_addr = b"\x01\x02\x03\x04\x05\x06"
+    t_addr = b"\x0A\x0B\x0C\x0D\x0E\x0F"
+
+    g_node = SleNode(config=NodeConfig(
+        address=g_addr, role=NodeRole.G_NODE,
+        frame_type=2, mcs_index=7, max_retransmit=0,
+        tx_power_dbm=0.0, max_power_dbm=15.0, min_power_dbm=-10.0,
+    ))
+    t_node = SleNode(config=NodeConfig(
+        address=t_addr, role=NodeRole.T_NODE,
+        frame_type=2, mcs_index=7, max_retransmit=0,
+    ))
+
+    g_node.start_advertising()
+    t_node.start_scanning()
+    t_node.connect(g_addr)
+    g_node.accept_connection(t_addr, Role.G_NODE)
+
+    power_history = []
+    success_history = []
+    consecutive_fails = 0
+
+    for _i in range(n_frames):
+        payload = bytes(rng.integers(0, 256, payload_size, dtype=np.uint8))
+        g_node.send(payload)
+        tx = g_node.transmit()
+
+        if tx.iq is None:
+            g_node._qos.arq.on_ack_received()
+            power_history.append(g_node.tx_power_dbm)
+            success_history.append(False)
+            continue
+
+        ch = ChannelModel(snr_db=snr_db)
+        rx_iq = ch.apply_awgn(tx.iq)
+
+        frame = AsyncDataFrame(segment_type=0, data=payload)
+        rx = t_node.receive(rx_iq, len(frame.pack()))
+        g_node.process_feedback(rx.success)
+
+        if not rx.success:
+            g_node._qos.arq.on_ack_received()
+            consecutive_fails += 1
+            if consecutive_fails >= 3:
+                g_node.adjust_power(2.0)
+                consecutive_fails = 0
+        else:
+            consecutive_fails = 0
+
+        power_history.append(g_node.tx_power_dbm)
+        success_history.append(rx.success)
+
+    fer = 1.0 - sum(success_history) / max(len(success_history), 1)
+    return {
+        "frame_idx": list(range(n_frames)),
+        "power_history": power_history,
+        "success_history": success_history,
+        "fer": fer,
+    }
+
+
+def sim_node_measurement(
+    n_measur: int = 64,
+    seed: int = 42,
+) -> dict:
+    """SleNode 测量信号生成仿真。
+
+    Returns:
+        {
+            "signal_length": 测量信号长度,
+            "signal_energy": 信号能量,
+        }
+    """
+    from nearlink_sdr.node import NodeConfig, SleNode
+
+    node = SleNode(config=NodeConfig(address=b"\x01" * 6))
+    sig = node.generate_measurement_signal(n_measur=n_measur)
+
+    return {
+        "signal_length": len(sig),
+        "signal_energy": float(np.sum(np.abs(sig) ** 2)),
+    }
+
+
+def run_phase15_simulation() -> None:
+    """Phase 15: SleNode 集成仿真可视化。"""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    print("Phase 15.1 - 节点接入流程 ...")
+    r1 = sim_node_access_flow()
+    print(f"  广播帧: {'OK' if r1['broadcast_frame_valid'] else 'FAIL'}")
+    print(f"  数据往返: {'OK' if r1['data_roundtrip_ok'] else 'FAIL'}")
+    print(f"  调度注册: {'OK' if r1['scheduler_active'] else 'FAIL'}")
+    print(f"  断开连接: {'OK' if r1['disconnect_ok'] else 'FAIL'}")
+
+    print("\nPhase 15.2 - 跳频链路 ...")
+    r2 = sim_node_hopping_link(snr_db=12.0, n_frames=100)
+    print(f"  唯一信道数: {r2['unique_channels']}")
+    print(f"  FER: {r2['fer']:.3f}")
+
+    print("\nPhase 15.3 - 信道扫频 ...")
+    snr = np.arange(0, 16, 2)
+    r3 = sim_node_channel_sweep(snr_range_db=snr, n_frames=30)
+
+    print("\nPhase 15.4 - 功率自适应 ...")
+    r4 = sim_node_power_adapt(snr_db=8.0, n_frames=60)
+    print(f"  FER: {r4['fer']:.3f}")
+    print(f"  功率范围: [{min(r4['power_history']):.1f}, "
+          f"{max(r4['power_history']):.1f}] dBm")
+
+    print("\nPhase 15.5 - 测量信号 ...")
+    r5 = sim_node_measurement()
+    print(f"  信号长度: {r5['signal_length']}")
+    print(f"  信号能量: {r5['signal_energy']:.2f}")
+
+    fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+    fig.suptitle("Phase 15 - SleNode Integration Simulation", fontsize=14, fontweight="bold")
+
+    # 15.2 跳频信道分布
+    ax = axes[0, 0]
+    valid_ch = [c for c in r2["channels"] if c >= 0]
+    if valid_ch:
+        ax.hist(valid_ch, bins=range(min(valid_ch), max(valid_ch) + 2), edgecolor="black")
+    ax.set_xlabel("Channel Number")
+    ax.set_ylabel("Count")
+    ax.set_title(f"15.2 - Hopping Channel Distribution ({r2['unique_channels']} channels)")
+    ax.grid(True, ls="--", alpha=0.3)
+
+    # 15.3 信道扫频 FER
+    ax = axes[0, 1]
+    ax.semilogy(r3["snr_db"], np.maximum(r3["fer"], 1e-4), "b-o")
+    ax.set_xlabel("SNR (dB)")
+    ax.set_ylabel("FER")
+    ax.set_title("15.3 - Node Channel Sweep FER")
+    ax.grid(True, ls="--", alpha=0.3)
+
+    # 15.4 功率自适应
+    ax = axes[1, 0]
+    ax.plot(r4["frame_idx"], r4["power_history"], "b-", label="TX Power")
+    ax.set_xlabel("Frame Index")
+    ax.set_ylabel("TX Power (dBm)")
+    ax.set_title(f"15.4 - Power Adaptation (FER={r4['fer']:.3f})")
+    ax.legend()
+    ax.grid(True, ls="--", alpha=0.3)
+
+    # 15.4 成功/失败标记
+    ax2 = axes[1, 1]
+    sc = [i for i, s in zip(r4["frame_idx"], r4["success_history"], strict=False) if s]
+    fc = [i for i, s in zip(r4["frame_idx"], r4["success_history"], strict=False) if not s]
+    ax2.scatter(sc, [1] * len(sc), c="green", s=10, label="TX OK")
+    ax2.scatter(fc, [0] * len(fc), c="red", s=10, label="TX FAIL")
+    ax2.set_xlabel("Frame Index")
+    ax2.set_ylabel("Success")
+    ax2.set_title("15.5 - Frame Success/Failure")
+    ax2.legend()
+    ax2.grid(True, ls="--", alpha=0.3)
+    ax2.set_yticks([0, 1])
+    ax2.set_yticklabels(["FAIL", "OK"])
+
+    fig.tight_layout()
+    fig.savefig("ber_phase15.png", dpi=150)
+    print("\nPhase 15 curves saved to ber_phase15.png")
+
+
 if __name__ == "__main__":
     import sys
     phase = sys.argv[1] if len(sys.argv) > 1 else "phase1"
@@ -4030,5 +4456,6 @@ if __name__ == "__main__":
         "phase12": run_phase12_simulation,
         "phase13": run_phase13_simulation,
         "phase14": run_phase14_simulation,
+        "phase15": run_phase15_simulation,
     }
     _dispatch.get(phase, run_phase1_simulation)()

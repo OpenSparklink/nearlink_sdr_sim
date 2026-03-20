@@ -635,3 +635,94 @@ class TestDualNodeLink:
         r = sim_dual_node_mcs_adapt(snr_db=10.0, n_frames=30)
         assert len(r["mcs_history"]) == 30
         assert all(0 <= m <= 12 for m in r["mcs_history"])
+
+
+class TestNodeHoppingLink:
+    """Phase 15 跳频链路仿真测试。"""
+
+    def test_basic(self):
+        from nearlink_sdr.sim.link_sim import sim_node_hopping_link
+        r = sim_node_hopping_link(snr_db=14.0, n_frames=10)
+        assert r["unique_channels"] >= 1
+        assert 0.0 <= r["fer"] <= 1.0
+        assert len(r["channels"]) == 10
+        assert len(r["tx_powers"]) == 10
+
+    def test_high_snr(self):
+        from nearlink_sdr.sim.link_sim import sim_node_hopping_link
+        r = sim_node_hopping_link(snr_db=30.0, n_frames=20)
+        assert r["success_count"] > 0
+
+    def test_low_snr(self):
+        from nearlink_sdr.sim.link_sim import sim_node_hopping_link
+        r = sim_node_hopping_link(snr_db=0.0, n_frames=10)
+        assert "fer" in r
+
+
+class TestNodeAccessFlow:
+    """Phase 15 接入流程仿真测试。"""
+
+    def test_full_flow(self):
+        from nearlink_sdr.sim.link_sim import sim_node_access_flow
+        r = sim_node_access_flow()
+        assert r["broadcast_frame_valid"] is True
+        assert r["data_roundtrip_ok"] is True
+        assert r["scheduler_active"] is True
+        assert r["disconnect_ok"] is True
+        assert r["g_state"] == "DISCONNECTED"
+
+    def test_different_seed(self):
+        from nearlink_sdr.sim.link_sim import sim_node_access_flow
+        r = sim_node_access_flow(seed=123)
+        assert r["broadcast_frame_valid"] is True
+
+
+class TestNodeChannelSweep:
+    """Phase 15 信道扫频仿真测试。"""
+
+    def test_basic(self):
+        from nearlink_sdr.sim.link_sim import sim_node_channel_sweep
+        snr = np.array([4.0, 10.0])
+        r = sim_node_channel_sweep(snr_range_db=snr, n_frames=5)
+        assert len(r["snr_db"]) == 2
+        assert len(r["fer"]) == 2
+        assert all(0.0 <= f <= 1.0 for f in r["fer"])
+
+    def test_default_snr(self):
+        from nearlink_sdr.sim.link_sim import sim_node_channel_sweep
+        r = sim_node_channel_sweep(n_frames=3)
+        assert len(r["snr_db"]) > 0
+        assert len(r["mcs_history"]) == len(r["snr_db"])
+
+
+class TestNodePowerAdapt:
+    """Phase 15 功率自适应仿真测试。"""
+
+    def test_basic(self):
+        from nearlink_sdr.sim.link_sim import sim_node_power_adapt
+        r = sim_node_power_adapt(snr_db=10.0, n_frames=15)
+        assert len(r["power_history"]) == 15
+        assert len(r["success_history"]) == 15
+        assert 0.0 <= r["fer"] <= 1.0
+        assert len(r["frame_idx"]) == 15
+
+    def test_power_increase_on_failures(self):
+        from nearlink_sdr.sim.link_sim import sim_node_power_adapt
+        r = sim_node_power_adapt(snr_db=2.0, n_frames=30)
+        assert max(r["power_history"]) >= r["power_history"][0]
+
+
+class TestNodeMeasurement:
+    """Phase 15 测量信号仿真测试。"""
+
+    def test_basic(self):
+        from nearlink_sdr.sim.link_sim import sim_node_measurement
+        r = sim_node_measurement(n_measur=32)
+        assert r["signal_length"] > 0
+        assert r["signal_energy"] > 0.0
+
+    def test_different_count(self):
+        from nearlink_sdr.sim.link_sim import sim_node_measurement
+        r1 = sim_node_measurement(n_measur=16)
+        r2 = sim_node_measurement(n_measur=64)
+        assert r2["signal_length"] >= r1["signal_length"]

@@ -9,6 +9,15 @@
 
 ### Added
 
+- Phase 15: SleNode 集成仿真 (`sim/link_sim.py`)
+  - `sim_node_hopping_link()`: 跳频数据链路仿真, 逐帧跳频通信/信道统计/FER
+  - `sim_node_access_flow()`: 完整接入流程仿真 (广播→扫描→接入→数据→断开)
+  - `sim_node_channel_sweep()`: 内置信道模型扫频, SNR-FER 曲线
+  - `sim_node_power_adapt()`: 功率自适应仿真, 连续失败时自动升功率
+  - `sim_node_measurement()`: 测量信号生成仿真
+  - `run_phase15_simulation()`: 四面板可视化运行器
+  - Phase 15 测试: 11 个测试用例, 覆盖全部仿真函数
+
 - SLE 节点实体增强 (`node.py`) -- 完整建模能力集成
   - 跳频: 集成 `FreqTable` 和 `data_link_hop()`, 每次发送自动计算信道号
   - 功率控制: 集成 `PowerController`, 支持功率调整和查询
