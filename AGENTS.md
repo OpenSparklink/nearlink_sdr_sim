@@ -213,11 +213,29 @@ tests/            # 测试文件, 与 src 模块一一对应
 | 9.3.3 | 安全信息分发 (IRK/地址) | 完成 | `mac/security.py` |
 | 9.3.2 | 组播安全信令 | 完成 | `mac/security.py` |
 | 9.5 | UWB 脉冲测量安全 | 完成 | `phy/uwb_measurement_security.py` |
+| 7.2.1 | 收发间隔参数更新流程 | 完成 | `mac/link_manager.py`, `mac/link_control.py` |
+| 7.2.2 | 多级收发间隔参数更新 | 完成 | `mac/link_control.py` |
+| 7.2.3 | 加密、密钥更新流程 | 完成 | `mac/security_manager.py`, `mac/link_control.py` |
+| 7.2.15 | 角色切换流程 | 完成 | `mac/link_manager.py` |
+| 7.2.16 | PING 流程 | 完成 | `mac/link_manager.py` |
+| 7.2.17 | 链路断开流程 | 完成 | `mac/link_manager.py` |
+| 7.2.18 | 异步链路参数更新流程 | 完成 | `mac/link_manager.py` |
+| 7.3.2.12-2.13 | 特性交互请求/响应 | 完成 | `mac/link_control.py` |
+| 7.3.2.15 | 版本交互指示 | 完成 | `mac/link_control.py` |
+| 7.3.2.16-2.17 | 数据长度请求/响应 | 完成 | `mac/link_control.py` |
+| 7.3.2.18 | 信道上报指示 | 完成 | `mac/link_control.py` |
+| 7.3.2.23-2.24 | CRC 切换请求/指示 | 完成 | `mac/link_control.py` |
+| 7.3.2.30-2.31 | 时钟精度请求/响应 | 完成 | `mac/link_control.py` |
+| 7.3.2.32 | 链路断开指示 | 完成 | `mac/link_control.py` |
+| 9.3.4 | 密码算法详细规范 | 完成 | `mac/crypto.py` |
+| 8.1.1 | 应用频段 | 完成 | `phy/freq_hopping.py` |
+| 6.2.1.3 | 多音信号 | 完成 | `phy/multitone.py` |
+| 8.3.3 | 接收机杂散发射 | 完成 | `phy/rf_compliance.py` |
 
 ## 测试质量
 
-- 2261 个测试用例, 全部通过 (crypto 依赖测试除外)
-- 整体覆盖率 91%, 核心模块覆盖率 97%+, 测试执行时间 4.47 秒
+- 2288 个测试用例, 全部通过 (crypto 依赖测试除外)
+- 整体覆盖率 91%, 核心模块覆盖率 97%+, 测试执行时间 4.49 秒
 - 标准第 14 章测试向量全部验证通过
 
 ## 硬件约束 (USRP E310)

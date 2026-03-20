@@ -23,6 +23,13 @@
   - 9.5.4 TGap 生成: ctsGap 移位截取 + chip 变换
   - 9.5.5 CTS 测量符号: 符号索引 + SC 加扰序列生成, ctsVCounter 推进
 - 66 个新测试用例 (`tests/test_security_ext.py`)
+- 多音信号生成模块 (`phy/multitone.py`) -- 标准 6.2.1.3
+  - 基带多音信号生成 (N=1/2/4/8, 等幅等间隔对称分布)
+  - 标准表 6.2.4.2 参数: 频率间隔/初始相位集合/带宽适配
+  - 峰均比计算
+- 接收机杂散发射校验 (`phy/rf_compliance.py`) -- 标准 8.3.3
+- 间接覆盖章节审计 (17 项确认已实现, 补充至对标表)
+- 27 个新测试用例 (`tests/test_multitone.py` 22 个 + `tests/test_rf_compliance.py` 5 个)
 - 射频合规参数校验模块 (`phy/rf_compliance.py`) -- 标准 8.2 ~ 8.4
   - 8.2.1 输出功率等级分类与步进校验
   - 8.2.2.1 GFSK 频率偏差校验 (7 种符号速率)

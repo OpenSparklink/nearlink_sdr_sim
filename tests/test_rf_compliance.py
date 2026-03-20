@@ -32,6 +32,7 @@ from nearlink_sdr.phy.rf_compliance import (
     check_freq_tolerance,
     check_gfsk_freq_dev,
     check_rssi_accuracy,
+    check_rx_spurious_emission,
     check_uwb_nrmse,
     classify_power,
     get_psk_spectrum_mask,
@@ -491,3 +492,21 @@ class TestRFReport:
             evm_ok=False,
         )
         assert not r.passed
+
+
+# ===== 8.3.3 接收机杂散发射 =====
+
+
+class TestRxSpuriousEmission:
+    def test_pass(self):
+        assert check_rx_spurious_emission(-60.0)
+
+    def test_fail(self):
+        assert not check_rx_spurious_emission(-50.0)
+
+    def test_boundary(self):
+        assert check_rx_spurious_emission(-57.0)
+
+    def test_custom_limit(self):
+        assert check_rx_spurious_emission(-40.0, limit_dbm=-40.0)
+        assert not check_rx_spurious_emission(-39.0, limit_dbm=-40.0)
