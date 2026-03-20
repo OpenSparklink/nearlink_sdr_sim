@@ -137,6 +137,7 @@ tests/            # 测试文件, 与 src 模块一一对应
 | - | 多链路调度仿真 | 完成 | `sim/link_sim.py` (Phase 10) |
 | 9.2 | 配对信令 | 完成 | `mac/security.py` |
 | 9.3/9.4 | 安全子系统加密模块 | 完成 | `mac/crypto.py` |
+| 9.2-9.4 | 安全流程集成 (配对+加密) | 完成 | `mac/security_manager.py` |
 | 7.1.3 | 接入流程 | 完成 | `mac/access.py` |
 | 6.3/6.6/7.2 | 时序调度器 | 完成 | `mac/scheduler.py` |
 | 7.1.4.3/8/9 | 广播帧子信息结构 | 完成 | `mac/broadcast.py` |
@@ -150,6 +151,8 @@ tests/            # 测试文件, 与 src 模块一一对应
 | 6.3.9 | 测量帧类型 3 | 完成 | `phy/measurement_frame.py` |
 | 6.3.10 | 测量帧类型 4 | 完成 | `phy/measurement_frame.py` |
 | 6.3.11 | 超宽带脉冲测量帧 | 完成 | `phy/measurement_frame.py` |
+| - | MAC-PHY 集成适配层 | 完成 | `phy/mac_interface.py` |
+| - | MAC-PHY 集成联调测试 | 完成 | `tests/test_mac_phy_integration.py` |
 
 ## 硬件约束 (USRP E310)
 

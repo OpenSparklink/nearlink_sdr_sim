@@ -38,6 +38,7 @@ class LinkState(Enum):
     SCANNING    -- 发现态，接收广播帧（7.1.2）
     ACCESSING   -- 接入态，发送接入请求/等待响应（7.1.3）
     CONNECTED   -- 链接态，异步数据链路已建立
+    PAIRING     -- 配对态，执行安全流程（9.2）
     DISCONNECTED -- 链路已断开
     """
     IDLE = auto()
@@ -45,6 +46,7 @@ class LinkState(Enum):
     SCANNING = auto()
     ACCESSING = auto()
     CONNECTED = auto()
+    PAIRING = auto()
     DISCONNECTED = auto()
 
 
@@ -98,6 +100,10 @@ class EventType(Enum):
     # 链接态控制面 (7.2)
     SIGNALING_RECEIVED = auto()
     SIGNALING_SEND = auto()
+    # 配对（9.2）
+    START_PAIRING = auto()
+    PAIRING_COMPLETE = auto()
+    PAIRING_FAILED = auto()
     # 断开
     DISCONNECT_REQUEST = auto()
     DISCONNECT_RECEIVED = auto()
@@ -160,6 +166,11 @@ _VALID_TRANSITIONS: dict[LinkState, set[LinkState]] = {
         LinkState.DISCONNECTED,
     },
     LinkState.CONNECTED: {
+        LinkState.PAIRING,
+        LinkState.DISCONNECTED,
+    },
+    LinkState.PAIRING: {
+        LinkState.CONNECTED,
         LinkState.DISCONNECTED,
     },
     LinkState.DISCONNECTED: {
@@ -320,6 +331,19 @@ class LinkManager:
         self._transition(LinkState.DISCONNECTED)
         self.callback.on_disconnected(DisconnectReason.TIMEOUT)
 
+    def _handle_start_pairing(self, event: Event) -> None:
+        """链接态发起配对流程（9.2）。"""
+        self._transition(LinkState.PAIRING)
+
+    def _handle_pairing_complete(self, event: Event) -> None:
+        """配对完成，返回链接态（加密）。"""
+        self._transition(LinkState.CONNECTED)
+
+    def _handle_pairing_failed(self, event: Event) -> None:
+        """配对失败，断开链路。"""
+        self._transition(LinkState.DISCONNECTED)
+        self.callback.on_disconnected(DisconnectReason.LOCAL_REQUEST)
+
     # ---------------------------------------------------------------
     # 链接态便利方法 (7.2.x)
     # ---------------------------------------------------------------
@@ -410,4 +434,12 @@ _HANDLERS: dict[tuple[LinkState, EventType], _HandlerFunc] = {
         LinkManager._handle_disconnect_received,
     (LinkState.CONNECTED, EventType.SUPERVISION_TIMEOUT):
         LinkManager._handle_supervision_timeout,
+    # CONNECTED → PAIRING
+    (LinkState.CONNECTED, EventType.START_PAIRING):
+        LinkManager._handle_start_pairing,
+    # PAIRING
+    (LinkState.PAIRING, EventType.PAIRING_COMPLETE):
+        LinkManager._handle_pairing_complete,
+    (LinkState.PAIRING, EventType.PAIRING_FAILED):
+        LinkManager._handle_pairing_failed,
 }

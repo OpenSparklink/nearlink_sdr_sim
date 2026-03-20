@@ -9,6 +9,22 @@
 
 ### Added
 
+- `mac/security_manager.py`: 安全流程集成管理模块 (标准 9.2-9.4)
+  - ECDHKeyPair: P-256 椭圆曲线密钥对生成与 ECDH 共享密钥计算
+  - PairingManager: 配对状态机, 驱动 G/T 节点间配对信令交互
+  - FrameCryptoContext: 帧级 AES-CCM 加解密上下文, 管理 payload_count
+  - run_pairing_procedure: 端到端配对流程 (仿真/测试用)
+- `mac/link_manager.py`: 扩展链路状态机, 新增 PAIRING 状态
+  - LinkState.PAIRING: 配对态 (CONNECTED↔PAIRING)
+  - EventType: START_PAIRING, PAIRING_COMPLETE, PAIRING_FAILED 事件
+- `tests/test_security_manager.py`: 31 个安全流程集成测试
+  - TestECDHKeyPair: P-256 密钥对生成与共享密钥一致性
+  - TestPairingManagerBasic: 配对管理器基本功能与状态转换
+  - TestPairingFlow: 完整信令交互流程 (公钥交换/随机数/确认码)
+  - TestPairingFailure: 配对失败场景 (错误确认码/失败消息)
+  - TestRunPairingProcedure: 端到端配对验证
+  - TestFrameCryptoContext: 帧加密/解密/篡改检测/AAD
+  - TestPairingThenEncryption: 配对后加密数据传输集成验证
 - `sim/link_sim.py` Phase 10: 多链路调度仿真
   - sim_multi_link: 多链路超帧内分时传输, 统计总体 FER 和每链路 FER
   - sim_access_scheduled_link: 接入建链 + 调度器驱动数据传输端到端仿真
