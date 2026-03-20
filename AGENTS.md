@@ -165,6 +165,8 @@ tests/            # 测试文件, 与 src 模块一一对应
 | - | MAC-PHY 集成适配层 | 完成 | `phy/mac_interface.py` |
 | - | MAC-PHY 集成联调测试 | 完成 | `tests/test_mac_phy_integration.py` |
 | - | SLE 节点实体类 | 完成 | `node.py` |
+| - | USRP 环回仿真引擎 | 完成 | `sim/usrp_sim.py` |
+| - | USRP 环回仿真测试 | 完成 | `tests/test_usrp_sim.py` |
 
 ## 硬件约束 (USRP E310)
 

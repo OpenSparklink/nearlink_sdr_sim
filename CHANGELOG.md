@@ -7,6 +7,17 @@
 
 ## [Unreleased]
 
+### Added
+
+- USRP 环回仿真引擎 (`sim/usrp_sim.py`)
+  - `LoopbackBuffer`: TX→RX 环回缓冲区, 支持信道模型注入
+  - `USRPLoopbackSim`: 端到端仿真器, 集成 PHY/MAC 全链路
+  - 支持 IQ 级、PHY 帧级、MAC 数据帧级、信令级环回
+  - 跳频序列环回与批量帧仿真
+- MockUSRP/MockStreamer 增加 loopback 模式, TX 发射数据可直接送入 RX
+- `TxResult` 新增 `mac_bytes` 字段, 便于接收端确定解码长度
+- 33 项 USRP 仿真测试覆盖全链路 (FT1-FT4、SleNode 双节点、信令环回)
+
 ### Changed
 
 - Polar SC 解码器改用预分配二维数组, 消除递归中的数组分配开销

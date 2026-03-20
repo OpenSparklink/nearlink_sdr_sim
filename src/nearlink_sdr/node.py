@@ -134,6 +134,7 @@ class NodeCallback:
 class TxResult:
     """发射结果。"""
     iq: np.ndarray | None
+    mac_bytes: bytes | None
     decision: TxDecision
     encrypted: bool = False
 
@@ -347,7 +348,7 @@ class SleNode:
         """
         decision, item = self._qos.prepare_tx()
         if item is None:
-            return TxResult(iq=None, decision=decision)
+            return TxResult(iq=None, mac_bytes=None, decision=decision)
 
         payload = item.data
         encrypted = False
@@ -366,7 +367,9 @@ class SleNode:
         iq = mac_to_iq(mac_bytes, self._tx_config, ctrl_info=ctrl_info)
 
         self._tx_count += 1
-        return TxResult(iq=iq, decision=decision, encrypted=encrypted)
+        return TxResult(
+            iq=iq, mac_bytes=mac_bytes, decision=decision, encrypted=encrypted,
+        )
 
     def receive(self, iq_signal: np.ndarray, n_mac_bytes: int) -> RxResult:
         """从 IQ 信号解码数据。

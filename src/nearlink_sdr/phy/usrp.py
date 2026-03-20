@@ -179,13 +179,58 @@ class MockTXMetadata:
         self.start_of_burst = False
 
 
+class LoopbackBuffer:
+    """TX→RX 环回缓冲区, 可选信道损伤。
+
+    用于 MockUSRP 的 loopback 模式, 将 TX 发射的 IQ 样本经信道模型
+    送入 RX 接收端, 实现无硬件的端到端仿真。
+    """
+
+    def __init__(self, channel_model: object | None = None, seed: int = 42):
+        self._buffer: list[np.ndarray] = []
+        self._channel = channel_model
+        self._rng = np.random.default_rng(seed)
+
+    def push(self, samples: np.ndarray):
+        """TX 端写入样本。"""
+        sig = np.asarray(samples, dtype=np.complex64).ravel()
+        if self._channel is not None:
+            sig = np.asarray(self._channel.apply_awgn(sig), dtype=np.complex64)
+        self._buffer.append(sig)
+
+    def pull(self, n: int) -> np.ndarray:
+        """RX 端读取最多 n 个样本。"""
+        if not self._buffer:
+            return np.array([], dtype=np.complex64)
+        head = self._buffer[0]
+        if len(head) <= n:
+            self._buffer.pop(0)
+            return head
+        out = head[:n]
+        self._buffer[0] = head[n:]
+        return out
+
+    @property
+    def available(self) -> int:
+        return sum(len(b) for b in self._buffer)
+
+    def clear(self):
+        self._buffer.clear()
+
+
 class MockStreamer:
     """模拟 UHD TX/RX Streamer。"""
-    def __init__(self, direction: str = "rx", samps_per_buffer: int = 1000):
+    def __init__(
+        self,
+        direction: str = "rx",
+        samps_per_buffer: int = 1000,
+        loopback: LoopbackBuffer | None = None,
+    ):
         self._direction = direction
         self._samps_per_buffer = samps_per_buffer
         self._running = False
         self._rng = np.random.default_rng(0)
+        self._loopback = loopback
 
     def get_max_num_samps(self) -> int:
         return self._samps_per_buffer
@@ -197,10 +242,18 @@ class MockStreamer:
             self._running = False
 
     def recv(self, buffer: np.ndarray, metadata, timeout: float = 3.0) -> int:
-        """模拟接收: 返回噪声样本。"""
+        """模拟接收: 环回模式返回 TX 发送的数据, 否则返回噪声。"""
         if not self._running:
             return 0
         n = min(buffer.shape[-1], self._samps_per_buffer)
+        if self._loopback is not None and self._loopback.available > 0:
+            data = self._loopback.pull(n)
+            actual = len(data)
+            if buffer.ndim == 2:
+                buffer[0, :actual] = data
+            else:
+                buffer[:actual] = data
+            return actual
         noise = (self._rng.standard_normal(n) +
                  1j * self._rng.standard_normal(n)).astype(np.complex64) * 0.01
         if buffer.ndim == 2:
@@ -210,19 +263,21 @@ class MockStreamer:
         return n
 
     def send(self, buffer: np.ndarray, metadata, timeout: float = 3.0) -> int:
-        """模拟发射: 直接消耗样本。"""
-        if buffer.ndim == 2:
-            return buffer.shape[1]
-        return len(buffer)
+        """模拟发射: 环回模式写入缓冲区, 否则直接消耗。"""
+        data = buffer[0] if buffer.ndim == 2 else buffer
+        if self._loopback is not None:
+            self._loopback.push(data)
+        return len(data)
 
 
 class MockUSRP:
     """模拟 uhd.usrp.MultiUSRP, 用于无硬件测试。
 
     记录所有配置调用的参数, 并提供可验证的状态。
+    支持 loopback 模式: TX 发射的数据经可选信道模型后送入 RX。
     """
 
-    def __init__(self, args: str = ""):
+    def __init__(self, args: str = "", loopback: LoopbackBuffer | None = None):
         self._args = args
         self._rx_rate = 1e6
         self._tx_rate = 1e6
@@ -237,6 +292,7 @@ class MockUSRP:
         self._clock_source = "internal"
         self._time_source = "internal"
         self._call_log: list[tuple[str, dict]] = []
+        self._loopback = loopback
 
     def _log(self, method: str, **kwargs):
         self._call_log.append((method, kwargs))
@@ -330,11 +386,11 @@ class MockUSRP:
 
     def get_rx_stream(self, stream_args) -> MockStreamer:
         self._log("get_rx_stream", args=str(stream_args))
-        return MockStreamer("rx")
+        return MockStreamer("rx", loopback=self._loopback)
 
     def get_tx_stream(self, stream_args) -> MockStreamer:
         self._log("get_tx_stream", args=str(stream_args))
-        return MockStreamer("tx")
+        return MockStreamer("tx", loopback=self._loopback)
 
     def get_pp_string(self) -> str:
         return (
@@ -359,18 +415,24 @@ class USRPDevice:
     无硬件时自动使用 MockUSRP。
     """
 
-    def __init__(self, config: USRPConfig | None = None, use_mock: bool = False):
+    def __init__(
+        self,
+        config: USRPConfig | None = None,
+        use_mock: bool = False,
+        loopback: LoopbackBuffer | None = None,
+    ):
         """初始化 USRP 设备。
 
         Args:
             config: 设备配置, None 时使用默认配置。
             use_mock: 强制使用 MockUSRP。
+            loopback: 环回缓冲区, 仅 Mock 模式有效。
         """
         self._config = config or USRPConfig()
         self._use_mock = use_mock or not _UHD_AVAILABLE
 
         if self._use_mock:
-            self._usrp = MockUSRP(self._config.device_args)
+            self._usrp = MockUSRP(self._config.device_args, loopback=loopback)
             logger.info("使用 MockUSRP (无硬件模式)")
         else:
             dev_args = self._config.device_args
