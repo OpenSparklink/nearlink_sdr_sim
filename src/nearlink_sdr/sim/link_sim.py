@@ -2,7 +2,7 @@
 
 import numpy as np
 
-from nearlink_sdr.common.polar import PolarDecoder, PolarEncoder, get_info_bit_count
+from nearlink_sdr.common.polar import PolarEncoder, get_info_bit_count, get_polar_decoder
 from nearlink_sdr.phy.channel import ChannelModel
 from nearlink_sdr.phy.gfsk import GFSKDemodulator, GFSKModulator
 from nearlink_sdr.phy.preamble import generate_preamble
@@ -166,7 +166,7 @@ def sim_polar_coded_psk_link(
 
     K = get_info_bit_count(rate_str, code_length)
     enc = PolarEncoder(code_length, K)
-    dec = PolarDecoder(code_length, K)
+    dec = get_polar_decoder(code_length, K)
 
     rng = np.random.default_rng(seed)
 
@@ -328,7 +328,7 @@ def sim_frame_link(
 
     K = get_info_bit_count(rate_str, code_length)
     enc = PolarEncoder(code_length, K)
-    dec = PolarDecoder(code_length, K)
+    dec = get_polar_decoder(code_length, K)
 
     rng = np.random.default_rng(seed)
 
@@ -529,7 +529,7 @@ def sim_channel_eq_link(
 
     K = get_info_bit_count(rate_str, code_length)
     enc = PolarEncoder(code_length, K)
-    dec = PolarDecoder(code_length, K)
+    dec = get_polar_decoder(code_length, K)
 
     rng = np.random.default_rng(seed)
     ber_list, fer_list = [], []
@@ -731,7 +731,7 @@ def sim_hopping_link(
     rng = np.random.default_rng(seed)
     K = get_info_bit_count(rate_str, code_length)
     enc = PolarEncoder(code_length, K)
-    dec = PolarDecoder(code_length, K)
+    dec = get_polar_decoder(code_length, K)
 
     # 频率表: 按比例阻塞部分信道
     ft = FreqTable(band="2400", bandwidth_mhz=bandwidth_mhz)

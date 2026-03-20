@@ -15,7 +15,7 @@ from nearlink_sdr.common.crc import (
     crc_check,
 )
 from nearlink_sdr.common.mcs import Modulation
-from nearlink_sdr.common.polar import PolarDecoder
+from nearlink_sdr.common.polar import get_polar_decoder
 from nearlink_sdr.common.scrambler import scramble_sequence
 from nearlink_sdr.phy.control_info import polar_decode_control
 from nearlink_sdr.phy.frame import FrameConfig, symbols_to_data_bits
@@ -87,7 +87,7 @@ def decode_payload(scrambled_bits: np.ndarray, cfg: TxConfig,
             block = coded[pos: pos + n_code]
             # 硬比特 → LLR: 0 → +1, 1 → -1
             llr = (1.0 - 2.0 * block.astype(np.float64)) * 10.0
-            dec = PolarDecoder(n_code, k)
+            dec = get_polar_decoder(n_code, k)
             info_blocks.append(dec.decode(llr))
             pos += n_code
         data_with_crc = np.concatenate(info_blocks)

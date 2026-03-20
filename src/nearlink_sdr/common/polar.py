@@ -1146,6 +1146,38 @@ class PolarDecoder:
         # 预分配 (n+1) 层, 每层 N 元素
         self._L = np.zeros((self.n + 1, N), dtype=np.float64)
         self._B = np.zeros((self.n + 1, N), dtype=np.int8)
+        # SSC: 预计算每个子树的类型 (rate-0 / rate-1 / partial)
+        self._node_type = self._build_node_types()
+
+    def _build_node_types(self) -> dict[tuple[int, int], int]:
+        """预计算所有子树的类型: 0=rate-0, 1=rate-1, 2=partial。
+
+        使用前缀和做 O(1) 范围查询, 迭代遍历避免递归开销。
+        rate-0/rate-1 子树不再向下遍历, 与 SSC 剪枝对齐。
+        """
+        N = self.N
+        frozen = self._is_frozen
+        # 前缀和: prefix[i] = sum(frozen[0:i])
+        prefix = np.empty(N + 1, dtype=np.int32)
+        prefix[0] = 0
+        np.cumsum(frozen, out=prefix[1:])
+
+        node_type: dict[tuple[int, int], int] = {}
+        stack = [(0, N)]
+        while stack:
+            start, length = stack.pop()
+            cnt = int(prefix[start + length] - prefix[start])
+            if cnt == length:
+                node_type[(start, length)] = 0
+            elif cnt == 0:
+                node_type[(start, length)] = 1
+            else:
+                node_type[(start, length)] = 2
+                if length > 1:
+                    half = length >> 1
+                    stack.append((start, half))
+                    stack.append((start + half, half))
+        return node_type
 
     def decode(self, llr: np.ndarray) -> np.ndarray:
         """Decode N channel LLRs to K information bits using SC algorithm.
@@ -1161,10 +1193,46 @@ class PolarDecoder:
         return self._B[self.n, :self.N][self._info_pos_arr].copy()
 
     def _sc(self, start: int, length: int, depth: int) -> None:
-        """递归 SC 解码, 使用预分配数组避免内存分配。"""
+        """SSC 优化的 SC 解码。
+
+        rate-0 子树: 所有位为冻结位, 直接置零。
+        rate-1 子树: 硬判决 LLR 得到编码位, 极性变换得到信息位。
+        partial 子树: 标准 f/g 递归。
+        """
         L = self._L
         B = self._B
 
+        node_t = self._node_type.get((start, length), 2)
+
+        if node_t == 0:
+            # rate-0: 全冻结 → 解码位和部分和均为零
+            end = start + length
+            B[self.n, start:end] = 0
+            B[depth, start:end] = 0
+            return
+
+        if node_t == 1:
+            # rate-1: 全信息位
+            end = start + length
+            # 硬判决得到该层的编码位 x
+            x = np.where(L[depth, start:end] < 0, 1, 0).astype(np.int8)
+            # 部分和 = 编码位 (供父节点 g 操作和合并使用)
+            B[depth, start:end] = x
+            if length == 1:
+                B[self.n, start] = x[0]
+            else:
+                # 极性变换 x → u (F^⊗n 自逆)
+                u = x.copy()
+                step = length
+                while step >= 2:
+                    half_s = step >> 1
+                    u_view = u.reshape(-1, step)
+                    u_view[:, :half_s] ^= u_view[:, half_s:]
+                    step >>= 1
+                B[self.n, start:end] = u
+            return
+
+        # partial: 标准 SC 递归
         if length == 1:
             if self._is_frozen[start]:
                 B[self.n, start] = 0
@@ -1177,7 +1245,7 @@ class PolarDecoder:
         end = start + length
         d1 = depth + 1
 
-        # f 操作: 计算左子 LLR (写入 L[depth+1, start:mid])
+        # f 操作
         a = L[depth, start:mid]
         b = L[depth, mid:end]
         dst = L[d1, start:mid]
@@ -1186,7 +1254,7 @@ class PolarDecoder:
 
         self._sc(start, half, d1)
 
-        # g 操作: 计算右子 LLR (写入 L[depth+1, mid:end])
+        # g 操作
         left_bits = B[d1, start:mid]
         dst = L[d1, mid:end]
         np.subtract(1.0, 2.0 * left_bits, out=dst)
@@ -1200,3 +1268,19 @@ class PolarDecoder:
         right = B[d1, mid:end]
         B[depth, start:mid] = left ^ right
         B[depth, mid:end] = right
+
+
+# ---------------------------------------------------------------------------
+# PolarDecoder 实例缓存 (避免重复初始化 + SSC 构建开销)
+# ---------------------------------------------------------------------------
+_decoder_cache: dict[tuple[int, int], PolarDecoder] = {}
+
+
+def get_polar_decoder(n: int, k: int) -> PolarDecoder:
+    """获取 PolarDecoder 实例, 相同 (N, K) 复用已创建的对象。"""
+    key = (n, k)
+    dec = _decoder_cache.get(key)
+    if dec is None:
+        dec = PolarDecoder(n, k)
+        _decoder_cache[key] = dec
+    return dec

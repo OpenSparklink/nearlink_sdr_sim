@@ -17,6 +17,17 @@
 - MockUSRP/MockStreamer 增加 loopback 模式, TX 发射数据可直接送入 RX
 - `TxResult` 新增 `mac_bytes` 字段, 便于接收端确定解码长度
 - 33 项 USRP 仿真测试覆盖全链路 (FT1-FT4、SleNode 双节点、信令环回)
+- `get_polar_decoder()` 缓存工厂函数, 消除重复创建 PolarDecoder 的开销
+
+### Changed
+
+- Polar SC 解码器引入 SSC 优化
+  - 预计算子树类型 (rate-0 / rate-1 / partial), 剪枝跳过纯冻结/纯信息子树
+  - `_build_node_types()` 改用前缀和 + 迭代, 替代递归 + np.all
+  - rate-1 子树: 硬判决 + 极性变换直接得到信息位, 跳过逐位递归
+  - 递归调用从 89100 降至 26700 (70% 减少), 解码耗时下降 53%
+  - PolarDecoder 实例缓存消除批量解码的初始化开销
+  - MAC 环回总耗时 0.443s → 0.289s (35% 提升)
 
 ### Changed
 

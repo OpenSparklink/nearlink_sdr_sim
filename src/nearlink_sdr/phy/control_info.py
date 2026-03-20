@@ -682,8 +682,8 @@ def polar_decode_control(coded_bits: NDArray[np.int_], k_info: int,
 
     输入 64 比特, 解码到 k_info 比特 (40 或 48)。
     """
-    from nearlink_sdr.common.polar import PolarDecoder
+    from nearlink_sdr.common.polar import get_polar_decoder
 
-    decoder = PolarDecoder(n_coded, k_info)
+    decoder = get_polar_decoder(n_coded, k_info)
     llr = (1 - 2 * coded_bits.astype(float)) * 10.0
     return decoder.decode(llr)
