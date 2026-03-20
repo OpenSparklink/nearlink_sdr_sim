@@ -275,49 +275,34 @@ def symbols_to_data_bits(
 def _modulate_bits(bits: np.ndarray, mod_type: str) -> np.ndarray:
     """Simple bit-to-symbol mapping (no pulse shaping)."""
     if mod_type == "BPSK":
-        # 0 → 90°, 1 → -90°
         phases = np.where(bits == 0, np.pi / 2, -np.pi / 2)
         symbols = np.exp(1j * phases)
-        # Even symbols get -90° rotation
-        for i in range(len(symbols)):
-            if i % 2 == 1:
-                symbols[i] *= np.exp(-1j * np.pi / 2)
+        # 奇数索引符号附加 -90° 旋转 (exp(-j*pi/2) = -j)
+        symbols[1::2] *= -1j
         return symbols
     elif mod_type == "QPSK":
-        # 2 bits per symbol
-        n_sym = len(bits) // 2
-        symbols = np.zeros(n_sym, dtype=complex)
-        qpsk_map = {
-            (0, 0): 45.0,
-            (0, 1): 135.0,
-            (1, 1): -135.0,
-            (1, 0): -45.0,
-        }
-        for i in range(n_sym):
-            b0, b1 = int(bits[2 * i]), int(bits[2 * i + 1])
-            phase = np.deg2rad(qpsk_map[(b0, b1)])
-            symbols[i] = np.exp(1j * phase)
-            # Even symbol rotation
-            if i % 2 == 1:
-                symbols[i] *= np.exp(-1j * np.deg2rad(45.0))
+        b0 = bits[0::2].astype(np.intp)
+        b1 = bits[1::2].astype(np.intp)
+        idx = b0 * 2 + b1
+        phase_deg = np.array([45.0, 135.0, -45.0, -135.0])
+        symbols = np.exp(1j * np.deg2rad(phase_deg[idx]))
+        symbols[1::2] *= np.exp(-1j * np.deg2rad(45.0))
         return symbols
     elif mod_type == "GFSK":
         return bits.astype(np.int8)
     elif mod_type == "8PSK":
-        # 3 bits per symbol
         from nearlink_sdr.phy.psk import _8PSK_MAP, _8PSK_ROTATION
 
-        # 补零对齐到 3 的倍数
         remainder = len(bits) % 3
         if remainder:
             bits = np.concatenate([bits, np.zeros(3 - remainder, dtype=bits.dtype)])
-        n_sym = len(bits) // 3
-        symbols = np.zeros(n_sym, dtype=complex)
-        for i in range(n_sym):
-            idx = (int(bits[3 * i]) << 2) | (int(bits[3 * i + 1]) << 1) | int(bits[3 * i + 2])
-            symbols[i] = _8PSK_MAP[idx]
-            if i % 2 == 1:
-                symbols[i] *= _8PSK_ROTATION
+        b0 = bits[0::3].astype(int)
+        b1 = bits[1::3].astype(int)
+        b2 = bits[2::3].astype(int)
+        idx = (b0 << 2) | (b1 << 1) | b2
+        map_arr = np.array([_8PSK_MAP[k] for k in range(8)])
+        symbols = map_arr[idx].copy()
+        symbols[1::2] *= _8PSK_ROTATION
         return symbols
     else:
         raise ValueError(f"Unsupported mod_type: {mod_type}")
@@ -326,50 +311,34 @@ def _modulate_bits(bits: np.ndarray, mod_type: str) -> np.ndarray:
 def _demodulate_symbols(symbols: np.ndarray, mod_type: str) -> np.ndarray:
     """Simple symbol-to-bit hard decision (no matched filter)."""
     if mod_type == "BPSK":
-        bits = np.zeros(len(symbols), dtype=np.int8)
-        for i in range(len(symbols)):
-            sym = symbols[i]
-            if i % 2 == 1:
-                sym *= np.exp(1j * np.pi / 2)  # undo even rotation
-            # bit 0 → 90° (imag>0), bit 1 → -90° (imag<0)
-            bits[i] = 0 if np.imag(sym) > 0 else 1
-        return bits
+        syms = symbols.copy()
+        syms[1::2] *= 1j  # 撤销 -j 旋转
+        return np.where(syms.imag > 0, 0, 1).astype(np.int8)
     elif mod_type == "QPSK":
-        bits = np.zeros(len(symbols) * 2, dtype=np.int8)
-        for i in range(len(symbols)):
-            sym = symbols[i]
-            if i % 2 == 1:
-                sym *= np.exp(1j * np.deg2rad(45.0))  # undo rotation
-            phase = np.rad2deg(np.angle(sym)) % 360
-            # Map back to closest constellation point
-            if 0 <= phase < 90:
-                bits[2 * i], bits[2 * i + 1] = 0, 0
-            elif 90 <= phase < 180:
-                bits[2 * i], bits[2 * i + 1] = 0, 1
-            elif 180 <= phase < 270:
-                bits[2 * i], bits[2 * i + 1] = 1, 1
-            else:
-                bits[2 * i], bits[2 * i + 1] = 1, 0
+        syms = symbols.copy()
+        syms[1::2] *= np.exp(1j * np.deg2rad(45.0))
+        phase = np.rad2deg(np.angle(syms)) % 360
+        bits = np.zeros(len(syms) * 2, dtype=np.int8)
+        bits[0::2] = np.where(phase >= 180, 1, 0)
+        bits[1::2] = np.where((phase >= 90) & (phase < 270), 1, 0)
         return bits
     elif mod_type == "GFSK":
         return symbols.astype(np.int8)
     elif mod_type == "8PSK":
         from nearlink_sdr.phy.psk import _8PSK_MAP, _8PSK_ROTATION
 
-        bits = np.zeros(len(symbols) * 3, dtype=np.int8)
-        # 构建逆映射: 星座点相位 → 3-bit 索引
+        syms = symbols.copy()
+        syms[1::2] *= np.conj(_8PSK_ROTATION)
+        phases = np.angle(syms)
         map_phases = np.array([np.angle(_8PSK_MAP[k]) for k in range(8)])
-        for i in range(len(symbols)):
-            sym = symbols[i]
-            if i % 2 == 1:
-                sym *= np.conj(_8PSK_ROTATION)  # 撤销偶数位旋转
-            phase = np.angle(sym)
-            # 找到最近的星座点
-            diffs = np.abs(np.exp(1j * map_phases) - np.exp(1j * phase))
-            idx = int(np.argmin(diffs))
-            bits[3 * i] = (idx >> 2) & 1
-            bits[3 * i + 1] = (idx >> 1) & 1
-            bits[3 * i + 2] = idx & 1
+        diffs = np.abs(
+            np.exp(1j * phases[:, None]) - np.exp(1j * map_phases[None, :])
+        )
+        idx = np.argmin(diffs, axis=1)
+        bits = np.zeros(len(syms) * 3, dtype=np.int8)
+        bits[0::3] = (idx >> 2) & 1
+        bits[1::3] = (idx >> 1) & 1
+        bits[2::3] = idx & 1
         return bits
     else:
         raise ValueError(f"Unsupported mod_type: {mod_type}")
