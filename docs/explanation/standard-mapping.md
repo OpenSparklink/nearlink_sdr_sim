@@ -23,6 +23,12 @@
 | 6.10.5 | MCS | `common.mcs` | 完成 |
 | 6.10.6 | 速率自适应 | `common.mcs` | 完成 |
 | 6.11 | BCH 编码 | `common.bch` | 完成 |
+| 6.2.3.5 | 同步信号 5 (GFSK 安全随机) | `phy.sync_sequence` | 完成 |
+| 6.2.3.6 | 同步信号 6 (BPSK 安全随机) | `phy.sync_sequence` | 完成 |
+| 6.2.4 | 位置信息测量信号 | `phy.measurement` | 完成 |
+| 6.3.6 | 半可靠组播反馈 | `phy.measurement_frame` | 完成 |
+| 6.3.7-6.3.10 | 测量帧类型 1-4 | `phy.measurement_frame` | 完成 |
+| 6.3.11 | 超宽带脉冲测量帧 | `phy.measurement_frame` | 完成 |
 
 ## 第 8 章 SLE 非连接模式物理层过程
 
@@ -56,8 +62,8 @@
 
 以下条款尚未实现, 按优先级排列:
 
-- 第 7 章: 连接模式物理层 (部分)
-- 第 9 章: MAC 层协议 (部分)
+- 第 7 章: 连接模式物理层过程 (部分时序细节)
+- 多用户干扰/Doppler 时变信道仿真
 
 ## 第 7 章 MAC 层
 
@@ -65,7 +71,10 @@
 
 | 条款 | 内容 | 实现模块 | 状态 |
 |------|------|----------|------|
+| 7.1.3 | 接入流程 | `mac.access` | 完成 |
 | 7.1.4 | 广播帧结构 | `mac.broadcast` | 完成 |
+| 7.1.4.1-7 | 广播帧子信息 (资源配置/接入) | `mac.broadcast` | 完成 |
+| 7.1.4.3/8/9 | 广播帧子信息 (扩展) | `mac.broadcast` | 完成 |
 | 7.1/7.2 | 链路管理状态机 | `mac.link_manager` | 完成 |
 
 ### 7.2 功率控制
@@ -117,12 +126,29 @@
 | 7.3.2.93-2.107 | 窄带感知 | `mac.link_control` | 完成 |
 | 7.3.2.108-2.114 | 配置更新与 UWB 扩展感知 | `mac.link_control` | 完成 |
 
+### 第 9 章 安全子系统
+
+| 条款 | 内容 | 实现模块 | 状态 |
+|------|------|----------|------|
+| 9.2 | 配对信令 (16 个消息类型) | `mac.security` | 完成 |
+| 9.3 | 密钥派生 (KDF/CMAC/AES) | `mac.crypto` | 完成 |
+| 9.4 | AES-CCM 帧加密 | `mac.crypto` | 完成 |
+| 9.2-9.4 | 安全流程集成 (配对+加密) | `mac.security_manager` | 完成 |
+
+### 时序调度
+
+| 内容 | 实现模块 | 状态 |
+|------|----------|------|
+| 时序调度器 (6.3/6.6/7.2) | `mac.scheduler` | 完成 |
+| 接入流程管理 (7.1.3) | `mac.access` | 完成 |
+
 ### 仿真与集成
 
 | 内容 | 实现模块 | 状态 |
 |------|----------|------|
 | MAC-PHY 集成适配层 | `phy.mac_interface` | 完成 |
-| 全链路 Pipeline 仿真 | `sim.link_sim` | 完成 |
-| 多径信道 + 频偏 Pipeline | `sim.link_sim` | 完成 |
-| 均衡器集成 | `sim.link_sim`, `phy.channel` | 完成 |
-| MAC 帧级端到端仿真 | `sim.link_sim` | 完成 |
+| 全链路 Pipeline 仿真 (Phase 1-8) | `sim.link_sim` | 完成 |
+| MAC 帧级端到端仿真 (Phase 9) | `sim.link_sim` | 完成 |
+| 多链路调度仿真 (Phase 10) | `sim.link_sim` | 完成 |
+| 接入→配对→加密端到端仿真 (Phase 11) | `sim.link_sim` | 完成 |
+| AMC + HARQ + 跳频多径仿真 (Phase 12) | `sim.link_sim` | 完成 |

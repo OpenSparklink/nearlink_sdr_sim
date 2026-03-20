@@ -18,6 +18,11 @@
   - TestAmcThroughput: AMC 吞吐量包络、MCS 选择、FER 单调性
   - TestHarqLink: HARQ FER 改善、平均传输次数约束、吞吐量
   - TestHoppingMultipathLink: 跳频链路 FER 范围与长度一致性
+- 文档更新: 补充 Phase 9-12 仿真、安全模块、测量帧等缺失模块
+  - `docs/explanation/architecture.md`: MAC 层模块表新增 access/scheduler/security, 仿真阶段补全至 Phase 12
+  - `docs/explanation/standard-mapping.md`: 新增第 9 章安全子系统、6.2.3/6.2.4/6.3.6-6.3.11 条款映射
+  - `docs/how-to/run-simulation.md`: 新增 Phase 9-12 操作指南 (MAC 帧仿真/安全仿真/AMC/HARQ/跳频)
+  - `docs/reference/index.md`: 新增 mac_interface/measurement/access/scheduler/security 等 8 个模块引用
 - `mac/security_manager.py`: 安全流程集成管理模块 (标准 9.2-9.4)
   - ECDHKeyPair: P-256 椭圆曲线密钥对生成与 ECDH 共享密钥计算
   - PairingManager: 配对状态机, 驱动 G/T 节点间配对信令交互

@@ -34,7 +34,7 @@ nearlink_sdr/
 | `gfsk` | GFSK 调制/解调 | 6.2.1.1 |
 | `psk` | BPSK/QPSK/8PSK, RRC 脉冲成型 | 6.2.1.2 |
 | `preamble` | 前导码生成 | 6.4 |
-| `sync_sequence` | 同步信号 1-4 | 6.5 / 6.6 |
+| `sync_sequence` | 同步信号 1-6 | 6.5/6.6/6.2.3 |
 | `pilot` | 导频符号插入与移除 | 6.7 |
 | `frame` | 帧结构组装/解析 (类型 1-4) | 6.3 |
 | `control_info` | A1-A7/B1-B5 物理层控制信息 | 6.4 |
@@ -42,7 +42,10 @@ nearlink_sdr/
 | `rx_pipeline` | RX 接收流水线 | 6.10 |
 | `channel` | AWGN/Rayleigh/Rician/多径信道模型 | -- |
 | `equalizer` | ZF/MMSE 均衡, LS 信道估计 | -- |
-| `freq_hopping` | 跳频序列与频率管理 | 6.10.3 / 8.1.2 |
+| `freq_hopping` | 跳频序列与频率管理 | 6.10.3/8.1.2 |
+| `mac_interface` | MAC-PHY 适配层 | -- |
+| `measurement` | 位置信息测量信号 | 6.2.4 |
+| `measurement_frame` | 测量帧类型 1-4 与 UWB 脉冲帧 | 6.3.6-6.3.11 |
 | `usrp` | USRP E310 硬件接口 | -- |
 
 ### mac -- MAC 层
@@ -50,27 +53,35 @@ nearlink_sdr/
 | 模块 | 功能 | 标准条款 |
 |------|------|----------|
 | `frame` | 控制面/数据面/复用帧结构 | 7.3.2-7.3.4 |
-| `broadcast` | 广播帧结构 | 7.1.4 |
+| `broadcast` | 广播帧结构与子信息 | 7.1.4 |
 | `signaling` | 信令注册与编解码 (112 个类型) | 7.3 |
-| `link_control` | 全部链路控制信令 (0x0000-0x0070) | 7.3.2 |
+| `link_control` | 全部链路控制信令 | 7.3.2 |
 | `power_control` | 功率控制流程与信令 | 7.2.13 |
 | `link_manager` | 链路管理状态机 | 7.1/7.2 |
+| `access` | 接入流程管理 | 7.1.3 |
+| `scheduler` | 时序调度器 | 6.3/6.6/7.2 |
+| `security` | 配对信令 (16 个消息类型) | 9.2 |
+| `crypto` | AES-CCM 加密与密钥派生 | 9.3/9.4 |
+| `security_manager` | 安全流程集成 (配对 + 加密) | 9.2-9.4 |
 
 ### sim -- 仿真
 
-`link_sim` 模块封装了端到端仿真流程, 分为六个阶段:
+`link_sim` 模块封装了端到端仿真流程, 分为十二个阶段:
 
 | 阶段 | 内容 | 函数 |
 |------|------|------|
 | Phase 1 | 无编码 GFSK/PSK BER | `sim_gfsk_link`, `sim_psk_link` |
 | Phase 2 | Polar 编码 BER/FER | `sim_polar_coded_psk_link` |
 | Phase 3 | 帧级仿真 | `sim_frame_link` |
-| Phase 4 | 多径信道 + 均衡器 | `sim_multipath_coded_link` |
+| Phase 4 | 多径信道 + 均衡器 | `sim_channel_eq_link` |
 | Phase 5 | 跳频仿真 | `sim_hopping_link` |
 | Phase 6 | 全链路 Pipeline 仿真 | `sim_pipeline_link` |
-| Phase 7 | 多径信道 + 频偏 Pipeline 仿真 | `sim_pipeline_channel_link` |
-| Phase 8 | 均衡器集成 Pipeline 仿真 | `sim_pipeline_equalized_link` |
-| Phase 9 | MAC 帧级端到端仿真 | `sim_mac_link` |
+| Phase 7 | 多径信道 + 频偏 Pipeline | `sim_pipeline_channel_link` |
+| Phase 8 | 均衡器集成 Pipeline | (run_phase8_simulation) |
+| Phase 9 | MAC 帧级端到端仿真 | `sim_mac_signaling_link`, `sim_mac_data_link`, `sim_mac_mux_link` |
+| Phase 10 | 多链路调度仿真 | `sim_multi_link`, `sim_access_scheduled_link`, `sim_event_group_timing`, `sim_superframe_capacity` |
+| Phase 11 | 安全通信端到端仿真 | `sim_secure_link`, `sim_encrypted_vs_plain`, `sim_pairing_signaling_phy` |
+| Phase 12 | AMC / HARQ / 跳频多径 | `sim_amc_throughput`, `sim_harq_link`, `sim_hopping_multipath_link` |
 
 每个阶段的仿真函数可独立调用, 也可通过 `run_phaseN_simulation()` 批量执行。
 

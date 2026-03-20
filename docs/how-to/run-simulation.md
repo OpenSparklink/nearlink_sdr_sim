@@ -151,3 +151,170 @@ result = sim_pipeline_channel_link(
 uv run python -m nearlink_sdr.sim.link_sim phase7
 # 结果保存到 ber_phase7.png
 ```
+
+## MAC 帧级仿真
+
+Phase 9 通过 MAC-PHY 适配层将 MAC 帧编码为 IQ 信号, 经信道传输后在接收端还原 MAC 载荷:
+
+```python
+import numpy as np
+from nearlink_sdr.sim.link_sim import (
+    sim_mac_signaling_link,
+    sim_mac_data_link,
+    sim_mac_mux_link,
+)
+
+# 信令帧传输
+result = sim_mac_signaling_link(
+    snr_range_db=np.arange(0, 20, 2),
+    n_frames=50,
+)
+
+# 数据帧传输
+result = sim_mac_data_link(
+    snr_range_db=np.arange(0, 16, 2),
+    n_frames=50,
+    mcs_index=7,
+)
+
+# 复用帧传输
+result = sim_mac_mux_link(
+    snr_range_db=np.arange(0, 16, 2),
+    n_frames=50,
+)
+```
+
+```bash
+uv run python -m nearlink_sdr.sim.link_sim phase9
+```
+
+## 多链路调度仿真
+
+Phase 10 仿真调度器驱动的多链路并发传输:
+
+```python
+import numpy as np
+from nearlink_sdr.sim.link_sim import (
+    sim_multi_link,
+    sim_access_scheduled_link,
+)
+
+# 多链路并发仿真
+result = sim_multi_link(
+    snr_range_db=np.arange(0, 16, 2),
+    n_links=3,
+)
+
+# 接入建链 + 调度仿真
+result = sim_access_scheduled_link(
+    snr_range_db=np.arange(0, 16, 2),
+)
+```
+
+```bash
+uv run python -m nearlink_sdr.sim.link_sim phase10
+```
+
+## 安全通信仿真
+
+Phase 11 模拟完整的安全链路建立: 接入→配对→加密数据传输:
+
+```python
+import numpy as np
+from nearlink_sdr.sim.link_sim import (
+    sim_secure_link,
+    sim_encrypted_vs_plain,
+)
+
+# 安全链路端到端仿真
+result = sim_secure_link(
+    snr_range_db=np.arange(0, 16, 2),
+    n_frames=50,
+    mcs_index=7,
+)
+print(f"接入成功: {result['access_ok']}, 配对成功: {result['pairing_ok']}")
+
+# 加密与明文 FER 对比
+result = sim_encrypted_vs_plain(
+    snr_range_db=np.arange(0, 16, 2),
+    n_frames=50,
+)
+```
+
+```bash
+uv run python -m nearlink_sdr.sim.link_sim phase11
+```
+
+## AMC 自适应调制编码仿真
+
+Phase 12 扫描全部 MCS 等级 (0-12), 生成 AMC 包络吞吐量曲线:
+
+```python
+import numpy as np
+from nearlink_sdr.sim.link_sim import sim_amc_throughput
+
+result = sim_amc_throughput(
+    snr_range_db=np.arange(-2, 22, 1),
+    n_frames=50,
+)
+
+# AMC 包络吞吐量 (每个 SNR 点选择最优 MCS)
+for snr, tp, mcs in zip(
+    result["snr_db"], result["amc_throughput"], result["amc_mcs"]
+):
+    print(f"SNR={snr:5.1f} dB  MCS={mcs:2d}  Throughput={tp:.3f} bit/symbol")
+
+# 仅仿真特定 MCS 子集
+result = sim_amc_throughput(mcs_indices=[0, 4, 8, 12])
+```
+
+## HARQ 重传仿真
+
+对比有/无 HARQ 重传的 FER 和吞吐量:
+
+```python
+import numpy as np
+from nearlink_sdr.sim.link_sim import sim_harq_link
+
+result = sim_harq_link(
+    snr_range_db=np.arange(0, 16, 1),
+    n_frames=100,
+    mcs_index=7,
+    max_retries=3,
+)
+
+for snr, fer_no, fer_harq, avg_tx in zip(
+    result["snr_db"],
+    result["fer_no_harq"],
+    result["fer_harq"],
+    result["avg_transmissions"],
+):
+    print(
+        f"SNR={snr:5.1f} dB  "
+        f"FER(no HARQ)={fer_no:.3f}  "
+        f"FER(HARQ)={fer_harq:.3f}  "
+        f"Avg TX={avg_tx:.2f}"
+    )
+```
+
+## 跳频多径仿真
+
+对比固定信道与跳频在 Rayleigh 衰落下的 FER:
+
+```python
+import numpy as np
+from nearlink_sdr.sim.link_sim import sim_hopping_multipath_link
+
+result = sim_hopping_multipath_link(
+    snr_range_db=np.arange(0, 20, 2),
+    n_frames=100,
+    n_hop_channels=8,
+)
+```
+
+生成 Phase 12 全部仿真图:
+
+```bash
+uv run python -m nearlink_sdr.sim.link_sim phase12
+# 结果保存到 ber_phase12.png
+```

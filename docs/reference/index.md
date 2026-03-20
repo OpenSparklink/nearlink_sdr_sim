@@ -31,6 +31,9 @@
 | {py:mod}`nearlink_sdr.phy.channel` | 信道模型 |
 | {py:mod}`nearlink_sdr.phy.equalizer` | 均衡器 |
 | {py:mod}`nearlink_sdr.phy.freq_hopping` | 跳频 |
+| {py:mod}`nearlink_sdr.phy.mac_interface` | MAC-PHY 适配层 |
+| {py:mod}`nearlink_sdr.phy.measurement` | 位置信息测量信号 |
+| {py:mod}`nearlink_sdr.phy.measurement_frame` | 测量帧 |
 | {py:mod}`nearlink_sdr.phy.usrp` | USRP 接口 |
 
 ## MAC 层模块 (`mac`)
@@ -43,6 +46,11 @@
 | {py:mod}`nearlink_sdr.mac.link_control` | 链路控制信令 |
 | {py:mod}`nearlink_sdr.mac.power_control` | 功率控制 |
 | {py:mod}`nearlink_sdr.mac.link_manager` | 链路管理状态机 |
+| {py:mod}`nearlink_sdr.mac.access` | 接入流程 |
+| {py:mod}`nearlink_sdr.mac.scheduler` | 时序调度器 |
+| {py:mod}`nearlink_sdr.mac.security` | 配对信令 |
+| {py:mod}`nearlink_sdr.mac.crypto` | 加密与密钥派生 |
+| {py:mod}`nearlink_sdr.mac.security_manager` | 安全流程集成 |
 
 ## 仿真模块 (`sim`)
 
