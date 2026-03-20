@@ -164,14 +164,11 @@ def segment_with_crc(
         For the last segment, further sub-segmentation may be applied.
     """
     B = len(bits)
-    R = _get_rate_value(rate_str)
+    _get_rate_value(rate_str)  # validate
 
     # K_cb: max info bits for 1024 code length at rate R
-    if R == 1.0:
-        K_cb = 1024
-    else:
-        k_table = RATE_TABLE[rate_str]
-        K_cb = k_table[1024]
+    k_table = RATE_TABLE[rate_str]
+    K_cb = k_table[1024]
 
     # Determine number of code blocks
     if K_cb >= B:
@@ -221,13 +218,7 @@ def _subsegment_last_block(
     Returns None if no sub-segmentation is needed (K_r fits in 1024 at rate R).
     """
     K_r = len(bits)
-    R = _get_rate_value(rate_str)
-    R_adj = R - 1 / 16  # adjusted rate
-
-    if R_adj <= 0:
-        # Rate too low for sub-segmentation, use single 1024 block
-        return None
-
+    _get_rate_value(rate_str)  # validate
     k_table = RATE_TABLE[rate_str]
     K_1024 = k_table[1024]
 
@@ -243,75 +234,6 @@ def _subsegment_last_block(
             padded = bits
         return [(1024, padded)]
 
-    # K_r > K_1024: needs sub-segmentation
-    threshold_1024 = 1024 * R_adj
-
-    if K_r > threshold_1024:
-        # Pad to K_1024 and encode with rate R, code length 1024
-        pad_len = K_1024 - K_r if K_r < K_1024 else 0
-        if pad_len > 0:
-            padded = np.concatenate([np.zeros(pad_len, dtype=np.int8), bits])
-        else:
-            padded = bits[:K_1024]
-        return [(1024, padded)]
-
-    # K_r <= threshold_1024
-    unit = 64 * R_adj
-    n_units = math.ceil(K_r / unit)
-    total_padded_k = int(n_units * unit)
-    pad_len = total_padded_k - K_r
-    if pad_len > 0:
-        padded = np.concatenate([np.zeros(pad_len, dtype=np.int8), bits])
-    else:
-        padded = bits.copy()
-
-    threshold_large = (1024 - 64) * R_adj
-    if K_r > threshold_large:
-        # Use R-1/16 rate with 1024 code length
-        # Find the appropriate K for rate R-1/16
-        r_adj_str = _find_rate_str(R_adj)
-        if r_adj_str is not None:
-            k_adj = RATE_TABLE[r_adj_str][1024]
-            if len(padded) < k_adj:
-                padded = np.concatenate([
-                    np.zeros(k_adj - len(padded), dtype=np.int8),
-                    padded,
-                ])
-            return [(1024, padded[:k_adj])]
-        return [(1024, padded)]
-
-    # Decompose n_units into binary to determine code lengths
-    sub_segs = []
-    pos = 0
-    for code_len in [512, 256, 128, 64]:
-        bit_pos = {512: 3, 256: 2, 128: 1, 64: 0}[code_len]
-        if (n_units >> bit_pos) & 1:
-            r_adj_str = _find_rate_str(R_adj)
-            if r_adj_str is not None and code_len in RATE_TABLE[r_adj_str]:
-                k_seg = RATE_TABLE[r_adj_str][code_len]
-            else:
-                k_seg = int(code_len * R_adj)
-            seg_bits = padded[pos : pos + k_seg]
-            if len(seg_bits) < k_seg:
-                seg_bits = np.concatenate([
-                    np.zeros(k_seg - len(seg_bits), dtype=np.int8),
-                    seg_bits,
-                ])
-            sub_segs.append((code_len, seg_bits))
-            pos += k_seg
-
-    return sub_segs if sub_segs else None
-
-
-def _find_rate_str(rate_value: float) -> str | None:
-    """Find the rate string closest to the given rate value."""
-    best = None
-    best_diff = float("inf")
-    for rs, rv in _RATE_FRACTIONS.items():
-        diff = abs(rv - rate_value)
-        if diff < best_diff:
-            best_diff = diff
-            best = rs
-    if best_diff < 0.01:
-        return best
-    return None
+    # K_r > K_1024: K_1024 > 1024 * R_adj for all standard rates,
+    # so this always truncates to K_1024.
+    return [(1024, bits[:K_1024])]

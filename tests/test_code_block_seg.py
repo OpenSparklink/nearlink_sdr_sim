@@ -8,7 +8,6 @@ import pytest
 from nearlink_sdr.common.code_block_seg import (
     _SEG_TABLE_20,
     RATE_TABLE_2,
-    _find_rate_str,
     _subsegment_last_block,
     segment_with_crc,
     segment_without_crc,
@@ -245,68 +244,16 @@ class TestSubsegmentLastBlockDirect:
         assert np.all(result[0][1][:50] == 0)
 
     def test_kr_exceeds_k1024_above_threshold(self):
-        """K_r > K_1024 且 > threshold_1024: 截断到 K_1024。"""
+        """K_r > K_1024: truncate to K_1024."""
         rate_str = "3/4"
         K_1024 = RATE_TABLE[rate_str][1024]
-        R = 0.75
-        R_adj = R - 1 / 16
-        threshold = int(1024 * R_adj)
-        # K_r > threshold_1024 且 > K_1024
-        K_r = max(K_1024, threshold) + 10
+        K_r = K_1024 + 10
         bits = np.ones(K_r, dtype=np.int8)
         result = _subsegment_last_block(bits, rate_str)
         assert result is not None
         assert len(result) == 1
         assert result[0][0] == 1024
-
-    def test_kr_exceeds_k1024_binary_decomposition(self):
-        """K_r > K_1024 且 <= threshold_1024 且 <= threshold_large: 二进制分解。"""
-        rate_str = "7/8"
-        K_1024 = RATE_TABLE[rate_str][1024]
-        R = 0.875
-        R_adj = R - 1 / 16
-        threshold_large = (1024 - 64) * R_adj
-        # 构造 K_r 使其在 K_1024 < K_r <= threshold_large
-        K_r = K_1024 + 5
-        if K_r > threshold_large:
-            K_r = int(threshold_large) - 1
-        if K_r <= K_1024:
-            pytest.skip("无法满足分解条件")
-        bits = np.ones(K_r, dtype=np.int8)
-        result = _subsegment_last_block(bits, rate_str)
-        assert result is not None
-        for code_len, _seg_bits in result:
-            assert code_len in {64, 128, 256, 512, 1024}
-
-    def test_kr_exceeds_k1024_above_threshold_large(self):
-        """K_r > K_1024 且 > threshold_large 但 <= threshold_1024:
-        使用 R_adj 速率与 1024 码长。"""
-        rate_str = "7/8"
-        K_1024 = RATE_TABLE[rate_str][1024]
-        R = 0.875
-        R_adj = R - 1 / 16
-        threshold_1024 = 1024 * R_adj
-        threshold_large = (1024 - 64) * R_adj
-        # K_r > threshold_large 且 <= threshold_1024
-        K_r = int(threshold_large) + 5
-        if K_r > threshold_1024 or K_r <= K_1024:
-            pytest.skip("无法满足条件")
-        bits = np.ones(K_r, dtype=np.int8)
-        result = _subsegment_last_block(bits, rate_str)
-        assert result is not None
-        assert result[0][0] == 1024
+        assert len(result[0][1]) == K_1024
 
 
-class TestFindRateStr:
-    """_find_rate_str 辅助函数测试。"""
 
-    def test_exact_match(self):
-        assert _find_rate_str(0.5) == "1/2"
-        assert _find_rate_str(0.75) == "3/4"
-
-    def test_close_match(self):
-        assert _find_rate_str(0.501) == "1/2"
-
-    def test_no_match(self):
-        assert _find_rate_str(0.1) is None
-        assert _find_rate_str(0.95) is None

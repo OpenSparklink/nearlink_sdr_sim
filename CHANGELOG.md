@@ -23,6 +23,14 @@
 - 仿真循环中 ARQ 重传锁定问题: FER 测量模式下每帧独立, 失败后清除 ARQ 挂起状态
 - `node.py` `_setup_crypto()` 处理 `integrity_key` 为 None 的情况 (认证加密模式)
 
+### Removed
+
+- `code_block_seg.py` 死代码清理: 移除 53 行不可达代码, 覆盖率 78% → 100%
+  - `R == 1.0` 分支 (速率表中无 1.0 速率)
+  - `R_adj <= 0` 守卫 (所有标准速率 R_adj > 0)
+  - `_subsegment_last_block` 子分段路径 (K_1024 > threshold_1024 恒成立)
+  - `_find_rate_str` 辅助函数及 5 个关联测试
+
 - 测试覆盖率补充: 96% (345 miss, 新增 32 个测试, 1621 → 1653)
   - `tests/test_node.py`: 新增 10 个测试 — 配对完成/失败流程、加密收发、信令发送、默认回调
   - `tests/test_security.py`: 新增 14 个测试 — 全部 pack/unpack 输入校验 ValueError 路径
