@@ -413,6 +413,21 @@ class TestConfirmCode:
         )
         assert len(code) == 16
 
+    def test_no_input_auth(self):
+        code = generate_confirm_code(
+            KdfType.AES_CMAC, AuthMethod.NO_INPUT,
+            os.urandom(16), os.urandom(64), os.urandom(64),
+        )
+        assert len(code) == 16
+
+    def test_password_verify(self):
+        code = generate_confirm_code(
+            KdfType.AES_CMAC, AuthMethod.PASSWORD_VERIFY,
+            os.urandom(16), os.urandom(64), os.urandom(64),
+            obfuscated=os.urandom(16),
+        )
+        assert len(code) == 16
+
 
 # ---------------------------------------------------------------------------
 # DH Key 验证码

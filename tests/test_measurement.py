@@ -300,3 +300,32 @@ class TestMeasurementSignal1Extended:
         seed = b"\xAA" * 16
         rand = antenna_pair_order_random(4, 2, seed, 5, k=4)
         assert len(rand) == len(set(rand))
+
+
+class TestType2DisturbLoop:
+    """确保 TYPE_2 扰动索引计算循环被执行。"""
+
+    def test_type2_produces_disturb_bits(self):
+        """扫描 seed/slot 组合, 确保找到产生非零扰动的情况。"""
+        found = False
+        for slot in range(20):
+            seq = measurement_signal_1(
+                64, SecurityType.TYPE_2,
+                seed=b"\x11" * 16, slot_number=slot,
+                n_disturb_max=8,
+            )
+            if np.any(seq == 1):
+                found = True
+                break
+        assert found, "未找到产生扰动位的 slot"
+
+    def test_type2_multiple_disturb_max(self):
+        """不同 n_disturb_max 值覆盖扰动计算路径。"""
+        for ndm in [3, 7, 15]:
+            seq = measurement_signal_1(
+                128, SecurityType.TYPE_2,
+                seed=b"\xFF" * 16, slot_number=5,
+                n_disturb_max=ndm,
+            )
+            assert len(seq) == 128
+            assert set(seq).issubset({0, 1})

@@ -269,3 +269,38 @@ class TestDoppler:
         ch = ChannelModel(config=cfg)
         with pytest.raises(ValueError, match="Unknown channel type"):
             ch.get_channel_taps(10)
+
+
+class TestPrivateMethods:
+    """覆盖私有方法和边界路径。"""
+
+    def test_rayleigh_flat(self):
+        cfg = ChannelConfig(channel_type="rayleigh", snr_db=20, seed=42)
+        ch = ChannelModel(config=cfg)
+        sig = np.ones(50, dtype=complex)
+        out = ch._rayleigh_flat(sig)
+        assert out.shape == sig.shape
+        assert ch._last_taps is not None
+
+    def test_rician_flat(self):
+        cfg = ChannelConfig(channel_type="rician", snr_db=20, seed=42)
+        ch = ChannelModel(config=cfg)
+        sig = np.ones(50, dtype=complex)
+        out = ch._rician_flat(sig)
+        assert out.shape == sig.shape
+        assert ch._last_taps is not None
+
+    def test_multipath_method(self):
+        cfg = ChannelConfig(channel_type="multipath", snr_db=20, seed=42)
+        ch = ChannelModel(config=cfg)
+        sig = np.ones(80, dtype=complex)
+        out = ch._multipath(sig)
+        assert out.shape == sig.shape
+        assert ch._last_taps is not None
+
+    def test_add_noise_zero_power(self):
+        cfg = ChannelConfig(snr_db=10, seed=42)
+        ch = ChannelModel(config=cfg)
+        sig = np.zeros(100, dtype=complex)
+        out = ch._add_noise(sig, 10.0)
+        assert np.allclose(out, 0.0)

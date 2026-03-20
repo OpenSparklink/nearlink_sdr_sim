@@ -307,3 +307,71 @@ class TestSignalingRegistry:
         assert isinstance(got, PairingConfirm)
         assert got.g_public_key_x == pk_x
         assert got.g_public_key_y == pk_y
+
+
+# ── 输入校验 ValueError 覆盖 ──
+
+
+class TestValidationErrors:
+    """安全信令 pack/unpack 输入校验。"""
+
+    def test_bytes_message_pack_wrong_length(self):
+        with pytest.raises(ValueError, match="字段长度"):
+            TNodeConfirmCode(b"\x00" * 15).pack()
+
+    def test_bytes_message_unpack_short(self):
+        with pytest.raises(ValueError, match="数据不足"):
+            TNodeConfirmCode.unpack(b"\x00" * 15)
+
+    def test_two_bytes_message_pack_wrong_length(self):
+        with pytest.raises(ValueError, match="字段长度错误"):
+            PairingInitialInfo(b"\x00" * 31, b"\x00" * 32).pack()
+
+    def test_two_bytes_message_unpack_short(self):
+        with pytest.raises(ValueError, match="数据不足"):
+            PairingInitialInfo.unpack(b"\x00" * 63)
+
+    def test_pairing_initiate_unpack_empty(self):
+        with pytest.raises(ValueError, match="数据不足"):
+            PairingInitiate.unpack(b"")
+
+    def test_pairing_request_pack_bad_crypto(self):
+        req = PairingRequest(0, 0, 0, 16, 0, b"\x00" * 3, 0)
+        with pytest.raises(ValueError, match="crypto_capability"):
+            req.pack()
+
+    def test_pairing_request_unpack_short(self):
+        with pytest.raises(ValueError, match="数据不足"):
+            PairingRequest.unpack(b"\x00" * 9)
+
+    def test_pairing_response_pack_bad_crypto(self):
+        resp = PairingResponse(0, 0, 0, 16, 0, b"\x00" * 3, 0)
+        with pytest.raises(ValueError, match="crypto_capability"):
+            resp.pack()
+
+    def test_pairing_response_unpack_short(self):
+        with pytest.raises(ValueError, match="数据不足"):
+            PairingResponse.unpack(b"\x00" * 9)
+
+    def test_pairing_confirm_pack_bad_crypto_algorithm(self):
+        msg = PairingConfirm(16, 0, b"\x00" * 3, b"\x00" * 32, b"\x00" * 32)
+        with pytest.raises(ValueError, match="crypto_algorithm"):
+            msg.pack()
+
+    def test_pairing_confirm_pack_bad_pubkey_x(self):
+        msg = PairingConfirm(16, 0, b"\x00" * 4, b"\x00" * 31, b"\x00" * 32)
+        with pytest.raises(ValueError, match="g_public_key_x"):
+            msg.pack()
+
+    def test_pairing_confirm_pack_bad_pubkey_y(self):
+        msg = PairingConfirm(16, 0, b"\x00" * 4, b"\x00" * 32, b"\x00" * 31)
+        with pytest.raises(ValueError, match="g_public_key_y"):
+            msg.pack()
+
+    def test_pairing_confirm_unpack_short(self):
+        with pytest.raises(ValueError, match="数据不足"):
+            PairingConfirm.unpack(b"\x00" * 69)
+
+    def test_pairing_failure_unpack_empty(self):
+        with pytest.raises(ValueError, match="数据不足"):
+            PairingFailure.unpack(b"")

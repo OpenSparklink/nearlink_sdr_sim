@@ -314,9 +314,11 @@ class SleNode:
         if self._pairing is None or not self._pairing.is_paired:
             return
         is_g = self._link_mgr.role == Role.G_NODE
+        ik = self._pairing.integrity_key
+        iv_base = ik[:8] if ik else self._pairing.session_key[:8]
         self._crypto = FrameCryptoContext(
             session_key=self._pairing.session_key,
-            iv_base=self._pairing.integrity_key[:8],
+            iv_base=iv_base,
             direction=0 if is_g else 1,
             mic_len=4,
             frame_type=self.config.frame_type,

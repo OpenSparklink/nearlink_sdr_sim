@@ -21,6 +21,14 @@
 
 - `node.py` 接收端不再调用 `on_tx_feedback()`, 修复接收侧 QoS 状态污染
 - 仿真循环中 ARQ 重传锁定问题: FER 测量模式下每帧独立, 失败后清除 ARQ 挂起状态
+- `node.py` `_setup_crypto()` 处理 `integrity_key` 为 None 的情况 (认证加密模式)
+
+- 测试覆盖率补充: 96% (345 miss, 新增 32 个测试, 1621 → 1653)
+  - `tests/test_node.py`: 新增 10 个测试 — 配对完成/失败流程、加密收发、信令发送、默认回调
+  - `tests/test_security.py`: 新增 14 个测试 — 全部 pack/unpack 输入校验 ValueError 路径
+  - `tests/test_crypto.py`: 新增 2 个测试 — NO_INPUT/PASSWORD_VERIFY 鉴权方式确认码
+  - `tests/test_channel.py`: 新增 4 个测试 — 私有方法 (rayleigh/rician/multipath) 和零功率噪声
+  - `tests/test_measurement.py`: 新增 2 个测试 — TYPE_2 扰动索引循环覆盖
 
 ## [0.25.0]
 

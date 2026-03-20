@@ -329,3 +329,166 @@ class TestNodePairing:
         node = SleNode()
         result = node.process_pairing_message(object())
         assert result == []
+
+
+class TestNodePairingComplete:
+    """配对完成与失败流程覆盖。"""
+
+    def _setup_pair(self):
+        """构建 G/T 节点并完成建连。"""
+        g = SleNode(config=NodeConfig(
+            address=b"\x01" * 6, role=NodeRole.G_NODE,
+            frame_type=2, mcs_index=5,
+        ))
+        t = SleNode(config=NodeConfig(
+            address=b"\x02" * 6, role=NodeRole.T_NODE,
+            frame_type=2, mcs_index=5,
+        ))
+        g.start_advertising()
+        g.accept_connection(b"\x02" * 6, Role.G_NODE)
+        t.start_advertising()
+        t.accept_connection(b"\x01" * 6, Role.T_NODE)
+        return g, t
+
+    def test_full_pairing_completes(self):
+        g, t = self._setup_pair()
+        g_msgs = g.start_pairing(b"\x02" * 6)
+        t.start_pairing(b"\x01" * 6)
+        while g_msgs:
+            t_msgs = []
+            for m in g_msgs:
+                t_msgs.extend(t.process_pairing_message(m))
+            g_msgs = []
+            for m in t_msgs:
+                g_msgs.extend(g.process_pairing_message(m))
+
+        # 双方完成配对
+        assert g.stats["paired"]
+        assert t.stats["paired"]
+        assert g.state == NodeState.CONNECTED
+        assert t.state == NodeState.CONNECTED
+        # 加密上下文已建立
+        assert g._crypto is not None
+        assert t._crypto is not None
+
+    def test_pairing_failure_sets_disconnected(self):
+        g, _ = self._setup_pair()
+        g.start_pairing(b"\x02" * 6)
+        from nearlink_sdr.mac.security import PairingFailure
+        g.process_pairing_message(PairingFailure(reason=0x04))
+        assert g.state == NodeState.DISCONNECTED
+
+    def test_setup_crypto_no_pairing(self):
+        node = SleNode()
+        node._pairing = None
+        node._setup_crypto()
+        assert node._crypto is None
+
+
+class TestNodeEncryptedTransmit:
+    """加密收发路径覆盖。"""
+
+    def _paired_nodes(self):
+        g = SleNode(config=NodeConfig(
+            address=b"\x01" * 6, role=NodeRole.G_NODE,
+            frame_type=2, mcs_index=5, enable_encryption=True,
+        ))
+        t = SleNode(config=NodeConfig(
+            address=b"\x02" * 6, role=NodeRole.T_NODE,
+            frame_type=2, mcs_index=5, enable_encryption=True,
+        ))
+        g.start_advertising()
+        g.accept_connection(b"\x02" * 6, Role.G_NODE)
+        t.start_advertising()
+        t.accept_connection(b"\x01" * 6, Role.T_NODE)
+        g_msgs = g.start_pairing(b"\x02" * 6)
+        t.start_pairing(b"\x01" * 6)
+        while g_msgs:
+            t_msgs = []
+            for m in g_msgs:
+                t_msgs.extend(t.process_pairing_message(m))
+            g_msgs = []
+            for m in t_msgs:
+                g_msgs.extend(g.process_pairing_message(m))
+        # 手动同步 IV 以确保解密可行
+        from nearlink_sdr.mac.security_manager import FrameCryptoContext
+        iv = b"\x00" * 8
+        g._crypto = FrameCryptoContext(
+            session_key=g._pairing.session_key, iv_base=iv,
+            direction=0, mic_len=4, frame_type=2, link_id=0,
+        )
+        t._crypto = FrameCryptoContext(
+            session_key=t._pairing.session_key, iv_base=iv,
+            direction=0, mic_len=4, frame_type=2, link_id=0,
+        )
+        return g, t
+
+    def test_encrypted_transmit(self):
+        g, _ = self._paired_nodes()
+        g.send(b"secret")
+        tx = g.transmit()
+        assert tx.iq is not None
+        assert tx.encrypted
+
+    def test_encrypted_roundtrip(self):
+        g, t = self._paired_nodes()
+        payload = b"encrypted data"
+        g.send(payload)
+        tx = g.transmit()
+        frame = AsyncDataFrame(segment_type=0, data=payload)
+        # 加密帧比原 payload 长 (MIC 附加)
+        n_mac = len(frame.pack()) + 4  # +4 MIC
+        rx = t.receive(tx.iq, n_mac)
+        assert rx.success
+        assert rx.decrypted
+        assert rx.data == payload
+
+    def test_receive_decrypt_short_data(self):
+        """数据长度不足以包含 MIC 时返回失败。"""
+        _, t = self._paired_nodes()
+        # 构造一个 crc_ok 但 payload 过短的场景
+        # 直接用正常帧但设 mic_len 大于 payload 长度
+        from nearlink_sdr.mac.security_manager import FrameCryptoContext
+        t._crypto = FrameCryptoContext(
+            session_key=t._pairing.session_key, iv_base=b"\x00" * 8,
+            direction=0, mic_len=100, frame_type=2, link_id=0,
+        )
+        g, _ = self._paired_nodes()
+        g.send(b"tiny")
+        tx = g.transmit()
+        frame = AsyncDataFrame(segment_type=0, data=b"tiny")
+        n_mac = len(frame.pack())
+        rx = t.receive(tx.iq, n_mac)
+        # 因 MIC 长度 > 数据长度, 解密失败
+        assert not rx.success
+
+
+class TestNodeSendSignalingConnected:
+    """已连接状态下信令发送覆盖。"""
+
+    def test_send_signaling_connected(self):
+        node = SleNode()
+        node.start_advertising()
+        node.accept_connection(b"\x01" * 6, Role.G_NODE)
+        from nearlink_sdr.mac.link_control import IntervalUpdateRequest
+        msg = IntervalUpdateRequest(interval_type=10)
+        result = node.send_signaling(msg)
+        # 已连接, 应返回 ControlFrame 或至少不为 None
+        assert result is not None
+
+
+class TestNodeCallbackDefault:
+    """默认回调方法不抛异常。"""
+
+    def test_on_data_received(self):
+        cb = NodeCallback()
+        cb.on_data_received(b"test data")
+
+    def test_on_connected(self):
+        cb = NodeCallback()
+        cb.on_connected(b"\x01" * 6, Role.G_NODE)
+
+    def test_on_disconnected(self):
+        from nearlink_sdr.mac.link_manager import DisconnectReason
+        cb = NodeCallback()
+        cb.on_disconnected(DisconnectReason.LOCAL_REQUEST)
