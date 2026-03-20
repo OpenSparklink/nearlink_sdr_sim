@@ -9,6 +9,13 @@
 
 ### Added
 
+- `sim/link_sim.py` Phase 10: 多链路调度仿真
+  - sim_multi_link: 多链路超帧内分时传输, 统计总体 FER 和每链路 FER
+  - sim_access_scheduled_link: 接入建链 + 调度器驱动数据传输端到端仿真
+  - sim_event_group_timing: 事件组时序计算与资源利用率分析
+  - sim_superframe_capacity: 超帧容量分析 (链路数-冲突-利用率)
+  - run_phase10_simulation: 可视化入口 (4 子图)
+- `tests/test_link_sim_mac.py`: 17 个 Phase 10 仿真测试
 - `tests/test_mac_phy_integration.py`: MAC-PHY 集成联调测试扩展 (12 个新测试)
   - TestBroadcastFramePhy: 广播帧/扩展广播帧/接入响应帧通过 PHY pipeline 全链路
   - TestAccessPhyIntegration: 接入流程各阶段帧经 PHY encode/decode 的端到端验证

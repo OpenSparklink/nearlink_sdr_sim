@@ -1770,6 +1770,563 @@ def run_phase9_simulation():
     print("\nPhase 9 curves saved to ber_phase9.png")
 
 
+# ═══════════════════════════════════════════════════════════════════════
+# Phase 10 — 多链路调度仿真
+# ═══════════════════════════════════════════════════════════════════════
+
+
+def sim_multi_link(
+    n_links: int = 3,
+    snr_range_db: np.ndarray | None = None,
+    n_superframes: int = 20,
+    mcs_index: int = 7,
+    payload_size: int = 10,
+    channel_type: str = "awgn",
+    cfo_hz: float = 0.0,
+    eq_method: str = "none",
+    rician_k_db: float = 6.0,
+    smf_interval: int = 800,
+    seed: int = 42,
+) -> dict:
+    """多链路调度仿真: 多条链路在超帧内按时间片分时传输。
+
+    使用 ScheduleManager 分配时间资源, 每条链路在各自的事件组窗口内
+    发送/接收数据帧, 统计每条链路和总体的 FER。
+
+    Args:
+        n_links: 并发链路数。
+        snr_range_db: 信噪比范围 (dB)。
+        n_superframes: 每个 SNR 点仿真的超帧数。
+        mcs_index: 调制编码策略索引。
+        payload_size: 每帧载荷字节数。
+        channel_type: 信道类型。
+        cfo_hz: 载波频率偏移。
+        eq_method: 均衡方法。
+        rician_k_db: Rician K 因子。
+        smf_interval: SMF 间隔 (基础时隙)。
+        seed: 随机种子。
+
+    Returns:
+        {"snr_db": [...],
+         "aggregate_fer": [...],
+         "per_link_fer": {link_id: [...]},
+         "throughput_ratio": [...]}
+    """
+    from nearlink_sdr.mac.frame import AsyncDataFrame
+    from nearlink_sdr.mac.scheduler import (
+        EventTimingParams,
+        ScheduleManager,
+        ScheduleSlotType,
+        SmfScheduleConfig,
+        TimeSlice,
+    )
+    from nearlink_sdr.phy.mac_interface import iq_to_mac, mac_to_iq
+    from nearlink_sdr.phy.tx_pipeline import TxConfig
+
+    if snr_range_db is None:
+        snr_range_db = np.arange(0, 16, 2)
+
+    rng = np.random.default_rng(seed)
+
+    cfg = TxConfig(
+        frame_type=2,
+        mcs_index=mcs_index,
+        pid=0x123456,
+        whitening_seed=0x52,
+        crc_seed=0x555555,
+        crc_len=24,
+        ctrl_bits_len=28,
+        pilot_interval=8,
+    )
+
+    # 配置调度器: 等间隔分配时间片
+    sched = ScheduleManager()
+    sched.configure_smf(SmfScheduleConfig(smf_interval=smf_interval))
+
+    slice_duration = max(1, smf_interval // (n_links + 1))
+    for i in range(n_links):
+        link_id = i + 1
+        timing = EventTimingParams(
+            event_group_period=slice_duration,
+            event_period=0,
+            event_count=1,
+            schedule_slot_type=ScheduleSlotType.T_125US,
+            tx_max_offset=3,
+            rx_max_offset=3,
+        )
+        sched.register_link(
+            link_id=link_id,
+            timing=timing,
+            time_slices=[
+                TimeSlice(
+                    offset=i * slice_duration,
+                    duration=slice_duration,
+                ),
+            ],
+        )
+
+    # 验证无时间片冲突
+    conflicts = sched.superframe.check_conflicts()
+
+    aggregate_fer_list = []
+    per_link_fer: dict[int, list[float]] = {i + 1: [] for i in range(n_links)}
+    throughput_list = []
+
+    for snr in snr_range_db:
+        link_errors: dict[int, int] = {i + 1: 0 for i in range(n_links)}
+        link_total: dict[int, int] = {i + 1: 0 for i in range(n_links)}
+
+        for _ in range(n_superframes):
+            for link_id in range(1, n_links + 1):
+                schedule = sched.get_event_schedule(link_id)
+                if schedule is None:
+                    continue
+
+                for _event in schedule:
+                    payload = bytes(
+                        rng.integers(0, 256, payload_size, dtype=np.uint8)
+                    )
+                    frame = AsyncDataFrame(segment_type=0, data=payload)
+                    mac_bytes = frame.pack()
+                    n_mac_bytes = len(mac_bytes)
+
+                    iq = mac_to_iq(mac_bytes, cfg)
+                    rx_iq = _channel_impair(
+                        iq, float(snr), channel_type, rician_k_db,
+                        cfo_hz, eq_method, cfg.sps, rng,
+                    )
+                    rx = iq_to_mac(rx_iq, cfg, n_mac_bytes)
+
+                    link_total[link_id] += 1
+                    if not rx.crc_ok:
+                        link_errors[link_id] += 1
+                    else:
+                        try:
+                            recovered = AsyncDataFrame.unpack(rx.mac_payload)
+                            if recovered.data != payload:
+                                link_errors[link_id] += 1
+                        except (ValueError, IndexError):
+                            link_errors[link_id] += 1
+
+        total_frames = sum(link_total.values())
+        total_errors = sum(link_errors.values())
+        agg_fer = total_errors / total_frames if total_frames > 0 else 0.0
+        aggregate_fer_list.append(agg_fer)
+        throughput_list.append(1.0 - agg_fer)
+
+        for link_id in range(1, n_links + 1):
+            lt = link_total[link_id]
+            le = link_errors[link_id]
+            per_link_fer[link_id].append(le / lt if lt > 0 else 0.0)
+
+    return {
+        "snr_db": snr_range_db.tolist(),
+        "aggregate_fer": aggregate_fer_list,
+        "per_link_fer": per_link_fer,
+        "throughput_ratio": throughput_list,
+        "n_conflicts": len(conflicts),
+    }
+
+
+def sim_access_scheduled_link(
+    snr_range_db: np.ndarray | None = None,
+    n_frames: int = 50,
+    mcs_index: int = 7,
+    payload_size: int = 10,
+    channel_type: str = "awgn",
+    cfo_hz: float = 0.0,
+    eq_method: str = "none",
+    rician_k_db: float = 6.0,
+    seed: int = 42,
+) -> dict:
+    """接入流程 + 调度器驱动的数据传输仿真。
+
+    模拟完整的接入建链过程, 然后使用接入参数配置调度器,
+    在事件组时间窗口内进行数据帧收发。
+
+    Args:
+        snr_range_db: 信噪比范围 (dB)。
+        n_frames: 每个 SNR 点仿真帧数。
+        mcs_index: MCS 索引。
+        payload_size: 载荷字节数。
+        channel_type: 信道类型。
+        cfo_hz: 载波频率偏移。
+        eq_method: 均衡方法。
+        rician_k_db: Rician K 因子。
+        seed: 随机种子。
+
+    Returns:
+        {"snr_db": [...],
+         "fer": [...],
+         "access_ok": bool,
+         "link_params": dict}
+    """
+    from nearlink_sdr.mac.access import run_access_procedure
+    from nearlink_sdr.mac.frame import AsyncDataFrame
+    from nearlink_sdr.mac.link_manager import LinkState
+    from nearlink_sdr.mac.scheduler import (
+        EventTimingParams,
+        ScheduleManager,
+        SmfScheduleConfig,
+    )
+    from nearlink_sdr.phy.mac_interface import iq_to_mac, mac_to_iq
+    from nearlink_sdr.phy.tx_pipeline import TxConfig
+
+    if snr_range_db is None:
+        snr_range_db = np.arange(0, 16, 2)
+
+    rng = np.random.default_rng(seed)
+
+    # 1. 接入流程
+    b_mgr, i_mgr = run_access_procedure()
+    access_ok = (
+        b_mgr.link_manager.state == LinkState.CONNECTED
+        and i_mgr.link_manager.state == LinkState.CONNECTED
+    )
+
+    if not access_ok:
+        return {
+            "snr_db": snr_range_db.tolist(),
+            "fer": [1.0] * len(snr_range_db),
+            "access_ok": False,
+            "link_params": {},
+        }
+
+    # 2. 使用接入参数配置调度器
+    sched = ScheduleManager()
+    sched.configure_smf(SmfScheduleConfig(
+        smf_interval=b_mgr.smf_period,
+        frame_type=b_mgr.smf_frame_type,
+    ))
+    timing = EventTimingParams(
+        event_group_period=b_mgr.access_period,
+        event_period=10,
+        intra_event_interval=300,
+        event_count=2,
+        tx_max_offset=3,
+        rx_max_offset=3,
+    )
+    sched.register_link(link_id=b_mgr.access_link_id, timing=timing)
+
+    cfg = TxConfig(
+        frame_type=2,
+        mcs_index=mcs_index,
+        pid=0x123456,
+        whitening_seed=0x52,
+        crc_seed=0x555555,
+        crc_len=24,
+        ctrl_bits_len=28,
+        pilot_interval=8,
+    )
+
+    # 3. 数据传输仿真
+    fer_list = []
+    link_params = {
+        "smf_period": b_mgr.smf_period,
+        "access_link_id": b_mgr.access_link_id,
+        "access_period": b_mgr.access_period,
+    }
+
+    schedule = sched.get_event_schedule(b_mgr.access_link_id)
+    events_per_group = len(schedule) if schedule else 1
+
+    for snr in snr_range_db:
+        errors = 0
+
+        for _ in range(n_frames):
+            payload = bytes(
+                rng.integers(0, 256, payload_size, dtype=np.uint8)
+            )
+            frame = AsyncDataFrame(segment_type=0, data=payload)
+            mac_bytes = frame.pack()
+            n_mac_bytes = len(mac_bytes)
+
+            iq = mac_to_iq(mac_bytes, cfg)
+            rx_iq = _channel_impair(
+                iq, float(snr), channel_type, rician_k_db,
+                cfo_hz, eq_method, cfg.sps, rng,
+            )
+            rx = iq_to_mac(rx_iq, cfg, n_mac_bytes)
+
+            if not rx.crc_ok:
+                errors += 1
+            else:
+                try:
+                    recovered = AsyncDataFrame.unpack(rx.mac_payload)
+                    if recovered.data != payload:
+                        errors += 1
+                except (ValueError, IndexError):
+                    errors += 1
+
+        fer_list.append(errors / n_frames)
+
+    return {
+        "snr_db": snr_range_db.tolist(),
+        "fer": fer_list,
+        "access_ok": True,
+        "link_params": link_params,
+        "events_per_group": events_per_group,
+    }
+
+
+def sim_event_group_timing(
+    event_group_period: int = 100,
+    event_count: int = 4,
+    event_period: int = 25,
+    intra_event_interval: int = 300,
+    tx_max_offset: int = 3,
+    rx_max_offset: int = 3,
+) -> dict:
+    """事件组时序计算仿真。
+
+    可视化事件组内各事件的 TX/RX 窗口分布和资源利用率。
+
+    Args:
+        event_group_period: 事件组周期 (调度时隙)。
+        event_count: 事件总数。
+        event_period: 事件周期 (调度时隙)。
+        intra_event_interval: 事件内间隔 (μs)。
+        tx_max_offset: TX 最大偏移 (基础时隙)。
+        rx_max_offset: RX 最大偏移 (基础时隙)。
+
+    Returns:
+        {"events": [{"start": int, "tx_window": (s,e), "rx_window": (s,e)}],
+         "total_active_us": int,
+         "group_period_us": int,
+         "utilization": float}
+    """
+    from nearlink_sdr.mac.scheduler import EventGroupScheduler, EventTimingParams
+
+    timing = EventTimingParams(
+        event_group_period=event_group_period,
+        event_period=event_period,
+        intra_event_interval=intra_event_interval,
+        event_count=event_count,
+        tx_max_offset=tx_max_offset,
+        rx_max_offset=rx_max_offset,
+    )
+    scheduler = EventGroupScheduler(timing=timing)
+    schedule = scheduler.event_schedule()
+
+    total_active = 0
+    for event in schedule:
+        tx_s, tx_e = event["tx_window"]
+        rx_s, rx_e = event["rx_window"]
+        total_active += (tx_e - tx_s) + (rx_e - rx_s)
+
+    group_period_us = timing.event_group_period_us
+    utilization = total_active / group_period_us if group_period_us > 0 else 0.0
+
+    return {
+        "events": schedule,
+        "total_active_us": total_active,
+        "group_period_us": group_period_us,
+        "utilization": utilization,
+    }
+
+
+def sim_superframe_capacity(
+    smf_interval: int = 800,
+    slice_duration: int = 50,
+    slice_gap: int | None = None,
+    max_links: int = 20,
+) -> dict:
+    """超帧容量分析: 逐步增加链路直到出现时间片冲突。
+
+    Args:
+        smf_interval: SMF 间隔 (基础时隙)。
+        slice_duration: 每条链路时间片持续长度 (调度时隙)。
+        slice_gap: 相邻链路的偏移间距 (调度时隙, 默认等于 slice_duration)。
+            当 gap < slice_duration 时, 链路时间片将发生重叠。
+        max_links: 最大测试链路数。
+
+    Returns:
+        {"n_links": [...],
+         "n_conflicts": [...],
+         "max_no_conflict": int,
+         "utilization": [...]}
+    """
+    from nearlink_sdr.mac.scheduler import (
+        EventTimingParams,
+        ScheduleManager,
+        SmfScheduleConfig,
+        TimeSlice,
+    )
+
+    if slice_gap is None:
+        slice_gap = slice_duration
+
+    n_links_list = []
+    n_conflicts_list = []
+    utilization_list = []
+    max_no_conflict = 0
+
+    for n in range(1, max_links + 1):
+        sched = ScheduleManager()
+        sched.configure_smf(SmfScheduleConfig(smf_interval=smf_interval))
+
+        for i in range(n):
+            timing = EventTimingParams(event_group_period=50, event_count=1)
+            sched.register_link(
+                link_id=i + 1,
+                timing=timing,
+                time_slices=[
+                    TimeSlice(
+                        offset=i * slice_gap,
+                        duration=slice_duration,
+                    ),
+                ],
+            )
+
+        conflicts = sched.superframe.check_conflicts()
+        active_start, active_end = sched.superframe.active_region_us()
+        total_us = sched.superframe.duration_us
+        util = (active_end - active_start) / total_us if total_us > 0 else 0.0
+
+        n_links_list.append(n)
+        n_conflicts_list.append(len(conflicts))
+        utilization_list.append(util)
+
+        if len(conflicts) == 0:
+            max_no_conflict = n
+
+    return {
+        "n_links": n_links_list,
+        "n_conflicts": n_conflicts_list,
+        "max_no_conflict": max_no_conflict,
+        "utilization": utilization_list,
+    }
+
+
+def run_phase10_simulation() -> None:
+    """Phase 10: 多链路调度仿真入口。"""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    snr_range = np.arange(0, 16, 2)
+
+    # ── 10.1 多链路 FER ──
+    print("[1/4] Multi-link FER simulation...")
+    ml_configs = [
+        {"n_links": 1, "label": "1 link"},
+        {"n_links": 3, "label": "3 links"},
+        {"n_links": 6, "label": "6 links"},
+    ]
+    ml_results = []
+    for mcfg in ml_configs:
+        print(f"  {mcfg['label']}...")
+        res = sim_multi_link(
+            n_links=mcfg["n_links"],
+            snr_range_db=snr_range,
+            n_superframes=10,
+        )
+        ml_results.append((mcfg["label"], res))
+        for s, f in zip(
+            res["snr_db"][::4], res["aggregate_fer"][::4], strict=False,
+        ):
+            print(f"    {mcfg['label']}  SNR={s:2.0f} dB  FER={f:.4f}")
+
+    # ── 10.2 接入 + 调度链路 ──
+    print("[2/4] Access + scheduled link simulation...")
+    asl_configs = [
+        {"channel_type": "awgn", "eq_method": "none", "label": "AWGN"},
+        {"channel_type": "rayleigh", "eq_method": "mmse", "label": "Rayleigh+MMSE"},
+    ]
+    asl_results = []
+    for acfg in asl_configs:
+        print(f"  {acfg['label']}...")
+        res = sim_access_scheduled_link(
+            snr_range_db=snr_range,
+            channel_type=acfg["channel_type"],
+            eq_method=acfg["eq_method"],
+        )
+        asl_results.append((acfg["label"], res))
+        print(f"    Access OK: {res['access_ok']}")
+        for s, f in zip(
+            res["snr_db"][::4], res["fer"][::4], strict=False,
+        ):
+            print(f"    {acfg['label']}  SNR={s:2.0f} dB  FER={f:.4f}")
+
+    # ── 10.3 超帧容量分析 ──
+    print("[3/4] Superframe capacity analysis...")
+    cap = sim_superframe_capacity(smf_interval=800, slice_duration=50)
+    print(f"  Max links without conflict: {cap['max_no_conflict']}")
+
+    # ── 10.4 事件组时序 ──
+    print("[4/4] Event group timing analysis...")
+    timing = sim_event_group_timing(
+        event_group_period=100, event_count=4,
+        event_period=25, intra_event_interval=300,
+        tx_max_offset=3, rx_max_offset=3,
+    )
+    print(f"  Events: {len(timing['events'])}")
+    print(f"  Active time: {timing['total_active_us']} μs")
+    print(f"  Group period: {timing['group_period_us']} μs")
+    print(f"  Utilization: {timing['utilization']:.2%}")
+
+    # ── 绘图 ──
+    fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+
+    # 10.1 多链路 FER
+    ax = axes[0, 0]
+    markers = ["o-", "s--", "^:"]
+    for (label, res), mk in zip(ml_results, markers, strict=False):
+        fer_plot = [max(f, 1e-4) for f in res["aggregate_fer"]]
+        ax.semilogy(res["snr_db"], fer_plot, mk, label=label, markersize=4)
+    ax.set_xlabel("Eb/N0 (dB)")
+    ax.set_ylabel("Aggregate FER")
+    ax.set_title("Phase 10.1 - Multi-link FER")
+    ax.legend()
+    ax.grid(True, which="both", ls="--", alpha=0.5)
+    ax.set_ylim(bottom=1e-4)
+
+    # 10.2 接入 + 调度
+    ax = axes[0, 1]
+    for (label, res), mk in zip(
+        asl_results, ["o-", "s--"], strict=False,
+    ):
+        fer_plot = [max(f, 1e-4) for f in res["fer"]]
+        ax.semilogy(res["snr_db"], fer_plot, mk, label=label, markersize=4)
+    ax.set_xlabel("Eb/N0 (dB)")
+    ax.set_ylabel("FER")
+    ax.set_title("Phase 10.2 - Access+Scheduled Link")
+    ax.legend()
+    ax.grid(True, which="both", ls="--", alpha=0.5)
+    ax.set_ylim(bottom=1e-4)
+
+    # 10.3 容量
+    ax = axes[1, 0]
+    ax.plot(cap["n_links"], cap["n_conflicts"], "ro-", label="Conflicts", markersize=4)
+    ax2 = ax.twinx()
+    ax2.plot(cap["n_links"], cap["utilization"], "b^--",
+             label="Utilization", markersize=4)
+    ax.set_xlabel("Number of Links")
+    ax.set_ylabel("Conflicts", color="r")
+    ax2.set_ylabel("Utilization", color="b")
+    ax.set_title("Phase 10.3 - Superframe Capacity")
+    ax.grid(True, ls="--", alpha=0.5)
+
+    # 10.4 事件组时序
+    ax = axes[1, 1]
+    for i, event in enumerate(timing["events"]):
+        tx_s, tx_e = event["tx_window"]
+        rx_s, rx_e = event["rx_window"]
+        ax.barh(i, tx_e - tx_s, left=tx_s, height=0.3,
+                color="steelblue", label="TX" if i == 0 else "")
+        ax.barh(i, rx_e - rx_s, left=rx_s, height=0.3,
+                color="coral", label="RX" if i == 0 else "")
+    ax.set_xlabel("Time (μs)")
+    ax.set_ylabel("Event Index")
+    ax.set_title("Phase 10.4 - Event Group Timing")
+    ax.legend()
+    ax.grid(True, ls="--", alpha=0.5)
+
+    fig.tight_layout()
+    fig.savefig("ber_phase10.png", dpi=150)
+    print("\nPhase 10 curves saved to ber_phase10.png")
+
+
 if __name__ == "__main__":
     import sys
     phase = sys.argv[1] if len(sys.argv) > 1 else "phase1"
@@ -1783,5 +2340,6 @@ if __name__ == "__main__":
         "phase7": run_phase7_simulation,
         "phase8": run_phase8_simulation,
         "phase9": run_phase9_simulation,
+        "phase10": run_phase10_simulation,
     }
     _dispatch.get(phase, run_phase1_simulation)()

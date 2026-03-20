@@ -134,6 +134,7 @@ tests/            # 测试文件, 与 src 模块一一对应
 | - | 多径信道 + 频偏 Pipeline 仿真 | 完成 | `sim/link_sim.py` (Phase 7) |
 | - | 均衡器集成到 Pipeline 仿真 | 完成 | `sim/link_sim.py`, `phy/channel.py` |
 | - | MAC 帧级端到端仿真 | 完成 | `sim/link_sim.py` (Phase 9) |
+| - | 多链路调度仿真 | 完成 | `sim/link_sim.py` (Phase 10) |
 | 9.2 | 配对信令 | 完成 | `mac/security.py` |
 | 9.3/9.4 | 安全子系统加密模块 | 完成 | `mac/crypto.py` |
 | 7.1.3 | 接入流程 | 完成 | `mac/access.py` |
