@@ -1,13 +1,13 @@
 """USRP 仿真与 PHY Pipeline 性能基准测试。
 
 用于跟踪关键路径的处理延迟,防止性能回归。
-基准值基于参考硬件测量,上限设置为参考值的 3 倍以适应不同 CI 环境。
+基准值基于参考硬件测量,上限设置为参考值的 5 倍以适应不同 CI 环境。
 
 当前参考值 (Intel i7-12700H / Python 3.14):
 - IQ 环回 (2000 samps):  ~50 us/frame
-- PHY 全链路 (80b FT2):  ~1.7 ms/frame
-- MAC 数据帧 (32B):      ~3.7 ms/frame
-- 批量吞吐 (20B x 100):  ~270 ms total
+- PHY 全链路 (80b FT2):  ~1.3 ms/frame
+- MAC 数据帧 (32B):      ~2.3 ms/frame
+- 批量吞吐 (20B x 100):  ~210 ms total
 """
 
 import time
@@ -62,8 +62,8 @@ class TestPHYLoopbackPerf:
         dt_ms = (time.perf_counter() - t0) / n * 1e3
 
         sim.close()
-        # 参考: ~1.7 ms, 上限 8.5 ms
-        assert dt_ms < 1.7 * _MARGIN, f"PHY loopback {dt_ms:.1f} ms 超出上限"
+        # 参考: ~1.3 ms, 上限 6.5 ms
+        assert dt_ms < 1.3 * _MARGIN, f"PHY loopback {dt_ms:.1f} ms 超出上限"
 
 
 class TestMACLoopbackPerf:
@@ -84,8 +84,8 @@ class TestMACLoopbackPerf:
         dt_ms = (time.perf_counter() - t0) / n * 1e3
 
         sim.close()
-        # 参考: ~3.7 ms, 上限 18.5 ms
-        assert dt_ms < 3.7 * _MARGIN, f"MAC loopback {dt_ms:.1f} ms 超出上限"
+        # 参考: ~2.3 ms, 上限 11.5 ms
+        assert dt_ms < 2.3 * _MARGIN, f"MAC loopback {dt_ms:.1f} ms 超出上限"
 
 
 class TestBatchThroughput:
@@ -105,8 +105,8 @@ class TestBatchThroughput:
 
         sim.close()
         assert result.fer == 0.0, "高 SNR 下 FER 应为 0"
-        # 参考: ~270 ms, 上限 1350 ms
-        assert dt_ms < 270 * _MARGIN, f"Batch {dt_ms:.0f} ms 超出上限"
+        # 参考: ~210 ms, 上限 1050 ms
+        assert dt_ms < 210 * _MARGIN, f"Batch {dt_ms:.0f} ms 超出上限"
 
 
 class TestUSRPOverhead:
