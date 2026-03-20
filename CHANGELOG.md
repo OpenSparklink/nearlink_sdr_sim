@@ -18,6 +18,12 @@
   - LinkState.PAIRING: 配对态 (CONNECTED↔PAIRING)
   - EventType: START_PAIRING, PAIRING_COMPLETE, PAIRING_FAILED 事件
 - `tests/test_security_manager.py`: 31 个安全流程集成测试
+- `sim/link_sim.py` Phase 11: 接入→配对→加密端到端仿真
+  - sim_secure_link: 接入建链 + ECDH 配对 + AES-CCM 加密数据帧 PHY 传输
+  - sim_encrypted_vs_plain: 加密与明文传输 FER 对比
+  - sim_pairing_signaling_phy: 配对信令经 PHY 管道传输成功率
+  - run_phase11_simulation: 4 子图可视化
+- `tests/test_link_sim_mac.py`: 11 个 Phase 11 仿真测试
   - TestECDHKeyPair: P-256 密钥对生成与共享密钥一致性
   - TestPairingManagerBasic: 配对管理器基本功能与状态转换
   - TestPairingFlow: 完整信令交互流程 (公钥交换/随机数/确认码)

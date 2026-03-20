@@ -8,11 +8,14 @@ import numpy as np
 
 from nearlink_sdr.sim.link_sim import (
     sim_access_scheduled_link,
+    sim_encrypted_vs_plain,
     sim_event_group_timing,
     sim_mac_data_link,
     sim_mac_mux_link,
     sim_mac_signaling_link,
     sim_multi_link,
+    sim_pairing_signaling_phy,
+    sim_secure_link,
     sim_superframe_capacity,
 )
 
@@ -355,3 +358,109 @@ class TestSuperframeCapacity:
         assert "max_no_conflict" in result
         assert "utilization" in result
         assert len(result["n_links"]) == 3
+
+
+# ── Phase 11: 接入→配对→加密仿真 ──
+
+
+class TestSecureLink:
+    """sim_secure_link 端到端加密仿真测试。"""
+
+    def test_basic_secure_link(self):
+        result = sim_secure_link(
+            snr_range_db=np.array([20.0]),
+            n_frames=10,
+        )
+        assert result["access_ok"]
+        assert result["pairing_ok"]
+        assert result["encrypted"]
+        assert result["fer"][0] == 0.0
+
+    def test_returns_expected_keys(self):
+        result = sim_secure_link(
+            snr_range_db=np.array([15.0]),
+            n_frames=5,
+        )
+        assert "snr_db" in result
+        assert "fer" in result
+        assert "access_ok" in result
+        assert "pairing_ok" in result
+        assert "encrypted" in result
+
+    def test_low_snr_has_errors(self):
+        result = sim_secure_link(
+            snr_range_db=np.array([-5.0]),
+            n_frames=20,
+        )
+        assert result["fer"][0] > 0
+
+    def test_fer_decreases_with_snr(self):
+        result = sim_secure_link(
+            snr_range_db=np.array([0.0, 10.0, 20.0]),
+            n_frames=30,
+        )
+        assert result["fer"][-1] <= result["fer"][0]
+
+    def test_multiple_payload_sizes(self):
+        for size in (5, 20):
+            result = sim_secure_link(
+                snr_range_db=np.array([20.0]),
+                n_frames=5,
+                payload_size=size,
+            )
+            assert result["fer"][0] == 0.0
+
+
+class TestEncryptedVsPlain:
+    """sim_encrypted_vs_plain 加密与明文对比测试。"""
+
+    def test_basic_comparison(self):
+        result = sim_encrypted_vs_plain(
+            snr_range_db=np.array([20.0]),
+            n_frames=10,
+        )
+        assert "fer_encrypted" in result
+        assert "fer_plain" in result
+        assert result["fer_encrypted"][0] == 0.0
+        assert result["fer_plain"][0] == 0.0
+
+    def test_both_degrade_at_low_snr(self):
+        result = sim_encrypted_vs_plain(
+            snr_range_db=np.array([-5.0]),
+            n_frames=20,
+        )
+        assert result["fer_encrypted"][0] > 0
+        assert result["fer_plain"][0] > 0
+
+    def test_returns_list_per_snr(self):
+        snr = np.array([5.0, 15.0])
+        result = sim_encrypted_vs_plain(snr_range_db=snr, n_frames=5)
+        assert len(result["fer_encrypted"]) == 2
+        assert len(result["fer_plain"]) == 2
+
+
+class TestPairingSignalingPhy:
+    """sim_pairing_signaling_phy 配对信令 PHY 传输测试。"""
+
+    def test_high_snr_all_success(self):
+        result = sim_pairing_signaling_phy(
+            snr_range_db=np.array([30.0]),
+            n_trials=3,
+        )
+        assert result["signaling_success_rate"][0] >= 0.9
+
+    def test_low_snr_degraded(self):
+        result = sim_pairing_signaling_phy(
+            snr_range_db=np.array([-10.0]),
+            n_trials=3,
+        )
+        assert result["signaling_success_rate"][0] < 1.0
+
+    def test_returns_expected_keys(self):
+        result = sim_pairing_signaling_phy(
+            snr_range_db=np.array([10.0]),
+            n_trials=2,
+        )
+        assert "snr_db" in result
+        assert "signaling_success_rate" in result
+        assert len(result["signaling_success_rate"]) == 1

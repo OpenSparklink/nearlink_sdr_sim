@@ -2327,6 +2327,443 @@ def run_phase10_simulation() -> None:
     print("\nPhase 10 curves saved to ber_phase10.png")
 
 
+# ── Phase 11: 接入→配对→加密数据传输端到端仿真 ──
+
+
+def sim_secure_link(
+    snr_range_db: np.ndarray | None = None,
+    n_frames: int = 50,
+    mcs_index: int = 7,
+    payload_size: int = 10,
+    channel_type: str = "awgn",
+    cfo_hz: float = 0.0,
+    eq_method: str = "none",
+    rician_k_db: float = 6.0,
+    seed: int = 42,
+) -> dict:
+    """接入 → 配对 → 加密数据传输端到端仿真。
+
+    模拟完整的安全通信建立过程:
+    1. 接入建链 (run_access_procedure)
+    2. 配对密钥协商 (run_pairing_procedure)
+    3. 加密数据帧经 PHY 管道传输
+
+    Returns:
+        {"snr_db", "fer", "access_ok", "pairing_ok", "encrypted": True}
+    """
+    from nearlink_sdr.mac.access import run_access_procedure
+    from nearlink_sdr.mac.frame import AsyncDataFrame
+    from nearlink_sdr.mac.link_manager import LinkState, Role
+    from nearlink_sdr.mac.security_manager import (
+        FrameCryptoContext,
+        run_pairing_procedure,
+    )
+    from nearlink_sdr.phy.mac_interface import iq_to_mac, mac_to_iq
+    from nearlink_sdr.phy.tx_pipeline import TxConfig
+
+    if snr_range_db is None:
+        snr_range_db = np.arange(0, 16, 2)
+
+    rng = np.random.default_rng(seed)
+
+    # 1. 接入建链
+    b_addr = b"\x01\x02\x03\x04\x05\x06"
+    t_addr = b"\x0A\x0B\x0C\x0D\x0E\x0F"
+    b_mgr, i_mgr = run_access_procedure(
+        broadcaster_addr=b_addr, initiator_addr=t_addr,
+    )
+    access_ok = (
+        b_mgr.link_manager.state == LinkState.CONNECTED
+        and i_mgr.link_manager.state == LinkState.CONNECTED
+    )
+
+    fail_result = {
+        "snr_db": snr_range_db.tolist(),
+        "fer": [1.0] * len(snr_range_db),
+        "access_ok": False,
+        "pairing_ok": False,
+        "encrypted": False,
+    }
+    if not access_ok:
+        return fail_result
+
+    # 2. 确定 G/T 角色
+    b_role = b_mgr.link_manager.role
+    g_addr = b_addr if b_role == Role.G_NODE else t_addr
+    t_node_addr = t_addr if b_role == Role.G_NODE else b_addr
+
+    # 3. 配对
+    g_pairing, t_pairing = run_pairing_procedure(
+        g_address=g_addr, t_address=t_node_addr,
+    )
+    pairing_ok = g_pairing.is_paired and t_pairing.is_paired
+    if not pairing_ok:
+        fail_result["access_ok"] = True
+        return fail_result
+
+    # 4. 建立加密上下文
+    iv_base = rng.bytes(8)
+    g_tx_crypto = FrameCryptoContext(
+        session_key=g_pairing.session_key,
+        iv_base=iv_base,
+        direction=0,
+        mic_len=4,
+        frame_type=2,
+        link_id=b_mgr.access_link_id,
+    )
+    t_rx_crypto = FrameCryptoContext(
+        session_key=t_pairing.session_key,
+        iv_base=iv_base,
+        direction=0,
+        mic_len=4,
+        frame_type=2,
+        link_id=b_mgr.access_link_id,
+    )
+
+    cfg = TxConfig(
+        frame_type=2,
+        mcs_index=mcs_index,
+        pid=0x123456,
+        whitening_seed=0x52,
+        crc_seed=0x555555,
+        crc_len=24,
+        ctrl_bits_len=28,
+        pilot_interval=8,
+    )
+
+    # 5. 加密数据帧传输仿真
+    fer_list = []
+
+    for snr in snr_range_db:
+        errors = 0
+
+        for _ in range(n_frames):
+            payload = bytes(
+                rng.integers(0, 256, payload_size, dtype=np.uint8)
+            )
+
+            # 加密
+            ct, mic = g_tx_crypto.encrypt(payload)
+            encrypted_payload = ct + mic
+
+            # MAC 帧封装 + PHY 发射
+            frame = AsyncDataFrame(segment_type=0, data=encrypted_payload)
+            mac_bytes = frame.pack()
+            n_mac_bytes = len(mac_bytes)
+
+            iq = mac_to_iq(mac_bytes, cfg)
+            rx_iq = _channel_impair(
+                iq, float(snr), channel_type, rician_k_db,
+                cfo_hz, eq_method, cfg.sps, rng,
+            )
+            rx = iq_to_mac(rx_iq, cfg, n_mac_bytes)
+
+            if not rx.crc_ok:
+                errors += 1
+                # CRC 失败时仍需递增 rx 计数器保持同步
+                t_rx_crypto._rx_payload_count += 1
+                continue
+
+            # 解密
+            try:
+                recovered_frame = AsyncDataFrame.unpack(rx.mac_payload)
+                rx_ct = recovered_frame.data[:-4]
+                rx_mic = recovered_frame.data[-4:]
+                decrypted = t_rx_crypto.decrypt(rx_ct, rx_mic)
+                if decrypted != payload:
+                    errors += 1
+            except Exception:
+                errors += 1
+
+        fer_list.append(errors / n_frames)
+
+    return {
+        "snr_db": snr_range_db.tolist(),
+        "fer": fer_list,
+        "access_ok": True,
+        "pairing_ok": True,
+        "encrypted": True,
+    }
+
+
+def sim_encrypted_vs_plain(
+    snr_range_db: np.ndarray | None = None,
+    n_frames: int = 50,
+    mcs_index: int = 7,
+    payload_size: int = 10,
+    channel_type: str = "awgn",
+    seed: int = 42,
+) -> dict:
+    """对比加密与明文传输的误帧率。
+
+    Returns:
+        {"snr_db", "fer_encrypted", "fer_plain"}
+    """
+    from nearlink_sdr.mac.frame import AsyncDataFrame
+    from nearlink_sdr.mac.security_manager import (
+        FrameCryptoContext,
+        run_pairing_procedure,
+    )
+    from nearlink_sdr.phy.mac_interface import iq_to_mac, mac_to_iq
+    from nearlink_sdr.phy.tx_pipeline import TxConfig
+
+    if snr_range_db is None:
+        snr_range_db = np.arange(0, 16, 2)
+
+    rng = np.random.default_rng(seed)
+
+    # 配对获取密钥
+    g_pairing, t_pairing = run_pairing_procedure()
+    iv_base = rng.bytes(8)
+
+    cfg = TxConfig(
+        frame_type=2,
+        mcs_index=mcs_index,
+        pid=0x123456,
+        whitening_seed=0x52,
+        crc_seed=0x555555,
+        crc_len=24,
+        ctrl_bits_len=28,
+        pilot_interval=8,
+    )
+
+    fer_encrypted = []
+    fer_plain = []
+
+    for snr in snr_range_db:
+        enc_errors = 0
+        plain_errors = 0
+
+        tx_crypto = FrameCryptoContext(
+            session_key=g_pairing.session_key,
+            iv_base=iv_base,
+            direction=0,
+            mic_len=4,
+        )
+        rx_crypto = FrameCryptoContext(
+            session_key=t_pairing.session_key,
+            iv_base=iv_base,
+            direction=0,
+            mic_len=4,
+        )
+
+        for _ in range(n_frames):
+            payload = bytes(
+                rng.integers(0, 256, payload_size, dtype=np.uint8)
+            )
+
+            # 加密帧
+            ct, mic = tx_crypto.encrypt(payload)
+            enc_frame = AsyncDataFrame(segment_type=0, data=ct + mic)
+            enc_mac = enc_frame.pack()
+            enc_iq = mac_to_iq(enc_mac, cfg)
+            enc_rx_iq = _channel_impair(
+                enc_iq, float(snr), channel_type, 6.0,
+                0.0, "none", cfg.sps, rng,
+            )
+            enc_rx = iq_to_mac(enc_rx_iq, cfg, len(enc_mac))
+
+            if not enc_rx.crc_ok:
+                enc_errors += 1
+                rx_crypto._rx_payload_count += 1
+            else:
+                try:
+                    rec = AsyncDataFrame.unpack(enc_rx.mac_payload)
+                    dec = rx_crypto.decrypt(rec.data[:-4], rec.data[-4:])
+                    if dec != payload:
+                        enc_errors += 1
+                except Exception:
+                    enc_errors += 1
+
+            # 明文帧
+            plain_frame = AsyncDataFrame(segment_type=0, data=payload)
+            plain_mac = plain_frame.pack()
+            plain_iq = mac_to_iq(plain_mac, cfg)
+            plain_rx_iq = _channel_impair(
+                plain_iq, float(snr), channel_type, 6.0,
+                0.0, "none", cfg.sps, rng,
+            )
+            plain_rx = iq_to_mac(plain_rx_iq, cfg, len(plain_mac))
+
+            if not plain_rx.crc_ok:
+                plain_errors += 1
+            else:
+                try:
+                    rec = AsyncDataFrame.unpack(plain_rx.mac_payload)
+                    if rec.data != payload:
+                        plain_errors += 1
+                except Exception:
+                    plain_errors += 1
+
+        fer_encrypted.append(enc_errors / n_frames)
+        fer_plain.append(plain_errors / n_frames)
+
+    return {
+        "snr_db": snr_range_db.tolist(),
+        "fer_encrypted": fer_encrypted,
+        "fer_plain": fer_plain,
+    }
+
+
+def sim_pairing_signaling_phy(
+    snr_range_db: np.ndarray | None = None,
+    n_trials: int = 20,
+    channel_type: str = "awgn",
+    seed: int = 42,
+) -> dict:
+    """配对信令经 PHY 管道传输的成功率仿真。
+
+    将配对过程中的每条信令编码为 IQ, 经信道传输后解码,
+    统计信令传输成功率。
+
+    Returns:
+        {"snr_db", "signaling_success_rate"}
+    """
+    from nearlink_sdr.mac.security_manager import PairingManager
+    from nearlink_sdr.phy.mac_interface import (
+        iq_to_signaling,
+        signaling_to_iq,
+    )
+    from nearlink_sdr.phy.tx_pipeline import TxConfig
+
+    if snr_range_db is None:
+        snr_range_db = np.arange(0, 20, 2)
+
+    rng = np.random.default_rng(seed)
+
+    cfg = TxConfig(
+        frame_type=2,
+        mcs_index=0,
+        pid=0x123456,
+        whitening_seed=0x52,
+        crc_seed=0x555555,
+        crc_len=24,
+        ctrl_bits_len=28,
+        pilot_interval=8,
+    )
+
+    success_rates = []
+
+    for snr in snr_range_db:
+        total_msgs = 0
+        successes = 0
+
+        for _ in range(n_trials):
+            # 生成一次完整配对的信令序列
+            g = PairingManager(is_g_node=True)
+            t = PairingManager(is_g_node=False)
+            g_msgs = g.start_pairing()
+            t.start_pairing()
+
+            pending = [("g", m) for m in g_msgs]
+            max_rounds = 20
+
+            for _ in range(max_rounds):
+                if not pending:
+                    break
+                next_pending = []
+                for source, msg in pending:
+                    total_msgs += 1
+                    # 信令经 PHY 管道传输
+                    try:
+                        iq = signaling_to_iq(msg, cfg)
+                        # ControlFrame: 2B header + 1B length + payload
+                        n_bytes = msg.BYTE_LENGTH + 3
+                        rx_iq = _channel_impair(
+                            iq, float(snr), channel_type, 6.0,
+                            0.0, "none", cfg.sps, rng,
+                        )
+                        rx_msg, _ok = iq_to_signaling(rx_iq, cfg, n_bytes)
+                        if rx_msg is not None:
+                            # 将恢复的信令传给对端
+                            successes += 1
+                            if source == "g":
+                                resps = t.process_message(rx_msg)
+                                next_pending.extend(
+                                    ("t", r) for r in resps
+                                )
+                            else:
+                                resps = g.process_message(rx_msg)
+                                next_pending.extend(
+                                    ("g", r) for r in resps
+                                )
+                    except Exception:
+                        pass
+
+                pending = next_pending
+                if g.is_paired and t.is_paired:
+                    break
+
+        rate = successes / total_msgs if total_msgs > 0 else 0
+        success_rates.append(rate)
+
+    return {
+        "snr_db": snr_range_db.tolist(),
+        "signaling_success_rate": success_rates,
+    }
+
+
+def run_phase11_simulation() -> None:
+    """Phase 11: 安全通信端到端仿真可视化。"""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+    fig.suptitle("Phase 11 - Secure Link E2E Simulation", fontsize=14)
+    snr = np.arange(0, 16, 2)
+
+    # 11.1 加密数据链路 FER
+    ax = axes[0, 0]
+    result = sim_secure_link(snr_range_db=snr, n_frames=30)
+    ax.semilogy(result["snr_db"], result["fer"], "bo-", label="Encrypted FER")
+    ax.set_xlabel("SNR (dB)")
+    ax.set_ylabel("FER")
+    ax.set_title("Phase 11.1 - Secure Link FER")
+    ax.legend()
+    ax.grid(True, ls="--", alpha=0.5)
+
+    # 11.2 加密 vs 明文 FER 对比
+    ax = axes[0, 1]
+    cmp = sim_encrypted_vs_plain(snr_range_db=snr, n_frames=30)
+    ax.semilogy(cmp["snr_db"], cmp["fer_encrypted"], "rs-", label="Encrypted")
+    ax.semilogy(cmp["snr_db"], cmp["fer_plain"], "b^--", label="Plain")
+    ax.set_xlabel("SNR (dB)")
+    ax.set_ylabel("FER")
+    ax.set_title("Phase 11.2 - Encrypted vs Plain FER")
+    ax.legend()
+    ax.grid(True, ls="--", alpha=0.5)
+
+    # 11.3 配对信令 PHY 传输成功率
+    ax = axes[1, 0]
+    sig = sim_pairing_signaling_phy(snr_range_db=snr, n_trials=5)
+    ax.plot(sig["snr_db"], sig["signaling_success_rate"], "go-",
+            label="Signaling Success Rate")
+    ax.set_xlabel("SNR (dB)")
+    ax.set_ylabel("Success Rate")
+    ax.set_title("Phase 11.3 - Pairing Signaling via PHY")
+    ax.set_ylim(-0.05, 1.05)
+    ax.legend()
+    ax.grid(True, ls="--", alpha=0.5)
+
+    # 11.4 多信道类型加密链路
+    ax = axes[1, 1]
+    for ch_type in ("awgn", "rayleigh"):
+        r = sim_secure_link(
+            snr_range_db=snr, n_frames=20, channel_type=ch_type,
+        )
+        ax.semilogy(r["snr_db"], r["fer"], "o-", label=ch_type.upper())
+    ax.set_xlabel("SNR (dB)")
+    ax.set_ylabel("FER")
+    ax.set_title("Phase 11.4 - Encrypted Link: AWGN vs Rayleigh")
+    ax.legend()
+    ax.grid(True, ls="--", alpha=0.5)
+
+    fig.tight_layout()
+    fig.savefig("ber_phase11.png", dpi=150)
+    print("\nPhase 11 curves saved to ber_phase11.png")
+
+
 if __name__ == "__main__":
     import sys
     phase = sys.argv[1] if len(sys.argv) > 1 else "phase1"
@@ -2341,5 +2778,6 @@ if __name__ == "__main__":
         "phase8": run_phase8_simulation,
         "phase9": run_phase9_simulation,
         "phase10": run_phase10_simulation,
+        "phase11": run_phase11_simulation,
     }
     _dispatch.get(phase, run_phase1_simulation)()
