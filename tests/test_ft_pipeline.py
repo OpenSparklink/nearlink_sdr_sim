@@ -233,6 +233,55 @@ class TestFT4Pipeline:
 
 
 # =========================================================================
+# FT3/FT4 多码块 loopback 测试
+# =========================================================================
+
+
+class TestMultiBlockLoopback:
+    """FT3/FT4 多码块场景 (载荷 > 单码块容量) 的全链路闭环。"""
+
+    def test_ft3_multi_block_32bytes(self):
+        """FT3 32 字节载荷触发 2 码块, 回环正确。"""
+        cfg = TxConfig(
+            frame_type=3, mcs_index=0, ctrl_bits_len=27,
+            pilot_interval=4, sps=4,
+        )
+        rng = np.random.default_rng(501)
+        head = rng.integers(0, 2, 51).astype(np.int8)
+        data = rng.integers(0, 2, 32 * 8).astype(np.int8)
+        iq = tx_chain(head, data, cfg)
+        result = rx_chain(iq, cfg, 32)
+        assert result.head_crc_ok
+        assert result.crc_ok
+        assert list(result.data_bits) == list(data)
+
+    def test_ft4_multi_block_32bytes(self):
+        """FT4 32 字节载荷触发 2 码块, 回环正确。"""
+        cfg = TxConfig(
+            frame_type=4, mcs_index=0, ctrl_bits_len=27,
+            pilot_interval=4, sps=4,
+        )
+        rng = np.random.default_rng(502)
+        head = rng.integers(0, 2, 51).astype(np.int8)
+        data = rng.integers(0, 2, 32 * 8).astype(np.int8)
+        iq = tx_chain(head, data, cfg)
+        result = rx_chain(iq, cfg, 32)
+        assert result.head_crc_ok
+        assert result.crc_ok
+        assert list(result.data_bits) == list(data)
+
+    def test_ft3_multi_block_payload_roundtrip(self):
+        """FT3 多码块 encode_payload → decode_payload 载荷可逆。"""
+        cfg = TxConfig(frame_type=3, mcs_index=0, ctrl_bits_len=27)
+        rng = np.random.default_rng(503)
+        data = rng.integers(0, 2, 32 * 8).astype(np.int8)
+        coded = encode_payload(data, cfg)
+        decoded, ok = decode_payload(coded, cfg, 32 * 8)
+        assert ok
+        assert list(decoded) == list(data)
+
+
+# =========================================================================
 # 帧同步多帧类型测试
 # =========================================================================
 

@@ -15,7 +15,7 @@ from nearlink_sdr.common.crc import (
     crc_check,
 )
 from nearlink_sdr.common.mcs import Modulation
-from nearlink_sdr.common.polar import get_polar_decoder
+from nearlink_sdr.common.polar import RATE_TABLE, get_polar_decoder
 from nearlink_sdr.common.scrambler import scramble_sequence
 from nearlink_sdr.phy.control_info import polar_decode_control
 from nearlink_sdr.phy.frame import FrameConfig, symbols_to_data_bits
@@ -90,11 +90,30 @@ def decode_payload(scrambled_bits: np.ndarray, cfg: TxConfig,
             dec = get_polar_decoder(n_code, k)
             info_blocks.append(dec.decode(llr))
             pos += n_code
-        data_with_crc = np.concatenate(info_blocks)
 
-        # FT3/FT4: segment_with_crc 在前端补零对齐, 解码后取尾部有效比特
+        # FT3/FT4: 处理 segment_with_crc 的分段结构
         if cfg.frame_type in (3, 4):
-            data_with_crc = data_with_crc[-b_len:]
+            K_cb = RATE_TABLE[cfg.rate_str][1024]
+            C = len(segments)
+            if C == 1:
+                # 单码块: 前端补零对齐, 取尾部有效比特
+                data_with_crc = np.concatenate(info_blocks)[-b_len:]
+            else:
+                # 多码块: 每块含 per-segment CRC24B, 需逐块剥离
+                L = 24  # per-segment CRC24B
+                recovered: list[np.ndarray] = []
+                for i, blk_decoded in enumerate(info_blocks):
+                    if i < C - 1:
+                        # 非末块: 前 K_cb-L 比特为原始信息
+                        recovered.append(blk_decoded[:K_cb - L])
+                    else:
+                        # 末块: sub-segmentation 可能补零对齐
+                        K_r = b_len - (C - 1) * (K_cb - L) + L
+                        # 去除前端补零, 取末尾 K_r 比特, 再剥离 CRC24B
+                        recovered.append(blk_decoded[-K_r:-L])
+                data_with_crc = np.concatenate(recovered)
+        else:
+            data_with_crc = np.concatenate(info_blocks)
 
     # CRC 校验
     ok = crc_check(data_with_crc, cfg.crc_poly, cfg.crc_len, seed=cfg.crc_seed)

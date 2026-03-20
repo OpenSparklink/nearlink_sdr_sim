@@ -6,7 +6,7 @@
   HHHHHHHH:HHHHHHHH: binary...
 """
 import re
-import json
+
 import fitz  # pymupdf
 
 PDF_PATH = "/home/sanchuanhehe/Documents/Summary-of-Sparkling-Information/Standard/TXS-10002-2025接入层-同步低功耗空口 sle技术要求和测试方法.pdf"
@@ -51,10 +51,7 @@ def extract_hex_pairs(text, label):
     start = m.end()
     # Find next section header
     next_section = re.search(r'===(?:1st|====)', text[start:])
-    if next_section:
-        end = start + next_section.start()
-    else:
-        end = len(text)
+    end = start + next_section.start() if next_section else len(text)
 
     section_text = text[start:end]
 

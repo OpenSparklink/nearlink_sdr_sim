@@ -9,6 +9,22 @@
 
 ### Added
 
+- E310 硬件验证脚本 (`scripts/hw_verify.py`)
+  - 6 步验证流程: 设备初始化 → 频率/信道 → 增益 → IQ 环回 → PHY 帧环回 → 跳频
+  - 支持 `--mock` 模式和 `--addr` 真实设备, 25/25 测试项
+- PHY 回环测试脚本 (`scripts/phy_loopback.py`)
+  - 多帧类型 (FT2/FT3/FT4) × 多 MCS 全链路 BER/FER 统计
+  - 经 SLETransceiver + LoopbackBuffer 完整收发链路
+- FT3/FT4 多码块回环测试 (`TestMultiBlockLoopback` in `test_ft_pipeline.py`)
+  - 32 字节载荷触发双码块分割场景的全链路闭环验证
+
+### Fixed
+
+- **FT3/FT4 多码块载荷解码** (`rx_pipeline.py decode_payload`)
+  - `segment_with_crc` 多码块场景下, 每块附带 per-segment CRC24B
+  - 旧代码直接取拼接后末尾 b_len 比特, 包含了 per-segment CRC 而非原始数据
+  - 修复为逐块剥离 per-segment CRC24B 并正确处理末块前端补零对齐
+
 - `secure_random_256()` 安全随机函数 (标准 6.10.7), 基于 KDF 生成 256-bit 安全序列
 - `sync_sequence.py` 重构: 同步信号 5/6 改用 `crypto.secure_random_256` 公共 API
 - `link_manager.py` 新增休眠/唤醒状态机 (标准 7.2.14)

@@ -1,10 +1,10 @@
 """USRP 仿真性能基准测试脚本。"""
 import cProfile
-import pstats
 import io
-import numpy as np
-from nearlink_sdr.sim.usrp_sim import USRPLoopbackSim
+import pstats
+
 from nearlink_sdr.phy.tx_pipeline import TxConfig
+from nearlink_sdr.sim.usrp_sim import USRPLoopbackSim
 
 sim = USRPLoopbackSim(snr_db=50.0)
 payload = b'Hello SLE Benchmark Data Payload!'
