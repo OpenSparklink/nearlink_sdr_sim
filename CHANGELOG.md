@@ -22,6 +22,17 @@
   - QueryRequestFilterInfo (7.1.4.9): 查询请求过滤信息
 - `tests/test_security.py`: 52 个配对信令测试
 - `tests/test_broadcast.py`: 18 个广播子信息结构测试
+- `mac/crypto.py`: 新增安全子系统加密模块 (标准 9.3/9.4)
+  - KDF 密钥派生函数 (AES-CMAC, HMAC-SM3 预留)
+  - AES-CCM 认证加密/解密
+  - CCM Nonce 构建 (异步/同步链路, 其他链路)
+  - 初始化向量计算 (FT1-FT4)
+  - 会话密钥派生 (SK/EnK/InK)
+  - 链路密钥和 DH Key 验证码密钥派生
+  - 确认码/数字比较码/混淆算法
+  - 组播密钥管理 (GK/GSK/GEnK/GInK)
+  - 隐私管理 (可解析随机标识生成/验证)
+- `tests/test_crypto.py`: 54 个加密模块测试
 
 ## [0.24.0] - 2025-07-15
 
