@@ -9,6 +9,23 @@
 
 ### Added
 
+- SLE 节点实体增强 (`node.py`) -- 完整建模能力集成
+  - 跳频: 集成 `FreqTable` 和 `data_link_hop()`, 每次发送自动计算信道号
+  - 功率控制: 集成 `PowerController`, 支持功率调整和查询
+  - 时序调度: 集成 `ScheduleManager`, 接入完成后自动注册链路, 支持时隙推进
+  - SMF 调度: 可选集成 `SMFTransmitScheduler`, G 节点系统管理帧调度
+  - 接入流程: 集成 `BroadcasterAccessManager`/`InitiatorAccessManager`/`DiscoveryManager`
+  - 广播: `start_advertising()` 返回真实广播帧, `on_broadcast_received()` 过滤+发现
+  - 非链接态广播: 新增 `start_non_connected_broadcast()` 方法
+  - 信道模型: 仿真模式下可配置多径/衰落信道, `receive()` 自动应用信道效应
+  - USRP 硬件: `TransportMode.USRP` 时初始化收发器, 支持 IQ 硬件发送/接收
+  - 测量信号: 新增 `generate_measurement_signal()` 方法
+  - 数据链路参数: 按帧类型自动初始化异步/同步参数
+  - `NodeConfig` 扩展: 频段/跳频参数/信道阻塞/功率范围/信道配置/USRP 配置/SMF 开关
+  - `TxResult` 新增 `channel` 字段, `stats` 新增 channel/tx_power_dbm/hop_param2
+  - `NodeCallback` 新增 on_broadcast_received/on_discovery_complete/on_measurement_result
+  - 节点测试: 从 46 增加到 95 个, 覆盖所有新功能
+
 - 一致性测试框架 (`tests/conformance/`) -- 标准第 10-13 章
   - `test_protocol.py`: 协议一致性测试 (第 11 章)
     - FT1/FT2/FT3/FT4 帧类型全覆盖 (广播/发现/非链接态/TT/ADL/SDL)

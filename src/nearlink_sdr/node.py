@@ -9,9 +9,20 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass, field
 from enum import IntEnum, auto
+from typing import TYPE_CHECKING
 
 import numpy as np
 
+from nearlink_sdr.mac.access import (
+    AccessWhitelist,
+    BroadcasterAccessManager,
+    DiscoveryManager,
+    InitiatorAccessManager,
+    NonConnectedBroadcastConfig,
+    NonConnectedBroadcastManager,
+    run_access_procedure,
+)
+from nearlink_sdr.mac.broadcast import BroadcastFilter, BroadcastFrame
 from nearlink_sdr.mac.frame import AsyncDataFrame, ControlFrame
 from nearlink_sdr.mac.link_manager import (
     DisconnectReason,
@@ -23,6 +34,7 @@ from nearlink_sdr.mac.link_manager import (
     LinkState,
     Role,
 )
+from nearlink_sdr.mac.power_control import PowerController
 from nearlink_sdr.mac.qos import (
     ArqState,
     FlowController,
@@ -34,18 +46,36 @@ from nearlink_sdr.mac.qos import (
     TxDecision,
     TxQueue,
 )
+from nearlink_sdr.mac.scheduler import (
+    EventTimingParams,
+    ScheduleManager,
+    SmfScheduleConfig,
+)
 from nearlink_sdr.mac.security_manager import (
     FrameCryptoContext,
     PairingManager,
     PairingState,
 )
+from nearlink_sdr.mac.smf_scheduler import SMFScheduleParams, SMFTransmitScheduler
+from nearlink_sdr.phy.channel import ChannelConfig, ChannelModel
 from nearlink_sdr.phy.control_info import ControlInfoA2
+from nearlink_sdr.phy.data_link import AsyncDataLinkParams, SyncDataLinkParams
+from nearlink_sdr.phy.freq_hopping import (
+    FreqTable,
+    data_link_hop,
+    derive_hop_param2,
+)
 from nearlink_sdr.phy.mac_interface import (
     MacRxResult,
     iq_to_mac,
     mac_to_iq,
 )
+from nearlink_sdr.phy.measurement import measurement_signal_1
 from nearlink_sdr.phy.tx_pipeline import TxConfig
+from nearlink_sdr.phy.usrp import SLETransceiver, USRPConfig, USRPDevice
+
+if TYPE_CHECKING:
+    pass
 
 log = logging.getLogger(__name__)
 
@@ -81,6 +111,15 @@ class NodeConfig:
         max_retransmit: 最大重传次数。
         enable_encryption: 是否启用加密。
         transport: 传输模式。
+        band: 频段标识。
+        hop_param2: 跳频参数 2 (0 表示自动从地址派生)。
+        blocked_channels: 被阻塞的信道号集合。
+        tx_power_dbm: 初始发射功率 (dBm)。
+        max_power_dbm: 最大发射功率。
+        min_power_dbm: 最小发射功率。
+        channel_config: 仿真模式下的信道模型配置 (None 表示理想信道)。
+        usrp_config: USRP 硬件配置 (transport=USRP 时使用)。
+        smf_enabled: 是否启用系统管理帧调度。
     """
     address: bytes = b"\x00" * 6
     role: NodeRole = NodeRole.AUTO
@@ -92,6 +131,15 @@ class NodeConfig:
     max_retransmit: int = 3
     enable_encryption: bool = False
     transport: TransportMode = TransportMode.SIMULATION
+    band: str = "2400"
+    hop_param2: int = 0
+    blocked_channels: set[int] = field(default_factory=set)
+    tx_power_dbm: float = 0.0
+    max_power_dbm: float = 20.0
+    min_power_dbm: float = -127.0
+    channel_config: ChannelConfig | None = None
+    usrp_config: USRPConfig | None = None
+    smf_enabled: bool = False
 
 
 # ── 节点状态 ──
@@ -126,6 +174,15 @@ class NodeCallback:
     def on_disconnected(self, reason: DisconnectReason) -> None:
         pass
 
+    def on_broadcast_received(self, frame: BroadcastFrame) -> None:
+        pass
+
+    def on_discovery_complete(self, devices: dict) -> None:
+        pass
+
+    def on_measurement_result(self, result: dict) -> None:
+        pass
+
 
 # ── 收发结果 ──
 
@@ -137,6 +194,7 @@ class TxResult:
     mac_bytes: bytes | None
     decision: TxDecision
     encrypted: bool = False
+    channel: int = -1
 
 
 @dataclass
@@ -154,7 +212,8 @@ class RxResult:
 class SleNode:
     """SparkLink SLE 节点实体。
 
-    整合链路管理、安全、QoS、PHY 流水线为统一收发接口。
+    整合链路管理、安全、QoS、PHY 流水线、跳频、功率控制、
+    时序调度、接入流程、信道模型为统一收发接口。
 
     用法::
 
@@ -177,6 +236,45 @@ class SleNode:
     _peer_address: bytes = field(init=False, default=b"")
     _tx_count: int = field(init=False, default=0)
     _rx_count: int = field(init=False, default=0)
+
+    # 跳频管理
+    _freq_table: FreqTable = field(init=False, repr=False)
+    _hop_param2: int = field(init=False, default=0)
+
+    # 功率控制
+    _power_ctrl: PowerController = field(init=False, repr=False)
+
+    # 时序调度
+    _scheduler: ScheduleManager = field(init=False, repr=False)
+
+    # SMF 调度
+    _smf_scheduler: SMFTransmitScheduler | None = field(
+        init=False, default=None, repr=False,
+    )
+
+    # 接入流程
+    _whitelist: AccessWhitelist = field(init=False, repr=False)
+    _discovery: DiscoveryManager = field(init=False, repr=False)
+    _broadcast_filter: BroadcastFilter = field(init=False, repr=False)
+    _broadcaster_mgr: BroadcasterAccessManager | None = field(
+        init=False, default=None, repr=False,
+    )
+    _initiator_mgr: InitiatorAccessManager | None = field(
+        init=False, default=None, repr=False,
+    )
+
+    # 数据链路参数
+    _data_link_params: AsyncDataLinkParams | SyncDataLinkParams | None = field(
+        init=False, default=None, repr=False,
+    )
+
+    # 信道模型 (仿真模式)
+    _channel: ChannelModel | None = field(init=False, default=None, repr=False)
+
+    # USRP 硬件 (USRP 模式)
+    _transceiver: SLETransceiver | None = field(
+        init=False, default=None, repr=False,
+    )
 
     def __post_init__(self) -> None:
         cfg = self.config
@@ -203,6 +301,54 @@ class SleNode:
             params=LinkParams(frame_type=cfg.frame_type, bandwidth=cfg.bandwidth_mhz),
             callback=_InternalCallback(self),
         )
+
+        # 跳频
+        self._freq_table = FreqTable(
+            band=cfg.band,
+            bandwidth_mhz=cfg.bandwidth_mhz,
+            blocked_channels=set(cfg.blocked_channels),
+        )
+        self._hop_param2 = (
+            cfg.hop_param2 if cfg.hop_param2
+            else derive_hop_param2(int.from_bytes(cfg.address, "big"))
+        )
+
+        # 功率控制
+        self._power_ctrl = PowerController(
+            tx_power_dbm=cfg.tx_power_dbm,
+            min_power_dbm=cfg.min_power_dbm,
+            max_power_dbm=cfg.max_power_dbm,
+        )
+
+        # 时序调度
+        self._scheduler = ScheduleManager()
+
+        # SMF 调度
+        if cfg.smf_enabled:
+            self._smf_scheduler = SMFTransmitScheduler()
+
+        # 接入流程
+        self._whitelist = AccessWhitelist()
+        self._discovery = DiscoveryManager(
+            local_address=cfg.address,
+            whitelist=self._whitelist,
+        )
+        self._broadcast_filter = BroadcastFilter()
+
+        # 数据链路参数
+        if cfg.frame_type == 2:
+            self._data_link_params = AsyncDataLinkParams()
+        else:
+            self._data_link_params = SyncDataLinkParams()
+
+        # 信道模型 (仿真模式)
+        if cfg.transport == TransportMode.SIMULATION and cfg.channel_config is not None:
+            self._channel = ChannelModel(config=cfg.channel_config)
+
+        # USRP 硬件
+        if cfg.transport == TransportMode.USRP and cfg.usrp_config is not None:
+            device = USRPDevice(config=cfg.usrp_config, use_mock=True)
+            self._transceiver = SLETransceiver(device)
 
     def _ctrl_bits_len(self) -> int:
         ft = self.config.frame_type
@@ -234,15 +380,45 @@ class SleNode:
     def is_connected(self) -> bool:
         return self._state in (NodeState.CONNECTED, NodeState.PAIRED)
 
-    def start_advertising(self) -> None:
-        """进入广播态, 等待接入请求。"""
+    def start_advertising(self) -> BroadcastFrame | None:
+        """进入广播态, 构建并返回扩展广播帧。"""
         self._link_mgr.process_event(Event(EventType.START_BROADCAST))
         self._set_state(NodeState.ADVERTISING)
+
+        self._broadcaster_mgr = BroadcasterAccessManager(
+            link_manager=self._link_mgr,
+            local_address=self.config.address,
+            whitelist=self._whitelist,
+        )
+        return self._broadcaster_mgr.build_ext_adv_frame()
 
     def start_scanning(self) -> None:
         """进入扫描态, 搜索广播节点。"""
         self._link_mgr.process_event(Event(EventType.START_SCAN))
         self._set_state(NodeState.SCANNING)
+        self._initiator_mgr = InitiatorAccessManager(
+            link_manager=self._link_mgr,
+            local_address=self.config.address,
+            whitelist=self._whitelist,
+        )
+
+    def on_broadcast_received(self, frame: BroadcastFrame) -> bool:
+        """处理收到的广播帧。
+
+        在扫描态时, 通过发现管理器和广播过滤器处理帧。
+
+        Returns:
+            True 表示该帧包含有效的接入资源配置。
+        """
+        if not self._broadcast_filter.match(frame):
+            return False
+
+        self._discovery.on_broadcast_received(frame)
+        self.callback.on_broadcast_received(frame)
+
+        if self._initiator_mgr is not None:
+            return self._initiator_mgr.process_ext_adv(frame)
+        return False
 
     def connect(self, peer_address: bytes) -> None:
         """发起接入请求。"""
@@ -251,13 +427,35 @@ class SleNode:
         self._set_state(NodeState.CONNECTING)
 
     def accept_connection(self, peer_address: bytes, role: Role = Role.G_NODE) -> None:
-        """接受接入请求, 直接进入链接态。"""
+        """接受接入请求, 直接进入链接态。
+
+        接入完成后自动注册链路调度资源。
+        """
         self._peer_address = peer_address
         self._link_mgr.peer_address = peer_address
         self._link_mgr.process_event(
             Event(EventType.ACCESS_REQUEST_RECEIVED, {"accepted": True, "role": role})
         )
         self._set_state(NodeState.CONNECTED)
+        self._register_link_schedule(link_id=0)
+
+    def run_access(
+        self,
+        peer_address: bytes,
+        is_broadcaster: bool = True,
+    ) -> tuple[BroadcasterAccessManager, InitiatorAccessManager]:
+        """执行完整接入编排流程。"""
+        b_mgr, i_mgr = run_access_procedure(
+            broadcaster_addr=self.config.address if is_broadcaster else peer_address,
+            initiator_addr=peer_address if is_broadcaster else self.config.address,
+        )
+        self._peer_address = peer_address
+        self._set_state(NodeState.CONNECTED)
+        self._link_mgr.process_event(
+            Event(EventType.ACCESS_REQUEST_RECEIVED, {"accepted": True, "role": Role.G_NODE})
+        )
+        self._register_link_schedule(link_id=0)
+        return b_mgr, i_mgr
 
     def disconnect(self) -> None:
         """断开连接。"""
@@ -329,22 +527,13 @@ class SleNode:
     # ── 数据发送 ──
 
     def send(self, data: bytes, priority: Priority = Priority.NORMAL) -> bool:
-        """提交数据到发送队列。
-
-        Args:
-            data: 待发送的数据负载。
-            priority: 发送优先级。
-
-        Returns:
-            是否成功入队。
-        """
+        """提交数据到发送队列。"""
         return self._qos.submit_data(data, priority)
 
     def transmit(self) -> TxResult:
         """从发送队列取出数据, 构建帧并生成 IQ 信号。
 
-        Returns:
-            TxResult, 包含 IQ 信号和发送决策。
+        自动选择当前跳频信道, 更新发射功率。
         """
         decision, item = self._qos.prepare_tx()
         if item is None:
@@ -366,21 +555,32 @@ class SleNode:
         ctrl_info = _build_ctrl_info(ctrl_fields, len(mac_bytes))
         iq = mac_to_iq(mac_bytes, self._tx_config, ctrl_info=ctrl_info)
 
+        # 跳频: 计算当前信道
+        slot = self._scheduler.slot_counter.value
+        channel = data_link_hop(slot, self._hop_param2, self._freq_table)
+
+        # USRP 模式: 通过硬件发送
+        if self._transceiver is not None:
+            try:
+                self._transceiver.transmit_iq(iq)
+            except Exception:
+                log.warning("USRP 发送失败")
+
         self._tx_count += 1
         return TxResult(
-            iq=iq, mac_bytes=mac_bytes, decision=decision, encrypted=encrypted,
+            iq=iq, mac_bytes=mac_bytes, decision=decision,
+            encrypted=encrypted, channel=channel,
         )
 
     def receive(self, iq_signal: np.ndarray, n_mac_bytes: int) -> RxResult:
         """从 IQ 信号解码数据。
 
-        Args:
-            iq_signal: 接收到的 IQ 信号。
-            n_mac_bytes: 预期 MAC 层 PDU 字节数。
-
-        Returns:
-            RxResult, 包含解码数据和成功标志。
+        如果配置了信道模型, 会在解码前应用信道效应。
         """
+        # 信道模型
+        if self._channel is not None:
+            iq_signal = self._channel.apply_fading(iq_signal)
+
         rx: MacRxResult = iq_to_mac(iq_signal, self._tx_config, n_mac_bytes)
 
         if not rx.crc_ok:
@@ -407,11 +607,167 @@ class SleNode:
                 return RxResult(data=None, success=False)
 
         self._rx_count += 1
+        self.callback.on_data_received(data)
         return RxResult(data=data, success=True, decrypted=decrypted)
 
     def process_feedback(self, crc_ok: bool) -> TxDecision:
         """处理对端 ACK/NACK 反馈。"""
         return self._qos.on_tx_feedback(crc_ok)
+
+    # ── 跳频 ──
+
+    @property
+    def freq_table(self) -> FreqTable:
+        return self._freq_table
+
+    @property
+    def current_channel(self) -> int:
+        """当前跳频信道号。"""
+        return data_link_hop(
+            self._scheduler.slot_counter.value,
+            self._hop_param2,
+            self._freq_table,
+        )
+
+    def block_channel(self, channel: int) -> None:
+        """阻塞指定信道。"""
+        self._freq_table.blocked_channels.add(channel)
+
+    def unblock_channel(self, channel: int) -> None:
+        """解除信道阻塞。"""
+        self._freq_table.blocked_channels.discard(channel)
+
+    # ── 功率控制 ──
+
+    @property
+    def power_controller(self) -> PowerController:
+        return self._power_ctrl
+
+    @property
+    def tx_power_dbm(self) -> float:
+        return self._power_ctrl.tx_power_dbm
+
+    def adjust_power(self, delta_db: float) -> float:
+        """调整发射功率, 返回调整后的功率值。"""
+        req = self._power_ctrl.create_request(int(delta_db))
+        resp = self._power_ctrl.handle_request(req)
+        self._power_ctrl.apply_response(resp)
+        return self._power_ctrl.tx_power_dbm
+
+    # ── 时序调度 ──
+
+    @property
+    def scheduler(self) -> ScheduleManager:
+        return self._scheduler
+
+    def advance_slot(self, n: int = 1) -> int:
+        """推进时隙计数器。"""
+        return self._scheduler.advance_time(n)
+
+    def _register_link_schedule(self, link_id: int = 0) -> None:
+        """接入完成后注册默认链路调度资源。"""
+        timing = EventTimingParams()
+        self._scheduler.register_link(link_id, timing)
+
+    # ── SMF ──
+
+    @property
+    def smf_scheduler(self) -> SMFTransmitScheduler | None:
+        return self._smf_scheduler
+
+    def configure_smf(self, params: SMFScheduleParams) -> None:
+        """配置 SMF 调度参数。"""
+        if self._smf_scheduler is not None:
+            self._smf_scheduler.configure(params)
+            smf_config = SmfScheduleConfig(
+                smf_interval=params.interval,
+                frame_type=params.frame_type,
+                bandwidth=params.bandwidth,
+            )
+            self._scheduler.configure_smf(smf_config)
+
+    # ── 接入白名单与发现 ──
+
+    @property
+    def whitelist(self) -> AccessWhitelist:
+        return self._whitelist
+
+    @property
+    def discovery(self) -> DiscoveryManager:
+        return self._discovery
+
+    @property
+    def discovered_devices(self) -> dict:
+        return self._discovery.discovered_devices
+
+    def set_broadcast_filter(self, broadcast_filter: BroadcastFilter) -> None:
+        """设置广播帧过滤器。"""
+        self._broadcast_filter = broadcast_filter
+
+    # ── 非链接态广播 ──
+
+    def start_non_connected_broadcast(
+        self,
+        nc_config: NonConnectedBroadcastConfig | None = None,
+    ) -> BroadcastFrame | None:
+        """发送非链接态广播数据帧。"""
+        if nc_config is None:
+            nc_config = NonConnectedBroadcastConfig()
+        mgr = NonConnectedBroadcastManager(
+            config=nc_config,
+            local_address=self.config.address,
+        )
+        return mgr.build_non_connected_broadcast_frame()
+
+    # ── 信道模型 ──
+
+    @property
+    def channel_model(self) -> ChannelModel | None:
+        return self._channel
+
+    def set_channel_model(self, config: ChannelConfig) -> None:
+        """配置仿真信道模型。"""
+        self._channel = ChannelModel(config=config)
+
+    def clear_channel_model(self) -> None:
+        """清除信道模型 (恢复理想信道)。"""
+        self._channel = None
+
+    # ── USRP 硬件 ──
+
+    @property
+    def transceiver(self) -> SLETransceiver | None:
+        return self._transceiver
+
+    def open_transceiver(self, rx_buf_size: int = 4096) -> None:
+        """打开 USRP 硬件收发器。"""
+        if self._transceiver is not None:
+            self._transceiver.open(rx_buf_size)
+
+    def close_transceiver(self) -> None:
+        """关闭 USRP 硬件收发器。"""
+        if self._transceiver is not None:
+            self._transceiver.close()
+
+    def receive_iq(self, num_samps: int) -> np.ndarray | None:
+        """从 USRP 接收 IQ 采样。"""
+        if self._transceiver is None:
+            return None
+        return self._transceiver.receive_iq(num_samps)
+
+    # ── 测量 ──
+
+    def generate_measurement_signal(
+        self, n_measur: int = 64, security_type: int = 1,
+    ) -> np.ndarray:
+        """生成窄带测量信号 (标准 6.2.4)。"""
+        return measurement_signal_1(n_measur, security_type)
+
+    # ── 数据链路参数 ──
+
+    @property
+    def data_link_params(self) -> AsyncDataLinkParams | SyncDataLinkParams | None:
+        return self._data_link_params
 
     # ── 信令 ──
 
@@ -444,6 +800,9 @@ class SleNode:
             "flow_paused": self._qos.flow.is_paused,
             "paired": self._pairing is not None and self._pairing.is_paired,
             "encrypted": self._crypto is not None,
+            "channel": self.current_channel,
+            "tx_power_dbm": self._power_ctrl.tx_power_dbm,
+            "hop_param2": self._hop_param2,
         }
 
     @property
@@ -478,6 +837,8 @@ class SleNode:
         self._peer_address = b""
         self._pairing = None
         self._crypto = None
+        self._broadcaster_mgr = None
+        self._initiator_mgr = None
 
 
 class _InternalCallback(LinkManagerCallback):

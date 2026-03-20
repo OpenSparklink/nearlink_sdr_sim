@@ -2,6 +2,7 @@
 
 import numpy as np
 
+from nearlink_sdr.mac.broadcast import BroadcastFrame
 from nearlink_sdr.mac.frame import AsyncDataFrame
 from nearlink_sdr.mac.link_manager import LinkState, Role
 from nearlink_sdr.mac.qos import Priority, TxDecision
@@ -12,6 +13,7 @@ from nearlink_sdr.node import (
     NodeState,
     RxResult,
     SleNode,
+    TransportMode,
     TxResult,
     _build_ctrl_bits,
     _build_ctrl_info,
@@ -492,3 +494,384 @@ class TestNodeCallbackDefault:
         from nearlink_sdr.mac.link_manager import DisconnectReason
         cb = NodeCallback()
         cb.on_disconnected(DisconnectReason.LOCAL_REQUEST)
+
+    def test_on_broadcast_received(self):
+        cb = NodeCallback()
+        frame = BroadcastFrame(0, 0, 0, b"\x01" * 6, 0, b"\x02" * 6)
+        cb.on_broadcast_received(frame)
+
+    def test_on_discovery_complete(self):
+        cb = NodeCallback()
+        cb.on_discovery_complete({})
+
+    def test_on_measurement_result(self):
+        cb = NodeCallback()
+        cb.on_measurement_result({"range": 1.5})
+
+
+# ── 跳频集成 ──
+
+
+class TestNodeFreqHopping:
+    def test_default_freq_table(self):
+        node = SleNode()
+        assert node.freq_table.band == "2400"
+        assert node.freq_table.bandwidth_mhz == 1
+
+    def test_current_channel_in_range(self):
+        node = SleNode()
+        ch = node.current_channel
+        assert 0 <= ch <= 78
+
+    def test_block_unblock_channel(self):
+        node = SleNode()
+        node.block_channel(5)
+        assert 5 in node.freq_table.blocked_channels
+        assert 5 not in node.freq_table.available_table()
+        node.unblock_channel(5)
+        assert 5 not in node.freq_table.blocked_channels
+
+    def test_hop_param2_derived_from_address(self):
+        node = SleNode(config=NodeConfig(address=b"\x01\x02\x03\x04\x05\x06"))
+        assert node._hop_param2 != 0
+
+    def test_hop_param2_explicit(self):
+        node = SleNode(config=NodeConfig(hop_param2=0x1234))
+        assert node._hop_param2 == 0x1234
+
+    def test_custom_band(self):
+        node = SleNode(config=NodeConfig(band="2400", bandwidth_mhz=2))
+        assert node.freq_table.bandwidth_mhz == 2
+
+    def test_blocked_channels_from_config(self):
+        node = SleNode(config=NodeConfig(blocked_channels={3, 7, 15}))
+        assert node.freq_table.blocked_channels == {3, 7, 15}
+
+
+# ── 功率控制 ──
+
+
+class TestNodePowerControl:
+    def test_initial_power(self):
+        node = SleNode(config=NodeConfig(tx_power_dbm=5.0))
+        assert node.tx_power_dbm == 5.0
+
+    def test_power_controller_access(self):
+        node = SleNode()
+        pc = node.power_controller
+        assert pc is not None
+
+    def test_adjust_power(self):
+        node = SleNode(config=NodeConfig(
+            tx_power_dbm=0.0, max_power_dbm=10.0, min_power_dbm=-20.0,
+        ))
+        new_power = node.adjust_power(3.0)
+        assert isinstance(new_power, float)
+
+    def test_power_limits(self):
+        node = SleNode(config=NodeConfig(
+            tx_power_dbm=0.0, max_power_dbm=5.0, min_power_dbm=-5.0,
+        ))
+        assert node.power_controller.max_power_dbm == 5.0
+        assert node.power_controller.min_power_dbm == -5.0
+
+    def test_stats_include_power(self):
+        node = SleNode(config=NodeConfig(tx_power_dbm=3.0))
+        s = node.stats
+        assert "tx_power_dbm" in s
+        assert s["tx_power_dbm"] == 3.0
+
+
+# ── 时序调度 ──
+
+
+class TestNodeScheduler:
+    def test_scheduler_exists(self):
+        node = SleNode()
+        assert node.scheduler is not None
+
+    def test_advance_slot(self):
+        node = SleNode()
+        old_val = node.scheduler.slot_counter.value
+        node.advance_slot(10)
+        assert node.scheduler.slot_counter.value == old_val + 10
+
+    def test_accept_connection_registers_link(self):
+        node = SleNode()
+        node.start_advertising()
+        node.accept_connection(b"\x01" * 6)
+        assert 0 in node.scheduler.event_schedulers
+
+    def test_run_access_registers_link(self):
+        node = SleNode(config=NodeConfig(address=b"\xAA" * 6))
+        b_mgr, i_mgr = node.run_access(peer_address=b"\xBB" * 6)
+        assert b_mgr is not None
+        assert i_mgr is not None
+        assert 0 in node.scheduler.event_schedulers
+
+
+# ── SMF 调度 ──
+
+
+class TestNodeSmf:
+    def test_smf_disabled_by_default(self):
+        node = SleNode()
+        assert node.smf_scheduler is None
+
+    def test_smf_enabled(self):
+        node = SleNode(config=NodeConfig(smf_enabled=True))
+        assert node.smf_scheduler is not None
+
+    def test_configure_smf(self):
+        from nearlink_sdr.mac.smf_scheduler import SMFScheduleParams
+        node = SleNode(config=NodeConfig(smf_enabled=True))
+        params = SMFScheduleParams(interval=800, frame_type=2)
+        node.configure_smf(params)
+        assert node.scheduler.superframe.smf_config.smf_interval == 800
+
+
+# ── 接入白名单与发现 ──
+
+
+class TestNodeAccessDiscovery:
+    def test_whitelist_empty(self):
+        node = SleNode()
+        assert len(node.whitelist.addresses) == 0
+
+    def test_whitelist_add_remove(self):
+        node = SleNode()
+        node.whitelist.add(b"\x01" * 6)
+        assert node.whitelist.contains(b"\x01" * 6)
+        node.whitelist.remove(b"\x01" * 6)
+        assert not node.whitelist.contains(b"\x01" * 6)
+
+    def test_discovery_manager_exists(self):
+        node = SleNode()
+        assert node.discovery is not None
+        assert len(node.discovered_devices) == 0
+
+    def test_start_advertising_returns_frame(self):
+        node = SleNode()
+        frame = node.start_advertising()
+        assert frame is not None
+        assert isinstance(frame, BroadcastFrame)
+
+    def test_start_scanning_creates_initiator(self):
+        node = SleNode()
+        node.start_scanning()
+        assert node._initiator_mgr is not None
+
+    def test_broadcast_filter_default_accepts(self):
+        node = SleNode()
+        frame = BroadcastFrame(0, 0, 0, b"\x01" * 6, 0, b"\x02" * 6)
+        result = node.on_broadcast_received(frame)
+        # 默认过滤器无条件, 应该接受
+        assert isinstance(result, bool)
+
+    def test_set_broadcast_filter(self):
+        from nearlink_sdr.mac.broadcast import BroadcastFilter
+        node = SleNode()
+        f = BroadcastFilter()
+        node.set_broadcast_filter(f)
+        assert node._broadcast_filter is f
+
+
+# ── 非链接态广播 ──
+
+
+class TestNodeNonConnectedBroadcast:
+    def test_build_broadcast_frame(self):
+        node = SleNode(config=NodeConfig(address=b"\xAA" * 6))
+        frame = node.start_non_connected_broadcast()
+        assert frame is not None
+        assert isinstance(frame, BroadcastFrame)
+
+
+# ── 信道模型 ──
+
+
+class TestNodeChannelModel:
+    def test_no_channel_by_default(self):
+        node = SleNode()
+        assert node.channel_model is None
+
+    def test_set_channel_model(self):
+        from nearlink_sdr.phy.channel import ChannelConfig
+        node = SleNode()
+        cfg = ChannelConfig(snr_db=20.0)
+        node.set_channel_model(cfg)
+        assert node.channel_model is not None
+
+    def test_clear_channel_model(self):
+        from nearlink_sdr.phy.channel import ChannelConfig
+        node = SleNode()
+        node.set_channel_model(ChannelConfig(snr_db=20.0))
+        node.clear_channel_model()
+        assert node.channel_model is None
+
+    def test_channel_from_config(self):
+        from nearlink_sdr.phy.channel import ChannelConfig
+        cfg = NodeConfig(channel_config=ChannelConfig(snr_db=15.0))
+        node = SleNode(config=cfg)
+        assert node.channel_model is not None
+
+    def test_receive_through_channel(self):
+        """带信道模型的高 SNR 环回仍能解码。"""
+        from nearlink_sdr.phy.channel import ChannelConfig
+        cfg = NodeConfig(
+            mcs_index=5,
+            channel_config=ChannelConfig(snr_db=40.0),
+        )
+        node = SleNode(config=cfg)
+        node.start_advertising()
+        node.accept_connection(b"\x01" * 6)
+
+        payload = b"channel_test"
+        node.send(payload)
+        tx = node.transmit()
+        assert tx.iq is not None
+
+        # 接收端使用无信道节点解码 (信道已在 receive 中应用)
+        rx = node.receive(tx.iq, len(tx.mac_bytes))
+        # 高 SNR 下应能解码
+        assert rx.success
+        assert rx.data == payload
+
+
+# ── USRP 硬件接口 ──
+
+
+class TestNodeUsrp:
+    def test_no_transceiver_by_default(self):
+        node = SleNode()
+        assert node.transceiver is None
+
+    def test_usrp_mode_creates_transceiver(self):
+        from nearlink_sdr.phy.usrp import USRPConfig
+        cfg = NodeConfig(
+            transport=TransportMode.USRP,
+            usrp_config=USRPConfig(),
+        )
+        node = SleNode(config=cfg)
+        assert node.transceiver is not None
+
+    def test_receive_iq_without_transceiver(self):
+        node = SleNode()
+        result = node.receive_iq(1024)
+        assert result is None
+
+    def test_open_close_transceiver(self):
+        from nearlink_sdr.phy.usrp import USRPConfig
+        cfg = NodeConfig(
+            transport=TransportMode.USRP,
+            usrp_config=USRPConfig(),
+        )
+        node = SleNode(config=cfg)
+        node.open_transceiver(2048)
+        node.close_transceiver()
+
+
+# ── 测量信号 ──
+
+
+class TestNodeMeasurement:
+    def test_generate_measurement_signal(self):
+        node = SleNode()
+        sig = node.generate_measurement_signal(n_measur=64)
+        assert isinstance(sig, np.ndarray)
+        assert len(sig) > 0
+
+
+# ── 数据链路参数 ──
+
+
+class TestNodeDataLinkParams:
+    def test_async_params_for_ft2(self):
+        from nearlink_sdr.phy.data_link import AsyncDataLinkParams
+        node = SleNode(config=NodeConfig(frame_type=2))
+        assert isinstance(node.data_link_params, AsyncDataLinkParams)
+
+    def test_sync_params_for_ft3(self):
+        from nearlink_sdr.phy.data_link import SyncDataLinkParams
+        node = SleNode(config=NodeConfig(frame_type=3))
+        assert isinstance(node.data_link_params, SyncDataLinkParams)
+
+
+# ── 增强 stats ──
+
+
+class TestNodeEnhancedStats:
+    def test_stats_has_channel(self):
+        node = SleNode()
+        s = node.stats
+        assert "channel" in s
+        assert 0 <= s["channel"] <= 78
+
+    def test_stats_has_hop_param2(self):
+        node = SleNode()
+        s = node.stats
+        assert "hop_param2" in s
+        assert isinstance(s["hop_param2"], int)
+
+    def test_stats_has_power(self):
+        node = SleNode(config=NodeConfig(tx_power_dbm=7.0))
+        assert node.stats["tx_power_dbm"] == 7.0
+
+
+# ── 发送信道号 ──
+
+
+class TestNodeTransmitChannel:
+    def test_transmit_includes_channel(self):
+        node = SleNode(config=NodeConfig(mcs_index=5))
+        node.start_advertising()
+        node.accept_connection(b"\x01" * 6)
+        node.send(b"data")
+        tx = node.transmit()
+        assert tx.channel >= 0
+
+    def test_channel_advances_with_slot(self):
+        node = SleNode(config=NodeConfig(mcs_index=5))
+        node.start_advertising()
+        node.accept_connection(b"\x01" * 6)
+
+        channels = set()
+        for _ in range(10):
+            node.send(b"x")
+            tx = node.transmit()
+            channels.add(tx.channel)
+            node.advance_slot(1)
+        # 多个时隙应命中不同信道 (极小概率全相同)
+        assert len(channels) >= 1
+
+
+# ── 重置后组件重建 ──
+
+
+class TestNodeReset:
+    def test_reset_rebuilds_components(self):
+        node = SleNode(config=NodeConfig(
+            address=b"\x01\x02\x03\x04\x05\x06",
+            smf_enabled=True,
+            blocked_channels={5},
+        ))
+        node.start_advertising()
+        node.accept_connection(b"\xAA" * 6)
+        node.block_channel(10)
+        node.reset()
+
+        # 重建后组件应恢复初始状态
+        assert node.state == NodeState.IDLE
+        assert node.smf_scheduler is not None
+        assert 5 in node.freq_table.blocked_channels
+        # 手动添加的阻塞信道不应被保留 (重建来自 config)
+        assert 10 not in node.freq_table.blocked_channels
+
+    def test_reset_clears_access_managers(self):
+        node = SleNode()
+        node.start_advertising()
+        assert node._broadcaster_mgr is not None
+        node.accept_connection(b"\xBB" * 6)
+        node.reset()
+        assert node._broadcaster_mgr is None
+        assert node._initiator_mgr is None

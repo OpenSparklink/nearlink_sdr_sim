@@ -175,7 +175,7 @@ tests/            # 测试文件, 与 src 模块一一对应
 | 6.3.11 | 超宽带脉冲测量帧 | 完成 | `phy/measurement_frame.py` |
 | - | MAC-PHY 集成适配层 | 完成 | `phy/mac_interface.py` |
 | - | MAC-PHY 集成联调测试 | 完成 | `tests/test_mac_phy_integration.py` |
-| - | SLE 节点实体类 | 完成 | `node.py` |
+| - | SLE 节点实体类 (全功能集成) | 完成 | `node.py` |
 | - | USRP 环回仿真引擎 | 完成 | `sim/usrp_sim.py` |
 | - | USRP 环回仿真测试 | 完成 | `tests/test_usrp_sim.py` |
 | 6.10.7 | 安全随机函数 | 完成 | `mac/crypto.py` |
@@ -237,8 +237,8 @@ tests/            # 测试文件, 与 src 模块一一对应
 
 ## 测试质量
 
-- 2532 个测试用例, 全部通过 (crypto 依赖测试除外)
-- 整体覆盖率 91%, 核心模块覆盖率 97%+, 测试执行时间 4.67 秒
+- 2581 个测试用例, 全部通过 (crypto 依赖测试除外)
+- 整体覆盖率 91%, 核心模块覆盖率 97%+, 测试执行时间 4.85 秒
 - 标准第 14 章测试向量全部验证通过
 - 一致性测试 244 个 (协议/射频/安全)
 
