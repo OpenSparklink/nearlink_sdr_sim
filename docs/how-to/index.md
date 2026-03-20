@@ -5,6 +5,7 @@
 
 run-simulation
 add-modulation
+qos-management
 sdr-deployment
 build-docs
 ```

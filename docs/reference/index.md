@@ -51,6 +51,7 @@
 | {py:mod}`nearlink_sdr.mac.security` | 配对信令 |
 | {py:mod}`nearlink_sdr.mac.crypto` | 加密与密钥派生 |
 | {py:mod}`nearlink_sdr.mac.security_manager` | 安全流程集成 |
+| {py:mod}`nearlink_sdr.mac.qos` | QoS 服务质量管理 |
 
 ## 仿真模块 (`sim`)
 

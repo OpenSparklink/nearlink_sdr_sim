@@ -63,6 +63,7 @@ nearlink_sdr/
 | `security` | 配对信令 (16 个消息类型) | 9.2 |
 | `crypto` | AES-CCM 加密与密钥派生 | 9.3/9.4 |
 | `security_manager` | 安全流程集成 (配对 + 加密) | 9.2-9.4 |
+| `qos` | QoS 服务质量管理 (ARQ/HARQ/流控/LQI) | 6.5 |
 
 ### sim -- 仿真
 

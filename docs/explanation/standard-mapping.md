@@ -11,6 +11,7 @@
 | 6.3 | 帧结构 | `phy.frame` | 完成 |
 | 6.4 | 物理层控制信息 | `phy.control_info` | 完成 |
 | 6.5 | 同步信号 1/2 | `phy.sync_sequence` | 完成 |
+| 6.5.1 | QoS 服务质量管理 (ARQ/HARQ/流控) | `mac.qos` | 完成 |
 | 6.6 | 同步信号 3/4 | `phy.sync_sequence` | 完成 |
 | 6.7 | 导频 | `phy.pilot` | 完成 |
 | 6.9 | CRC | `common.crc` | 完成 |
