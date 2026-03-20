@@ -23,6 +23,18 @@
   - 支持 2.4GHz/5.xGHz 跳频地图
 - 49 个新测试用例 (`tests/test_uwb_pulse.py` 29 个, `tests/test_non_connected_broadcast.py` 20 个)
 
+- 测量链路传输与测量量计算 (`phy/measurement_tx.py`) -- 标准 6.7/6.8
+  - MeasLinkParams: 窄带跳频测量/感知链路参数模型 (6.7.2/6.7.3)
+  - event_schedule/event_start_times: 事件组时间资源调度 (6.7.4)
+  - ds_twr_2msg/ds_twr_3msg: 双边两/三消息飞行时间估计 (6.8.5.1/6.8.5.2)
+  - angle_estimate: 到达角/出发角估计 (6.8.5.3)
+  - extract_cir: 信道冲击响应测量量提取 (6.8.5.4)
+  - range_doppler: 距离多普勒测量量 (6.8.5.5)
+  - CSI 反馈量化与还原 (6.7.5)
+  - UWBMeasLinkParams: 超宽带脉冲测量链路参数 (6.8.3/6.8.4)
+  - uwb_event_sender/uwb_event_count_per_mode: UWB 事件调度
+- 54 个新测试用例 (`tests/test_measurement_tx.py`)
+
 - 链路管理扩展方法 (`mac/link_manager.py`) -- 标准 7.2.20 ~ 7.2.25
   - 7.2.20 广播链路管理: 建立/参数更新/跳频地图更新/断开
   - 7.2.21 系统管理帧链路管理: 参数更新请求/指示, 时间片更新, 信令终止
