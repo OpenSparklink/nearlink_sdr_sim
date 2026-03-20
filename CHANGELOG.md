@@ -9,6 +9,11 @@
 
 ### Added
 
+- 覆盖率补充测试 (`tests/test_coverage_gaps.py`)
+  - 67 个测试覆盖 20+ 模块的未覆盖分支/边界条件
+  - 涵盖 scrambler、link_control、link_manager、frame、access、broadcast、
+    security_manager、mac_interface、psk、tx/rx_pipeline、polar、scheduler 等
+  - 总体覆盖率 91%, 核心模块覆盖率 97%+
 - E310 硬件验证脚本 (`scripts/hw_verify.py`)
   - 6 步验证流程: 设备初始化 → 频率/信道 → 增益 → IQ 环回 → PHY 帧环回 → 跳频
   - 支持 `--mock` 模式和 `--addr` 真实设备, 25/25 测试项
