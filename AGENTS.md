@@ -231,12 +231,16 @@ tests/            # 测试文件, 与 src 模块一一对应
 | 8.1.1 | 应用频段 | 完成 | `phy/freq_hopping.py` |
 | 6.2.1.3 | 多音信号 | 完成 | `phy/multitone.py` |
 | 8.3.3 | 接收机杂散发射 | 完成 | `phy/rf_compliance.py` |
+| 10-11 | 协议一致性测试 (FT1-FT4/控制面/流程) | 完成 | `tests/conformance/test_protocol.py` |
+| 12 | 射频一致性测试 (TX/RX/UWB) | 完成 | `tests/conformance/test_rf.py` |
+| 13 | 安全一致性测试 (配对/加密/隐私/UWB) | 完成 | `tests/conformance/test_security.py` |
 
 ## 测试质量
 
-- 2288 个测试用例, 全部通过 (crypto 依赖测试除外)
-- 整体覆盖率 91%, 核心模块覆盖率 97%+, 测试执行时间 4.49 秒
+- 2532 个测试用例, 全部通过 (crypto 依赖测试除外)
+- 整体覆盖率 91%, 核心模块覆盖率 97%+, 测试执行时间 4.67 秒
 - 标准第 14 章测试向量全部验证通过
+- 一致性测试 244 个 (协议/射频/安全)
 
 ## 硬件约束 (USRP E310)
 
