@@ -1319,21 +1319,357 @@ def run_phase8_simulation():
     print("\nBER/FER curves saved to ber_phase8.png")
 
 
+# ── Phase 9: MAC 帧级端到端仿真 ──
+
+
+def sim_mac_signaling_link(
+    snr_range_db: np.ndarray | None = None,
+    n_frames: int = 50,
+    mcs_index: int = 7,
+    channel_type: str = "awgn",
+    seed: int = 42,
+) -> dict:
+    """MAC 信令帧端到端仿真: 信令编码 → IQ → 信道 → IQ → 信令解码。
+
+    每帧随机选取一种信令类型进行编码,
+    经过 PHY 发射/接收流水线和信道后, 统计信令解码成功率。
+
+    Returns:
+        {"snr_db": [...], "signaling_success_rate": [...]}
+    """
+    from nearlink_sdr.mac.link_control import (
+        IntervalUpdateRequest,
+        PingRequest,
+        PingResponse,
+        TimeoutUpdateRequest,
+    )
+    from nearlink_sdr.phy.mac_interface import iq_to_signaling, signaling_to_iq
+    from nearlink_sdr.phy.tx_pipeline import TxConfig
+
+    if snr_range_db is None:
+        snr_range_db = np.arange(0, 16, 2)
+
+    rng = np.random.default_rng(seed)
+
+    cfg = TxConfig(
+        frame_type=2,
+        mcs_index=mcs_index,
+        pid=0x123456,
+        whitening_seed=0x52,
+        crc_seed=0x555555,
+        crc_len=24,
+        ctrl_bits_len=28,
+        pilot_interval=8,
+    )
+
+    # 构造信令池
+    def _make_msg(idx: int):
+        choices = [
+            PingRequest(),
+            PingResponse(),
+            IntervalUpdateRequest(interval_type=int(rng.integers(0, 8))),
+            TimeoutUpdateRequest(timeout=int(rng.integers(1, 1000))),
+        ]
+        return choices[idx % len(choices)]
+
+    from nearlink_sdr.mac.signaling import encode_signaling
+
+    success_rates = []
+
+    for snr in snr_range_db:
+        ch = ChannelModel(snr_db=float(snr))
+        successes = 0
+
+        for i in range(n_frames):
+            msg = _make_msg(i)
+            frame = encode_signaling(msg)
+            mac_bytes = frame.pack()
+            n_mac_bytes = len(mac_bytes)
+
+            iq = signaling_to_iq(msg, cfg)
+            rx_iq = ch.apply_awgn(iq)
+
+            recovered, ok = iq_to_signaling(rx_iq, cfg, n_mac_bytes)
+            if (
+                ok
+                and recovered is not None
+                and type(recovered).__name__ == type(msg).__name__
+            ):
+                successes += 1
+
+        success_rates.append(successes / n_frames)
+
+    return {"snr_db": snr_range_db.tolist(), "signaling_success_rate": success_rates}
+
+
+def sim_mac_data_link(
+    payload_sizes: list[int] | None = None,
+    snr_range_db: np.ndarray | None = None,
+    n_frames: int = 50,
+    mcs_index: int = 7,
+    channel_type: str = "awgn",
+    seed: int = 42,
+) -> dict:
+    """MAC 异步数据帧端到端仿真: 数据编码 → IQ → 信道 → IQ → 数据解码。
+
+    对不同载荷大小, 统计字节级误码率和帧正确率。
+
+    Args:
+        payload_sizes: 要测试的载荷大小列表 (字节)。
+        snr_range_db: SNR 范围。
+        n_frames: 每个 (SNR, size) 组合的帧数。
+        mcs_index: MCS 索引。
+        channel_type: 信道类型。
+        seed: 随机种子。
+
+    Returns:
+        {"snr_db": [...], "results": {size: {"fer": [...], "byte_ber": [...]}}}
+    """
+    from nearlink_sdr.mac.frame import AsyncDataFrame
+    from nearlink_sdr.phy.mac_interface import iq_to_mac, mac_to_iq
+    from nearlink_sdr.phy.tx_pipeline import TxConfig
+
+    if payload_sizes is None:
+        payload_sizes = [4, 10, 27]
+    if snr_range_db is None:
+        snr_range_db = np.arange(0, 16, 2)
+
+    rng = np.random.default_rng(seed)
+
+    cfg = TxConfig(
+        frame_type=2,
+        mcs_index=mcs_index,
+        pid=0x123456,
+        whitening_seed=0x52,
+        crc_seed=0x555555,
+        crc_len=24,
+        ctrl_bits_len=28,
+        pilot_interval=8,
+    )
+
+    all_results: dict = {}
+
+    for size in payload_sizes:
+        fer_list, byte_ber_list = [], []
+
+        for snr in snr_range_db:
+            ch = ChannelModel(snr_db=float(snr))
+            frame_errors, total_byte_errors, total_bytes = 0, 0, 0
+
+            for _ in range(n_frames):
+                payload = bytes(rng.integers(0, 256, size, dtype=np.uint8))
+                frame = AsyncDataFrame(segment_type=0, data=payload)
+                mac_bytes = frame.pack()
+                n_mac_bytes = len(mac_bytes)
+
+                iq = mac_to_iq(mac_bytes, cfg)
+                rx_iq = ch.apply_awgn(iq)
+                rx = iq_to_mac(rx_iq, cfg, n_mac_bytes)
+
+                if not rx.crc_ok:
+                    frame_errors += 1
+                    total_byte_errors += size
+                else:
+                    try:
+                        recovered = AsyncDataFrame.unpack(rx.mac_payload)
+                        errors = sum(
+                            a != b
+                            for a, b in zip(payload, recovered.data, strict=False)
+                        )
+                        total_byte_errors += errors
+                    except (ValueError, IndexError):
+                        frame_errors += 1
+                        total_byte_errors += size
+
+                total_bytes += size
+
+            fer_list.append(frame_errors / n_frames)
+            byte_ber_list.append(
+                total_byte_errors / total_bytes if total_bytes > 0 else 0.0
+            )
+
+        all_results[size] = {"fer": fer_list, "byte_ber": byte_ber_list}
+
+    return {"snr_db": snr_range_db.tolist(), "results": all_results}
+
+
+def sim_mac_mux_link(
+    snr_range_db: np.ndarray | None = None,
+    n_frames: int = 50,
+    mcs_index: int = 7,
+    data_size: int = 10,
+    seed: int = 42,
+) -> dict:
+    """MAC 复用帧端到端仿真: 控制帧+数据帧复用 → IQ → 信道 → IQ → 解码。
+
+    每帧包含一条信令和一段数据, 验证复用帧在信道传输后的完整性。
+
+    Returns:
+        {"snr_db": [...], "mux_success_rate": [...], "data_match_rate": [...]}
+    """
+    from nearlink_sdr.mac.frame import AsyncDataFrame, MuxFrame
+    from nearlink_sdr.mac.link_control import PingRequest
+    from nearlink_sdr.mac.signaling import encode_signaling
+    from nearlink_sdr.phy.mac_interface import iq_to_mac, mac_to_iq
+    from nearlink_sdr.phy.tx_pipeline import TxConfig
+
+    if snr_range_db is None:
+        snr_range_db = np.arange(0, 16, 2)
+
+    rng = np.random.default_rng(seed)
+
+    cfg = TxConfig(
+        frame_type=2,
+        mcs_index=mcs_index,
+        pid=0x123456,
+        whitening_seed=0x52,
+        crc_seed=0x555555,
+        crc_len=24,
+        ctrl_bits_len=28,
+        pilot_interval=8,
+    )
+
+    mux_success_list, data_match_list = [], []
+
+    for snr in snr_range_db:
+        ch = ChannelModel(snr_db=float(snr))
+        mux_ok_count, data_ok_count = 0, 0
+
+        for _ in range(n_frames):
+            payload = bytes(rng.integers(0, 256, data_size, dtype=np.uint8))
+            ctrl_frame = encode_signaling(PingRequest())
+            data_frame = AsyncDataFrame(segment_type=0, data=payload)
+            mux = MuxFrame(control_frames=[ctrl_frame], data_frame=data_frame)
+            mac_bytes = mux.pack()
+            n_mac_bytes = len(mac_bytes)
+
+            iq = mac_to_iq(mac_bytes, cfg)
+            rx_iq = ch.apply_awgn(iq)
+            rx = iq_to_mac(rx_iq, cfg, n_mac_bytes)
+
+            if rx.crc_ok:
+                mux_ok_count += 1
+                # 验证数据部分: 复用帧中数据帧位于控制帧之后
+                ctrl_len = len(ctrl_frame.pack())
+                data_part = rx.mac_payload[ctrl_len:]
+                try:
+                    recovered = AsyncDataFrame.unpack(data_part)
+                    if recovered.data == payload:
+                        data_ok_count += 1
+                except (ValueError, IndexError):
+                    pass
+
+        mux_success_list.append(mux_ok_count / n_frames)
+        data_match_list.append(data_ok_count / n_frames)
+
+    return {
+        "snr_db": snr_range_db.tolist(),
+        "mux_success_rate": mux_success_list,
+        "data_match_rate": data_match_list,
+    }
+
+
+def run_phase9_simulation():
+    """Phase 9: MAC 帧级端到端仿真 — 信令、数据、复用帧。"""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    snr_range = np.arange(0, 16, 1)
+
+    print("=== Phase 9 MAC Frame-Level Simulation ===")
+    print()
+
+    # 信令帧仿真
+    print("[1/3] MAC signaling frame simulation...")
+    sig_result = sim_mac_signaling_link(snr_range_db=snr_range, n_frames=100)
+    for s, r in zip(sig_result["snr_db"][::4], sig_result["signaling_success_rate"][::4],
+                    strict=False):
+        print(f"  SNR={s:2.0f} dB  Success={r:.3f}")
+
+    # 数据帧仿真
+    print("[2/3] MAC data frame simulation...")
+    data_result = sim_mac_data_link(
+        payload_sizes=[4, 10, 27],
+        snr_range_db=snr_range,
+        n_frames=100,
+    )
+    for size, metrics in data_result["results"].items():
+        print(f"  Payload {size}B:")
+        for s, f, b in zip(
+            data_result["snr_db"][::4], metrics["fer"][::4],
+            metrics["byte_ber"][::4], strict=False,
+        ):
+            print(f"    SNR={s:2.0f} dB  FER={f:.3f}  ByteBER={b:.5f}")
+
+    # 复用帧仿真
+    print("[3/3] MAC mux frame simulation...")
+    mux_result = sim_mac_mux_link(snr_range_db=snr_range, n_frames=100)
+    for s, m, d in zip(
+        mux_result["snr_db"][::4], mux_result["mux_success_rate"][::4],
+        mux_result["data_match_rate"][::4], strict=False,
+    ):
+        print(f"  SNR={s:2.0f} dB  MuxOK={m:.3f}  DataMatch={d:.3f}")
+
+    # 绘图
+    fig, axes = plt.subplots(1, 3, figsize=(18, 5))
+
+    # 信令成功率
+    ax = axes[0]
+    ax.plot(sig_result["snr_db"], sig_result["signaling_success_rate"], "o-",
+            label="Signaling decode", markersize=4)
+    ax.set_xlabel("Eb/N0 (dB)")
+    ax.set_ylabel("Success Rate")
+    ax.set_title("Phase 9 - Signaling Frame")
+    ax.legend()
+    ax.grid(True, ls="--", alpha=0.5)
+    ax.set_ylim(-0.05, 1.05)
+
+    # 数据帧 FER
+    ax = axes[1]
+    markers = ["o-", "s-", "^-"]
+    for (size, metrics), mk in zip(data_result["results"].items(), markers,
+                                   strict=False):
+        fer_plot = [max(f, 1e-4) for f in metrics["fer"]]
+        ax.semilogy(data_result["snr_db"], fer_plot, mk,
+                    label=f"{size}B payload", markersize=4)
+    ax.set_xlabel("Eb/N0 (dB)")
+    ax.set_ylabel("Frame Error Rate")
+    ax.set_title("Phase 9 - Data Frame FER")
+    ax.legend()
+    ax.grid(True, which="both", ls="--", alpha=0.5)
+    ax.set_ylim(bottom=1e-4)
+
+    # 复用帧
+    ax = axes[2]
+    ax.plot(mux_result["snr_db"], mux_result["mux_success_rate"], "o-",
+            label="Mux CRC OK", markersize=4)
+    ax.plot(mux_result["snr_db"], mux_result["data_match_rate"], "s-",
+            label="Data match", markersize=4)
+    ax.set_xlabel("Eb/N0 (dB)")
+    ax.set_ylabel("Success Rate")
+    ax.set_title("Phase 9 - Mux Frame")
+    ax.legend()
+    ax.grid(True, ls="--", alpha=0.5)
+    ax.set_ylim(-0.05, 1.05)
+
+    fig.tight_layout()
+    fig.savefig("ber_phase9.png", dpi=150)
+    print("\nPhase 9 curves saved to ber_phase9.png")
+
+
 if __name__ == "__main__":
     import sys
-    if len(sys.argv) > 1 and sys.argv[1] == "phase2":
-        run_phase2_simulation()
-    elif len(sys.argv) > 1 and sys.argv[1] == "phase3":
-        run_phase3_simulation()
-    elif len(sys.argv) > 1 and sys.argv[1] == "phase4":
-        run_phase4_simulation()
-    elif len(sys.argv) > 1 and sys.argv[1] == "phase5":
-        run_phase5_simulation()
-    elif len(sys.argv) > 1 and sys.argv[1] == "phase6":
-        run_phase6_simulation()
-    elif len(sys.argv) > 1 and sys.argv[1] == "phase7":
-        run_phase7_simulation()
-    elif len(sys.argv) > 1 and sys.argv[1] == "phase8":
-        run_phase8_simulation()
-    else:
-        run_phase1_simulation()
+    phase = sys.argv[1] if len(sys.argv) > 1 else "phase1"
+    _dispatch = {
+        "phase1": run_phase1_simulation,
+        "phase2": run_phase2_simulation,
+        "phase3": run_phase3_simulation,
+        "phase4": run_phase4_simulation,
+        "phase5": run_phase5_simulation,
+        "phase6": run_phase6_simulation,
+        "phase7": run_phase7_simulation,
+        "phase8": run_phase8_simulation,
+        "phase9": run_phase9_simulation,
+    }
+    _dispatch.get(phase, run_phase1_simulation)()

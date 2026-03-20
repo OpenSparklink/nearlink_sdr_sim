@@ -111,6 +111,7 @@ tests/            # 测试文件, 与 src 模块一一对应
 | - | 全链路 Pipeline 仿真 | 完成 | `sim/link_sim.py` (Phase 6) |
 | - | 多径信道 + 频偏 Pipeline 仿真 | 完成 | `sim/link_sim.py` (Phase 7) |
 | - | 均衡器集成到 Pipeline 仿真 | 完成 | `sim/link_sim.py`, `phy/channel.py` |
+| - | MAC 帧级端到端仿真 | 完成 | `sim/link_sim.py` (Phase 9) |
 
 ## 硬件约束 (USRP E310)
 
