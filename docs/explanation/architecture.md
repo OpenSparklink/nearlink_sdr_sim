@@ -10,7 +10,7 @@ nearlink-sdr 是一个链路级仿真系统, 实现了 TXS-10002-2025 SparkLink 
 nearlink_sdr/
 ├── common/      信道编码与底层算法
 ├── phy/         物理层信号处理
-├── mac/         MAC 层协议 (规划中)
+├── mac/         MAC 层协议
 └── sim/         链路仿真入口
 ```
 
@@ -45,6 +45,17 @@ nearlink_sdr/
 | `freq_hopping` | 跳频序列与频率管理 | 6.10.3 / 8.1.2 |
 | `usrp` | USRP E310 硬件接口 | -- |
 
+### mac -- MAC 层
+
+| 模块 | 功能 | 标准条款 |
+|------|------|----------|
+| `frame` | 控制面/数据面/复用帧结构 | 7.3.2-7.3.4 |
+| `broadcast` | 广播帧结构 | 7.1.4 |
+| `signaling` | 信令注册与编解码 (112 个类型) | 7.3 |
+| `link_control` | 全部链路控制信令 (0x0000-0x0070) | 7.3.2 |
+| `power_control` | 功率控制流程与信令 | 7.2.13 |
+| `link_manager` | 链路管理状态机 | 7.1/7.2 |
+
 ### sim -- 仿真
 
 `link_sim` 模块封装了端到端仿真流程, 分为六个阶段:
@@ -58,6 +69,8 @@ nearlink_sdr/
 | Phase 5 | 跳频仿真 | `sim_hopping_link` |
 | Phase 6 | 全链路 Pipeline 仿真 | `sim_pipeline_link` |
 | Phase 7 | 多径信道 + 频偏 Pipeline 仿真 | `sim_pipeline_channel_link` |
+| Phase 8 | 均衡器集成 Pipeline 仿真 | `sim_pipeline_equalized_link` |
+| Phase 9 | MAC 帧级端到端仿真 | `sim_mac_link` |
 
 每个阶段的仿真函数可独立调用, 也可通过 `run_phaseN_simulation()` 批量执行。
 

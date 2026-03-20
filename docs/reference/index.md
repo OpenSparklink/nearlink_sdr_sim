@@ -33,6 +33,17 @@
 | {py:mod}`nearlink_sdr.phy.freq_hopping` | 跳频 |
 | {py:mod}`nearlink_sdr.phy.usrp` | USRP 接口 |
 
+## MAC 层模块 (`mac`)
+
+| 模块 | 功能 |
+|------|------|
+| {py:mod}`nearlink_sdr.mac.frame` | 控制面/数据面/复用帧 |
+| {py:mod}`nearlink_sdr.mac.broadcast` | 广播帧 |
+| {py:mod}`nearlink_sdr.mac.signaling` | 信令注册与编解码 |
+| {py:mod}`nearlink_sdr.mac.link_control` | 链路控制信令 |
+| {py:mod}`nearlink_sdr.mac.power_control` | 功率控制 |
+| {py:mod}`nearlink_sdr.mac.link_manager` | 链路管理状态机 |
+
 ## 仿真模块 (`sim`)
 
 | 模块 | 功能 |

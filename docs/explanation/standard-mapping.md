@@ -56,5 +56,73 @@
 
 以下条款尚未实现, 按优先级排列:
 
-- 第 7 章: 连接模式物理层
-- 第 9 章: MAC 层协议
+- 第 7 章: 连接模式物理层 (部分)
+- 第 9 章: MAC 层协议 (部分)
+
+## 第 7 章 MAC 层
+
+### 7.1 广播与链路管理
+
+| 条款 | 内容 | 实现模块 | 状态 |
+|------|------|----------|------|
+| 7.1.4 | 广播帧结构 | `mac.broadcast` | 完成 |
+| 7.1/7.2 | 链路管理状态机 | `mac.link_manager` | 完成 |
+
+### 7.2 功率控制
+
+| 条款 | 内容 | 实现模块 | 状态 |
+|------|------|----------|------|
+| 7.2.13 | 功率控制流程 | `mac.power_control` | 完成 |
+| 7.3.2.27 | PowerControlRequest 信令 | `mac.power_control` | 完成 |
+| 7.3.2.28 | PowerControlResponse 信令 | `mac.power_control` | 完成 |
+| 7.3.2.29 | PowerChangeIndication 信令 | `mac.power_control` | 完成 |
+
+### 7.3 帧结构与信令
+
+| 条款 | 内容 | 实现模块 | 状态 |
+|------|------|----------|------|
+| 7.3.2 | 控制面帧结构 | `mac.frame` | 完成 |
+| 7.3.3 | 数据面帧结构 | `mac.frame` | 完成 |
+| 7.3.4 | 复用帧 | `mac.frame` | 完成 |
+| 7.3 | 信令注册与编解码 | `mac.signaling` | 完成 |
+
+### 7.3.2 链路控制信令 (112 个类型)
+
+| 条款范围 | 内容 | 实现模块 | 状态 |
+|----------|------|----------|------|
+| 7.3.2.2-2.5 | 收发间隔更新 | `mac.link_control` | 完成 |
+| 7.3.2.6-2.11 | 安全流程 | `mac.link_control` | 完成 |
+| 7.3.2.14 | 未知特性反馈 | `mac.link_control` | 完成 |
+| 7.3.2.19-2.22 | 信道管理 | `mac.link_control` | 完成 |
+| 7.3.2.25-2.26 | PHY 更新 | `mac.link_control` | 完成 |
+| 7.3.2.33-2.34 | 异步链路参数重配置 | `mac.link_control` | 完成 |
+| 7.3.2.35-2.36 | 异步链路参数更新 | `mac.link_control` | 完成 |
+| 7.3.2.37-2.41 | 同步等时链路 | `mac.link_control` | 完成 |
+| 7.3.2.42-2.44 | 广播链路 | `mac.link_control` | 完成 |
+| 7.3.2.45 | 广播链路断开 | `mac.link_control` | 完成 |
+| 7.3.2.46-2.49 | 系统管理帧 | `mac.link_control` | 完成 |
+| 7.3.2.50 | 5G 信道状态/跳频地图 | `mac.link_control` | 完成 |
+| 7.3.2.51-2.55 | 角色切换/PING/时间偏移 | `mac.link_control` | 完成 |
+| 7.3.2.56-2.58 | 多间隔更新 | `mac.link_control` | 完成 |
+| 7.3.2.59 | 系统时间指示 | `mac.link_control` | 完成 |
+| 7.3.2.60-2.65 | 异步组播链路管理 | `mac.link_control` | 完成 |
+| 7.3.2.62-2.63 | 超时更新/组播断开 | `mac.link_control` | 完成 |
+| 7.3.2.66-2.73 | 窄带跳频测量 | `mac.link_control` | 完成 |
+| 7.3.2.74-2.76 | 坐标管理 | `mac.link_control` | 完成 |
+| 7.3.2.77-2.78 | 窄带时延 | `mac.link_control` | 完成 |
+| 7.3.2.79 | 异步 TT 链路建链 | `mac.link_control` | 完成 |
+| 7.3.2.80-2.84 | UWB 脉冲测量 | `mac.link_control` | 完成 |
+| 7.3.2.85-2.90 | UWB 感知 | `mac.link_control` | 完成 |
+| 7.3.2.91-2.92 | 资源预留 | `mac.link_control` | 完成 |
+| 7.3.2.93-2.107 | 窄带感知 | `mac.link_control` | 完成 |
+| 7.3.2.108-2.114 | 配置更新与 UWB 扩展感知 | `mac.link_control` | 完成 |
+
+### 仿真与集成
+
+| 内容 | 实现模块 | 状态 |
+|------|----------|------|
+| MAC-PHY 集成适配层 | `phy.mac_interface` | 完成 |
+| 全链路 Pipeline 仿真 | `sim.link_sim` | 完成 |
+| 多径信道 + 频偏 Pipeline | `sim.link_sim` | 完成 |
+| 均衡器集成 | `sim.link_sim`, `phy.channel` | 完成 |
+| MAC 帧级端到端仿真 | `sim.link_sim` | 完成 |
