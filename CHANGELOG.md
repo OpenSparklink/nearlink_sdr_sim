@@ -9,6 +9,12 @@
 
 ### Added
 
+- `mac/access.py`: 新增接入流程管理模块 (标准 7.1.3)
+  - negotiate_gt_role: GT 角色协商逻辑
+  - BroadcasterAccessManager: 广播方接入管理 (阶段 a/c)
+  - InitiatorAccessManager: 接入发起方管理 (阶段 b/d)
+  - run_access_procedure: 端到端接入流程仿真
+- `tests/test_access.py`: 24 个接入流程测试
 - `phy/measurement_frame.py`: 新增测量帧结构组装模块 (标准 6.3.6-6.3.11)
   - build_nack_feedback: 半可靠组播 NACK 反馈序列 (6.3.6)
   - equalization_guard: 均衡保护序列 (6.3.7)

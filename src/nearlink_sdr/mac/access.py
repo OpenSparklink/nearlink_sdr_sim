@@ -1,0 +1,585 @@
+"""接入流程管理 -- TXS-10002-2025 标准 7.1.3。
+
+实现 SLE 设备发现和接入的完整六阶段流程:
+  a) 广播方准备并发送可接入扩展广播帧
+  b) 接入发起方发送接入请求帧
+  c) 广播方接收请求并发送响应
+  d) 接入方接收响应并进入链接态
+  e) 数据链路建立
+  f) 安全流程 (委托给 security 模块)
+
+协调 BroadcastFrame、AccessBasicInfo、TransportIndicationInfo、
+AccessRequestInfo、AccessResponseInfo 等数据结构完成端到端接入。
+"""
+
+from __future__ import annotations
+
+import logging
+from dataclasses import dataclass, field
+from enum import IntEnum
+from typing import Any
+
+from nearlink_sdr.mac.broadcast import (
+    AccessBasicInfo,
+    AccessRequestInfo,
+    AccessResponseEntry,
+    AccessResponseInfo,
+    AccessResponseType,
+    BroadcastDataType,
+    BroadcastFrame,
+    DiscoveryAccessEntry,
+    DiscoveryAccessResourceConfig,
+    GTNegotiation,
+    TransportIndicationInfo,
+)
+from nearlink_sdr.mac.link_manager import (
+    Event,
+    EventType,
+    LinkManager,
+    Role,
+)
+
+log = logging.getLogger(__name__)
+
+# ── 最小时间间隔 (标准 7.1.3, 单位 μs) ──
+MIN_ADV_TO_EXT_ADV_GAP = 300
+MIN_EXT_ADV_TO_REQUEST_GAP = 300
+MIN_REQUEST_TO_RESPONSE_GAP = 300
+
+
+class AccessPhase(IntEnum):
+    """接入流程阶段标识。"""
+    IDLE = 0
+    ADV_SENDING = 1        # a: 广播方发送扩展广播帧
+    REQ_WINDOW = 2         # b: 接入请求窗口
+    RSP_WINDOW = 3         # c: 接入响应窗口
+    LINK_SETUP = 4         # d/e: 链路建立
+    COMPLETED = 5          # 接入完成
+
+
+@dataclass
+class AccessConfig:
+    """接入流程配置参数。"""
+    # 广播/接入资源配置
+    request_offset_us: int = 600       # 扩展广播帧结束到请求窗口 (μs)
+    request_max_length: int = 64       # 接入请求帧最大数据长度 (字节)
+    response_offset_us: int = 1200     # 扩展广播帧结束到响应窗口 (μs)
+    window_count: int = 1              # 并行请求窗口个数
+    # GT 角色协商
+    gt_preference: int = 0             # 0=偏好T节点, 1=偏好G节点
+    gt_negotiable: bool = True         # 角色是否可协商
+    # 超时与重试
+    access_timeout_ms: int = 5000      # 接入超时
+    max_retries: int = 3               # 最大重试次数
+
+
+@dataclass
+class NegotiatedRole:
+    """GT 角色协商结果。"""
+    local_role: Role
+    peer_role: Role
+    negotiated: bool = False           # 是否经过协商 (vs 默认分配)
+
+
+def negotiate_gt_role(
+    broadcaster_pref: int,
+    broadcaster_negotiable: bool,
+    initiator_pref: int,
+    initiator_negotiable: bool,
+) -> NegotiatedRole:
+    """根据标准 7.1.3 执行 GT 角色协商。
+
+    双方各表达角色偏好 (0=T节点, 1=G节点) 和可协商标志。
+    冲突时默认: 发起方→G节点, 广播方→T节点。
+
+    Args:
+        broadcaster_pref: 广播方角色偏好 (0=T, 1=G)。
+        broadcaster_negotiable: 广播方角色是否可协商。
+        initiator_pref: 发起方 (接入方) 角色偏好。
+        initiator_negotiable: 发起方角色是否可协商。
+
+    Returns:
+        协商结果, 从发起方视角: local_role 为发起方角色。
+    """
+    # 若双方偏好一致 (都想当 G 或都想当 T), 存在冲突
+    if broadcaster_pref == initiator_pref:
+        # 均不可协商 → 默认分配: 发起方=G, 广播方=T
+        if not broadcaster_negotiable and not initiator_negotiable:
+            return NegotiatedRole(
+                local_role=Role.G_NODE,
+                peer_role=Role.T_NODE,
+                negotiated=False,
+            )
+        # 广播方可协商 → 发起方保持偏好
+        if broadcaster_negotiable:
+            if initiator_pref == 1:
+                return NegotiatedRole(Role.G_NODE, Role.T_NODE, True)
+            return NegotiatedRole(Role.T_NODE, Role.G_NODE, True)
+        # 发起方可协商 → 广播方保持偏好
+        if broadcaster_pref == 1:
+            return NegotiatedRole(Role.T_NODE, Role.G_NODE, True)
+        return NegotiatedRole(Role.G_NODE, Role.T_NODE, True)
+
+    # 偏好互补: 一方想 G, 另一方想 T → 各取所好
+    if initiator_pref == 1:
+        return NegotiatedRole(Role.G_NODE, Role.T_NODE, True)
+    return NegotiatedRole(Role.T_NODE, Role.G_NODE, True)
+
+
+# ── 广播方接入管理 ──
+
+
+@dataclass
+class BroadcasterAccessManager:
+    """广播方接入管理器 (标准 7.1.3 阶段 a/c)。
+
+    职责:
+    - 构造可接入扩展广播帧
+    - 处理收到的接入请求
+    - 生成接入响应
+    - 完成 GT 角色协商
+    """
+    config: AccessConfig = field(default_factory=AccessConfig)
+    link_manager: LinkManager = field(default_factory=LinkManager)
+    local_address: bytes = b"\x00" * 6
+    # 链路配置 (用于 AccessBasicInfo 或 TransportIndicationInfo)
+    use_smf: bool = True
+    smf_baseline_slot: int = 0
+    smf_offset: int = 300
+    smf_link_id: int = 0x00000001
+    smf_period: int = 800
+    smf_frame_type: int = 2
+    smf_bandwidth: int = 0
+    smf_pilot_density: int = 0
+    access_link_id: int = 0x000001
+    access_period: int = 40
+    access_timeout: int = 50
+    sleep_clock_accuracy: int = 7
+    access_crc_type: int = 0
+    access_crc_init: int = 0
+    hop_map: bytes = b"\xFF" * 10
+    smf_channel_table: bytes = b"\x00\x01\x02"
+    # 内部状态
+    _phase: AccessPhase = AccessPhase.IDLE
+    _pending_requests: list[dict[str, Any]] = field(default_factory=list)
+
+    def build_ext_adv_frame(self) -> BroadcastFrame:
+        """构建可接入扩展广播帧 (阶段 a)。
+
+        包含发现接入资源配置信息 (7.1.4.2)。
+
+        Returns:
+            填充好的 BroadcastFrame 对象。
+        """
+        gt_neg = GTNegotiation.NEGOTIATE_G
+        if self.config.gt_preference == 1:
+            if self.config.gt_negotiable:
+                gt_neg = GTNegotiation.NEGOTIATE_G
+            else:
+                gt_neg = GTNegotiation.FIXED_G
+        else:
+            if self.config.gt_negotiable:
+                gt_neg = GTNegotiation.NEGOTIATE_T
+            else:
+                gt_neg = GTNegotiation.FIXED_T
+
+        discovery_config = DiscoveryAccessResourceConfig(
+            request_offset=self.config.request_offset_us,
+            request_max_length=self.config.request_max_length,
+            response_offset=self.config.response_offset_us,
+            gt_negotiation=gt_neg,
+            entry_count=self.config.window_count,
+            entries=[
+                DiscoveryAccessEntry(
+                    request_type=1,
+                    carry_info_indication=0,
+                    peer_addr_type=0,
+                    addr_present=0,
+                    peer_addr=b"",
+                )
+                for _ in range(self.config.window_count)
+            ],
+        )
+
+        frame = BroadcastFrame(
+            structure_indication=0x11,
+            local_addr_type=0,
+            peer_addr_type=0,
+            local_addr=self.local_address,
+            irk_id=0,
+            peer_addr=b"\x00" * 6,
+            data_items=[
+                (BroadcastDataType.DISCOVERY_ACCESS_RESOURCE,
+                 discovery_config.pack()),
+            ],
+        )
+        self._phase = AccessPhase.ADV_SENDING
+        return frame
+
+    def handle_access_request(
+        self,
+        request_data: bytes,
+        peer_address: bytes = b"\x00" * 6,
+    ) -> tuple[BroadcastFrame | None, bool]:
+        """处理接入请求 (阶段 c)。
+
+        Args:
+            request_data: 接入请求帧数据。
+            peer_address: 请求方 MAC 地址。
+
+        Returns:
+            (响应帧, 是否接受)。响应帧包含 AccessResponseInfo,
+            以及 (若接受且角色为 G) AccessBasicInfo 或 TransportIndicationInfo。
+        """
+        self._phase = AccessPhase.RSP_WINDOW
+
+        # 解析接入请求
+        req = AccessRequestInfo.unpack(request_data)
+
+        # GT 角色协商
+        initiator_gt_pref = 0
+        initiator_negotiable = True
+        if req.gt_role is not None:
+            initiator_gt_pref = req.gt_role & 0x01
+            initiator_negotiable = (req.gt_role & 0x02) == 0
+
+        negotiation = negotiate_gt_role(
+            broadcaster_pref=self.config.gt_preference,
+            broadcaster_negotiable=self.config.gt_negotiable,
+            initiator_pref=initiator_gt_pref,
+            initiator_negotiable=initiator_negotiable,
+        )
+
+        # 从发起方视角看, negotiation.local_role 是发起方角色
+        # 广播方角色 = negotiation.peer_role
+        broadcaster_role = negotiation.peer_role
+
+        # 构建响应
+        response_entry = AccessResponseEntry(
+            peer_addr=peer_address,
+            response_type=AccessResponseType.ACCEPT,
+            peer_addr_type=0,
+            repeat_indication=0,
+        )
+        response_info = AccessResponseInfo(
+            entries=[response_entry],
+        )
+
+        data_items: list[tuple[int, bytes]] = [
+            (BroadcastDataType.ACCESS_RESPONSE, response_info.pack()),
+        ]
+
+        # 若广播方成为 G 节点, 需在响应中携带链路配置
+        if broadcaster_role == Role.G_NODE and self.use_smf:
+                access_basic = AccessBasicInfo(
+                    smf_baseline_slot=self.smf_baseline_slot,
+                    smf_offset=self.smf_offset,
+                    smf_link_id=self.smf_link_id,
+                    smf_period=self.smf_period,
+                    smf_frame_type=self.smf_frame_type,
+                    smf_bandwidth=self.smf_bandwidth,
+                    smf_pilot_density=self.smf_pilot_density,
+                    access_link_id=self.access_link_id,
+                    access_period=self.access_period,
+                    access_timeout=self.access_timeout,
+                    sleep_clock_accuracy=self.sleep_clock_accuracy,
+                    access_crc_type=self.access_crc_type,
+                    access_crc_init=self.access_crc_init,
+                    hop_map=self.hop_map,
+                    smf_channel_count=len(self.smf_channel_table),
+                    smf_channel_table=self.smf_channel_table,
+                )
+                data_items.append(
+                    (BroadcastDataType.ACCESS_BASIC, access_basic.pack())
+                )
+
+        response_frame = BroadcastFrame(
+            structure_indication=0x11,
+            local_addr_type=0,
+            peer_addr_type=0,
+            local_addr=self.local_address,
+            irk_id=0,
+            peer_addr=b"\x00" * 6,
+            data_items=data_items,
+        )
+
+        # 驱动状态机
+        self.link_manager.local_address = self.local_address
+        self.link_manager.process_event(Event(
+            EventType.ACCESS_REQUEST_RECEIVED,
+            data={
+                "accepted": True,
+                "role": broadcaster_role,
+                "peer_address": peer_address,
+            },
+        ))
+
+        self._phase = AccessPhase.COMPLETED
+        return response_frame, True
+
+    def reject_access_request(
+        self,
+        peer_address: bytes = b"\x00" * 6,
+        reason: AccessResponseType = AccessResponseType.USER_REJECT,
+    ) -> BroadcastFrame:
+        """拒绝接入请求。
+
+        Args:
+            peer_address: 请求方 MAC 地址。
+            reason: 拒绝原因。
+
+        Returns:
+            包含拒绝响应的帧。
+        """
+        response_entry = AccessResponseEntry(
+            peer_addr=peer_address,
+            response_type=reason,
+            peer_addr_type=0,
+            repeat_indication=0,
+        )
+        response_info = AccessResponseInfo(
+            entries=[response_entry],
+        )
+        return BroadcastFrame(
+            structure_indication=0x11,
+            local_addr_type=0,
+            peer_addr_type=0,
+            local_addr=self.local_address,
+            irk_id=0,
+            peer_addr=b"\x00" * 6,
+            data_items=[
+                (BroadcastDataType.ACCESS_RESPONSE, response_info.pack()),
+            ],
+        )
+
+
+# ── 接入发起方管理 ──
+
+
+@dataclass
+class InitiatorAccessManager:
+    """接入发起方管理器 (标准 7.1.3 阶段 b/d)。
+
+    职责:
+    - 解析收到的扩展广播帧
+    - 构造接入请求
+    - 处理接入响应
+    - 完成 GT 角色协商
+    """
+    config: AccessConfig = field(default_factory=AccessConfig)
+    link_manager: LinkManager = field(default_factory=LinkManager)
+    local_address: bytes = b"\x00" * 6
+    # 解析出的广播方信息
+    _adv_frame: BroadcastFrame | None = None
+    _discovery_config: DiscoveryAccessResourceConfig | None = None
+    _phase: AccessPhase = AccessPhase.IDLE
+    _retry_count: int = 0
+
+    def process_ext_adv(self, frame: BroadcastFrame) -> bool:
+        """处理收到的可接入扩展广播帧 (阶段 b 准备)。
+
+        解析发现接入资源配置, 提取请求窗口参数。
+
+        Args:
+            frame: 收到的广播帧。
+
+        Returns:
+            True 表示帧中包含有效的接入资源配置。
+        """
+        self._adv_frame = frame
+        for data_type, data_bytes in frame.data_items:
+            if data_type == BroadcastDataType.DISCOVERY_ACCESS_RESOURCE:
+                self._discovery_config = DiscoveryAccessResourceConfig.unpack(
+                    data_bytes
+                )
+                self._phase = AccessPhase.REQ_WINDOW
+                # 通知 link_manager
+                self.link_manager.process_event(Event(
+                    EventType.BROADCAST_RECEIVED, data=frame,
+                ))
+                return True
+        return False
+
+    def build_access_request(self) -> bytes:
+        """构造接入请求帧数据 (阶段 b)。
+
+        根据本地角色偏好构建 AccessRequestInfo。
+
+        Returns:
+            接入请求帧的序列化数据。
+        """
+        gt_flag = self.config.gt_preference
+        if not self.config.gt_negotiable:
+            gt_flag |= 0x02
+
+        req = AccessRequestInfo(
+            structure_indication=0xFF,  # 所有字段均存在
+            gt_role=gt_flag,
+            frame_support=0x0F,          # 支持 FT1-4
+            bandwidth_support=0x07,      # 支持 1M/2M/4M
+            mcs_support=0x1FFF,          # 支持所有 MCS
+            pilot_support=0x0F,          # 四种导频密度
+            slot_support=0x1F,           # 五种调度时隙
+            switch_delay=0x00,           # 125μs
+            crc_support=0x03,            # CRC24 + CRC32
+        )
+
+        # 驱动状态机
+        self.link_manager.process_event(Event(
+            EventType.SEND_ACCESS_REQUEST,
+            data={
+                "peer_address": self._adv_frame.local_addr
+                if self._adv_frame else b"",
+                "role": Role.G_NODE if self.config.gt_preference == 1
+                else Role.T_NODE,
+            },
+        ))
+
+        return req.pack()
+
+    def handle_access_response(
+        self,
+        response_data: bytes,
+    ) -> tuple[Role | None, dict[str, Any]]:
+        """处理接入响应 (阶段 d)。
+
+        Args:
+            response_data: 接入响应帧完整数据 (BroadcastFrame.pack() 格式)。
+
+        Returns:
+            (最终角色, 链路参数字典)。角色为 None 表示接入被拒绝。
+        """
+        frame = BroadcastFrame.unpack(response_data)
+        link_params: dict[str, Any] = {}
+        response_accepted = False
+        final_role: Role | None = None
+
+        for data_type, data_bytes in frame.data_items:
+            if data_type == BroadcastDataType.ACCESS_RESPONSE:
+                resp = AccessResponseInfo.unpack(data_bytes)
+                if resp.entries and resp.entries[0].response_type == \
+                        AccessResponseType.ACCEPT:
+                    response_accepted = True
+                else:
+                    response_accepted = False
+
+            elif data_type == BroadcastDataType.ACCESS_BASIC:
+                access_info = AccessBasicInfo.unpack(data_bytes)
+                link_params["smf_baseline_slot"] = access_info.smf_baseline_slot
+                link_params["smf_offset"] = access_info.smf_offset
+                link_params["smf_link_id"] = access_info.smf_link_id
+                link_params["access_link_id"] = access_info.access_link_id
+                link_params["supervision_timeout"] = (
+                    access_info.access_timeout * 10
+                )
+                link_params["crc_type"] = access_info.access_crc_type
+                link_params["hop_map"] = access_info.hop_map
+
+            elif data_type == BroadcastDataType.TRANSPORT_INDICATION:
+                ti = TransportIndicationInfo.unpack(data_bytes)
+                link_params["event_group_period"] = ti.event_group_period
+                link_params["event_period"] = ti.event_period
+
+        if response_accepted:
+            # 确定最终角色: 响应中有 AccessBasicInfo 说明对端是 G 节点
+            if BroadcastDataType.ACCESS_BASIC in \
+                    [dt for dt, _ in frame.data_items]:
+                final_role = Role.T_NODE  # 对端 G, 本端 T
+            else:
+                final_role = Role.G_NODE if self.config.gt_preference == 1 \
+                    else Role.T_NODE
+
+            self.link_manager.process_event(Event(
+                EventType.ACCESS_RESPONSE_RECEIVED,
+                data={"accepted": True, "role": final_role},
+            ))
+            self._phase = AccessPhase.COMPLETED
+        else:
+            self._retry_count += 1
+            self.link_manager.process_event(Event(
+                EventType.ACCESS_RESPONSE_RECEIVED,
+                data={"accepted": False},
+            ))
+            self._phase = AccessPhase.IDLE
+
+        return final_role, link_params
+
+    @property
+    def can_retry(self) -> bool:
+        """是否还能重试接入。"""
+        return self._retry_count < self.config.max_retries
+
+    @property
+    def discovery_config(self) -> DiscoveryAccessResourceConfig | None:
+        return self._discovery_config
+
+    @property
+    def phase(self) -> AccessPhase:
+        return self._phase
+
+
+# ── 端到端接入流程 (仿真/测试用) ──
+
+
+def run_access_procedure(
+    broadcaster_addr: bytes = b"\x01\x02\x03\x04\x05\x06",
+    initiator_addr: bytes = b"\x0A\x0B\x0C\x0D\x0E\x0F",
+    broadcaster_config: AccessConfig | None = None,
+    initiator_config: AccessConfig | None = None,
+    broadcaster_use_smf: bool = True,
+) -> tuple[BroadcasterAccessManager, InitiatorAccessManager]:
+    """执行完整的端到端接入流程 (标准 7.1.3 阶段 a-e)。
+
+    用于仿真和集成测试, 不涉及实际射频传输。
+
+    Args:
+        broadcaster_addr: 广播方 MAC 地址。
+        initiator_addr: 发起方 MAC 地址。
+        broadcaster_config: 广播方配置。
+        initiator_config: 发起方配置。
+        broadcaster_use_smf: 是否使用系统管理帧模式。
+
+    Returns:
+        (广播方管理器, 发起方管理器) 二元组,
+        两者的 link_manager 在成功时均处于 CONNECTED 状态。
+    """
+    if broadcaster_config is None:
+        broadcaster_config = AccessConfig()
+    if initiator_config is None:
+        initiator_config = AccessConfig()
+
+    # 初始化广播方: IDLE → BROADCASTING
+    b_mgr = BroadcasterAccessManager(
+        config=broadcaster_config,
+        local_address=broadcaster_addr,
+        use_smf=broadcaster_use_smf,
+    )
+    b_mgr.link_manager.local_address = broadcaster_addr
+    b_mgr.link_manager.process_event(Event(EventType.START_BROADCAST))
+
+    # 初始化发起方: IDLE → SCANNING
+    i_mgr = InitiatorAccessManager(
+        config=initiator_config,
+        local_address=initiator_addr,
+    )
+    i_mgr.link_manager.local_address = initiator_addr
+    i_mgr.link_manager.process_event(Event(EventType.START_SCAN))
+
+    # 阶段 a: 广播方构建扩展广播帧
+    ext_adv_frame = b_mgr.build_ext_adv_frame()
+
+    # 阶段 b: 发起方收到广播帧, 解析并发送接入请求
+    i_mgr.process_ext_adv(ext_adv_frame)
+    request_data = i_mgr.build_access_request()
+
+    # 阶段 c: 广播方收到请求, 生成响应
+    response_frame, _accepted = b_mgr.handle_access_request(
+        request_data, peer_address=initiator_addr,
+    )
+
+    # 阶段 d/e: 发起方收到响应
+    if response_frame is not None:
+        response_bytes = response_frame.pack()
+        i_mgr.handle_access_response(response_bytes)
+
+    return b_mgr, i_mgr
