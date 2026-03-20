@@ -9,6 +9,8 @@ from nearlink_sdr.phy.sync_sequence import (
     sync_signal_2,
     sync_signal_3,
     sync_signal_4,
+    sync_signal_5,
+    sync_signal_6,
 )
 
 
@@ -148,3 +150,81 @@ class TestSyncValidation:
             assert sync_signal_1_validate(seq) is False
         else:
             assert sync_signal_1_validate(seq) is True
+
+
+# -----------------------------------------------------------------------
+# 6.2.3.5 同步信号 5
+# -----------------------------------------------------------------------
+
+
+class TestSyncSignal5:
+    """同步信号5测试 (GFSK, 安全随机序列)"""
+
+    SEED = b"\xAA" * 16
+
+    @pytest.mark.parametrize("n_sync", [32, 64, 128])
+    def test_length(self, n_sync):
+        seq = sync_signal_5(self.SEED, slot_number=100, n_sync=n_sync)
+        assert len(seq) == n_sync
+
+    def test_binary_values(self):
+        seq = sync_signal_5(self.SEED, slot_number=0, n_sync=64)
+        assert set(seq).issubset({0, 1})
+
+    def test_deterministic(self):
+        s1 = sync_signal_5(self.SEED, 42, n_sync=32)
+        s2 = sync_signal_5(self.SEED, 42, n_sync=32)
+        assert np.array_equal(s1, s2)
+
+    def test_different_slots(self):
+        s1 = sync_signal_5(self.SEED, 0, n_sync=32)
+        s2 = sync_signal_5(self.SEED, 1, n_sync=32)
+        assert not np.array_equal(s1, s2)
+
+    def test_tx_rx_differ(self):
+        tx = sync_signal_5(self.SEED, 10, n_sync=64, is_tx=True)
+        rx = sync_signal_5(self.SEED, 10, n_sync=64, is_tx=False)
+        assert not np.array_equal(tx, rx)
+
+    def test_different_seeds(self):
+        seed2 = b"\xBB" * 16
+        s1 = sync_signal_5(self.SEED, 0, n_sync=32)
+        s2 = sync_signal_5(seed2, 0, n_sync=32)
+        assert not np.array_equal(s1, s2)
+
+
+# -----------------------------------------------------------------------
+# 6.2.3.6 同步信号 6
+# -----------------------------------------------------------------------
+
+
+class TestSyncSignal6:
+    """同步信号6测试 (无相位旋转BPSK, 安全随机序列)"""
+
+    SEED = b"\xCC" * 16
+
+    @pytest.mark.parametrize("n_sync", [32, 64, 128])
+    def test_length(self, n_sync):
+        seq = sync_signal_6(self.SEED, slot_number=50, n_sync=n_sync)
+        assert len(seq) == n_sync
+
+    def test_binary_values(self):
+        seq = sync_signal_6(self.SEED, slot_number=0, n_sync=128)
+        assert set(seq).issubset({0, 1})
+
+    def test_deterministic(self):
+        s1 = sync_signal_6(self.SEED, 99, n_sync=64)
+        s2 = sync_signal_6(self.SEED, 99, n_sync=64)
+        assert np.array_equal(s1, s2)
+
+    def test_tx_rx_differ(self):
+        tx = sync_signal_6(self.SEED, 5, n_sync=32, is_tx=True)
+        rx = sync_signal_6(self.SEED, 5, n_sync=32, is_tx=False)
+        assert not np.array_equal(tx, rx)
+
+    def test_same_as_signal5(self):
+        """同步信号5和6使用相同的生成逻辑"""
+        seed = b"\xDD" * 16
+        s5 = sync_signal_5(seed, 77, n_sync=64, is_tx=True)
+        s6 = sync_signal_6(seed, 77, n_sync=64, is_tx=True)
+        assert np.array_equal(s5, s6)

@@ -33,6 +33,16 @@
   - 组播密钥管理 (GK/GSK/GEnK/GInK)
   - 隐私管理 (可解析随机标识生成/验证)
 - `tests/test_crypto.py`: 54 个加密模块测试
+- `phy/sync_sequence.py`: 新增同步信号 5/6 (标准 6.2.3.5/6.2.3.6)
+  - 安全随机函数序列生成 (6.10.7, KDF-AES-CMAC 256 位)
+  - sync_signal_5: GFSK 安全随机同步序列, 收发分离
+  - sync_signal_6: 无相位旋转 BPSK 安全随机同步序列
+- `phy/measurement.py`: 新增位置信息测量信号模块 (标准 6.2.4)
+  - measurement_signal_1: 四种安全类型单音测量信号 (6.2.4.1)
+  - measurement_signal_2: 多音测量信号波形生成 (6.2.4.2)
+  - antenna_pair_order_sequential / antenna_pair_order_random: 天线对排序 (6.2.4.3)
+- `tests/test_sync_sequence.py`: 11 个同步信号 5/6 测试
+- `tests/test_measurement.py`: 36 个测量信号测试
 
 ## [0.24.0] - 2025-07-15
 

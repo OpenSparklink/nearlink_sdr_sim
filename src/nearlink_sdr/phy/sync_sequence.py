@@ -269,3 +269,128 @@ def sync_signal_1_validate(sync_32: np.ndarray) -> bool:
 
     # 条件3: 不能和广播帧相同
     return not np.array_equal(sync_32, SYNC1_BROADCAST)
+
+
+# ---------------------------------------------------------------------------
+# 6.10.7 安全随机函数
+# ---------------------------------------------------------------------------
+
+
+def _secure_random_sequence(
+    seed: bytes,
+    time_param: int,
+    kdf_type: int = 0,
+) -> np.ndarray:
+    """安全随机函数 (6.10.7), 生成256比特安全序列。
+
+    参数:
+        seed: 128比特安全随机种子 (16字节)
+        time_param: 32比特时间参数 (如调度时隙号×2)
+        kdf_type: 0=AES-CMAC, 1=HMAC-SM3
+
+    返回:
+        256比特数组
+    """
+    from nearlink_sdr.mac.crypto import KdfType, kdf
+
+    kt = KdfType(kdf_type)
+    m = time_param.to_bytes(4, "big")
+    mac1 = kdf(kt, seed, m)  # 128 bits
+
+    if kt == KdfType.AES_CMAC:
+        # AES-CMAC 输出128位, 需要拼接两次
+        # 第二次使用 time_param + 1 区分
+        m2 = (time_param + 1).to_bytes(4, "big")
+        mac2 = kdf(kt, seed, m2)
+        full = mac1 + mac2  # 256 bits
+    else:
+        # HMAC-SM3 可直接输出256位, 但 kdf() 已截取低128位
+        # 同样拼接两次
+        m2 = (time_param + 1).to_bytes(4, "big")
+        mac2 = kdf(kt, seed, m2)
+        full = mac1 + mac2
+
+    bits = np.zeros(256, dtype=int)
+    for i in range(256):
+        byte_idx = i // 8
+        bit_idx = i % 8
+        bits[i] = (full[byte_idx] >> (7 - bit_idx)) & 1
+    return bits
+
+
+def _extract_sync_from_security_seq(
+    security_seq: np.ndarray,
+    n_sync: int,
+    is_tx: bool = True,
+) -> np.ndarray:
+    """从安全序列中提取随机同步序列。
+
+    先发节点: 偶数索引比特的前 n_sync 个
+    后发节点: 奇数索引比特的前 n_sync 个
+
+    参数:
+        security_seq: 256比特安全序列
+        n_sync: 同步序列长度 (32, 64, 128)
+        is_tx: True=先发节点, False=后发节点
+    """
+    if is_tx:
+        return security_seq[0::2][:n_sync].copy()
+    return security_seq[1::2][:n_sync].copy()
+
+
+# ---------------------------------------------------------------------------
+# 6.2.3.5 同步信号 5
+# ---------------------------------------------------------------------------
+
+
+def sync_signal_5(
+    seed: bytes,
+    slot_number: int,
+    n_sync: int = 32,
+    is_tx: bool = True,
+    kdf_type: int = 0,
+) -> np.ndarray:
+    """生成同步信号5的随机同步序列 (GFSK调制)。
+
+    标准6.2.3.5: 使用安全随机函数生成256比特安全序列,
+    先发/后发节点分别取偶数/奇数索引比特。
+
+    参数:
+        seed: 安全随机种子 (16字节)
+        slot_number: 起始调度时隙号
+        n_sync: 同步序列长度 [32, 64, 128]
+        is_tx: True=先发节点, False=后发节点
+        kdf_type: 0=AES-CMAC, 1=HMAC-SM3
+    """
+    time_param = slot_number * 2
+    security_seq = _secure_random_sequence(seed, time_param, kdf_type)
+    return _extract_sync_from_security_seq(security_seq, n_sync, is_tx)
+
+
+# ---------------------------------------------------------------------------
+# 6.2.3.6 同步信号 6
+# ---------------------------------------------------------------------------
+
+
+def sync_signal_6(
+    seed: bytes,
+    slot_number: int,
+    n_sync: int = 32,
+    is_tx: bool = True,
+    kdf_type: int = 0,
+) -> np.ndarray:
+    """生成同步信号6的随机同步序列 (无相位旋转BPSK调制)。
+
+    标准6.2.3.6: 与同步信号5生成方式相同,
+    区别仅在调制方式 (BPSK vs GFSK)。
+
+    参数:
+        seed: 安全随机种子 (16字节)
+        slot_number: 起始调度时隙号
+        n_sync: 同步序列长度 [32, 64, 128]
+        is_tx: True=先发节点, False=后发节点
+        kdf_type: 0=AES-CMAC, 1=HMAC-SM3
+    """
+    time_param = slot_number * 2
+    security_seq = _secure_random_sequence(seed, time_param, kdf_type)
+    return _extract_sync_from_security_seq(security_seq, n_sync, is_tx)
