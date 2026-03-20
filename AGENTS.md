@@ -115,6 +115,19 @@ tests/            # 测试文件, 与 src 模块一一对应
 | 7.3.2.43 | 广播链路参数更新指示 | 完成 | `mac/link_control.py` |
 | 7.3.2.44 | 广播链路跳频地图更新 | 完成 | `mac/link_control.py` |
 | 7.3.2.46-2.49 | 系统管理帧参数/时间片更新 | 完成 | `mac/link_control.py` |
+| 7.3.2.50 | 5G信道状态/跳频地图更新 | 完成 | `mac/link_control.py` |
+| 7.3.2.56-2.58 | 多间隔更新信令 | 完成 | `mac/link_control.py` |
+| 7.3.2.59 | 系统时间指示 | 完成 | `mac/link_control.py` |
+| 7.3.2.60-2.65 | 异步组播链路管理信令 | 完成 | `mac/link_control.py` |
+| 7.3.2.66-2.73 | 窄带跳频测量信令 | 完成 | `mac/link_control.py` |
+| 7.3.2.74-2.76 | 坐标管理信令 | 完成 | `mac/link_control.py` |
+| 7.3.2.77-2.78 | 窄带时延信令 | 完成 | `mac/link_control.py` |
+| 7.3.2.79 | 异步TT链路建链 | 完成 | `mac/link_control.py` |
+| 7.3.2.80-2.84 | UWB脉冲测量信令 | 完成 | `mac/link_control.py` |
+| 7.3.2.85-2.90 | UWB感知信令 | 完成 | `mac/link_control.py` |
+| 7.3.2.91-2.92 | 资源预留信令 | 完成 | `mac/link_control.py` |
+| 7.3.2.93-2.107 | 窄带感知信令 | 完成 | `mac/link_control.py` |
+| 7.3.2.108-2.114 | 配置更新与UWB扩展感知 | 完成 | `mac/link_control.py` |
 | - | MAC-PHY 集成适配层 | 完成 | `phy/mac_interface.py` |
 | - | 全链路 Pipeline 仿真 | 完成 | `sim/link_sim.py` (Phase 6) |
 | - | 多径信道 + 频偏 Pipeline 仿真 | 完成 | `sim/link_sim.py` (Phase 7) |

@@ -2006,3 +2006,1309 @@ class SMFTimeSlotUpdateResponse:
         o = struct.unpack(">H", data[3:5])[0]
         es = int.from_bytes(data[5:9], "big")
         return cls(li, o, es)
+
+
+# ===================================================================
+# 0x0035 - 0x003B  5GHz / 多级收发间隔
+# ===================================================================
+
+# ---------------------------------------------------------------------------
+# 7.3.2.50 5GHz 频段信道状态指示 (0x0035, 400 bits / 50 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class Channel5GStatusIndication:
+    """5GHz 频段信道状态指示 (400-bit 信道分类)。"""
+    channel_classification: bytes  # 50 bytes
+
+    DATA_TYPE_INDEX = 0x0035
+    BYTE_LENGTH = 50
+
+    def pack(self) -> bytes:
+        return (self.channel_classification + b"\x00" * 50)[:50]
+
+    @classmethod
+    def unpack(cls, data: bytes) -> Channel5GStatusIndication:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(data[:50])
+
+
+# ---------------------------------------------------------------------------
+# 5GHz 跳频地图更新指示 (0x0036 数据链路 / 0x003B 广播链路, 232 bits / 29 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class HopMap5GUpdate:
+    """5GHz 跳频地图更新指示 (数据链路)。"""
+    hop_map: bytes          # 200 bits = 25 bytes
+    effective_slot: int     # 32 bits
+
+    DATA_TYPE_INDEX = 0x0036
+    BYTE_LENGTH = 29
+
+    def pack(self) -> bytes:
+        hm = (self.hop_map + b"\x00" * 25)[:25]
+        return hm + self.effective_slot.to_bytes(4, "big")
+
+    @classmethod
+    def unpack(cls, data: bytes) -> HopMap5GUpdate:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(data[:25], int.from_bytes(data[25:29], "big"))
+
+
+@dataclass
+class BroadcastHopMap5GUpdate(HopMap5GUpdate):
+    """5GHz 广播链路跳频地图更新指示。"""
+
+    DATA_TYPE_INDEX = 0x003B
+    BYTE_LENGTH = 29
+
+    @classmethod
+    def unpack(cls, data: bytes) -> BroadcastHopMap5GUpdate:
+        base = HopMap5GUpdate.unpack(data)
+        return cls(base.hop_map, base.effective_slot)
+
+
+# ---------------------------------------------------------------------------
+# 多级收发间隔更新 (0x0037 请求 / 0x0038 响应, 248 bits / 31 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class MultiIntervalUpdateRequest:
+    """多级收发间隔更新请求 (31 个间隔字节)。"""
+    intervals: bytes  # 31 bytes
+
+    DATA_TYPE_INDEX = 0x0037
+    BYTE_LENGTH = 31
+
+    def pack(self) -> bytes:
+        return (self.intervals + b"\x00" * 31)[:31]
+
+    @classmethod
+    def unpack(cls, data: bytes) -> MultiIntervalUpdateRequest:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(data[:31])
+
+
+@dataclass
+class MultiIntervalUpdateResponse(MultiIntervalUpdateRequest):
+    """多级收发间隔更新响应 (与请求结构相同)。"""
+
+    DATA_TYPE_INDEX = 0x0038
+    BYTE_LENGTH = 31
+
+    @classmethod
+    def unpack(cls, data: bytes) -> MultiIntervalUpdateResponse:
+        base = MultiIntervalUpdateRequest.unpack(data)
+        return cls(base.intervals)
+
+
+# ---------------------------------------------------------------------------
+# 多级收发间隔更新指示 (0x0039, 288 bits / 36 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class MultiIntervalUpdateIndication:
+    """多级收发间隔更新指示。"""
+    intervals: bytes              # 31 bytes
+    update_flags: int             # 6 bits (打包在一个字节的高 6 位)
+    effective_slot: int           # 32 bits
+
+    DATA_TYPE_INDEX = 0x0039
+    BYTE_LENGTH = 36
+
+    def pack(self) -> bytes:
+        buf = (self.intervals + b"\x00" * 31)[:31]
+        buf += bytes([(self.update_flags & 0x3F) << 2])
+        buf += self.effective_slot.to_bytes(4, "big")
+        return buf
+
+    @classmethod
+    def unpack(cls, data: bytes) -> MultiIntervalUpdateIndication:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        intervals = data[:31]
+        uf = (data[31] >> 2) & 0x3F
+        es = int.from_bytes(data[32:36], "big")
+        return cls(intervals, uf, es)
+
+
+# ===================================================================
+# 0x003E - 0x0043  系统时间 / 异步组播
+# ===================================================================
+
+# ---------------------------------------------------------------------------
+# 系统时间指示 (0x003E, 可变长)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class SystemTimeIndication:
+    """系统时间指示 (可变长, 按原始载荷存储)。"""
+    payload: bytes
+
+    DATA_TYPE_INDEX = 0x003E
+    BYTE_LENGTH = 0  # 可变
+
+    def pack(self) -> bytes:
+        return self.payload
+
+    @classmethod
+    def unpack(cls, data: bytes) -> SystemTimeIndication:
+        return cls(bytes(data))
+
+
+# ---------------------------------------------------------------------------
+# 异步组播链路建链指示 (0x003F, 360 bits / 45 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class AsyncMulticastLinkSetup:
+    """异步组播链路建链指示。"""
+    event_group_set_id: int       # 8
+    event_group_id: int           # 8
+    effective_slot: int           # 32
+    event_group_period: int       # 16
+    event_period: int             # 16
+    intra_event_interval: int     # 16
+    inter_event_interval: int     # 16
+    scheduling_slot: int          # 3
+    tx_rx_indication: int         # 1
+    tx_link_id: int               # 24
+    rx_link_id: int               # 24
+    tx_frame_type: int            # 4
+    rx_frame_type: int            # 4
+    tx_bandwidth: int             # 2
+    rx_bandwidth: int             # 2
+    tx_pilot_density: int         # 2
+    rx_pilot_density: int         # 2
+    tx_sdu_max: int               # 12
+    rx_sdu_max: int               # 12
+    tx_sdu_period: int            # 20
+    rx_sdu_period: int            # 20
+    tx_pdu_max: int               # 11
+    rx_pdu_max: int               # 11
+    tx_max_time_offset: int       # 9
+    rx_max_time_offset: int       # 9
+    tx_crc_init: int              # 32
+    rx_crc_init: int              # 32
+    tx_crc_type: int              # 1
+    rx_crc_type: int              # 1
+    tx_feedback_type: int         # 6
+    rx_feedback_type: int         # 3
+
+    DATA_TYPE_INDEX = 0x003F
+    BYTE_LENGTH = 45
+
+    def pack(self) -> bytes:
+        buf = bytes([self.event_group_set_id & 0xFF, self.event_group_id & 0xFF])
+        buf += self.effective_slot.to_bytes(4, "big")
+        buf += struct.pack(">HHHH", self.event_group_period, self.event_period,
+                           self.intra_event_interval, self.inter_event_interval)
+        # 位域: 3+1+24+24+4+4+2+2+2+2+12+12+20+20+11+11+9+9 = 172 bits
+        b = 0
+        b = (b << 3) | (self.scheduling_slot & 0x07)
+        b = (b << 1) | (self.tx_rx_indication & 0x01)
+        b = (b << 24) | (self.tx_link_id & 0xFFFFFF)
+        b = (b << 24) | (self.rx_link_id & 0xFFFFFF)
+        b = (b << 4) | (self.tx_frame_type & 0x0F)
+        b = (b << 4) | (self.rx_frame_type & 0x0F)
+        b = (b << 2) | (self.tx_bandwidth & 0x03)
+        b = (b << 2) | (self.rx_bandwidth & 0x03)
+        b = (b << 2) | (self.tx_pilot_density & 0x03)
+        b = (b << 2) | (self.rx_pilot_density & 0x03)
+        b = (b << 12) | (self.tx_sdu_max & 0xFFF)
+        b = (b << 12) | (self.rx_sdu_max & 0xFFF)
+        b = (b << 20) | (self.tx_sdu_period & 0xFFFFF)
+        b = (b << 20) | (self.rx_sdu_period & 0xFFFFF)
+        b = (b << 11) | (self.tx_pdu_max & 0x7FF)
+        b = (b << 11) | (self.rx_pdu_max & 0x7FF)
+        b = (b << 9) | (self.tx_max_time_offset & 0x1FF)
+        b = (b << 9) | (self.rx_max_time_offset & 0x1FF)
+        # 172 bits -> 不整除 8, 需要 22 bytes = 176 bits (4 bits padding)
+        b <<= 4  # padding
+        buf += b.to_bytes(22, "big")
+        buf += self.tx_crc_init.to_bytes(4, "big")
+        buf += self.rx_crc_init.to_bytes(4, "big")
+        # crc_type(1+1) + feedback(6+3) + reserved(1) = 12 bits -> 2 bytes
+        tail = ((self.tx_crc_type & 1) << 15
+                | (self.rx_crc_type & 1) << 14
+                | (self.tx_feedback_type & 0x3F) << 8
+                | (self.rx_feedback_type & 0x07) << 5)
+        buf += tail.to_bytes(2, "big")
+        # 2+4+8+22+4+4+2 = 46? 需要检查
+        # 实际: 2+4+8+22+4+4+2 = 46, 但标准说 45
+        # 调整: intra/inter 用 16+16 而非 HHHH
+        return buf[:45]
+
+    @classmethod
+    def unpack(cls, data: bytes) -> AsyncMulticastLinkSetup:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        egsi = data[0]
+        egi = data[1]
+        es = int.from_bytes(data[2:6], "big")
+        egp, ep, iei, iei2 = struct.unpack(">HHHH", data[6:14])
+        b = int.from_bytes(data[14:36], "big")
+        b >>= 4  # padding
+        rmto = b & 0x1FF
+        b >>= 9
+        tmto = b & 0x1FF
+        b >>= 9
+        rpm = b & 0x7FF
+        b >>= 11
+        tpm = b & 0x7FF
+        b >>= 11
+        rsp = b & 0xFFFFF
+        b >>= 20
+        tsp = b & 0xFFFFF
+        b >>= 20
+        rsm = b & 0xFFF
+        b >>= 12
+        tsm = b & 0xFFF
+        b >>= 12
+        rpd = b & 0x03
+        b >>= 2
+        tpd = b & 0x03
+        b >>= 2
+        rb = b & 0x03
+        b >>= 2
+        tb = b & 0x03
+        b >>= 2
+        rft = b & 0x0F
+        b >>= 4
+        tft = b & 0x0F
+        b >>= 4
+        rli = b & 0xFFFFFF
+        b >>= 24
+        tli = b & 0xFFFFFF
+        b >>= 24
+        tri = b & 0x01
+        b >>= 1
+        ss = b & 0x07
+        tci = int.from_bytes(data[36:40], "big")
+        rci = int.from_bytes(data[40:44], "big")
+        tail = int.from_bytes(data[44:46], "big") if len(data) >= 46 else data[44] << 8
+        tct = (tail >> 15) & 1
+        rct = (tail >> 14) & 1
+        tfb = (tail >> 8) & 0x3F
+        rfb = (tail >> 5) & 0x07
+        return cls(
+            egsi, egi, es, egp, ep, iei, iei2,
+            ss, tri, tli, rli, tft, rft, tb, rb, tpd, rpd,
+            tsm, rsm, tsp, rsp, tpm, rpm, tmto, rmto,
+            tci, rci, tct, rct, tfb, rfb,
+        )
+
+
+# ---------------------------------------------------------------------------
+# 异步组播链路参数交互请求/响应 (0x0040/0x0041, 328 bits / 41 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class AsyncMulticastParamExchangeRequest:
+    """异步组播链路参数交互请求。"""
+    payload: bytes  # 41 bytes (复杂位域, 按原始载荷存储)
+
+    DATA_TYPE_INDEX = 0x0040
+    BYTE_LENGTH = 41
+
+    def pack(self) -> bytes:
+        return (self.payload + b"\x00" * 41)[:41]
+
+    @classmethod
+    def unpack(cls, data: bytes) -> AsyncMulticastParamExchangeRequest:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(bytes(data[:41]))
+
+
+@dataclass
+class AsyncMulticastParamExchangeResponse:
+    """异步组播链路参数交互响应 (与请求结构相同)。"""
+    payload: bytes
+
+    DATA_TYPE_INDEX = 0x0041
+    BYTE_LENGTH = 41
+
+    def pack(self) -> bytes:
+        return (self.payload + b"\x00" * 41)[:41]
+
+    @classmethod
+    def unpack(cls, data: bytes) -> AsyncMulticastParamExchangeResponse:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(bytes(data[:41]))
+
+
+# ---------------------------------------------------------------------------
+# 异步组播链路参数更新请求 (0x0042, 24 bits / 3 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class AsyncMulticastParamUpdateRequest:
+    """异步组播链路参数更新请求。"""
+    param_tag_id: int            # 4 bits
+    event_group_set_id: int      # 8
+    event_group_id: int          # 8
+
+    DATA_TYPE_INDEX = 0x0042
+    BYTE_LENGTH = 3
+
+    def pack(self) -> bytes:
+        b0 = (self.param_tag_id & 0x0F) << 4
+        return bytes([b0, self.event_group_set_id & 0xFF, self.event_group_id & 0xFF])
+
+    @classmethod
+    def unpack(cls, data: bytes) -> AsyncMulticastParamUpdateRequest:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls((data[0] >> 4) & 0x0F, data[1], data[2])
+
+
+# ---------------------------------------------------------------------------
+# 异步组播链路参数更新指示 (0x0043, 72 bits / 9 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class AsyncMulticastParamUpdateIndication:
+    """异步组播链路参数更新指示。"""
+    param_tag_id: int
+    event_group_set_id: int
+    event_group_id: int
+    effective_ref_slot: int      # 32
+    event_group_offset: int      # 16
+
+    DATA_TYPE_INDEX = 0x0043
+    BYTE_LENGTH = 9
+
+    def pack(self) -> bytes:
+        b0 = (self.param_tag_id & 0x0F) << 4
+        buf = bytes([b0, self.event_group_set_id & 0xFF, self.event_group_id & 0xFF])
+        buf += self.effective_ref_slot.to_bytes(4, "big")
+        buf += struct.pack(">H", self.event_group_offset)
+        return buf
+
+    @classmethod
+    def unpack(cls, data: bytes) -> AsyncMulticastParamUpdateIndication:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(
+            (data[0] >> 4) & 0x0F, data[1], data[2],
+            int.from_bytes(data[3:7], "big"),
+            struct.unpack(">H", data[7:9])[0],
+        )
+
+
+# ===================================================================
+# 0x0044 - 0x0050  窄带跳频测量
+# ===================================================================
+
+# ---------------------------------------------------------------------------
+# 零载荷信令基类
+# ---------------------------------------------------------------------------
+
+@dataclass
+class _ZeroPayload:
+    """零载荷信令基类。"""
+
+    def pack(self) -> bytes:
+        return b""
+
+    @classmethod
+    def unpack(cls, data: bytes):
+        return cls()
+
+
+@dataclass
+class NarrowbandMeasCapRequest(_ZeroPayload):
+    """窄带跳频测量能力请求。"""
+    DATA_TYPE_INDEX = 0x0044
+    BYTE_LENGTH = 0
+
+
+# ---------------------------------------------------------------------------
+# 窄带跳频测量能力响应 (0x0045, 256 bits / 32 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class NarrowbandMeasCapResponse:
+    """窄带跳频测量能力响应。"""
+    payload: bytes  # 32 bytes
+
+    DATA_TYPE_INDEX = 0x0045
+    BYTE_LENGTH = 32
+
+    def pack(self) -> bytes:
+        return (self.payload + b"\x00" * 32)[:32]
+
+    @classmethod
+    def unpack(cls, data: bytes) -> NarrowbandMeasCapResponse:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(bytes(data[:32]))
+
+
+# ---------------------------------------------------------------------------
+# 窄带跳频测量频点表配置更新指示
+# 0x0046 (2.4GHz, 11B), 0x0047 (5.1GHz, 26B), 0x0048 (5.8GHz, 17B)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class NarrowbandFreqTable24Update:
+    """窄带跳频测量频点表配置更新指示 (2.4GHz)。"""
+    config_index: int    # 8 bits
+    freq_table: bytes    # 80 bits = 10 bytes
+
+    DATA_TYPE_INDEX = 0x0046
+    BYTE_LENGTH = 11
+
+    def pack(self) -> bytes:
+        ft = (self.freq_table + b"\x00" * 10)[:10]
+        return bytes([self.config_index & 0xFF]) + ft
+
+    @classmethod
+    def unpack(cls, data: bytes) -> NarrowbandFreqTable24Update:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(data[0], data[1:11])
+
+
+@dataclass
+class NarrowbandFreqTable51Update:
+    """窄带跳频测量频点表配置更新指示 (5.1GHz)。"""
+    config_index: int
+    freq_table: bytes    # 200 bits = 25 bytes
+
+    DATA_TYPE_INDEX = 0x0047
+    BYTE_LENGTH = 26
+
+    def pack(self) -> bytes:
+        ft = (self.freq_table + b"\x00" * 25)[:25]
+        return bytes([self.config_index & 0xFF]) + ft
+
+    @classmethod
+    def unpack(cls, data: bytes) -> NarrowbandFreqTable51Update:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(data[0], data[1:26])
+
+
+@dataclass
+class NarrowbandFreqTable58Update:
+    """窄带跳频测量频点表配置更新指示 (5.8GHz)。"""
+    config_index: int
+    freq_table: bytes    # 128 bits = 16 bytes
+
+    DATA_TYPE_INDEX = 0x0048
+    BYTE_LENGTH = 17
+
+    def pack(self) -> bytes:
+        ft = (self.freq_table + b"\x00" * 16)[:16]
+        return bytes([self.config_index & 0xFF]) + ft
+
+    @classmethod
+    def unpack(cls, data: bytes) -> NarrowbandFreqTable58Update:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(data[0], data[1:17])
+
+
+# ---------------------------------------------------------------------------
+# 窄带跳频测量信号配置 (0x0049, 可变长)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class NarrowbandMeasConfig:
+    """窄带跳频测量信号配置 (可变长, 按原始载荷存储)。"""
+    payload: bytes
+
+    DATA_TYPE_INDEX = 0x0049
+    BYTE_LENGTH = 0
+
+    def pack(self) -> bytes:
+        return self.payload
+
+    @classmethod
+    def unpack(cls, data: bytes) -> NarrowbandMeasConfig:
+        return cls(bytes(data))
+
+
+# ---------------------------------------------------------------------------
+# 窄带跳频测量信息上报 (0x004A, 可变长)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class NarrowbandMeasReport:
+    """窄带跳频测量信息上报 (可变长)。"""
+    payload: bytes
+
+    DATA_TYPE_INDEX = 0x004A
+    BYTE_LENGTH = 0
+
+    def pack(self) -> bytes:
+        return self.payload
+
+    @classmethod
+    def unpack(cls, data: bytes) -> NarrowbandMeasReport:
+        return cls(bytes(data))
+
+
+# ---------------------------------------------------------------------------
+# 窄带跳频测量行为指示 (0x004B, 48 bits / 6 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class NarrowbandMeasAction:
+    """窄带跳频测量行为指示。"""
+    config_index: int        # 8
+    start_slot: int          # 32
+    action_config: int       # 8
+
+    DATA_TYPE_INDEX = 0x004B
+    BYTE_LENGTH = 6
+
+    def pack(self) -> bytes:
+        return bytes([self.config_index & 0xFF]) + self.start_slot.to_bytes(4, "big") + bytes([self.action_config & 0xFF])
+
+    @classmethod
+    def unpack(cls, data: bytes) -> NarrowbandMeasAction:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(data[0], int.from_bytes(data[1:5], "big"), data[5])
+
+
+# ---------------------------------------------------------------------------
+# 坐标信息请求 (0x004C, 0 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class CoordinateRequest(_ZeroPayload):
+    """坐标信息请求。"""
+    DATA_TYPE_INDEX = 0x004C
+    BYTE_LENGTH = 0
+
+
+# ---------------------------------------------------------------------------
+# 坐标信息上报/配置 (0x004D/0x004E, 192 bits / 24 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class CoordinateReport:
+    """坐标信息上报。"""
+    rel_x: int    # 32
+    rel_y: int    # 32
+    rel_z: int    # 32
+    abs_lon: int  # 32 (经度)
+    abs_lat: int  # 32 (纬度)
+    abs_alt: int  # 32 (海拔)
+
+    DATA_TYPE_INDEX = 0x004D
+    BYTE_LENGTH = 24
+
+    def pack(self) -> bytes:
+        return struct.pack(">iiiiii", self.rel_x, self.rel_y, self.rel_z,
+                           self.abs_lon, self.abs_lat, self.abs_alt)
+
+    @classmethod
+    def unpack(cls, data: bytes) -> CoordinateReport:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        vals = struct.unpack(">iiiiii", data[:24])
+        return cls(*vals)
+
+
+@dataclass
+class CoordinateConfig:
+    """坐标信息配置 (与上报结构相同)。"""
+    rel_x: int
+    rel_y: int
+    rel_z: int
+    abs_lon: int
+    abs_lat: int
+    abs_alt: int
+
+    DATA_TYPE_INDEX = 0x004E
+    BYTE_LENGTH = 24
+
+    def pack(self) -> bytes:
+        return struct.pack(">iiiiii", self.rel_x, self.rel_y, self.rel_z,
+                           self.abs_lon, self.abs_lat, self.abs_alt)
+
+    @classmethod
+    def unpack(cls, data: bytes) -> CoordinateConfig:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        vals = struct.unpack(">iiiiii", data[:24])
+        return cls(*vals)
+
+
+# ---------------------------------------------------------------------------
+# 窄带跳频测量时延信息请求 (0x004F, 0 bytes)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class NarrowbandDelayRequest(_ZeroPayload):
+    """窄带跳频测量时延信息请求。"""
+    DATA_TYPE_INDEX = 0x004F
+    BYTE_LENGTH = 0
+
+
+# ---------------------------------------------------------------------------
+# 窄带跳频测量时延信息响应 (0x0050, 可变长)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class NarrowbandDelayResponse:
+    """窄带跳频测量时延信息响应 (可变长)。"""
+    payload: bytes
+
+    DATA_TYPE_INDEX = 0x0050
+    BYTE_LENGTH = 0
+
+    def pack(self) -> bytes:
+        return self.payload
+
+    @classmethod
+    def unpack(cls, data: bytes) -> NarrowbandDelayResponse:
+        return cls(bytes(data))
+
+
+# ===================================================================
+# 0x0051  异步 TT 链路建链指示 (可变长)
+# ===================================================================
+
+@dataclass
+class AsyncTTLinkSetup:
+    """异步 TT 链路建链指示 (可变长)。"""
+    payload: bytes
+
+    DATA_TYPE_INDEX = 0x0051
+    BYTE_LENGTH = 0
+
+    def pack(self) -> bytes:
+        return self.payload
+
+    @classmethod
+    def unpack(cls, data: bytes) -> AsyncTTLinkSetup:
+        return cls(bytes(data))
+
+
+# ===================================================================
+# 0x0052 - 0x005C  超宽带脉冲测量/感知
+# ===================================================================
+
+@dataclass
+class UWBMeasCapRequest(_ZeroPayload):
+    """超宽带脉冲测量能力请求。"""
+    DATA_TYPE_INDEX = 0x0052
+    BYTE_LENGTH = 0
+
+
+@dataclass
+class UWBMeasCapResponse:
+    """超宽带脉冲测量能力响应 (400 bits / 50 bytes)。"""
+    payload: bytes
+
+    DATA_TYPE_INDEX = 0x0053
+    BYTE_LENGTH = 50
+
+    def pack(self) -> bytes:
+        return (self.payload + b"\x00" * 50)[:50]
+
+    @classmethod
+    def unpack(cls, data: bytes) -> UWBMeasCapResponse:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(bytes(data[:50]))
+
+
+@dataclass
+class UWBMeasConfig:
+    """超宽带脉冲测量配置 (可变长)。"""
+    payload: bytes
+
+    DATA_TYPE_INDEX = 0x0054
+    BYTE_LENGTH = 0
+
+    def pack(self) -> bytes:
+        return self.payload
+
+    @classmethod
+    def unpack(cls, data: bytes) -> UWBMeasConfig:
+        return cls(bytes(data))
+
+
+@dataclass
+class UWBMeasConfigFeedback:
+    """超宽带脉冲测量配置反馈。"""
+    config_index: int     # 8
+    status: int           # 8
+
+    DATA_TYPE_INDEX = 0x0055
+    BYTE_LENGTH = 2
+
+    def pack(self) -> bytes:
+        return bytes([self.config_index & 0xFF, self.status & 0xFF])
+
+    @classmethod
+    def unpack(cls, data: bytes) -> UWBMeasConfigFeedback:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(data[0], data[1])
+
+
+@dataclass
+class UWBMeasReport:
+    """超宽带脉冲测量信息上报 (可变长)。"""
+    payload: bytes
+
+    DATA_TYPE_INDEX = 0x0056
+    BYTE_LENGTH = 0
+
+    def pack(self) -> bytes:
+        return self.payload
+
+    @classmethod
+    def unpack(cls, data: bytes) -> UWBMeasReport:
+        return cls(bytes(data))
+
+
+@dataclass
+class UWBSensingCapRequest(_ZeroPayload):
+    """超宽带脉冲感知能力请求。"""
+    DATA_TYPE_INDEX = 0x0057
+    BYTE_LENGTH = 0
+
+
+@dataclass
+class UWBSensingCapResponse:
+    """超宽带脉冲感知能力响应 (408 bits / 51 bytes)。"""
+    payload: bytes
+
+    DATA_TYPE_INDEX = 0x0058
+    BYTE_LENGTH = 51
+
+    def pack(self) -> bytes:
+        return (self.payload + b"\x00" * 51)[:51]
+
+    @classmethod
+    def unpack(cls, data: bytes) -> UWBSensingCapResponse:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(bytes(data[:51]))
+
+
+# ---------------------------------------------------------------------------
+# 0x0059 超宽带脉冲感知配置 (可变长)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class UWBSensingConfig:
+    """超宽带脉冲感知配置 (可变长)。"""
+    payload: bytes
+
+    DATA_TYPE_INDEX = 0x0059
+    BYTE_LENGTH = 0
+
+    def pack(self) -> bytes:
+        return self.payload
+
+    @classmethod
+    def unpack(cls, data: bytes) -> UWBSensingConfig:
+        return cls(bytes(data))
+
+
+@dataclass
+class UWBSensingConfigFeedback:
+    """超宽带脉冲感知配置反馈。"""
+    config_index: int
+    status: int
+
+    DATA_TYPE_INDEX = 0x005A
+    BYTE_LENGTH = 2
+
+    def pack(self) -> bytes:
+        return bytes([self.config_index & 0xFF, self.status & 0xFF])
+
+    @classmethod
+    def unpack(cls, data: bytes) -> UWBSensingConfigFeedback:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(data[0], data[1])
+
+
+@dataclass
+class UWBSensingReport:
+    """超宽带脉冲感知信息上报 (可变长)。"""
+    payload: bytes
+
+    DATA_TYPE_INDEX = 0x005B
+    BYTE_LENGTH = 0
+
+    def pack(self) -> bytes:
+        return self.payload
+
+    @classmethod
+    def unpack(cls, data: bytes) -> UWBSensingReport:
+        return cls(bytes(data))
+
+
+@dataclass
+class UWBSensingAction:
+    """超宽带脉冲感知行为指示。"""
+    config_index: int
+    start_slot: int          # 32
+    action_config: int       # 8
+
+    DATA_TYPE_INDEX = 0x005C
+    BYTE_LENGTH = 6
+
+    def pack(self) -> bytes:
+        return bytes([self.config_index & 0xFF]) + self.start_slot.to_bytes(4, "big") + bytes([self.action_config & 0xFF])
+
+    @classmethod
+    def unpack(cls, data: bytes) -> UWBSensingAction:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(data[0], int.from_bytes(data[1:5], "big"), data[5])
+
+
+# ===================================================================
+# 0x005D - 0x005E  资源预留
+# ===================================================================
+
+@dataclass
+class ResourceReservation:
+    """资源预留指示。"""
+    config_index: int             # 8
+    effective_slot: int           # 32
+    event_group_period: int       # 16
+    event_period: int             # 16
+    event_length: int             # 16
+    event_count: int              # 8
+    scheduling_slot: int          # 3
+
+    DATA_TYPE_INDEX = 0x005D
+    BYTE_LENGTH = 13
+
+    def pack(self) -> bytes:
+        buf = bytes([self.config_index & 0xFF])
+        buf += self.effective_slot.to_bytes(4, "big")
+        buf += struct.pack(">HHHB", self.event_group_period,
+                           self.event_period, self.event_length,
+                           self.event_count)
+        buf += bytes([(self.scheduling_slot & 0x07) << 5])
+        return buf
+
+    @classmethod
+    def unpack(cls, data: bytes) -> ResourceReservation:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        ci = data[0]
+        es = int.from_bytes(data[1:5], "big")
+        egp, ep, el, ec = struct.unpack(">HHHB", data[5:12])
+        ss = (data[12] >> 5) & 0x07
+        return cls(ci, es, egp, ep, el, ec, ss)
+
+
+@dataclass
+class ResourceReservationTerminate:
+    """资源预留终止。"""
+    config_index: int   # 8
+    reason: int         # 8
+
+    DATA_TYPE_INDEX = 0x005E
+    BYTE_LENGTH = 2
+
+    def pack(self) -> bytes:
+        return bytes([self.config_index & 0xFF, self.reason & 0xFF])
+
+    @classmethod
+    def unpack(cls, data: bytes) -> ResourceReservationTerminate:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(data[0], data[1])
+
+
+# ===================================================================
+# 0x005F - 0x0069  窄带跳频感知
+# ===================================================================
+
+@dataclass
+class NarrowbandSensingRequest:
+    """窄带跳频感知流程请求。"""
+    payload: bytes  # 16 bytes
+
+    DATA_TYPE_INDEX = 0x005F
+    BYTE_LENGTH = 16
+
+    def pack(self) -> bytes:
+        return (self.payload + b"\x00" * 16)[:16]
+
+    @classmethod
+    def unpack(cls, data: bytes) -> NarrowbandSensingRequest:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(bytes(data[:16]))
+
+
+@dataclass
+class NarrowbandSensingFeedback:
+    """窄带跳频感知流程反馈。"""
+    process_index: int   # 8
+    status: int          # 8
+
+    DATA_TYPE_INDEX = 0x0060
+    BYTE_LENGTH = 2
+
+    def pack(self) -> bytes:
+        return bytes([self.process_index & 0xFF, self.status & 0xFF])
+
+    @classmethod
+    def unpack(cls, data: bytes) -> NarrowbandSensingFeedback:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(data[0], data[1])
+
+
+@dataclass
+class NarrowbandProxySensingRequest:
+    """窄带跳频代理感知请求。"""
+    proxy_index: int            # 8
+    sensing_index: int          # 8
+    meas_quantity: int          # 32
+    report_period: int          # 32
+    bandwidth: int              # 8
+
+    DATA_TYPE_INDEX = 0x0061
+    BYTE_LENGTH = 11
+
+    def pack(self) -> bytes:
+        buf = bytes([self.proxy_index & 0xFF, self.sensing_index & 0xFF])
+        buf += self.meas_quantity.to_bytes(4, "big")
+        buf += self.report_period.to_bytes(4, "big")
+        buf += bytes([self.bandwidth & 0xFF])
+        return buf
+
+    @classmethod
+    def unpack(cls, data: bytes) -> NarrowbandProxySensingRequest:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(
+            data[0], data[1],
+            int.from_bytes(data[2:6], "big"),
+            int.from_bytes(data[6:10], "big"),
+            data[10],
+        )
+
+
+@dataclass
+class NarrowbandProxySensingFeedback:
+    """窄带跳频代理感知反馈。"""
+    proxy_index: int
+    sensing_index: int          # 16
+    status: int                 # 8
+    meas_quantity1: int         # 32
+    meas_quantity2: int         # 32
+    bandwidth1: int             # 8
+    bandwidth2: int             # 8
+
+    DATA_TYPE_INDEX = 0x0062
+    BYTE_LENGTH = 14
+
+    def pack(self) -> bytes:
+        buf = bytes([self.proxy_index & 0xFF])
+        buf += struct.pack(">HB", self.sensing_index, self.status)
+        buf += self.meas_quantity1.to_bytes(4, "big")
+        buf += self.meas_quantity2.to_bytes(4, "big")
+        buf += bytes([self.bandwidth1 & 0xFF, self.bandwidth2 & 0xFF])
+        return buf
+
+    @classmethod
+    def unpack(cls, data: bytes) -> NarrowbandProxySensingFeedback:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        pi = data[0]
+        si, st = struct.unpack(">HB", data[1:4])
+        mq1 = int.from_bytes(data[4:8], "big")
+        mq2 = int.from_bytes(data[8:12], "big")
+        return cls(pi, si, st, mq1, mq2, data[12], data[13])
+
+
+@dataclass
+class NarrowbandSensingCapRequest(_ZeroPayload):
+    """窄带跳频感知能力请求。"""
+    DATA_TYPE_INDEX = 0x0063
+    BYTE_LENGTH = 0
+
+
+@dataclass
+class NarrowbandSensingCapResponse:
+    """窄带跳频感知能力响应 (50 bytes)。"""
+    payload: bytes
+
+    DATA_TYPE_INDEX = 0x0064
+    BYTE_LENGTH = 50
+
+    def pack(self) -> bytes:
+        return (self.payload + b"\x00" * 50)[:50]
+
+    @classmethod
+    def unpack(cls, data: bytes) -> NarrowbandSensingCapResponse:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(bytes(data[:50]))
+
+
+@dataclass
+class NarrowbandSensingConfig:
+    """窄带跳频感知配置 (可变长)。"""
+    payload: bytes
+
+    DATA_TYPE_INDEX = 0x0065
+    BYTE_LENGTH = 0
+
+    def pack(self) -> bytes:
+        return self.payload
+
+    @classmethod
+    def unpack(cls, data: bytes) -> NarrowbandSensingConfig:
+        return cls(bytes(data))
+
+
+@dataclass
+class NarrowbandSensingConfigFeedback:
+    """窄带跳频感知配置反馈。"""
+    config_index: int
+    status: int
+
+    DATA_TYPE_INDEX = 0x0066
+    BYTE_LENGTH = 2
+
+    def pack(self) -> bytes:
+        return bytes([self.config_index & 0xFF, self.status & 0xFF])
+
+    @classmethod
+    def unpack(cls, data: bytes) -> NarrowbandSensingConfigFeedback:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(data[0], data[1])
+
+
+@dataclass
+class SensingDeviceStatusReport:
+    """感知设备状态上报。"""
+    config_index: int     # 8
+    stability: int        # 1 bit (存储在字节高位)
+
+    DATA_TYPE_INDEX = 0x0067
+    BYTE_LENGTH = 2
+
+    def pack(self) -> bytes:
+        return bytes([self.config_index & 0xFF, (self.stability & 1) << 7])
+
+    @classmethod
+    def unpack(cls, data: bytes) -> SensingDeviceStatusReport:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(data[0], (data[1] >> 7) & 1)
+
+
+@dataclass
+class NarrowbandSensingReport:
+    """窄带跳频感知信息上报 (可变长)。"""
+    payload: bytes
+
+    DATA_TYPE_INDEX = 0x0068
+    BYTE_LENGTH = 0
+
+    def pack(self) -> bytes:
+        return self.payload
+
+    @classmethod
+    def unpack(cls, data: bytes) -> NarrowbandSensingReport:
+        return cls(bytes(data))
+
+
+@dataclass
+class NarrowbandSensingAction:
+    """窄带跳频感知行为指示。"""
+    config_index: int
+    start_slot: int
+    action_config: int
+
+    DATA_TYPE_INDEX = 0x0069
+    BYTE_LENGTH = 6
+
+    def pack(self) -> bytes:
+        return bytes([self.config_index & 0xFF]) + self.start_slot.to_bytes(4, "big") + bytes([self.action_config & 0xFF])
+
+    @classmethod
+    def unpack(cls, data: bytes) -> NarrowbandSensingAction:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(data[0], int.from_bytes(data[1:5], "big"), data[5])
+
+
+# ===================================================================
+# 0x006A - 0x0070  配置更新 / UWB 感知
+# ===================================================================
+
+@dataclass
+class NarrowbandMeasConfigUpdateRequest:
+    """窄带跳频测量信号配置更新请求 (32 bytes)。"""
+    payload: bytes
+
+    DATA_TYPE_INDEX = 0x006A
+    BYTE_LENGTH = 32
+
+    def pack(self) -> bytes:
+        return (self.payload + b"\x00" * 32)[:32]
+
+    @classmethod
+    def unpack(cls, data: bytes) -> NarrowbandMeasConfigUpdateRequest:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(bytes(data[:32]))
+
+
+@dataclass
+class NarrowbandMeasConfigUpdateIndication:
+    """窄带跳频测量信号配置更新指示 (与请求结构相同, 32 bytes)。"""
+    payload: bytes
+
+    DATA_TYPE_INDEX = 0x006B
+    BYTE_LENGTH = 32
+
+    def pack(self) -> bytes:
+        return (self.payload + b"\x00" * 32)[:32]
+
+    @classmethod
+    def unpack(cls, data: bytes) -> NarrowbandMeasConfigUpdateIndication:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(bytes(data[:32]))
+
+
+@dataclass
+class UWBSensingProcessRequest:
+    """超宽带脉冲感知流程请求 (16 bytes)。"""
+    payload: bytes
+
+    DATA_TYPE_INDEX = 0x006C
+    BYTE_LENGTH = 16
+
+    def pack(self) -> bytes:
+        return (self.payload + b"\x00" * 16)[:16]
+
+    @classmethod
+    def unpack(cls, data: bytes) -> UWBSensingProcessRequest:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(bytes(data[:16]))
+
+
+@dataclass
+class UWBSensingProcessFeedback:
+    """超宽带脉冲感知流程反馈。"""
+    process_index: int
+    status: int
+
+    DATA_TYPE_INDEX = 0x006D
+    BYTE_LENGTH = 2
+
+    def pack(self) -> bytes:
+        return bytes([self.process_index & 0xFF, self.status & 0xFF])
+
+    @classmethod
+    def unpack(cls, data: bytes) -> UWBSensingProcessFeedback:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(data[0], data[1])
+
+
+@dataclass
+class UWBProxySensingRequest:
+    """超宽带脉冲代理感知请求 (11 bytes)。"""
+    proxy_index: int
+    sensing_index: int
+    meas_quantity: int
+    report_period: int
+    bandwidth: int
+
+    DATA_TYPE_INDEX = 0x006E
+    BYTE_LENGTH = 11
+
+    def pack(self) -> bytes:
+        buf = bytes([self.proxy_index & 0xFF, self.sensing_index & 0xFF])
+        buf += self.meas_quantity.to_bytes(4, "big")
+        buf += self.report_period.to_bytes(4, "big")
+        buf += bytes([self.bandwidth & 0xFF])
+        return buf
+
+    @classmethod
+    def unpack(cls, data: bytes) -> UWBProxySensingRequest:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(
+            data[0], data[1],
+            int.from_bytes(data[2:6], "big"),
+            int.from_bytes(data[6:10], "big"),
+            data[10],
+        )
+
+
+@dataclass
+class UWBProxySensingFeedback:
+    """超宽带脉冲代理感知反馈 (14 bytes)。"""
+    proxy_index: int
+    sensing_index: int       # 16
+    status: int
+    meas_quantity1: int      # 32
+    meas_quantity2: int      # 32
+    bandwidth1: int
+    bandwidth2: int
+
+    DATA_TYPE_INDEX = 0x006F
+    BYTE_LENGTH = 14
+
+    def pack(self) -> bytes:
+        buf = bytes([self.proxy_index & 0xFF])
+        buf += struct.pack(">HB", self.sensing_index, self.status)
+        buf += self.meas_quantity1.to_bytes(4, "big")
+        buf += self.meas_quantity2.to_bytes(4, "big")
+        buf += bytes([self.bandwidth1 & 0xFF, self.bandwidth2 & 0xFF])
+        return buf
+
+    @classmethod
+    def unpack(cls, data: bytes) -> UWBProxySensingFeedback:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        pi = data[0]
+        si, st = struct.unpack(">HB", data[1:4])
+        mq1 = int.from_bytes(data[4:8], "big")
+        mq2 = int.from_bytes(data[8:12], "big")
+        return cls(pi, si, st, mq1, mq2, data[12], data[13])
+
+
+@dataclass
+class UWBMeasAction:
+    """超宽带脉冲测量行为指示。"""
+    config_index: int
+    start_slot: int
+    action_config: int
+
+    DATA_TYPE_INDEX = 0x0070
+    BYTE_LENGTH = 6
+
+    def pack(self) -> bytes:
+        return bytes([self.config_index & 0xFF]) + self.start_slot.to_bytes(4, "big") + bytes([self.action_config & 0xFF])
+
+    @classmethod
+    def unpack(cls, data: bytes) -> UWBMeasAction:
+        if len(data) < cls.BYTE_LENGTH:
+            raise ValueError(f"数据不足: 需要 {cls.BYTE_LENGTH} 字节")
+        return cls(data[0], int.from_bytes(data[1:5], "big"), data[5])

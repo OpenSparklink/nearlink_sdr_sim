@@ -7,6 +7,33 @@
 
 ## [Unreleased]
 
+## [0.24.0] - 2025-07-15
+
+### Added
+
+- `mac/link_control.py`: 新增 57 个链路控制信令类型 (0x0035-0x0070)
+  - Channel5GStatusIndication / HopMap5GUpdate / BroadcastHopMap5GUpdate: 5G 信道与跳频管理
+  - MultiIntervalUpdateRequest/Response/Indication: 多间隔更新
+  - SystemTimeIndication: 系统时间指示
+  - AsyncMulticastLinkSetup / AsyncMulticastParamExchange* / AsyncMulticastParamUpdate*: 异步组播链路管理
+  - NarrowbandMeasCap*/FreqTable*/MeasConfig/MeasReport/MeasAction: 窄带跳频测量
+  - CoordinateRequest/Report/Config: 坐标管理
+  - NarrowbandDelayRequest/Response: 窄带时延
+  - AsyncTTLinkSetup: 异步 TT 链路建链
+  - UWBMeasCap*/Config/ConfigFeedback/Report: UWB 脉冲测量
+  - UWBSensingCap*/Config/ConfigFeedback/Report/Action: UWB 感知
+  - ResourceReservation/Terminate: 资源预留
+  - NarrowbandSensing*/ProxySensing*/SensingCap*/SensingConfig*: 窄带感知
+  - SensingDeviceStatusReport: 感知设备状态
+  - NarrowbandMeasConfigUpdate*: 窄带测量配置更新
+  - UWBSensingProcess*/UWBProxySensing*/UWBMeasAction: UWB 扩展感知
+- `mac/signaling.py`: 注册表扩展至 112 个信令类型
+- `tests/test_link_control_ext.py`: 新增 114 个往返测试覆盖全部新信令
+
+### Fixed
+
+- `ResourceReservation`: 修复重复 unpack 方法, 修正 BYTE_LENGTH 为 13
+
 ## [0.23.0] - 2025-07-15
 
 ### Added

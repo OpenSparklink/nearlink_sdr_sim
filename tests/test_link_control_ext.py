@@ -5,13 +5,25 @@ import pytest
 from nearlink_sdr.mac.link_control import (
     AsyncLinkParamRequest,
     AsyncLinkParamResponse,
+    AsyncMulticastLinkSetup,
+    AsyncMulticastParamExchangeRequest,
+    AsyncMulticastParamExchangeResponse,
+    AsyncMulticastParamUpdateIndication,
+    AsyncMulticastParamUpdateRequest,
     AsyncMulticastReconfig,
+    AsyncTTLinkSetup,
     AsyncUnicastUpdate,
+    BroadcastHopMap5GUpdate,
     BroadcastHopMapUpdate,
     BroadcastLinkDisconnect,
     BroadcastLinkParamUpdate,
     BroadcastLinkSetup,
+    Channel5GStatusIndication,
     ChannelStatusIndication,
+    CoordinateConfig,
+    CoordinateReport,
+    CoordinateRequest,
+    HopMap5GUpdate,
     HopMapUpdate,
     HopTableUpdate,
     IsochronousLinkSetup,
@@ -21,10 +33,37 @@ from nearlink_sdr.mac.link_control import (
     IsochronousParamUpdateRequest,
     MinAvailableChannels,
     MulticastDisconnect,
+    MultiIntervalUpdateIndication,
+    MultiIntervalUpdateRequest,
+    MultiIntervalUpdateResponse,
+    NarrowbandDelayRequest,
+    NarrowbandDelayResponse,
+    NarrowbandFreqTable24Update,
+    NarrowbandFreqTable51Update,
+    NarrowbandFreqTable58Update,
+    NarrowbandMeasAction,
+    NarrowbandMeasCapRequest,
+    NarrowbandMeasCapResponse,
+    NarrowbandMeasConfig,
+    NarrowbandMeasConfigUpdateIndication,
+    NarrowbandMeasConfigUpdateRequest,
+    NarrowbandMeasReport,
+    NarrowbandProxySensingFeedback,
+    NarrowbandProxySensingRequest,
+    NarrowbandSensingAction,
+    NarrowbandSensingCapRequest,
+    NarrowbandSensingCapResponse,
+    NarrowbandSensingConfig,
+    NarrowbandSensingConfigFeedback,
+    NarrowbandSensingFeedback,
+    NarrowbandSensingReport,
+    NarrowbandSensingRequest,
     PhyUpdateIndication,
     PhyUpdateRequest,
     PingRequest,
     PingResponse,
+    ResourceReservation,
+    ResourceReservationTerminate,
     RoleSwitchRequest,
     SecurityPauseRequest,
     SecurityPauseResponse,
@@ -32,14 +71,32 @@ from nearlink_sdr.mac.link_control import (
     SecurityResponse,
     SecurityStartRequest,
     SecurityStartResponse,
+    SensingDeviceStatusReport,
     SMFParamUpdateIndication,
     SMFParamUpdateRequest,
     SMFSignalingTerminate,
     SMFTimeSlotUpdateRequest,
     SMFTimeSlotUpdateResponse,
+    SystemTimeIndication,
     TimeOffsetIndication,
     TimeoutUpdateRequest,
     UnknownFeatureFeedback,
+    UWBMeasAction,
+    UWBMeasCapRequest,
+    UWBMeasCapResponse,
+    UWBMeasConfig,
+    UWBMeasConfigFeedback,
+    UWBMeasReport,
+    UWBProxySensingFeedback,
+    UWBProxySensingRequest,
+    UWBSensingAction,
+    UWBSensingCapRequest,
+    UWBSensingCapResponse,
+    UWBSensingConfig,
+    UWBSensingConfigFeedback,
+    UWBSensingProcessFeedback,
+    UWBSensingProcessRequest,
+    UWBSensingReport,
 )
 from nearlink_sdr.mac.signaling import decode_signaling, encode_signaling
 
@@ -552,6 +609,573 @@ class TestDataTypeIndexNew:
         (SMFParamUpdateIndication, 0x002C),
         (SMFTimeSlotUpdateRequest, 0x002D),
         (SMFTimeSlotUpdateResponse, 0x002E),
+    ])
+    def test_data_type_index(self, cls, expected_idx):
+        assert expected_idx == cls.DATA_TYPE_INDEX
+
+
+# ====================================================================
+# 0x0035-0x0070 扩展链路控制信令往返测试
+# ====================================================================
+
+class TestChannel5GAndHopMap:
+    """5GHz 信道状态 / 跳频地图 (0x0035, 0x0036, 0x003B)"""
+
+    def test_channel_5g_status(self):
+        ch = bytes(range(50))
+        msg = Channel5GStatusIndication(channel_classification=ch)
+        _roundtrip(msg)
+
+    def test_hop_map_5g_update(self):
+        hm = bytes(range(25))
+        msg = HopMap5GUpdate(hop_map=hm, effective_slot=0xABCD1234)
+        _roundtrip(msg)
+
+    def test_broadcast_hop_map_5g_update(self):
+        hm = bytes(range(25))
+        msg = BroadcastHopMap5GUpdate(
+            hop_map=hm, effective_slot=0x12345678,
+        )
+        packed = msg.pack()
+        assert len(packed) == 29
+        restored = BroadcastHopMap5GUpdate.unpack(packed)
+        assert restored.hop_map == hm
+        assert restored.effective_slot == 0x12345678
+        assert isinstance(restored, BroadcastHopMap5GUpdate)
+
+
+class TestMultiIntervalUpdate:
+    """多级收发间隔更新 (0x0037, 0x0038, 0x0039)"""
+
+    def test_request_roundtrip(self):
+        intervals = bytes(range(31))
+        msg = MultiIntervalUpdateRequest(intervals=intervals)
+        _roundtrip(msg)
+
+    def test_response_roundtrip(self):
+        intervals = bytes([0xFF] * 31)
+        msg = MultiIntervalUpdateResponse(intervals=intervals)
+        packed = msg.pack()
+        assert len(packed) == 31
+        restored = MultiIntervalUpdateResponse.unpack(packed)
+        assert restored.intervals == intervals
+        assert isinstance(restored, MultiIntervalUpdateResponse)
+
+    def test_indication_roundtrip(self):
+        intervals = bytes(range(31))
+        msg = MultiIntervalUpdateIndication(
+            intervals=intervals,
+            update_flags=0x2A,
+            effective_slot=0xDEADBEEF,
+        )
+        _roundtrip(msg)
+
+
+class TestSystemTimeAndMulticast:
+    """系统时间 / 异步组播 (0x003E-0x0043)"""
+
+    def test_system_time_indication(self):
+        payload = b"\x01\x02\x03\x04\x05"
+        msg = SystemTimeIndication(payload=payload)
+        packed = msg.pack()
+        assert packed == payload
+        restored = SystemTimeIndication.unpack(packed)
+        assert restored.payload == payload
+
+    def test_async_multicast_link_setup(self):
+        msg = AsyncMulticastLinkSetup(
+            event_group_set_id=1,
+            event_group_id=2,
+            effective_slot=0x12345678,
+            event_group_period=100,
+            event_period=50,
+            intra_event_interval=10,
+            inter_event_interval=20,
+            scheduling_slot=5,
+            tx_rx_indication=1,
+            tx_link_id=0xAAAAAA,
+            rx_link_id=0xBBBBBB,
+            tx_frame_type=3,
+            rx_frame_type=7,
+            tx_bandwidth=2,
+            rx_bandwidth=1,
+            tx_pilot_density=3,
+            rx_pilot_density=0,
+            tx_sdu_max=1024,
+            rx_sdu_max=512,
+            tx_sdu_period=0x12345,
+            rx_sdu_period=0xABCDE,
+            tx_pdu_max=500,
+            rx_pdu_max=300,
+            tx_max_time_offset=100,
+            rx_max_time_offset=200,
+            tx_crc_init=0xDEADBEEF,
+            rx_crc_init=0xCAFEBABE,
+            tx_crc_type=1,
+            rx_crc_type=0,
+            tx_feedback_type=0x1F,
+            rx_feedback_type=0,  # 因 pack 截断到 45 字节丢失
+        )
+        packed = msg.pack()
+        assert len(packed) == 45
+        restored = AsyncMulticastLinkSetup.unpack(packed)
+        assert restored.event_group_set_id == 1
+        assert restored.event_group_id == 2
+        assert restored.effective_slot == 0x12345678
+        assert restored.event_group_period == 100
+        assert restored.scheduling_slot == 5
+        assert restored.tx_link_id == 0xAAAAAA
+        assert restored.rx_link_id == 0xBBBBBB
+        assert restored.tx_crc_init == 0xDEADBEEF
+        assert restored.rx_crc_init == 0xCAFEBABE
+        assert restored.tx_crc_type == 1
+        assert restored.tx_feedback_type == 0x1F
+
+    def test_async_multicast_param_exchange_request(self):
+        payload = bytes(range(41))
+        msg = AsyncMulticastParamExchangeRequest(payload=payload)
+        _roundtrip(msg)
+
+    def test_async_multicast_param_exchange_response(self):
+        payload = bytes([0xAB] * 41)
+        msg = AsyncMulticastParamExchangeResponse(payload=payload)
+        _roundtrip(msg)
+
+    def test_async_multicast_param_update_request(self):
+        msg = AsyncMulticastParamUpdateRequest(
+            param_tag_id=0x0A,
+            event_group_set_id=0xBB,
+            event_group_id=0xCC,
+        )
+        _roundtrip(msg)
+
+    def test_async_multicast_param_update_indication(self):
+        msg = AsyncMulticastParamUpdateIndication(
+            param_tag_id=0x0F,
+            event_group_set_id=0x12,
+            event_group_id=0x34,
+            effective_ref_slot=0xDEADBEEF,
+            event_group_offset=0x1234,
+        )
+        _roundtrip(msg)
+
+
+class TestNarrowbandMeasurement:
+    """窄带跳频测量 (0x0044-0x004B)"""
+
+    def test_meas_cap_request_zero(self):
+        msg = NarrowbandMeasCapRequest()
+        assert msg.pack() == b""
+        restored = NarrowbandMeasCapRequest.unpack(b"")
+        assert isinstance(restored, NarrowbandMeasCapRequest)
+
+    def test_meas_cap_response(self):
+        payload = bytes(range(32))
+        msg = NarrowbandMeasCapResponse(payload=payload)
+        _roundtrip(msg)
+
+    def test_freq_table_24_update(self):
+        ft = bytes(range(10))
+        msg = NarrowbandFreqTable24Update(
+            config_index=0x42, freq_table=ft,
+        )
+        _roundtrip(msg)
+
+    def test_freq_table_51_update(self):
+        ft = bytes(range(25))
+        msg = NarrowbandFreqTable51Update(
+            config_index=0x13, freq_table=ft,
+        )
+        _roundtrip(msg)
+
+    def test_freq_table_58_update(self):
+        ft = bytes(range(16))
+        msg = NarrowbandFreqTable58Update(
+            config_index=0xAA, freq_table=ft,
+        )
+        _roundtrip(msg)
+
+    def test_meas_config_variable(self):
+        payload = b"\xDE\xAD\xBE\xEF"
+        msg = NarrowbandMeasConfig(payload=payload)
+        packed = msg.pack()
+        assert packed == payload
+        restored = NarrowbandMeasConfig.unpack(packed)
+        assert restored.payload == payload
+
+    def test_meas_report_variable(self):
+        payload = b"\xCA\xFE\xBA\xBE\x00\x01"
+        msg = NarrowbandMeasReport(payload=payload)
+        packed = msg.pack()
+        assert packed == payload
+        restored = NarrowbandMeasReport.unpack(packed)
+        assert restored.payload == payload
+
+    def test_meas_action(self):
+        msg = NarrowbandMeasAction(
+            config_index=0x05,
+            start_slot=0xABCDEF01,
+            action_config=0x7F,
+        )
+        _roundtrip(msg)
+
+
+class TestCoordinateAndDelay:
+    """坐标 / 时延 (0x004C-0x0050)"""
+
+    def test_coordinate_request_zero(self):
+        msg = CoordinateRequest()
+        assert msg.pack() == b""
+        restored = CoordinateRequest.unpack(b"")
+        assert isinstance(restored, CoordinateRequest)
+
+    def test_coordinate_report(self):
+        msg = CoordinateReport(
+            rel_x=100, rel_y=-200, rel_z=300,
+            abs_lon=1160000, abs_lat=400000, abs_alt=50,
+        )
+        _roundtrip(msg)
+
+    def test_coordinate_config(self):
+        msg = CoordinateConfig(
+            rel_x=-1, rel_y=-2, rel_z=-3,
+            abs_lon=0, abs_lat=0, abs_alt=0,
+        )
+        _roundtrip(msg)
+
+    def test_narrowband_delay_request_zero(self):
+        msg = NarrowbandDelayRequest()
+        assert msg.pack() == b""
+        restored = NarrowbandDelayRequest.unpack(b"")
+        assert isinstance(restored, NarrowbandDelayRequest)
+
+    def test_narrowband_delay_response_variable(self):
+        payload = b"\x01\x02\x03\x04\x05\x06\x07\x08"
+        msg = NarrowbandDelayResponse(payload=payload)
+        packed = msg.pack()
+        assert packed == payload
+        restored = NarrowbandDelayResponse.unpack(packed)
+        assert restored.payload == payload
+
+
+class TestAsyncTTLinkSetupExt:
+    """异步 TT 链路建链指示 (0x0051)"""
+
+    def test_variable_payload(self):
+        payload = bytes(range(20))
+        msg = AsyncTTLinkSetup(payload=payload)
+        packed = msg.pack()
+        assert packed == payload
+        restored = AsyncTTLinkSetup.unpack(packed)
+        assert restored.payload == payload
+
+
+class TestUWBMeasurement:
+    """超宽带脉冲测量 (0x0052-0x0056)"""
+
+    def test_meas_cap_request_zero(self):
+        msg = UWBMeasCapRequest()
+        assert msg.pack() == b""
+        restored = UWBMeasCapRequest.unpack(b"")
+        assert isinstance(restored, UWBMeasCapRequest)
+
+    def test_meas_cap_response(self):
+        payload = bytes(range(50))
+        msg = UWBMeasCapResponse(payload=payload)
+        _roundtrip(msg)
+
+    def test_meas_config_variable(self):
+        payload = b"\x11\x22\x33\x44\x55"
+        msg = UWBMeasConfig(payload=payload)
+        packed = msg.pack()
+        assert packed == payload
+        restored = UWBMeasConfig.unpack(packed)
+        assert restored.payload == payload
+
+    def test_meas_config_feedback(self):
+        msg = UWBMeasConfigFeedback(
+            config_index=0x0A, status=0x01,
+        )
+        _roundtrip(msg)
+
+    def test_meas_report_variable(self):
+        payload = b"\xAA\xBB\xCC"
+        msg = UWBMeasReport(payload=payload)
+        packed = msg.pack()
+        assert packed == payload
+        restored = UWBMeasReport.unpack(packed)
+        assert restored.payload == payload
+
+
+class TestUWBSensing:
+    """超宽带脉冲感知 (0x0057-0x005C)"""
+
+    def test_sensing_cap_request_zero(self):
+        msg = UWBSensingCapRequest()
+        assert msg.pack() == b""
+        restored = UWBSensingCapRequest.unpack(b"")
+        assert isinstance(restored, UWBSensingCapRequest)
+
+    def test_sensing_cap_response(self):
+        payload = bytes(range(51))
+        msg = UWBSensingCapResponse(payload=payload)
+        _roundtrip(msg)
+
+    def test_sensing_config_variable(self):
+        payload = b"\x01\x02\x03"
+        msg = UWBSensingConfig(payload=payload)
+        packed = msg.pack()
+        assert packed == payload
+        restored = UWBSensingConfig.unpack(packed)
+        assert restored.payload == payload
+
+    def test_sensing_config_feedback(self):
+        msg = UWBSensingConfigFeedback(
+            config_index=0xFF, status=0x02,
+        )
+        _roundtrip(msg)
+
+    def test_sensing_report_variable(self):
+        payload = b"\xDE\xAD"
+        msg = UWBSensingReport(payload=payload)
+        packed = msg.pack()
+        assert packed == payload
+        restored = UWBSensingReport.unpack(packed)
+        assert restored.payload == payload
+
+    def test_sensing_action(self):
+        msg = UWBSensingAction(
+            config_index=0x03,
+            start_slot=0x12345678,
+            action_config=0xAB,
+        )
+        _roundtrip(msg)
+
+
+class TestResourceReservation:
+    """资源预留 (0x005D-0x005E)"""
+
+    def test_reservation_roundtrip(self):
+        msg = ResourceReservation(
+            config_index=0x07,
+            effective_slot=0xCAFEBABE,
+            event_group_period=1000,
+            event_period=200,
+            event_length=50,
+            event_count=8,
+            scheduling_slot=5,
+        )
+        _roundtrip(msg)
+
+    def test_reservation_terminate(self):
+        msg = ResourceReservationTerminate(
+            config_index=0x0A, reason=0x03,
+        )
+        _roundtrip(msg)
+
+
+class TestNarrowbandSensing:
+    """窄带跳频感知 (0x005F-0x0069)"""
+
+    def test_sensing_request(self):
+        payload = bytes(range(16))
+        msg = NarrowbandSensingRequest(payload=payload)
+        _roundtrip(msg)
+
+    def test_sensing_feedback(self):
+        msg = NarrowbandSensingFeedback(
+            process_index=0x05, status=0x01,
+        )
+        _roundtrip(msg)
+
+    def test_proxy_sensing_request(self):
+        msg = NarrowbandProxySensingRequest(
+            proxy_index=0x0A,
+            sensing_index=0x0B,
+            meas_quantity=0x12345678,
+            report_period=0xABCDEF01,
+            bandwidth=0x03,
+        )
+        _roundtrip(msg)
+
+    def test_proxy_sensing_feedback(self):
+        msg = NarrowbandProxySensingFeedback(
+            proxy_index=0x01,
+            sensing_index=0x0234,
+            status=0x05,
+            meas_quantity1=0x11111111,
+            meas_quantity2=0x22222222,
+            bandwidth1=0x0A,
+            bandwidth2=0x0B,
+        )
+        _roundtrip(msg)
+
+    def test_sensing_cap_request_zero(self):
+        msg = NarrowbandSensingCapRequest()
+        assert msg.pack() == b""
+        restored = NarrowbandSensingCapRequest.unpack(b"")
+        assert isinstance(restored, NarrowbandSensingCapRequest)
+
+    def test_sensing_cap_response(self):
+        payload = bytes(range(50))
+        msg = NarrowbandSensingCapResponse(payload=payload)
+        _roundtrip(msg)
+
+    def test_sensing_config_variable(self):
+        payload = b"\xAA\xBB\xCC\xDD"
+        msg = NarrowbandSensingConfig(payload=payload)
+        packed = msg.pack()
+        assert packed == payload
+        restored = NarrowbandSensingConfig.unpack(packed)
+        assert restored.payload == payload
+
+    def test_sensing_config_feedback(self):
+        msg = NarrowbandSensingConfigFeedback(
+            config_index=0x0C, status=0x07,
+        )
+        _roundtrip(msg)
+
+    def test_device_status_report(self):
+        msg = SensingDeviceStatusReport(
+            config_index=0x42, stability=1,
+        )
+        _roundtrip(msg)
+
+    def test_sensing_report_variable(self):
+        payload = b"\x01\x02\x03\x04\x05\x06"
+        msg = NarrowbandSensingReport(payload=payload)
+        packed = msg.pack()
+        assert packed == payload
+        restored = NarrowbandSensingReport.unpack(packed)
+        assert restored.payload == payload
+
+    def test_sensing_action(self):
+        msg = NarrowbandSensingAction(
+            config_index=0x09,
+            start_slot=0xDEADBEEF,
+            action_config=0x55,
+        )
+        _roundtrip(msg)
+
+
+class TestConfigUpdateAndUWBExtended:
+    """配置更新 / UWB 扩展 (0x006A-0x0070)"""
+
+    def test_meas_config_update_request(self):
+        payload = bytes(range(32))
+        msg = NarrowbandMeasConfigUpdateRequest(payload=payload)
+        _roundtrip(msg)
+
+    def test_meas_config_update_indication(self):
+        payload = bytes([0xFF] * 32)
+        msg = NarrowbandMeasConfigUpdateIndication(
+            payload=payload,
+        )
+        _roundtrip(msg)
+
+    def test_uwb_sensing_process_request(self):
+        payload = bytes(range(16))
+        msg = UWBSensingProcessRequest(payload=payload)
+        _roundtrip(msg)
+
+    def test_uwb_sensing_process_feedback(self):
+        msg = UWBSensingProcessFeedback(
+            process_index=0x04, status=0x02,
+        )
+        _roundtrip(msg)
+
+    def test_uwb_proxy_sensing_request(self):
+        msg = UWBProxySensingRequest(
+            proxy_index=0x0A,
+            sensing_index=0x0B,
+            meas_quantity=0x12345678,
+            report_period=0xABCDEF01,
+            bandwidth=0x03,
+        )
+        _roundtrip(msg)
+
+    def test_uwb_proxy_sensing_feedback(self):
+        msg = UWBProxySensingFeedback(
+            proxy_index=0x01,
+            sensing_index=0x0234,
+            status=0x05,
+            meas_quantity1=0x11111111,
+            meas_quantity2=0x22222222,
+            bandwidth1=0x0A,
+            bandwidth2=0x0B,
+        )
+        _roundtrip(msg)
+
+    def test_uwb_meas_action(self):
+        msg = UWBMeasAction(
+            config_index=0x0F,
+            start_slot=0xCAFEBABE,
+            action_config=0x77,
+        )
+        _roundtrip(msg)
+
+
+class TestDataTypeIndexExtended:
+    """扩展信令 DATA_TYPE_INDEX 验证 (0x0035-0x0070)"""
+
+    @pytest.mark.parametrize("cls,expected_idx", [
+        (Channel5GStatusIndication, 0x0035),
+        (HopMap5GUpdate, 0x0036),
+        (MultiIntervalUpdateRequest, 0x0037),
+        (MultiIntervalUpdateResponse, 0x0038),
+        (MultiIntervalUpdateIndication, 0x0039),
+        (BroadcastHopMap5GUpdate, 0x003B),
+        (SystemTimeIndication, 0x003E),
+        (AsyncMulticastLinkSetup, 0x003F),
+        (AsyncMulticastParamExchangeRequest, 0x0040),
+        (AsyncMulticastParamExchangeResponse, 0x0041),
+        (AsyncMulticastParamUpdateRequest, 0x0042),
+        (AsyncMulticastParamUpdateIndication, 0x0043),
+        (NarrowbandMeasCapRequest, 0x0044),
+        (NarrowbandMeasCapResponse, 0x0045),
+        (NarrowbandFreqTable24Update, 0x0046),
+        (NarrowbandFreqTable51Update, 0x0047),
+        (NarrowbandFreqTable58Update, 0x0048),
+        (NarrowbandMeasConfig, 0x0049),
+        (NarrowbandMeasReport, 0x004A),
+        (NarrowbandMeasAction, 0x004B),
+        (CoordinateRequest, 0x004C),
+        (CoordinateReport, 0x004D),
+        (CoordinateConfig, 0x004E),
+        (NarrowbandDelayRequest, 0x004F),
+        (NarrowbandDelayResponse, 0x0050),
+        (AsyncTTLinkSetup, 0x0051),
+        (UWBMeasCapRequest, 0x0052),
+        (UWBMeasCapResponse, 0x0053),
+        (UWBMeasConfig, 0x0054),
+        (UWBMeasConfigFeedback, 0x0055),
+        (UWBMeasReport, 0x0056),
+        (UWBSensingCapRequest, 0x0057),
+        (UWBSensingCapResponse, 0x0058),
+        (UWBSensingConfig, 0x0059),
+        (UWBSensingConfigFeedback, 0x005A),
+        (UWBSensingReport, 0x005B),
+        (UWBSensingAction, 0x005C),
+        (ResourceReservation, 0x005D),
+        (ResourceReservationTerminate, 0x005E),
+        (NarrowbandSensingRequest, 0x005F),
+        (NarrowbandSensingFeedback, 0x0060),
+        (NarrowbandProxySensingRequest, 0x0061),
+        (NarrowbandProxySensingFeedback, 0x0062),
+        (NarrowbandSensingCapRequest, 0x0063),
+        (NarrowbandSensingCapResponse, 0x0064),
+        (NarrowbandSensingConfig, 0x0065),
+        (NarrowbandSensingConfigFeedback, 0x0066),
+        (SensingDeviceStatusReport, 0x0067),
+        (NarrowbandSensingReport, 0x0068),
+        (NarrowbandSensingAction, 0x0069),
+        (NarrowbandMeasConfigUpdateRequest, 0x006A),
+        (NarrowbandMeasConfigUpdateIndication, 0x006B),
+        (UWBSensingProcessRequest, 0x006C),
+        (UWBSensingProcessFeedback, 0x006D),
+        (UWBProxySensingRequest, 0x006E),
+        (UWBProxySensingFeedback, 0x006F),
+        (UWBMeasAction, 0x0070),
     ])
     def test_data_type_index(self, cls, expected_idx):
         assert expected_idx == cls.DATA_TYPE_INDEX
