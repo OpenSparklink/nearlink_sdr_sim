@@ -341,3 +341,74 @@ class TestFullLifecycle:
         assert mgr.role == Role.G_NODE
         mgr.process_event(Event(EventType.DISCONNECT_RECEIVED))
         assert mgr.state == LinkState.DISCONNECTED
+
+
+# -----------------------------------------------------------------------
+# 测试: 配对状态转换 (9.2)
+# -----------------------------------------------------------------------
+
+class TestPairingTransitions:
+
+    def test_connected_to_pairing(self):
+        mgr, _ = make_manager()
+        connect_as_t_node(mgr)
+        mgr.process_event(Event(EventType.START_PAIRING))
+        assert mgr.state == LinkState.PAIRING
+
+    def test_pairing_complete(self):
+        mgr, _ = make_manager()
+        connect_as_t_node(mgr)
+        mgr.process_event(Event(EventType.START_PAIRING))
+        mgr.process_event(Event(EventType.PAIRING_COMPLETE))
+        assert mgr.state == LinkState.CONNECTED
+
+    def test_pairing_failed(self):
+        mgr, cb = make_manager()
+        connect_as_t_node(mgr)
+        mgr.process_event(Event(EventType.START_PAIRING))
+        mgr.process_event(Event(EventType.PAIRING_FAILED))
+        assert mgr.state == LinkState.DISCONNECTED
+        assert cb.disconnect_reasons == [DisconnectReason.LOCAL_REQUEST]
+
+    def test_full_pairing_lifecycle(self):
+        """CONNECTED → PAIRING → CONNECTED 完整流程。"""
+        mgr, _cb = make_manager()
+        connect_as_g_node(mgr)
+        mgr.process_event(Event(EventType.START_PAIRING))
+        assert mgr.state == LinkState.PAIRING
+        mgr.process_event(Event(EventType.PAIRING_COMPLETE))
+        assert mgr.state == LinkState.CONNECTED
+        assert mgr.role == Role.G_NODE
+
+
+# -----------------------------------------------------------------------
+# 测试: 监督超时检测
+# -----------------------------------------------------------------------
+
+class TestSupervisionCheck:
+
+    def test_check_not_connected(self):
+        mgr, _ = make_manager()
+        assert mgr.check_supervision_timeout() is False
+
+    def test_check_no_rx_time(self):
+        mgr, _ = make_manager()
+        connect_as_t_node(mgr)
+        mgr._last_rx_time = 0
+        assert mgr.check_supervision_timeout() is False
+
+    def test_check_within_timeout(self):
+        import time
+        mgr, _ = make_manager()
+        connect_as_t_node(mgr)
+        mgr._last_rx_time = time.monotonic()
+        assert mgr.check_supervision_timeout() is False
+
+    def test_check_exceeds_timeout(self):
+        import time
+        mgr, _cb = make_manager()
+        connect_as_t_node(mgr)
+        mgr.params.supervision_timeout = 1  # 1ms
+        mgr._last_rx_time = time.monotonic() - 1.0  # 1 秒前
+        assert mgr.check_supervision_timeout() is True
+        assert mgr.state == LinkState.DISCONNECTED

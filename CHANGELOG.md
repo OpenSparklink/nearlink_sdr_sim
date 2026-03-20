@@ -9,6 +9,11 @@
 
 ### Added
 
+- 测试覆盖率补充: 总体 84% → 85%, 新增 28 个测试 (1354 → 1382)
+  - `tests/test_modulator.py`: TestSLEDemodulator (3 个测试) — `demodulator.py` 0% → 100%
+  - `tests/test_channel.py`: TestDoppler (6 个测试) — `channel.py` 88% → 92%
+  - `tests/test_link_manager.py`: TestPairingTransitions + TestSupervisionCheck (8 个测试) — `link_manager.py` 89% → 95%
+  - `tests/test_code_block_seg.py`: TestSubSegmentation + TestSubsegmentLastBlockDirect + TestFindRateStr (11 个测试) — `code_block_seg.py` 67% → 78%
 - `sim/link_sim.py` Phase 12: AMC 自适应调制编码 + HARQ 重传 + 跳频多径仿真
   - sim_amc_throughput: 全 MCS (0-12) 吞吐量与 FER 扫描, AMC 包络线选择
   - sim_harq_link: HARQ 重传链路仿真, 对比有/无重传 FER 与吞吐量

@@ -218,3 +218,54 @@ class TestChannelConfig:
         sig = np.ones(100, dtype=complex)
         out1, out2 = ch1.apply_fading(sig), ch2.apply_fading(sig)
         assert np.allclose(out1, out2)
+
+
+class TestDoppler:
+    """Doppler 相关衰落 (非准静态) 测试。"""
+
+    def test_rayleigh_doppler_independent(self):
+        """正多普勒频移下 Rayleigh 系数应逐符号独立变化。"""
+        cfg = ChannelConfig(
+            channel_type="rayleigh", max_doppler_hz=100, seed=42,
+        )
+        ch = ChannelModel(config=cfg)
+        taps = ch.get_channel_taps(100)
+        # 非准静态: 不同位置系数不同
+        assert not np.allclose(taps[0, 0], taps[0, 50])
+
+    def test_rician_doppler_independent(self):
+        cfg = ChannelConfig(
+            channel_type="rician", rician_k_db=6,
+            max_doppler_hz=100, seed=42,
+        )
+        ch = ChannelModel(config=cfg)
+        taps = ch.get_channel_taps(100)
+        assert not np.allclose(taps[0, 0], taps[0, 50])
+
+    def test_multipath_doppler_varying(self):
+        cfg = ChannelConfig(
+            channel_type="multipath", max_doppler_hz=100, seed=42,
+        )
+        ch = ChannelModel(config=cfg)
+        taps = ch.get_channel_taps(100)
+        # 每个抽头应随时间变化
+        assert not np.allclose(taps[0, 0], taps[0, 50])
+
+    def test_channel_taps_awgn_all_ones(self):
+        cfg = ChannelConfig(channel_type="awgn", seed=42)
+        ch = ChannelModel(config=cfg)
+        taps = ch.get_channel_taps(50)
+        assert taps.shape == (1, 50)
+        assert np.allclose(taps, 1.0)
+
+    def test_channel_taps_multipath_shape(self):
+        cfg = ChannelConfig(channel_type="multipath", seed=42)
+        ch = ChannelModel(config=cfg)
+        taps = ch.get_channel_taps(80)
+        assert taps.shape[1] == 80
+
+    def test_unknown_type_in_get_channel_taps(self):
+        cfg = ChannelConfig(channel_type="unknown", seed=42)
+        ch = ChannelModel(config=cfg)
+        with pytest.raises(ValueError, match="Unknown channel type"):
+            ch.get_channel_taps(10)

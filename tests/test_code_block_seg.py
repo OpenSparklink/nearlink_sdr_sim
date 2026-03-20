@@ -8,6 +8,8 @@ import pytest
 from nearlink_sdr.common.code_block_seg import (
     _SEG_TABLE_20,
     RATE_TABLE_2,
+    _find_rate_str,
+    _subsegment_last_block,
     segment_with_crc,
     segment_without_crc,
 )
@@ -163,3 +165,148 @@ class TestSegmentWithCRC:
         segs = segment_with_crc(bits, rate_str)
         # First segment should contain the start of the input
         assert len(segs) >= 1
+
+
+class TestSubSegmentation:
+    """_subsegment_last_block 子分段路径覆盖。"""
+
+    def test_large_input_triggers_subseg(self):
+        """输入大于 K_cb 触发多码块分割 + 末块子分段。"""
+        rate_str = "3/8"
+        K_cb = RATE_TABLE[rate_str][1024]  # 384
+        B = K_cb * 3  # 远大于 K_cb, 触发多码块
+        bits = np.zeros(B, dtype=np.int8)
+        segs = segment_with_crc(bits, rate_str)
+        assert len(segs) >= 3
+        for N, _ in segs:
+            assert N in {64, 128, 256, 512, 1024}
+
+    def test_exact_kcb_single_block(self):
+        """输入恰好等于 K_cb: 不分割。"""
+        rate_str = "1/2"
+        K_cb = RATE_TABLE[rate_str][1024]  # 512
+        bits = np.zeros(K_cb, dtype=np.int8)
+        segs = segment_with_crc(bits, rate_str)
+        assert len(segs) >= 1
+
+    def test_slightly_over_kcb(self):
+        """输入略超 K_cb: 产生 2 个码块。"""
+        rate_str = "1/2"
+        K_cb = RATE_TABLE[rate_str][1024]  # 512
+        bits = np.zeros(K_cb + 10, dtype=np.int8)
+        segs = segment_with_crc(bits, rate_str)
+        assert len(segs) >= 2
+
+    def test_all_rates_large_input(self):
+        """各编码速率下大载荷均能正常分割。"""
+        for rate_str in ["1/4", "3/8", "1/2", "5/8", "3/4", "7/8"]:
+            K_cb = RATE_TABLE[rate_str][1024]
+            bits = np.zeros(K_cb * 2 + 50, dtype=np.int8)
+            segs = segment_with_crc(bits, rate_str)
+            assert len(segs) >= 2
+            for N, s in segs:
+                assert N in {64, 128, 256, 512, 1024}
+                assert len(s) > 0
+
+    def test_small_rate_subseg(self):
+        """低速率 (1/4) 大载荷子分段。"""
+        rate_str = "1/4"
+        K_cb = RATE_TABLE[rate_str][1024]  # 256
+        bits = np.zeros(K_cb * 4, dtype=np.int8)
+        segs = segment_with_crc(bits, rate_str)
+        assert len(segs) >= 4
+
+
+class TestSubsegmentLastBlockDirect:
+    """直接测试 _subsegment_last_block 内部路径。"""
+
+    def test_fits_in_1024_no_padding(self):
+        """K_r == K_1024: 无需填充, 返回单个 (1024, bits)。"""
+        rate_str = "1/2"
+        K_1024 = RATE_TABLE[rate_str][1024]
+        bits = np.ones(K_1024, dtype=np.int8)
+        result = _subsegment_last_block(bits, rate_str)
+        assert result is not None
+        assert len(result) == 1
+        assert result[0][0] == 1024
+        assert len(result[0][1]) == K_1024
+
+    def test_fits_in_1024_with_padding(self):
+        """K_r < K_1024: 前导零填充。"""
+        rate_str = "1/2"
+        K_1024 = RATE_TABLE[rate_str][1024]
+        bits = np.ones(K_1024 - 50, dtype=np.int8)
+        result = _subsegment_last_block(bits, rate_str)
+        assert result is not None
+        assert len(result) == 1
+        assert result[0][0] == 1024
+        assert len(result[0][1]) == K_1024
+        # 前 50 位应为填充零
+        assert np.all(result[0][1][:50] == 0)
+
+    def test_kr_exceeds_k1024_above_threshold(self):
+        """K_r > K_1024 且 > threshold_1024: 截断到 K_1024。"""
+        rate_str = "3/4"
+        K_1024 = RATE_TABLE[rate_str][1024]
+        R = 0.75
+        R_adj = R - 1 / 16
+        threshold = int(1024 * R_adj)
+        # K_r > threshold_1024 且 > K_1024
+        K_r = max(K_1024, threshold) + 10
+        bits = np.ones(K_r, dtype=np.int8)
+        result = _subsegment_last_block(bits, rate_str)
+        assert result is not None
+        assert len(result) == 1
+        assert result[0][0] == 1024
+
+    def test_kr_exceeds_k1024_binary_decomposition(self):
+        """K_r > K_1024 且 <= threshold_1024 且 <= threshold_large: 二进制分解。"""
+        rate_str = "7/8"
+        K_1024 = RATE_TABLE[rate_str][1024]
+        R = 0.875
+        R_adj = R - 1 / 16
+        threshold_large = (1024 - 64) * R_adj
+        # 构造 K_r 使其在 K_1024 < K_r <= threshold_large
+        K_r = K_1024 + 5
+        if K_r > threshold_large:
+            K_r = int(threshold_large) - 1
+        if K_r <= K_1024:
+            pytest.skip("无法满足分解条件")
+        bits = np.ones(K_r, dtype=np.int8)
+        result = _subsegment_last_block(bits, rate_str)
+        assert result is not None
+        for code_len, _seg_bits in result:
+            assert code_len in {64, 128, 256, 512, 1024}
+
+    def test_kr_exceeds_k1024_above_threshold_large(self):
+        """K_r > K_1024 且 > threshold_large 但 <= threshold_1024:
+        使用 R_adj 速率与 1024 码长。"""
+        rate_str = "7/8"
+        K_1024 = RATE_TABLE[rate_str][1024]
+        R = 0.875
+        R_adj = R - 1 / 16
+        threshold_1024 = 1024 * R_adj
+        threshold_large = (1024 - 64) * R_adj
+        # K_r > threshold_large 且 <= threshold_1024
+        K_r = int(threshold_large) + 5
+        if K_r > threshold_1024 or K_r <= K_1024:
+            pytest.skip("无法满足条件")
+        bits = np.ones(K_r, dtype=np.int8)
+        result = _subsegment_last_block(bits, rate_str)
+        assert result is not None
+        assert result[0][0] == 1024
+
+
+class TestFindRateStr:
+    """_find_rate_str 辅助函数测试。"""
+
+    def test_exact_match(self):
+        assert _find_rate_str(0.5) == "1/2"
+        assert _find_rate_str(0.75) == "3/4"
+
+    def test_close_match(self):
+        assert _find_rate_str(0.501) == "1/2"
+
+    def test_no_match(self):
+        assert _find_rate_str(0.1) is None
+        assert _find_rate_str(0.95) is None
