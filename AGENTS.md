@@ -93,6 +93,16 @@ tests/            # 测试文件, 与 src 模块一一对应
 | 7.3.3 | 数据面帧结构 | 完成 | `mac/frame.py` |
 | 7.3.4 | 复用帧 | 完成 | `mac/frame.py` |
 | 7.3 | 信令注册与编解码 | 完成 | `mac/signaling.py` |
+| 7.1.4 | 广播帧结构 | 完成 | `mac/broadcast.py` |
+| 7.3.2.2-2.5 | 收发间隔更新信令 | 完成 | `mac/link_control.py` |
+| 7.3.2.6-2.11 | 安全流程信令 | 完成 | `mac/link_control.py` |
+| 7.3.2.14 | 未知特性反馈 | 完成 | `mac/link_control.py` |
+| 7.3.2.19-2.22 | 信道管理信令 | 完成 | `mac/link_control.py` |
+| 7.3.2.25-2.26 | PHY 更新信令 | 完成 | `mac/link_control.py` |
+| 7.3.2.33-2.34 | 异步链路参数重配置 | 完成 | `mac/link_control.py` |
+| 7.3.2.45 | 广播链路断开 | 完成 | `mac/link_control.py` |
+| 7.3.2.51-2.55 | 角色切换/PING/时间偏移 | 完成 | `mac/link_control.py` |
+| 7.3.2.62-2.63 | 超时更新/组播断开 | 完成 | `mac/link_control.py` |
 | 6.10 | TX 发射流水线 | 完成 | `phy/tx_pipeline.py` |
 | 6.10 | RX 接收流水线 | 完成 | `phy/rx_pipeline.py` |
 | 6.3 | FT1/FT3/FT4 帧类型全链路支持 | 完成 | `phy/tx_pipeline.py`, `phy/rx_pipeline.py` |
