@@ -10,6 +10,7 @@ from nearlink_sdr.mac.access import (
     AccessPhase,
     AccessWhitelist,
     BroadcasterAccessManager,
+    DiscoveryManager,
     InitiatorAccessManager,
     negotiate_gt_role,
     run_access_procedure,
@@ -19,6 +20,9 @@ from nearlink_sdr.mac.broadcast import (
     AccessResponseType,
     BroadcastDataType,
     BroadcastFrame,
+    DiscoveryAccessEntry,
+    DiscoveryAccessResourceConfig,
+    QueryRequestFilterInfo,
 )
 from nearlink_sdr.mac.link_manager import LinkState, Role
 
@@ -515,3 +519,135 @@ class TestAccessWhitelist:
             req_info.pack(), b"\x22" * 6,
         )
         assert accepted is True
+
+
+# -----------------------------------------------------------------------
+# 发现流程 (7.1.2)
+# -----------------------------------------------------------------------
+
+class TestDiscoveryManager:
+    """发现流程测试。"""
+
+    def _make_queryable_frame(
+        self, addr: bytes = b"\x01\x02\x03\x04\x05\x06",
+    ) -> BroadcastFrame:
+        """构造一个包含可查询发现接入资源配置的广播帧。"""
+        config = DiscoveryAccessResourceConfig(
+            request_offset=600,
+            request_max_length=64,
+            response_offset=1200,
+            gt_negotiation=0,
+            entry_count=1,
+            entries=[
+                DiscoveryAccessEntry(
+                    request_type=1,  # 可查询
+                    carry_info_indication=0,
+                    peer_addr_type=0,
+                    addr_present=0,
+                    peer_addr=b"",
+                ),
+            ],
+        )
+        return BroadcastFrame(
+            structure_indication=0x10,
+            local_addr_type=0,
+            peer_addr_type=0,
+            local_addr=addr,
+            irk_id=0,
+            peer_addr=b"\x00" * 6,
+            data_items=[
+                (BroadcastDataType.DISCOVERY_ACCESS_RESOURCE,
+                 config.pack()),
+            ],
+        )
+
+    def test_broadcast_received_queryable(self):
+        mgr = DiscoveryManager(local_address=b"\xAA" * 6)
+        frame = self._make_queryable_frame()
+        assert mgr.on_broadcast_received(frame) is True
+        assert frame.local_addr in mgr.discovered_devices
+
+    def test_broadcast_received_not_queryable(self):
+        mgr = DiscoveryManager()
+        frame = BroadcastFrame(
+            structure_indication=0x00,
+            local_addr_type=0,
+            peer_addr_type=0,
+            local_addr=b"\x01" * 6,
+            irk_id=0, peer_addr=b"\x00" * 6,
+            data_items=[],
+        )
+        assert mgr.on_broadcast_received(frame) is False
+
+    def test_whitelist_blocks(self):
+        mgr = DiscoveryManager()
+        mgr.whitelist.enabled = True
+        frame = self._make_queryable_frame()
+        assert mgr.on_broadcast_received(frame) is False
+
+    def test_build_query_request(self):
+        mgr = DiscoveryManager(local_address=b"\xAA" * 6)
+        req = mgr.build_query_request(
+            target_addr=b"\x01" * 6,
+            upper_layer_data=b"\x42",
+        )
+        assert req.local_addr == b"\xAA" * 6
+        assert req.peer_addr == b"\x01" * 6
+        assert len(req.data_items) == 1
+
+    def test_build_query_request_with_filter(self):
+        mgr = DiscoveryManager(local_address=b"\xBB" * 6)
+        filter_info = QueryRequestFilterInfo(
+            uuid_16_list=[0x1234],
+        )
+        req = mgr.build_query_request(
+            target_addr=b"\x01" * 6,
+            filter_info=filter_info,
+        )
+        assert len(req.data_items) == 1
+        assert req.data_items[0][0] == BroadcastDataType.QUERY_REQUEST_FILTER
+
+    def test_handle_query_response(self):
+        mgr = DiscoveryManager()
+        broadcast_frame = self._make_queryable_frame()
+        mgr.on_broadcast_received(broadcast_frame)
+
+        response = BroadcastFrame(
+            structure_indication=0x10,
+            local_addr_type=0, peer_addr_type=0,
+            local_addr=broadcast_frame.local_addr,
+            irk_id=0, peer_addr=b"\x00" * 6,
+            data_items=[(BroadcastDataType.UPPER_LAYER_DATA, b"\x99")],
+        )
+        assert mgr.handle_query_response(response) is True
+        _, resp = mgr.discovered_devices[broadcast_frame.local_addr]
+        assert resp is not None
+
+    def test_handle_query_request_and_response(self):
+        """广播设备端处理查询请求。"""
+        b_mgr = DiscoveryManager(local_address=b"\x01" * 6)
+        d_mgr = DiscoveryManager(local_address=b"\x02" * 6)
+
+        # 发现设备收到广播帧
+        adv_frame = self._make_queryable_frame(addr=b"\x01" * 6)
+        d_mgr.on_broadcast_received(adv_frame)
+
+        # 发现设备构造查询请求
+        query_req = d_mgr.build_query_request(b"\x01" * 6)
+
+        # 广播设备处理查询请求并返回响应
+        query_resp = b_mgr.handle_query_request(
+            query_req, all_services_data=b"\xAB\xCD",
+        )
+        assert query_resp.local_addr == b"\x01" * 6
+
+        # 发现设备收到响应
+        assert d_mgr.handle_query_response(query_resp) is True
+
+    def test_clear(self):
+        mgr = DiscoveryManager()
+        frame = self._make_queryable_frame()
+        mgr.on_broadcast_received(frame)
+        assert len(mgr.discovered_devices) == 1
+        mgr.clear()
+        assert len(mgr.discovered_devices) == 0

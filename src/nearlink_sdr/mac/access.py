@@ -30,6 +30,7 @@ from nearlink_sdr.mac.broadcast import (
     DiscoveryAccessEntry,
     DiscoveryAccessResourceConfig,
     GTNegotiation,
+    QueryRequestFilterInfo,
     TransportIndicationInfo,
 )
 from nearlink_sdr.mac.link_manager import (
@@ -126,6 +127,170 @@ class AccessWhitelist:
     def addresses(self) -> list[bytes]:
         return sorted(self._addresses)
 
+
+# ---------------------------------------------------------------------------
+# 7.1.2 发现流程
+# ---------------------------------------------------------------------------
+
+
+@dataclass
+class DiscoveryManager:
+    """发现流程管理器 (标准 7.1.2)
+
+    实现发现设备接收广播帧后的查询请求/响应流程:
+      a) 广播设备发送基础广播帧和扩展广播帧
+      b) 发现设备收到可查询扩展广播帧后发送查询请求帧
+      c) 广播设备接收请求并发送查询响应帧
+      d) 发现设备接收查询响应帧, 完成发现
+    """
+    local_address: bytes = b"\x00" * 6
+    whitelist: AccessWhitelist = field(default_factory=AccessWhitelist)
+    # 发现到的设备列表: {地址: (广播帧, 查询响应帧)}
+    _discovered: dict[bytes, tuple[BroadcastFrame, BroadcastFrame | None]] = (
+        field(default_factory=dict)
+    )
+    # 广播方: 查询请求处理器的数据存储
+    _query_responses: dict[bytes, BroadcastFrame] = field(default_factory=dict)
+
+    # -- 发现设备端 --
+
+    def on_broadcast_received(self, frame: BroadcastFrame) -> bool:
+        """处理收到的广播帧。
+
+        若帧中包含发现/接入资源配置且为可查询帧, 返回 True 表示可发送查询请求。
+        白名单启用时仅处理白名单内设备。
+
+        Args:
+            frame: 收到的广播帧。
+
+        Returns:
+            True 表示可查询, 需要后续发送查询请求。
+        """
+        if not self.whitelist.check(frame.local_addr):
+            return False
+
+        addr = bytes(frame.local_addr)
+        self._discovered[addr] = (frame, None)
+
+        # 检查是否包含可查询的发现接入资源配置
+        for data_type, data_bytes in frame.data_items:
+            if data_type == BroadcastDataType.DISCOVERY_ACCESS_RESOURCE:
+                config = DiscoveryAccessResourceConfig.unpack(data_bytes)
+                if config.entries:
+                    for entry in config.entries:
+                        if entry.request_type == 1:  # 可查询
+                            return True
+        return False
+
+    def build_query_request(
+        self,
+        target_addr: bytes,
+        filter_info: QueryRequestFilterInfo | None = None,
+        upper_layer_data: bytes = b"",
+    ) -> BroadcastFrame:
+        """构造查询请求帧 (阶段 b)。
+
+        Args:
+            target_addr: 目标广播设备地址。
+            filter_info: 查询过滤信息 (按服务UUID过滤)。
+            upper_layer_data: 高层广播数据。
+
+        Returns:
+            查询请求广播帧。
+        """
+        data_items: list[tuple[int, bytes]] = []
+        if filter_info is not None:
+            data_items.append((
+                BroadcastDataType.QUERY_REQUEST_FILTER,
+                filter_info.pack(),
+            ))
+        if upper_layer_data:
+            data_items.append((
+                BroadcastDataType.UPPER_LAYER_DATA,
+                upper_layer_data,
+            ))
+
+        return BroadcastFrame(
+            structure_indication=0x10,
+            local_addr_type=0,
+            peer_addr_type=0,
+            local_addr=self.local_address,
+            irk_id=0,
+            peer_addr=target_addr,
+            data_items=data_items,
+        )
+
+    def handle_query_response(
+        self, frame: BroadcastFrame,
+    ) -> bool:
+        """处理查询响应帧 (阶段 d)。
+
+        Args:
+            frame: 收到的查询响应帧。
+
+        Returns:
+            True 表示发现完成。
+        """
+        addr = bytes(frame.local_addr)
+        if addr in self._discovered:
+            original, _ = self._discovered[addr]
+            self._discovered[addr] = (original, frame)
+            return True
+        return False
+
+    # -- 广播设备端 --
+
+    def handle_query_request(
+        self,
+        request_frame: BroadcastFrame,
+        all_services_data: bytes = b"",
+    ) -> BroadcastFrame:
+        """处理查询请求并构造查询响应帧 (阶段 c)。
+
+        Args:
+            request_frame: 收到的查询请求帧。
+            all_services_data: 本设备支持的所有服务数据。
+
+        Returns:
+            查询响应广播帧。
+        """
+        requester_addr = bytes(request_frame.local_addr)
+
+        # 判断是否携带查询过滤信息
+        response_data = all_services_data
+        for data_type, _data_bytes in request_frame.data_items:
+            if data_type == BroadcastDataType.QUERY_REQUEST_FILTER:
+                # 有过滤信息时, 应仅返回过滤指定的服务数据
+                # 此处简化处理: 返回全部数据, 由上层做更精确过滤
+                break
+
+        data_items: list[tuple[int, bytes]] = []
+        if response_data:
+            data_items.append((
+                BroadcastDataType.UPPER_LAYER_DATA, response_data,
+            ))
+
+        response = BroadcastFrame(
+            structure_indication=0x10,
+            local_addr_type=0,
+            peer_addr_type=0,
+            local_addr=self.local_address,
+            irk_id=0,
+            peer_addr=requester_addr,
+            data_items=data_items,
+        )
+        self._query_responses[requester_addr] = response
+        return response
+
+    @property
+    def discovered_devices(self) -> dict[bytes, tuple[BroadcastFrame, BroadcastFrame | None]]:
+        """返回已发现的设备及其广播帧/查询响应帧。"""
+        return dict(self._discovered)
+
+    def clear(self) -> None:
+        """清空发现结果。"""
+        self._discovered.clear()
+        self._query_responses.clear()
 
 
 def negotiate_gt_role(

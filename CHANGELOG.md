@@ -9,6 +9,21 @@
 
 ### Added
 
+- 发现流程管理器 (`mac/access.py`) -- 标准 7.1.2
+  - DiscoveryManager: 查询请求/响应流程, 支持白名单过滤
+  - 广播设备端查询请求处理和响应构造
+  - 发现设备端查询请求构造和响应处理
+- 角色切换信令 (`mac/link_manager.py`) -- 标准 7.2.15
+  - request_role_switch: 发送 RoleSwitchRequest 信令
+  - execute_role_switch: 发送信令并交换角色
+- PING 流程 (`mac/link_manager.py`) -- 标准 7.2.16
+  - send_ping / respond_ping
+- 链路断开信令 (`mac/link_manager.py`) -- 标准 7.2.17
+  - request_disconnect: 驱动状态机断开链路
+- 异步链路参数更新 (`mac/link_manager.py`) -- 标准 7.2.18
+  - request/respond_async_param_update
+- 新增 16 个测试用例, 总计 1849 个全部通过
+
 - 广播帧过滤器 (`mac/broadcast.py`) -- 标准 7.1.5
   - BroadcastFilter: 支持地址/名称/UUID/服务数据/厂商数据过滤
   - FilterCondition: 单条件定义, 支持取反

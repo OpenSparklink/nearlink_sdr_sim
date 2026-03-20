@@ -595,6 +595,107 @@ class LinkManager:
         )
         return self.send_signaling(msg)
 
+    # ---------------------------------------------------------------
+    # 7.2.15 角色切换 (带信令)
+    # ---------------------------------------------------------------
+
+    def request_role_switch(
+        self, effective_slot: int = 0,
+    ) -> ControlFrame | None:
+        """发起角色切换请求 (7.2.15), 发送 RoleSwitchRequest 信令"""
+        from nearlink_sdr.mac.link_control import RoleSwitchRequest
+        msg = RoleSwitchRequest(effective_slot=effective_slot)
+        return self.send_signaling(msg)
+
+    def execute_role_switch(self, effective_slot: int = 0) -> ControlFrame | None:
+        """执行角色切换: 发送信令并交换本地角色标记"""
+        frame = self.request_role_switch(effective_slot)
+        self.switch_role()
+        return frame
+
+    # ---------------------------------------------------------------
+    # 7.2.16 PING 流程
+    # ---------------------------------------------------------------
+
+    def send_ping(self) -> ControlFrame | None:
+        """发起 PING 请求 (7.2.16)"""
+        from nearlink_sdr.mac.link_control import PingRequest
+        return self.send_signaling(PingRequest())
+
+    def respond_ping(self) -> ControlFrame | None:
+        """回复 PING 响应 (7.2.16)"""
+        from nearlink_sdr.mac.link_control import PingResponse
+        return self.send_signaling(PingResponse())
+
+    # ---------------------------------------------------------------
+    # 7.2.17 链路断开 (信令通知)
+    # ---------------------------------------------------------------
+
+    def request_disconnect(self) -> None:
+        """发起链路断开 (7.2.17)
+
+        驱动状态机进入 DISCONNECTED 状态。
+        """
+        self.process_event(Event(EventType.DISCONNECT_REQUEST))
+
+    # ---------------------------------------------------------------
+    # 7.2.18 链接态异步链路参数更新
+    # ---------------------------------------------------------------
+
+    def request_async_param_update(
+        self,
+        event_group_period_min: int = 0,
+        event_group_period_max: int = 0,
+        delay_period: int = 0,
+        timeout: int = 0,
+        expected_period_unit: int = 0,
+        effective_ref_slot: int = 0,
+        offsets: tuple[int, ...] = (),
+        time_slot_length: int = 0,
+        time_slot_count: int = 0,
+    ) -> ControlFrame | None:
+        """发起异步链路参数更新请求 (7.2.18)"""
+        from nearlink_sdr.mac.link_control import AsyncLinkParamRequest
+        msg = AsyncLinkParamRequest(
+            event_group_period_min=event_group_period_min,
+            event_group_period_max=event_group_period_max,
+            delay_period=delay_period,
+            timeout=timeout,
+            expected_period_unit=expected_period_unit,
+            effective_ref_slot=effective_ref_slot,
+            offsets=offsets,
+            time_slot_length=time_slot_length,
+            time_slot_count=time_slot_count,
+        )
+        return self.send_signaling(msg)
+
+    def respond_async_param_update(
+        self,
+        event_group_period_min: int = 0,
+        event_group_period_max: int = 0,
+        delay_period: int = 0,
+        timeout: int = 0,
+        expected_period_unit: int = 0,
+        effective_ref_slot: int = 0,
+        offsets: tuple[int, ...] = (),
+        time_slot_length: int = 0,
+        time_slot_count: int = 0,
+    ) -> ControlFrame | None:
+        """回复异步链路参数更新 (7.2.18)"""
+        from nearlink_sdr.mac.link_control import AsyncLinkParamResponse
+        msg = AsyncLinkParamResponse(
+            event_group_period_min=event_group_period_min,
+            event_group_period_max=event_group_period_max,
+            delay_period=delay_period,
+            timeout=timeout,
+            expected_period_unit=expected_period_unit,
+            effective_ref_slot=effective_ref_slot,
+            offsets=offsets,
+            time_slot_length=time_slot_length,
+            time_slot_count=time_slot_count,
+        )
+        return self.send_signaling(msg)
+
 
 # -----------------------------------------------------------------------
 # 异常

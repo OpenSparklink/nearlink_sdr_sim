@@ -609,3 +609,94 @@ class TestControlPlaneProcedures:
         mgr, _ = make_manager()
         with pytest.raises(InvalidState):
             mgr.request_feature_exchange(feature_set=0x01)
+
+
+# -----------------------------------------------------------------------
+# 测试: 角色切换信令 (7.2.15)
+# -----------------------------------------------------------------------
+
+class TestRoleSwitchSignaling:
+
+    def test_request_role_switch(self):
+        mgr, _ = make_manager()
+        connect_as_t_node(mgr)
+        frame = mgr.request_role_switch(effective_slot=42)
+        assert frame is not None
+        assert frame.data_type_index == 0x0031
+
+    def test_execute_role_switch(self):
+        mgr, _ = make_manager()
+        connect_as_t_node(mgr)
+        assert mgr.role == Role.T_NODE
+        frame = mgr.execute_role_switch(effective_slot=10)
+        assert frame is not None
+        assert mgr.role == Role.G_NODE
+
+
+# -----------------------------------------------------------------------
+# 测试: PING 流程 (7.2.16)
+# -----------------------------------------------------------------------
+
+class TestPingFlow:
+
+    def test_send_ping(self):
+        mgr, _ = make_manager()
+        connect_as_t_node(mgr)
+        frame = mgr.send_ping()
+        assert frame is not None
+        assert frame.data_type_index == 0x0033
+
+    def test_respond_ping(self):
+        mgr, _ = make_manager()
+        connect_as_g_node(mgr)
+        frame = mgr.respond_ping()
+        assert frame is not None
+        assert frame.data_type_index == 0x0034
+
+    def test_ping_not_connected_raises(self):
+        mgr, _ = make_manager()
+        with pytest.raises(InvalidState):
+            mgr.send_ping()
+
+
+# -----------------------------------------------------------------------
+# 测试: 链路断开信令 (7.2.17)
+# -----------------------------------------------------------------------
+
+class TestDisconnectSignaling:
+
+    def test_request_disconnect(self):
+        mgr, cb = make_manager()
+        connect_as_t_node(mgr)
+        mgr.request_disconnect()
+        assert mgr.state == LinkState.DISCONNECTED
+        assert len(cb.disconnect_reasons) == 1
+
+
+# -----------------------------------------------------------------------
+# 测试: 异步链路参数更新 (7.2.18)
+# -----------------------------------------------------------------------
+
+class TestAsyncParamUpdate:
+
+    def test_request_async_param(self):
+        mgr, _ = make_manager()
+        connect_as_t_node(mgr)
+        frame = mgr.request_async_param_update(
+            event_group_period_min=10,
+            event_group_period_max=100,
+            timeout=500,
+        )
+        assert frame is not None
+        assert frame.data_type_index == 0x0020
+
+    def test_respond_async_param(self):
+        mgr, _ = make_manager()
+        connect_as_g_node(mgr)
+        frame = mgr.respond_async_param_update(
+            event_group_period_min=10,
+            event_group_period_max=100,
+            timeout=500,
+        )
+        assert frame is not None
+        assert frame.data_type_index == 0x0021
