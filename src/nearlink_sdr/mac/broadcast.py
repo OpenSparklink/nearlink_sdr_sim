@@ -478,6 +478,411 @@ class SystemMgmtFrameInfo:
 
 
 # ---------------------------------------------------------------------------
+# 7.1.4.3 传输指示信息
+# ---------------------------------------------------------------------------
+
+
+@dataclass
+class TransportIndicationInfo:
+    """传输指示信息 (7.1.4.3, 表29)
+
+    总长度 480 bits (2.4GHz) 或 600 bits (5.xGHz),
+    取决于跳频地图长度 (80 或 200 bits)。
+    """
+    system_slot_seq: int           # 系统基础时隙顺序号 (32 bits)
+    event_group_offset: int        # 事件组起始偏移时间 (24 bits, us)
+    event_group_period: int        # 事件组周期 (16 bits, 调度时隙)
+    event_period: int              # 事件周期 (16 bits, 调度时隙)
+    intra_event_interval: int      # 事件内间隔 (16 bits, us)
+    inter_event_interval: int      # 事件间间隔和事件组间间隔 (16 bits, us)
+    event_count: int               # 事件总数 (8 bits)
+    peer_addr: bytes               # 对端媒体接入层标识 (48 bits / 6字节)
+    peer_addr_type: int            # 对端标识类型 (3 bits)
+    sleep_clock_accuracy: int      # 睡眠时钟精度 (3 bits)
+    first_last_indication: int     # 先发后发指示 (1 bit)
+    reserved_1: int = 0            # 保留 (1 bit)
+    tx_frame_type: int = 0         # 先发链路无线帧类型指示 (4 bits)
+    rx_frame_type: int = 0         # 后发链路无线帧类型指示 (4 bits)
+    tx_crc_type: int = 0           # 先发链路CRC类型 (1 bit)
+    rx_crc_type: int = 0           # 后发链路CRC类型 (1 bit)
+    tx_feedback_type: int = 0      # 先发链路反馈类型指示 (6 bits)
+    rx_feedback_type: int = 0      # 后发链路反馈类型指示 (3 bits)
+    system_schedule_slot: int = 0  # 系统调度时隙 (3 bits)
+    reserved_2: int = 0            # 保留 (2 bits)
+    tx_link_id: int = 0            # 先发链路逻辑链路标识 (24 bits)
+    rx_link_id: int = 0            # 后发链路逻辑链路标识 (24 bits)
+    tx_bandwidth: int = 0          # 先发链路带宽指示 (2 bits)
+    rx_bandwidth: int = 0          # 后发链路带宽指示 (2 bits)
+    tx_pilot_density: int = 0      # 先发链路导频密度指示 (2 bits)
+    rx_pilot_density: int = 0      # 后发链路导频密度指示 (2 bits)
+    tx_pdu_max: int = 0            # 先发链路PDU最大值 (11 bits)
+    rx_pdu_max: int = 0            # 后发链路PDU最大值 (11 bits)
+    tx_max_time_offset: int = 0    # 先发链路最大时间偏移量 (9 bits)
+    rx_max_time_offset: int = 0    # 后发链路最大时间偏移量 (9 bits)
+    tx_crc_init: int = 0           # 先发链路CRC初始值 (32 bits)
+    rx_crc_init: int = 0           # 后发链路CRC初始值 (32 bits)
+    delay_period: int = 0          # 延迟周期 (16 bits)
+    timeout: int = 0               # 超时时间 (16 bits)
+    hop_map: bytes = b""           # 跳频地图 (10 或 25 字节)
+    is_5g: bool = False            # 是否使用 5.xGHz 跳频地图
+
+    def pack(self) -> bytes:
+        """编码为字节序列"""
+        bits: list[int] = []
+        bits.extend(_int_to_bits(self.system_slot_seq, 32))
+        bits.extend(_int_to_bits(self.event_group_offset, 24))
+        bits.extend(_int_to_bits(self.event_group_period, 16))
+        bits.extend(_int_to_bits(self.event_period, 16))
+        bits.extend(_int_to_bits(self.intra_event_interval, 16))
+        bits.extend(_int_to_bits(self.inter_event_interval, 16))
+        bits.extend(_int_to_bits(self.event_count, 8))
+        # peer_addr: 48 bits
+        for b in self.peer_addr[:6].ljust(6, b"\x00"):
+            bits.extend(_int_to_bits(b, 8))
+        bits.extend(_int_to_bits(self.peer_addr_type, 3))
+        bits.extend(_int_to_bits(self.sleep_clock_accuracy, 3))
+        bits.extend(_int_to_bits(self.first_last_indication, 1))
+        bits.extend(_int_to_bits(self.reserved_1, 1))
+        bits.extend(_int_to_bits(self.tx_frame_type, 4))
+        bits.extend(_int_to_bits(self.rx_frame_type, 4))
+        bits.extend(_int_to_bits(self.tx_crc_type, 1))
+        bits.extend(_int_to_bits(self.rx_crc_type, 1))
+        bits.extend(_int_to_bits(self.tx_feedback_type, 6))
+        bits.extend(_int_to_bits(self.rx_feedback_type, 3))
+        bits.extend(_int_to_bits(self.system_schedule_slot, 3))
+        bits.extend(_int_to_bits(self.reserved_2, 2))
+        bits.extend(_int_to_bits(self.tx_link_id, 24))
+        bits.extend(_int_to_bits(self.rx_link_id, 24))
+        bits.extend(_int_to_bits(self.tx_bandwidth, 2))
+        bits.extend(_int_to_bits(self.rx_bandwidth, 2))
+        bits.extend(_int_to_bits(self.tx_pilot_density, 2))
+        bits.extend(_int_to_bits(self.rx_pilot_density, 2))
+        bits.extend(_int_to_bits(self.tx_pdu_max, 11))
+        bits.extend(_int_to_bits(self.rx_pdu_max, 11))
+        bits.extend(_int_to_bits(self.tx_max_time_offset, 9))
+        bits.extend(_int_to_bits(self.rx_max_time_offset, 9))
+        bits.extend(_int_to_bits(self.tx_crc_init, 32))
+        bits.extend(_int_to_bits(self.rx_crc_init, 32))
+        bits.extend(_int_to_bits(self.delay_period, 16))
+        bits.extend(_int_to_bits(self.timeout, 16))
+        # hop_map: 80 or 200 bits
+        hop_len = 25 if self.is_5g else 10
+        hop = self.hop_map[:hop_len].ljust(hop_len, b"\x00")
+        for b in hop:
+            bits.extend(_int_to_bits(b, 8))
+        return _bits_to_bytes(bits)
+
+    @classmethod
+    def unpack(
+        cls, data: bytes, is_5g: bool = False,
+    ) -> TransportIndicationInfo:
+        """从字节序列解码"""
+        hop_len = 25 if is_5g else 10
+        expected_bits = 400 + hop_len * 8
+        if len(data) * 8 < expected_bits:
+            raise ValueError(
+                f"数据不足: 需要至少 {expected_bits} bits "
+                f"({(expected_bits + 7) // 8} 字节)"
+            )
+        bits = _bytes_to_bits(data)
+        p = 0
+
+        def _take(w: int) -> int:
+            nonlocal p
+            v = _bits_to_int(bits, p, w)
+            p += w
+            return v
+
+        system_slot_seq = _take(32)
+        event_group_offset = _take(24)
+        event_group_period = _take(16)
+        event_period = _take(16)
+        intra_event_interval = _take(16)
+        inter_event_interval = _take(16)
+        event_count = _take(8)
+        peer_addr = bytes([_take(8) for _ in range(6)])
+        peer_addr_type = _take(3)
+        sleep_clock_accuracy = _take(3)
+        first_last_indication = _take(1)
+        reserved_1 = _take(1)
+        tx_frame_type = _take(4)
+        rx_frame_type = _take(4)
+        tx_crc_type = _take(1)
+        rx_crc_type = _take(1)
+        tx_feedback_type = _take(6)
+        rx_feedback_type = _take(3)
+        system_schedule_slot = _take(3)
+        reserved_2 = _take(2)
+        tx_link_id = _take(24)
+        rx_link_id = _take(24)
+        tx_bandwidth = _take(2)
+        rx_bandwidth = _take(2)
+        tx_pilot_density = _take(2)
+        rx_pilot_density = _take(2)
+        tx_pdu_max = _take(11)
+        rx_pdu_max = _take(11)
+        tx_max_time_offset = _take(9)
+        rx_max_time_offset = _take(9)
+        tx_crc_init = _take(32)
+        rx_crc_init = _take(32)
+        delay_period = _take(16)
+        timeout = _take(16)
+        hop_map = bytes([_take(8) for _ in range(hop_len)])
+        return cls(
+            system_slot_seq=system_slot_seq,
+            event_group_offset=event_group_offset,
+            event_group_period=event_group_period,
+            event_period=event_period,
+            intra_event_interval=intra_event_interval,
+            inter_event_interval=inter_event_interval,
+            event_count=event_count,
+            peer_addr=peer_addr,
+            peer_addr_type=peer_addr_type,
+            sleep_clock_accuracy=sleep_clock_accuracy,
+            first_last_indication=first_last_indication,
+            reserved_1=reserved_1,
+            tx_frame_type=tx_frame_type,
+            rx_frame_type=rx_frame_type,
+            tx_crc_type=tx_crc_type,
+            rx_crc_type=rx_crc_type,
+            tx_feedback_type=tx_feedback_type,
+            rx_feedback_type=rx_feedback_type,
+            system_schedule_slot=system_schedule_slot,
+            reserved_2=reserved_2,
+            tx_link_id=tx_link_id,
+            rx_link_id=rx_link_id,
+            tx_bandwidth=tx_bandwidth,
+            rx_bandwidth=rx_bandwidth,
+            tx_pilot_density=tx_pilot_density,
+            rx_pilot_density=rx_pilot_density,
+            tx_pdu_max=tx_pdu_max,
+            rx_pdu_max=rx_pdu_max,
+            tx_max_time_offset=tx_max_time_offset,
+            rx_max_time_offset=rx_max_time_offset,
+            tx_crc_init=tx_crc_init,
+            rx_crc_init=rx_crc_init,
+            delay_period=delay_period,
+            timeout=timeout,
+            hop_map=hop_map,
+            is_5g=is_5g,
+        )
+
+
+# ---------------------------------------------------------------------------
+# 7.1.4.8 非链接态广播链路信息
+# ---------------------------------------------------------------------------
+
+
+@dataclass
+class NonLinkedBroadcastLinkInfo:
+    """非链接态广播链路信息 (7.1.4.8, 表36/37)"""
+    transmission_type: int         # 传输类型 (1 bit, 0=异步, 1=同步)
+    service_adapt_mode: int        # 业务适配方式 (1 bit, 0=周期, 1=非周期)
+    reserved: int = 0              # 保留 (6 bits)
+    system_slot_seq: int = 0       # 系统基础时隙顺序号 (32 bits)
+    event_group_offset: int = 0    # 事件组起始偏移时间 (24 bits, us)
+    event_group_set_id: int = 0    # 事件组集合标识 (8 bits)
+    event_group_count: int = 0     # 事件组个数 (8 bits)
+    event_group_interval: int = 0  # 事件组间隔 (8 bits, 基础时隙)
+    event_group_period: int = 0    # 事件组周期 (16 bits, 基础时隙)
+    event_period: int = 0          # 事件周期 (16 bits, 基础时隙)
+    event_count: int = 0           # 事件总数 (8 bits)
+    sync_anchor_delay: int = 0     # 同步锚点延迟 (24 bits, us)
+    sync_ref_delay: int = 0        # 同步参考延迟 (24 bits, us)
+    base_link_id: int = 0          # 基础逻辑链路标识 (24 bits)
+    frame_type: int = 0            # 无线帧类型 (4 bits)
+    bandwidth: int = 0             # 带宽指示 (2 bits)
+    pilot_density: int = 0         # 导频密度指示 (2 bits)
+    sdu_max: int = 0               # SDU最大值 (12 bits)
+    sdu_period: int = 0            # SDU周期 (20 bits, us)
+    pdu_max: int = 0               # PDU最大值 (11 bits)
+    new_packet_count: int = 0      # 新数据包计数 (4 bits)
+    crc_type: int = 0              # CRC类型 (1 bit)
+    crc_base_init: int = 0         # CRC基础初始值 (32 bits)
+    hop_map: bytes = b""           # 跳频地图 (10 或 25 字节)
+    giv: bytes = b""               # 加密使用的GIV (8 字节)
+    gskd: bytes = b""              # 生成加密密钥的GSKD (16 字节)
+    is_5g: bool = False            # 是否使用 5.xGHz 跳频地图
+
+    def pack(self) -> bytes:
+        """编码为字节序列"""
+        bits: list[int] = []
+        bits.extend(_int_to_bits(self.transmission_type, 1))
+        bits.extend(_int_to_bits(self.service_adapt_mode, 1))
+        bits.extend(_int_to_bits(self.reserved, 6))
+        bits.extend(_int_to_bits(self.system_slot_seq, 32))
+        bits.extend(_int_to_bits(self.event_group_offset, 24))
+        bits.extend(_int_to_bits(self.event_group_set_id, 8))
+        bits.extend(_int_to_bits(self.event_group_count, 8))
+        bits.extend(_int_to_bits(self.event_group_interval, 8))
+        bits.extend(_int_to_bits(self.event_group_period, 16))
+        bits.extend(_int_to_bits(self.event_period, 16))
+        bits.extend(_int_to_bits(self.event_count, 8))
+        bits.extend(_int_to_bits(self.sync_anchor_delay, 24))
+        bits.extend(_int_to_bits(self.sync_ref_delay, 24))
+        bits.extend(_int_to_bits(self.base_link_id, 24))
+        bits.extend(_int_to_bits(self.frame_type, 4))
+        bits.extend(_int_to_bits(self.bandwidth, 2))
+        bits.extend(_int_to_bits(self.pilot_density, 2))
+        bits.extend(_int_to_bits(self.sdu_max, 12))
+        bits.extend(_int_to_bits(self.sdu_period, 20))
+        bits.extend(_int_to_bits(self.pdu_max, 11))
+        bits.extend(_int_to_bits(self.new_packet_count, 4))
+        bits.extend(_int_to_bits(self.crc_type, 1))
+        bits.extend(_int_to_bits(self.crc_base_init, 32))
+        # hop_map
+        hop_len = 25 if self.is_5g else 10
+        hop = self.hop_map[:hop_len].ljust(hop_len, b"\x00")
+        for b in hop:
+            bits.extend(_int_to_bits(b, 8))
+        # giv: 8 字节
+        giv = self.giv[:8].ljust(8, b"\x00")
+        for b in giv:
+            bits.extend(_int_to_bits(b, 8))
+        # gskd: 16 字节
+        gskd = self.gskd[:16].ljust(16, b"\x00")
+        for b in gskd:
+            bits.extend(_int_to_bits(b, 8))
+        return _bits_to_bytes(bits)
+
+    @classmethod
+    def unpack(
+        cls, data: bytes, is_5g: bool = False,
+    ) -> NonLinkedBroadcastLinkInfo:
+        """从字节序列解码"""
+        hop_len = 25 if is_5g else 10
+        # 固定位: 288 + hop + giv(64) + gskd(128)
+        fixed_bits = 288 + hop_len * 8 + 64 + 128
+        if len(data) * 8 < fixed_bits:
+            raise ValueError(
+                f"数据不足: 需要至少 {fixed_bits} bits "
+                f"({(fixed_bits + 7) // 8} 字节)"
+            )
+        bits = _bytes_to_bits(data)
+        p = 0
+
+        def _take(w: int) -> int:
+            nonlocal p
+            v = _bits_to_int(bits, p, w)
+            p += w
+            return v
+
+        transmission_type = _take(1)
+        service_adapt_mode = _take(1)
+        reserved = _take(6)
+        system_slot_seq = _take(32)
+        event_group_offset = _take(24)
+        event_group_set_id = _take(8)
+        event_group_count = _take(8)
+        event_group_interval = _take(8)
+        event_group_period = _take(16)
+        event_period = _take(16)
+        event_count = _take(8)
+        sync_anchor_delay = _take(24)
+        sync_ref_delay = _take(24)
+        base_link_id = _take(24)
+        frame_type = _take(4)
+        bandwidth = _take(2)
+        pilot_density = _take(2)
+        sdu_max = _take(12)
+        sdu_period = _take(20)
+        pdu_max = _take(11)
+        new_packet_count = _take(4)
+        crc_type = _take(1)
+        crc_base_init = _take(32)
+        hop_map = bytes([_take(8) for _ in range(hop_len)])
+        giv = bytes([_take(8) for _ in range(8)])
+        gskd = bytes([_take(8) for _ in range(16)])
+        return cls(
+            transmission_type=transmission_type,
+            service_adapt_mode=service_adapt_mode,
+            reserved=reserved,
+            system_slot_seq=system_slot_seq,
+            event_group_offset=event_group_offset,
+            event_group_set_id=event_group_set_id,
+            event_group_count=event_group_count,
+            event_group_interval=event_group_interval,
+            event_group_period=event_group_period,
+            event_period=event_period,
+            event_count=event_count,
+            sync_anchor_delay=sync_anchor_delay,
+            sync_ref_delay=sync_ref_delay,
+            base_link_id=base_link_id,
+            frame_type=frame_type,
+            bandwidth=bandwidth,
+            pilot_density=pilot_density,
+            sdu_max=sdu_max,
+            sdu_period=sdu_period,
+            pdu_max=pdu_max,
+            new_packet_count=new_packet_count,
+            crc_type=crc_type,
+            crc_base_init=crc_base_init,
+            hop_map=hop_map,
+            giv=giv,
+            gskd=gskd,
+            is_5g=is_5g,
+        )
+
+
+# ---------------------------------------------------------------------------
+# 7.1.4.9 查询请求过滤信息
+# ---------------------------------------------------------------------------
+
+
+@dataclass
+class QueryRequestFilterInfo:
+    """查询请求过滤信息 (7.1.4.9, 表38)
+
+    变长结构, 包含:
+    - 16比特标准服务标识列表
+    - 128比特自定义服务标识列表
+    """
+    uuid_16_list: list[int] = field(default_factory=list)
+    uuid_128_list: list[bytes] = field(default_factory=list)
+
+    def pack(self) -> bytes:
+        """编码为字节序列"""
+        buf = b""
+        # 16-bit UUID 个数 (1字节)
+        count_16 = len(self.uuid_16_list)
+        buf += bytes([count_16 & 0xFF])
+        for uuid_16 in self.uuid_16_list:
+            buf += struct.pack(">H", uuid_16 & 0xFFFF)
+        # 128-bit UUID 个数 (1字节)
+        count_128 = len(self.uuid_128_list)
+        buf += bytes([count_128 & 0xFF])
+        for uuid_128 in self.uuid_128_list:
+            buf += uuid_128[:16].ljust(16, b"\x00")
+        return buf
+
+    @classmethod
+    def unpack(cls, data: bytes) -> QueryRequestFilterInfo:
+        """从字节序列解码"""
+        if len(data) < 1:
+            raise ValueError("数据不足: 至少需要 1 字节")
+        pos = 0
+        count_16 = data[pos]
+        pos += 1
+        uuid_16_list: list[int] = []
+        for _ in range(count_16):
+            if pos + 2 > len(data):
+                break
+            uuid_16 = struct.unpack(">H", data[pos:pos + 2])[0]
+            uuid_16_list.append(uuid_16)
+            pos += 2
+        uuid_128_list: list[bytes] = []
+        if pos < len(data):
+            count_128 = data[pos]
+            pos += 1
+            for _ in range(count_128):
+                if pos + 16 > len(data):
+                    break
+                uuid_128_list.append(bytes(data[pos:pos + 16]))
+                pos += 16
+        return cls(uuid_16_list, uuid_128_list)
+
+
+# ---------------------------------------------------------------------------
 # 7.1.4 广播帧通用结构
 # ---------------------------------------------------------------------------
 

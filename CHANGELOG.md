@@ -7,6 +7,22 @@
 
 ## [Unreleased]
 
+### Added
+
+- `mac/security.py`: 新增配对信令模块 (标准 9.2)
+  - 16 个配对消息类型 (0x0133-0x0149): PairingInitiate, PairingRequest,
+    PairingResponse, PairingConfirm, PairingInitialInfo, TNodeConfirmCode,
+    RaMessage, RbMessage, GNodeConfirmCodeWithRandom, TNodeConfirmCodeWithRandom,
+    GNodeConfirmCode, GNodeDHKeyVerify, TNodeDHKeyVerify, PairingFailure,
+    RgMessage, RtMessage
+- `mac/signaling.py`: 注册表扩展至 128 个信令类型 (新增 16 个配对信令)
+- `mac/broadcast.py`: 新增 3 个广播帧子信息结构
+  - TransportIndicationInfo (7.1.4.3): 传输指示信息, 支持 2.4GHz/5GHz 跳频地图
+  - NonLinkedBroadcastLinkInfo (7.1.4.8): 非链接态广播链路信息
+  - QueryRequestFilterInfo (7.1.4.9): 查询请求过滤信息
+- `tests/test_security.py`: 52 个配对信令测试
+- `tests/test_broadcast.py`: 18 个广播子信息结构测试
+
 ## [0.24.0] - 2025-07-15
 
 ### Added

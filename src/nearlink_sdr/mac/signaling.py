@@ -124,6 +124,24 @@ from nearlink_sdr.mac.power_control import (
     PowerControlRequest,
     PowerControlResponse,
 )
+from nearlink_sdr.mac.security import (
+    GNodeConfirmCode,
+    GNodeConfirmCodeWithRandom,
+    GNodeDHKeyVerify,
+    PairingConfirm,
+    PairingFailure,
+    PairingInitialInfo,
+    PairingInitiate,
+    PairingRequest,
+    PairingResponse,
+    RaMessage,
+    RbMessage,
+    RgMessage,
+    RtMessage,
+    TNodeConfirmCode,
+    TNodeConfirmCodeWithRandom,
+    TNodeDHKeyVerify,
+)
 
 # ---------------------------------------------------------------------------
 # 信令注册表
@@ -243,6 +261,23 @@ _SIGNALING_REGISTRY: dict[int, tuple[str, type, int]] = {
     0x006E: ("UWB代理感知请求", UWBProxySensingRequest, 11),
     0x006F: ("UWB代理感知反馈", UWBProxySensingFeedback, 14),
     0x0070: ("UWB测量动作", UWBMeasAction, 6),
+    # 9.2 配对与鉴权信令
+    0x0133: ("配对发起", PairingInitiate, 1),
+    0x0134: ("配对请求", PairingRequest, 10),
+    0x0135: ("配对回应", PairingResponse, 10),
+    0x0136: ("配对确认", PairingConfirm, 70),
+    0x0137: ("配对初始信息", PairingInitialInfo, 64),
+    0x0138: ("T节点确认码", TNodeConfirmCode, 16),
+    0x0139: ("Ra消息", RaMessage, 16),
+    0x013A: ("Rb消息", RbMessage, 16),
+    0x013B: ("G节点确认码与随机数", GNodeConfirmCodeWithRandom, 32),
+    0x013C: ("T节点确认码与随机数", TNodeConfirmCodeWithRandom, 32),
+    0x013F: ("G节点确认码", GNodeConfirmCode, 16),
+    0x0141: ("G节点DH Key验证码", GNodeDHKeyVerify, 16),
+    0x0142: ("T节点DH Key验证码", TNodeDHKeyVerify, 16),
+    0x0147: ("配对失败", PairingFailure, 1),
+    0x0148: ("Rg消息", RgMessage, 64),
+    0x0149: ("Rt消息", RtMessage, 64),
 }
 
 

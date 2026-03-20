@@ -15,8 +15,11 @@ from nearlink_sdr.mac.broadcast import (
     DiscoveryAccessResourceConfig,
     ExtAdvResourceConfig,
     GTNegotiation,
+    NonLinkedBroadcastLinkInfo,
+    QueryRequestFilterInfo,
     RequestType,
     SystemMgmtFrameInfo,
+    TransportIndicationInfo,
 )
 
 
@@ -309,3 +312,276 @@ class TestEnums:
     def test_access_response_type(self):
         assert AccessResponseType.ACCEPT == 0
         assert AccessResponseType.USER_REJECT == 3
+
+
+# -----------------------------------------------------------------------
+# 7.1.4.3 传输指示信息
+# -----------------------------------------------------------------------
+
+
+class TestTransportIndicationInfo:
+    """TransportIndicationInfo 编解码测试"""
+
+    def _make(self, *, is_5g: bool = False) -> TransportIndicationInfo:
+        hop_len = 25 if is_5g else 10
+        return TransportIndicationInfo(
+            system_slot_seq=0xDEADBEEF,
+            event_group_offset=0x123456,
+            event_group_period=500,
+            event_period=100,
+            intra_event_interval=200,
+            inter_event_interval=300,
+            event_count=5,
+            peer_addr=b"\x01\x02\x03\x04\x05\x06",
+            peer_addr_type=3,
+            sleep_clock_accuracy=2,
+            first_last_indication=1,
+            tx_frame_type=0x0A,
+            rx_frame_type=0x05,
+            tx_crc_type=1,
+            rx_crc_type=0,
+            tx_feedback_type=0x3F,
+            rx_feedback_type=0x07,
+            system_schedule_slot=0x05,
+            tx_link_id=0xABCDEF,
+            rx_link_id=0x112233,
+            tx_bandwidth=3,
+            rx_bandwidth=1,
+            tx_pilot_density=2,
+            rx_pilot_density=0,
+            tx_pdu_max=0x7FF,
+            rx_pdu_max=0x100,
+            tx_max_time_offset=0x1FF,
+            rx_max_time_offset=0x080,
+            tx_crc_init=0xAABBCCDD,
+            rx_crc_init=0x11223344,
+            delay_period=1000,
+            timeout=5000,
+            hop_map=bytes(range(hop_len)),
+            is_5g=is_5g,
+        )
+
+    def test_roundtrip_2_4ghz(self):
+        original = self._make(is_5g=False)
+        packed = original.pack()
+        restored = TransportIndicationInfo.unpack(packed, is_5g=False)
+        assert restored.system_slot_seq == original.system_slot_seq
+        assert restored.event_group_offset == original.event_group_offset
+        assert restored.event_count == original.event_count
+        assert restored.peer_addr == original.peer_addr
+        assert restored.peer_addr_type == original.peer_addr_type
+        assert restored.tx_frame_type == original.tx_frame_type
+        assert restored.rx_frame_type == original.rx_frame_type
+        assert restored.tx_crc_init == original.tx_crc_init
+        assert restored.rx_crc_init == original.rx_crc_init
+        assert restored.hop_map == original.hop_map
+        assert restored.delay_period == original.delay_period
+        assert restored.timeout == original.timeout
+
+    def test_roundtrip_5g(self):
+        original = self._make(is_5g=True)
+        packed = original.pack()
+        restored = TransportIndicationInfo.unpack(packed, is_5g=True)
+        assert restored.hop_map == original.hop_map
+        assert len(restored.hop_map) == 25
+        assert restored.system_slot_seq == original.system_slot_seq
+
+    def test_pack_length_2_4ghz(self):
+        info = self._make(is_5g=False)
+        packed = info.pack()
+        # 400 + 80 = 480 bits = 60 bytes
+        assert len(packed) == 60
+
+    def test_pack_length_5g(self):
+        info = self._make(is_5g=True)
+        packed = info.pack()
+        # 400 + 200 = 600 bits = 75 bytes
+        assert len(packed) == 75
+
+    def test_unpack_short_data(self):
+        with pytest.raises(ValueError, match="数据不足"):
+            TransportIndicationInfo.unpack(b"\x00" * 10, is_5g=False)
+
+    def test_all_fields_roundtrip(self):
+        original = self._make()
+        restored = TransportIndicationInfo.unpack(original.pack())
+        assert restored.sleep_clock_accuracy == original.sleep_clock_accuracy
+        assert restored.first_last_indication == original.first_last_indication
+        assert restored.tx_crc_type == original.tx_crc_type
+        assert restored.rx_crc_type == original.rx_crc_type
+        assert restored.tx_feedback_type == original.tx_feedback_type
+        assert restored.rx_feedback_type == original.rx_feedback_type
+        assert restored.system_schedule_slot == original.system_schedule_slot
+        assert restored.tx_link_id == original.tx_link_id
+        assert restored.rx_link_id == original.rx_link_id
+        assert restored.tx_bandwidth == original.tx_bandwidth
+        assert restored.rx_bandwidth == original.rx_bandwidth
+        assert restored.tx_pilot_density == original.tx_pilot_density
+        assert restored.rx_pilot_density == original.rx_pilot_density
+        assert restored.tx_pdu_max == original.tx_pdu_max
+        assert restored.rx_pdu_max == original.rx_pdu_max
+        assert restored.tx_max_time_offset == original.tx_max_time_offset
+        assert restored.rx_max_time_offset == original.rx_max_time_offset
+        assert restored.event_group_period == original.event_group_period
+        assert restored.event_period == original.event_period
+        assert restored.intra_event_interval == original.intra_event_interval
+        assert restored.inter_event_interval == original.inter_event_interval
+
+
+# -----------------------------------------------------------------------
+# 7.1.4.8 非链接态广播链路信息
+# -----------------------------------------------------------------------
+
+
+class TestNonLinkedBroadcastLinkInfo:
+    """NonLinkedBroadcastLinkInfo 编解码测试"""
+
+    def _make(self, *, is_5g: bool = False) -> NonLinkedBroadcastLinkInfo:
+        hop_len = 25 if is_5g else 10
+        return NonLinkedBroadcastLinkInfo(
+            transmission_type=1,
+            service_adapt_mode=0,
+            system_slot_seq=0x12345678,
+            event_group_offset=0xABCDEF,
+            event_group_set_id=0x42,
+            event_group_count=3,
+            event_group_interval=10,
+            event_group_period=200,
+            event_period=50,
+            event_count=8,
+            sync_anchor_delay=0x001234,
+            sync_ref_delay=0x005678,
+            base_link_id=0xFEDCBA,
+            frame_type=0x0F,
+            bandwidth=2,
+            pilot_density=1,
+            sdu_max=0xFFF,
+            sdu_period=0xFFFFF,
+            pdu_max=0x7FF,
+            new_packet_count=0x0A,
+            crc_type=1,
+            crc_base_init=0xDEADFACE,
+            hop_map=bytes(range(hop_len)),
+            giv=b"\xA1\xA2\xA3\xA4\xA5\xA6\xA7\xA8",
+            gskd=bytes(range(0x10, 0x20)),
+            is_5g=is_5g,
+        )
+
+    def test_roundtrip_2_4ghz(self):
+        original = self._make(is_5g=False)
+        packed = original.pack()
+        restored = NonLinkedBroadcastLinkInfo.unpack(packed, is_5g=False)
+        assert restored.transmission_type == original.transmission_type
+        assert restored.service_adapt_mode == original.service_adapt_mode
+        assert restored.system_slot_seq == original.system_slot_seq
+        assert restored.event_group_offset == original.event_group_offset
+        assert restored.base_link_id == original.base_link_id
+        assert restored.crc_base_init == original.crc_base_init
+        assert restored.hop_map == original.hop_map
+        assert restored.giv == original.giv
+        assert restored.gskd == original.gskd
+
+    def test_roundtrip_5g(self):
+        original = self._make(is_5g=True)
+        packed = original.pack()
+        restored = NonLinkedBroadcastLinkInfo.unpack(packed, is_5g=True)
+        assert len(restored.hop_map) == 25
+        assert restored.hop_map == original.hop_map
+        assert restored.giv == original.giv
+        assert restored.gskd == original.gskd
+
+    def test_pack_length_2_4ghz(self):
+        info = self._make(is_5g=False)
+        packed = info.pack()
+        # 288 + 80 + 64 + 128 = 560 bits = 70 bytes
+        assert len(packed) == 70
+
+    def test_pack_length_5g(self):
+        info = self._make(is_5g=True)
+        packed = info.pack()
+        # 288 + 200 + 64 + 128 = 680 bits = 85 bytes
+        assert len(packed) == 85
+
+    def test_unpack_short_data(self):
+        with pytest.raises(ValueError, match="数据不足"):
+            NonLinkedBroadcastLinkInfo.unpack(b"\x00" * 5, is_5g=False)
+
+    def test_all_fields_roundtrip(self):
+        original = self._make()
+        restored = NonLinkedBroadcastLinkInfo.unpack(original.pack())
+        assert restored.event_group_set_id == original.event_group_set_id
+        assert restored.event_group_count == original.event_group_count
+        assert restored.event_group_interval == original.event_group_interval
+        assert restored.event_group_period == original.event_group_period
+        assert restored.event_period == original.event_period
+        assert restored.event_count == original.event_count
+        assert restored.sync_anchor_delay == original.sync_anchor_delay
+        assert restored.sync_ref_delay == original.sync_ref_delay
+        assert restored.frame_type == original.frame_type
+        assert restored.bandwidth == original.bandwidth
+        assert restored.pilot_density == original.pilot_density
+        assert restored.sdu_max == original.sdu_max
+        assert restored.sdu_period == original.sdu_period
+        assert restored.pdu_max == original.pdu_max
+        assert restored.new_packet_count == original.new_packet_count
+        assert restored.crc_type == original.crc_type
+
+
+# -----------------------------------------------------------------------
+# 7.1.4.9 查询请求过滤信息
+# -----------------------------------------------------------------------
+
+
+class TestQueryRequestFilterInfo:
+    """QueryRequestFilterInfo 编解码测试"""
+
+    def test_roundtrip_16bit_only(self):
+        info = QueryRequestFilterInfo(
+            uuid_16_list=[0x1800, 0x1801, 0xFFEE],
+        )
+        packed = info.pack()
+        restored = QueryRequestFilterInfo.unpack(packed)
+        assert restored.uuid_16_list == info.uuid_16_list
+        assert restored.uuid_128_list == []
+
+    def test_roundtrip_128bit_only(self):
+        uuid_a = bytes(range(16))
+        uuid_b = bytes(range(0xF0, 0x100))
+        info = QueryRequestFilterInfo(
+            uuid_128_list=[uuid_a, uuid_b],
+        )
+        packed = info.pack()
+        restored = QueryRequestFilterInfo.unpack(packed)
+        assert restored.uuid_16_list == []
+        assert restored.uuid_128_list == [uuid_a, uuid_b]
+
+    def test_roundtrip_mixed(self):
+        uuid_128 = b"\xAA" * 16
+        info = QueryRequestFilterInfo(
+            uuid_16_list=[0x0001, 0xABCD],
+            uuid_128_list=[uuid_128],
+        )
+        packed = info.pack()
+        restored = QueryRequestFilterInfo.unpack(packed)
+        assert restored.uuid_16_list == [0x0001, 0xABCD]
+        assert restored.uuid_128_list == [uuid_128]
+
+    def test_empty(self):
+        info = QueryRequestFilterInfo()
+        packed = info.pack()
+        restored = QueryRequestFilterInfo.unpack(packed)
+        assert restored.uuid_16_list == []
+        assert restored.uuid_128_list == []
+
+    def test_unpack_short_data(self):
+        with pytest.raises(ValueError, match="数据不足"):
+            QueryRequestFilterInfo.unpack(b"")
+
+    def test_pack_length(self):
+        info = QueryRequestFilterInfo(
+            uuid_16_list=[0x1234],
+            uuid_128_list=[b"\x00" * 16],
+        )
+        packed = info.pack()
+        # 1 (count_16) + 2 (uuid16) + 1 (count_128) + 16 (uuid128) = 20
+        assert len(packed) == 20
