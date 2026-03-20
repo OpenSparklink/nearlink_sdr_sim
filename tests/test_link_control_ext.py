@@ -714,7 +714,7 @@ class TestSystemTimeAndMulticast:
             tx_crc_type=1,
             rx_crc_type=0,
             tx_feedback_type=0x1F,
-            rx_feedback_type=0,  # 因 pack 截断到 45 字节丢失
+            rx_feedback_type=5,
         )
         packed = msg.pack()
         assert len(packed) == 45
@@ -730,6 +730,7 @@ class TestSystemTimeAndMulticast:
         assert restored.rx_crc_init == 0xCAFEBABE
         assert restored.tx_crc_type == 1
         assert restored.tx_feedback_type == 0x1F
+        assert restored.rx_feedback_type == 5
 
     def test_async_multicast_param_exchange_request(self):
         payload = bytes(range(41))

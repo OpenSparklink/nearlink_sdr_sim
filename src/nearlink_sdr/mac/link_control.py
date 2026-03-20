@@ -2207,7 +2207,7 @@ class AsyncMulticastLinkSetup:
         buf += self.effective_slot.to_bytes(4, "big")
         buf += struct.pack(">HHHH", self.event_group_period, self.event_period,
                            self.intra_event_interval, self.inter_event_interval)
-        # 位域: 3+1+24+24+4+4+2+2+2+2+12+12+20+20+11+11+9+9 = 172 bits
+        # 剩余字段合并为单一位域: 247 bits + 1 reserved = 248 bits = 31 bytes
         b = 0
         b = (b << 3) | (self.scheduling_slot & 0x07)
         b = (b << 1) | (self.tx_rx_indication & 0x01)
@@ -2227,21 +2227,15 @@ class AsyncMulticastLinkSetup:
         b = (b << 11) | (self.rx_pdu_max & 0x7FF)
         b = (b << 9) | (self.tx_max_time_offset & 0x1FF)
         b = (b << 9) | (self.rx_max_time_offset & 0x1FF)
-        # 172 bits -> 不整除 8, 需要 22 bytes = 176 bits (4 bits padding)
-        b <<= 4  # padding
-        buf += b.to_bytes(22, "big")
-        buf += self.tx_crc_init.to_bytes(4, "big")
-        buf += self.rx_crc_init.to_bytes(4, "big")
-        # crc_type(1+1) + feedback(6+3) + reserved(1) = 12 bits -> 2 bytes
-        tail = ((self.tx_crc_type & 1) << 15
-                | (self.rx_crc_type & 1) << 14
-                | (self.tx_feedback_type & 0x3F) << 8
-                | (self.rx_feedback_type & 0x07) << 5)
-        buf += tail.to_bytes(2, "big")
-        # 2+4+8+22+4+4+2 = 46? 需要检查
-        # 实际: 2+4+8+22+4+4+2 = 46, 但标准说 45
-        # 调整: intra/inter 用 16+16 而非 HHHH
-        return buf[:45]
+        b = (b << 32) | (self.tx_crc_init & 0xFFFFFFFF)
+        b = (b << 32) | (self.rx_crc_init & 0xFFFFFFFF)
+        b = (b << 1) | (self.tx_crc_type & 1)
+        b = (b << 1) | (self.rx_crc_type & 1)
+        b = (b << 6) | (self.tx_feedback_type & 0x3F)
+        b = (b << 3) | (self.rx_feedback_type & 0x07)
+        b <<= 1  # 1 bit reserved
+        buf += b.to_bytes(31, "big")
+        return buf
 
     @classmethod
     def unpack(cls, data: bytes) -> AsyncMulticastLinkSetup:
@@ -2251,8 +2245,20 @@ class AsyncMulticastLinkSetup:
         egi = data[1]
         es = int.from_bytes(data[2:6], "big")
         egp, ep, iei, iei2 = struct.unpack(">HHHH", data[6:14])
-        b = int.from_bytes(data[14:36], "big")
-        b >>= 4  # padding
+        b = int.from_bytes(data[14:45], "big")
+        b >>= 1  # reserved
+        rfb = b & 0x07
+        b >>= 3
+        tfb = b & 0x3F
+        b >>= 6
+        rct = b & 0x01
+        b >>= 1
+        tct = b & 0x01
+        b >>= 1
+        rci = b & 0xFFFFFFFF
+        b >>= 32
+        tci = b & 0xFFFFFFFF
+        b >>= 32
         rmto = b & 0x1FF
         b >>= 9
         tmto = b & 0x1FF
@@ -2288,13 +2294,6 @@ class AsyncMulticastLinkSetup:
         tri = b & 0x01
         b >>= 1
         ss = b & 0x07
-        tci = int.from_bytes(data[36:40], "big")
-        rci = int.from_bytes(data[40:44], "big")
-        tail = int.from_bytes(data[44:46], "big") if len(data) >= 46 else data[44] << 8
-        tct = (tail >> 15) & 1
-        rct = (tail >> 14) & 1
-        tfb = (tail >> 8) & 0x3F
-        rfb = (tail >> 5) & 0x07
         return cls(
             egsi, egi, es, egp, ep, iei, iei2,
             ss, tri, tli, rli, tft, rft, tb, rb, tpd, rpd,
