@@ -9,6 +9,17 @@
 
 ### Added
 
+- SLE 节点实体类 (`node.py`): 统一收发接口, 整合 MAC/PHY 各模块
+  - `NodeConfig`: 节点配置 (地址、角色、帧类型、MCS、带宽、导频、加密等)
+  - `SleNode`: 节点主体, 链路生命周期管理 (广播/扫描/接入/配对/数据交换/断连)
+  - `send()` / `transmit()` / `receive()`: 数据收发接口, 集成 QoS 队列与 ARQ
+  - 配对流程: `start_pairing()` / `process_pairing_message()` 驱动安全子系统
+  - MCS 自适应: `recommended_mcs` / `update_mcs()` 基于链路质量动态调整
+  - 状态回调: `NodeCallback` 通知状态变迁、连接、断开事件
+  - `_build_ctrl_info()`: 从 QoS 字段构建 A2 物理层控制信息
+  - `_build_ctrl_bits()`: 兼容原始比特级控制信息构建
+  - `tests/test_node.py`: 36 个测试覆盖初始化、生命周期、收发、回调、MCS、信令、配对
+
 - 测试覆盖率提升: 85% → 96%, 新增 84 个测试 (1496 → 1580)
   - `tests/test_link_sim_phy.py`: Phase 1-13 仿真测试 (74 个测试)
     - `_ber` / `_apply_cfo` / `_channel_impair` 辅助函数测试

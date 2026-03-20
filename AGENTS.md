@@ -157,6 +157,7 @@ tests/            # 测试文件, 与 src 模块一一对应
 | 6.3.11 | 超宽带脉冲测量帧 | 完成 | `phy/measurement_frame.py` |
 | - | MAC-PHY 集成适配层 | 完成 | `phy/mac_interface.py` |
 | - | MAC-PHY 集成联调测试 | 完成 | `tests/test_mac_phy_integration.py` |
+| - | SLE 节点实体类 | 完成 | `node.py` |
 
 ## 硬件约束 (USRP E310)
 
