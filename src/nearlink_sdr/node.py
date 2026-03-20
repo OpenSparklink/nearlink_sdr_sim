@@ -377,7 +377,6 @@ class SleNode:
             RxResult, 包含解码数据和成功标志。
         """
         rx: MacRxResult = iq_to_mac(iq_signal, self._tx_config, n_mac_bytes)
-        self._qos.on_tx_feedback(rx.crc_ok)
 
         if not rx.crc_ok:
             return RxResult(data=None, success=False)

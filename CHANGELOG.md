@@ -9,6 +9,22 @@
 
 ### Added
 
+- Phase 14 双节点端到端仿真 (`sim/link_sim.py`)
+  - `sim_dual_node_link()`: 双 SleNode 数据交换仿真, 测量 FER 与字节误码率
+  - `sim_dual_node_secure_link()`: 配对 + 加密双节点通信仿真, 明文/密文 FER 对比
+  - `sim_dual_node_mcs_adapt()`: MCS 自适应仿真, 跟踪 MCS 等级与成功率变化
+  - `_run_dual_frames()`: 多 SNR 帧传输内部辅助函数
+  - `run_phase14_simulation()`: 2x2 可视化 (FER/BER、明文/密文、MCS 历史、成功率)
+  - `tests/test_link_sim_phy.py`: 5 个测试 (TestDualNodeLink + test_run_phase14)
+
+### Fixed
+
+- `node.py` 接收端不再调用 `on_tx_feedback()`, 修复接收侧 QoS 状态污染
+- 仿真循环中 ARQ 重传锁定问题: FER 测量模式下每帧独立, 失败后清除 ARQ 挂起状态
+
+## 
+
+### Added
 - SLE 节点实体类 (`node.py`): 统一收发接口, 整合 MAC/PHY 各模块
   - `NodeConfig`: 节点配置 (地址、角色、帧类型、MCS、带宽、导频、加密等)
   - `SleNode`: 节点主体, 链路生命周期管理 (广播/扫描/接入/配对/数据交换/断连)

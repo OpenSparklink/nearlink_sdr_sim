@@ -659,3 +659,38 @@ class TestRunPhaseSimulations:
     def test_run_phase13(self):
         from nearlink_sdr.sim.link_sim import run_phase13_simulation
         run_phase13_simulation()
+
+    def test_run_phase14(self):
+        from nearlink_sdr.sim.link_sim import run_phase14_simulation
+        run_phase14_simulation()
+
+
+class TestDualNodeLink:
+    """Phase 14 双节点仿真测试。"""
+
+    def test_basic(self):
+        from nearlink_sdr.sim.link_sim import sim_dual_node_link
+        snr = np.array([6.0, 10.0, 14.0])
+        r = sim_dual_node_link(snr_range_db=snr, n_frames=10)
+        assert len(r["fer"]) == 3
+        assert r["fer"][-1] <= r["fer"][0]
+        assert r["tx_count"] > 0
+
+    def test_default_snr(self):
+        from nearlink_sdr.sim.link_sim import sim_dual_node_link
+        r = sim_dual_node_link(n_frames=5)
+        assert len(r["snr_db"]) > 0
+
+    def test_secure_link(self):
+        from nearlink_sdr.sim.link_sim import sim_dual_node_secure_link
+        snr = np.array([8.0, 12.0])
+        r = sim_dual_node_secure_link(snr_range_db=snr, n_frames=10)
+        assert "fer_plain" in r
+        assert "fer_encrypted" in r
+        assert isinstance(r["pairing_ok"], bool)
+
+    def test_mcs_adapt(self):
+        from nearlink_sdr.sim.link_sim import sim_dual_node_mcs_adapt
+        r = sim_dual_node_mcs_adapt(snr_db=10.0, n_frames=30)
+        assert len(r["mcs_history"]) == 30
+        assert all(0 <= m <= 12 for m in r["mcs_history"])

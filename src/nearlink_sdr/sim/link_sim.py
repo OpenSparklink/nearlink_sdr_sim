@@ -3599,6 +3599,419 @@ def run_phase13_simulation() -> None:
     print("\nPhase 13 curves saved to ber_phase13.png")
 
 
+# ===================================================================
+# Phase 14: 双节点端到端仿真
+# ===================================================================
+
+
+def sim_dual_node_link(
+    snr_range_db: np.ndarray | None = None,
+    n_frames: int = 50,
+    mcs_index: int = 7,
+    payload_size: int = 10,
+    channel_type: str = "awgn",
+    cfo_hz: float = 0.0,
+    eq_method: str = "none",
+    rician_k_db: float = 6.0,
+    seed: int = 42,
+) -> dict:
+    """双 SleNode 实体数据交换仿真。
+
+    创建 G 节点与 T 节点, 完成广播→接入→数据交换全流程。
+    G 节点发送随机数据, T 节点接收并统计 FER 与字节误码率。
+
+    Returns:
+        {
+            "snr_db": [...],
+            "fer": [...],
+            "byte_ber": [...],
+            "tx_count": int,
+            "rx_count": int,
+        }
+    """
+    from nearlink_sdr.mac.frame import AsyncDataFrame
+    from nearlink_sdr.node import NodeConfig, NodeRole, SleNode
+
+    if snr_range_db is None:
+        snr_range_db = np.arange(0, 16, 2)
+
+    rng = np.random.default_rng(seed)
+
+    g_addr = b"\x01\x02\x03\x04\x05\x06"
+    t_addr = b"\x0A\x0B\x0C\x0D\x0E\x0F"
+
+    g_node = SleNode(config=NodeConfig(
+        address=g_addr, role=NodeRole.G_NODE,
+        frame_type=2, mcs_index=mcs_index, max_retransmit=0,
+    ))
+    t_node = SleNode(config=NodeConfig(
+        address=t_addr, role=NodeRole.T_NODE,
+        frame_type=2, mcs_index=mcs_index, max_retransmit=0,
+    ))
+
+    # 建连
+    g_node.start_advertising()
+    t_node.start_scanning()
+    t_node.connect(g_addr)
+    from nearlink_sdr.mac.link_manager import Role
+    g_node.accept_connection(t_addr, Role.G_NODE)
+
+    fer_list, ber_list = [], []
+
+    for snr in snr_range_db:
+        frame_errors, byte_errors, total_bytes = 0, 0, 0
+
+        for _ in range(n_frames):
+            payload = bytes(rng.integers(0, 256, payload_size, dtype=np.uint8))
+            g_node.send(payload)
+            tx = g_node.transmit()
+
+            if tx.iq is None:
+                frame_errors += 1
+                total_bytes += payload_size
+                # 清除 ARQ 重传锁定, 使下一帧可正常发送
+                g_node._qos.arq.on_ack_received()
+                continue
+
+            rx_iq = _channel_impair(
+                tx.iq, float(snr), channel_type, rician_k_db,
+                cfo_hz, eq_method, g_node._tx_config.sps, rng,
+            )
+
+            frame = AsyncDataFrame(segment_type=0, data=payload)
+            n_mac = len(frame.pack())
+            rx = t_node.receive(rx_iq, n_mac)
+            g_node.process_feedback(rx.success)
+            if not rx.success:
+                # 清除 ARQ 重传锁定, FER 仿真中每帧独立
+                g_node._qos.arq.on_ack_received()
+
+            total_bytes += payload_size
+            if not rx.success:
+                frame_errors += 1
+                byte_errors += payload_size
+            else:
+                byte_errors += sum(
+                    a != b for a, b in zip(payload, rx.data or b"", strict=False)
+                )
+
+        fer_list.append(frame_errors / n_frames)
+        ber_list.append(byte_errors / max(total_bytes, 1))
+
+    return {
+        "snr_db": snr_range_db.tolist(),
+        "fer": fer_list,
+        "byte_ber": ber_list,
+        "tx_count": g_node.stats["tx_count"],
+        "rx_count": t_node.stats["rx_count"],
+    }
+
+
+def sim_dual_node_secure_link(
+    snr_range_db: np.ndarray | None = None,
+    n_frames: int = 50,
+    mcs_index: int = 7,
+    payload_size: int = 10,
+    channel_type: str = "awgn",
+    seed: int = 42,
+) -> dict:
+    """双 SleNode 安全通信仿真 (配对 + 加密)。
+
+    在 sim_dual_node_link 基础上增加配对与加密流程:
+    1. 广播→接入→连接
+    2. 配对 (ECDH 密钥协商)
+    3. 加密数据帧传输
+
+    Returns:
+        {
+            "snr_db": [...],
+            "fer_plain": [...],
+            "fer_encrypted": [...],
+            "pairing_ok": bool,
+        }
+    """
+    from nearlink_sdr.mac.link_manager import Role
+    from nearlink_sdr.mac.security_manager import FrameCryptoContext
+    from nearlink_sdr.node import NodeConfig, NodeRole, SleNode
+
+    if snr_range_db is None:
+        snr_range_db = np.arange(0, 16, 2)
+
+    rng = np.random.default_rng(seed)
+
+    g_addr = b"\x01\x02\x03\x04\x05\x06"
+    t_addr = b"\x0A\x0B\x0C\x0D\x0E\x0F"
+
+    # --- 明文链路 ---
+    g_plain = SleNode(config=NodeConfig(
+        address=g_addr, role=NodeRole.G_NODE,
+        frame_type=2, mcs_index=mcs_index,
+    ))
+    t_plain = SleNode(config=NodeConfig(
+        address=t_addr, role=NodeRole.T_NODE,
+        frame_type=2, mcs_index=mcs_index,
+    ))
+    g_plain.start_advertising()
+    g_plain.accept_connection(t_addr, Role.G_NODE)
+    t_plain.start_scanning()
+    t_plain.connect(g_addr)
+
+    fer_plain = _run_dual_frames(
+        g_plain, t_plain, snr_range_db, n_frames, payload_size, rng, "awgn",
+    )
+
+    # --- 加密链路 ---
+    g_enc = SleNode(config=NodeConfig(
+        address=g_addr, role=NodeRole.G_NODE,
+        frame_type=2, mcs_index=mcs_index, enable_encryption=True,
+    ))
+    t_enc = SleNode(config=NodeConfig(
+        address=t_addr, role=NodeRole.T_NODE,
+        frame_type=2, mcs_index=mcs_index, enable_encryption=True,
+    ))
+    g_enc.start_advertising()
+    g_enc.accept_connection(t_addr, Role.G_NODE)
+    t_enc.start_scanning()
+    t_enc.connect(g_addr)
+
+    # 配对: G 节点发起
+    g_msgs = g_enc.start_pairing(t_addr)
+    t_msgs = []
+    for msg in g_msgs:
+        t_msgs = t_enc.process_pairing_message(msg)
+    # T 节点回复
+    g_msgs = []
+    for msg in t_msgs:
+        g_msgs = g_enc.process_pairing_message(msg)
+    # 继续交换直到双方完成
+    while g_msgs or t_msgs:
+        new_t = []
+        for msg in g_msgs:
+            new_t.extend(t_enc.process_pairing_message(msg))
+        t_msgs = new_t
+        new_g = []
+        for msg in t_msgs:
+            new_g.extend(g_enc.process_pairing_message(msg))
+        g_msgs = new_g
+
+    pairing_ok = g_enc.stats["paired"] and t_enc.stats["paired"]
+
+    if pairing_ok:
+        # 手动建立匹配的加密上下文 (真实场景由配对过程自动完成)
+        iv_base = rng.bytes(8)
+        g_enc._crypto = FrameCryptoContext(
+            session_key=g_enc._pairing.session_key,
+            iv_base=iv_base, direction=0, mic_len=4,
+            frame_type=2, link_id=0,
+        )
+        t_enc._crypto = FrameCryptoContext(
+            session_key=t_enc._pairing.session_key if t_enc._pairing else b"\x00" * 16,
+            iv_base=iv_base, direction=0, mic_len=4,
+            frame_type=2, link_id=0,
+        )
+
+    fer_enc = _run_dual_frames(
+        g_enc, t_enc, snr_range_db, n_frames, payload_size,
+        np.random.default_rng(seed), channel_type,
+    )
+
+    return {
+        "snr_db": snr_range_db.tolist(),
+        "fer_plain": fer_plain,
+        "fer_encrypted": fer_enc,
+        "pairing_ok": pairing_ok,
+    }
+
+
+def sim_dual_node_mcs_adapt(
+    snr_db: float = 8.0,
+    n_frames: int = 100,
+    payload_size: int = 10,
+    initial_mcs: int = 7,
+    channel_type: str = "awgn",
+    seed: int = 42,
+) -> dict:
+    """双节点 MCS 自适应仿真。
+
+    固定 SNR 下连续帧传输, 跟踪 G 节点的 MCS 自适应过程和吞吐量变化。
+
+    Returns:
+        {
+            "frame_idx": [...],
+            "mcs_history": [...],
+            "fer_history": [...],
+            "success_history": [...],
+        }
+    """
+    from nearlink_sdr.mac.frame import AsyncDataFrame
+    from nearlink_sdr.mac.link_manager import Role
+    from nearlink_sdr.node import NodeConfig, NodeRole, SleNode
+
+    rng = np.random.default_rng(seed)
+
+    g_addr = b"\x01\x02\x03\x04\x05\x06"
+    t_addr = b"\x0A\x0B\x0C\x0D\x0E\x0F"
+
+    g_node = SleNode(config=NodeConfig(
+        address=g_addr, role=NodeRole.G_NODE,
+        frame_type=2, mcs_index=initial_mcs,
+    ))
+    t_node = SleNode(config=NodeConfig(
+        address=t_addr, role=NodeRole.T_NODE,
+        frame_type=2, mcs_index=initial_mcs,
+    ))
+    g_node.start_advertising()
+    g_node.accept_connection(t_addr, Role.G_NODE)
+    t_node.start_scanning()
+    t_node.connect(g_addr)
+
+    frame_idx, mcs_hist, fer_hist, success_hist = [], [], [], []
+
+    for i in range(n_frames):
+        payload = bytes(rng.integers(0, 256, payload_size, dtype=np.uint8))
+        g_node.send(payload)
+        tx = g_node.transmit()
+
+        success = False
+        if tx.iq is not None:
+            rx_iq = _channel_impair(
+                tx.iq, snr_db, channel_type, 6.0,
+                0.0, "none", g_node._tx_config.sps, rng,
+            )
+            frame = AsyncDataFrame(segment_type=0, data=payload)
+            n_mac = len(frame.pack())
+            rx = t_node.receive(rx_iq, n_mac)
+            success = rx.success
+            g_node.process_feedback(success)
+            if not success:
+                g_node._qos.arq.on_ack_received()
+        else:
+            g_node._qos.arq.on_ack_received()
+
+        # MCS 自适应
+        suggested = g_node.recommended_mcs
+        if suggested != g_node.config.mcs_index:
+            g_node.update_mcs(suggested)
+            t_node.update_mcs(suggested)
+
+        frame_idx.append(i)
+        mcs_hist.append(g_node.config.mcs_index)
+        fer_hist.append(g_node.stats["fer"])
+        success_hist.append(success)
+
+    return {
+        "frame_idx": frame_idx,
+        "mcs_history": mcs_hist,
+        "fer_history": fer_hist,
+        "success_history": success_hist,
+    }
+
+
+def _run_dual_frames(
+    tx_node, rx_node,
+    snr_range_db: np.ndarray,
+    n_frames: int,
+    payload_size: int,
+    rng: np.random.Generator,
+    channel_type: str,
+) -> list[float]:
+    """内部: 对多个 SNR 运行帧传输, 返回 FER 列表。"""
+    from nearlink_sdr.mac.frame import AsyncDataFrame
+
+    fer_list = []
+    for snr in snr_range_db:
+        errors = 0
+        for _ in range(n_frames):
+            payload = bytes(rng.integers(0, 256, payload_size, dtype=np.uint8))
+            tx_node.send(payload)
+            tx = tx_node.transmit()
+            if tx.iq is None:
+                errors += 1
+                tx_node._qos.arq.on_ack_received()
+                continue
+            rx_iq = _channel_impair(
+                tx.iq, float(snr), channel_type, 6.0,
+                0.0, "none", tx_node._tx_config.sps, rng,
+            )
+            frame = AsyncDataFrame(segment_type=0, data=payload)
+            n_mac = len(frame.pack())
+            rx = rx_node.receive(rx_iq, n_mac)
+            tx_node.process_feedback(rx.success)
+            if not rx.success:
+                tx_node._qos.arq.on_ack_received()
+                errors += 1
+        fer_list.append(errors / n_frames)
+    return fer_list
+
+
+def run_phase14_simulation() -> None:
+    """Phase 14: 双节点端到端仿真可视化。"""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    snr = np.arange(0, 16, 2)
+
+    print("Phase 14.1 - 双节点数据交换 ...")
+    r1 = sim_dual_node_link(snr_range_db=snr, n_frames=30)
+
+    print("Phase 14.2 - 双节点安全通信 ...")
+    r2 = sim_dual_node_secure_link(snr_range_db=snr, n_frames=30)
+
+    print("Phase 14.3 - MCS 自适应 ...")
+    r3 = sim_dual_node_mcs_adapt(snr_db=8.0, n_frames=60)
+
+    fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+    fig.suptitle("Phase 14 - Dual Node E2E Simulation", fontsize=14, fontweight="bold")
+
+    # 14.1 FER 曲线
+    ax = axes[0, 0]
+    ax.semilogy(r1["snr_db"], np.maximum(r1["fer"], 1e-4), "b-o", label="FER")
+    ax.semilogy(r1["snr_db"], np.maximum(r1["byte_ber"], 1e-6), "r--s", label="Byte BER")
+    ax.set_xlabel("SNR (dB)")
+    ax.set_ylabel("Error Rate")
+    ax.set_title("14.1 - Dual Node FER/BER")
+    ax.legend()
+    ax.grid(True, ls="--", alpha=0.3)
+
+    # 14.2 明文 vs 加密
+    ax = axes[0, 1]
+    ax.semilogy(r2["snr_db"], np.maximum(r2["fer_plain"], 1e-4), "b-o", label="Plain")
+    ax.semilogy(r2["snr_db"], np.maximum(r2["fer_encrypted"], 1e-4), "r--s", label="Encrypted")
+    ax.set_xlabel("SNR (dB)")
+    ax.set_ylabel("FER")
+    pairing_str = "OK" if r2["pairing_ok"] else "FAIL"
+    ax.set_title(f"14.2 - Plain vs Encrypted (Pairing: {pairing_str})")
+    ax.legend()
+    ax.grid(True, ls="--", alpha=0.3)
+
+    # 14.3 MCS 自适应
+    ax = axes[1, 0]
+    ax.plot(r3["frame_idx"], r3["mcs_history"], "b-", label="MCS")
+    ax.set_xlabel("Frame Index")
+    ax.set_ylabel("MCS Index")
+    ax.set_title("14.3 - MCS Adaptation")
+    ax.legend()
+    ax.grid(True, ls="--", alpha=0.3)
+
+    # 14.4 FER 与成功率
+    ax = axes[1, 1]
+    ax.plot(r3["frame_idx"], r3["fer_history"], "r-", label="FER", alpha=0.7)
+    sc = [i for i, s in zip(r3["frame_idx"], r3["success_history"], strict=False) if s]
+    ax.scatter(sc, [0.05] * len(sc), c="green", s=5, label="TX OK")
+    fc = [i for i, s in zip(r3["frame_idx"], r3["success_history"], strict=False) if not s]
+    ax.scatter(fc, [0.05] * len(fc), c="red", s=5, label="TX FAIL")
+    ax.set_xlabel("Frame Index")
+    ax.set_ylabel("FER")
+    ax.set_title("14.4 - FER & TX Success")
+    ax.legend(fontsize=8)
+    ax.grid(True, ls="--", alpha=0.3)
+
+    fig.tight_layout()
+    fig.savefig("ber_phase14.png", dpi=150)
+    print("\nPhase 14 curves saved to ber_phase14.png")
+
+
 if __name__ == "__main__":
     import sys
     phase = sys.argv[1] if len(sys.argv) > 1 else "phase1"
@@ -3616,5 +4029,6 @@ if __name__ == "__main__":
         "phase11": run_phase11_simulation,
         "phase12": run_phase12_simulation,
         "phase13": run_phase13_simulation,
+        "phase14": run_phase14_simulation,
     }
     _dispatch.get(phase, run_phase1_simulation)()

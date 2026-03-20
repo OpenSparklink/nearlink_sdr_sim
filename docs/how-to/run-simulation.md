@@ -318,3 +318,48 @@ result = sim_hopping_multipath_link(
 uv run python -m nearlink_sdr.sim.link_sim phase12
 # 结果保存到 ber_phase12.png
 ```
+
+## Phase 14: 双节点端到端仿真
+
+使用 SleNode 实体进行完整的双节点数据交换仿真:
+
+```python
+import numpy as np
+from nearlink_sdr.sim.link_sim import (
+    sim_dual_node_link,
+    sim_dual_node_secure_link,
+    sim_dual_node_mcs_adapt,
+)
+
+# 基础 FER/BER 仿真
+result = sim_dual_node_link(
+    snr_range_db=np.arange(0, 16, 2),
+    n_frames=50,
+    mcs_index=7,
+    payload_size=10,
+)
+for snr, fer in zip(result["snr_db"], result["fer"]):
+    print(f"SNR={snr:2.0f} dB  FER={fer:.3f}")
+
+# 安全通信仿真 (配对 + 加密)
+result = sim_dual_node_secure_link(
+    snr_range_db=np.arange(0, 16, 2),
+    n_frames=50,
+)
+print(f"配对状态: {'成功' if result['pairing_ok'] else '失败'}")
+
+# MCS 自适应跟踪
+result = sim_dual_node_mcs_adapt(
+    snr_db=8.0,
+    n_frames=100,
+    initial_mcs=7,
+)
+print(f"最终 MCS: {result['mcs_history'][-1]}")
+```
+
+生成 Phase 14 全部仿真图:
+
+```bash
+uv run python -m nearlink_sdr.sim.link_sim phase14
+# 结果保存到 ber_phase14.png
+```
