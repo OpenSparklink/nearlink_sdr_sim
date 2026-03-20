@@ -971,6 +971,328 @@ class BroadcastFrame:
 
 
 # ---------------------------------------------------------------------------
+# 7.1.4.10 非链接态窄带跳频测量信息配置
+# ---------------------------------------------------------------------------
+
+
+@dataclass
+class NarrowbandMeasurementConfig:
+    """非链接态窄带跳频测量信息配置 (7.1.4.10, 表39)
+
+    包含感知信号配置、事件组参数、跳频配置、初始化阶段参数、
+    先发链路参数和跳频信道位图等字段。
+    """
+    config_index: int = 0                     # 感知信号配置索引 (8b)
+    event_group_start_offset: int = 0         # 事件组起始偏移时间 (24b, us)
+    nb_event_period: int = 0                  # 窄带跳频感知事件周期 (16b)
+    nb_event_group_period: int = 0            # 窄带跳频感知事件组周期 (16b)
+    nb_events_in_group: int = 0               # 事件组内事件总数 (8b)
+    nb_event_group_count: int = 0             # 事件组总数 (8b)
+    nb_event_stat_count: int = 0              # 事件统计数量 (8b)
+    schedule_slot: int = 4                    # 系统调度时隙 (3b, 默认125us)
+    meas_signal_bw: int = 0                   # 测量信号带宽指示 (2b)
+    hopping_mode: int = 0                     # 跳频方式指示 (2b)
+    init_channel: int = 0                     # 初始化阶段的频点 (10b)
+    init_interaction_type: int = 0            # 初始化阶段交互类型指示 (2b)
+    init_sync_signal: int = 0                 # 初始化阶段同步信号指示 (4b)
+    init_sync_config: int = 0                 # 初始化阶段同步信号配置 (24b)
+    init_meas_signal_type: int = 0            # 初始化阶段测量信号类型指示 (1b)
+    init_meas_signal1_len: int = 0            # 初始化阶段的测量信号1的长度 (3b)
+    init_intra_event_interval: int = 0        # 初始化阶段事件内间隔 (16b, us)
+    init_switch_interval: int = 0             # 初始化阶段的测量帧内部切换间隔 (8b, us)
+    init_meas_signal2_len: int = 0            # 初始化阶段的测量信号2的长度 (8b)
+    init_inter_event_interval: int = 0        # 初始化阶段事件间间隔 (16b, us)
+    mf1_inter_event_interval: int = 0         # 测量帧类型1事件间间隔 (16b, us)
+    mf2_inter_event_interval: int = 0         # 测量帧类型2事件间间隔 (16b, us)
+    nb_intra_event_interval: int = 0          # 窄带跳频感知事件内间隔 (16b, us)
+    nb_inter_group_interval: int = 0          # 窄带跳频感知事件组间间隔 (24b, us)
+    nb_event_total: int = 0                   # 窄带跳频感知事件总数 (8b)
+    mf1_event_period: int = 0                 # 测量帧类型1事件的周期 (8b)
+    mf1_switch_interval: int = 0              # 测量帧类型1内部切换间隔 (8b, us)
+    tx_sync_signal: int = 0                   # 先发链路同步信号指示 (4b)
+    tx_antenna_count: int = 0                 # 先发节点发送天线数量指示 (4b)
+    tx_sync_config: int = 0                   # 先发链路同步信号配置 (24b)
+    tx_meas_signal_type: int = 0              # 先发链路测量信号类型指示 (1b)
+    tx_meas_signal1_len: int = 0              # 先发链路测量信号1长度指示 (3b)
+    tx_meas_signal1_security: int = 0         # 先发链路测量信号1安全类型指示 (2b)
+    tx_meas_signal2_multitone: int = 0        # 先发链路测量信号2多音指示 (2b)
+    tx_first_sub_signal_len: int = 0          # 先发链路第一个子测量信号的长度指示 (8b)
+    tx_antenna_switch_interval: int = 0       # 先发节点天线切换间隔 (8b, us)
+    tx_meas_signal2_len: int = 0              # 先发链路测量信号2长度指示 (8b)
+    hop_band_bitmap: int = 0                  # 跳频信道频带指示 (8b, 位图)
+    hop_channel_2g4: int = 0                  # 2.4GHz跳频信道指示 (80b)
+    hop_channel_5g1: int = 0                  # 5.1GHz跳频信道指示 (200b)
+    hop_channel_5g8: int = 0                  # 5.8GHz跳频信道指示 (128b)
+    stability: int = 0                        # 稳定性指示 (1b)
+    reserved: int = 0                         # 预留 (4b)
+
+    def pack(self) -> bytes:
+        bits: list[int] = []
+        bits.extend(_int_to_bits(self.config_index, 8))
+        bits.extend(_int_to_bits(self.event_group_start_offset, 24))
+        bits.extend(_int_to_bits(self.nb_event_period, 16))
+        bits.extend(_int_to_bits(self.nb_event_group_period, 16))
+        bits.extend(_int_to_bits(self.nb_events_in_group, 8))
+        bits.extend(_int_to_bits(self.nb_event_group_count, 8))
+        bits.extend(_int_to_bits(self.nb_event_stat_count, 8))
+        bits.extend(_int_to_bits(self.schedule_slot, 3))
+        bits.extend(_int_to_bits(self.meas_signal_bw, 2))
+        bits.extend(_int_to_bits(self.hopping_mode, 2))
+        bits.extend(_int_to_bits(self.init_channel, 10))
+        bits.extend(_int_to_bits(self.init_interaction_type, 2))
+        bits.extend(_int_to_bits(self.init_sync_signal, 4))
+        bits.extend(_int_to_bits(self.init_sync_config, 24))
+        bits.extend(_int_to_bits(self.init_meas_signal_type, 1))
+        bits.extend(_int_to_bits(self.init_meas_signal1_len, 3))
+        bits.extend(_int_to_bits(self.init_intra_event_interval, 16))
+        bits.extend(_int_to_bits(self.init_switch_interval, 8))
+        bits.extend(_int_to_bits(self.init_meas_signal2_len, 8))
+        bits.extend(_int_to_bits(self.init_inter_event_interval, 16))
+        bits.extend(_int_to_bits(self.mf1_inter_event_interval, 16))
+        bits.extend(_int_to_bits(self.mf2_inter_event_interval, 16))
+        bits.extend(_int_to_bits(self.nb_intra_event_interval, 16))
+        bits.extend(_int_to_bits(self.nb_inter_group_interval, 24))
+        bits.extend(_int_to_bits(self.nb_event_total, 8))
+        bits.extend(_int_to_bits(self.mf1_event_period, 8))
+        bits.extend(_int_to_bits(self.mf1_switch_interval, 8))
+        bits.extend(_int_to_bits(self.tx_sync_signal, 4))
+        bits.extend(_int_to_bits(self.tx_antenna_count, 4))
+        bits.extend(_int_to_bits(self.tx_sync_config, 24))
+        bits.extend(_int_to_bits(self.tx_meas_signal_type, 1))
+        bits.extend(_int_to_bits(self.tx_meas_signal1_len, 3))
+        bits.extend(_int_to_bits(self.tx_meas_signal1_security, 2))
+        bits.extend(_int_to_bits(self.tx_meas_signal2_multitone, 2))
+        bits.extend(_int_to_bits(self.tx_first_sub_signal_len, 8))
+        bits.extend(_int_to_bits(self.tx_antenna_switch_interval, 8))
+        bits.extend(_int_to_bits(self.tx_meas_signal2_len, 8))
+        bits.extend(_int_to_bits(self.hop_band_bitmap, 8))
+        # 根据频带位图决定包含哪些信道指示
+        if self.hop_band_bitmap & 0x01:
+            bits.extend(_int_to_bits(self.hop_channel_2g4, 80))
+        if self.hop_band_bitmap & 0x02:
+            bits.extend(_int_to_bits(self.hop_channel_5g1, 200))
+        if self.hop_band_bitmap & 0x04:
+            bits.extend(_int_to_bits(self.hop_channel_5g8, 128))
+        bits.extend(_int_to_bits(self.stability, 1))
+        bits.extend(_int_to_bits(self.reserved, 4))
+        # 补齐到字节边界
+        pad = (8 - len(bits) % 8) % 8
+        bits.extend([0] * pad)
+        return _bits_to_bytes(bits)
+
+    @classmethod
+    def unpack(cls, data: bytes) -> NarrowbandMeasurementConfig:
+        bits = _bytes_to_bits(data)
+        p = 0
+
+        def _take(w: int) -> int:
+            nonlocal p
+            v = _bits_to_int(bits, p, w)
+            p += w
+            return v
+
+        obj = cls()
+        obj.config_index = _take(8)
+        obj.event_group_start_offset = _take(24)
+        obj.nb_event_period = _take(16)
+        obj.nb_event_group_period = _take(16)
+        obj.nb_events_in_group = _take(8)
+        obj.nb_event_group_count = _take(8)
+        obj.nb_event_stat_count = _take(8)
+        obj.schedule_slot = _take(3)
+        obj.meas_signal_bw = _take(2)
+        obj.hopping_mode = _take(2)
+        obj.init_channel = _take(10)
+        obj.init_interaction_type = _take(2)
+        obj.init_sync_signal = _take(4)
+        obj.init_sync_config = _take(24)
+        obj.init_meas_signal_type = _take(1)
+        obj.init_meas_signal1_len = _take(3)
+        obj.init_intra_event_interval = _take(16)
+        obj.init_switch_interval = _take(8)
+        obj.init_meas_signal2_len = _take(8)
+        obj.init_inter_event_interval = _take(16)
+        obj.mf1_inter_event_interval = _take(16)
+        obj.mf2_inter_event_interval = _take(16)
+        obj.nb_intra_event_interval = _take(16)
+        obj.nb_inter_group_interval = _take(24)
+        obj.nb_event_total = _take(8)
+        obj.mf1_event_period = _take(8)
+        obj.mf1_switch_interval = _take(8)
+        obj.tx_sync_signal = _take(4)
+        obj.tx_antenna_count = _take(4)
+        obj.tx_sync_config = _take(24)
+        obj.tx_meas_signal_type = _take(1)
+        obj.tx_meas_signal1_len = _take(3)
+        obj.tx_meas_signal1_security = _take(2)
+        obj.tx_meas_signal2_multitone = _take(2)
+        obj.tx_first_sub_signal_len = _take(8)
+        obj.tx_antenna_switch_interval = _take(8)
+        obj.tx_meas_signal2_len = _take(8)
+        obj.hop_band_bitmap = _take(8)
+        if obj.hop_band_bitmap & 0x01:
+            obj.hop_channel_2g4 = _take(80)
+        if obj.hop_band_bitmap & 0x02:
+            obj.hop_channel_5g1 = _take(200)
+        if obj.hop_band_bitmap & 0x04:
+            obj.hop_channel_5g8 = _take(128)
+        obj.stability = _take(1)
+        obj.reserved = _take(4)
+        return obj
+
+
+# ---------------------------------------------------------------------------
+# 7.1.4.11 非链接态超宽带脉冲测量信息配置
+# ---------------------------------------------------------------------------
+
+
+@dataclass
+class UWBPulseMeasurementConfig:
+    """非链接态超宽带脉冲测量信息配置 (7.1.4.11, 表41)"""
+    config_index: int = 0                     # 测量信号配置索引 (8b)
+    event_group_start_offset: int = 0         # 事件组起始偏移时间 (24b, us)
+    init_event_group_period: int = 0          # 初始化阶段事件组周期 (32b, 调度时隙)
+    schedule_slot: int = 4                    # 系统调度时隙 (3b, 默认125us)
+    init_channel_count: int = 0               # 初始化阶段的频点个数 (5b)
+    init_channel_list: list[int] = field(default_factory=list)  # 频点列表 (每个2字节)
+    init_interaction_type: int = 0            # 初始化阶段交互类型指示 (3b)
+    init_sync_signal: int = 0                 # 初始化阶段同步信号指示 (5b)
+    init_sync_config: int = 0                 # 初始化阶段同步信号配置 (24b)
+    init_intra_event_interval: int = 0        # 初始化阶段事件内间隔 (16b, us)
+    init_switch_interval: int = 0             # 初始化阶段测量帧内部切换间隔 (8b, us)
+    init_meas_signal_type: int = 0            # 初始化阶段测量信号类型指示 (2b)
+    init_meas_signal1_len: int = 0            # 初始化阶段测量信号1的长度 (6b)
+    init_meas_signal2_len: int = 0            # 初始化阶段测量信号2的长度 (8b)
+    tx_antenna_count: int = 0                 # 先发节点发送天线数量指示 (4b)
+    tx_multi_antenna_config: int = 0          # 先发节点多天线切换资源配置指示 (8b)
+    uwb_first_frame_start: int = 0            # 超宽带脉冲第一测量帧起始时刻 (22b)
+    uwb_event_period: int = 0                 # 超宽带脉冲测量事件周期 (16b)
+    uwb_event_group_period: int = 0           # 超宽带脉冲测量事件组周期 (16b, us)
+    uwb_events_in_group: int = 0              # 超宽带脉冲测量事件组内事件总数 (8b)
+    uwb_event_group_count: int = 0            # 超宽带脉冲测量事件组总数 (16b)
+    uwb_event_stat_count: int = 0             # 超宽带脉冲测量事件统计数量 (8b)
+    uwb_channel: int = 0                      # 超宽带脉冲信道指示 (8b)
+    uwb_signal_bw: int = 0                    # 超宽带脉冲信号带宽指示 (2b)
+    channel_overlap_mode: int = 0             # 信道重叠模式指示 (4b)
+    channel_order_mode: int = 0               # 信道使用顺序模式指示 (2b)
+    channel_stitch_count: int = 0             # 信道拼接数量指示 (8b)
+    channel_stitch_step: int = 0              # 信道拼接测量子片段步进指示 (4b)
+    sync_symbol_kl: int = 0                   # 同步符号码字长度K和占空因子L (4b)
+    sync_symbol_n: int = 0                    # 同步符号个数N (16b)
+    sync_symbol_index: int = 0                # 同步符号码字的索引 (8b)
+    meas_symbol_shift: int = 0                # 测量符号码字循环移位 (8b)
+    meas_seg_symbol_count: int = 0            # 测量子片段符号数Nseg (16b)
+    meas_seg_count: int = 0                   # 测量子片段数Mseg (8b)
+    meas_seg_gap: int = 0                     # 测量子片段间隔粒度Ngap (16b)
+    meas_symbol_cp_len: int = 0               # 测量符号循环前缀长度Lcp (6b)
+    meas_symbol_zero_len: int = 0             # 测量符号补零长度Lzero (8b)
+    stability: int = 0                        # 稳定性指示 (1b)
+    device_status: int = 0                    # 感知设备状态信息 (7b)
+
+    def pack(self) -> bytes:
+        bits: list[int] = []
+        bits.extend(_int_to_bits(self.config_index, 8))
+        bits.extend(_int_to_bits(self.event_group_start_offset, 24))
+        bits.extend(_int_to_bits(self.init_event_group_period, 32))
+        bits.extend(_int_to_bits(self.schedule_slot, 3))
+        bits.extend(_int_to_bits(self.init_channel_count, 5))
+        # 频点列表: 每个频点 16 bits
+        for i in range(self.init_channel_count):
+            ch = self.init_channel_list[i] if i < len(self.init_channel_list) else 0
+            bits.extend(_int_to_bits(ch, 16))
+        bits.extend(_int_to_bits(self.init_interaction_type, 3))
+        bits.extend(_int_to_bits(self.init_sync_signal, 5))
+        bits.extend(_int_to_bits(self.init_sync_config, 24))
+        bits.extend(_int_to_bits(self.init_intra_event_interval, 16))
+        bits.extend(_int_to_bits(self.init_switch_interval, 8))
+        bits.extend(_int_to_bits(self.init_meas_signal_type, 2))
+        bits.extend(_int_to_bits(self.init_meas_signal1_len, 6))
+        bits.extend(_int_to_bits(self.init_meas_signal2_len, 8))
+        bits.extend(_int_to_bits(self.tx_antenna_count, 4))
+        bits.extend(_int_to_bits(self.tx_multi_antenna_config, 8))
+        bits.extend(_int_to_bits(self.uwb_first_frame_start, 22))
+        bits.extend(_int_to_bits(self.uwb_event_period, 16))
+        bits.extend(_int_to_bits(self.uwb_event_group_period, 16))
+        bits.extend(_int_to_bits(self.uwb_events_in_group, 8))
+        bits.extend(_int_to_bits(self.uwb_event_group_count, 16))
+        bits.extend(_int_to_bits(self.uwb_event_stat_count, 8))
+        bits.extend(_int_to_bits(self.uwb_channel, 8))
+        bits.extend(_int_to_bits(self.uwb_signal_bw, 2))
+        bits.extend(_int_to_bits(self.channel_overlap_mode, 4))
+        bits.extend(_int_to_bits(self.channel_order_mode, 2))
+        bits.extend(_int_to_bits(self.channel_stitch_count, 8))
+        bits.extend(_int_to_bits(self.channel_stitch_step, 4))
+        bits.extend(_int_to_bits(self.sync_symbol_kl, 4))
+        bits.extend(_int_to_bits(self.sync_symbol_n, 16))
+        bits.extend(_int_to_bits(self.sync_symbol_index, 8))
+        bits.extend(_int_to_bits(self.meas_symbol_shift, 8))
+        bits.extend(_int_to_bits(self.meas_seg_symbol_count, 16))
+        bits.extend(_int_to_bits(self.meas_seg_count, 8))
+        bits.extend(_int_to_bits(self.meas_seg_gap, 16))
+        bits.extend(_int_to_bits(self.meas_symbol_cp_len, 6))
+        bits.extend(_int_to_bits(self.meas_symbol_zero_len, 8))
+        bits.extend(_int_to_bits(self.stability, 1))
+        bits.extend(_int_to_bits(self.device_status, 7))
+        # 补齐到字节边界
+        pad = (8 - len(bits) % 8) % 8
+        bits.extend([0] * pad)
+        return _bits_to_bytes(bits)
+
+    @classmethod
+    def unpack(cls, data: bytes) -> UWBPulseMeasurementConfig:
+        bits = _bytes_to_bits(data)
+        p = 0
+
+        def _take(w: int) -> int:
+            nonlocal p
+            v = _bits_to_int(bits, p, w)
+            p += w
+            return v
+
+        obj = cls()
+        obj.config_index = _take(8)
+        obj.event_group_start_offset = _take(24)
+        obj.init_event_group_period = _take(32)
+        obj.schedule_slot = _take(3)
+        obj.init_channel_count = _take(5)
+        obj.init_channel_list = [_take(16) for _ in range(obj.init_channel_count)]
+        obj.init_interaction_type = _take(3)
+        obj.init_sync_signal = _take(5)
+        obj.init_sync_config = _take(24)
+        obj.init_intra_event_interval = _take(16)
+        obj.init_switch_interval = _take(8)
+        obj.init_meas_signal_type = _take(2)
+        obj.init_meas_signal1_len = _take(6)
+        obj.init_meas_signal2_len = _take(8)
+        obj.tx_antenna_count = _take(4)
+        obj.tx_multi_antenna_config = _take(8)
+        obj.uwb_first_frame_start = _take(22)
+        obj.uwb_event_period = _take(16)
+        obj.uwb_event_group_period = _take(16)
+        obj.uwb_events_in_group = _take(8)
+        obj.uwb_event_group_count = _take(16)
+        obj.uwb_event_stat_count = _take(8)
+        obj.uwb_channel = _take(8)
+        obj.uwb_signal_bw = _take(2)
+        obj.channel_overlap_mode = _take(4)
+        obj.channel_order_mode = _take(2)
+        obj.channel_stitch_count = _take(8)
+        obj.channel_stitch_step = _take(4)
+        obj.sync_symbol_kl = _take(4)
+        obj.sync_symbol_n = _take(16)
+        obj.sync_symbol_index = _take(8)
+        obj.meas_symbol_shift = _take(8)
+        obj.meas_seg_symbol_count = _take(16)
+        obj.meas_seg_count = _take(8)
+        obj.meas_seg_gap = _take(16)
+        obj.meas_symbol_cp_len = _take(6)
+        obj.meas_symbol_zero_len = _take(8)
+        obj.stability = _take(1)
+        obj.device_status = _take(7)
+        return obj
+
+
+# ---------------------------------------------------------------------------
 # 比特操作辅助函数
 # ---------------------------------------------------------------------------
 

@@ -9,6 +9,19 @@
 
 ### Added
 
+- 系统管理帧编解码模块 (`mac/smf.py`) -- 标准 6.6
+  - SMFHeader: 分段指示 + 信令编号
+  - ScheduleSignaling: 调度信令 (生效时隙/间隔/帧类型/带宽/频点表)
+  - LinkSignaling: 链路信令 (逻辑链路标识/时间资源条目)
+  - OffsetSignaling: 偏移信令 (逻辑链路/偏移量/单位)
+  - SystemManagementFrame: 完整帧组装解析与分段重组
+- 非链接态窄带跳频测量信息配置 (`mac/broadcast.py`) -- 标准 7.1.4.10
+  - NarrowbandMeasurementConfig: 41 个字段, 含可变长跳频信道位图
+- 非链接态超宽带脉冲测量信息配置 (`mac/broadcast.py`) -- 标准 7.1.4.11
+  - UWBPulseMeasurementConfig: 38 个字段, 含可变长频点列表
+- 系统管理帧与测量配置测试 (`tests/test_smf.py`)
+  - 44 个测试覆盖全部 pack/unpack 环回、边界值、分段重组
+
 - 覆盖率补充测试 (`tests/test_coverage_gaps.py`)
   - 67 个测试覆盖 20+ 模块的未覆盖分支/边界条件
   - 涵盖 scrambler、link_control、link_manager、frame、access、broadcast、
