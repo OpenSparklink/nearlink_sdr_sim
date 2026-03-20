@@ -38,6 +38,7 @@ tests/            # 测试文件, 与 src 模块一一对应
 - 每个模块必须有对应的测试文件
 - 新功能必须附带测试, 所有测试必须通过
 - 运行方式: `uv run pytest tests/ -v --tb=short`
+- 测试覆盖率要大于90%
 
 ### 提交规范
 - 每个阶段完成后提交, commit message 格式使用 Angular Commit Convention:
@@ -52,6 +53,11 @@ tests/            # 测试文件, 与 src 模块一一对应
 - 提交前必须通过 lint 检查和全量测试
 - 提交修改前更新 CHANGELOG.md
 - 添加新功能或修改要更新文档, 文档依据 [diataxis](https://diataxis.fr/) 标准
+
+## 性能要求
+
+- 测试时长不应该大于2mins,尽可能并行化测试压缩时长
+- 大量功能后要进行性能测试和热点优化
 
 ### 分阶段开发
 - 每个阶段完成后闭环验证: 编码 -> 测试 -> lint -> 提交
