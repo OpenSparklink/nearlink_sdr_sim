@@ -223,6 +223,12 @@ class TestRunSimulation:
         result = self.mod.node_power_adapt()
         assert "fer" in result
 
+    def test_doppler_interference(self):
+        r_dop, r_sir, r_mp = self.mod.doppler_interference()
+        assert "doppler_hz" in r_dop and "fer" in r_dop
+        assert "sir_db" in r_sir and "fer" in r_sir
+        assert "doppler_hz" in r_mp and "fer" in r_mp
+
 
 # ---------------------------------------------------------------------------
 # examples/custom_modulation.py

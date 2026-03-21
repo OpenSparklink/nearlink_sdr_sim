@@ -3,23 +3,24 @@ name: Deploy Docs
 on:
   push:
     branches: [master]
+    tags: ["v*"]
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
-  build:
-    name: Build docs
+  deploy:
+    name: Build & Deploy docs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: astral-sh/setup-uv@v6
         with:
@@ -31,22 +32,55 @@ jobs:
       - name: Install dependencies
         run: uv sync --group docs
 
+      - name: Determine version
+        id: version
+        run: |
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+            VERSION="${GITHUB_REF#refs/tags/}"
+            echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+            echo "is_tag=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "version=latest" >> "$GITHUB_OUTPUT"
+            echo "is_tag=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Build Sphinx docs
         run: uv run sphinx-build -E -W docs docs/_build/html
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Checkout gh-pages
+        uses: actions/checkout@v4
         with:
-          path: docs/_build/html
+          ref: gh-pages
+          path: _site
+        continue-on-error: true
 
-  deploy:
-    name: Deploy to GitHub Pages
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Prepare site directory
+        run: mkdir -p _site
+
+      - name: Copy docs to version directory
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          rm -rf "_site/${VERSION}"
+          cp -r docs/_build/html "_site/${VERSION}"
+
+      - name: Update versions.json
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          python3 scripts/update_doc_versions.py "_site/versions.json" "$VERSION"
+
+      - name: Generate root index.html
+        run: |
+          cat > _site/index.html << 'REDIRECT'
+          <!DOCTYPE html>
+          <html>
+          <head><meta http-equiv="refresh" content="0; url=latest/"></head>
+          <body><a href="latest/">latest</a></body>
+          </html>
+          REDIRECT
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          keep_files: false

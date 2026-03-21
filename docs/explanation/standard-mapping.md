@@ -74,11 +74,12 @@
 | 6.10 | TX 发射流水线 | `phy.tx_pipeline` | 完成, FT1-4 全帧类型 |
 | 6.10 | RX 接收流水线 | `phy.rx_pipeline` | 完成, FT1-4 全帧类型 |
 
-## 待实现条款
+## 已完成的扩展特性
 
-以下条款尚未完全实现, 不影响核心 SLE 通信:
+以下特性超出标准规范, 用于增强仿真系统的完整性:
 
-- 多用户干扰/Doppler 时变信道仿真
+- 多用户干扰仿真 (SIR 建模, 同信道/邻信道): `phy.channel` + `sim.link_sim`
+- Doppler 时变信道 (Jakes 求和正弦模型): `phy.channel`
 
 ## 第 7 章 MAC 层
 
@@ -209,6 +210,7 @@
 | SLE 节点实体 (统一收发接口) | `node` | 完成 |
 | SleNode 集成仿真 (Phase 15) | `sim.link_sim` | 完成 |
 | USRP 环回仿真引擎 | `sim.usrp_sim` | 完成 |
+| 多用户干扰 + Doppler 时变信道 (Phase 16) | `sim.link_sim`, `phy.channel` | 完成 |
 
 ### 一致性测试
 

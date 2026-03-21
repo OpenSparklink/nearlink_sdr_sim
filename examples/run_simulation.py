@@ -375,6 +375,49 @@ def dual_node_link():
     return result, result_sec, result_mcs
 
 
+def doppler_interference():
+    """Doppler 时变衰落与多用户干扰仿真 (Phase 16)。"""
+    # [doppler-start]
+    from nearlink_sdr.sim.link_sim import sim_doppler_link
+
+    result = sim_doppler_link(
+        doppler_range_hz=[0, 10, 50, 200],
+        snr_db=12.0,
+        n_frames=50,
+        mcs_index=7,
+    )
+    for fd, fer in zip(result["doppler_hz"], result["fer"], strict=False):
+        print(f"Doppler={fd:4.0f} Hz  FER={fer:.3f}")
+    # [doppler-end]
+
+    # [interference-start]
+    from nearlink_sdr.sim.link_sim import sim_sir_sweep
+
+    result_sir = sim_sir_sweep(
+        sir_range_db=[0, 5, 10, 15, 20],
+        snr_db=15.0,
+        n_frames=50,
+        n_interferers=2,
+    )
+    for sir, fer in zip(result_sir["sir_db"], result_sir["fer"], strict=False):
+        print(f"SIR={sir:3.0f} dB  FER={fer:.3f}")
+    # [interference-end]
+
+    # [doppler-multipath-start]
+    from nearlink_sdr.sim.link_sim import sim_doppler_multipath_link
+
+    result_mp = sim_doppler_multipath_link(
+        doppler_range_hz=[0, 50, 200],
+        snr_db=15.0,
+        n_frames=50,
+    )
+    for fd, fer in zip(result_mp["doppler_hz"], result_mp["fer"], strict=False):
+        print(f"Doppler+多径: fd={fd:3.0f} Hz  FER={fer:.3f}")
+    # [doppler-multipath-end]
+
+    return result, result_sir, result_mp
+
+
 if __name__ == "__main__":
     print("=== GFSK BER ===")
     ber_gfsk()

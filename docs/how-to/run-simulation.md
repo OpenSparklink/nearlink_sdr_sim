@@ -118,6 +118,47 @@ Phase 15 基于 `SleNode` 实体进行端到端仿真:
 uv run python -m nearlink_sdr.sim.link_sim phase15
 ```
 
+## Doppler 时变衰落与多用户干扰 (Phase 16)
+
+### Doppler 扩展对 FER 的影响
+
+使用 Jakes 求和正弦模型模拟不同移动速度下的信道衰落:
+
+:::{literalinclude} ../../examples/run_simulation.py
+:language: python
+:start-after: "# [doppler-start]"
+:end-before: "# [doppler-end]"
+:dedent:
+:::
+
+### SIR 扫描
+
+在固定 SNR 下, 改变信干比观察多用户干扰对 FER 的影响:
+
+:::{literalinclude} ../../examples/run_simulation.py
+:language: python
+:start-after: "# [interference-start]"
+:end-before: "# [interference-end]"
+:dedent:
+:::
+
+### Doppler + 多径联合
+
+ITU Indoor Office 功率延迟谱与 Doppler 衰落的联合仿真:
+
+:::{literalinclude} ../../examples/run_simulation.py
+:language: python
+:start-after: "# [doppler-multipath-start]"
+:end-before: "# [doppler-multipath-end]"
+:dedent:
+:::
+
+批量执行 Phase 16 全部仿真并生成四面板可视化图:
+
+```bash
+uv run python -m nearlink_sdr.sim.link_sim phase16
+```
+
 ## 信道损伤仿真
 
 使用 `sim_pipeline_channel_link` 模拟衰落信道、载波频偏和均衡对链路的影响:

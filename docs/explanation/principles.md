@@ -129,6 +129,64 @@ $$
 
 其中 $\{h_l, \tau_l\}$ 由功率延迟谱 (PDP) 决定。频率选择性衰落会导致码间干扰, 需要均衡器恢复。
 
+### Doppler 衰落与 Jakes 模型
+
+移动通信中, 收发端相对运动引起 Doppler 频移, 使信道系数随时间变化。最大 Doppler 频移为:
+
+$$
+f_d = \frac{v \cdot f_c}{c}
+$$
+
+其中 $v$ 为相对速度, $f_c$ 为载波频率, $c$ 为光速。
+
+Clarke 模型指出, 在各向同性散射环境中, 时变信道的自相关函数为零阶第一类 Bessel 函数:
+
+$$
+R(\Delta t) = J_0(2\pi f_d \Delta t)
+$$
+
+实现上采用 Jakes 求和正弦模型。$N$ 个振荡器的叠加构造时变衰落系数:
+
+$$
+h(t) = \frac{1}{\sqrt{N}} \sum_{n=1}^{N} e^{j(2\pi f_d \cos\alpha_n \cdot t + \theta_n)}
+$$
+
+其中到达角 $\alpha_n$ 均匀分布于 $[0, 2\pi)$, 初始相位 $\theta_n$ 随机。当 $N$ 足够大时, 该过程的统计特性趋近于真实的 Clarke 模型:
+
+- 实部和虚部近似独立高斯
+- 包络近似 Rayleigh 分布
+- 自相关函数趋近 $J_0(2\pi f_d \Delta t)$
+
+对于 Rician 信道, 散射分量使用 Jakes 模型, 直射路径叠加固定相位:
+
+$$
+h(t) = \sqrt{\frac{K}{K+1}} \cdot e^{j 2\pi f_d t} + \sqrt{\frac{1}{K+1}} \cdot h_\text{Jakes}(t)
+$$
+
+$f_d = 0$ 时退化为准静态衰落 (整帧恒定系数), $f_d$ 较大时信道在帧内快速变化, 对均衡器和解码器构成严峻挑战。
+
+### 多用户干扰模型
+
+多用户干扰 (MUI) 建模为叠加在目标信号上的外部噪声源。第 $i$ 个干扰者的信干比定义为:
+
+$$
+\text{SIR}_i = \frac{P_\text{signal}}{P_{\text{interferer},i}}
+$$
+
+信干噪比的综合计算:
+
+$$
+\text{SINR} = \frac{P_\text{signal}}{P_\text{noise} + \sum_{i=1}^{M} P_{\text{interferer},i}}
+$$
+
+邻信道干扰还需考虑频率偏移。第 $i$ 个干扰信号经频率搬移后叠加:
+
+$$
+y(t) = s(t) + \sum_{i=1}^{M} \sqrt{\frac{P_s}{\text{SIR}_i^\text{linear}}} \cdot z_i(t) \cdot e^{j 2\pi \Delta f_i t} + n(t)
+$$
+
+其中 $z_i(t)$ 为归一化功率的随机干扰基带信号, $\Delta f_i$ 为干扰者与目标信号之间的频率偏移。当 $\Delta f_i = 0$ 时为同信道干扰, $\Delta f_i \neq 0$ 时为邻信道干扰, 接收滤波器对邻信道有一定衰减。
+
 ## 均衡器
 
 ### ZF 均衡

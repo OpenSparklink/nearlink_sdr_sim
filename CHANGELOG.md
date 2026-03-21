@@ -18,7 +18,15 @@
   - 使用 `astral-sh/setup-uv` 管理 Python 3.14 和依赖
 
 - GitHub Pages 文档部署工作流 (`.github/workflows/docs.yml`)
-  - 推送 master 分支自动构建并部署 Sphinx 文档到 GitHub Pages
+  - 推送 master 分支或版本标签自动构建并部署 Sphinx 文档
+  - 支持分版本文档托管: `/latest/` (master) + `/v{X.Y.Z}/` (标签)
+  - 版本选择器 UI: 侧边栏下拉切换不同文档版本
+  - 基于 `peaceiris/actions-gh-pages` 增量部署到 `gh-pages` 分支
+
+- 文档 UI 升级: Furo 主题替换 sphinx-rtd-theme
+  - 深色/浅色模式自适应
+  - 移动端响应式布局
+  - GitHub 仓库链接图标
 
 - Phase 16: 多用户干扰 + Doppler 时变信道仿真 (25 个测试用例)
   - Jakes 求和正弦模型: 替代原有独立 Rayleigh, 生成具有 J₀ 自相关的时间相关衰落

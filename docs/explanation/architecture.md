@@ -40,7 +40,7 @@ nearlink_sdr/
 | `control_info` | A1-A7/B1-B5 物理层控制信息 | 6.4 |
 | `tx_pipeline` | TX 发射流水线 | 6.10 |
 | `rx_pipeline` | RX 接收流水线 | 6.10 |
-| `channel` | AWGN/Rayleigh/Rician/多径信道模型 | -- |
+| `channel` | AWGN/Rayleigh/Rician/多径信道, Jakes Doppler 衰落, 多用户干扰 | -- |
 | `equalizer` | ZF/MMSE 均衡, LS 信道估计 | -- |
 | `freq_hopping` | 跳频序列与频率管理 | 6.10.3/8.1.2 |
 | `mac_interface` | MAC-PHY 适配层 | -- |
@@ -94,6 +94,7 @@ nearlink_sdr/
 | Phase 13 | QoS ARQ / AMC 自适应 / 流控 | `sim_qos_arq_link`, `sim_qos_amc_adaptive`, `sim_qos_flow_control` |
 | Phase 14 | 双节点端到端仿真 | `sim_dual_node_link`, `sim_dual_node_secure_link`, `sim_dual_node_mcs_adapt` |
 | Phase 15 | SleNode 集成仿真 | `sim_node_hopping_link`, `sim_node_access_flow`, `sim_node_channel_sweep`, `sim_node_power_adapt`, `sim_node_measurement` |
+| Phase 16 | 多用户干扰 + Doppler 时变信道 | `sim_doppler_link`, `sim_multi_user_interference`, `sim_sir_sweep`, `sim_doppler_multipath_link` |
 
 每个阶段的仿真函数可独立调用, 也可通过 `run_phaseN_simulation()` 批量执行。
 
