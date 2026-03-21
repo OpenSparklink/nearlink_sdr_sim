@@ -375,7 +375,7 @@ def dual_node_link():
     return result, result_sec, result_mcs
 
 
-def doppler_interference():
+def doppler_interference(n_frames=50):
     """Doppler 时变衰落与多用户干扰仿真 (Phase 16)。"""
     # [doppler-start]
     from nearlink_sdr.sim.link_sim import sim_doppler_link
@@ -383,7 +383,7 @@ def doppler_interference():
     result = sim_doppler_link(
         doppler_range_hz=[0, 10, 50, 200],
         snr_db=12.0,
-        n_frames=50,
+        n_frames=n_frames,
         mcs_index=7,
     )
     for fd, fer in zip(result["doppler_hz"], result["fer"], strict=False):
@@ -396,7 +396,7 @@ def doppler_interference():
     result_sir = sim_sir_sweep(
         sir_range_db=[0, 5, 10, 15, 20],
         snr_db=15.0,
-        n_frames=50,
+        n_frames=n_frames,
         n_interferers=2,
     )
     for sir, fer in zip(result_sir["sir_db"], result_sir["fer"], strict=False):
@@ -409,7 +409,7 @@ def doppler_interference():
     result_mp = sim_doppler_multipath_link(
         doppler_range_hz=[0, 50, 200],
         snr_db=15.0,
-        n_frames=50,
+        n_frames=n_frames,
     )
     for fd, fer in zip(result_mp["doppler_hz"], result_mp["fer"], strict=False):
         print(f"Doppler+多径: fd={fd:3.0f} Hz  FER={fer:.3f}")

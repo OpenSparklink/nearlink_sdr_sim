@@ -43,6 +43,12 @@
 
 ### Changed
 
+- 性能优化: 测试套件从 12.36s 降至 9.48s (减少 23%)
+  - Phase 16 仿真函数 `run_phase16_simulation()` 和示例 `doppler_interference()` 参数化 n_frames
+  - 测试用 n_frames=5 替代默认 50, 在验证正确性的同时大幅降低仿真耗时
+  - 热点分析结论: Polar SC 解码器占 pipeline 45% 时间, 纯 Python 下已达优化极限,
+    递归/迭代/标量快速路径等方案均无显著提升, 进一步加速需 Cython/Numba 编译加速
+
 - 文档代码示例重构: 从 markdown 内嵌 Python 代码迁移至独立示例工程
   - 新增 `examples/` 目录, 包含 5 个可独立运行的示例脚本
   - `examples/getting_started.py`: GFSK/Polar+PSK/Pipeline/SleNode 入门示例

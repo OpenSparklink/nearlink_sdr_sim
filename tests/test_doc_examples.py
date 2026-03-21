@@ -224,7 +224,7 @@ class TestRunSimulation:
         assert "fer" in result
 
     def test_doppler_interference(self):
-        r_dop, r_sir, r_mp = self.mod.doppler_interference()
+        r_dop, r_sir, r_mp = self.mod.doppler_interference(n_frames=5)
         assert "doppler_hz" in r_dop and "fer" in r_dop
         assert "sir_db" in r_sir and "fer" in r_sir
         assert "doppler_hz" in r_mp and "fer" in r_mp

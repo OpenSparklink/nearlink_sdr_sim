@@ -310,6 +310,6 @@ class TestPhase16Simulations:
     def test_run_phase16_no_crash(self):
         """Phase 16 完整运行不应崩溃。"""
         from nearlink_sdr.sim.link_sim import run_phase16_simulation
-        run_phase16_simulation()
+        run_phase16_simulation(n_frames=5)
 
 

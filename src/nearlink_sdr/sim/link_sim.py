@@ -4833,7 +4833,7 @@ def sim_doppler_multipath_link(
     }
 
 
-def run_phase16_simulation() -> None:
+def run_phase16_simulation(n_frames: int = 50) -> None:
     """Phase 16: 多用户干扰 + Doppler 时变信道仿真可视化。"""
     import matplotlib
     matplotlib.use("Agg")
@@ -4842,7 +4842,7 @@ def run_phase16_simulation() -> None:
     print("Phase 16.1 - Doppler 时变信道 FER ...")
     r1 = sim_doppler_link(
         doppler_range_hz=np.array([0, 5, 10, 20, 50, 100]),
-        snr_db=12.0, n_frames=50,
+        snr_db=12.0, n_frames=n_frames,
     )
     for fd, fer in zip(r1["doppler_hz"], r1["fer"], strict=False):
         print(f"  f_d={fd:5.0f} Hz  FER={fer:.3f}")
@@ -4850,7 +4850,7 @@ def run_phase16_simulation() -> None:
     print("\nPhase 16.2 - 多用户干扰 (SIR 扫描) ...")
     r2 = sim_sir_sweep(
         sir_range_db=np.arange(-5, 25, 5),
-        n_interferers=1, snr_db=20.0, n_frames=50,
+        n_interferers=1, snr_db=20.0, n_frames=n_frames,
     )
     for sir, fer in zip(r2["sir_db"], r2["fer"], strict=False):
         print(f"  SIR={sir:5.0f} dB  FER={fer:.3f}")
@@ -4858,7 +4858,7 @@ def run_phase16_simulation() -> None:
     print("\nPhase 16.3 - 多干扰用户数扫描 ...")
     r3 = sim_multi_user_interference(
         n_interferers_range=[0, 1, 2, 3, 5],
-        sir_db=10.0, snr_db=15.0, n_frames=50,
+        sir_db=10.0, snr_db=15.0, n_frames=n_frames,
     )
     for ni, fer, sinr in zip(
         r3["n_interferers"], r3["fer"], r3["sinr_db"], strict=False,
@@ -4868,7 +4868,7 @@ def run_phase16_simulation() -> None:
     print("\nPhase 16.4 - Doppler + 多径 ...")
     r4 = sim_doppler_multipath_link(
         doppler_range_hz=np.array([0, 5, 10, 20, 50]),
-        snr_db=15.0, n_frames=50,
+        snr_db=15.0, n_frames=n_frames,
     )
     for fd, fer in zip(r4["doppler_hz"], r4["fer"], strict=False):
         print(f"  f_d={fd:5.0f} Hz  FER={fer:.3f}")
