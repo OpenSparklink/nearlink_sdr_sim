@@ -21,9 +21,11 @@ uv sync
 
 确认所有模块工作正常:
 
-```bash
-uv run pytest tests/ -v --tb=short
-```
+:::{literalinclude} ../../Makefile
+:language: makefile
+:start-after: "# [test-start]"
+:end-before: "# [test-end]"
+:::
 
 ## 第一次仿真: GFSK 链路
 
@@ -54,7 +56,7 @@ GFSK 是 SparkLink SLE 帧类型 1 使用的调制方式。下面的代码演示
 项目内置了批量仿真函数, 可以直接绘制 BER 曲线:
 
 ```bash
-uv run python -m nearlink_sdr.sim.link_sim phase1
+make sim-phase1
 # 输出 BER 数据并保存 ber_phase1.png
 ```
 
@@ -85,7 +87,7 @@ uv run python -m nearlink_sdr.sim.link_sim phase1
 项目提供基于 SleNode 的完整集成仿真, 覆盖跳频、功率自适应、接入流程和信道扫频:
 
 ```bash
-uv run python -m nearlink_sdr.sim.link_sim phase15
+make sim-phase15
 # 输出四面板可视化图: 跳频/接入/功率/信道
 ```
 
@@ -94,7 +96,7 @@ uv run python -m nearlink_sdr.sim.link_sim phase15
 所有入门示例已整合为独立脚本, 可直接运行:
 
 ```bash
-uv run python examples/getting_started.py
+make examples
 ```
 
 ## 下一步

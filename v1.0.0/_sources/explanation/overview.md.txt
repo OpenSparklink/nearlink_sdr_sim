@@ -70,31 +70,29 @@ FT1 是最简单的帧类型, 适合低速率广播; FT2-FT4 依次增加同步�
 
 一条 SLE 链路的典型生命周期:
 
-```text
-空闲 (IDLE)
-  │
-  ▼
-广播/扫描 (BROADCASTING / SCANNING)
-  │  G节点发送广播帧, T节点扫描接收
-  ▼
-接入 (ACCESS)
-  │  T节点发送接入请求, G节点回复接入响应
-  │  协商G/T角色, 分配首次调度点
-  ▼
-配对与鉴权 (PAIRING)  [可选]
-  │  ECDH 密钥交换, 鉴权验证
-  ▼
-加密建立 (ENCRYPTION)  [可选]
-  │  派生会话密钥, 启动 AES-CCM 帧加密
-  ▼
-已连接 (CONNECTED)
-  │  双向数据传输, 信令交互
-  │  链路管理: 功率控制/跳频/MCS自适应/QoS
-  ▼
-断开 (DISCONNECTED)
-  │  主动断开 或 超时断开
-  ▼
-空闲 (IDLE)
+```{mermaid}
+stateDiagram-v2
+    state "空闲 (IDLE)" as IDLE
+    state "广播/扫描 (BROADCASTING / SCANNING)" as BCAST
+    state "接入 (ACCESS)" as ACCESS
+    state "配对与鉴权 (PAIRING, 可选)" as PAIRING
+    state "加密建立 (ENCRYPTION, 可选)" as ENCRYPT
+    state "已连接 (CONNECTED)" as CONNECTED
+    state "断开 (DISCONNECTED)" as DISCONNECTED
+
+    [*] --> IDLE
+    IDLE --> BCAST : G节点发送广播帧, T节点扫描接收
+    BCAST --> ACCESS : T节点发送接入请求, G节点回复接入响应
+    ACCESS --> PAIRING : 协商G/T角色, 分配首次调度点
+    PAIRING --> ENCRYPT : ECDH密钥交换, 鉴权验证
+    ENCRYPT --> CONNECTED : 派生会话密钥, 启动AES-CCM帧加密
+    CONNECTED --> DISCONNECTED : 主动断开或超时断开
+    DISCONNECTED --> IDLE
+
+    note right of CONNECTED
+        双向数据传输, 信令交互
+        功率控制/跳频/MCS自适应/QoS
+    end note
 ```
 
 项目中 `SleNode` 类封装了完整的生命周期, 对应 `NodeState` 枚举:

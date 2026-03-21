@@ -31,10 +31,19 @@ SLE 安全子系统分为三层:
 
 配对流程由 9 个状态组成:
 
-```text
-IDLE → INITIATED → REQUEST_SENT → RESPONSE_SENT
-     → CONFIRM_SENT → PUBLIC_KEY_EXCHANGED
-     → CONFIRM_CODE_SENT → COMPLETED / FAILED
+```{mermaid}
+stateDiagram-v2
+    [*] --> IDLE
+    IDLE --> INITIATED
+    INITIATED --> REQUEST_SENT
+    REQUEST_SENT --> RESPONSE_SENT
+    RESPONSE_SENT --> CONFIRM_SENT
+    CONFIRM_SENT --> PUBLIC_KEY_EXCHANGED
+    PUBLIC_KEY_EXCHANGED --> CONFIRM_CODE_SENT
+    CONFIRM_CODE_SENT --> COMPLETED
+    CONFIRM_CODE_SENT --> FAILED
+    COMPLETED --> [*]
+    FAILED --> [*]
 ```
 
 G 节点视角:
@@ -78,20 +87,15 @@ T 节点视角是上述流程的镜像:
 
 配对完成后, 通过 ECDH 共享密钥逐级派生出各功能密钥:
 
-```text
-ECDH P-256 共享密钥 (32 字节)
-    │
-    ├─► Link Key (16 字节)
-    │       KDF(dh_key_low128, "lk" ‖ Ra ‖ Rb ‖ 地址)
-    │
-    ├─► DH Verify Key
-    │       KDF(dh_key_low128, "dk" ‖ Ra ‖ Rb ‖ 地址)
-    │       └─► DH 验证码 (16 字节)
-    │
-    └─► Session Key (16 字节)
-            KDF(link_key, G_Diversifier ‖ T_Diversifier)
-            └─► 认证加密: SK 同时用于加密和完整性
-                分离算法: EnK (加密) + InK (完整性)
+```{mermaid}
+flowchart TD
+    DH["ECDH P-256 共享密钥 (32 字节)"]
+    DH --> LK["Link Key (16 字节)\nKDF(dh_key_low128, 'lk' ‖ Ra ‖ Rb ‖ 地址)"]
+    DH --> DK["DH Verify Key\nKDF(dh_key_low128, 'dk' ‖ Ra ‖ Rb ‖ 地址)"]
+    DK --> DV["DH 验证码 (16 字节)"]
+    DH --> SK["Session Key (16 字节)\nKDF(link_key, G_Diversifier ‖ T_Diversifier)"]
+    SK --> AE["认证加密: SK 同时用于加密和完整性"]
+    SK --> SEP["分离算法: EnK (加密) + InK (完整性)"]
 ```
 
 ### KDF 算法

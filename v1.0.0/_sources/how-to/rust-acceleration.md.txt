@@ -21,15 +21,11 @@ python scripts/install_accel.py
 
 ### 手动安装
 
-```bash
-# 安装 maturin 构建工具
-uv pip install maturin
-
-# 编译并安装到当前虚拟环境
-cd rust
-maturin develop --release
-cd ..
-```
+:::{literalinclude} ../../Makefile
+:language: makefile
+:start-after: "# [accel-start]"
+:end-before: "# [accel-end]"
+:::
 
 ## 验证安装
 

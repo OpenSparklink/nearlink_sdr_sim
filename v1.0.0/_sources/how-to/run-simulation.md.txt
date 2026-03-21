@@ -55,7 +55,7 @@ QPSK 仿真:
 ## 绘制 BER 曲线
 
 ```bash
-uv run python -m nearlink_sdr.sim.link_sim phase1
+make sim-phase1
 # 结果保存到 ber_phase1.png
 ```
 
@@ -120,7 +120,7 @@ Phase 15 基于 `SleNode` 实体进行端到端仿真:
 批量执行并生成可视化图:
 
 ```bash
-uv run python -m nearlink_sdr.sim.link_sim phase15
+make sim-phase15
 ```
 
 ## Doppler 时变衰落与多用户干扰 (Phase 16)
@@ -161,7 +161,7 @@ ITU Indoor Office 功率延迟谱与 Doppler 衰落的联合仿真:
 批量执行 Phase 16 全部仿真并生成四面板可视化图:
 
 ```bash
-uv run python -m nearlink_sdr.sim.link_sim phase16
+make sim-phase16
 ```
 
 ## 信道损伤仿真
@@ -178,7 +178,7 @@ uv run python -m nearlink_sdr.sim.link_sim phase16
 批量信道损伤仿真 (含均衡对比):
 
 ```bash
-uv run python -m nearlink_sdr.sim.link_sim phase7
+make sim-phase7
 # 结果保存到 ber_phase7.png
 ```
 
@@ -194,7 +194,7 @@ Phase 9 通过 MAC-PHY 适配层将 MAC 帧编码为 IQ 信号, 经信道传输�
 :::
 
 ```bash
-uv run python -m nearlink_sdr.sim.link_sim phase9
+make sim-phase9
 ```
 
 ## 多链路调度仿真
@@ -209,7 +209,7 @@ Phase 10 仿真调度器驱动的多链路并发传输:
 :::
 
 ```bash
-uv run python -m nearlink_sdr.sim.link_sim phase10
+make sim-phase10
 ```
 
 ## 安全通信仿真
@@ -224,7 +224,7 @@ Phase 11 模拟完整的安全链路建立: 接入 -> 配对 -> 加密数据传�
 :::
 
 ```bash
-uv run python -m nearlink_sdr.sim.link_sim phase11
+make sim-phase11
 ```
 
 ## AMC 自适应调制编码仿真
@@ -272,7 +272,7 @@ Phase 12 扫描全部 MCS 等级 (0-12), 生成 AMC 包络吞吐量曲线:
 生成 Phase 12 全部仿真图:
 
 ```bash
-uv run python -m nearlink_sdr.sim.link_sim phase12
+make sim-phase12
 # 结果保存到 ber_phase12.png
 ```
 
@@ -290,12 +290,12 @@ uv run python -m nearlink_sdr.sim.link_sim phase12
 生成 Phase 14 全部仿真图:
 
 ```bash
-uv run python -m nearlink_sdr.sim.link_sim phase14
+make sim-phase14
 # 结果保存到 ber_phase14.png
 ```
 
 ## 运行示例
 
 ```bash
-uv run python examples/run_simulation.py
+make examples
 ```
