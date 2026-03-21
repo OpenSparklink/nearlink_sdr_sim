@@ -32,7 +32,7 @@ uv run ruff check src/ tests/ examples/
 
 ## 项目结构
 
-```
+```text
 src/nearlink_sdr/
 ├── common/       # 通用编码 (CRC, BCH, Polar, 码块分割, 加扰, MCS)
 ├── phy/          # 物理层 (调制, 帧结构, 信道, 均衡, 同步, 跳频, USRP)

@@ -120,7 +120,7 @@
 
 **目标**: 验证 `phy/usrp.py` 在真实硬件上的基本功能
 
-```
+```text
 scripts/hw_verify.py:
   1. 初始化 USRPDevice(use_mock=False)
   2. 验证频率设置 (2402-2480 MHz)
@@ -130,6 +130,7 @@ scripts/hw_verify.py:
 ```
 
 关键参数:
+
 - 采样率: 1 MHz (GFSK) 或 2 MHz (QPSK)
 - 中心频率: 2440 MHz (信道 19)
 - TX 增益: 20 dB (初始低功率)
@@ -139,7 +140,7 @@ scripts/hw_verify.py:
 
 **目标**: TX pipeline → 空口/线缆 → RX pipeline 回环验证
 
-```
+```text
 scripts/phy_loopback.py:
   1. 构造 FT2 帧 (GFSK, MCS=0)
   2. mac_to_iq() 生成 IQ 样本
@@ -150,6 +151,7 @@ scripts/phy_loopback.py:
 ```
 
 注意事项:
+
 - 首次使用线缆回环 + 衰减器, 排除空口干扰
 - 频偏校准: E310 TCXO 精度 ±2.5 ppm, 对应 ±6 kHz@2.4 GHz
 - AGC: 初始固定增益, 后续增加自动增益控制
@@ -158,7 +160,7 @@ scripts/phy_loopback.py:
 
 **目标**: 两台 E310 之间收发通信
 
-```
+```text
 scripts/tx_node.py:    # G 节点发射端 (待创建)
 scripts/rx_node.py:    # T 节点接收端 (待创建)
 
@@ -181,7 +183,7 @@ scripts/rx_node.py:    # T 节点接收端 (待创建)
 
 **目标**: MAC 状态机驱动的完整协议栈运行
 
-```
+```text
 main.py (重构):
   - CLI 入口: tx/rx/loopback/sim 模式选择
   - G 节点模式: 广播 → 接入 → 连接 → 数据传输

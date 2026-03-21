@@ -27,6 +27,41 @@ class MyDemodulator:
 # [custom-mod-end]
 
 
+# [custom-test-start]
+# tests/test_my_modulator.py
+import numpy as np
+
+from nearlink_sdr.phy.my_modulator import MyModulator, MyDemodulator
+
+
+class TestMyModulator:
+    def test_roundtrip(self):
+        """调制→解调往返一致性"""
+        mod = MyModulator(sps=4)
+        demod = MyDemodulator(sps=4)
+        bits = np.array([1, 0, 1, 1, 0, 0], dtype=int)
+        iq = mod.modulate(bits)
+        rx_bits = demod.demodulate(iq)
+        np.testing.assert_array_equal(bits, rx_bits[:len(bits)])
+
+    def test_output_length(self):
+        """调制输出长度 = 输入比特数 × 每符号采样数"""
+        mod = MyModulator(sps=4)
+        bits = np.ones(20, dtype=int)
+        iq = mod.modulate(bits)
+        assert len(iq) == 20 * 4
+# [custom-test-end]
+
+
+# [custom-pipeline-start]
+# tx_pipeline.py 中的调制分支
+if cfg.frame_type == 1:
+    iq = gfsk_modulator.modulate(frame_bits)
+elif cfg.frame_type == 5:  # 新帧类型
+    iq = my_modulator.modulate(symbols)
+# [custom-pipeline-end]
+
+
 if __name__ == "__main__":
     mod = MyModulator(sps=4)
     print(f"MyModulator created with sps={mod.sps}")

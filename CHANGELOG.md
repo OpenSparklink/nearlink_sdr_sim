@@ -384,6 +384,7 @@
 ## [0.25.0]
 
 ### Added
+
 - SLE 节点实体类 (`node.py`): 统一收发接口, 整合 MAC/PHY 各模块
   - `NodeConfig`: 节点配置 (地址、角色、帧类型、MCS、带宽、导频、加密等)
   - `SleNode`: 节点主体, 链路生命周期管理 (广播/扫描/接入/配对/数据交换/断连)
@@ -544,7 +545,7 @@
   - Channel5GStatusIndication / HopMap5GUpdate / BroadcastHopMap5GUpdate: 5G 信道与跳频管理
   - MultiIntervalUpdateRequest/Response/Indication: 多间隔更新
   - SystemTimeIndication: 系统时间指示
-  - AsyncMulticastLinkSetup / AsyncMulticastParamExchange* / AsyncMulticastParamUpdate*: 异步组播链路管理
+  - AsyncMulticastLinkSetup / AsyncMulticastParamExchange\* / AsyncMulticastParamUpdate\*: 异步组播链路管理
   - NarrowbandMeasCap*/FreqTable*/MeasConfig/MeasReport/MeasAction: 窄带跳频测量
   - CoordinateRequest/Report/Config: 坐标管理
   - NarrowbandDelayRequest/Response: 窄带时延
@@ -824,7 +825,6 @@
 - `sim/link_sim.py` Phase 1 无编码链路仿真
 - 107 个测试
 
-[Unreleased]: https://github.com/user/nearlink-sdr/compare/v0.14.0...HEAD
 [0.14.0]: https://github.com/user/nearlink-sdr/compare/v0.13.0...v0.14.0
 [0.13.0]: https://github.com/user/nearlink-sdr/compare/v0.12.0...v0.13.0
 [0.12.0]: https://github.com/user/nearlink-sdr/compare/v0.11.0...v0.12.0
