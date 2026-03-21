@@ -389,6 +389,7 @@
 
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr_accel</span><span class="w"> </span><span class="kn">import</span> <span class="n">RustPolarDecoder</span> <span class="k">as</span> <span class="n">_RustPolarDecoder</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr_accel</span><span class="w"> </span><span class="kn">import</span> <span class="n">RustPolarEncoder</span> <span class="k">as</span> <span class="n">_RustPolarEncoder</span>
     <span class="n">_HAS_RUST_ACCEL</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
     <span class="n">_HAS_RUST_ACCEL</span> <span class="o">=</span> <span class="kc">False</span>
@@ -1490,6 +1491,12 @@
         <span class="n">seq</span> <span class="o">=</span> <span class="n">_get_reliability_sequence</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">info_positions</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="n">N</span> <span class="o">-</span> <span class="n">K</span> <span class="p">:])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_info_pos_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">info_positions</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">intp</span><span class="p">)</span>
+        <span class="c1"># Rust 加速</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rust_encoder</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">_HAS_RUST_ACCEL</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_rust_encoder</span> <span class="o">=</span> <span class="n">_RustPolarEncoder</span><span class="p">(</span>
+                <span class="n">N</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">info_positions</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span>
+            <span class="p">)</span>
 
 <div class="viewcode-block" id="PolarEncoder.encode">
 <a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.html#nearlink_sdr.common.polar.PolarEncoder.encode">[文档]</a>
@@ -1505,6 +1512,9 @@
         <span class="n">info_bits</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">info_bits</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">info_bits</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">,):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="si">}</span><span class="s2"> info bits, got shape </span><span class="si">{</span><span class="n">info_bits</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rust_encoder</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rust_encoder</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">info_bits</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
 
         <span class="c1"># Build encoder input u — vectorized insert</span>
         <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
