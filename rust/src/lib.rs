@@ -255,10 +255,64 @@ impl RustPolarEncoder {
     }
 }
 
+/// CRC 计算 (TXS-10002-2025 6.10.1)
+#[pyfunction]
+fn rust_crc_calculate<'py>(
+    py: Python<'py>,
+    data_bits: PyReadonlyArray1<'_, i64>,
+    poly: u64,
+    crc_len: usize,
+    seed: u64,
+) -> Bound<'py, PyArray1<i64>> {
+    let bits = data_bits.as_slice().unwrap();
+    let mask = (1u64 << crc_len) - 1;
+    let mut reg = seed & mask;
+
+    for &bit in bits {
+        let msb = (reg >> (crc_len - 1)) & 1;
+        let feedback = (bit as u64) ^ msb;
+        reg = (reg << 1) & mask;
+        if feedback != 0 {
+            reg ^= poly;
+        }
+    }
+
+    let mut parity = vec![0i64; crc_len];
+    for i in 0..crc_len {
+        parity[i] = ((reg >> (crc_len - 1 - i)) & 1) as i64;
+    }
+    PyArray1::from_vec(py, parity)
+}
+
+/// m 序列生成 (TXS-10002-2025 6.10.2)
+#[pyfunction]
+fn rust_generate_m_sequence<'py>(
+    py: Python<'py>,
+    order: usize,
+    taps: u64,
+    init_val: u64,
+    length: usize,
+) -> Bound<'py, PyArray1<i64>> {
+    let mask = (1u64 << order) - 1;
+    let mut reg = init_val;
+    let mut seq = vec![0i64; length];
+
+    for item in seq.iter_mut() {
+        *item = (reg & 1) as i64;
+        let feedback_bits = reg & (taps & mask);
+        let feedback = feedback_bits.count_ones() as u64 & 1;
+        reg = ((reg >> 1) | (feedback << (order - 1))) & mask;
+    }
+
+    PyArray1::from_vec(py, seq)
+}
+
 /// 模块入口
 #[pymodule]
 fn nearlink_sdr_accel(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<RustPolarDecoder>()?;
     m.add_class::<RustPolarEncoder>()?;
+    m.add_function(wrap_pyfunction!(rust_crc_calculate, m)?)?;
+    m.add_function(wrap_pyfunction!(rust_generate_m_sequence, m)?)?;
     Ok(())
 }

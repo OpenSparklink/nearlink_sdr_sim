@@ -1,5 +1,11 @@
 import numpy as np
 
+try:
+    from nearlink_sdr_accel import rust_crc_calculate as _rust_crc
+    _HAS_RUST_CRC = True
+except ImportError:
+    _HAS_RUST_CRC = False
+
 # TXS-10002-2025 6.10.1 循环冗余校验
 # 标准定义的CRC生成多项式（用比特位表示，高位在前）
 
@@ -29,6 +35,10 @@ def crc_calculate(data_bits: np.ndarray, poly: int, crc_len: int,
     返回:
         校验比特序列, shape (L,), 值为 0/1
     """
+    if _HAS_RUST_CRC:
+        return np.asarray(_rust_crc(np.asarray(data_bits, dtype=np.int64),
+                                    poly, crc_len, seed))
+
     # 初始化移位寄存器
     reg = seed & ((1 << crc_len) - 1)
 

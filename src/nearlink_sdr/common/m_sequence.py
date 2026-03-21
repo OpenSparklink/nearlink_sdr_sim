@@ -1,5 +1,11 @@
 import numpy as np
 
+try:
+    from nearlink_sdr_accel import rust_generate_m_sequence as _rust_m_seq
+    _HAS_RUST_MSEQ = True
+except ImportError:
+    _HAS_RUST_MSEQ = False
+
 # TXS-10002-2025 6.10.2 m序列
 # 反馈系数与移位寄存器初始值定义
 
@@ -39,6 +45,9 @@ def generate_m_sequence(order: int, taps: int, init_val: int,
     """
     if length is None:
         length = (1 << order) - 1
+
+    if _HAS_RUST_MSEQ:
+        return np.asarray(_rust_m_seq(order, taps, init_val, length))
 
     reg = init_val
     mask = (1 << order) - 1

@@ -17,6 +17,9 @@
   - 测试套件从 9.48s 降至 5.12s
   - Rust Polar 编码器 (蝶形 GF(2) 变换), pipeline 加速 3.9x (389ms → 101ms)
   - 测试套件整体从 12.36s 降至 4.10s
+  - Rust CRC 计算 (位级移位寄存器), 消除 Python 循环开销
+  - Rust m 序列生成 (popcount 反馈优化), 消除 Python 循环开销
+  - Pipeline 单次调用 1.36ms (纯 Python 基线 389ms, 加速比 ~280x)
 
 - Rust 加速安装工具 (`scripts/install_accel.py`)
   - 自动检测 Rust 工具链, 安装 maturin, 编译加速模块
