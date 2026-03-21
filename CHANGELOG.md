@@ -26,6 +26,12 @@
   - 兼容 uv 和 pip 两种包管理方式
   - 安装失败时静默回退, 不影响项目运行
 
+- Rust 质量工具链
+  - 核心逻辑抽取为纯 Rust 函数, 可直接 `cargo test` 验证
+  - 20 个 Rust 原生测试 (CRC/m序列/Polar编码/SC解码)
+  - clippy lint (deny warnings) + rustfmt 格式化
+  - CI 新增 `rust` job: fmt + clippy + cargo test
+
 - CI 集成 Rust 加速构建
   - test/coverage/examples 三个 job 集成 `dtolnay/rust-toolchain@stable` + maturin
   - 新增 `install-accel` job: 验证 `install_accel.py` 脚本和加速模块加载

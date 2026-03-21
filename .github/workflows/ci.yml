@@ -30,6 +30,25 @@ jobs:
       - name: Ruff check
         run: uv run ruff check src/ tests/ examples/
 
+  rust:
+    name: Rust Quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+
+      - name: Check formatting
+        run: cd rust && cargo fmt --check
+
+      - name: Clippy lint
+        run: cd rust && cargo clippy --all-targets -- -D warnings
+
+      - name: Run Rust tests
+        run: cd rust && cargo test
+
   test:
     name: Test
     runs-on: ubuntu-latest

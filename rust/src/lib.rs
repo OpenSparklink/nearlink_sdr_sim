@@ -58,8 +58,8 @@ impl ScDecoder {
 
     fn decode(&mut self, llr: &[f64]) -> Vec<i8> {
         // 初始化 LLR
-        for i in 0..self.big_n {
-            self.l_buf[[0, i]] = llr[i];
+        for (i, &val) in llr.iter().enumerate().take(self.big_n) {
+            self.l_buf[[0, i]] = val;
         }
         // 清零 B
         self.b_buf.fill(0);
@@ -124,8 +124,11 @@ impl ScDecoder {
             if self.is_frozen[start] {
                 self.b_buf[[self.n, start]] = 0;
             } else {
-                self.b_buf[[self.n, start]] =
-                    if self.l_buf[[depth, start]] >= 0.0 { 0 } else { 1 };
+                self.b_buf[[self.n, start]] = if self.l_buf[[depth, start]] >= 0.0 {
+                    0
+                } else {
+                    1
+                };
             }
             return;
         }
@@ -232,43 +235,19 @@ impl RustPolarEncoder {
         info_bits: PyReadonlyArray1<'_, i8>,
     ) -> Bound<'py, PyArray1<i8>> {
         let bits = info_bits.as_slice().unwrap();
-        let n = self.big_n;
-        let mut d = vec![0i8; n];
-        // 插入信息位
-        for (idx, &pos) in self.info_positions.iter().enumerate() {
-            d[pos] = bits[idx];
-        }
-        // 蝶形 GF(2) 变换
-        let mut stage = 1usize;
-        while stage < n {
-            let stride = 2 * stage;
-            let mut j = 0usize;
-            while j < n {
-                for k in 0..stage {
-                    d[j + k] ^= d[j + stage + k];
-                }
-                j += stride;
-            }
-            stage <<= 1;
-        }
+        let d = polar_encode_core(bits, self.big_n, &self.info_positions);
         PyArray1::from_vec(py, d)
     }
 }
 
-/// CRC 计算 (TXS-10002-2025 6.10.1)
-#[pyfunction]
-fn rust_crc_calculate<'py>(
-    py: Python<'py>,
-    data_bits: PyReadonlyArray1<'_, i64>,
-    poly: u64,
-    crc_len: usize,
-    seed: u64,
-) -> Bound<'py, PyArray1<i64>> {
-    let bits = data_bits.as_slice().unwrap();
+// ===== 纯 Rust 核心逻辑 (可直接 cargo test) =====
+
+/// CRC 移位寄存器计算
+fn crc_calculate_core(data_bits: &[i64], poly: u64, crc_len: usize, seed: u64) -> Vec<i64> {
     let mask = (1u64 << crc_len) - 1;
     let mut reg = seed & mask;
 
-    for &bit in bits {
+    for &bit in data_bits {
         let msb = (reg >> (crc_len - 1)) & 1;
         let feedback = (bit as u64) ^ msb;
         reg = (reg << 1) & mask;
@@ -278,21 +257,14 @@ fn rust_crc_calculate<'py>(
     }
 
     let mut parity = vec![0i64; crc_len];
-    for i in 0..crc_len {
-        parity[i] = ((reg >> (crc_len - 1 - i)) & 1) as i64;
+    for (i, p) in parity.iter_mut().enumerate() {
+        *p = ((reg >> (crc_len - 1 - i)) & 1) as i64;
     }
-    PyArray1::from_vec(py, parity)
+    parity
 }
 
-/// m 序列生成 (TXS-10002-2025 6.10.2)
-#[pyfunction]
-fn rust_generate_m_sequence<'py>(
-    py: Python<'py>,
-    order: usize,
-    taps: u64,
-    init_val: u64,
-    length: usize,
-) -> Bound<'py, PyArray1<i64>> {
+/// m 序列 LFSR 生成
+fn m_sequence_core(order: usize, taps: u64, init_val: u64, length: usize) -> Vec<i64> {
     let mask = (1u64 << order) - 1;
     let mut reg = init_val;
     let mut seq = vec![0i64; length];
@@ -304,7 +276,56 @@ fn rust_generate_m_sequence<'py>(
         reg = ((reg >> 1) | (feedback << (order - 1))) & mask;
     }
 
-    PyArray1::from_vec(py, seq)
+    seq
+}
+
+/// Polar 编码核心: 蝶形 GF(2) 变换
+fn polar_encode_core(info_bits: &[i8], big_n: usize, info_positions: &[usize]) -> Vec<i8> {
+    let mut d = vec![0i8; big_n];
+    for (idx, &pos) in info_positions.iter().enumerate() {
+        d[pos] = info_bits[idx];
+    }
+    let mut stage = 1usize;
+    while stage < big_n {
+        let stride = 2 * stage;
+        let mut j = 0usize;
+        while j < big_n {
+            for k in 0..stage {
+                d[j + k] ^= d[j + stage + k];
+            }
+            j += stride;
+        }
+        stage <<= 1;
+    }
+    d
+}
+
+// ===== PyO3 包装层 =====
+
+/// CRC 计算 (TXS-10002-2025 6.10.1)
+#[pyfunction]
+fn rust_crc_calculate<'py>(
+    py: Python<'py>,
+    data_bits: PyReadonlyArray1<'_, i64>,
+    poly: u64,
+    crc_len: usize,
+    seed: u64,
+) -> Bound<'py, PyArray1<i64>> {
+    let result = crc_calculate_core(data_bits.as_slice().unwrap(), poly, crc_len, seed);
+    PyArray1::from_vec(py, result)
+}
+
+/// m 序列生成 (TXS-10002-2025 6.10.2)
+#[pyfunction]
+fn rust_generate_m_sequence<'py>(
+    py: Python<'py>,
+    order: usize,
+    taps: u64,
+    init_val: u64,
+    length: usize,
+) -> Bound<'py, PyArray1<i64>> {
+    let result = m_sequence_core(order, taps, init_val, length);
+    PyArray1::from_vec(py, result)
 }
 
 /// 模块入口
@@ -315,4 +336,204 @@ fn nearlink_sdr_accel(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(rust_crc_calculate, m)?)?;
     m.add_function(wrap_pyfunction!(rust_generate_m_sequence, m)?)?;
     Ok(())
+}
+
+// ===== Rust 单元测试 =====
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    // --- CRC 测试 ---
+
+    const CRC24A_POLY: u64 = 0x00065B;
+    const CRC12_POLY: u64 = 0x80F;
+    const CRC32_POLY: u64 = 0x04C11DB7;
+
+    #[test]
+    fn test_crc24a_zero_input() {
+        let data = vec![0i64; 8];
+        let parity = crc_calculate_core(&data, CRC24A_POLY, 24, 0);
+        assert_eq!(parity.len(), 24);
+        assert!(parity.iter().all(|&x| x == 0));
+    }
+
+    #[test]
+    fn test_crc24a_attach_and_check() {
+        let data: Vec<i64> = vec![1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1];
+        let parity = crc_calculate_core(&data, CRC24A_POLY, 24, 0);
+        let mut combined = data;
+        combined.extend_from_slice(&parity);
+        let check = crc_calculate_core(&combined, CRC24A_POLY, 24, 0);
+        assert!(check.iter().all(|&x| x == 0));
+    }
+
+    #[test]
+    fn test_crc12_attach_and_check() {
+        let data: Vec<i64> = vec![1, 1, 0, 1, 0, 1, 0, 0];
+        let parity = crc_calculate_core(&data, CRC12_POLY, 12, 0);
+        let mut combined = data;
+        combined.extend_from_slice(&parity);
+        let check = crc_calculate_core(&combined, CRC12_POLY, 12, 0);
+        assert!(check.iter().all(|&x| x == 0));
+    }
+
+    #[test]
+    fn test_crc32_attach_and_check() {
+        let data: Vec<i64> = vec![1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1];
+        let parity = crc_calculate_core(&data, CRC32_POLY, 32, 0);
+        let mut combined = data;
+        combined.extend_from_slice(&parity);
+        let check = crc_calculate_core(&combined, CRC32_POLY, 32, 0);
+        assert!(check.iter().all(|&x| x == 0));
+    }
+
+    #[test]
+    fn test_crc_detect_error() {
+        let data: Vec<i64> = vec![1, 0, 1, 1, 0, 0, 1, 0];
+        let parity = crc_calculate_core(&data, CRC24A_POLY, 24, 0);
+        let mut combined = data;
+        combined.extend_from_slice(&parity);
+        combined[3] ^= 1;
+        let check = crc_calculate_core(&combined, CRC24A_POLY, 24, 0);
+        assert!(!check.iter().all(|&x| x == 0));
+    }
+
+    #[test]
+    fn test_crc_deterministic() {
+        let data: Vec<i64> = vec![0, 1, 0, 1, 1, 0, 1, 0, 0, 1];
+        let p1 = crc_calculate_core(&data, CRC24A_POLY, 24, 0);
+        let p2 = crc_calculate_core(&data, CRC24A_POLY, 24, 0);
+        assert_eq!(p1, p2);
+    }
+
+    #[test]
+    fn test_crc_with_seed() {
+        let data: Vec<i64> = vec![1, 0, 1, 0];
+        let p0 = crc_calculate_core(&data, CRC24A_POLY, 24, 0);
+        let p1 = crc_calculate_core(&data, CRC24A_POLY, 24, 0xABCDEF);
+        assert_ne!(p0, p1);
+    }
+
+    // --- m 序列测试 ---
+
+    #[test]
+    fn test_m31_length() {
+        let seq = m_sequence_core(5, 0b100101, 0b00001, 31);
+        assert_eq!(seq.len(), 31);
+    }
+
+    #[test]
+    fn test_m63_length() {
+        let seq = m_sequence_core(6, 0b1000011, 0b000001, 63);
+        assert_eq!(seq.len(), 63);
+    }
+
+    #[test]
+    fn test_m_sequence_binary_values() {
+        let seq = m_sequence_core(5, 0b100101, 0b00001, 31);
+        assert!(seq.iter().all(|&x| x == 0 || x == 1));
+    }
+
+    #[test]
+    fn test_m31_balance_property() {
+        let seq = m_sequence_core(5, 0b100101, 0b00001, 31);
+        let ones: i64 = seq.iter().sum();
+        let zeros = 31 - ones;
+        assert_eq!(ones - zeros, 1);
+    }
+
+    #[test]
+    fn test_m63_balance_property() {
+        let seq = m_sequence_core(6, 0b1000011, 0b000001, 63);
+        let ones: i64 = seq.iter().sum();
+        let zeros = 63 - ones;
+        assert_eq!(ones - zeros, 1);
+    }
+
+    #[test]
+    fn test_m_sequence_periodicity() {
+        let period = 31;
+        let seq = m_sequence_core(5, 0b100101, 0b00001, period * 2);
+        assert_eq!(seq[..period], seq[period..]);
+    }
+
+    #[test]
+    fn test_m31_autocorrelation() {
+        let seq = m_sequence_core(5, 0b100101, 0b00001, 31);
+        let bipolar: Vec<f64> = seq.iter().map(|&x| 1.0 - 2.0 * x as f64).collect();
+        let r0: f64 = bipolar.iter().map(|x| x * x).sum();
+        assert!((r0 - 31.0).abs() < 1e-10);
+        for tau in 1..31 {
+            let r: f64 = (0..31).map(|i| bipolar[i] * bipolar[(i + tau) % 31]).sum();
+            assert!((r + 1.0).abs() < 1e-10, "tau={tau}, r={r}");
+        }
+    }
+
+    // --- Polar 编码测试 ---
+
+    #[test]
+    fn test_polar_encode_trivial() {
+        let info = vec![1i8];
+        let encoded = polar_encode_core(&info, 2, &[1]);
+        assert_eq!(encoded, vec![1, 1]);
+    }
+
+    #[test]
+    fn test_polar_encode_n4() {
+        let info = vec![1i8, 0];
+        let encoded = polar_encode_core(&info, 4, &[2, 3]);
+        assert_eq!(encoded, vec![1, 0, 1, 0]);
+    }
+
+    #[test]
+    fn test_polar_encode_all_zero() {
+        let info = vec![0i8; 4];
+        let encoded = polar_encode_core(&info, 8, &[4, 5, 6, 7]);
+        assert!(encoded.iter().all(|&x| x == 0));
+    }
+
+    // --- SC 解码器测试 ---
+
+    #[test]
+    fn test_sc_decoder_basic() {
+        let is_frozen = vec![true, true, false, false];
+        let info_positions = vec![2usize, 3];
+        let mut decoder = ScDecoder::new(2, &is_frozen, &info_positions);
+        let encoded = polar_encode_core(&[1i8, 0], 4, &[2, 3]);
+        let llr: Vec<f64> = encoded
+            .iter()
+            .map(|&x| if x == 0 { 5.0 } else { -5.0 })
+            .collect();
+        let decoded = decoder.decode(&llr);
+        assert_eq!(decoded, vec![1, 0]);
+    }
+
+    #[test]
+    fn test_sc_decoder_all_frozen() {
+        let is_frozen = vec![true; 4];
+        let info_positions: Vec<usize> = vec![];
+        let mut decoder = ScDecoder::new(2, &is_frozen, &info_positions);
+        let llr = vec![1.0, -1.0, 2.0, -2.0];
+        let decoded = decoder.decode(&llr);
+        assert!(decoded.is_empty());
+    }
+
+    #[test]
+    fn test_sc_decoder_roundtrip() {
+        let info_positions = vec![4usize, 5, 6, 7];
+        let mut is_frozen = vec![true; 8];
+        for &p in &info_positions {
+            is_frozen[p] = false;
+        }
+        let info = vec![1i8, 0, 1, 1];
+        let encoded = polar_encode_core(&info, 8, &info_positions);
+        let llr: Vec<f64> = encoded
+            .iter()
+            .map(|&x| if x == 0 { 10.0 } else { -10.0 })
+            .collect();
+        let mut decoder = ScDecoder::new(3, &is_frozen, &info_positions);
+        let decoded = decoder.decode(&llr);
+        assert_eq!(decoded, info);
+    }
 }
