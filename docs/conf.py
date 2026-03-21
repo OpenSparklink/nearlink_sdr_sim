@@ -1,5 +1,7 @@
 """Sphinx configuration for nearlink-sdr documentation."""
 
+import os
+
 project = "nearlink-sdr"
 author = "nearlink-sdr contributors"
 release = "0.1.0"
@@ -124,3 +126,21 @@ source_suffix = {
     ".rst": "restructuredtext",
     ".md": "markdown",
 }
+
+# -- Mermaid 配置 -------------------------------------------------------------
+# HTML 输出使用浏览器端 JS 渲染；LaTeX/PDF 输出需要 mmdc CLI 预渲染为 PNG。
+# 本地构建 PDF 前请先执行：npm install -g @mermaid-js/mermaid-cli
+
+_PUPPETEER_CFG = os.path.join(os.path.dirname(__file__), "mermaid-puppeteer-config.json")
+
+
+def _builder_inited(app):
+    """LaTeX/PDF 构建时切换为 mmdc PNG 预渲染，并传递 puppeteer 无沙箱配置。"""
+    if app.builder.name in ("latex", "latexpdf"):
+        app.config.mermaid_output_format = "png"
+        if os.path.exists(_PUPPETEER_CFG):
+            app.config.mermaid_params = ["--puppeteerConfigFile", _PUPPETEER_CFG]
+
+
+def setup(app):
+    app.connect("builder-inited", _builder_inited)

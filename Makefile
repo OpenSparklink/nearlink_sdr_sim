@@ -1,5 +1,5 @@
 .PHONY: help install lint test coverage docs-html docs-pdf \
-       install-fonts accel examples clean
+       install-fonts install-mermaid accel examples clean
 
 # [help-start]
 help:  ## 显示帮助信息
@@ -26,6 +26,11 @@ install-fonts:  ## 安装 HarmonyOS 字体到系统
 	sudo cp fonts/*.ttf /usr/local/share/fonts/harmonyos/
 	sudo fc-cache -f
 # [install-fonts-end]
+
+install-mermaid:  ## 安装 Mermaid CLI (构建 PDF 文档所需)
+# [install-mermaid-start]
+	npm install -g @mermaid-js/mermaid-cli
+# [install-mermaid-end]
 
 # -- 质量检查 -----------------------------------------------------------------
 
@@ -61,7 +66,7 @@ docs-strict:  ## 严格模式构建文档 (CI 用)
 	uv run sphinx-build -E -W docs docs/_build/html
 # [docs-strict-end]
 
-docs-pdf:  ## 构建 PDF 文档
+docs-pdf:  ## 构建 PDF 文档 (需提前运行 make install-mermaid)
 # [docs-pdf-start]
 	uv run sphinx-build -b latex docs docs/_build/latex
 	cd docs/_build/latex && make
