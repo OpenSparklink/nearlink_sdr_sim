@@ -23,16 +23,18 @@ def main() -> int:
         print("安装 Rust: https://rustup.rs/")
         return 0
 
+    maturin_cmd = ["maturin"]
     if shutil.which("maturin") is None:
         print("安装 maturin ...")
         if shutil.which("uv") is not None:
             subprocess.check_call(["uv", "pip", "install", "maturin"])
+            maturin_cmd = ["uv", "run", "maturin"]
         else:
             subprocess.check_call([sys.executable, "-m", "pip", "install", "maturin"])
 
     print("编译 Rust 加速模块 ...")
     result = subprocess.run(
-        ["maturin", "develop", "--release"],
+        [*maturin_cmd, "develop", "--release"],
         cwd=RUST_DIR,
         capture_output=True,
         text=True,
