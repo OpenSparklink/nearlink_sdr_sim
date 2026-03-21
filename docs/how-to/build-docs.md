@@ -18,7 +18,32 @@ uv run sphinx-build -b html docs docs/_build/html
 
 ## 构建 PDF
 
-使用 XeLaTeX 编译, 字体为 HarmonyOS Sans SC:
+使用 XeLaTeX 编译, 字体为 HarmonyOS Sans SC。
+
+### 安装 TeX 环境
+
+Ubuntu/Debian:
+
+```bash
+sudo apt install texlive-xetex texlive-fonts-recommended texlive-latex-extra latexmk
+```
+
+### 安装字体
+
+项目仓库已包含 HarmonyOS Sans SC 字体文件 (位于 `fonts/` 目录), 安装到系统:
+
+```bash
+sudo cp fonts/*.ttf /usr/local/share/fonts/
+sudo fc-cache -f
+```
+
+验证字体可用:
+
+```bash
+fc-list | grep HarmonyOS
+```
+
+### 编译 PDF
 
 ```bash
 uv run --group docs sphinx-build -b latex docs docs/_build/latex
@@ -26,8 +51,6 @@ cd docs/_build/latex && make
 ```
 
 生成的 PDF 位于 `docs/_build/latex/nearlink-sdr.pdf`。
-
-需要系统安装 TeX Live (含 `xelatex`) 和 HarmonyOS Sans SC 字体。
 
 ## 实时预览
 

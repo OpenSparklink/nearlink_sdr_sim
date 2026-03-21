@@ -1,0 +1,69 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  build-pdf:
+    name: Build PDF
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Install Python 3.14
+        run: uv python install 3.14
+
+      - name: Install dependencies
+        run: uv sync --group docs
+
+      - name: Install TeX Live
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-xetex texlive-fonts-recommended \
+            texlive-latex-extra texlive-latex-recommended latexmk
+
+      - name: Install HarmonyOS fonts
+        run: |
+          sudo mkdir -p /usr/local/share/fonts/harmonyos
+          sudo cp fonts/*.ttf /usr/local/share/fonts/harmonyos/
+          sudo fc-cache -f
+
+      - name: Build LaTeX source
+        run: uv run sphinx-build -b latex docs docs/_build/latex
+
+      - name: Compile PDF
+        run: cd docs/_build/latex && make
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-pdf
+          path: docs/_build/latex/nearlink-sdr.pdf
+
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    needs: build-pdf
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download PDF
+        uses: actions/download-artifact@v4
+        with:
+          name: docs-pdf
+          path: dist/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            dist/nearlink-sdr.pdf
