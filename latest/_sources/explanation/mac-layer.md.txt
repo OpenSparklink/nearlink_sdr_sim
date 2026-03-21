@@ -54,22 +54,18 @@ SLE 广播帧分为两级:
 
 接入是 T 节点与 G 节点建立连接的过程, 分为以下步骤:
 
-```text
-G节点                                T节点
-  │                                    │
-  │ ← 发送可接入扩展广播帧 ───          │
-  │                                    │
-  │          ─── 接入请求帧 (GT偏好) → │
-  │                                    │
-  │ ← 接入响应帧 (结果+角色) ───       │
-  │                                    │
-  │         协商G/T角色完成            │
-  │         分配首次调度点              │
-  │         建立异步数据链路            │
-  │                                    │
-  │    [配对和鉴权管理 或 安全保护]     │
-  │                                    │
-  │         加密数据传输开始            │
+```{mermaid}
+sequenceDiagram
+    participant G as G节点
+    participant T as T节点
+    G->>T: 发送可接入扩展广播帧
+    T->>G: 接入请求帧 (GT偏好)
+    G->>T: 接入响应帧 (结果+角色)
+    Note over G,T: 协商G/T角色完成
+    Note over G,T: 分配首次调度点
+    Note over G,T: 建立异步数据链路
+    Note over G,T: 配对和鉴权管理 或 安全保护
+    Note over G,T: 加密数据传输开始
 ```
 
 接入请求携带 GT 角色偏好, G 节点根据自身策略决定是否接受, 以及最终的角色分配。
@@ -102,12 +98,18 @@ G 节点可配置地址白名单, 仅允许已知设备接入。白名单基于�
 
 ### 状态定义
 
-```text
-IDLE ──────→ BROADCASTING ──→ CONNECTED ──→ DISCONNECTED
-  │                              ↑ ↓
-  └──→ SCANNING ──→ ACCESSING ──┘ ↓
-                                  DORMANT
-                                PAIRING
+```{mermaid}
+stateDiagram-v2
+    IDLE --> BROADCASTING
+    IDLE --> SCANNING
+    BROADCASTING --> CONNECTED
+    SCANNING --> ACCESSING
+    ACCESSING --> CONNECTED
+    ACCESSING --> PAIRING
+    PAIRING --> CONNECTED
+    CONNECTED --> DISCONNECTED
+    CONNECTED --> DORMANT
+    DORMANT --> CONNECTED
 ```
 
 8 种状态:

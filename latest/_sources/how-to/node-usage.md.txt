@@ -130,5 +130,5 @@
 ## 运行示例
 
 ```bash
-uv run python examples/node_usage.py
+make examples
 ```

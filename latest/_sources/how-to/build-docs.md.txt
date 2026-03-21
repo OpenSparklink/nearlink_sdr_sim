@@ -4,15 +4,19 @@
 
 文档构建工具已包含在开发依赖中:
 
-```bash
-uv sync
-```
+:::{literalinclude} ../../Makefile
+:language: makefile
+:start-after: "# [install-start]"
+:end-before: "# [install-end]"
+:::
 
 ## 构建 HTML
 
-```bash
-uv run sphinx-build -b html docs docs/_build/html
-```
+:::{literalinclude} ../../Makefile
+:language: makefile
+:start-after: "# [docs-html-start]"
+:end-before: "# [docs-html-end]"
+:::
 
 构建产物在 `docs/_build/html/` 目录下, 用浏览器打开 `index.html` 即可阅读。
 
@@ -25,17 +29,19 @@ uv run sphinx-build -b html docs docs/_build/html
 Ubuntu/Debian:
 
 ```bash
-sudo apt install texlive-xetex texlive-fonts-recommended texlive-latex-extra latexmk
+sudo apt install texlive-xetex texlive-fonts-recommended texlive-latex-extra \
+  texlive-lang-chinese latexmk
 ```
 
 ### 安装字体
 
-项目仓库已包含 HarmonyOS Sans SC 字体文件 (位于 `fonts/` 目录), 安装到系统:
+项目仓库已包含 HarmonyOS Sans SC 字体文件 (位于 `fonts/` 目录):
 
-```bash
-sudo cp fonts/*.ttf /usr/local/share/fonts/
-sudo fc-cache -f
-```
+:::{literalinclude} ../../Makefile
+:language: makefile
+:start-after: "# [install-fonts-start]"
+:end-before: "# [install-fonts-end]"
+:::
 
 验证字体可用:
 
@@ -45,10 +51,11 @@ fc-list | grep HarmonyOS
 
 ### 编译 PDF
 
-```bash
-uv run --group docs sphinx-build -b latex docs docs/_build/latex
-cd docs/_build/latex && make
-```
+:::{literalinclude} ../../Makefile
+:language: makefile
+:start-after: "# [docs-pdf-start]"
+:end-before: "# [docs-pdf-end]"
+:::
 
 生成的 PDF 位于 `docs/_build/latex/nearlink-sdr.pdf`。
 
@@ -56,10 +63,11 @@ cd docs/_build/latex && make
 
 开发文档时, 使用 `sphinx-autobuild` 自动重建并刷新浏览器:
 
-```bash
-uv run pip install sphinx-autobuild
-uv run sphinx-autobuild docs docs/_build/html
-```
+:::{literalinclude} ../../Makefile
+:language: makefile
+:start-after: "# [docs-live-start]"
+:end-before: "# [docs-live-end]"
+:::
 
 浏览器访问 `http://127.0.0.1:8000`。
 

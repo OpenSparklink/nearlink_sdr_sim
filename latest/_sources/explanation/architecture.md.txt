@@ -130,31 +130,31 @@ SleNode
 
 SparkLink SLE 的发射处理链路 (`tx_chain`):
 
-```text
-信息比特
-  → CRC 附加
-  → 码块分割 (segment_without_crc / segment_with_crc)
-  → Polar 编码 (FT2/3/4) 或直通 (FT1)
-  → 比特加扰
-  → 调制 (GFSK / BPSK / QPSK / 8PSK)
-  → 导频插入 (FT2/3/4)
-  → 帧组装 (前导 + 同步 + 控制信息 + 数据)
-  → 脉冲成型 (RRC)
-  → 上变频 / 发射
+```{mermaid}
+flowchart TD
+    A["信息比特"] --> B["CRC 附加"]
+    B --> C["码块分割"]
+    C --> D["Polar 编码 (FT2/3/4) 或直通 (FT1)"]
+    D --> E["比特加扰"]
+    E --> F["调制 (GFSK / BPSK / QPSK / 8PSK)"]
+    F --> G["导频插入 (FT2/3/4)"]
+    G --> H["帧组装 (前导 + 同步 + 控制信息 + 数据)"]
+    H --> I["脉冲成型 (RRC)"]
+    I --> J["上变频 / 发射"]
 ```
 
 接收链路 (`rx_chain`) 是上述过程的逆操作:
 
-```text
-接收 IQ
-  → 帧同步 (前导检测 + 同步序列相关)
-  → 头部解码 (解加扰 → Polar 解码 → CRC 校验)
-  → 导频移除
-  → 解调 (软 LLR / 硬判决)
-  → Polar 解码 (FT2/3/4) 或直通 (FT1)
-  → 解加扰
-  → CRC 校验
-  → 数据比特输出
+```{mermaid}
+flowchart TD
+    A["接收 IQ"] --> B["帧同步 (前导检测 + 同步序列相关)"]
+    B --> C["头部解码 (解加扰 → Polar 解码 → CRC 校验)"]
+    C --> D["导频移除"]
+    D --> E["解调 (软 LLR / 硬判决)"]
+    E --> F["Polar 解码 (FT2/3/4) 或直通 (FT1)"]
+    F --> G["解加扰"]
+    G --> H["CRC 校验"]
+    H --> I["数据比特输出"]
 ```
 
 ## 帧类型

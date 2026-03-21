@@ -415,13 +415,8 @@
 </section>
 <section id="id4">
 <h3>手动安装<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 安装 maturin 构建工具</span>
-uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>maturin
-
-<span class="c1"># 编译并安装到当前虚拟环境</span>
-<span class="nb">cd</span><span class="w"> </span>rust
-maturin<span class="w"> </span>develop<span class="w"> </span>--release
-<span class="nb">cd</span><span class="w"> </span>..
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="w">	</span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>maturin
+<span class="w">	</span>uv<span class="w"> </span>run<span class="w"> </span>maturin<span class="w"> </span>develop<span class="w"> </span>--manifest-path<span class="w"> </span>rust/Cargo.toml<span class="w"> </span>--release
 </pre></div>
 </div>
 </section>

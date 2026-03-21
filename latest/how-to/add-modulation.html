@@ -432,10 +432,6 @@
 </ul>
 <p>示例测试结构:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># tests/test_my_modulator.py</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.phy.my_modulator</span><span class="w"> </span><span class="kn">import</span> <span class="n">MyModulator</span><span class="p">,</span> <span class="n">MyDemodulator</span>
-
 
 <span class="k">class</span><span class="w"> </span><span class="nc">TestMyModulator</span><span class="p">:</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">test_roundtrip</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -459,11 +455,11 @@
 <section id="tx-rx">
 <h3>3. 注册到 TX/RX 流水线<a class="headerlink" href="#tx-rx" title="Link to this heading">¶</a></h3>
 <p>在 <code class="docutils literal notranslate"><span class="pre">phy/tx_pipeline.py</span></code> 的 <code class="docutils literal notranslate"><span class="pre">tx_chain()</span></code> 函数中, 根据 <code class="docutils literal notranslate"><span class="pre">cfg.frame_type</span></code> 分支添加新调制方式:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># tx_pipeline.py 中的调制分支</span>
-<span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">frame_type</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="n">iq</span> <span class="o">=</span> <span class="n">gfsk_modulator</span><span class="o">.</span><span class="n">modulate</span><span class="p">(</span><span class="n">frame_bits</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">cfg</span><span class="o">.</span><span class="n">frame_type</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>  <span class="c1"># 新帧类型</span>
-    <span class="n">iq</span> <span class="o">=</span> <span class="n">my_modulator</span><span class="o">.</span><span class="n">modulate</span><span class="p">(</span><span class="n">symbols</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># tx_pipeline.py 中的调制分支</span>
+    <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">frame_type</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">iq</span> <span class="o">=</span> <span class="n">gfsk_modulator</span><span class="o">.</span><span class="n">modulate</span><span class="p">(</span><span class="n">frame_bits</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">cfg</span><span class="o">.</span><span class="n">frame_type</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="n">iq</span> <span class="o">=</span> <span class="n">my_modulator</span><span class="o">.</span><span class="n">modulate</span><span class="p">(</span><span class="n">symbols</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>在 <code class="docutils literal notranslate"><span class="pre">phy/rx_pipeline.py</span></code> 的 <code class="docutils literal notranslate"><span class="pre">rx_chain()</span></code> 中添加对应的解调分支。如果新调制方式需要新的 MCS 配置, 还需更新 <code class="docutils literal notranslate"><span class="pre">common/mcs.py</span></code> 中的 MCS 映射表。</p>
@@ -471,9 +467,10 @@
 <section id="id3">
 <h3>4. 运行验证<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
 <p>确保 lint 和测试全部通过:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>src/<span class="w"> </span>tests/
-uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/test_my_modulator.py<span class="w"> </span>-v
-uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/<span class="w"> </span>-q<span class="w">        </span><span class="c1"># 全量回归</span>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="w">	</span>uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>src/<span class="w"> </span>tests/<span class="w"> </span>examples/
+</pre></div>
+</div>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="w">	</span>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/<span class="w"> </span>-v<span class="w"> </span>--tb<span class="o">=</span>short
 </pre></div>
 </div>
 </section>
