@@ -31,7 +31,7 @@ SLE 安全子系统分为三层:
 
 配对流程由 9 个状态组成:
 
-```
+```text
 IDLE → INITIATED → REQUEST_SENT → RESPONSE_SENT
      → CONFIRM_SENT → PUBLIC_KEY_EXCHANGED
      → CONFIRM_CODE_SENT → COMPLETED / FAILED
@@ -78,7 +78,7 @@ T 节点视角是上述流程的镜像:
 
 配对完成后, 通过 ECDH 共享密钥逐级派生出各功能密钥:
 
-```
+```text
 ECDH P-256 共享密钥 (32 字节)
     │
     ├─► Link Key (16 字节)
@@ -139,7 +139,7 @@ Nonce 是 AES-CCM 的关键输入, 保证每个帧使用不同的计数器:
 
 **异步/同步单播和组播链路**:
 
-```
+```text
 ┌───────┬──────────────────┬────────────┬─────────────┬──────────┐
 │ Flag  │ payload_count    │ Direction  │     IV      │ data_len │
 │ 1B    │ 5B (bit38:0)     │ 1b         │  8B         │ 2B       │
@@ -152,7 +152,7 @@ Nonce 是 AES-CCM 的关键输入, 保证每个帧使用不同的计数器:
 
 **其他链路** (广播/SMF):
 
-```
+```text
 ┌───────┬──────────────────┬────────────┬─────────────┬──────────┐
 │ Flag  │ slot_seq         │ day_count  │     IV      │ data_len │
 │ 1B    │ 4B (bit29:0)     │ 2B(bit9:0) │  8B         │ 2B       │
@@ -172,7 +172,7 @@ IV 基值 (8 字节) 与不同参数异或:
 
 组播链路使用独立的密钥体系:
 
-```
+```text
 RAND1, RAND2 (各 16 字节随机数)
     │
     └─► 组播密钥 GK = KDF(RAND1, RAND2)
@@ -209,7 +209,7 @@ UWB 脉冲测量信号需要专用的安全机制, 防止距离欺骗攻击。
 
 从 Link Key 出发, 派生 UWB 测量专用密钥:
 
-```
+```text
 Link Key (16B)
     │
     └─► SLP Key = KDF(link_key, reserved ‖ "SLP" ‖ zeros)
