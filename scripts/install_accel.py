@@ -33,9 +33,9 @@ def main() -> int:
             subprocess.check_call([sys.executable, "-m", "pip", "install", "maturin"])
 
     print("编译 Rust 加速模块 ...")
+    manifest = str(RUST_DIR / "Cargo.toml")
     result = subprocess.run(
-        [*maturin_cmd, "develop", "--release"],
-        cwd=RUST_DIR,
+        [*maturin_cmd, "develop", "--manifest-path", manifest, "--release"],
         capture_output=True,
         text=True,
     )

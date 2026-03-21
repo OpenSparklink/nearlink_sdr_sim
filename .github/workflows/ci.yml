@@ -70,7 +70,7 @@ jobs:
       - name: Build Rust accelerator
         run: |
           uv pip install maturin
-          cd rust && uv run maturin develop --release
+          uv run maturin develop --manifest-path rust/Cargo.toml --release
 
       - name: Run tests
         run: uv run pytest tests/ -v --tb=short --junitxml=report.xml
@@ -104,7 +104,7 @@ jobs:
       - name: Build Rust accelerator
         run: |
           uv pip install maturin
-          cd rust && uv run maturin develop --release
+          uv run maturin develop --manifest-path rust/Cargo.toml --release
 
       - name: Run tests with coverage
         run: uv run pytest tests/ --cov=nearlink_sdr --cov-report=xml --cov-report=term-missing
@@ -162,7 +162,7 @@ jobs:
       - name: Build Rust accelerator
         run: |
           uv pip install maturin
-          cd rust && uv run maturin develop --release
+          uv run maturin develop --manifest-path rust/Cargo.toml --release
 
       - name: Run example scripts
         run: |

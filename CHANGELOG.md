@@ -35,6 +35,7 @@
 - CI 集成 Rust 加速构建
   - test/coverage/examples 三个 job 集成 `dtolnay/rust-toolchain@stable` + maturin
   - 新增 `install-accel` job: 验证 `install_accel.py` 脚本和加速模块加载
+  - 修复 maturin 在 CI 子目录中使用错误 venv 的问题 (`--manifest-path` 替代 `cd rust`)
 
 - Rust 加速操作指南 (`docs/how-to/rust-acceleration.md`)
   - 安装方式 (自动/手动), 验证方法, 性能对比, 故障排除
