@@ -17,6 +17,22 @@
   - `examples`: 示例脚本独立运行验证 + 示例测试
   - 使用 `astral-sh/setup-uv` 管理 Python 3.14 和依赖
 
+- GitHub Pages 文档部署工作流 (`.github/workflows/docs.yml`)
+  - 推送 master 分支自动构建并部署 Sphinx 文档到 GitHub Pages
+
+- Phase 16: 多用户干扰 + Doppler 时变信道仿真 (25 个测试用例)
+  - Jakes 求和正弦模型: 替代原有独立 Rayleigh, 生成具有 J₀ 自相关的时间相关衰落
+  - 多用户干扰模型: `InterferenceConfig` / `add_interference()` / `compute_sinr()`
+  - 同信道干扰: 基于 SIR 的功率缩放
+  - 邻信道干扰: 频率偏移叠加
+  - `sim_doppler_link()`: Doppler 扩展 vs FER 仿真
+  - `sim_multi_user_interference()`: 干扰用户数 vs FER/SINR 仿真
+  - `sim_sir_sweep()`: SIR 扫描 vs FER 仿真
+  - `sim_doppler_multipath_link()`: Doppler + ITU Indoor Office 多径联合仿真
+  - `run_phase16_simulation()`: 四面板可视化运行器
+
+- README.md: 项目说明与 CI 状态徽章
+
 ### Changed
 
 - 文档代码示例重构: 从 markdown 内嵌 Python 代码迁移至独立示例工程

@@ -4438,6 +4438,484 @@ def run_phase15_simulation() -> None:
     print("\nPhase 15 curves saved to ber_phase15.png")
 
 
+# ── Phase 16: 多用户干扰 + Doppler 时变信道 ──
+
+
+def sim_doppler_link(
+    doppler_range_hz: np.ndarray | None = None,
+    snr_db: float = 12.0,
+    n_frames: int = 100,
+    mcs_index: int = 7,
+    payload_size: int = 20,
+    channel_type: str = "rayleigh",
+    eq_method: str = "zf",
+    seed: int = 42,
+) -> dict:
+    """Doppler 时变信道仿真: 扫描不同多普勒频移下的 FER。
+
+    使用 Jakes 求和正弦模型生成时间相关衰落, 评估 FER 随 Doppler 扩展的变化。
+
+    Args:
+        doppler_range_hz: Doppler 频移扫描范围 (Hz)。
+        snr_db: 固定 SNR (dB)。
+        n_frames: 每个 Doppler 点仿真帧数。
+        mcs_index: MCS 索引。
+        payload_size: 载荷字节数。
+        channel_type: 衰落类型 ("rayleigh" / "rician")。
+        eq_method: 均衡方法。
+        seed: 随机种子。
+
+    Returns:
+        {"doppler_hz": [...], "fer": [...], "avg_fade_depth_db": [...]}
+    """
+    from nearlink_sdr.phy.channel import ChannelConfig, ChannelModel
+    from nearlink_sdr.phy.equalizer import equalize_1tap
+    from nearlink_sdr.phy.mac_interface import iq_to_mac, mac_to_iq
+    from nearlink_sdr.phy.tx_pipeline import TxConfig
+
+    if doppler_range_hz is None:
+        doppler_range_hz = np.array([0, 5, 10, 20, 50, 100, 200])
+
+    rng = np.random.default_rng(seed)
+    cfg = TxConfig(
+        frame_type=2, mcs_index=mcs_index, pid=0x123456,
+        whitening_seed=0x52, crc_seed=0x555555, crc_len=24,
+        ctrl_bits_len=28, pilot_interval=8,
+    )
+
+    fer_list = []
+    fade_depth_list = []
+
+    for fd in doppler_range_hz:
+        errors = 0
+        fade_depths = []
+
+        for _i in range(n_frames):
+            payload = bytes(rng.integers(0, 256, payload_size, dtype=np.uint8))
+            from nearlink_sdr.mac.frame import AsyncDataFrame
+            frame = AsyncDataFrame(segment_type=0, data=payload)
+            mac_bytes = frame.pack()
+
+            iq = mac_to_iq(mac_bytes, cfg)
+
+            ch_cfg = ChannelConfig(
+                snr_db=snr_db,
+                channel_type=channel_type,
+                max_doppler_hz=float(fd),
+                symbol_rate_hz=cfg.sps * cfg.symbol_rate_mhz * 1e6,
+                seed=int(rng.integers(0, 2**31)),
+            )
+            ch = ChannelModel(config=ch_cfg)
+            rx_iq = ch.apply_fading(iq)
+
+            # 衰落深度统计
+            taps = ch.last_taps
+            if taps is not None:
+                h = taps[0, :]
+                fade_db = 20 * np.log10(np.abs(h) + 1e-20)
+                fade_depths.append(float(np.mean(fade_db)))
+
+            # 均衡
+            if eq_method != "none" and taps is not None:
+                h = taps[0, :]
+                rx_iq = equalize_1tap(rx_iq, h, ch.noise_variance, method=eq_method)
+
+            rx = iq_to_mac(rx_iq, cfg, len(mac_bytes))
+            if not rx.crc_ok:
+                errors += 1
+            else:
+                try:
+                    recovered = AsyncDataFrame.unpack(rx.mac_payload)
+                    if recovered.data != payload:
+                        errors += 1
+                except (ValueError, IndexError):
+                    errors += 1
+
+        fer_list.append(errors / n_frames)
+        fade_depth_list.append(np.mean(fade_depths) if fade_depths else 0.0)
+
+    return {
+        "doppler_hz": [float(d) for d in doppler_range_hz],
+        "fer": fer_list,
+        "avg_fade_depth_db": fade_depth_list,
+    }
+
+
+def sim_multi_user_interference(
+    n_interferers_range: list[int] | None = None,
+    sir_db: float = 10.0,
+    snr_db: float = 15.0,
+    n_frames: int = 100,
+    mcs_index: int = 7,
+    payload_size: int = 20,
+    channel_type: str = "awgn",
+    freq_offset_hz: float = 0.0,
+    seed: int = 42,
+) -> dict:
+    """多用户干扰仿真: 扫描不同干扰用户数下的 FER 和 SINR。
+
+    多个干扰用户在同一频段 (或邻信道) 独立发送, 叠加到有用信号上。
+
+    Args:
+        n_interferers_range: 干扰用户数扫描列表。
+        sir_db: 每个干扰用户的 SIR (dB)。
+        snr_db: 噪声 SNR (dB)。
+        n_frames: 每个点仿真帧数。
+        mcs_index: MCS 索引。
+        payload_size: 载荷字节数。
+        channel_type: 信道类型。
+        freq_offset_hz: 干扰频偏 (Hz), 0 为同信道。
+        seed: 随机种子。
+
+    Returns:
+        {"n_interferers": [...], "fer": [...], "sinr_db": [...]}
+    """
+    from nearlink_sdr.phy.channel import (
+        ChannelConfig,
+        ChannelModel,
+        InterferenceConfig,
+        add_interference,
+        compute_sinr,
+    )
+    from nearlink_sdr.phy.mac_interface import iq_to_mac, mac_to_iq
+    from nearlink_sdr.phy.tx_pipeline import TxConfig
+
+    if n_interferers_range is None:
+        n_interferers_range = [0, 1, 2, 3, 5, 8]
+
+    rng = np.random.default_rng(seed)
+    cfg = TxConfig(
+        frame_type=2, mcs_index=mcs_index, pid=0x123456,
+        whitening_seed=0x52, crc_seed=0x555555, crc_len=24,
+        ctrl_bits_len=28, pilot_interval=8,
+    )
+    sample_rate = cfg.sps * cfg.symbol_rate_mhz * 1e6
+
+    fer_list = []
+    sinr_list = []
+
+    for n_intf in n_interferers_range:
+        errors = 0
+        sinr_acc = []
+
+        for _ in range(n_frames):
+            payload = bytes(rng.integers(0, 256, payload_size, dtype=np.uint8))
+            from nearlink_sdr.mac.frame import AsyncDataFrame
+            frame = AsyncDataFrame(segment_type=0, data=payload)
+            mac_bytes = frame.pack()
+
+            iq = mac_to_iq(mac_bytes, cfg)
+
+            # 应用信道
+            ch_cfg = ChannelConfig(
+                snr_db=snr_db,
+                channel_type=channel_type,
+                seed=int(rng.integers(0, 2**31)),
+            )
+            ch = ChannelModel(config=ch_cfg)
+            noisy_iq = ch.apply_fading(iq)
+
+            # 叠加干扰
+            if n_intf > 0:
+                intfs = [
+                    InterferenceConfig(
+                        sir_db=sir_db,
+                        freq_offset_hz=freq_offset_hz,
+                        seed=int(rng.integers(0, 2**31)),
+                    )
+                    for _ in range(n_intf)
+                ]
+                rx_iq = add_interference(noisy_iq, intfs, sample_rate, rng)
+                sinr_acc.append(compute_sinr(iq, noisy_iq, rx_iq))
+            else:
+                rx_iq = noisy_iq
+                # 无干扰时 SINR ≈ SNR
+                sinr_acc.append(snr_db)
+
+            rx = iq_to_mac(rx_iq, cfg, len(mac_bytes))
+            if not rx.crc_ok:
+                errors += 1
+            else:
+                try:
+                    recovered = AsyncDataFrame.unpack(rx.mac_payload)
+                    if recovered.data != payload:
+                        errors += 1
+                except (ValueError, IndexError):
+                    errors += 1
+
+        fer_list.append(errors / n_frames)
+        sinr_list.append(float(np.mean(sinr_acc)))
+
+    return {
+        "n_interferers": list(n_interferers_range),
+        "fer": fer_list,
+        "sinr_db": sinr_list,
+    }
+
+
+def sim_sir_sweep(
+    sir_range_db: np.ndarray | None = None,
+    n_interferers: int = 1,
+    snr_db: float = 20.0,
+    n_frames: int = 100,
+    mcs_index: int = 7,
+    payload_size: int = 20,
+    channel_type: str = "awgn",
+    seed: int = 42,
+) -> dict:
+    """SIR 扫描仿真: 固定干扰用户数, 扫描 SIR 下的 FER。
+
+    Args:
+        sir_range_db: SIR 扫描范围 (dB)。
+        n_interferers: 干扰用户数。
+        snr_db: 噪声 SNR (dB)。
+        n_frames: 每个 SIR 点帧数。
+        mcs_index: MCS 索引。
+        payload_size: 载荷字节数。
+        channel_type: 信道类型。
+        seed: 随机种子。
+
+    Returns:
+        {"sir_db": [...], "fer": [...], "sinr_db": [...]}
+    """
+    from nearlink_sdr.phy.channel import (
+        ChannelConfig,
+        ChannelModel,
+        InterferenceConfig,
+        add_interference,
+    )
+    from nearlink_sdr.phy.mac_interface import iq_to_mac, mac_to_iq
+    from nearlink_sdr.phy.tx_pipeline import TxConfig
+
+    if sir_range_db is None:
+        sir_range_db = np.arange(-10, 25, 5)
+
+    rng = np.random.default_rng(seed)
+    cfg = TxConfig(
+        frame_type=2, mcs_index=mcs_index, pid=0x123456,
+        whitening_seed=0x52, crc_seed=0x555555, crc_len=24,
+        ctrl_bits_len=28, pilot_interval=8,
+    )
+    sample_rate = cfg.sps * cfg.symbol_rate_mhz * 1e6
+
+    fer_list = []
+    sinr_list = []
+
+    for sir in sir_range_db:
+        errors = 0
+        for _ in range(n_frames):
+            payload = bytes(rng.integers(0, 256, payload_size, dtype=np.uint8))
+            from nearlink_sdr.mac.frame import AsyncDataFrame
+            frame = AsyncDataFrame(segment_type=0, data=payload)
+            mac_bytes = frame.pack()
+
+            iq = mac_to_iq(mac_bytes, cfg)
+
+            ch_cfg = ChannelConfig(
+                snr_db=snr_db,
+                channel_type=channel_type,
+                seed=int(rng.integers(0, 2**31)),
+            )
+            ch = ChannelModel(config=ch_cfg)
+            noisy_iq = ch.apply_fading(iq)
+
+            intfs = [
+                InterferenceConfig(
+                    sir_db=float(sir),
+                    seed=int(rng.integers(0, 2**31)),
+                )
+                for _ in range(n_interferers)
+            ]
+            rx_iq = add_interference(noisy_iq, intfs, sample_rate, rng)
+
+            rx = iq_to_mac(rx_iq, cfg, len(mac_bytes))
+            if not rx.crc_ok:
+                errors += 1
+            else:
+                try:
+                    recovered = AsyncDataFrame.unpack(rx.mac_payload)
+                    if recovered.data != payload:
+                        errors += 1
+                except (ValueError, IndexError):
+                    errors += 1
+
+        fer = errors / n_frames
+        fer_list.append(fer)
+        # 理论 SINR ≈ (S / (N + I)) -> S/(S/SNR + n_intf*S/SIR)
+        snr_lin = 10 ** (snr_db / 10)
+        sir_lin = 10 ** (float(sir) / 10)
+        sinr_lin = 1.0 / (1.0 / snr_lin + n_interferers / sir_lin)
+        sinr_list.append(float(10 * np.log10(sinr_lin)))
+
+    return {
+        "sir_db": [float(s) for s in sir_range_db],
+        "fer": fer_list,
+        "sinr_db": sinr_list,
+    }
+
+
+def sim_doppler_multipath_link(
+    doppler_range_hz: np.ndarray | None = None,
+    snr_db: float = 15.0,
+    n_frames: int = 80,
+    mcs_index: int = 7,
+    payload_size: int = 20,
+    seed: int = 42,
+) -> dict:
+    """Doppler + 多径信道联合仿真。
+
+    在 ITU Indoor Office B 多径模型基础上叠加 Doppler 时变,
+    评估信道时变对频率选择性衰落下的接收性能影响。
+
+    Returns:
+        {"doppler_hz": [...], "fer": [...]}
+    """
+    from nearlink_sdr.phy.channel import PDP_INDOOR_OFFICE, ChannelConfig, ChannelModel
+    from nearlink_sdr.phy.equalizer import equalize_mmse_freq
+    from nearlink_sdr.phy.mac_interface import iq_to_mac, mac_to_iq
+    from nearlink_sdr.phy.tx_pipeline import TxConfig
+
+    if doppler_range_hz is None:
+        doppler_range_hz = np.array([0, 5, 10, 20, 50, 100])
+
+    rng = np.random.default_rng(seed)
+    cfg = TxConfig(
+        frame_type=2, mcs_index=mcs_index, pid=0x123456,
+        whitening_seed=0x52, crc_seed=0x555555, crc_len=24,
+        ctrl_bits_len=28, pilot_interval=8,
+    )
+
+    fer_list = []
+    for fd in doppler_range_hz:
+        errors = 0
+        for _ in range(n_frames):
+            payload = bytes(rng.integers(0, 256, payload_size, dtype=np.uint8))
+            from nearlink_sdr.mac.frame import AsyncDataFrame
+            frame = AsyncDataFrame(segment_type=0, data=payload)
+            mac_bytes = frame.pack()
+
+            iq = mac_to_iq(mac_bytes, cfg)
+
+            ch_cfg = ChannelConfig(
+                snr_db=snr_db,
+                channel_type="multipath",
+                pdp=list(PDP_INDOOR_OFFICE),
+                max_doppler_hz=float(fd),
+                symbol_rate_hz=cfg.sps * cfg.symbol_rate_mhz * 1e6,
+                seed=int(rng.integers(0, 2**31)),
+            )
+            ch = ChannelModel(config=ch_cfg)
+            rx_iq = ch.apply_fading(iq)
+
+            # MMSE 频域均衡 (用首符号抽头近似)
+            taps = ch.last_taps
+            if taps is not None:
+                h_time = taps[:, 0]
+                h_freq = np.fft.fft(h_time, len(rx_iq))
+                rx_iq = equalize_mmse_freq(rx_iq, h_freq, ch.noise_variance)
+
+            rx = iq_to_mac(rx_iq, cfg, len(mac_bytes))
+            if not rx.crc_ok:
+                errors += 1
+            else:
+                try:
+                    recovered = AsyncDataFrame.unpack(rx.mac_payload)
+                    if recovered.data != payload:
+                        errors += 1
+                except (ValueError, IndexError):
+                    errors += 1
+
+        fer_list.append(errors / n_frames)
+
+    return {
+        "doppler_hz": [float(d) for d in doppler_range_hz],
+        "fer": fer_list,
+    }
+
+
+def run_phase16_simulation() -> None:
+    """Phase 16: 多用户干扰 + Doppler 时变信道仿真可视化。"""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    print("Phase 16.1 - Doppler 时变信道 FER ...")
+    r1 = sim_doppler_link(
+        doppler_range_hz=np.array([0, 5, 10, 20, 50, 100]),
+        snr_db=12.0, n_frames=50,
+    )
+    for fd, fer in zip(r1["doppler_hz"], r1["fer"], strict=False):
+        print(f"  f_d={fd:5.0f} Hz  FER={fer:.3f}")
+
+    print("\nPhase 16.2 - 多用户干扰 (SIR 扫描) ...")
+    r2 = sim_sir_sweep(
+        sir_range_db=np.arange(-5, 25, 5),
+        n_interferers=1, snr_db=20.0, n_frames=50,
+    )
+    for sir, fer in zip(r2["sir_db"], r2["fer"], strict=False):
+        print(f"  SIR={sir:5.0f} dB  FER={fer:.3f}")
+
+    print("\nPhase 16.3 - 多干扰用户数扫描 ...")
+    r3 = sim_multi_user_interference(
+        n_interferers_range=[0, 1, 2, 3, 5],
+        sir_db=10.0, snr_db=15.0, n_frames=50,
+    )
+    for ni, fer, sinr in zip(
+        r3["n_interferers"], r3["fer"], r3["sinr_db"], strict=False,
+    ):
+        print(f"  N_intf={ni}  FER={fer:.3f}  SINR={sinr:.1f} dB")
+
+    print("\nPhase 16.4 - Doppler + 多径 ...")
+    r4 = sim_doppler_multipath_link(
+        doppler_range_hz=np.array([0, 5, 10, 20, 50]),
+        snr_db=15.0, n_frames=50,
+    )
+    for fd, fer in zip(r4["doppler_hz"], r4["fer"], strict=False):
+        print(f"  f_d={fd:5.0f} Hz  FER={fer:.3f}")
+
+    fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+    fig.suptitle("Phase 16 - Interference & Doppler Simulation", fontsize=14, fontweight="bold")
+
+    # 16.1 Doppler FER
+    ax = axes[0, 0]
+    ax.semilogy(r1["doppler_hz"], np.maximum(r1["fer"], 1e-4), "b-o")
+    ax.set_xlabel("Doppler Spread (Hz)")
+    ax.set_ylabel("FER")
+    ax.set_title("16.1 - Doppler Time-Varying Channel FER")
+    ax.grid(True, ls="--", alpha=0.3)
+
+    # 16.2 SIR sweep
+    ax = axes[0, 1]
+    ax.semilogy(r2["sir_db"], np.maximum(r2["fer"], 1e-4), "r-s")
+    ax.set_xlabel("SIR (dB)")
+    ax.set_ylabel("FER")
+    ax.set_title("16.2 - SIR Sweep (1 Interferer)")
+    ax.grid(True, ls="--", alpha=0.3)
+
+    # 16.3 Multi-user
+    ax = axes[1, 0]
+    ax.plot(r3["n_interferers"], r3["fer"], "g-^", label="FER")
+    ax_twin = ax.twinx()
+    ax_twin.plot(r3["n_interferers"], r3["sinr_db"], "m--o", label="SINR")
+    ax.set_xlabel("Number of Interferers")
+    ax.set_ylabel("FER")
+    ax_twin.set_ylabel("SINR (dB)")
+    ax.set_title("16.3 - Multi-User Interference")
+    ax.grid(True, ls="--", alpha=0.3)
+
+    # 16.4 Doppler + Multipath
+    ax = axes[1, 1]
+    ax.semilogy(r4["doppler_hz"], np.maximum(r4["fer"], 1e-4), "k-D")
+    ax.set_xlabel("Doppler Spread (Hz)")
+    ax.set_ylabel("FER")
+    ax.set_title("16.4 - Doppler + Multipath (Indoor Office)")
+    ax.grid(True, ls="--", alpha=0.3)
+
+    fig.tight_layout()
+    fig.savefig("ber_phase16.png", dpi=150)
+    print("\nPhase 16 curves saved to ber_phase16.png")
+
+
 if __name__ == "__main__":
     import sys
     phase = sys.argv[1] if len(sys.argv) > 1 else "phase1"
@@ -4457,5 +4935,6 @@ if __name__ == "__main__":
         "phase13": run_phase13_simulation,
         "phase14": run_phase14_simulation,
         "phase15": run_phase15_simulation,
+        "phase16": run_phase16_simulation,
     }
     _dispatch.get(phase, run_phase1_simulation)()
