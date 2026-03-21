@@ -5,6 +5,28 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/),
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.0.1] - 2025-07-23
+
+### Added
+
+- Makefile: 15 个构建目标, 统一 CI 和文档的命令来源
+- sphinxcontrib-mermaid 集成, 8 处文本图表转换为 Mermaid
+- markdownlint 配置 (`.markdownlint.json`), 0 错误
+- `docs/explanation/index.md`: Diataxis 四象限统一入口
+- ruff per-file-ignores 配置, examples 目录豁免 F821/E402
+
+### Changed
+
+- CI (`ci.yml`, `release.yml`) 全部改用 Makefile 目标
+- 7 篇文档中的 27 处 bash 代码块改为 literalinclude 或 make 命令
+- `docs/index.md` 精简为 4 个 Diataxis 象限
+- Mermaid 图表替换:
+  - `overview.md`: 链路生命周期状态图
+  - `mac-layer.md`: 状态机 + 接入时序图
+  - `architecture.md`: TX/RX Pipeline 流程图
+  - `data-flow.md`: 全局收发流程图
+  - `security.md`: 配对状态机 + 密钥派生树
+
 ## [1.0.0] - 2025-03-21
 
 ### Added

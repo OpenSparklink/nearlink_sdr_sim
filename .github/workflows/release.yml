@@ -32,16 +32,10 @@ jobs:
             latexmk
 
       - name: Install HarmonyOS fonts
-        run: |
-          sudo mkdir -p /usr/local/share/fonts/harmonyos
-          sudo cp fonts/*.ttf /usr/local/share/fonts/harmonyos/
-          sudo fc-cache -f
+        run: make install-fonts
 
-      - name: Build LaTeX source
-        run: uv run sphinx-build -b latex docs docs/_build/latex
-
-      - name: Compile PDF
-        run: cd docs/_build/latex && make
+      - name: Build PDF
+        run: make docs-pdf
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4

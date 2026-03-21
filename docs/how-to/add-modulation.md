@@ -46,8 +46,14 @@
 
 确保 lint 和测试全部通过:
 
-```bash
-uv run ruff check src/ tests/
-uv run pytest tests/test_my_modulator.py -v
-uv run pytest tests/ -q        # 全量回归
-```
+:::{literalinclude} ../../Makefile
+:language: makefile
+:start-after: "# [lint-start]"
+:end-before: "# [lint-end]"
+:::
+
+:::{literalinclude} ../../Makefile
+:language: makefile
+:start-after: "# [test-start]"
+:end-before: "# [test-end]"
+:::

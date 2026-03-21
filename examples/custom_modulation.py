@@ -29,10 +29,6 @@ class MyDemodulator:
 
 # [custom-test-start]
 # tests/test_my_modulator.py
-import numpy as np
-
-from nearlink_sdr.phy.my_modulator import MyModulator, MyDemodulator
-
 
 class TestMyModulator:
     def test_roundtrip(self):
@@ -53,13 +49,15 @@ class TestMyModulator:
 # [custom-test-end]
 
 
-# [custom-pipeline-start]
-# tx_pipeline.py 中的调制分支
-if cfg.frame_type == 1:
-    iq = gfsk_modulator.modulate(frame_bits)
-elif cfg.frame_type == 5:  # 新帧类型
-    iq = my_modulator.modulate(symbols)
-# [custom-pipeline-end]
+def _pipeline_example(cfg, gfsk_modulator, frame_bits, my_modulator, symbols):
+    # [custom-pipeline-start]
+    # tx_pipeline.py 中的调制分支
+    if cfg.frame_type == 1:
+        iq = gfsk_modulator.modulate(frame_bits)
+    elif cfg.frame_type == 5:
+        iq = my_modulator.modulate(symbols)
+    # [custom-pipeline-end]
+    return iq
 
 
 if __name__ == "__main__":

@@ -113,5 +113,5 @@ HARQ 混合自动重传、流控、链路质量跟踪和优先级发送队列。
 ## 运行示例
 
 ```bash
-uv run python examples/qos_management.py
+make examples
 ```

@@ -28,7 +28,7 @@ jobs:
         run: uv sync
 
       - name: Ruff check
-        run: uv run ruff check src/ tests/ examples/
+        run: make lint
 
   rust:
     name: Rust Quality
@@ -68,9 +68,7 @@ jobs:
         run: uv sync
 
       - name: Build Rust accelerator
-        run: |
-          uv pip install maturin
-          uv run maturin develop --manifest-path rust/Cargo.toml --release
+        run: make accel
 
       - name: Run tests
         run: uv run pytest tests/ -v --tb=short --junitxml=report.xml
@@ -102,12 +100,10 @@ jobs:
         run: uv sync
 
       - name: Build Rust accelerator
-        run: |
-          uv pip install maturin
-          uv run maturin develop --manifest-path rust/Cargo.toml --release
+        run: make accel
 
       - name: Run tests with coverage
-        run: uv run pytest tests/ --cov=nearlink_sdr --cov-report=xml --cov-report=term-missing
+        run: make coverage
 
       - name: Upload coverage
         if: always()
@@ -133,7 +129,7 @@ jobs:
         run: uv sync --group docs
 
       - name: Build docs (strict)
-        run: uv run sphinx-build -E -W docs docs/_build/html
+        run: make docs-strict
 
       - name: Upload docs artifact
         uses: actions/upload-artifact@v4
@@ -160,16 +156,10 @@ jobs:
         run: uv sync
 
       - name: Build Rust accelerator
-        run: |
-          uv pip install maturin
-          uv run maturin develop --manifest-path rust/Cargo.toml --release
+        run: make accel
 
       - name: Run example scripts
-        run: |
-          uv run python examples/getting_started.py
-          uv run python examples/qos_management.py
-          uv run python examples/node_usage.py
-          uv run python examples/custom_modulation.py
+        run: make examples
 
       - name: Run example tests
         run: uv run pytest tests/test_doc_examples.py -v --tb=short

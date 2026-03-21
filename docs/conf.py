@@ -10,6 +10,7 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx.ext.viewcode",
     "sphinx.ext.mathjax",
+    "sphinxcontrib.mermaid",
 ]
 
 # -- MyST 配置 ----------------------------------------------------------------
