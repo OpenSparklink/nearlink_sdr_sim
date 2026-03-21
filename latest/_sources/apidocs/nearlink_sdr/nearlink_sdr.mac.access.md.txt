@@ -99,6 +99,18 @@
   - ```{autodoc2-docstring} nearlink_sdr.mac.access.MIN_REQUEST_TO_RESPONSE_GAP
     :summary:
     ```
+* - {py:obj}`MIN_ADV_INTERVAL_US <nearlink_sdr.mac.access.MIN_ADV_INTERVAL_US>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.access.MIN_ADV_INTERVAL_US
+    :summary:
+    ```
+* - {py:obj}`MAX_ADV_INTERVAL_US <nearlink_sdr.mac.access.MAX_ADV_INTERVAL_US>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.access.MAX_ADV_INTERVAL_US
+    :summary:
+    ```
+* - {py:obj}`MAX_ADV_RANDOM_DELAY_US <nearlink_sdr.mac.access.MAX_ADV_RANDOM_DELAY_US>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.access.MAX_ADV_RANDOM_DELAY_US
+    :summary:
+    ```
 ````
 
 ### API
@@ -139,6 +151,36 @@
    300
 
 ```{autodoc2-docstring} nearlink_sdr.mac.access.MIN_REQUEST_TO_RESPONSE_GAP
+```
+
+````
+
+````{py:data} MIN_ADV_INTERVAL_US
+:canonical: nearlink_sdr.mac.access.MIN_ADV_INTERVAL_US
+:value: >
+   4000
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.MIN_ADV_INTERVAL_US
+```
+
+````
+
+````{py:data} MAX_ADV_INTERVAL_US
+:canonical: nearlink_sdr.mac.access.MAX_ADV_INTERVAL_US
+:value: >
+   2097151875
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.MAX_ADV_INTERVAL_US
+```
+
+````
+
+````{py:data} MAX_ADV_RANDOM_DELAY_US
+:canonical: nearlink_sdr.mac.access.MAX_ADV_RANDOM_DELAY_US
+:value: >
+   2000
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.MAX_ADV_RANDOM_DELAY_US
 ```
 
 ````
@@ -769,6 +811,17 @@ Bases: {py:obj}`enum.IntEnum`
 
 ````
 
+````{py:attribute} adv_interval_us
+:canonical: nearlink_sdr.mac.access.BroadcasterAccessManager.adv_interval_us
+:type: int
+:value: >
+   100000
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.BroadcasterAccessManager.adv_interval_us
+```
+
+````
+
 ````{py:attribute} _phase
 :canonical: nearlink_sdr.mac.access.BroadcasterAccessManager._phase
 :type: nearlink_sdr.mac.access.AccessPhase
@@ -787,6 +840,22 @@ Bases: {py:obj}`enum.IntEnum`
    'field(...)'
 
 ```{autodoc2-docstring} nearlink_sdr.mac.access.BroadcasterAccessManager._pending_requests
+```
+
+````
+
+````{py:method} __post_init__() -> None
+:canonical: nearlink_sdr.mac.access.BroadcasterAccessManager.__post_init__
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.BroadcasterAccessManager.__post_init__
+```
+
+````
+
+````{py:method} next_adv_delay_us() -> int
+:canonical: nearlink_sdr.mac.access.BroadcasterAccessManager.next_adv_delay_us
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.BroadcasterAccessManager.next_adv_delay_us
 ```
 
 ````

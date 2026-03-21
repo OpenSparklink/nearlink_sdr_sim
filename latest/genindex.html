@@ -274,6 +274,11 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="explanation/overview.html">SparkLink SLE 协议总览</a></li>
+<li class="toctree-l1"><a class="reference internal" href="explanation/physical-layer.html">物理层详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="explanation/mac-layer.html">MAC 层详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="explanation/security.html">安全子系统详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="explanation/data-flow.html">端到端数据流</a></li>
 <li class="toctree-l1"><a class="reference internal" href="explanation/architecture.html">系统架构</a></li>
 <li class="toctree-l1"><a class="reference internal" href="explanation/standard-mapping.html">标准条款映射</a></li>
 <li class="toctree-l1"><a class="reference internal" href="explanation/principles.html">物理层原理</a></li>
@@ -395,6 +400,8 @@
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.phy.psk.html#nearlink_sdr.phy.psk._8PSK_ROTATION">_8PSK_ROTATION()（在 nearlink_sdr.phy.psk 模块中）</a>
 </li>
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.html#nearlink_sdr.mac.scheduler.SlotCounter.__int__">__int__() （nearlink_sdr.mac.scheduler.SlotCounter 方法）</a>
+</li>
+        <li><a href="apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.BroadcasterAccessManager.__post_init__">__post_init__() （nearlink_sdr.mac.access.BroadcasterAccessManager 方法）</a>
 </li>
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.mac.qos.html#nearlink_sdr.mac.qos.HarqController.__post_init__">__post_init__() （nearlink_sdr.mac.qos.HarqController 方法）</a>
 </li>
@@ -964,10 +971,10 @@
 </li>
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.AccessWhitelist.addresses">addresses（nearlink_sdr.mac.access.AccessWhitelist 属性）</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.node.html#nearlink_sdr.node.NodeConfig.address">address（nearlink_sdr.node.NodeConfig 属性）</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.AddrType">AddrType（nearlink_sdr.mac.broadcast 中的类）</a>
 </li>
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.mac.security.html#nearlink_sdr.mac.security.AddrType">AddrType（nearlink_sdr.mac.security 中的类）</a>
@@ -977,6 +984,8 @@
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.mac.security.html#nearlink_sdr.mac.security.TNodeAddress.addr">addr（nearlink_sdr.mac.security.TNodeAddress 属性）</a>
 </li>
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.node.html#nearlink_sdr.node.SleNode.adjust_power">adjust_power() （nearlink_sdr.node.SleNode 方法）</a>
+</li>
+        <li><a href="apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.BroadcasterAccessManager.adv_interval_us">adv_interval_us（nearlink_sdr.mac.access.BroadcasterAccessManager 属性）</a>
 </li>
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.AccessPhase.ADV_SENDING">ADV_SENDING（nearlink_sdr.mac.access.AccessPhase 属性）</a>
 </li>
@@ -4000,6 +4009,10 @@
 </li>
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFilter.match">match() （nearlink_sdr.mac.broadcast.BroadcastFilter 方法）</a>
 </li>
+        <li><a href="apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.MAX_ADV_INTERVAL_US">MAX_ADV_INTERVAL_US()（在 nearlink_sdr.mac.access 模块中）</a>
+</li>
+        <li><a href="apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.MAX_ADV_RANDOM_DELAY_US">MAX_ADV_RANDOM_DELAY_US()（在 nearlink_sdr.mac.access 模块中）</a>
+</li>
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.mac.qos.html#nearlink_sdr.mac.qos.MAX_CBG">MAX_CBG()（在 nearlink_sdr.mac.qos 模块中）</a>
 </li>
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.mac.link_control.html#nearlink_sdr.mac.link_control.ChannelReportConfig.max_delay">max_delay（nearlink_sdr.mac.link_control.ChannelReportConfig 属性）</a>
@@ -4146,6 +4159,8 @@
 </li>
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.mac.smf.html#nearlink_sdr.mac.smf.SegmentIndication.MIDDLE">MIDDLE（nearlink_sdr.mac.smf.SegmentIndication 属性）</a>
 </li>
+        <li><a href="apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.MIN_ADV_INTERVAL_US">MIN_ADV_INTERVAL_US()（在 nearlink_sdr.mac.access 模块中）</a>
+</li>
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.MIN_ADV_TO_EXT_ADV_GAP">MIN_ADV_TO_EXT_ADV_GAP()（在 nearlink_sdr.mac.access 模块中）</a>
 </li>
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.mac.link_control.html#nearlink_sdr.mac.link_control.MinAvailableChannels.min_channels">min_channels（nearlink_sdr.mac.link_control.MinAvailableChannels 属性）</a>
@@ -4156,12 +4171,12 @@
 </li>
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.mac.link_control.html#nearlink_sdr.mac.link_control.ChannelReportConfig.min_interval">min_interval（nearlink_sdr.mac.link_control.ChannelReportConfig 属性）</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.phy.rf_compliance.html#nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.min_ok">min_ok（nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult 属性）</a>
 </li>
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.node.html#nearlink_sdr.node.NodeConfig.min_power_dbm">min_power_dbm（nearlink_sdr.node.NodeConfig 属性）</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.MIN_REQUEST_TO_RESPONSE_GAP">MIN_REQUEST_TO_RESPONSE_GAP()（在 nearlink_sdr.mac.access 模块中）</a>
 </li>
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.mac.link_control.html#nearlink_sdr.mac.link_control.MinAvailableChannels">MinAvailableChannels（nearlink_sdr.mac.link_control 中的类）</a>
@@ -4842,6 +4857,8 @@
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.phy.data_link.html#nearlink_sdr.phy.data_link.SyncDataDiscard.new_pkt_count">new_pkt_count（nearlink_sdr.phy.data_link.SyncDataDiscard 属性）</a>
 </li>
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.phy.data_link.html#nearlink_sdr.phy.data_link.SyncDataLinkParams.new_pkt_count">new_pkt_count（nearlink_sdr.phy.data_link.SyncDataLinkParams 属性）</a>
+</li>
+        <li><a href="apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.BroadcasterAccessManager.next_adv_delay_us">next_adv_delay_us() （nearlink_sdr.mac.access.BroadcasterAccessManager 方法）</a>
 </li>
         <li><a href="apidocs/nearlink_sdr/nearlink_sdr.phy.freq_hopping.html#nearlink_sdr.phy.freq_hopping.MeasLinkHopper.next_channel">next_channel() （nearlink_sdr.phy.freq_hopping.MeasLinkHopper 方法）</a>
 </li>

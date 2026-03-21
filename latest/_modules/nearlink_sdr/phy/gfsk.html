@@ -275,6 +275,11 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../explanation/overview.html">SparkLink SLE 协议总览</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../explanation/physical-layer.html">物理层详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../explanation/mac-layer.html">MAC 层详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../explanation/security.html">安全子系统详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../explanation/data-flow.html">端到端数据流</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../explanation/architecture.html">系统架构</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../explanation/standard-mapping.html">标准条款映射</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../explanation/principles.html">物理层原理</a></li>
@@ -418,6 +423,10 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">mod_index</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
                  <span class="n">bt</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">gauss_span</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="mf">0.45</span> <span class="o">&lt;=</span> <span class="n">mod_index</span> <span class="o">&lt;=</span> <span class="mf">0.55</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;mod_index=</span><span class="si">{</span><span class="n">mod_index</span><span class="si">}</span><span class="s2"> 超出标准范围 [0.45, 0.55] (§6.2.1.1)&quot;</span>
+            <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sps</span> <span class="o">=</span> <span class="n">sps</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mod_index</span> <span class="o">=</span> <span class="n">mod_index</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bt</span> <span class="o">=</span> <span class="n">bt</span>

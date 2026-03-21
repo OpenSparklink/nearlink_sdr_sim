@@ -276,6 +276,11 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../explanation/overview.html">SparkLink SLE 协议总览</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../explanation/physical-layer.html">物理层详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../explanation/mac-layer.html">MAC 层详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../explanation/security.html">安全子系统详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../explanation/data-flow.html">端到端数据流</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../explanation/architecture.html">系统架构</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../explanation/standard-mapping.html">标准条款映射</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../explanation/principles.html">物理层原理</a></li>
@@ -473,6 +478,15 @@ AccessRequestInfo、AccessResponseInfo 等数据结构完成端到端接入。</
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.MIN_REQUEST_TO_RESPONSE_GAP" title="nearlink_sdr.mac.access.MIN_REQUEST_TO_RESPONSE_GAP"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MIN_REQUEST_TO_RESPONSE_GAP</span></code></a></p></td>
 <td></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.MIN_ADV_INTERVAL_US" title="nearlink_sdr.mac.access.MIN_ADV_INTERVAL_US"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MIN_ADV_INTERVAL_US</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.MAX_ADV_INTERVAL_US" title="nearlink_sdr.mac.access.MAX_ADV_INTERVAL_US"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MAX_ADV_INTERVAL_US</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.MAX_ADV_RANDOM_DELAY_US" title="nearlink_sdr.mac.access.MAX_ADV_RANDOM_DELAY_US"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MAX_ADV_RANDOM_DELAY_US</span></code></a></p></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -501,6 +515,24 @@ AccessRequestInfo、AccessResponseInfo 等数据结构完成端到端接入。</
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.MIN_REQUEST_TO_RESPONSE_GAP">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">MIN_REQUEST_TO_RESPONSE_GAP</span></span><a class="headerlink" href="#nearlink_sdr.mac.access.MIN_REQUEST_TO_RESPONSE_GAP" title="Link to this definition">¶</a></dt>
 <dd><p>300</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.MIN_ADV_INTERVAL_US">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">MIN_ADV_INTERVAL_US</span></span><a class="headerlink" href="#nearlink_sdr.mac.access.MIN_ADV_INTERVAL_US" title="Link to this definition">¶</a></dt>
+<dd><p>4000</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.MAX_ADV_INTERVAL_US">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">MAX_ADV_INTERVAL_US</span></span><a class="headerlink" href="#nearlink_sdr.mac.access.MAX_ADV_INTERVAL_US" title="Link to this definition">¶</a></dt>
+<dd><p>2097151875</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.MAX_ADV_RANDOM_DELAY_US">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">MAX_ADV_RANDOM_DELAY_US</span></span><a class="headerlink" href="#nearlink_sdr.mac.access.MAX_ADV_RANDOM_DELAY_US" title="Link to this definition">¶</a></dt>
+<dd><p>2000</p>
 </dd></dl>
 
 <dl class="py class">
@@ -921,6 +953,12 @@ initiator_negotiable: 发起方角色是否可协商。</p>
 </dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.adv_interval_us">
+<span class="sig-name descname"><span class="pre">adv_interval_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.adv_interval_us" title="Link to this definition">¶</a></dt>
+<dd><p>100000</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager._phase">
 <span class="sig-name descname"><span class="pre">_phase</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.mac.access.AccessPhase" title="nearlink_sdr.mac.access.AccessPhase"><span class="pre">nearlink_sdr.mac.access.AccessPhase</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager._phase" title="Link to this definition">¶</a></dt>
 <dd><p>None</p>
@@ -930,6 +968,18 @@ initiator_negotiable: 发起方角色是否可协商。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager._pending_requests">
 <span class="sig-name descname"><span class="pre">_pending_requests</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="（在 Python v3.14）"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="（在 Python v3.14）"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="（在 Python v3.14）"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager._pending_requests" title="Link to this definition">¶</a></dt>
 <dd><p>'field(...)'</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.__post_init__">
+<span class="sig-name descname"><span class="pre">__post_init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="（在 Python v3.14）"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#BroadcasterAccessManager.__post_init__"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.__post_init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.next_adv_delay_us">
+<span class="sig-name descname"><span class="pre">next_adv_delay_us</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#BroadcasterAccessManager.next_adv_delay_us"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.next_adv_delay_us" title="Link to this definition">¶</a></dt>
+<dd><p>计算下一次广播的总间隔 (§7.1.1)。</p>
+<p>返回固定间隔加 [0, 2ms] 随机延迟, 单位 μs。</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1445,6 +1495,9 @@ broadcaster_use_smf: 是否使用系统管理帧模式。</p>
 <li><a class="reference internal" href="#nearlink_sdr.mac.access.MIN_ADV_TO_EXT_ADV_GAP"><code class="docutils literal notranslate"><span class="pre">MIN_ADV_TO_EXT_ADV_GAP</span></code></a></li>
 <li><a class="reference internal" href="#nearlink_sdr.mac.access.MIN_EXT_ADV_TO_REQUEST_GAP"><code class="docutils literal notranslate"><span class="pre">MIN_EXT_ADV_TO_REQUEST_GAP</span></code></a></li>
 <li><a class="reference internal" href="#nearlink_sdr.mac.access.MIN_REQUEST_TO_RESPONSE_GAP"><code class="docutils literal notranslate"><span class="pre">MIN_REQUEST_TO_RESPONSE_GAP</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.MIN_ADV_INTERVAL_US"><code class="docutils literal notranslate"><span class="pre">MIN_ADV_INTERVAL_US</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.MAX_ADV_INTERVAL_US"><code class="docutils literal notranslate"><span class="pre">MAX_ADV_INTERVAL_US</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.MAX_ADV_RANDOM_DELAY_US"><code class="docutils literal notranslate"><span class="pre">MAX_ADV_RANDOM_DELAY_US</span></code></a></li>
 <li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessPhase"><code class="docutils literal notranslate"><span class="pre">AccessPhase</span></code></a><ul>
 <li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessPhase.IDLE"><code class="docutils literal notranslate"><span class="pre">AccessPhase.IDLE</span></code></a></li>
 <li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessPhase.ADV_SENDING"><code class="docutils literal notranslate"><span class="pre">AccessPhase.ADV_SENDING</span></code></a></li>
@@ -1517,8 +1570,11 @@ broadcaster_use_smf: 是否使用系统管理帧模式。</p>
 <li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.hop_map"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.hop_map</span></code></a></li>
 <li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.smf_channel_table"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.smf_channel_table</span></code></a></li>
 <li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.whitelist"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.whitelist</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.adv_interval_us"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.adv_interval_us</span></code></a></li>
 <li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager._phase"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager._phase</span></code></a></li>
 <li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager._pending_requests"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager._pending_requests</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.__post_init__"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.__post_init__()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.next_adv_delay_us"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.next_adv_delay_us()</span></code></a></li>
 <li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.build_ext_adv_frame"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.build_ext_adv_frame()</span></code></a></li>
 <li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.handle_access_request"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.handle_access_request()</span></code></a></li>
 <li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.reject_access_request"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.reject_access_request()</span></code></a></li>

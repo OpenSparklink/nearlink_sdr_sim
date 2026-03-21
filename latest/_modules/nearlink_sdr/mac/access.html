@@ -275,6 +275,11 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../explanation/overview.html">SparkLink SLE 协议总览</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../explanation/physical-layer.html">物理层详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../explanation/mac-layer.html">MAC 层详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../explanation/security.html">安全子系统详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../explanation/data-flow.html">端到端数据流</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../explanation/architecture.html">系统架构</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../explanation/standard-mapping.html">标准条款映射</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../explanation/principles.html">物理层原理</a></li>
@@ -396,6 +401,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">IntEnum</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
@@ -429,6 +435,11 @@
 <span class="n">MIN_ADV_TO_EXT_ADV_GAP</span> <span class="o">=</span> <span class="mi">300</span>
 <span class="n">MIN_EXT_ADV_TO_REQUEST_GAP</span> <span class="o">=</span> <span class="mi">300</span>
 <span class="n">MIN_REQUEST_TO_RESPONSE_GAP</span> <span class="o">=</span> <span class="mi">300</span>
+
+<span class="c1"># ── 广播间隔约束 (标准 7.1.1, 单位 μs) ──</span>
+<span class="n">MIN_ADV_INTERVAL_US</span> <span class="o">=</span> <span class="mi">4_000</span>              <span class="c1"># 4 ms</span>
+<span class="n">MAX_ADV_INTERVAL_US</span> <span class="o">=</span> <span class="mi">2_097_151_875</span>      <span class="c1"># 2097.151875 s</span>
+<span class="n">MAX_ADV_RANDOM_DELAY_US</span> <span class="o">=</span> <span class="mi">2_000</span>          <span class="c1"># 2 ms</span>
 
 
 <div class="viewcode-block" id="AccessPhase">
@@ -805,9 +816,31 @@
     <span class="n">hop_map</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\xFF</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">10</span>
     <span class="n">smf_channel_table</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00\x01\x02</span><span class="s2">&quot;</span>
     <span class="n">whitelist</span><span class="p">:</span> <span class="n">AccessWhitelist</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">AccessWhitelist</span><span class="p">)</span>
+    <span class="c1"># 广播间隔 (标准 7.1.1, 固定时间间隔, 单位 μs)</span>
+    <span class="n">adv_interval_us</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100_000</span>  <span class="c1"># 默认 100 ms</span>
     <span class="c1"># 内部状态</span>
     <span class="n">_phase</span><span class="p">:</span> <span class="n">AccessPhase</span> <span class="o">=</span> <span class="n">AccessPhase</span><span class="o">.</span><span class="n">IDLE</span>
     <span class="n">_pending_requests</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BroadcasterAccessManager.__post_init__">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.BroadcasterAccessManager.__post_init__">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">MIN_ADV_INTERVAL_US</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adv_interval_us</span> <span class="o">&lt;=</span> <span class="n">MAX_ADV_INTERVAL_US</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;adv_interval_us=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">adv_interval_us</span><span class="si">}</span><span class="s2"> 超出标准范围 &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">MIN_ADV_INTERVAL_US</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">MAX_ADV_INTERVAL_US</span><span class="si">}</span><span class="s2">] (§7.1.1)&quot;</span>
+            <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BroadcasterAccessManager.next_adv_delay_us">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.BroadcasterAccessManager.next_adv_delay_us">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">next_adv_delay_us</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;计算下一次广播的总间隔 (§7.1.1)。</span>
+
+<span class="sd">        返回固定间隔加 [0, 2ms] 随机延迟, 单位 μs。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">adv_interval_us</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">MAX_ADV_RANDOM_DELAY_US</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="BroadcasterAccessManager.build_ext_adv_frame">
 <a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.BroadcasterAccessManager.build_ext_adv_frame">[文档]</a>
