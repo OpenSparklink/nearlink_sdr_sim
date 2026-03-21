@@ -394,173 +394,188 @@
 <div class="table-wrapper autosummary longtable docutils container">
 <table class="autosummary longtable docutils align-left">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim._ber" title="nearlink_sdr.sim.link_sim._ber"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_ber</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim._ensure_output_dir" title="nearlink_sdr.sim.link_sim._ensure_output_dir"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_ensure_output_dir</span></code></a></p></td>
+<td><p>确保输出目录存在并返回路径。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim._ber" title="nearlink_sdr.sim.link_sim._ber"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_ber</span></code></a></p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_gfsk_link" title="nearlink_sdr.sim.link_sim.sim_gfsk_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_gfsk_link</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_gfsk_link" title="nearlink_sdr.sim.link_sim.sim_gfsk_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_gfsk_link</span></code></a></p></td>
 <td><p>帧类型1 GFSK无编码链路仿真。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_psk_link" title="nearlink_sdr.sim.link_sim.sim_psk_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_psk_link</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_psk_link" title="nearlink_sdr.sim.link_sim.sim_psk_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_psk_link</span></code></a></p></td>
 <td><p>帧类型2/3/4 PSK无编码链路仿真。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase1_simulation" title="nearlink_sdr.sim.link_sim.run_phase1_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase1_simulation</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase1_simulation" title="nearlink_sdr.sim.link_sim.run_phase1_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase1_simulation</span></code></a></p></td>
 <td><p>Phase 1 综合仿真: GFSK + BPSK + QPSK BER曲线。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_polar_coded_psk_link" title="nearlink_sdr.sim.link_sim.sim_polar_coded_psk_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_polar_coded_psk_link</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_polar_coded_psk_link" title="nearlink_sdr.sim.link_sim.sim_polar_coded_psk_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_polar_coded_psk_link</span></code></a></p></td>
 <td><p>Polar编码PSK链路仿真。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase2_simulation" title="nearlink_sdr.sim.link_sim.run_phase2_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase2_simulation</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase2_simulation" title="nearlink_sdr.sim.link_sim.run_phase2_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase2_simulation</span></code></a></p></td>
 <td><p>Phase 2 综合仿真: Polar编码 BPSK/QPSK BER/FER 曲线。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_frame_link" title="nearlink_sdr.sim.link_sim.sim_frame_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_frame_link</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_frame_link" title="nearlink_sdr.sim.link_sim.sim_frame_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_frame_link</span></code></a></p></td>
 <td><p>完整帧级仿真: 帧组装 → Polar编码 → PSK调制(含导频) → AWGN → 解调 → 解码 → BER。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase3_simulation" title="nearlink_sdr.sim.link_sim.run_phase3_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase3_simulation</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase3_simulation" title="nearlink_sdr.sim.link_sim.run_phase3_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase3_simulation</span></code></a></p></td>
 <td><p>Phase 3 帧级仿真: 不同帧类型、导频配置的 BER/FER。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_channel_eq_link" title="nearlink_sdr.sim.link_sim.sim_channel_eq_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_channel_eq_link</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_channel_eq_link" title="nearlink_sdr.sim.link_sim.sim_channel_eq_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_channel_eq_link</span></code></a></p></td>
 <td><p>多径信道 + 均衡器 + Polar编码 BPSK 链路仿真。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase4_simulation" title="nearlink_sdr.sim.link_sim.run_phase4_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase4_simulation</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase4_simulation" title="nearlink_sdr.sim.link_sim.run_phase4_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase4_simulation</span></code></a></p></td>
 <td><p>Phase 4: 不同信道模型 + 均衡器的 BER/FER 比较。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_hopping_link" title="nearlink_sdr.sim.link_sim.sim_hopping_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_hopping_link</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_hopping_link" title="nearlink_sdr.sim.link_sim.sim_hopping_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_hopping_link</span></code></a></p></td>
 <td><p>跳频链路仿真: 数据帧在多个跳频信道间传输, 每跳独立衰落。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase5_simulation" title="nearlink_sdr.sim.link_sim.run_phase5_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase5_simulation</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase5_simulation" title="nearlink_sdr.sim.link_sim.run_phase5_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase5_simulation</span></code></a></p></td>
 <td><p>Phase 5: 跳频链路仿真 — 比较不同跳频配置的 BER/FER。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_pipeline_link" title="nearlink_sdr.sim.link_sim.sim_pipeline_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_pipeline_link</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_pipeline_link" title="nearlink_sdr.sim.link_sim.sim_pipeline_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_pipeline_link</span></code></a></p></td>
 <td><p>使用 tx_chain / rx_chain 的全链路端到端仿真。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase6_simulation" title="nearlink_sdr.sim.link_sim.run_phase6_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase6_simulation</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase6_simulation" title="nearlink_sdr.sim.link_sim.run_phase6_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase6_simulation</span></code></a></p></td>
 <td><p>Phase 6: 全链路 Pipeline BER/FER 仿真 — 不同 MCS + 帧类型。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim._apply_cfo" title="nearlink_sdr.sim.link_sim._apply_cfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_apply_cfo</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim._apply_cfo" title="nearlink_sdr.sim.link_sim._apply_cfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_apply_cfo</span></code></a></p></td>
 <td><p>对 IQ 信号施加载波频率偏移。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_pipeline_channel_link" title="nearlink_sdr.sim.link_sim.sim_pipeline_channel_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_pipeline_channel_link</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_pipeline_channel_link" title="nearlink_sdr.sim.link_sim.sim_pipeline_channel_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_pipeline_channel_link</span></code></a></p></td>
 <td><p>全链路 Pipeline 仿真 — 支持多径信道、频率偏移和均衡器。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase7_simulation" title="nearlink_sdr.sim.link_sim.run_phase7_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase7_simulation</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase7_simulation" title="nearlink_sdr.sim.link_sim.run_phase7_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase7_simulation</span></code></a></p></td>
 <td><p>Phase 7: 多径信道 + 频率偏移 Pipeline BER/FER 仿真。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase8_simulation" title="nearlink_sdr.sim.link_sim.run_phase8_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase8_simulation</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase8_simulation" title="nearlink_sdr.sim.link_sim.run_phase8_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase8_simulation</span></code></a></p></td>
 <td><p>Phase 8: 多帧类型在不同信道条件下的 BER/FER 综合对比。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim._channel_impair" title="nearlink_sdr.sim.link_sim._channel_impair"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_channel_impair</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim._channel_impair" title="nearlink_sdr.sim.link_sim._channel_impair"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_channel_impair</span></code></a></p></td>
 <td><p>对 IQ 信号施加信道损伤 (衰落/噪声/频偏) 并可选均衡。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_mac_signaling_link" title="nearlink_sdr.sim.link_sim.sim_mac_signaling_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_mac_signaling_link</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_mac_signaling_link" title="nearlink_sdr.sim.link_sim.sim_mac_signaling_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_mac_signaling_link</span></code></a></p></td>
 <td><p>MAC 信令帧端到端仿真: 信令编码 → IQ → 信道 → IQ → 信令解码。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_mac_data_link" title="nearlink_sdr.sim.link_sim.sim_mac_data_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_mac_data_link</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_mac_data_link" title="nearlink_sdr.sim.link_sim.sim_mac_data_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_mac_data_link</span></code></a></p></td>
 <td><p>MAC 异步数据帧端到端仿真: 数据编码 → IQ → 信道 → IQ → 数据解码。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_mac_mux_link" title="nearlink_sdr.sim.link_sim.sim_mac_mux_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_mac_mux_link</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_mac_mux_link" title="nearlink_sdr.sim.link_sim.sim_mac_mux_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_mac_mux_link</span></code></a></p></td>
 <td><p>MAC 复用帧端到端仿真: 控制帧+数据帧复用 → IQ → 信道 → IQ → 解码。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase9_simulation" title="nearlink_sdr.sim.link_sim.run_phase9_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase9_simulation</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase9_simulation" title="nearlink_sdr.sim.link_sim.run_phase9_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase9_simulation</span></code></a></p></td>
 <td><p>Phase 9: MAC 帧级端到端仿真 — 信令、数据、复用帧 (含信道损伤)。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_multi_link" title="nearlink_sdr.sim.link_sim.sim_multi_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_multi_link</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_multi_link" title="nearlink_sdr.sim.link_sim.sim_multi_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_multi_link</span></code></a></p></td>
 <td><p>多链路调度仿真: 多条链路在超帧内按时间片分时传输。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_access_scheduled_link" title="nearlink_sdr.sim.link_sim.sim_access_scheduled_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_access_scheduled_link</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_access_scheduled_link" title="nearlink_sdr.sim.link_sim.sim_access_scheduled_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_access_scheduled_link</span></code></a></p></td>
 <td><p>接入流程 + 调度器驱动的数据传输仿真。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_event_group_timing" title="nearlink_sdr.sim.link_sim.sim_event_group_timing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_event_group_timing</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_event_group_timing" title="nearlink_sdr.sim.link_sim.sim_event_group_timing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_event_group_timing</span></code></a></p></td>
 <td><p>事件组时序计算仿真。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_superframe_capacity" title="nearlink_sdr.sim.link_sim.sim_superframe_capacity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_superframe_capacity</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_superframe_capacity" title="nearlink_sdr.sim.link_sim.sim_superframe_capacity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_superframe_capacity</span></code></a></p></td>
 <td><p>超帧容量分析: 逐步增加链路直到出现时间片冲突。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase10_simulation" title="nearlink_sdr.sim.link_sim.run_phase10_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase10_simulation</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase10_simulation" title="nearlink_sdr.sim.link_sim.run_phase10_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase10_simulation</span></code></a></p></td>
 <td><p>Phase 10: 多链路调度仿真入口。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_secure_link" title="nearlink_sdr.sim.link_sim.sim_secure_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_secure_link</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_secure_link" title="nearlink_sdr.sim.link_sim.sim_secure_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_secure_link</span></code></a></p></td>
 <td><p>接入 → 配对 → 加密数据传输端到端仿真。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_encrypted_vs_plain" title="nearlink_sdr.sim.link_sim.sim_encrypted_vs_plain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_encrypted_vs_plain</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_encrypted_vs_plain" title="nearlink_sdr.sim.link_sim.sim_encrypted_vs_plain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_encrypted_vs_plain</span></code></a></p></td>
 <td><p>对比加密与明文传输的误帧率。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_pairing_signaling_phy" title="nearlink_sdr.sim.link_sim.sim_pairing_signaling_phy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_pairing_signaling_phy</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_pairing_signaling_phy" title="nearlink_sdr.sim.link_sim.sim_pairing_signaling_phy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_pairing_signaling_phy</span></code></a></p></td>
 <td><p>配对信令经 PHY 管道传输的成功率仿真。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase11_simulation" title="nearlink_sdr.sim.link_sim.run_phase11_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase11_simulation</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase11_simulation" title="nearlink_sdr.sim.link_sim.run_phase11_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase11_simulation</span></code></a></p></td>
 <td><p>Phase 11: 安全通信端到端仿真可视化。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_amc_throughput" title="nearlink_sdr.sim.link_sim.sim_amc_throughput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_amc_throughput</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_amc_throughput" title="nearlink_sdr.sim.link_sim.sim_amc_throughput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_amc_throughput</span></code></a></p></td>
 <td><p>各 MCS 级别的吞吐量与误帧率扫描, 含 AMC 包络线。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_harq_link" title="nearlink_sdr.sim.link_sim.sim_harq_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_harq_link</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_harq_link" title="nearlink_sdr.sim.link_sim.sim_harq_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_harq_link</span></code></a></p></td>
 <td><p>HARQ 重传链路仿真 (Chase combining 简化模型)。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_hopping_multipath_link" title="nearlink_sdr.sim.link_sim.sim_hopping_multipath_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_hopping_multipath_link</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_hopping_multipath_link" title="nearlink_sdr.sim.link_sim.sim_hopping_multipath_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_hopping_multipath_link</span></code></a></p></td>
 <td><p>跳频 + 多径信道链路仿真。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase12_simulation" title="nearlink_sdr.sim.link_sim.run_phase12_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase12_simulation</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase12_simulation" title="nearlink_sdr.sim.link_sim.run_phase12_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase12_simulation</span></code></a></p></td>
 <td><p>Phase 12: AMC 吞吐量 + HARQ 重传 + 跳频多径仿真可视化。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_qos_arq_link" title="nearlink_sdr.sim.link_sim.sim_qos_arq_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_qos_arq_link</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_qos_arq_link" title="nearlink_sdr.sim.link_sim.sim_qos_arq_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_qos_arq_link</span></code></a></p></td>
 <td><p>QoS 管理器驱动的 ARQ 重传链路仿真。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_qos_amc_adaptive" title="nearlink_sdr.sim.link_sim.sim_qos_amc_adaptive"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_qos_amc_adaptive</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_qos_amc_adaptive" title="nearlink_sdr.sim.link_sim.sim_qos_amc_adaptive"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_qos_amc_adaptive</span></code></a></p></td>
 <td><p>QoS 链路质量跟踪驱动的 AMC 自适应仿真。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_qos_flow_control" title="nearlink_sdr.sim.link_sim.sim_qos_flow_control"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_qos_flow_control</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_qos_flow_control" title="nearlink_sdr.sim.link_sim.sim_qos_flow_control"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_qos_flow_control</span></code></a></p></td>
 <td><p>QoS 流控机制仿真。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase13_simulation" title="nearlink_sdr.sim.link_sim.run_phase13_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase13_simulation</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase13_simulation" title="nearlink_sdr.sim.link_sim.run_phase13_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase13_simulation</span></code></a></p></td>
 <td><p>Phase 13: QoS 驱动的 ARQ + AMC 自适应 + 流控仿真可视化。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_dual_node_link" title="nearlink_sdr.sim.link_sim.sim_dual_node_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_dual_node_link</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_dual_node_link" title="nearlink_sdr.sim.link_sim.sim_dual_node_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_dual_node_link</span></code></a></p></td>
 <td><p>双 SleNode 实体数据交换仿真。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_dual_node_secure_link" title="nearlink_sdr.sim.link_sim.sim_dual_node_secure_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_dual_node_secure_link</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_dual_node_secure_link" title="nearlink_sdr.sim.link_sim.sim_dual_node_secure_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_dual_node_secure_link</span></code></a></p></td>
 <td><p>双 SleNode 安全通信仿真 (配对 + 加密)。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_dual_node_mcs_adapt" title="nearlink_sdr.sim.link_sim.sim_dual_node_mcs_adapt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_dual_node_mcs_adapt</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_dual_node_mcs_adapt" title="nearlink_sdr.sim.link_sim.sim_dual_node_mcs_adapt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_dual_node_mcs_adapt</span></code></a></p></td>
 <td><p>双节点 MCS 自适应仿真。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim._run_dual_frames" title="nearlink_sdr.sim.link_sim._run_dual_frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_run_dual_frames</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim._run_dual_frames" title="nearlink_sdr.sim.link_sim._run_dual_frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_run_dual_frames</span></code></a></p></td>
 <td><p>内部: 对多个 SNR 运行帧传输, 返回 FER 列表。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase14_simulation" title="nearlink_sdr.sim.link_sim.run_phase14_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase14_simulation</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase14_simulation" title="nearlink_sdr.sim.link_sim.run_phase14_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase14_simulation</span></code></a></p></td>
 <td><p>Phase 14: 双节点端到端仿真可视化。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_node_hopping_link" title="nearlink_sdr.sim.link_sim.sim_node_hopping_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_node_hopping_link</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_node_hopping_link" title="nearlink_sdr.sim.link_sim.sim_node_hopping_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_node_hopping_link</span></code></a></p></td>
 <td><p>SleNode 跳频数据链路仿真。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_node_access_flow" title="nearlink_sdr.sim.link_sim.sim_node_access_flow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_node_access_flow</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_node_access_flow" title="nearlink_sdr.sim.link_sim.sim_node_access_flow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_node_access_flow</span></code></a></p></td>
 <td><p>SleNode 完整接入流程仿真。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_node_channel_sweep" title="nearlink_sdr.sim.link_sim.sim_node_channel_sweep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_node_channel_sweep</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_node_channel_sweep" title="nearlink_sdr.sim.link_sim.sim_node_channel_sweep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_node_channel_sweep</span></code></a></p></td>
 <td><p>SleNode 内置信道模型扫频仿真。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_node_power_adapt" title="nearlink_sdr.sim.link_sim.sim_node_power_adapt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_node_power_adapt</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_node_power_adapt" title="nearlink_sdr.sim.link_sim.sim_node_power_adapt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_node_power_adapt</span></code></a></p></td>
 <td><p>SleNode 功率自适应仿真。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_node_measurement" title="nearlink_sdr.sim.link_sim.sim_node_measurement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_node_measurement</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_node_measurement" title="nearlink_sdr.sim.link_sim.sim_node_measurement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_node_measurement</span></code></a></p></td>
 <td><p>SleNode 测量信号生成仿真。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase15_simulation" title="nearlink_sdr.sim.link_sim.run_phase15_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase15_simulation</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase15_simulation" title="nearlink_sdr.sim.link_sim.run_phase15_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase15_simulation</span></code></a></p></td>
 <td><p>Phase 15: SleNode 集成仿真可视化。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_doppler_link" title="nearlink_sdr.sim.link_sim.sim_doppler_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_doppler_link</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_doppler_link" title="nearlink_sdr.sim.link_sim.sim_doppler_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_doppler_link</span></code></a></p></td>
 <td><p>Doppler 时变信道仿真: 扫描不同多普勒频移下的 FER。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_multi_user_interference" title="nearlink_sdr.sim.link_sim.sim_multi_user_interference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_multi_user_interference</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_multi_user_interference" title="nearlink_sdr.sim.link_sim.sim_multi_user_interference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_multi_user_interference</span></code></a></p></td>
 <td><p>多用户干扰仿真: 扫描不同干扰用户数下的 FER 和 SINR。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_sir_sweep" title="nearlink_sdr.sim.link_sim.sim_sir_sweep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_sir_sweep</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_sir_sweep" title="nearlink_sdr.sim.link_sim.sim_sir_sweep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_sir_sweep</span></code></a></p></td>
 <td><p>SIR 扫描仿真: 固定干扰用户数, 扫描 SIR 下的 FER。</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_doppler_multipath_link" title="nearlink_sdr.sim.link_sim.sim_doppler_multipath_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_doppler_multipath_link</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_doppler_multipath_link" title="nearlink_sdr.sim.link_sim.sim_doppler_multipath_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_doppler_multipath_link</span></code></a></p></td>
 <td><p>Doppler + 多径信道联合仿真。</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase16_simulation" title="nearlink_sdr.sim.link_sim.run_phase16_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase16_simulation</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase16_simulation" title="nearlink_sdr.sim.link_sim.run_phase16_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase16_simulation</span></code></a></p></td>
 <td><p>Phase 16: 多用户干扰 + Doppler 时变信道仿真可视化。</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="data">
+<h3>Data<a class="headerlink" href="#data" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-left">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim._OUTPUT_DIR" title="nearlink_sdr.sim.link_sim._OUTPUT_DIR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_OUTPUT_DIR</span></code></a></p></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -568,6 +583,18 @@
 </section>
 <section id="api">
 <h3>API<a class="headerlink" href="#api" title="Link to this heading">¶</a></h3>
+<dl class="py data">
+<dt class="sig sig-object py" id="nearlink_sdr.sim.link_sim._OUTPUT_DIR">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">_OUTPUT_DIR</span></span><a class="headerlink" href="#nearlink_sdr.sim.link_sim._OUTPUT_DIR" title="Link to this definition">¶</a></dt>
+<dd><p>'Path(...)'</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nearlink_sdr.sim.link_sim._ensure_output_dir">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">_ensure_output_dir</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="（在 Python v3.14）"><span class="pre">pathlib.Path</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#_ensure_output_dir"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim._ensure_output_dir" title="Link to this definition">¶</a></dt>
+<dd><p>确保输出目录存在并返回路径。</p>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.sim.link_sim._ber">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">_ber</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#_ber"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim._ber" title="Link to this definition">¶</a></dt>
@@ -1310,7 +1337,10 @@ seed: 随机种子。</p>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.link_sim</span></code></a><ul>
 <li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#data">Data</a></li>
 <li><a class="reference internal" href="#api">API</a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.sim.link_sim._OUTPUT_DIR"><code class="docutils literal notranslate"><span class="pre">_OUTPUT_DIR</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.sim.link_sim._ensure_output_dir"><code class="docutils literal notranslate"><span class="pre">_ensure_output_dir()</span></code></a></li>
 <li><a class="reference internal" href="#nearlink_sdr.sim.link_sim._ber"><code class="docutils literal notranslate"><span class="pre">_ber()</span></code></a></li>
 <li><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_gfsk_link"><code class="docutils literal notranslate"><span class="pre">sim_gfsk_link()</span></code></a></li>
 <li><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_psk_link"><code class="docutils literal notranslate"><span class="pre">sim_psk_link()</span></code></a></li>
