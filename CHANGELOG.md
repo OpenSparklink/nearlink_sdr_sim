@@ -7,6 +7,18 @@
 
 ## [Unreleased]
 
+### Changed
+
+- 文档代码示例重构: 从 markdown 内嵌 Python 代码迁移至独立示例工程
+  - 新增 `examples/` 目录, 包含 5 个可独立运行的示例脚本
+  - `examples/getting_started.py`: GFSK/Polar+PSK/Pipeline/SleNode 入门示例
+  - `examples/qos_management.py`: QoS 管理全功能演示 (ARQ/HARQ/流控/优先级队列)
+  - `examples/node_usage.py`: 节点生命周期示例 (建连/收发/跳频/功率/配对/测量)
+  - `examples/run_simulation.py`: 全部仿真场景 (BER/Pipeline/Phase15/信道损伤/MAC/安全/AMC/HARQ)
+  - `examples/custom_modulation.py`: 自定义调制方式模板
+  - 文档使用 MyST `literalinclude` 指令引用示例代码, 保持文档与实际代码同步
+  - `tests/test_doc_examples.py` 重写为示例工程持久化测试 (34 个测试用例)
+
 ### Added
 
 - 文档全面更新 (Diataxis 四象限)

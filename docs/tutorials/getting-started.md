@@ -29,82 +29,32 @@ uv run pytest tests/ -v --tb=short
 
 GFSK 是 SparkLink SLE 帧类型 1 使用的调制方式。下面的代码演示一次完整的 GFSK 调制-信道-解调流程:
 
-```python
-import numpy as np
-from nearlink_sdr.phy.gfsk import GFSKModulator, GFSKDemodulator
-from nearlink_sdr.phy.channel import ChannelModel
+:::{literalinclude} ../../examples/getting_started.py
+:language: python
+:start-after: "# [gfsk-link-start]"
+:end-before: "# [gfsk-link-end]"
+:dedent:
+:::
 
-# 生成随机数据比特
-rng = np.random.default_rng(42)
-data_bits = rng.integers(0, 2, 200)
-
-# 调制
-mod = GFSKModulator(sps=8, mod_index=0.5)
-tx_signal = mod.modulate(data_bits)
-
-# 通过 AWGN 信道
-ch = ChannelModel(snr_db=12.0)
-rx_signal = ch.apply_awgn(tx_signal)
-
-# 解调
-demod = GFSKDemodulator(sps=8)
-rx_bits = demod.demodulate(rx_signal)
-
-# 计算误码率
-ber = np.mean(data_bits != rx_bits[:len(data_bits)])
-print(f"BER = {ber:.4f}")
-```
+完整代码见 `examples/getting_started.py` 中的 `gfsk_link()` 函数。
 
 ## 第一次仿真: PSK 编码链路
 
 帧类型 2/3/4 使用 PSK 调制。结合 Polar 编码可以获得编码增益:
 
-```python
-import numpy as np
-from nearlink_sdr.common.polar import PolarEncoder, PolarDecoder, get_info_bit_count
-from nearlink_sdr.phy.psk import PSKModulator, PSKDemodulator
-from nearlink_sdr.phy.channel import ChannelModel
-
-# Polar 编码参数: 码长 256, 码率 1/2
-code_length = 256
-K = get_info_bit_count("1/2", code_length)
-enc = PolarEncoder(code_length, K)
-dec = PolarDecoder(code_length, K)
-
-# 信息比特
-rng = np.random.default_rng(42)
-info_bits = rng.integers(0, 2, K, dtype=np.int8)
-
-# 编码
-coded_bits = enc.encode(info_bits)
-
-# BPSK 调制 (0 -> +1, 1 -> -1)
-bpsk_signal = 1.0 - 2.0 * coded_bits.astype(np.float64)
-
-# AWGN 信道
-snr_db = 2.0
-snr_lin = 10.0 ** (snr_db / 10.0)
-R = K / code_length
-noise_var = 1.0 / (2.0 * R * snr_lin)
-noise = rng.normal(0, np.sqrt(noise_var), code_length)
-received = bpsk_signal + noise
-
-# SC 解码
-llr = 2.0 * received / noise_var
-decoded = dec.decode(llr)
-
-errors = np.sum(info_bits != decoded)
-print(f"比特错误数: {errors}/{K}")
-```
+:::{literalinclude} ../../examples/getting_started.py
+:language: python
+:start-after: "# [polar-psk-start]"
+:end-before: "# [polar-psk-end]"
+:dedent:
+:::
 
 ## BER 曲线仿真
 
 项目内置了批量仿真函数, 可以直接绘制 BER 曲线:
 
-```python
-from nearlink_sdr.sim.link_sim import run_phase1_simulation
-
-run_phase1_simulation()
+```bash
+uv run python -m nearlink_sdr.sim.link_sim phase1
 # 输出 BER 数据并保存 ber_phase1.png
 ```
 
@@ -112,60 +62,39 @@ run_phase1_simulation()
 
 调用 `sim_pipeline_link` 进行端到端仿真, 覆盖 CRC、Polar 编码、加扰、调制、帧组装等全部物理层处理:
 
-```python
-import numpy as np
-from nearlink_sdr.sim.link_sim import sim_pipeline_link
-
-result = sim_pipeline_link(
-    frame_type=2,
-    mcs_index=7,
-    n_data_bytes=10,
-    snr_range_db=np.arange(0, 12, 2),
-    n_frames=20,
-)
-for snr, ber in zip(result["snr_db"], result["ber"]):
-    print(f"SNR={snr:2.0f} dB  BER={ber:.5f}")
-```
+:::{literalinclude} ../../examples/getting_started.py
+:language: python
+:start-after: "# [pipeline-sim-start]"
+:end-before: "# [pipeline-sim-end]"
+:dedent:
+:::
 
 ## SleNode 节点仿真
 
 `SleNode` 是项目的顶层实体, 将物理层和 MAC 层全部组件整合为统一接口:
 
-```python
-from nearlink_sdr.node import SleNode, NodeConfig, NodeRole
-
-# 创建带跳频和功率控制的节点
-config = NodeConfig(
-    address=b"\x01\x02\x03\x04\x05\x06",
-    role=NodeRole.G_NODE,
-    frame_type=2,
-    mcs_index=7,
-    hopping_enabled=True,
-    initial_power_level=4,
-)
-node = SleNode(config=config)
-
-# 跳频
-channel = node.hop_to_next()
-print(f"当前信道: {channel}")
-
-# 功率控制
-node.set_power_level(6)
-
-# 查看节点状态
-stats = node.get_stats()
-print(stats)
-```
+:::{literalinclude} ../../examples/getting_started.py
+:language: python
+:start-after: "# [node-basic-start]"
+:end-before: "# [node-basic-end]"
+:dedent:
+:::
 
 ## Phase 15 集成仿真
 
 项目提供基于 SleNode 的完整集成仿真, 覆盖跳频、功率自适应、接入流程和信道扫频:
 
-```python
-from nearlink_sdr.sim.link_sim import run_phase15_simulation
-
-run_phase15_simulation()
+```bash
+uv run python -m nearlink_sdr.sim.link_sim phase15
 # 输出四面板可视化图: 跳频/接入/功率/信道
+```
+
+## 运行示例
+
+所有入门示例已整合为独立脚本, 可直接运行:
+
+```bash
+uv run python examples/getting_started.py
 ```
 
 ## 下一步
