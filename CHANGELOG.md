@@ -15,6 +15,20 @@
   - Python 端自动检测, 不可用时回退纯 Python 实现
   - Pipeline 解码性能提升 >10x, 整体 pipeline 加速 2.2x (389ms → 174ms)
   - 测试套件从 9.48s 降至 5.12s
+  - Rust Polar 编码器 (蝶形 GF(2) 变换), pipeline 加速 3.9x (389ms → 101ms)
+  - 测试套件整体从 12.36s 降至 4.10s
+
+- Rust 加速安装工具 (`scripts/install_accel.py`)
+  - 自动检测 Rust 工具链, 安装 maturin, 编译加速模块
+  - 兼容 uv 和 pip 两种包管理方式
+  - 安装失败时静默回退, 不影响项目运行
+
+- CI 集成 Rust 加速构建
+  - test/coverage/examples 三个 job 集成 `dtolnay/rust-toolchain@stable` + maturin
+  - 新增 `install-accel` job: 验证 `install_accel.py` 脚本和加速模块加载
+
+- Rust 加速操作指南 (`docs/how-to/rust-acceleration.md`)
+  - 安装方式 (自动/手动), 验证方法, 性能对比, 故障排除
 
 - 仿真输出目录管理
   - 所有仿真图表输出到 `output/` 目录

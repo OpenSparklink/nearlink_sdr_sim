@@ -17,6 +17,9 @@
 # 安装依赖
 uv sync
 
+# (可选) 安装 Rust 加速模块, 需要 Rust 工具链
+python scripts/install_accel.py
+
 # 运行测试
 uv run pytest tests/ -v --tb=short
 
@@ -35,7 +38,8 @@ src/nearlink_sdr/
 ├── phy/          # 物理层 (调制, 帧结构, 信道, 均衡, 同步, 跳频, USRP)
 ├── mac/          # MAC 层 (链路管理, 信令, 安全, QoS, 广播, 调度)
 └── sim/          # 仿真 (链路仿真, USRP 环回)
-tests/            # 2626 个测试用例
+rust/             # Rust 加速扩展 (PyO3 + maturin)
+tests/            # 2652 个测试用例
 examples/         # 可运行的示例脚本
 docs/             # Sphinx 文档 (Diataxis 四象限)
 ```
@@ -43,6 +47,7 @@ docs/             # Sphinx 文档 (Diataxis 四象限)
 ## 技术栈
 
 - Python 3.14+, uv, hatchling
+- Rust (可选加速: PyO3 + maturin)
 - NumPy, SciPy, Matplotlib
 - pytest + pytest-cov, ruff
 - Sphinx + MyST-Parser
