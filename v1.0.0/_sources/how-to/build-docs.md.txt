@@ -65,7 +65,7 @@ uv run sphinx-autobuild docs docs/_build/html
 
 ## 文档结构
 
-```
+```text
 docs/
 ├── conf.py               # Sphinx 配置
 ├── index.md              # 首页

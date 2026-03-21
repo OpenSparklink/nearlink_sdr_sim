@@ -13,11 +13,8 @@
 **[技术参考](reference/index.md)**
 : 模块和函数的完整接口文档, 从源代码注释自动生成。
 
-**[设计说明](explanation/overview.md)**
-: 协议总览、物理层、MAC 层、安全子系统、端到端数据流的逐层深入解析, 以及与标准条款的映射关系。
-
-**[物理层原理](explanation/principles.md)**
-: Polar 编码、PSK/GFSK 调制、信道模型、均衡器等核心算法的数学推导。
+**[设计说明](explanation/index.md)**
+: 协议总览、物理层原理与实现、MAC 层、安全子系统、端到端数据流的逐层深入解析, 以及与标准条款的映射关系。
 
 ```{toctree}
 :maxdepth: 2
@@ -26,14 +23,7 @@
 tutorials/getting-started
 how-to/index
 reference/index
-explanation/overview
-explanation/physical-layer
-explanation/mac-layer
-explanation/security
-explanation/data-flow
-explanation/architecture
-explanation/standard-mapping
-explanation/principles
+explanation/index
 changelog
 apidocs/index
 ```

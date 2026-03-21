@@ -6,7 +6,7 @@ nearlink-sdr 是一个链路级仿真系统, 实现了 TXS-10002-2025 SparkLink 
 
 系统分为四个子包:
 
-```
+```text
 nearlink_sdr/
 ├── common/      信道编码与底层算法
 ├── phy/         物理层信号处理
@@ -111,7 +111,7 @@ nearlink_sdr/
 
 `SleNode` 内部组件关系:
 
-```
+```text
 SleNode
 ├── LinkManager      链路状态机 (IDLE → BROADCASTING/SCANNING → CONNECTED → DISCONNECTED)
 ├── QosManager       QoS 管理 (ARQ + HARQ + 流控 + 质量跟踪 + 发送队列)
@@ -130,7 +130,7 @@ SleNode
 
 SparkLink SLE 的发射处理链路 (`tx_chain`):
 
-```
+```text
 信息比特
   → CRC 附加
   → 码块分割 (segment_without_crc / segment_with_crc)
@@ -145,7 +145,7 @@ SparkLink SLE 的发射处理链路 (`tx_chain`):
 
 接收链路 (`rx_chain`) 是上述过程的逆操作:
 
-```
+```text
 接收 IQ
   → 帧同步 (前导检测 + 同步序列相关)
   → 头部解码 (解加扰 → Polar 解码 → CRC 校验)

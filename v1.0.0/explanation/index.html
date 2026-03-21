@@ -3,10 +3,10 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="索引" href="../genindex.html"><link rel="search" title="搜索" href="../search.html"><link rel="next" title="MAC 层详解" href="mac-layer.html"><link rel="prev" title="物理层原理" href="principles.html">
+<link rel="index" title="索引" href="../genindex.html"><link rel="search" title="搜索" href="../search.html"><link rel="next" title="SparkLink SLE 协议总览" href="overview.html"><link rel="prev" title="nearlink_sdr.node" href="../apidocs/nearlink_sdr/nearlink_sdr.node.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>物理层详解 - nearlink-sdr 0.1.0 文档</title>
+        <title>设计说明 - nearlink-sdr 0.1.0 文档</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -276,10 +276,10 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">设计说明</a><input aria-label="Toggle navigation of 设计说明" checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">设计说明</a><input aria-label="Toggle navigation of 设计说明" checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="overview.html">SparkLink SLE 协议总览</a></li>
 <li class="toctree-l2"><a class="reference internal" href="principles.html">物理层原理</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">物理层详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="physical-layer.html">物理层详解</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mac-layer.html">MAC 层详解</a></li>
 <li class="toctree-l2"><a class="reference internal" href="security.html">安全子系统详解</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data-flow.html">端到端数据流</a></li>
@@ -375,7 +375,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="../_sources/explanation/physical-layer.md.txt" title="View this page">
+  <a class="muted-link" href="../_sources/explanation/index.md.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -394,590 +394,107 @@
         </div>
         <article role="main" id="furo-main-content">
           <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>物理层详解<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
-<p>本文详细解释 SparkLink SLE 物理层的设计与实现, 覆盖调制波形、帧结构、信道编码和收发流水线, 逐一对标 TXS-10002-2025 标准条款并说明代码中的实现方式。</p>
+<h1>设计说明<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<p>本章节从协议总览到各子系统逐层深入，解释 SparkLink SLE 标准的设计原理与项目的实现方式。</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">SparkLink SLE 协议总览</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#id1">协议定位</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#id2">协议栈层次</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#id3">核心概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#id9">代码结构与协议映射</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#id10">数据传输约定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#id11">下一步阅读</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="principles.html">物理层原理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="principles.html#polar">Polar 编码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="principles.html#psk">PSK 调制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="principles.html#gfsk">GFSK 调制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="principles.html#id5">信道模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="principles.html#id8">均衡器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="principles.html#crc">CRC 校验</a></li>
+<li class="toctree-l2"><a class="reference internal" href="principles.html#id9">码块分割</a></li>
+<li class="toctree-l2"><a class="reference internal" href="principles.html#id10">加扰</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="physical-layer.html">物理层详解</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="physical-layer.html#id2">调制方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="physical-layer.html#id4">帧结构 (§6.3)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="physical-layer.html#id7">物理层控制信息 (§6.4)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="physical-layer.html#id8">同步信号 (§6.2.3)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="physical-layer.html#id9">前导码 (§6.2.2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="physical-layer.html#id10">导频 (§6.7)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="physical-layer.html#id11">信道编码 (§6.9-6.11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="physical-layer.html#mcs-6-10-5-6-10-6">MCS 表 (§6.10.5-6.10.6)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="physical-layer.html#id14">跳频 (§6.10.3, §8.1)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="physical-layer.html#id15">发射流水线 (§6.10)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="physical-layer.html#id16">接收流水线 (§6.10)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="physical-layer.html#id17">测量帧 (§6.3.6-6.3.11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="physical-layer.html#id18">射频合规 (§8)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mac-layer.html">MAC 层详解</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mac-layer.html#id1">广播与发现 (§7.1.1-7.1.2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mac-layer.html#id6">接入流程 (§7.1.3)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mac-layer.html#id9">链路管理状态机 (§7.1/7.2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mac-layer.html#id13">控制面流程 (§7.2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mac-layer.html#id19">帧结构 (§7.3)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mac-layer.html#id23">信令编解码 (§7.3)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mac-layer.html#qos-6-5">QoS 管理 (§6.5)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mac-layer.html#id27">时序调度 (§6.3/6.6)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mac-layer.html#id30">非链接态广播 (§7.1.7)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">安全子系统详解</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="security.html#id2">安全架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#id3">配对流程 (§9.2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#id6">密钥派生 (§9.3)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#id9">帧加密 (§9.3.1)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#id10">组播安全 (§9.3.2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#id11">隐私保护 (§9.4)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#uwb-9-5">UWB 测量安全 (§9.5)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data-flow.html">端到端数据流</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data-flow.html#id2">全局视图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-flow.html#id3">发射流水线</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-flow.html#id8">空口传输</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-flow.html#id11">接收流水线</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-flow.html#mac-phy">MAC-PHY 适配层</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-flow.html#slenode">SleNode 集成</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">系统架构</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#id2">模块组织</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#id3">信号处理链路</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#id4">帧类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#id5">硬件对接</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="standard-mapping.html">标准条款映射</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="standard-mapping.html#sle">第 6 章 SLE 非连接模式物理层</a></li>
+<li class="toctree-l2"><a class="reference internal" href="standard-mapping.html#id2">第 8 章 SLE 非连接模式物理层过程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="standard-mapping.html#h">附录 H 测试向量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="standard-mapping.html#id3">第 6.10 章 物理层处理流水线</a></li>
+<li class="toctree-l2"><a class="reference internal" href="standard-mapping.html#id4">已完成的扩展特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="standard-mapping.html#mac">第 7 章 MAC 层</a></li>
+</ul>
+</li>
+</ul>
+</div>
 <section id="id2">
-<h2>调制方式<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
-<p>SLE 物理层支持两大类调制: 频移键控 (GFSK) 和相移键控 (PSK), 分别用于不同帧类型。</p>
-<section id="gfsk-6-2-1-1">
-<h3>GFSK 调制 (§6.2.1.1)<a class="headerlink" href="#gfsk-6-2-1-1" title="Link to this heading">¶</a></h3>
-<p>高斯频移键控是 FT1 帧的唯一调制方式。标准规定:</p>
-<ul class="simple">
-<li><p>高斯滤波器带宽时间积 BT = 0.5</p></li>
-<li><p>调制系数 h 在 0.45 至 0.55 范围内, 默认 0.5</p></li>
-<li><p>比特 1 对应正频偏, 比特 0 对应负频偏</p></li>
-</ul>
-<p>SLE 定义了 7 种带宽配置, 从 0.1 MHz 到 4 MHz:</p>
-<div class="table-wrapper colwidths-auto docutils container">
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>带宽</p></th>
-<th class="head"><p>符号周期</p></th>
-<th class="head"><p>最小频偏</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>0.1 MHz</p></td>
-<td><p>10 <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
-<td><p>23.125 kHz</p></td>
-</tr>
-<tr class="row-odd"><td><p>0.25 MHz</p></td>
-<td><p>4 <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
-<td><p>92.5 kHz</p></td>
-</tr>
-<tr class="row-even"><td><p>1.0 MHz</p></td>
-<td><p>1 <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
-<td><p>185 kHz</p></td>
-</tr>
-<tr class="row-odd"><td><p>2.0 MHz</p></td>
-<td><p>0.5 <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
-<td><p>370 kHz</p></td>
-</tr>
-<tr class="row-even"><td><p>4.0 MHz</p></td>
-<td><p>0.25 <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
-<td><p>740 kHz</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong>代码实现</strong>: <code class="docutils literal notranslate"><span class="pre">phy.gfsk.GFSKModulator</span></code> 类。调制过程为 NRZ 映射 → 上采样 → 高斯滤波 → 频率积分 → 复基带:</p>
-<div class="math-wrapper docutils container">
-<div class="math notranslate nohighlight">
-\[
-s(t) = \exp\!\left(j \cdot 2\pi h \int_0^t \sum_k a_k \cdot g(\tau - kT)\,d\tau\right)
-\]</div>
-</div>
-<p>解调采用非相干的频率鉴别器方案 (<code class="docutils literal notranslate"><span class="pre">GFSKDemodulator</span></code>), 通过相邻采样点的相位差提取瞬时频率。</p>
-</section>
-<section id="psk-6-2-1-2">
-<h3>PSK 调制 (§6.2.1.2)<a class="headerlink" href="#psk-6-2-1-2" title="Link to this heading">¶</a></h3>
-<p>FT2-FT4 帧使用相移键控, 支持三种调制阶数:</p>
-<p><strong>BPSK</strong> (每符号 1 bit):</p>
-<ul class="simple">
-<li><p>比特 0 → 相位 90°, 比特 1 → 相位 -90°</p></li>
-<li><p>偶数位符号额外顺时针旋转 90°</p></li>
-</ul>
-<p><strong>QPSK</strong> (每符号 2 bit):</p>
-<ul class="simple">
-<li><p>00→45°, 01→135°, 11→-135°, 10→-45°</p></li>
-<li><p>偶数位额外 -45° 旋转</p></li>
-</ul>
-<p><strong>8PSK</strong> (每符号 3 bit):</p>
-<ul class="simple">
-<li><p>Gray 编码, 22.5° 间隔</p></li>
-<li><p>偶数位额外 -22.5° 旋转</p></li>
-</ul>
-<p>&quot;偶数位&quot;的定义: 无线帧的第一个符号处于奇数位 (索引 0 = 奇), 索引 1 = 偶, 以此类推。这一额外旋转有助于改善时钟恢复性能。</p>
-<p>脉冲成型使用平方根升余弦 (RRC) 滤波器, 滚降系数 <span class="math notranslate nohighlight">\(\beta = 0.4\)</span>, 每符号采样数默认 4。收发两端各一个 RRC 滤波器, 级联后满足 Nyquist 无码间干扰准则。</p>
-<p><strong>代码实现</strong>: <code class="docutils literal notranslate"><span class="pre">phy.psk.PSKModulator</span></code> 类。星座映射定义在 <code class="docutils literal notranslate"><span class="pre">BPSK_MAP</span></code>, <code class="docutils literal notranslate"><span class="pre">QPSK_MAP</span></code>, <code class="docutils literal notranslate"><span class="pre">_8PSK_MAP</span></code> 等常量中。导频符号共用同一相位查找表, 由 <code class="docutils literal notranslate"><span class="pre">phy.pilot</span></code> 模块生成。</p>
-<p>此外还有一种<strong>无旋转 BPSK</strong> 映射 (0→0°, 1→180°), 用于同步信号 3/4 中的 m 序列调制, 不参与偶数位旋转。</p>
-</section>
-<section id="id3">
-<h3>多音信号 (§6.2.1.3)<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
-<p>多音信号由 N 个单音叠加:</p>
-<div class="math-wrapper docutils container">
-<div class="math notranslate nohighlight">
-\[
-S(t) = \sum_{i=0}^{N-1} A_i \cdot e^{j(\omega_i t + \phi_i)}
-\]</div>
-</div>
-<p>主要用于射频校准和测量场景。<code class="docutils literal notranslate"><span class="pre">phy.multitone</span></code> 模块实现了可配置音数、幅度和初始相位的多音信号生成。</p>
-</section>
-<section id="uwb-6-2-1-4">
-<h3>UWB 脉冲 (§6.2.1.4)<a class="headerlink" href="#uwb-6-2-1-4" title="Link to this heading">¶</a></h3>
-<p>超宽带脉冲信号采用 Kaiser 窗参考波形 (<span class="math notranslate nohighlight">\(\beta = 10\)</span>), 支持两种带宽:</p>
-<div class="table-wrapper colwidths-auto docutils container">
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>信号带宽</p></th>
-<th class="head"><p>脉冲宽度 <span class="math notranslate nohighlight">\(T_p\)</span></p></th>
-<th class="head"><p>窗口 <span class="math notranslate nohighlight">\(T_w\)</span></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\geq\)</span> 500 MHz</p></td>
-<td><p>2 ns</p></td>
-<td><p>0.5 ns</p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(&gt;\)</span> 1300 MHz</p></td>
-<td><p>0.75 ns</p></td>
-<td><p>0.2 ns</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>码片调制 <span class="math notranslate nohighlight">\(c(n) \in \{-1, 0, +1\}\)</span>, 最大脉冲重复频率 499.2 MHz。</p>
-<p><strong>代码实现</strong>: <code class="docutils literal notranslate"><span class="pre">phy.uwb_pulse</span></code> 模块, 提供参考脉冲生成、码片调制和互相关验证。</p>
-</section>
-</section>
-<section id="id4">
-<h2>帧结构 (§6.3)<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
-<section id="id5">
-<h3>无线帧的组成<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
-<p>每个物理帧由帧头和数据两部分构成:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌─────────── 帧头 ───────────┐┌───── 数据 ──────┐
-│ 前导码 │ 同步序列 │ 控制信息 │ 载荷数据 │ CRC   │
-└───────┴─────────┴─────────┘└─────────┴───────┘
-</pre></div>
-</div>
-<p>各帧类型的差异集中在帧头的编码和调制方式上:</p>
-</section>
-<section id="ft1-6-3-2">
-<h3>FT1 — 广播帧 (§6.3.2)<a class="headerlink" href="#ft1-6-3-2" title="Link to this heading">¶</a></h3>
-<ul class="simple">
-<li><p><strong>前导码</strong>: GFSK, [0,1] 交替, 10 <span class="math notranslate nohighlight">\(\mu\)</span>s</p></li>
-<li><p><strong>同步序列</strong>: sync_signal_1, 32 位→32 个 GFSK 符号</p></li>
-<li><p><strong>控制信息</strong>: A 组, 无 Polar 编码, GFSK 调制</p></li>
-<li><p><strong>载荷</strong>: 不经 Polar 编码, 直接 GFSK 调制</p></li>
-<li><p><strong>典型用途</strong>: 广播、发现、接入请求/响应</p></li>
-</ul>
-<p>FT1 是最轻量的帧类型, 没有前向纠错编码开销。控制信息头部用 BCH 码保护, CRC 种子由同步序列低位确定。</p>
-</section>
-<section id="ft2-6-3-3">
-<h3>FT2 — 短头数据帧 (§6.3.3)<a class="headerlink" href="#ft2-6-3-3" title="Link to this heading">¶</a></h3>
-<ul class="simple">
-<li><p><strong>前导码</strong>: PSK, [<span class="math notranslate nohighlight">\(\pi/4\)</span>, 0] 交替, 10 <span class="math notranslate nohighlight">\(\mu\)</span>s</p></li>
-<li><p><strong>同步序列</strong>: sync_signal_2, 64 位→32 个 QPSK 符号</p></li>
-<li><p><strong>控制信息</strong>: A 组, Polar(64,K) 编码→32 QPSK 符号, 导频间隔 16</p></li>
-<li><p><strong>载荷</strong>: 码块分割 (无段内 CRC) → Polar 编码 → PSK 调制 + 导频</p></li>
-<li><p><strong>导频</strong>: 可选, 间隔 4/8/16</p></li>
-</ul>
-</section>
-<section id="ft3-6-3-4">
-<h3>FT3 — 长头数据帧 (§6.3.4)<a class="headerlink" href="#ft3-6-3-4" title="Link to this heading">¶</a></h3>
-<ul class="simple">
-<li><p><strong>前导码</strong>: PSK, [<span class="math notranslate nohighlight">\(\pi/4\)</span>, 0] 交替, 12 <span class="math notranslate nohighlight">\(\mu\)</span>s</p></li>
-<li><p><strong>同步序列</strong>: sync_signal_3, 31+31 位→62 个 BPSK 符号 (基于 m31 序列)</p></li>
-<li><p><strong>控制信息</strong>: B 组, Polar(256,K)→128 QPSK 符号, 导频间隔 4</p></li>
-<li><p><strong>载荷</strong>: 码块分割 (含段内 CRC) → Polar 编码 → PSK 调制 + 导频</p></li>
-<li><p><strong>特点</strong>: B 组 CRC 种子 = <code class="docutils literal notranslate"><span class="pre">0x555555</span> <span class="pre">^</span> <span class="pre">LLID</span></code></p></li>
-</ul>
-</section>
-<section id="ft4-6-3-5">
-<h3>FT4 — 扩展头数据帧 (§6.3.5)<a class="headerlink" href="#ft4-6-3-5" title="Link to this heading">¶</a></h3>
-<ul class="simple">
-<li><p><strong>前导码</strong>: PSK, [<span class="math notranslate nohighlight">\(\pi/4\)</span>, 0] 交替, 16 <span class="math notranslate nohighlight">\(\mu\)</span>s</p></li>
-<li><p><strong>同步序列</strong>: sync_signal_4, 63+63 位→126 个 BPSK 符号 (基于 m63 序列)</p></li>
-<li><p><strong>控制信息</strong>: B 组, Polar(256,K)→256 BPSK 符号, 导频间隔 4</p></li>
-<li><p><strong>载荷</strong>: 与 FT3 相同的编码方案, 但同步序列更长, 适合低信噪比场景</p></li>
-</ul>
-</section>
-<section id="id6">
-<h3>时序参数<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
-<p>系统基础时隙 <span class="math notranslate nohighlight">\(T_{sys} = 125\,\mu s\)</span>, 由 30 位计数器表示当前时刻。调度时隙有 25/50/75/100/125 <span class="math notranslate nohighlight">\(\mu\)</span>s 五种选择。帧的空口时长由以下公式决定:</p>
-<div class="math-wrapper docutils container">
-<div class="math notranslate nohighlight">
-\[
-T_{frame} = T_{preamble} + T_{sync} + T_{ctrl} + T_{data} + T_{guard}
-\]</div>
-</div>
-<p><strong>代码实现</strong>: <code class="docutils literal notranslate"><span class="pre">phy.frame</span></code> 模块的 <code class="docutils literal notranslate"><span class="pre">_SYNC_CONFIG</span></code> 和 <code class="docutils literal notranslate"><span class="pre">_CTRL_CONFIG</span></code> 字典定义了四种帧类型的完整参数。<code class="docutils literal notranslate"><span class="pre">assemble_frame_bits()</span></code> 生成比特级帧结构, <code class="docutils literal notranslate"><span class="pre">frame_to_symbols()</span></code> 完成到调制符号的转换。</p>
-</section>
-</section>
-<section id="id7">
-<h2>物理层控制信息 (§6.4)<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
-<p>控制信息是帧头中紧跟同步序列之后的结构化字段, 携带帧类型、载荷长度、MCS 等元信息。</p>
-<section id="a-ft1-ft2">
-<h3>A 组 (FT1/FT2)<a class="headerlink" href="#a-ft1-ft2" title="Link to this heading">¶</a></h3>
-<p>A 组控制信息使用 CRC12 校验, 种子来自同步序列的低 12 位。定义了 7 种子类型:</p>
-<div class="table-wrapper colwidths-auto docutils container">
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>类型</p></th>
-<th class="head"><p>用途</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>A1</p></td>
-<td><p>广播/发现/接入</p></td>
-</tr>
-<tr class="row-odd"><td><p>A2</p></td>
-<td><p>异步数据 (控制面)</p></td>
-</tr>
-<tr class="row-even"><td><p>A3</p></td>
-<td><p>异步数据 (数据面)</p></td>
-</tr>
-<tr class="row-odd"><td><p>A4</p></td>
-<td><p>异步数据 (复用)</p></td>
-</tr>
-<tr class="row-even"><td><p>A5</p></td>
-<td><p>同步等时</p></td>
-</tr>
-<tr class="row-odd"><td><p>A6</p></td>
-<td><p>半可靠组播反馈</p></td>
-</tr>
-<tr class="row-even"><td><p>A7</p></td>
-<td><p>测量管理</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="b-ft3-ft4">
-<h3>B 组 (FT3/FT4)<a class="headerlink" href="#b-ft3-ft4" title="Link to this heading">¶</a></h3>
-<p>B 组使用 CRC24B 校验, 种子固定为 <code class="docutils literal notranslate"><span class="pre">0x555555</span></code>, CRC 结果与链路标识 LLID 异或。定义了 5 种子类型 (B1-B5), 对应异步数据、同步等时和测量等场景。</p>
-<p><strong>代码实现</strong>: <code class="docutils literal notranslate"><span class="pre">phy.control_info</span></code> 模块提供 <code class="docutils literal notranslate"><span class="pre">ControlInfoA1</span></code> 至 <code class="docutils literal notranslate"><span class="pre">ControlInfoA7</span></code> 和 <code class="docutils literal notranslate"><span class="pre">ControlInfoB1</span></code> 至 <code class="docutils literal notranslate"><span class="pre">ControlInfoB5</span></code> 等数据类, 各自实现 <code class="docutils literal notranslate"><span class="pre">pack()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">unpack()</span></code> 方法。</p>
-</section>
-</section>
-<section id="id8">
-<h2>同步信号 (§6.2.3)<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h2>
-<p>同步序列用于接收端定位帧起始位置。SLE 定义了 6 种同步信号:</p>
-<div class="table-wrapper colwidths-auto docutils container">
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>信号</p></th>
-<th class="head"><p>长度</p></th>
-<th class="head"><p>调制</p></th>
-<th class="head"><p>生成方式</p></th>
-<th class="head"><p>帧类型</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>sync_signal_1</p></td>
-<td><p>32 bit</p></td>
-<td><p>GFSK</p></td>
-<td><p>GoldCode(32)</p></td>
-<td><p>FT1</p></td>
-</tr>
-<tr class="row-odd"><td><p>sync_signal_2</p></td>
-<td><p>64 bit</p></td>
-<td><p>QPSK</p></td>
-<td><p>GoldCode(64)</p></td>
-<td><p>FT2</p></td>
-</tr>
-<tr class="row-even"><td><p>sync_signal_3</p></td>
-<td><p>62 bit</p></td>
-<td><p>BPSK</p></td>
-<td><p>m31+m31, pid 控制</p></td>
-<td><p>FT3</p></td>
-</tr>
-<tr class="row-odd"><td><p>sync_signal_4</p></td>
-<td><p>126 bit</p></td>
-<td><p>BPSK</p></td>
-<td><p>m63+m63, pid 控制</p></td>
-<td><p>FT4</p></td>
-</tr>
-<tr class="row-even"><td><p>sync_signal_5</p></td>
-<td><p>32 bit</p></td>
-<td><p>GFSK</p></td>
-<td><p>安全随机函数</p></td>
-<td><p>FT1 (安全)</p></td>
-</tr>
-<tr class="row-odd"><td><p>sync_signal_6</p></td>
-<td><p>64 bit</p></td>
-<td><p>BPSK</p></td>
-<td><p>安全随机函数</p></td>
-<td><p>FT2 (安全)</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>sync_signal_3/4 的两段 m 序列由 PID (24 位) 通过哈希选择初始状态, 使得不同链路的同步序列正交。sync_signal_5/6 使用密码学安全随机数生成, 防止被预测。</p>
-<p><strong>代码实现</strong>: <code class="docutils literal notranslate"><span class="pre">phy.sync_sequence</span></code> 模块实现全部 6 种信号的生成, <code class="docutils literal notranslate"><span class="pre">common.m_sequence</span></code> 提供底层 m 序列算法。</p>
-</section>
-<section id="id9">
-<h2>前导码 (§6.2.2)<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h2>
-<p>前导码位于帧最前端, 用于接收端的载波同步和符号定时恢复:</p>
-<div class="table-wrapper colwidths-auto docutils container">
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>帧类型</p></th>
-<th class="head"><p>波形</p></th>
-<th class="head"><p>持续时间</p></th>
-<th class="head"><p>样式</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>FT1</p></td>
-<td><p>GFSK</p></td>
-<td><p>10 <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
-<td><p>[0,1,0,1...] 交替</p></td>
-</tr>
-<tr class="row-odd"><td><p>FT2</p></td>
-<td><p>PSK</p></td>
-<td><p>10 <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
-<td><p>[<span class="math notranslate nohighlight">\(\pi/4\)</span>, 0, <span class="math notranslate nohighlight">\(\pi/4\)</span>, 0...] 交替</p></td>
-</tr>
-<tr class="row-even"><td><p>FT3</p></td>
-<td><p>PSK</p></td>
-<td><p>12 <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
-<td><p>同上</p></td>
-</tr>
-<tr class="row-odd"><td><p>FT4</p></td>
-<td><p>PSK</p></td>
-<td><p>16 <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
-<td><p>同上</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>前导码长度随帧类型递增, FT4 最长 (16 <span class="math notranslate nohighlight">\(\mu\)</span>s), 提供更好的同步捕获性能。</p>
-<p><strong>代码实现</strong>: <code class="docutils literal notranslate"><span class="pre">phy.preamble.generate_preamble()</span></code> 函数根据帧类型自动选择波形和时长。</p>
-</section>
-<section id="id10">
-<h2>导频 (§6.7)<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h2>
-<p>导频符号是已知相位的参考符号, 周期性插入数据符号流中, 用于接收端进行信道估计和相位跟踪。</p>
-<p>导频相位与该调制阶数的标准相位一致: BPSK 90°, QPSK 45°, 8PSK 22.5°。偶数位导频执行与数据符号相同的额外旋转。</p>
-<p>插入规则: 每 <span class="math notranslate nohighlight">\(N\)</span> 个数据符号后插入 1 个导频, <span class="math notranslate nohighlight">\(N\)</span> 可选 4/8/16。帧末尾的导频可省略。</p>
-<p>FT1 不使用导频。FT2 导频可选 (默认间隔 16)。FT3/FT4 强制使用导频 (默认间隔 4)。</p>
-<p><strong>代码实现</strong>: <code class="docutils literal notranslate"><span class="pre">phy.pilot.insert_pilots()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">remove_pilots()</span></code> 函数。</p>
-</section>
-<section id="id11">
-<h2>信道编码 (§6.9-6.11)<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h2>
-<section id="crc-6-9">
-<h3>CRC 校验 (§6.9)<a class="headerlink" href="#crc-6-9" title="Link to this heading">¶</a></h3>
-<p>SLE 使用四种 CRC:</p>
-<div class="table-wrapper colwidths-auto docutils container">
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>类型</p></th>
-<th class="head"><p>生成多项式</p></th>
-<th class="head"><p>用途</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>CRC12</p></td>
-<td><p><span class="math notranslate nohighlight">\(D^{12}+D^{11}+D^3+D^2+D+1\)</span></p></td>
-<td><p>A 组控制信息</p></td>
-</tr>
-<tr class="row-odd"><td><p>CRC24A</p></td>
-<td><p><span class="math notranslate nohighlight">\(D^{24}+D^{23}+D^{18}+D^{17}+D^{14}+D^{11}+D^{10}+D^7+D^6+D^5+D^4+D^3+D+1\)</span></p></td>
-<td><p>载荷段, B组</p></td>
-</tr>
-<tr class="row-even"><td><p>CRC24B</p></td>
-<td><p>(同 24A 不同多项式)</p></td>
-<td><p>码块分割段内 CRC</p></td>
-</tr>
-<tr class="row-odd"><td><p>CRC32</p></td>
-<td><p>标准 CRC-32</p></td>
-<td><p>长载荷</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>CRC 计算支持种子值, A 组种子来自同步序列, B 组种子 = <code class="docutils literal notranslate"><span class="pre">0x555555</span> <span class="pre">^</span> <span class="pre">LLID</span></code>。</p>
-<p><strong>代码实现</strong>: <code class="docutils literal notranslate"><span class="pre">common.crc.crc_calculate()</span></code>, 支持 Rust 加速 (<code class="docutils literal notranslate"><span class="pre">_HAS_RUST_CRC</span></code> 自动检测)。</p>
-</section>
-<section id="polar-6-10-1">
-<h3>Polar 编码 (§6.10.1)<a class="headerlink" href="#polar-6-10-1" title="Link to this heading">¶</a></h3>
-<p>SLE 的前向纠错采用 Polar 码, 核心参数:</p>
-<ul class="simple">
-<li><p>母码长度 <span class="math notranslate nohighlight">\(N\)</span>: 32, 64, 128, 256, 512, 1024</p></li>
-<li><p>信息位数 <span class="math notranslate nohighlight">\(K\)</span>: 由 MCS 索引和载荷长度决定</p></li>
-<li><p>可靠性序列: 标准附录 C 给出 1024 阶固定排序</p></li>
-</ul>
-<p>编码器执行蝶形 GF(2) 变换, 解码器采用逐次消除 (SC) 算法, 辅以 SSC 剪枝 (rate-0/rate-1 子树快速路径)。</p>
-<p><strong>代码实现</strong>: <code class="docutils literal notranslate"><span class="pre">common.polar.PolarEncoder</span></code> / <code class="docutils literal notranslate"><span class="pre">PolarDecoder</span></code>, 均支持 Rust 加速 (PyO3 扩展 <code class="docutils literal notranslate"><span class="pre">nearlink_sdr_accel</span></code>)。编码加速约 10 倍, 解码加速约 10 倍。</p>
-</section>
-<section id="id12">
-<h3>码块分割 (§6.10.2)<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
-<p>当载荷超过单个 Polar 码块容量时, 进行码块分割:</p>
-<ul class="simple">
-<li><p><strong>无段内 CRC</strong> (FT2): 载荷等分为多个码块, 每块独立 Polar 编码</p></li>
-<li><p><strong>含段内 CRC</strong> (FT3/FT4): 每个码块附加额外 CRC, 增强可靠性</p></li>
-</ul>
-<p><strong>代码实现</strong>: <code class="docutils literal notranslate"><span class="pre">common.code_block_seg</span></code> 模块的 <code class="docutils literal notranslate"><span class="pre">segment_without_crc()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">segment_with_crc()</span></code> 函数。</p>
-</section>
-<section id="bch-6-11">
-<h3>BCH 编码 (§6.11)<a class="headerlink" href="#bch-6-11" title="Link to this heading">¶</a></h3>
-<p>FT1 控制信息头部使用 BCH 码保护:</p>
-<ul class="simple">
-<li><p>BCH(31,26): 可纠正 1 位错误</p></li>
-<li><p>BCH(63,24): 可纠正更多错误, 用于更长的控制字段</p></li>
-</ul>
-<p><strong>代码实现</strong>: <code class="docutils literal notranslate"><span class="pre">common.bch</span></code> 模块。</p>
-</section>
-<section id="id13">
-<h3>信道比特加扰 (§6.10.4)<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h3>
-<p>加扰使用 7 位 Galois LFSR, 多项式 <span class="math notranslate nohighlight">\(x^7 + x^4 + 1\)</span>, 周期 127。种子 (whitening_seed) 在控制信息中标明, 收发端使用相同种子即可还原。</p>
-<p><strong>代码实现</strong>: <code class="docutils literal notranslate"><span class="pre">common.scrambler.scramble()</span></code>, 内部预计算一个周期的加扰序列后用 tile 扩展。</p>
-</section>
-</section>
-<section id="mcs-6-10-5-6-10-6">
-<h2>MCS 表 (§6.10.5-6.10.6)<a class="headerlink" href="#mcs-6-10-5-6-10-6" title="Link to this heading">¶</a></h2>
-<p>调制与编码方案 (MCS) 索引决定了一次传输的调制阶数和码率:</p>
-<div class="table-wrapper colwidths-auto docutils container">
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>MCS</p></th>
-<th class="head"><p>调制</p></th>
-<th class="head"><p>每符号比特</p></th>
-<th class="head"><p>码率</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>0</p></td>
-<td><p>BPSK</p></td>
-<td><p>1</p></td>
-<td><p>1/4</p></td>
-</tr>
-<tr class="row-odd"><td><p>1</p></td>
-<td><p>BPSK</p></td>
-<td><p>1</p></td>
-<td><p>1/3</p></td>
-</tr>
-<tr class="row-even"><td><p>2</p></td>
-<td><p>BPSK</p></td>
-<td><p>1</p></td>
-<td><p>1/2</p></td>
-</tr>
-<tr class="row-odd"><td><p>3</p></td>
-<td><p>BPSK</p></td>
-<td><p>1</p></td>
-<td><p>2/3</p></td>
-</tr>
-<tr class="row-even"><td><p>4</p></td>
-<td><p>BPSK</p></td>
-<td><p>1</p></td>
-<td><p>3/4</p></td>
-</tr>
-<tr class="row-odd"><td><p>5</p></td>
-<td><p>QPSK</p></td>
-<td><p>2</p></td>
-<td><p>1/2</p></td>
-</tr>
-<tr class="row-even"><td><p>6</p></td>
-<td><p>QPSK</p></td>
-<td><p>2</p></td>
-<td><p>2/3</p></td>
-</tr>
-<tr class="row-odd"><td><p>7</p></td>
-<td><p>QPSK</p></td>
-<td><p>2</p></td>
-<td><p>3/4</p></td>
-</tr>
-<tr class="row-even"><td><p>8</p></td>
-<td><p>(无编码 FT1)</p></td>
-<td><p>1</p></td>
-<td><p>1</p></td>
-</tr>
-<tr class="row-odd"><td><p>9</p></td>
-<td><p>8PSK</p></td>
-<td><p>3</p></td>
-<td><p>1/2</p></td>
-</tr>
-<tr class="row-even"><td><p>10</p></td>
-<td><p>8PSK</p></td>
-<td><p>3</p></td>
-<td><p>2/3</p></td>
-</tr>
-<tr class="row-odd"><td><p>11</p></td>
-<td><p>8PSK</p></td>
-<td><p>3</p></td>
-<td><p>3/4</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>MCS 8 用于 FT1 的不编码直通模式。速率匹配通过重复或打孔将 Polar 编码输出适配到目标资源数。</p>
-<p><strong>代码实现</strong>: <code class="docutils literal notranslate"><span class="pre">common.mcs</span></code> 模块定义了完整的 MCS 表和速率匹配参数。</p>
-</section>
-<section id="id14">
-<h2>跳频 (§6.10.3, §8.1)<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h2>
-<p>SLE 窄带系统在 2402-2480 MHz 频段内使用 79 个信道 (1 MHz 步进)。跳频序列由伪随机数生成器驱动, 每个调度点切换一次信道。</p>
-<p>关键参数:</p>
-<ul class="simple">
-<li><p><strong>跳频种子</strong>: 24 位, 决定序列的随机性</p></li>
-<li><p><strong>跳频地图</strong>: 79 位 bitmap, 标记每个信道的可用状态</p></li>
-<li><p><strong>最少可用信道</strong>: 有下限门限, 防止可用信道过少</p></li>
-</ul>
-<p><strong>代码实现</strong>: <code class="docutils literal notranslate"><span class="pre">phy.freq_hopping</span></code> 模块的 <code class="docutils literal notranslate"><span class="pre">FreqTable</span></code>, 管理信道列表、跳频序列和屏蔽操作。</p>
-</section>
-<section id="id15">
-<h2>发射流水线 (§6.10)<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h2>
-<p>完整的 TX 处理链路 (<code class="docutils literal notranslate"><span class="pre">phy.tx_pipeline.tx_chain</span></code>):</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>应用数据
-  ↓
-CRC 附加                   ← common.crc
-  ↓
-码块分割                    ← common.code_block_seg
-  ↓ (FT2-4)
-Polar 编码                  ← common.polar
-  ↓
-比特加扰                    ← common.scrambler
-  ↓
-符号映射                    ← phy.psk / phy.gfsk
-  ↓ (FT2-4)
-导频插入                    ← phy.pilot
-  ↓
-帧组装                      ← phy.frame
-  (前导 + 同步 + 控制信息 + 载荷)
-  ↓
-脉冲成型                    ← RRC / GFSK 滤波
-  ↓
-复基带 IQ 信号输出
-</pre></div>
-</div>
-<p>发射参数通过 <code class="docutils literal notranslate"><span class="pre">TxConfig</span></code> 配置, 包含帧类型、MCS 索引、PID、加扰种子、CRC 长度和导频间隔等。</p>
-</section>
-<section id="id16">
-<h2>接收流水线 (§6.10)<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h2>
-<p>RX 处理链路 (<code class="docutils literal notranslate"><span class="pre">phy.rx_pipeline.rx_chain</span></code>) 是发射的逆操作:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>复基带 IQ 信号输入
-  ↓
-匹配滤波                    ← RRC / GFSK 频率鉴别
-  ↓
-帧同步                      ← 同步序列互相关
-  ↓
-头部提取与解码
-  符号解映射 → 解扰 → Polar 解码 → CRC 校验
-  ↓
-导频去除                    ← phy.pilot
-  ↓
-载荷解调与解码
-  符号解映射 → 解扰 → Polar 解码 → 码块重组 → CRC 校验
-  ↓
-数据比特输出 + CRC 状态
-</pre></div>
-</div>
-<p>帧同步通过滑动互相关检测同步序列的峰值位置, 超过门限则认为检测到帧。</p>
-</section>
-<section id="id17">
-<h2>测量帧 (§6.3.6-6.3.11)<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h2>
-<p>SLE 定义了多种专用测量帧, 用于定位和感知:</p>
-<div class="table-wrapper colwidths-auto docutils container">
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>类型</p></th>
-<th class="head"><p>结构</p></th>
-<th class="head"><p>用途</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>测量帧类型 1</p></td>
-<td><p>前导+同步+均衡保护+切换间隔+测量信号</p></td>
-<td><p>窄带测距</p></td>
-</tr>
-<tr class="row-odd"><td><p>测量帧类型 2</p></td>
-<td><p>仅测量信号</p></td>
-<td><p>简化测量</p></td>
-</tr>
-<tr class="row-even"><td><p>测量帧类型 3</p></td>
-<td><p>前导+同步+均衡保护</p></td>
-<td><p>信道探测</p></td>
-</tr>
-<tr class="row-odd"><td><p>测量帧类型 4</p></td>
-<td><p>完整数据帧+测量信号</p></td>
-<td><p>通信+测量混合</p></td>
-</tr>
-<tr class="row-even"><td><p>UWB 脉冲测量帧</p></td>
-<td><p>UWB 脉冲序列</p></td>
-<td><p>超宽带测距</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong>代码实现</strong>: <code class="docutils literal notranslate"><span class="pre">phy.measurement_frame</span></code>, <code class="docutils literal notranslate"><span class="pre">phy.measurement</span></code>, <code class="docutils literal notranslate"><span class="pre">phy.measurement_tx</span></code> 模块。</p>
-</section>
-<section id="id18">
-<h2>射频合规 (§8)<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">phy.rf_compliance</span></code> 模块实现了标准第 8 章的射频参数校验:</p>
-<ul class="simple">
-<li><p><strong>发射机</strong>: 输出功率等级、GFSK 调制精度 (频偏容限)、PSK 调制精度 (EVM)、GFSK 杂散发射、PSK 频谱模板</p></li>
-<li><p><strong>接收机</strong>: 灵敏度与最大输入电平、信道选择性、杂散发射、RSSI 测量精度</p></li>
-<li><p><strong>UWB</strong>: 信道参数合规、频谱掩模、归一化均方根误差</p></li>
-</ul>
-<p>这些校验函数返回合规/不合规的判定, 可用于仿真结束后的自动验证。</p>
+<h2>阅读顺序建议<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="overview.html"><span class="std std-doc">协议总览</span></a> — 频段、帧结构、协议栈全貌</p></li>
+<li><p><a class="reference internal" href="principles.html"><span class="std std-doc">物理层原理</span></a> — Polar 编码、PSK/GFSK 调制、信道模型等核心算法的数学推导</p></li>
+<li><p><a class="reference internal" href="physical-layer.html"><span class="std std-doc">物理层实现</span></a> — 调制解调、帧结构、同步、导频</p></li>
+<li><p><a class="reference internal" href="mac-layer.html"><span class="std std-doc">MAC 层</span></a> — 链路管理、信令、安全流程、QoS</p></li>
+<li><p><a class="reference internal" href="security.html"><span class="std std-doc">安全子系统</span></a> — 配对、加密、密钥分发</p></li>
+<li><p><a class="reference internal" href="data-flow.html"><span class="std std-doc">端到端数据流</span></a> — TX→信道→RX 的完整处理链</p></li>
+<li><p><a class="reference internal" href="architecture.html"><span class="std std-doc">系统架构</span></a> — 模块划分与依赖关系</p></li>
+<li><p><a class="reference internal" href="standard-mapping.html"><span class="std std-doc">标准对标</span></a> — 代码实现与 TXS-10002-2025 条款的映射</p></li>
+</ol>
 </section>
 </section>
 
@@ -986,23 +503,23 @@ Polar 编码                  ← common.polar
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="mac-layer.html">
+          <a class="next-page" href="overview.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">MAC 层详解</div>
+                <div class="title">SparkLink SLE 协议总览</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="principles.html">
+          <a class="prev-page" href="../apidocs/nearlink_sdr/nearlink_sdr.node.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">物理层原理</div>
+                <div class="title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></div>
                 
               </div>
             </a>
@@ -1039,45 +556,8 @@ Polar 编码                  ← common.polar
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">物理层详解</a><ul>
-<li><a class="reference internal" href="#id2">调制方式</a><ul>
-<li><a class="reference internal" href="#gfsk-6-2-1-1">GFSK 调制 (§6.2.1.1)</a></li>
-<li><a class="reference internal" href="#psk-6-2-1-2">PSK 调制 (§6.2.1.2)</a></li>
-<li><a class="reference internal" href="#id3">多音信号 (§6.2.1.3)</a></li>
-<li><a class="reference internal" href="#uwb-6-2-1-4">UWB 脉冲 (§6.2.1.4)</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id4">帧结构 (§6.3)</a><ul>
-<li><a class="reference internal" href="#id5">无线帧的组成</a></li>
-<li><a class="reference internal" href="#ft1-6-3-2">FT1 — 广播帧 (§6.3.2)</a></li>
-<li><a class="reference internal" href="#ft2-6-3-3">FT2 — 短头数据帧 (§6.3.3)</a></li>
-<li><a class="reference internal" href="#ft3-6-3-4">FT3 — 长头数据帧 (§6.3.4)</a></li>
-<li><a class="reference internal" href="#ft4-6-3-5">FT4 — 扩展头数据帧 (§6.3.5)</a></li>
-<li><a class="reference internal" href="#id6">时序参数</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id7">物理层控制信息 (§6.4)</a><ul>
-<li><a class="reference internal" href="#a-ft1-ft2">A 组 (FT1/FT2)</a></li>
-<li><a class="reference internal" href="#b-ft3-ft4">B 组 (FT3/FT4)</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id8">同步信号 (§6.2.3)</a></li>
-<li><a class="reference internal" href="#id9">前导码 (§6.2.2)</a></li>
-<li><a class="reference internal" href="#id10">导频 (§6.7)</a></li>
-<li><a class="reference internal" href="#id11">信道编码 (§6.9-6.11)</a><ul>
-<li><a class="reference internal" href="#crc-6-9">CRC 校验 (§6.9)</a></li>
-<li><a class="reference internal" href="#polar-6-10-1">Polar 编码 (§6.10.1)</a></li>
-<li><a class="reference internal" href="#id12">码块分割 (§6.10.2)</a></li>
-<li><a class="reference internal" href="#bch-6-11">BCH 编码 (§6.11)</a></li>
-<li><a class="reference internal" href="#id13">信道比特加扰 (§6.10.4)</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#mcs-6-10-5-6-10-6">MCS 表 (§6.10.5-6.10.6)</a></li>
-<li><a class="reference internal" href="#id14">跳频 (§6.10.3, §8.1)</a></li>
-<li><a class="reference internal" href="#id15">发射流水线 (§6.10)</a></li>
-<li><a class="reference internal" href="#id16">接收流水线 (§6.10)</a></li>
-<li><a class="reference internal" href="#id17">测量帧 (§6.3.6-6.3.11)</a></li>
-<li><a class="reference internal" href="#id18">射频合规 (§8)</a></li>
+<li><a class="reference internal" href="#">设计说明</a><ul>
+<li><a class="reference internal" href="#id2">阅读顺序建议</a></li>
 </ul>
 </li>
 </ul>
@@ -1094,8 +574,6 @@ Polar 编码                  ← common.polar
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
     <script src="../_static/translations.js?v=beaddf03"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/version-selector.js?v=7a49bb5b"></script>
     </body>
 </html>
