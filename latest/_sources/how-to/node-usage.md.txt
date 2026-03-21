@@ -1,8 +1,15 @@
 # 使用 SLE 节点实体
 
-本指南说明如何使用 `SleNode` 进行数据收发和链路管理。
+`SleNode` 是项目的顶层实体, 封装了物理层 (`TxConfig`, TX/RX Pipeline)、MAC 层 (`LinkManager`, `QosManager`, `Scheduler`) 和安全 (`FrameCryptoContext`) 的全部功能, 对外提供统一的数据收发接口。
 
-## 创建节点
+```{contents}
+:local:
+:depth: 2
+```
+
+## 基础操作
+
+### 创建节点
 
 :::{literalinclude} ../../examples/node_usage.py
 :language: python
@@ -11,7 +18,7 @@
 :dedent:
 :::
 
-## 建立连接
+### 建立连接
 
 广播方与扫描方各创建一个节点:
 
@@ -22,7 +29,7 @@
 :dedent:
 :::
 
-## 发送与接收数据
+### 发送与接收数据
 
 :::{literalinclude} ../../examples/node_usage.py
 :language: python
@@ -31,7 +38,18 @@
 :dedent:
 :::
 
-## 配对与加密
+### 断连与重置
+
+:::{literalinclude} ../../examples/node_usage.py
+:language: python
+:start-after: "# [disconnect-start]"
+:end-before: "# [disconnect-end]"
+:dedent:
+:::
+
+## 进阶功能
+
+### 配对与加密
 
 启用加密后的数据通信:
 
@@ -42,7 +60,7 @@
 :dedent:
 :::
 
-## 事件回调
+### 事件回调
 
 :::{literalinclude} ../../examples/node_usage.py
 :language: python
@@ -51,7 +69,7 @@
 :dedent:
 :::
 
-## 跳频
+### 跳频
 
 跳频通过 `advance_slot` 推进时隙, `current_channel` 获取当前信道:
 
@@ -62,7 +80,7 @@
 :dedent:
 :::
 
-## 功率控制
+### 功率控制
 
 :::{literalinclude} ../../examples/node_usage.py
 :language: python
@@ -71,7 +89,7 @@
 :dedent:
 :::
 
-## 接入流程
+### 接入流程
 
 :::{literalinclude} ../../examples/node_usage.py
 :language: python
@@ -80,7 +98,7 @@
 :dedent:
 :::
 
-## 测量信号
+### 测量信号
 
 :::{literalinclude} ../../examples/node_usage.py
 :language: python
@@ -89,7 +107,7 @@
 :dedent:
 :::
 
-## MCS 自适应
+### MCS 自适应
 
 :::{literalinclude} ../../examples/node_usage.py
 :language: python
@@ -98,7 +116,7 @@
 :dedent:
 :::
 
-## 查看节点状态
+### 查看节点状态
 
 `stats` 属性返回包含所有关键指标的字典:
 
@@ -106,15 +124,6 @@
 :language: python
 :start-after: "# [node-stats-start]"
 :end-before: "# [node-stats-end]"
-:dedent:
-:::
-
-## 断连与重置
-
-:::{literalinclude} ../../examples/node_usage.py
-:language: python
-:start-after: "# [disconnect-start]"
-:end-before: "# [disconnect-end]"
 :dedent:
 :::
 

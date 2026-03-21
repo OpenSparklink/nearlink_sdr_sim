@@ -420,11 +420,11 @@
 </tr>
 <tr class="row-odd"><td><p>前导码</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">phy/preamble.py</span></code></p></td>
-<td><p>6.2.2</p></td>
+<td><p>6.4</p></td>
 </tr>
 <tr class="row-even"><td><p>同步信号 1-6</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">phy/sync_sequence.py</span></code></p></td>
-<td><p>6.2.3</p></td>
+<td><p>6.5/6.6</p></td>
 </tr>
 <tr class="row-odd"><td><p>导频</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">phy/pilot.py</span></code></p></td>
@@ -436,15 +436,15 @@
 </tr>
 <tr class="row-odd"><td><p>CRC-12/24A/24B/32</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">common/crc.py</span></code></p></td>
-<td><p>6.10.1</p></td>
+<td><p>6.9</p></td>
 </tr>
 <tr class="row-even"><td><p>Polar 编解码 (SSC)</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">common/polar.py</span></code></p></td>
-<td><p>6.9.1</p></td>
+<td><p>6.10.1</p></td>
 </tr>
 <tr class="row-odd"><td><p>码块分割</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">common/code_block_seg.py</span></code></p></td>
-<td><p>6.9.1.2/3</p></td>
+<td><p>6.10.2</p></td>
 </tr>
 <tr class="row-even"><td><p>跳频序列 (2.4/5.1/5.8 GHz)</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">phy/freq_hopping.py</span></code></p></td>
@@ -513,7 +513,7 @@
 <td><p><code class="docutils literal notranslate"><span class="pre">mac/frame.py</span></code></p></td>
 <td><p>7.3</p></td>
 </tr>
-<tr class="row-odd"><td><p>信令注册表 (112 类型)</p></td>
+<tr class="row-odd"><td><p>信令注册表 (130 类型)</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">mac/signaling.py</span></code></p></td>
 <td><p>7.3.2 全覆盖</p></td>
 </tr>
@@ -646,7 +646,7 @@
 <section id="id4">
 <h3>测试质量<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>2592 个测试用例, 全部通过</p></li>
+<li><p>2652 个测试用例, 全部通过</p></li>
 <li><p>整体覆盖率 91%, 核心模块覆盖率 97%+, 测试执行时间 5.00 秒</p></li>
 <li><p>标准第 14 章测试向量 (TV101-TV206, SyncWord2) 全部验证通过</p></li>
 <li><p>一致性测试 244 个 (协议/射频/安全)</p></li>
@@ -739,8 +739,8 @@
 <section id="id11">
 <h3>阶段三: 双机通信<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
 <p><strong>目标</strong>: 两台 E310 之间收发通信</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scripts</span><span class="o">/</span><span class="n">tx_node</span><span class="o">.</span><span class="n">py</span><span class="p">:</span>    <span class="c1"># G 节点发射端</span>
-<span class="n">scripts</span><span class="o">/</span><span class="n">rx_node</span><span class="o">.</span><span class="n">py</span><span class="p">:</span>    <span class="c1"># T 节点接收端</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scripts</span><span class="o">/</span><span class="n">tx_node</span><span class="o">.</span><span class="n">py</span><span class="p">:</span>    <span class="c1"># G 节点发射端 (待创建)</span>
+<span class="n">scripts</span><span class="o">/</span><span class="n">rx_node</span><span class="o">.</span><span class="n">py</span><span class="p">:</span>    <span class="c1"># T 节点接收端 (待创建)</span>
 
 <span class="n">流程</span><span class="p">:</span>
   <span class="n">G</span> <span class="n">节点</span><span class="p">:</span>

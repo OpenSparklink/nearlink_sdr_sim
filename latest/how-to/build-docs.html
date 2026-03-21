@@ -408,16 +408,37 @@
 </section>
 <section id="pdf">
 <h2>构建 PDF<a class="headerlink" href="#pdf" title="Link to this heading">¶</a></h2>
-<p>使用 XeLaTeX 编译, 字体为 HarmonyOS Sans SC:</p>
+<p>使用 XeLaTeX 编译, 字体为 HarmonyOS Sans SC。</p>
+<section id="tex">
+<h3>安装 TeX 环境<a class="headerlink" href="#tex" title="Link to this heading">¶</a></h3>
+<p>Ubuntu/Debian:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>texlive-xetex<span class="w"> </span>texlive-fonts-recommended<span class="w"> </span>texlive-latex-extra<span class="w"> </span>latexmk
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>安装字体<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<p>项目仓库已包含 HarmonyOS Sans SC 字体文件 (位于 <code class="docutils literal notranslate"><span class="pre">fonts/</span></code> 目录), 安装到系统:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>cp<span class="w"> </span>fonts/*.ttf<span class="w"> </span>/usr/local/share/fonts/
+sudo<span class="w"> </span>fc-cache<span class="w"> </span>-f
+</pre></div>
+</div>
+<p>验证字体可用:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fc-list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>HarmonyOS
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>编译 PDF<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>--group<span class="w"> </span>docs<span class="w"> </span>sphinx-build<span class="w"> </span>-b<span class="w"> </span>latex<span class="w"> </span>docs<span class="w"> </span>docs/_build/latex
 <span class="nb">cd</span><span class="w"> </span>docs/_build/latex<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make
 </pre></div>
 </div>
 <p>生成的 PDF 位于 <code class="docutils literal notranslate"><span class="pre">docs/_build/latex/nearlink-sdr.pdf</span></code>。</p>
-<p>需要系统安装 TeX Live (含 <code class="docutils literal notranslate"><span class="pre">xelatex</span></code>) 和 HarmonyOS Sans SC 字体。</p>
 </section>
-<section id="id3">
-<h2>实时预览<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+</section>
+<section id="id5">
+<h2>实时预览<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
 <p>开发文档时, 使用 <code class="docutils literal notranslate"><span class="pre">sphinx-autobuild</span></code> 自动重建并刷新浏览器:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>sphinx-autobuild
 uv<span class="w"> </span>run<span class="w"> </span>sphinx-autobuild<span class="w"> </span>docs<span class="w"> </span>docs/_build/html
@@ -425,8 +446,8 @@ uv<span class="w"> </span>run<span class="w"> </span>sphinx-autobuild<span class
 </div>
 <p>浏览器访问 <code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:8000</span></code>。</p>
 </section>
-<section id="id4">
-<h2>文档结构<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
+<section id="id6">
+<h2>文档结构<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docs/
 ├── conf.py               # Sphinx 配置
 ├── index.md              # 首页
@@ -501,9 +522,14 @@ uv<span class="w"> </span>run<span class="w"> </span>sphinx-autobuild<span class
 <li><a class="reference internal" href="#">构建文档</a><ul>
 <li><a class="reference internal" href="#id2">安装依赖</a></li>
 <li><a class="reference internal" href="#html">构建 HTML</a></li>
-<li><a class="reference internal" href="#pdf">构建 PDF</a></li>
-<li><a class="reference internal" href="#id3">实时预览</a></li>
-<li><a class="reference internal" href="#id4">文档结构</a></li>
+<li><a class="reference internal" href="#pdf">构建 PDF</a><ul>
+<li><a class="reference internal" href="#tex">安装 TeX 环境</a></li>
+<li><a class="reference internal" href="#id3">安装字体</a></li>
+<li><a class="reference internal" href="#id4">编译 PDF</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id5">实时预览</a></li>
+<li><a class="reference internal" href="#id6">文档结构</a></li>
 </ul>
 </li>
 </ul>

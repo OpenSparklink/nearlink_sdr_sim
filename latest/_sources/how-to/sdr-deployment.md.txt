@@ -11,13 +11,13 @@
 | GFSK 调制解调 | `phy/gfsk.py` | 6.2.1.1 |
 | BPSK/QPSK 调制解调 | `phy/psk.py` | 6.2.1.2 |
 | 帧结构 FT1-FT4 | `phy/frame.py` | 6.3 |
-| 前导码 | `phy/preamble.py` | 6.2.2 |
-| 同步信号 1-6 | `phy/sync_sequence.py` | 6.2.3 |
+| 前导码 | `phy/preamble.py` | 6.4 |
+| 同步信号 1-6 | `phy/sync_sequence.py` | 6.5/6.6 |
 | 导频 | `phy/pilot.py` | 6.7 |
 | 控制信息 A/B 组 | `phy/control_info.py` | 6.4 |
-| CRC-12/24A/24B/32 | `common/crc.py` | 6.10.1 |
-| Polar 编解码 (SSC) | `common/polar.py` | 6.9.1 |
-| 码块分割 | `common/code_block_seg.py` | 6.9.1.2/3 |
+| CRC-12/24A/24B/32 | `common/crc.py` | 6.9 |
+| Polar 编解码 (SSC) | `common/polar.py` | 6.10.1 |
+| 码块分割 | `common/code_block_seg.py` | 6.10.2 |
 | 跳频序列 (2.4/5.1/5.8 GHz) | `phy/freq_hopping.py` | 6.10.3 |
 | 信道比特加扰 | `common/scrambler.py` | 6.10.4 |
 | MCS 表与速率匹配 | `common/mcs.py` | 6.10.5/6 |
@@ -36,7 +36,7 @@
 | 功能 | 模块 | 标准章节 |
 |------|------|----------|
 | 控制面/数据面/复用帧结构 | `mac/frame.py` | 7.3 |
-| 信令注册表 (112 类型) | `mac/signaling.py` | 7.3.2 全覆盖 |
+| 信令注册表 (130 类型) | `mac/signaling.py` | 7.3.2 全覆盖 |
 | 链路控制信令 | `mac/link_control.py` | 7.3.2.2-114 |
 | 功率控制 | `mac/power_control.py` | 7.2.13 |
 | 广播帧 + 子信息 (7.1.4.1-9) | `mac/broadcast.py` | 7.1.4 |
@@ -78,7 +78,7 @@
 
 ### 测试质量
 
-- 2592 个测试用例, 全部通过
+- 2652 个测试用例, 全部通过
 - 整体覆盖率 91%, 核心模块覆盖率 97%+, 测试执行时间 5.00 秒
 - 标准第 14 章测试向量 (TV101-TV206, SyncWord2) 全部验证通过
 - 一致性测试 244 个 (协议/射频/安全)
@@ -159,8 +159,8 @@ scripts/phy_loopback.py:
 **目标**: 两台 E310 之间收发通信
 
 ```
-scripts/tx_node.py:    # G 节点发射端
-scripts/rx_node.py:    # T 节点接收端
+scripts/tx_node.py:    # G 节点发射端 (待创建)
+scripts/rx_node.py:    # T 节点接收端 (待创建)
 
 流程:
   G 节点:

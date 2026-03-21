@@ -392,8 +392,35 @@
         <article role="main" id="furo-main-content">
           <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>运行链路仿真<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<nav class="contents local" id="id2">
+<ul class="simple">
+<li><p><a class="reference internal" href="#ber" id="id11">无编码 BER 仿真</a></p></li>
+<li><p><a class="reference internal" href="#polar-ber" id="id12">Polar 编码 BER 仿真</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id13">多径信道仿真</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id14">跳频序列生成</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id15">绘制 BER 曲线</a></p></li>
+<li><p><a class="reference internal" href="#pipeline" id="id16">全链路 Pipeline 仿真</a></p></li>
+<li><p><a class="reference internal" href="#slenode-phase-15" id="id17">SleNode 集成仿真 (Phase 15)</a></p></li>
+<li><p><a class="reference internal" href="#doppler-phase-16" id="id18">Doppler 时变衰落与多用户干扰 (Phase 16)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#doppler-fer" id="id19">Doppler 扩展对 FER 的影响</a></p></li>
+<li><p><a class="reference internal" href="#sir" id="id20">SIR 扫描</a></p></li>
+<li><p><a class="reference internal" href="#doppler" id="id21">Doppler + 多径联合</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id6" id="id22">信道损伤仿真</a></p></li>
+<li><p><a class="reference internal" href="#mac" id="id23">MAC 帧级仿真</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id24">多链路调度仿真</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id25">安全通信仿真</a></p></li>
+<li><p><a class="reference internal" href="#amc" id="id26">AMC 自适应调制编码仿真</a></p></li>
+<li><p><a class="reference internal" href="#harq" id="id27">HARQ 重传仿真</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id28">跳频多径仿真</a></p></li>
+<li><p><a class="reference internal" href="#phase-14" id="id29">Phase 14: 双节点端到端仿真</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id30">运行示例</a></p></li>
+</ul>
+</nav>
 <section id="ber">
-<h2>无编码 BER 仿真<a class="headerlink" href="#ber" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">无编码 BER 仿真</a><a class="headerlink" href="#ber" title="Link to this heading">¶</a></h2>
 <p>使用内置仿真函数, 在多个信噪比上批量计算 BER:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.sim.link_sim</span><span class="w"> </span><span class="kn">import</span> <span class="n">sim_gfsk_link</span>
 
@@ -417,7 +444,7 @@
 </div>
 </section>
 <section id="polar-ber">
-<h2>Polar 编码 BER 仿真<a class="headerlink" href="#polar-ber" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Polar 编码 BER 仿真</a><a class="headerlink" href="#polar-ber" title="Link to this heading">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.sim.link_sim</span><span class="w"> </span><span class="kn">import</span> <span class="n">sim_polar_coded_psk_link</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="n">sim_polar_coded_psk_link</span><span class="p">(</span>
@@ -430,8 +457,8 @@
 </pre></div>
 </div>
 </section>
-<section id="id2">
-<h2>多径信道仿真<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<section id="id3">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">多径信道仿真</a><a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.phy.channel</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChannelConfig</span><span class="p">,</span> <span class="n">ChannelModel</span>
 
 <span class="n">ch</span> <span class="o">=</span> <span class="n">ChannelModel</span><span class="p">(</span><span class="n">snr_db</span><span class="o">=</span><span class="mf">15.0</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">ChannelConfig</span><span class="p">(</span><span class="n">channel_type</span><span class="o">=</span><span class="s2">&quot;rayleigh&quot;</span><span class="p">))</span>
@@ -440,8 +467,8 @@
 </pre></div>
 </div>
 </section>
-<section id="id3">
-<h2>跳频序列生成<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<section id="id4">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">跳频序列生成</a><a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.phy.freq_hopping</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_hopping_sequence</span>
 
 <span class="n">seq</span> <span class="o">=</span> <span class="n">generate_hopping_sequence</span><span class="p">(</span>
@@ -451,15 +478,15 @@
 </pre></div>
 </div>
 </section>
-<section id="id4">
-<h2>绘制 BER 曲线<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
+<section id="id5">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">绘制 BER 曲线</a><a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>nearlink_sdr.sim.link_sim<span class="w"> </span>phase1
 <span class="c1"># 结果保存到 ber_phase1.png</span>
 </pre></div>
 </div>
 </section>
 <section id="pipeline">
-<h2>全链路 Pipeline 仿真<a class="headerlink" href="#pipeline" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">全链路 Pipeline 仿真</a><a class="headerlink" href="#pipeline" title="Link to this heading">¶</a></h2>
 <p>使用 <code class="docutils literal notranslate"><span class="pre">sim_pipeline_link</span></code> 运行端到端 Pipeline 仿真, 内部调用完整的 <code class="docutils literal notranslate"><span class="pre">tx_chain</span></code> -&gt; AWGN 信道 -&gt; <code class="docutils literal notranslate"><span class="pre">rx_chain</span></code> 链路:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.sim.link_sim</span><span class="w"> </span><span class="kn">import</span> <span class="n">sim_pipeline_link</span>
 
@@ -487,7 +514,7 @@
 </div>
 </section>
 <section id="slenode-phase-15">
-<h2>SleNode 集成仿真 (Phase 15)<a class="headerlink" href="#slenode-phase-15" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">SleNode 集成仿真 (Phase 15)</a><a class="headerlink" href="#slenode-phase-15" title="Link to this heading">¶</a></h2>
 <p>Phase 15 基于 <code class="docutils literal notranslate"><span class="pre">SleNode</span></code> 实体进行端到端仿真:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.sim.link_sim</span><span class="w"> </span><span class="kn">import</span> <span class="n">sim_node_hopping_link</span>
 
@@ -519,9 +546,9 @@
 </div>
 </section>
 <section id="doppler-phase-16">
-<h2>Doppler 时变衰落与多用户干扰 (Phase 16)<a class="headerlink" href="#doppler-phase-16" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id18" role="doc-backlink">Doppler 时变衰落与多用户干扰 (Phase 16)</a><a class="headerlink" href="#doppler-phase-16" title="Link to this heading">¶</a></h2>
 <section id="doppler-fer">
-<h3>Doppler 扩展对 FER 的影响<a class="headerlink" href="#doppler-fer" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">Doppler 扩展对 FER 的影响</a><a class="headerlink" href="#doppler-fer" title="Link to this heading">¶</a></h3>
 <p>使用 Jakes 求和正弦模型模拟不同移动速度下的信道衰落:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.sim.link_sim</span><span class="w"> </span><span class="kn">import</span> <span class="n">sim_doppler_link</span>
 
@@ -537,7 +564,7 @@
 </div>
 </section>
 <section id="sir">
-<h3>SIR 扫描<a class="headerlink" href="#sir" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">SIR 扫描</a><a class="headerlink" href="#sir" title="Link to this heading">¶</a></h3>
 <p>在固定 SNR 下, 改变信干比观察多用户干扰对 FER 的影响:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.sim.link_sim</span><span class="w"> </span><span class="kn">import</span> <span class="n">sim_sir_sweep</span>
 
@@ -553,7 +580,7 @@
 </div>
 </section>
 <section id="doppler">
-<h3>Doppler + 多径联合<a class="headerlink" href="#doppler" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">Doppler + 多径联合</a><a class="headerlink" href="#doppler" title="Link to this heading">¶</a></h3>
 <p>ITU Indoor Office 功率延迟谱与 Doppler 衰落的联合仿真:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.sim.link_sim</span><span class="w"> </span><span class="kn">import</span> <span class="n">sim_doppler_multipath_link</span>
 
@@ -572,8 +599,8 @@
 </div>
 </section>
 </section>
-<section id="id5">
-<h2>信道损伤仿真<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
+<section id="id6">
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">信道损伤仿真</a><a class="headerlink" href="#id6" title="Link to this heading">¶</a></h2>
 <p>使用 <code class="docutils literal notranslate"><span class="pre">sim_pipeline_channel_link</span></code> 模拟衰落信道、载波频偏和均衡对链路的影响:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.sim.link_sim</span><span class="w"> </span><span class="kn">import</span> <span class="n">sim_pipeline_channel_link</span>
 
@@ -614,7 +641,7 @@
 </div>
 </section>
 <section id="mac">
-<h2>MAC 帧级仿真<a class="headerlink" href="#mac" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id23" role="doc-backlink">MAC 帧级仿真</a><a class="headerlink" href="#mac" title="Link to this heading">¶</a></h2>
 <p>Phase 9 通过 MAC-PHY 适配层将 MAC 帧编码为 IQ 信号, 经信道传输后在接收端还原 MAC 载荷:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.sim.link_sim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">sim_mac_data_link</span><span class="p">,</span>
@@ -646,8 +673,8 @@
 </pre></div>
 </div>
 </section>
-<section id="id6">
-<h2>多链路调度仿真<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h2>
+<section id="id7">
+<h2><a class="toc-backref" href="#id24" role="doc-backlink">多链路调度仿真</a><a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
 <p>Phase 10 仿真调度器驱动的多链路并发传输:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.sim.link_sim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">sim_access_scheduled_link</span><span class="p">,</span>
@@ -670,8 +697,8 @@
 </pre></div>
 </div>
 </section>
-<section id="id7">
-<h2>安全通信仿真<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
+<section id="id8">
+<h2><a class="toc-backref" href="#id25" role="doc-backlink">安全通信仿真</a><a class="headerlink" href="#id8" title="Link to this heading">¶</a></h2>
 <p>Phase 11 模拟完整的安全链路建立: 接入 -&gt; 配对 -&gt; 加密数据传输:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.sim.link_sim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">sim_encrypted_vs_plain</span><span class="p">,</span>
@@ -698,7 +725,7 @@
 </div>
 </section>
 <section id="amc">
-<h2>AMC 自适应调制编码仿真<a class="headerlink" href="#amc" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id26" role="doc-backlink">AMC 自适应调制编码仿真</a><a class="headerlink" href="#amc" title="Link to this heading">¶</a></h2>
 <p>Phase 12 扫描全部 MCS 等级 (0-12), 生成 AMC 包络吞吐量曲线:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.sim.link_sim</span><span class="w"> </span><span class="kn">import</span> <span class="n">sim_amc_throughput</span>
 
@@ -723,7 +750,7 @@
 </div>
 </section>
 <section id="harq">
-<h2>HARQ 重传仿真<a class="headerlink" href="#harq" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id27" role="doc-backlink">HARQ 重传仿真</a><a class="headerlink" href="#harq" title="Link to this heading">¶</a></h2>
 <p>对比有/无 HARQ 重传的 FER 和吞吐量:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.sim.link_sim</span><span class="w"> </span><span class="kn">import</span> <span class="n">sim_harq_link</span>
 
@@ -750,8 +777,8 @@
 </pre></div>
 </div>
 </section>
-<section id="id8">
-<h2>跳频多径仿真<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h2>
+<section id="id9">
+<h2><a class="toc-backref" href="#id28" role="doc-backlink">跳频多径仿真</a><a class="headerlink" href="#id9" title="Link to this heading">¶</a></h2>
 <p>对比固定信道与跳频在 Rayleigh 衰落下的 FER:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.sim.link_sim</span><span class="w"> </span><span class="kn">import</span> <span class="n">sim_hopping_multipath_link</span>
 
@@ -769,7 +796,7 @@
 </div>
 </section>
 <section id="phase-14">
-<h2>Phase 14: 双节点端到端仿真<a class="headerlink" href="#phase-14" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id29" role="doc-backlink">Phase 14: 双节点端到端仿真</a><a class="headerlink" href="#phase-14" title="Link to this heading">¶</a></h2>
 <p>使用 SleNode 实体进行完整的双节点数据交换仿真:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.sim.link_sim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">sim_dual_node_link</span><span class="p">,</span>
@@ -809,8 +836,8 @@
 </pre></div>
 </div>
 </section>
-<section id="id9">
-<h2>运行示例<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h2>
+<section id="id10">
+<h2><a class="toc-backref" href="#id30" role="doc-backlink">运行示例</a><a class="headerlink" href="#id10" title="Link to this heading">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>examples/run_simulation.py
 </pre></div>
 </div>
@@ -878,9 +905,9 @@
 <li><a class="reference internal" href="#">运行链路仿真</a><ul>
 <li><a class="reference internal" href="#ber">无编码 BER 仿真</a></li>
 <li><a class="reference internal" href="#polar-ber">Polar 编码 BER 仿真</a></li>
-<li><a class="reference internal" href="#id2">多径信道仿真</a></li>
-<li><a class="reference internal" href="#id3">跳频序列生成</a></li>
-<li><a class="reference internal" href="#id4">绘制 BER 曲线</a></li>
+<li><a class="reference internal" href="#id3">多径信道仿真</a></li>
+<li><a class="reference internal" href="#id4">跳频序列生成</a></li>
+<li><a class="reference internal" href="#id5">绘制 BER 曲线</a></li>
 <li><a class="reference internal" href="#pipeline">全链路 Pipeline 仿真</a></li>
 <li><a class="reference internal" href="#slenode-phase-15">SleNode 集成仿真 (Phase 15)</a></li>
 <li><a class="reference internal" href="#doppler-phase-16">Doppler 时变衰落与多用户干扰 (Phase 16)</a><ul>
@@ -889,15 +916,15 @@
 <li><a class="reference internal" href="#doppler">Doppler + 多径联合</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id5">信道损伤仿真</a></li>
+<li><a class="reference internal" href="#id6">信道损伤仿真</a></li>
 <li><a class="reference internal" href="#mac">MAC 帧级仿真</a></li>
-<li><a class="reference internal" href="#id6">多链路调度仿真</a></li>
-<li><a class="reference internal" href="#id7">安全通信仿真</a></li>
+<li><a class="reference internal" href="#id7">多链路调度仿真</a></li>
+<li><a class="reference internal" href="#id8">安全通信仿真</a></li>
 <li><a class="reference internal" href="#amc">AMC 自适应调制编码仿真</a></li>
 <li><a class="reference internal" href="#harq">HARQ 重传仿真</a></li>
-<li><a class="reference internal" href="#id8">跳频多径仿真</a></li>
+<li><a class="reference internal" href="#id9">跳频多径仿真</a></li>
 <li><a class="reference internal" href="#phase-14">Phase 14: 双节点端到端仿真</a></li>
-<li><a class="reference internal" href="#id9">运行示例</a></li>
+<li><a class="reference internal" href="#id10">运行示例</a></li>
 </ul>
 </li>
 </ul>

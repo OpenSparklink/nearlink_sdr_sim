@@ -12,7 +12,7 @@
 克隆仓库并安装依赖:
 
 ```bash
-git clone <repo-url> nearlink-sdr
+git clone https://github.com/sanchuanhehe/nearlink_sdr_sim.git nearlink-sdr
 cd nearlink-sdr
 uv sync
 ```
@@ -100,5 +100,6 @@ uv run python examples/getting_started.py
 ## 下一步
 
 - 阅读 [操作指南](../how-to/index.md) 了解具体任务的操作方法
+- 阅读 [协议总览](../explanation/overview.md) 理解 SparkLink SLE 协议全貌
 - 阅读 [设计说明](../explanation/architecture.md) 理解系统架构
 - 查阅 [技术参考](../reference/index.md) 获取完整的接口文档
