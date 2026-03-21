@@ -100,6 +100,38 @@ result = sim_pipeline_link(frame_type=1, mcs_index=8)
 result = sim_pipeline_link(frame_type=4, mcs_index=0)
 ```
 
+## SleNode 集成仿真 (Phase 15)
+
+Phase 15 基于 `SleNode` 实体进行端到端仿真:
+
+```python
+from nearlink_sdr.sim.link_sim import (
+    sim_node_hopping_link,
+    sim_node_access_flow,
+    sim_node_channel_sweep,
+    sim_node_power_adapt,
+    run_phase15_simulation,
+)
+
+# 跳频数据链路仿真
+result = sim_node_hopping_link(n_frames=50, snr_db=12.0)
+print(f"FER = {result['fer']:.4f}")
+
+# 接入流程仿真
+result = sim_node_access_flow()
+print(f"广播帧数: {result['n_broadcast_frames']}")
+
+# 信道扫频
+result = sim_node_channel_sweep(snr_range_db=[0, 5, 10, 15])
+
+# 功率自适应仿真
+result = sim_node_power_adapt(n_frames=100)
+
+# 批量执行并生成可视化图
+run_phase15_simulation()
+```
+```
+
 批量仿真并生成 BER/FER 曲线图:
 
 ```bash

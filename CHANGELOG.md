@@ -9,6 +9,14 @@
 
 ### Added
 
+- 文档全面更新 (Diataxis 四象限)
+  - 入门教程: 补充 SleNode 跳频/功率控制/Phase 15 集成仿真示例
+  - 架构说明: 新增 uwb_pulse/measurement_tx/rf_compliance/multitone/smf_scheduler/uwb_measurement_security/data_link 模块描述, 更新 SleNode 组件图
+  - 参考文档: 补充全部新模块 API 索引, sim 模块拆分 link_sim/usrp_sim
+  - 操作指南: node-usage 新增跳频/功率/接入/测量示例, run-simulation 新增 Phase 15 用法
+  - 标准映射: 补全 6.2.1.3/6.2.1.4/6.5.x/6.6/6.7/6.8/8.x/9.x/7.2.x 条款, 新增一致性测试章节
+  - SDR 部署: 更新测试统计 (2592 测试/91% 覆盖率), Phase 15, 精简未实现列表
+
 - Phase 15: SleNode 集成仿真 (`sim/link_sim.py`)
   - `sim_node_hopping_link()`: 跳频数据链路仿真, 逐帧跳频通信/信道统计/FER
   - `sim_node_access_flow()`: 完整接入流程仿真 (广播→扫描→接入→数据→断开)

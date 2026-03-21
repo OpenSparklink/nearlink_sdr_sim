@@ -46,6 +46,11 @@ nearlink_sdr/
 | `mac_interface` | MAC-PHY 适配层 | -- |
 | `measurement` | 位置信息测量信号 | 6.2.4 |
 | `measurement_frame` | 测量帧类型 1-4 与 UWB 脉冲帧 | 6.3.6-6.3.11 |
+| `measurement_tx` | 窄带/UWB 测量链路参数与调度 | 6.7/6.8 |
+| `uwb_pulse` | UWB 脉冲波形与芯片调制 | 6.2.1.4 |
+| `multitone` | 多音信号生成 | 6.2.1.3 |
+| `rf_compliance` | 射频合规参数校验 | 8.2-8.4 |
+| `data_link` | 异步/同步数据链路传输规程 | 6.5.1-6.5.3 |
 | `usrp` | USRP E310 硬件接口 | -- |
 
 ### mac -- MAC 层
@@ -64,6 +69,9 @@ nearlink_sdr/
 | `crypto` | AES-CCM 加密与密钥派生 | 9.3/9.4 |
 | `security_manager` | 安全流程集成 (配对 + 加密) | 9.2-9.4 |
 | `qos` | QoS 服务质量管理 (ARQ/HARQ/流控/LQI) | 6.5 |
+| `smf` | 系统管理帧编解码 | 6.6 |
+| `smf_scheduler` | SMF 发送调度 | 6.6.3 |
+| `uwb_measurement_security` | UWB 脉冲测量安全 | 9.5 |
 
 ### sim -- 仿真
 
@@ -85,6 +93,7 @@ nearlink_sdr/
 | Phase 12 | AMC / HARQ / 跳频多径 | `sim_amc_throughput`, `sim_harq_link`, `sim_hopping_multipath_link` |
 | Phase 13 | QoS ARQ / AMC 自适应 / 流控 | `sim_qos_arq_link`, `sim_qos_amc_adaptive`, `sim_qos_flow_control` |
 | Phase 14 | 双节点端到端仿真 | `sim_dual_node_link`, `sim_dual_node_secure_link`, `sim_dual_node_mcs_adapt` |
+| Phase 15 | SleNode 集成仿真 | `sim_node_hopping_link`, `sim_node_access_flow`, `sim_node_channel_sweep`, `sim_node_power_adapt`, `sim_node_measurement` |
 
 每个阶段的仿真函数可独立调用, 也可通过 `run_phaseN_simulation()` 批量执行。
 
@@ -107,6 +116,12 @@ SleNode
 ├── QosManager       QoS 管理 (ARQ + HARQ + 流控 + 质量跟踪 + 发送队列)
 ├── PairingManager   配对流程驱动 (ECDH 密钥交换)
 ├── FrameCryptoContext  帧级加密上下文 (AES-CCM)
+├── FreqHopping      跳频序列管理
+├── PowerController  功率控制
+├── ScheduleManager  时序调度
+├── ChannelModel     信道模型 (仿真模式)
+├── AccessManager    接入流程管理
+├── SMFScheduler     系统管理帧调度 (可选)
 └── TxConfig         发射参数 (帧类型 + MCS + 导频 + 加扰)
 ```
 

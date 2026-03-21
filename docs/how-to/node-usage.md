@@ -97,6 +97,55 @@ class MyCallback(NodeCallback):
 
     def on_disconnected(self, reason):
         print(f"断开: {reason.name}")
+```
+
+## 跳频
+
+启用跳频后, 每次发送自动计算下一跳信道:
+
+```python
+config = NodeConfig(
+    address=b"\x01" * 6,
+    hopping_enabled=True,
+    band="2.4GHz",
+)
+node = SleNode(config=config)
+channel = node.hop_to_next()
+print(f"跳频信道: {channel}")
+```
+
+## 功率控制
+
+```python
+config = NodeConfig(
+    address=b"\x01" * 6,
+    initial_power_level=4,
+)
+node = SleNode(config=config)
+node.set_power_level(6)  # 设置功率等级
+```
+
+## 接入流程
+
+```python
+config = NodeConfig(
+    address=b"\xAA" * 6,
+    role=NodeRole.G_NODE,
+)
+node = SleNode(config=config)
+
+# 启动广播, 等待接入
+node.start_advertising()
+
+# 或启动发现
+node.start_discovery()
+```
+
+## 测量信号
+
+```python
+signal = node.generate_measurement_signal(signal_type=1)
+```
 
 node = SleNode(callback=MyCallback())
 ```

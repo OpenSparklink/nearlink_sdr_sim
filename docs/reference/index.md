@@ -34,6 +34,11 @@
 | {py:mod}`nearlink_sdr.phy.mac_interface` | MAC-PHY 适配层 |
 | {py:mod}`nearlink_sdr.phy.measurement` | 位置信息测量信号 |
 | {py:mod}`nearlink_sdr.phy.measurement_frame` | 测量帧 |
+| {py:mod}`nearlink_sdr.phy.measurement_tx` | 窄带/UWB 测量链路参数与调度 |
+| {py:mod}`nearlink_sdr.phy.uwb_pulse` | UWB 脉冲波形与芯片调制 |
+| {py:mod}`nearlink_sdr.phy.multitone` | 多音信号生成 |
+| {py:mod}`nearlink_sdr.phy.rf_compliance` | 射频合规参数校验 |
+| {py:mod}`nearlink_sdr.phy.data_link` | 异步/同步数据链路传输规程 |
 | {py:mod}`nearlink_sdr.phy.usrp` | USRP 接口 |
 
 ## MAC 层模块 (`mac`)
@@ -52,12 +57,16 @@
 | {py:mod}`nearlink_sdr.mac.crypto` | 加密与密钥派生 |
 | {py:mod}`nearlink_sdr.mac.security_manager` | 安全流程集成 |
 | {py:mod}`nearlink_sdr.mac.qos` | QoS 服务质量管理 |
+| {py:mod}`nearlink_sdr.mac.smf` | 系统管理帧编解码 |
+| {py:mod}`nearlink_sdr.mac.smf_scheduler` | SMF 发送调度 |
+| {py:mod}`nearlink_sdr.mac.uwb_measurement_security` | UWB 脉冲测量安全 |
 
 ## 仿真模块 (`sim`)
 
 | 模块 | 功能 |
 |------|------|
-| {py:mod}`nearlink_sdr.sim.link_sim` | 链路仿真 |
+| {py:mod}`nearlink_sdr.sim.link_sim` | 链路仿真 (Phase 1-15) |
+| {py:mod}`nearlink_sdr.sim.usrp_sim` | USRP 环回仿真引擎 |
 
 ## 节点实体
 

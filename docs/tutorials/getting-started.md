@@ -127,6 +127,47 @@ for snr, ber in zip(result["snr_db"], result["ber"]):
     print(f"SNR={snr:2.0f} dB  BER={ber:.5f}")
 ```
 
+## SleNode 节点仿真
+
+`SleNode` 是项目的顶层实体, 将物理层和 MAC 层全部组件整合为统一接口:
+
+```python
+from nearlink_sdr.node import SleNode, NodeConfig, NodeRole
+
+# 创建带跳频和功率控制的节点
+config = NodeConfig(
+    address=b"\x01\x02\x03\x04\x05\x06",
+    role=NodeRole.G_NODE,
+    frame_type=2,
+    mcs_index=7,
+    hopping_enabled=True,
+    initial_power_level=4,
+)
+node = SleNode(config=config)
+
+# 跳频
+channel = node.hop_to_next()
+print(f"当前信道: {channel}")
+
+# 功率控制
+node.set_power_level(6)
+
+# 查看节点状态
+stats = node.get_stats()
+print(stats)
+```
+
+## Phase 15 集成仿真
+
+项目提供基于 SleNode 的完整集成仿真, 覆盖跳频、功率自适应、接入流程和信道扫频:
+
+```python
+from nearlink_sdr.sim.link_sim import run_phase15_simulation
+
+run_phase15_simulation()
+# 输出四面板可视化图: 跳频/接入/功率/信道
+```
+
 ## 下一步
 
 - 阅读 [操作指南](../how-to/index.md) 了解具体任务的操作方法
