@@ -1,5 +1,8 @@
 """TXS-10002-2025 链路仿真: GFSK/PSK 无编码 + Polar编码端到端仿真。"""
 
+import os
+from pathlib import Path
+
 import numpy as np
 
 from nearlink_sdr.common.polar import PolarEncoder, get_info_bit_count, get_polar_decoder
@@ -10,6 +13,15 @@ from nearlink_sdr.phy.psk import PSKDemodulator, PSKModulator
 from nearlink_sdr.phy.sync_sequence import (
     sync_signal_1,
 )
+
+# 仿真输出目录: 可通过环境变量 NEARLINK_SDR_OUTPUT 覆盖
+_OUTPUT_DIR = Path(os.environ.get("NEARLINK_SDR_OUTPUT", "output"))
+
+
+def _ensure_output_dir() -> Path:
+    """确保输出目录存在并返回路径。"""
+    _OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    return _OUTPUT_DIR
 
 
 def _ber(tx: np.ndarray, rx: np.ndarray) -> float:
@@ -138,7 +150,7 @@ def run_phase1_simulation():
     ax.grid(True, which="both", ls="--", alpha=0.5)
     ax.set_ylim(bottom=1e-5)
     fig.tight_layout()
-    fig.savefig("ber_phase1.png", dpi=150)
+    fig.savefig(_ensure_output_dir() / "ber_phase1.png", dpi=150)
     print("\nBER curve saved to ber_phase1.png")
 
 
@@ -286,7 +298,7 @@ def run_phase2_simulation():
     ax2.set_ylim(bottom=1e-4)
 
     fig.tight_layout()
-    fig.savefig("ber_phase2.png", dpi=150)
+    fig.savefig(_ensure_output_dir() / "ber_phase2.png", dpi=150)
     print("\nBER/FER curves saved to ber_phase2.png")
 
 
@@ -487,7 +499,7 @@ def run_phase3_simulation():
     ax2.set_ylim(bottom=1e-4)
 
     fig.tight_layout()
-    fig.savefig("ber_phase3.png", dpi=150)
+    fig.savefig(_ensure_output_dir() / "ber_phase3.png", dpi=150)
     print("\nBER/FER curves saved to ber_phase3.png")
 
 
@@ -684,7 +696,7 @@ def run_phase4_simulation():
     ax2.set_ylim(bottom=1e-4)
 
     fig.tight_layout()
-    fig.savefig("ber_phase4.png", dpi=150)
+    fig.savefig(_ensure_output_dir() / "ber_phase4.png", dpi=150)
     print("\nBER/FER curves saved to ber_phase4.png")
 
 
@@ -869,7 +881,7 @@ def run_phase5_simulation():
     ax2.set_ylim(bottom=1e-4)
 
     fig.tight_layout()
-    fig.savefig("ber_phase5.png", dpi=150)
+    fig.savefig(_ensure_output_dir() / "ber_phase5.png", dpi=150)
     print("\nBER/FER curves saved to ber_phase5.png")
 
 
@@ -1029,7 +1041,7 @@ def run_phase6_simulation():
     ax2.set_ylim(bottom=1e-4)
 
     fig.tight_layout()
-    fig.savefig("ber_phase6.png", dpi=150)
+    fig.savefig(_ensure_output_dir() / "ber_phase6.png", dpi=150)
     print("\nBER/FER curves saved to ber_phase6.png")
 
 
@@ -1236,7 +1248,7 @@ def run_phase7_simulation():
     ax2.set_ylim(bottom=1e-4)
 
     fig.tight_layout()
-    fig.savefig("ber_phase7.png", dpi=150)
+    fig.savefig(_ensure_output_dir() / "ber_phase7.png", dpi=150)
     print("\nBER/FER curves saved to ber_phase7.png")
 
 
@@ -1315,7 +1327,7 @@ def run_phase8_simulation():
     ax2.set_ylim(bottom=1e-4)
 
     fig.tight_layout()
-    fig.savefig("ber_phase8.png", dpi=150)
+    fig.savefig(_ensure_output_dir() / "ber_phase8.png", dpi=150)
     print("\nBER/FER curves saved to ber_phase8.png")
 
 
@@ -1766,7 +1778,7 @@ def run_phase9_simulation():
     ax.set_ylim(-0.05, 1.05)
 
     fig.tight_layout()
-    fig.savefig("ber_phase9.png", dpi=150)
+    fig.savefig(_ensure_output_dir() / "ber_phase9.png", dpi=150)
     print("\nPhase 9 curves saved to ber_phase9.png")
 
 
@@ -2323,7 +2335,7 @@ def run_phase10_simulation() -> None:
     ax.grid(True, ls="--", alpha=0.5)
 
     fig.tight_layout()
-    fig.savefig("ber_phase10.png", dpi=150)
+    fig.savefig(_ensure_output_dir() / "ber_phase10.png", dpi=150)
     print("\nPhase 10 curves saved to ber_phase10.png")
 
 
@@ -2760,7 +2772,7 @@ def run_phase11_simulation() -> None:
     ax.grid(True, ls="--", alpha=0.5)
 
     fig.tight_layout()
-    fig.savefig("ber_phase11.png", dpi=150)
+    fig.savefig(_ensure_output_dir() / "ber_phase11.png", dpi=150)
     print("\nPhase 11 curves saved to ber_phase11.png")
 
 
@@ -3168,7 +3180,7 @@ def run_phase12_simulation() -> None:
     ax.grid(True, ls="--", alpha=0.5)
 
     fig.tight_layout()
-    fig.savefig("ber_phase12.png", dpi=150)
+    fig.savefig(_ensure_output_dir() / "ber_phase12.png", dpi=150)
     print("\nPhase 12 curves saved to ber_phase12.png")
 
 
@@ -3595,7 +3607,7 @@ def run_phase13_simulation() -> None:
     ax.grid(True, ls="--", alpha=0.3)
 
     fig.tight_layout()
-    fig.savefig("ber_phase13.png", dpi=150)
+    fig.savefig(_ensure_output_dir() / "ber_phase13.png", dpi=150)
     print("\nPhase 13 curves saved to ber_phase13.png")
 
 
@@ -4008,7 +4020,7 @@ def run_phase14_simulation() -> None:
     ax.grid(True, ls="--", alpha=0.3)
 
     fig.tight_layout()
-    fig.savefig("ber_phase14.png", dpi=150)
+    fig.savefig(_ensure_output_dir() / "ber_phase14.png", dpi=150)
     print("\nPhase 14 curves saved to ber_phase14.png")
 
 
@@ -4434,7 +4446,7 @@ def run_phase15_simulation() -> None:
     ax2.set_yticklabels(["FAIL", "OK"])
 
     fig.tight_layout()
-    fig.savefig("ber_phase15.png", dpi=150)
+    fig.savefig(_ensure_output_dir() / "ber_phase15.png", dpi=150)
     print("\nPhase 15 curves saved to ber_phase15.png")
 
 
@@ -4912,7 +4924,7 @@ def run_phase16_simulation(n_frames: int = 50) -> None:
     ax.grid(True, ls="--", alpha=0.3)
 
     fig.tight_layout()
-    fig.savefig("ber_phase16.png", dpi=150)
+    fig.savefig(_ensure_output_dir() / "ber_phase16.png", dpi=150)
     print("\nPhase 16 curves saved to ber_phase16.png")
 
 
