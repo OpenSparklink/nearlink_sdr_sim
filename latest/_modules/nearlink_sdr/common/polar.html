@@ -387,6 +387,12 @@
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr_accel</span><span class="w"> </span><span class="kn">import</span> <span class="n">RustPolarDecoder</span> <span class="k">as</span> <span class="n">_RustPolarDecoder</span>
+    <span class="n">_HAS_RUST_ACCEL</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">_HAS_RUST_ACCEL</span> <span class="o">=</span> <span class="kc">False</span>
+
 <span class="c1"># Reliability sequence Q_0^{N_max-1} for N_max = 1024</span>
 <span class="c1"># Sorted by ascending reliability; index i maps to bit index Q_i.</span>
 <span class="n">RELIABILITY_SEQ_1024</span> <span class="o">=</span> <span class="p">[</span>
@@ -1545,6 +1551,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
         <span class="c1"># SSC: 预计算每个子树的类型 (rate-0 / rate-1 / partial)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_node_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_node_types</span><span class="p">()</span>
+        <span class="c1"># Rust 加速: 可用时创建 Rust 解码器实例</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rust_decoder</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">_HAS_RUST_ACCEL</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_rust_decoder</span> <span class="o">=</span> <span class="n">_RustPolarDecoder</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_is_frozen</span><span class="p">,</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">info_positions</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span>
+            <span class="p">)</span>
 
 <div class="viewcode-block" id="PolarDecoder._build_node_types">
 <a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.html#nearlink_sdr.common.polar.PolarDecoder._build_node_types">[文档]</a>
@@ -1589,6 +1603,9 @@
         <span class="n">llr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">llr</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">llr</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="si">}</span><span class="s2"> LLRs, got shape </span><span class="si">{</span><span class="n">llr</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rust_decoder</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rust_decoder</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">llr</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_L</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">llr</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sc</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
