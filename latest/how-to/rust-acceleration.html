@@ -3,10 +3,10 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="索引" href="../genindex.html"><link rel="search" title="搜索" href="../search.html"><link rel="next" title="操作指南" href="../how-to/index.html"><link rel="prev" title="nearlink-sdr" href="../index.html">
+<link rel="index" title="索引" href="../genindex.html"><link rel="search" title="搜索" href="../search.html"><link rel="next" title="SDR E310 部署规划" href="sdr-deployment.html"><link rel="prev" title="使用 SLE 节点实体" href="node-usage.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>快速入门 - nearlink-sdr 0.1.0 文档</title>
+        <title>Rust 加速模块 - nearlink-sdr 0.1.0 文档</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -198,15 +198,15 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul class="current">
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">快速入门</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../how-to/index.html">操作指南</a><input aria-label="Toggle navigation of 操作指南" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../how-to/run-simulation.html">运行链路仿真</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../how-to/add-modulation.html">添加新的调制方式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../how-to/qos-management.html">QoS 服务质量管理</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../how-to/node-usage.html">使用 SLE 节点实体</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../how-to/rust-acceleration.html">Rust 加速模块</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../how-to/sdr-deployment.html">SDR E310 部署规划</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../how-to/build-docs.html">构建文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/getting-started.html">快速入门</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">操作指南</a><input aria-label="Toggle navigation of 操作指南" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="run-simulation.html">运行链路仿真</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-modulation.html">添加新的调制方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qos-management.html">QoS 服务质量管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="node-usage.html">使用 SLE 节点实体</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Rust 加速模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdr-deployment.html">SDR E310 部署规划</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build-docs.html">构建文档</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../reference/index.html">技术参考</a><input aria-label="Toggle navigation of 技术参考" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
@@ -367,7 +367,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="../_sources/tutorials/getting-started.md.txt" title="View this page">
+  <a class="muted-link" href="../_sources/how-to/rust-acceleration.md.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -385,176 +385,110 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>快速入门<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
-<p>本教程引导你从安装到运行第一次链路仿真, 完成对 nearlink-sdr 的初步了解。</p>
-<section id="id2">
-<h2>前置条件<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+          <section class="tex2jax_ignore mathjax_ignore" id="rust">
+<h1>Rust 加速模块<a class="headerlink" href="#rust" title="Link to this heading">¶</a></h1>
+<p>nearlink-sdr 提供可选的 Rust 加速扩展，用于加速 Polar 编解码等计算密集型操作。安装后无需修改任何代码，Python 模块会自动检测并使用 Rust 实现。</p>
+<section id="id1">
+<h2>前提条件<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Python 3.14 或更高版本</p></li>
-<li><p><a class="reference external" href="https://docs.astral.sh/uv/">uv</a> 包管理器</p></li>
+<li><p>Rust 工具链 (cargo, rustc)：通过 <a class="reference external" href="https://rustup.rs/">rustup</a> 安装</p></li>
+<li><p>Python 开发头文件（多数系统已默认包含）</p></li>
 </ul>
 </section>
+<section id="id2">
+<h2>安装方式<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <section id="id3">
-<h2>安装<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
-<p>克隆仓库并安装依赖:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>&lt;repo-url&gt;<span class="w"> </span>nearlink-sdr
-<span class="nb">cd</span><span class="w"> </span>nearlink-sdr
-uv<span class="w"> </span>sync
+<h3>自动安装<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<p>项目提供了一键安装脚本：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scripts/install_accel.py
 </pre></div>
 </div>
+<p>脚本会依次检查 Rust 工具链、安装 maturin 构建工具、编译并安装加速模块。安装失败不会影响项目正常使用，所有功能会回退到纯 Python 实现。</p>
 </section>
 <section id="id4">
-<h2>运行测试<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
-<p>确认所有模块工作正常:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/<span class="w"> </span>-v<span class="w"> </span>--tb<span class="o">=</span>short
+<h3>手动安装<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 安装 maturin 构建工具</span>
+uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>maturin
+
+<span class="c1"># 编译并安装到当前虚拟环境</span>
+<span class="nb">cd</span><span class="w"> </span>rust
+maturin<span class="w"> </span>develop<span class="w"> </span>--release
+<span class="nb">cd</span><span class="w"> </span>..
 </pre></div>
 </div>
 </section>
-<section id="gfsk">
-<h2>第一次仿真: GFSK 链路<a class="headerlink" href="#gfsk" title="Link to this heading">¶</a></h2>
-<p>GFSK 是 SparkLink SLE 帧类型 1 使用的调制方式。下面的代码演示一次完整的 GFSK 调制-信道-解调流程:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.phy.channel</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChannelModel</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.phy.gfsk</span><span class="w"> </span><span class="kn">import</span> <span class="n">GFSKDemodulator</span><span class="p">,</span> <span class="n">GFSKModulator</span>
-
-<span class="c1"># 生成随机数据比特</span>
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">data_bits</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
-
-<span class="c1"># 调制</span>
-<span class="n">mod</span> <span class="o">=</span> <span class="n">GFSKModulator</span><span class="p">(</span><span class="n">sps</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">mod_index</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="n">tx_signal</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">modulate</span><span class="p">(</span><span class="n">data_bits</span><span class="p">)</span>
-
-<span class="c1"># 通过 AWGN 信道</span>
-<span class="n">ch</span> <span class="o">=</span> <span class="n">ChannelModel</span><span class="p">(</span><span class="n">snr_db</span><span class="o">=</span><span class="mf">12.0</span><span class="p">)</span>
-<span class="n">rx_signal</span> <span class="o">=</span> <span class="n">ch</span><span class="o">.</span><span class="n">apply_awgn</span><span class="p">(</span><span class="n">tx_signal</span><span class="p">)</span>
-
-<span class="c1"># 解调</span>
-<span class="n">demod</span> <span class="o">=</span> <span class="n">GFSKDemodulator</span><span class="p">(</span><span class="n">sps</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
-<span class="n">rx_bits</span> <span class="o">=</span> <span class="n">demod</span><span class="o">.</span><span class="n">demodulate</span><span class="p">(</span><span class="n">rx_signal</span><span class="p">)</span>
-
-<span class="c1"># 计算误码率</span>
-<span class="n">ber</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data_bits</span> <span class="o">!=</span> <span class="n">rx_bits</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">data_bits</span><span class="p">)])</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;BER = </span><span class="si">{</span><span class="n">ber</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>完整代码见 <code class="docutils literal notranslate"><span class="pre">examples/getting_started.py</span></code> 中的 <code class="docutils literal notranslate"><span class="pre">gfsk_link()</span></code> 函数。</p>
-</section>
-<section id="psk">
-<h2>第一次仿真: PSK 编码链路<a class="headerlink" href="#psk" title="Link to this heading">¶</a></h2>
-<p>帧类型 2/3/4 使用 PSK 调制。结合 Polar 编码可以获得编码增益:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.common.polar</span><span class="w"> </span><span class="kn">import</span> <span class="n">PolarDecoder</span><span class="p">,</span> <span class="n">PolarEncoder</span><span class="p">,</span> <span class="n">get_info_bit_count</span>
-
-<span class="c1"># Polar 编码参数: 码长 256, 码率 1/2</span>
-<span class="n">code_length</span> <span class="o">=</span> <span class="mi">256</span>
-<span class="n">K</span> <span class="o">=</span> <span class="n">get_info_bit_count</span><span class="p">(</span><span class="s2">&quot;1/2&quot;</span><span class="p">,</span> <span class="n">code_length</span><span class="p">)</span>
-<span class="n">enc</span> <span class="o">=</span> <span class="n">PolarEncoder</span><span class="p">(</span><span class="n">code_length</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
-<span class="n">dec</span> <span class="o">=</span> <span class="n">PolarDecoder</span><span class="p">(</span><span class="n">code_length</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
-
-<span class="c1"># 信息比特</span>
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">info_bits</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
-
-<span class="c1"># 编码</span>
-<span class="n">coded_bits</span> <span class="o">=</span> <span class="n">enc</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">info_bits</span><span class="p">)</span>
-
-<span class="c1"># BPSK 调制 (0 -&gt; +1, 1 -&gt; -1)</span>
-<span class="n">bpsk_signal</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">coded_bits</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-
-<span class="c1"># AWGN 信道</span>
-<span class="n">snr_db</span> <span class="o">=</span> <span class="mf">2.0</span>
-<span class="n">snr_lin</span> <span class="o">=</span> <span class="mf">10.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">snr_db</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">)</span>
-<span class="n">R</span> <span class="o">=</span> <span class="n">K</span> <span class="o">/</span> <span class="n">code_length</span>
-<span class="n">noise_var</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">R</span> <span class="o">*</span> <span class="n">snr_lin</span><span class="p">)</span>
-<span class="n">noise</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">noise_var</span><span class="p">),</span> <span class="n">code_length</span><span class="p">)</span>
-<span class="n">received</span> <span class="o">=</span> <span class="n">bpsk_signal</span> <span class="o">+</span> <span class="n">noise</span>
-
-<span class="c1"># SC 解码</span>
-<span class="n">llr</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">received</span> <span class="o">/</span> <span class="n">noise_var</span>
-<span class="n">decoded</span> <span class="o">=</span> <span class="n">dec</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">llr</span><span class="p">)</span>
-
-<span class="n">errors</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">info_bits</span> <span class="o">!=</span> <span class="n">decoded</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;比特错误数: </span><span class="si">{</span><span class="n">errors</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">K</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="ber">
-<h2>BER 曲线仿真<a class="headerlink" href="#ber" title="Link to this heading">¶</a></h2>
-<p>项目内置了批量仿真函数, 可以直接绘制 BER 曲线:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>nearlink_sdr.sim.link_sim<span class="w"> </span>phase1
-<span class="c1"># 输出 BER 数据并保存 ber_phase1.png</span>
-</pre></div>
-</div>
-</section>
-<section id="pipeline">
-<h2>全链路 Pipeline 仿真<a class="headerlink" href="#pipeline" title="Link to this heading">¶</a></h2>
-<p>调用 <code class="docutils literal notranslate"><span class="pre">sim_pipeline_link</span></code> 进行端到端仿真, 覆盖 CRC、Polar 编码、加扰、调制、帧组装等全部物理层处理:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.sim.link_sim</span><span class="w"> </span><span class="kn">import</span> <span class="n">sim_pipeline_link</span>
-
-<span class="n">result</span> <span class="o">=</span> <span class="n">sim_pipeline_link</span><span class="p">(</span>
-    <span class="n">frame_type</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">mcs_index</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
-    <span class="n">n_data_bytes</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-    <span class="n">snr_range_db</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-    <span class="n">n_frames</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="k">for</span> <span class="n">snr</span><span class="p">,</span> <span class="n">ber</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;snr_db&quot;</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;ber&quot;</span><span class="p">],</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SNR=</span><span class="si">{</span><span class="n">snr</span><span class="si">:</span><span class="s2">2.0f</span><span class="si">}</span><span class="s2"> dB  BER=</span><span class="si">{</span><span class="n">ber</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="slenode">
-<h2>SleNode 节点仿真<a class="headerlink" href="#slenode" title="Link to this heading">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">SleNode</span></code> 是项目的顶层实体, 将物理层和 MAC 层全部组件整合为统一接口:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">NodeConfig</span><span class="p">,</span> <span class="n">NodeRole</span><span class="p">,</span> <span class="n">SleNode</span>
-
-<span class="c1"># 创建节点</span>
-<span class="n">config</span> <span class="o">=</span> <span class="n">NodeConfig</span><span class="p">(</span>
-    <span class="n">address</span><span class="o">=</span><span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x01\x02\x03\x04\x05\x06</span><span class="s2">&quot;</span><span class="p">,</span>
-    <span class="n">role</span><span class="o">=</span><span class="n">NodeRole</span><span class="o">.</span><span class="n">G_NODE</span><span class="p">,</span>
-    <span class="n">frame_type</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">mcs_index</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
-    <span class="n">band</span><span class="o">=</span><span class="s2">&quot;2400&quot;</span><span class="p">,</span>
-    <span class="n">hop_param2</span><span class="o">=</span><span class="mh">0x1234</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">node</span> <span class="o">=</span> <span class="n">SleNode</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
-
-<span class="c1"># 推进时隙并获取当前跳频信道</span>
-<span class="n">node</span><span class="o">.</span><span class="n">advance_slot</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">channel</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">current_channel</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;当前信道: </span><span class="si">{</span><span class="n">channel</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="c1"># 功率调整</span>
-<span class="n">node</span><span class="o">.</span><span class="n">adjust_power</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span>  <span class="c1"># 增加 3 dB</span>
-
-<span class="c1"># 查看节点状态</span>
-<span class="n">stats</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">stats</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="phase-15">
-<h2>Phase 15 集成仿真<a class="headerlink" href="#phase-15" title="Link to this heading">¶</a></h2>
-<p>项目提供基于 SleNode 的完整集成仿真, 覆盖跳频、功率自适应、接入流程和信道扫频:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>nearlink_sdr.sim.link_sim<span class="w"> </span>phase15
-<span class="c1"># 输出四面板可视化图: 跳频/接入/功率/信道</span>
-</pre></div>
-</div>
 </section>
 <section id="id5">
-<h2>运行示例<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
-<p>所有入门示例已整合为独立脚本, 可直接运行:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>examples/getting_started.py
+<h2>验证安装<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr_accel</span><span class="w"> </span><span class="kn">import</span> <span class="n">RustPolarDecoder</span><span class="p">,</span> <span class="n">RustPolarEncoder</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rust 加速模块已加载&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>或者检查模块级标志：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.common.polar</span><span class="w"> </span><span class="kn">import</span> <span class="n">_HAS_RUST_ACCEL</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Rust 加速: </span><span class="si">{</span><span class="s1">&#39;已启用&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">_HAS_RUST_ACCEL</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;未启用&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="id6">
-<h2>下一步<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>阅读 <a class="reference internal" href="../how-to/index.html"><span class="std std-doc">操作指南</span></a> 了解具体任务的操作方法</p></li>
-<li><p>阅读 <a class="reference internal" href="../explanation/architecture.html"><span class="std std-doc">设计说明</span></a> 理解系统架构</p></li>
-<li><p>查阅 <a class="reference internal" href="../reference/index.html"><span class="std std-doc">技术参考</span></a> 获取完整的接口文档</p></li>
-</ul>
+<h2>性能对比<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h2>
+<p>以 TX→RX 全链路 Pipeline 为基准（单次调用，含 Polar 编解码、调制解调、信道、均衡）：</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>配置</p></th>
+<th class="head"><p>耗时</p></th>
+<th class="head"><p>加速比</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>纯 Python</p></td>
+<td><p>389 ms</p></td>
+<td><p>1.0x</p></td>
+</tr>
+<tr class="row-odd"><td><p>+ Rust SC 解码器</p></td>
+<td><p>174 ms</p></td>
+<td><p>2.2x</p></td>
+</tr>
+<tr class="row-even"><td><p>+ Rust 编码器</p></td>
+<td><p>101 ms</p></td>
+<td><p>3.9x</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>测试套件总耗时从 12.4 秒降至 4.1 秒。</p>
+</section>
+<section id="id7">
+<h2>加速范围<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
+<p>当前 Rust 加速覆盖以下模块：</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>模块</p></th>
+<th class="head"><p>加速内容</p></th>
+<th class="head"><p>实现方式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">common/polar.py</span></code></p></td>
+<td><p>SC 解码（SSC 优化）</p></td>
+<td><p>递归节点类型表 + 标量运算</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">common/polar.py</span></code></p></td>
+<td><p>Polar 编码（蝶形 GF(2) 变换）</p></td>
+<td><p>原地位运算矩阵乘法</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Rust 源码位于 <code class="docutils literal notranslate"><span class="pre">rust/src/lib.rs</span></code>，通过 PyO3 暴露为 Python 类，由 maturin 构建为本地扩展模块 <code class="docutils literal notranslate"><span class="pre">nearlink_sdr_accel</span></code>。</p>
+</section>
+<section id="id8">
+<h2>故障排除<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h2>
+<p><strong>cargo 未找到</strong>：运行 <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">--proto</span> <span class="pre">'=https'</span> <span class="pre">--tlsv1.2</span> <span class="pre">-sSf</span> <span class="pre">https://sh.rustup.rs</span> <span class="pre">|</span> <span class="pre">sh</span></code> 安装 Rust 工具链。</p>
+<p><strong>编译失败</strong>：确保 Rust 版本 &gt;= 1.70，运行 <code class="docutils literal notranslate"><span class="pre">rustup</span> <span class="pre">update</span></code> 更新。</p>
+<p><strong>maturin 找不到虚拟环境</strong>：确认当前处于项目根目录的虚拟环境中（<code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">.venv/bin/activate</span></code> 或 <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">sync</span></code> 后执行）。</p>
 </section>
 </section>
 
@@ -563,23 +497,23 @@ uv<span class="w"> </span>sync
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../how-to/index.html">
+          <a class="next-page" href="sdr-deployment.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">操作指南</div>
+                <div class="title">SDR E310 部署规划</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../index.html">
+          <a class="prev-page" href="node-usage.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Home</div>
+                <div class="title">使用 SLE 节点实体</div>
                 
               </div>
             </a>
@@ -616,18 +550,17 @@ uv<span class="w"> </span>sync
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">快速入门</a><ul>
-<li><a class="reference internal" href="#id2">前置条件</a></li>
-<li><a class="reference internal" href="#id3">安装</a></li>
-<li><a class="reference internal" href="#id4">运行测试</a></li>
-<li><a class="reference internal" href="#gfsk">第一次仿真: GFSK 链路</a></li>
-<li><a class="reference internal" href="#psk">第一次仿真: PSK 编码链路</a></li>
-<li><a class="reference internal" href="#ber">BER 曲线仿真</a></li>
-<li><a class="reference internal" href="#pipeline">全链路 Pipeline 仿真</a></li>
-<li><a class="reference internal" href="#slenode">SleNode 节点仿真</a></li>
-<li><a class="reference internal" href="#phase-15">Phase 15 集成仿真</a></li>
-<li><a class="reference internal" href="#id5">运行示例</a></li>
-<li><a class="reference internal" href="#id6">下一步</a></li>
+<li><a class="reference internal" href="#">Rust 加速模块</a><ul>
+<li><a class="reference internal" href="#id1">前提条件</a></li>
+<li><a class="reference internal" href="#id2">安装方式</a><ul>
+<li><a class="reference internal" href="#id3">自动安装</a></li>
+<li><a class="reference internal" href="#id4">手动安装</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id5">验证安装</a></li>
+<li><a class="reference internal" href="#id6">性能对比</a></li>
+<li><a class="reference internal" href="#id7">加速范围</a></li>
+<li><a class="reference internal" href="#id8">故障排除</a></li>
 </ul>
 </li>
 </ul>
