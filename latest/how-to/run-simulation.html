@@ -522,7 +522,7 @@
 <span class="n">result</span> <span class="o">=</span> <span class="n">sim_doppler_link</span><span class="p">(</span>
     <span class="n">doppler_range_hz</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span>
     <span class="n">snr_db</span><span class="o">=</span><span class="mf">12.0</span><span class="p">,</span>
-    <span class="n">n_frames</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">n_frames</span><span class="o">=</span><span class="n">n_frames</span><span class="p">,</span>
     <span class="n">mcs_index</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="k">for</span> <span class="n">fd</span><span class="p">,</span> <span class="n">fer</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;doppler_hz&quot;</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;fer&quot;</span><span class="p">],</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -538,7 +538,7 @@
 <span class="n">result_sir</span> <span class="o">=</span> <span class="n">sim_sir_sweep</span><span class="p">(</span>
     <span class="n">sir_range_db</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
     <span class="n">snr_db</span><span class="o">=</span><span class="mf">15.0</span><span class="p">,</span>
-    <span class="n">n_frames</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">n_frames</span><span class="o">=</span><span class="n">n_frames</span><span class="p">,</span>
     <span class="n">n_interferers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="k">for</span> <span class="n">sir</span><span class="p">,</span> <span class="n">fer</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">result_sir</span><span class="p">[</span><span class="s2">&quot;sir_db&quot;</span><span class="p">],</span> <span class="n">result_sir</span><span class="p">[</span><span class="s2">&quot;fer&quot;</span><span class="p">],</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -554,7 +554,7 @@
 <span class="n">result_mp</span> <span class="o">=</span> <span class="n">sim_doppler_multipath_link</span><span class="p">(</span>
     <span class="n">doppler_range_hz</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span>
     <span class="n">snr_db</span><span class="o">=</span><span class="mf">15.0</span><span class="p">,</span>
-    <span class="n">n_frames</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">n_frames</span><span class="o">=</span><span class="n">n_frames</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="k">for</span> <span class="n">fd</span><span class="p">,</span> <span class="n">fer</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">result_mp</span><span class="p">[</span><span class="s2">&quot;doppler_hz&quot;</span><span class="p">],</span> <span class="n">result_mp</span><span class="p">[</span><span class="s2">&quot;fer&quot;</span><span class="p">],</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Doppler+多径: fd=</span><span class="si">{</span><span class="n">fd</span><span class="si">:</span><span class="s2">3.0f</span><span class="si">}</span><span class="s2"> Hz  FER=</span><span class="si">{</span><span class="n">fer</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
