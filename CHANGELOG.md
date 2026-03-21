@@ -9,6 +9,18 @@
 
 ### Added
 
+- Rust 加速模块 (`rust/nearlink_sdr_accel`)
+  - PyO3 + maturin 构建的 Polar SC 解码器 Rust 实现
+  - SSC 优化 (rate-0/rate-1 子树剪枝) + 标量 f/g 运算
+  - Python 端自动检测, 不可用时回退纯 Python 实现
+  - Pipeline 解码性能提升 >10x, 整体 pipeline 加速 2.2x (389ms → 174ms)
+  - 测试套件从 9.48s 降至 5.12s
+
+- 仿真输出目录管理
+  - 所有仿真图表输出到 `output/` 目录
+  - 环境变量 `NEARLINK_SDR_OUTPUT` 可自定义输出路径
+  - 根目录 16 个历史 PNG 文件已从 git 追踪中移除
+
 - GitHub Actions CI 工作流 (`.github/workflows/ci.yml`)
   - `lint`: ruff 代码检查 (src/tests/examples)
   - `test`: pytest 全量测试 + JUnit 报告

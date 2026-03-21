@@ -8,9 +8,9 @@
 
 ## 技术栈
 
-- 语言: Python 3.14+
+- 语言: Python 3.14+, Rust (加速扩展)
 - 包管理: uv
-- 构建: hatchling, src layout
+- 构建: hatchling (Python, src layout), maturin + PyO3 (Rust 扩展)
 - 测试: pytest + pytest-cov
 - Lint: ruff
 - 标准文档: `../Summary-of-Sparkling-Information/Standard/TXS-10002-2025.md`
@@ -240,7 +240,7 @@ tests/            # 测试文件, 与 src 模块一一对应
 ## 测试质量
 
 - 2652 个测试用例, 全部通过 (crypto 依赖测试除外)
-- 整体覆盖率 91%, 核心模块覆盖率 97%+, 测试执行时间 11 秒
+- 整体覆盖率 91%, 核心模块覆盖率 97%+, 测试执行时间 5 秒 (Rust 加速)
 - 标准第 14 章测试向量全部验证通过
 - 一致性测试 244 个 (协议/射频/安全)
 

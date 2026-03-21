@@ -7,6 +7,12 @@ from functools import lru_cache
 
 import numpy as np
 
+try:
+    from nearlink_sdr_accel import RustPolarDecoder as _RustPolarDecoder
+    _HAS_RUST_ACCEL = True
+except ImportError:
+    _HAS_RUST_ACCEL = False
+
 # Reliability sequence Q_0^{N_max-1} for N_max = 1024
 # Sorted by ascending reliability; index i maps to bit index Q_i.
 RELIABILITY_SEQ_1024 = [
@@ -1148,6 +1154,14 @@ class PolarDecoder:
         self._B = np.zeros((self.n + 1, N), dtype=np.int8)
         # SSC: 预计算每个子树的类型 (rate-0 / rate-1 / partial)
         self._node_type = self._build_node_types()
+        # Rust 加速: 可用时创建 Rust 解码器实例
+        self._rust_decoder = None
+        if _HAS_RUST_ACCEL:
+            self._rust_decoder = _RustPolarDecoder(
+                self.n,
+                self._is_frozen,
+                np.array(self.info_positions, dtype=np.int64),
+            )
 
     def _build_node_types(self) -> dict[tuple[int, int], int]:
         """预计算所有子树的类型: 0=rate-0, 1=rate-1, 2=partial。
@@ -1187,6 +1201,9 @@ class PolarDecoder:
         llr = np.asarray(llr, dtype=np.float64)
         if llr.shape != (self.N,):
             raise ValueError(f"Expected {self.N} LLRs, got shape {llr.shape}")
+
+        if self._rust_decoder is not None:
+            return np.asarray(self._rust_decoder.decode(llr), dtype=np.int8)
 
         self._L[0, :self.N] = llr
         self._sc(0, self.N, 0)
