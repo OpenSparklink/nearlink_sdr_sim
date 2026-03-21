@@ -404,6 +404,9 @@
 <li><p>测试套件从 9.48s 降至 5.12s</p></li>
 <li><p>Rust Polar 编码器 (蝶形 GF(2) 变换), pipeline 加速 3.9x (389ms → 101ms)</p></li>
 <li><p>测试套件整体从 12.36s 降至 4.10s</p></li>
+<li><p>Rust CRC 计算 (位级移位寄存器), 消除 Python 循环开销</p></li>
+<li><p>Rust m 序列生成 (popcount 反馈优化), 消除 Python 循环开销</p></li>
+<li><p>Pipeline 单次调用 1.36ms (纯 Python 基线 389ms, 加速比 ~280x)</p></li>
 </ul>
 </li>
 <li><p>Rust 加速安装工具 (<code class="docutils literal notranslate"><span class="pre">scripts/install_accel.py</span></code>)</p>

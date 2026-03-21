@@ -381,6 +381,12 @@
           <h1>nearlink_sdr.common.m_sequence 源代码</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr_accel</span><span class="w"> </span><span class="kn">import</span> <span class="n">rust_generate_m_sequence</span> <span class="k">as</span> <span class="n">_rust_m_seq</span>
+    <span class="n">_HAS_RUST_MSEQ</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">_HAS_RUST_MSEQ</span> <span class="o">=</span> <span class="kc">False</span>
+
 <span class="c1"># TXS-10002-2025 6.10.2 m序列</span>
 <span class="c1"># 反馈系数与移位寄存器初始值定义</span>
 
@@ -422,6 +428,9 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">length</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">length</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">order</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">_HAS_RUST_MSEQ</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">_rust_m_seq</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">taps</span><span class="p">,</span> <span class="n">init_val</span><span class="p">,</span> <span class="n">length</span><span class="p">))</span>
 
     <span class="n">reg</span> <span class="o">=</span> <span class="n">init_val</span>
     <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">order</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
