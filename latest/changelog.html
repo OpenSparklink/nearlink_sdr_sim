@@ -416,6 +416,14 @@
 <li><p>安装失败时静默回退, 不影响项目运行</p></li>
 </ul>
 </li>
+<li><p>Rust 质量工具链</p>
+<ul>
+<li><p>核心逻辑抽取为纯 Rust 函数, 可直接 <code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">test</span></code> 验证</p></li>
+<li><p>20 个 Rust 原生测试 (CRC/m序列/Polar编码/SC解码)</p></li>
+<li><p>clippy lint (deny warnings) + rustfmt 格式化</p></li>
+<li><p>CI 新增 <code class="docutils literal notranslate"><span class="pre">rust</span></code> job: fmt + clippy + cargo test</p></li>
+</ul>
+</li>
 <li><p>CI 集成 Rust 加速构建</p>
 <ul>
 <li><p>test/coverage/examples 三个 job 集成 <code class="docutils literal notranslate"><span class="pre">dtolnay/rust-toolchain&#64;stable</span></code> + maturin</p></li>
