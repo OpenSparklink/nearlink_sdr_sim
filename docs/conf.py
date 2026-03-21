@@ -86,6 +86,7 @@ latex_engine = "xelatex"
 latex_elements = {
     "papersize": "a4paper",
     "pointsize": "11pt",
+    "fontpkg": "",
     "preamble": r"""
 \usepackage{fontspec}
 \usepackage{xeCJK}
