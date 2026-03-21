@@ -1,5 +1,5 @@
 .PHONY: help install lint test coverage docs-html docs-pdf \
-       install-fonts accel examples clean
+       install-fonts install-node accel examples clean
 
 # [help-start]
 help:  ## 显示帮助信息
@@ -9,9 +9,10 @@ help:  ## 显示帮助信息
 
 # -- 安装 --------------------------------------------------------------------
 
-install:  ## 安装项目依赖
+install:  ## 安装全部依赖 (uv Python 依赖 + npm Node.js 工具)
 # [install-start]
 	uv sync
+	npm install
 # [install-end]
 
 accel:  ## 编译并安装 Rust 加速模块
@@ -27,6 +28,11 @@ install-fonts:  ## 安装 HarmonyOS 字体到系统
 	sudo fc-cache -f
 # [install-fonts-end]
 
+install-node:  ## 安装 Node.js 依赖 (markdownlint-cli2 + mermaid-cli)
+# [install-node-start]
+	npm install
+# [install-node-end]
+
 # -- 质量检查 -----------------------------------------------------------------
 
 lint:  ## 运行 ruff 代码检查
@@ -36,7 +42,7 @@ lint:  ## 运行 ruff 代码检查
 
 mdlint:  ## 运行 markdownlint 检查
 # [mdlint-start]
-	markdownlint-cli2 "docs/**/*.md" "*.md"
+	npx markdownlint-cli2 "docs/**/*.md" "*.md"
 # [mdlint-end]
 
 test:  ## 运行全量测试
@@ -61,7 +67,7 @@ docs-strict:  ## 严格模式构建文档 (CI 用)
 	uv run sphinx-build -E -W docs docs/_build/html
 # [docs-strict-end]
 
-docs-pdf:  ## 构建 PDF 文档
+docs-pdf:  ## 构建 PDF 文档 (需提前运行 make install)
 # [docs-pdf-start]
 	uv run sphinx-build -b latex docs docs/_build/latex
 	cd docs/_build/latex && make
