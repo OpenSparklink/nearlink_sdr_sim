@@ -203,9 +203,62 @@ impl RustPolarDecoder {
     }
 }
 
+/// Polar 编码器: 蝶形 GF(2) 变换
+#[pyclass]
+struct RustPolarEncoder {
+    big_n: usize,
+    info_positions: Vec<usize>,
+}
+
+#[pymethods]
+impl RustPolarEncoder {
+    #[new]
+    fn new(big_n: usize, info_positions: PyReadonlyArray1<'_, i64>) -> Self {
+        let info_pos: Vec<usize> = info_positions
+            .as_slice()
+            .unwrap()
+            .iter()
+            .map(|&x| x as usize)
+            .collect();
+        RustPolarEncoder {
+            big_n,
+            info_positions: info_pos,
+        }
+    }
+
+    fn encode<'py>(
+        &self,
+        py: Python<'py>,
+        info_bits: PyReadonlyArray1<'_, i8>,
+    ) -> Bound<'py, PyArray1<i8>> {
+        let bits = info_bits.as_slice().unwrap();
+        let n = self.big_n;
+        let mut d = vec![0i8; n];
+        // 插入信息位
+        for (idx, &pos) in self.info_positions.iter().enumerate() {
+            d[pos] = bits[idx];
+        }
+        // 蝶形 GF(2) 变换
+        let mut stage = 1usize;
+        while stage < n {
+            let stride = 2 * stage;
+            let mut j = 0usize;
+            while j < n {
+                for k in 0..stage {
+                    d[j + k] ^= d[j + stage + k];
+                }
+                j += stride;
+            }
+            stage <<= 1;
+        }
+        PyArray1::from_vec(py, d)
+    }
+}
+
 /// 模块入口
 #[pymodule]
 fn nearlink_sdr_accel(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<RustPolarDecoder>()?;
+    m.add_class::<RustPolarEncoder>()?;
     Ok(())
 }

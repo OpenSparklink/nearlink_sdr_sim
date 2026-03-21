@@ -9,6 +9,7 @@ import numpy as np
 
 try:
     from nearlink_sdr_accel import RustPolarDecoder as _RustPolarDecoder
+    from nearlink_sdr_accel import RustPolarEncoder as _RustPolarEncoder
     _HAS_RUST_ACCEL = True
 except ImportError:
     _HAS_RUST_ACCEL = False
@@ -1099,6 +1100,12 @@ class PolarEncoder:
         seq = _get_reliability_sequence(N)
         self.info_positions = sorted(seq[N - K :])
         self._info_pos_arr = np.array(self.info_positions, dtype=np.intp)
+        # Rust 加速
+        self._rust_encoder = None
+        if _HAS_RUST_ACCEL:
+            self._rust_encoder = _RustPolarEncoder(
+                N, np.array(self.info_positions, dtype=np.int64),
+            )
 
     def encode(self, info_bits: np.ndarray) -> np.ndarray:
         """Encode K information bits into N coded bits.
@@ -1112,6 +1119,9 @@ class PolarEncoder:
         info_bits = np.asarray(info_bits, dtype=np.int8)
         if info_bits.shape != (self.K,):
             raise ValueError(f"Expected {self.K} info bits, got shape {info_bits.shape}")
+
+        if self._rust_encoder is not None:
+            return np.asarray(self._rust_encoder.encode(info_bits), dtype=np.int8)
 
         # Build encoder input u — vectorized insert
         u = np.zeros(self.N, dtype=np.int8)
