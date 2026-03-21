@@ -139,8 +139,8 @@ def build_ccm_nonce_async(
 ) -> bytes:
     """异步/同步单播组播链路的 CCM nonce (16 bytes)。
 
-    布局: flag(1B) | payload_count[38:0](39b) | direction(1b)
-          | IV[63:0](64b) | data_len_hi(1B) | data_len_lo(1B)
+    布局: flag(1B) | payload_count[38:0] (39b) | direction (1b)
+          | IV[63:0] (64b) | data_len_hi(1B) | data_len_lo(1B)
     """
     # 拼接 39-bit payload_count + 1-bit direction = 40 bits = 5 bytes
     combined_40 = ((payload_count & 0x7FFFFFFFFF) << 1) | (direction & 1)
@@ -161,8 +161,8 @@ def build_ccm_nonce_other(
 ) -> bytes:
     """其他链路的 CCM nonce (16 bytes)。
 
-    布局: flag(1B) | system_slot_seq[29:0](30b) | day_count[9:0](10b)
-          | IV[63:0](64b) | data_len_hi(1B) | data_len_lo(1B)
+    布局: flag(1B) | system_slot_seq[29:0] (30b) | day_count[9:0] (10b)
+          | IV[63:0] (64b) | data_len_hi(1B) | data_len_lo(1B)
     """
     # 30-bit slot_seq + 10-bit day_count = 40 bits = 5 bytes
     combined_40 = (

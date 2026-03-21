@@ -7,6 +7,16 @@
 
 ## [Unreleased]
 
+### Added
+
+- GitHub Actions CI 工作流 (`.github/workflows/ci.yml`)
+  - `lint`: ruff 代码检查 (src/tests/examples)
+  - `test`: pytest 全量测试 + JUnit 报告
+  - `coverage`: 覆盖率统计与报告
+  - `docs`: Sphinx 严格模式构建 (-E -W)
+  - `examples`: 示例脚本独立运行验证 + 示例测试
+  - 使用 `astral-sh/setup-uv` 管理 Python 3.14 和依赖
+
 ### Changed
 
 - 文档代码示例重构: 从 markdown 内嵌 Python 代码迁移至独立示例工程
