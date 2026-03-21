@@ -32,6 +32,10 @@ class GFSKModulator:
 
     def __init__(self, sps: int = 8, mod_index: float = 0.5,
                  bt: float = 0.5, gauss_span: int = 3):
+        if not 0.45 <= mod_index <= 0.55:
+            raise ValueError(
+                f"mod_index={mod_index} 超出标准范围 [0.45, 0.55] (§6.2.1.1)"
+            )
         self.sps = sps
         self.mod_index = mod_index
         self.bt = bt

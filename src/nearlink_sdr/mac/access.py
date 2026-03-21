@@ -15,6 +15,7 @@ AccessRequestInfo、AccessResponseInfo 等数据结构完成端到端接入。
 from __future__ import annotations
 
 import logging
+import random
 from dataclasses import dataclass, field
 from enum import IntEnum
 from typing import Any
@@ -48,6 +49,11 @@ log = logging.getLogger(__name__)
 MIN_ADV_TO_EXT_ADV_GAP = 300
 MIN_EXT_ADV_TO_REQUEST_GAP = 300
 MIN_REQUEST_TO_RESPONSE_GAP = 300
+
+# ── 广播间隔约束 (标准 7.1.1, 单位 μs) ──
+MIN_ADV_INTERVAL_US = 4_000              # 4 ms
+MAX_ADV_INTERVAL_US = 2_097_151_875      # 2097.151875 s
+MAX_ADV_RANDOM_DELAY_US = 2_000          # 2 ms
 
 
 class AccessPhase(IntEnum):
@@ -374,9 +380,25 @@ class BroadcasterAccessManager:
     hop_map: bytes = b"\xFF" * 10
     smf_channel_table: bytes = b"\x00\x01\x02"
     whitelist: AccessWhitelist = field(default_factory=AccessWhitelist)
+    # 广播间隔 (标准 7.1.1, 固定时间间隔, 单位 μs)
+    adv_interval_us: int = 100_000  # 默认 100 ms
     # 内部状态
     _phase: AccessPhase = AccessPhase.IDLE
     _pending_requests: list[dict[str, Any]] = field(default_factory=list)
+
+    def __post_init__(self) -> None:
+        if not MIN_ADV_INTERVAL_US <= self.adv_interval_us <= MAX_ADV_INTERVAL_US:
+            raise ValueError(
+                f"adv_interval_us={self.adv_interval_us} 超出标准范围 "
+                f"[{MIN_ADV_INTERVAL_US}, {MAX_ADV_INTERVAL_US}] (§7.1.1)"
+            )
+
+    def next_adv_delay_us(self) -> int:
+        """计算下一次广播的总间隔 (§7.1.1)。
+
+        返回固定间隔加 [0, 2ms] 随机延迟, 单位 μs。
+        """
+        return self.adv_interval_us + random.randint(0, MAX_ADV_RANDOM_DELAY_US)
 
     def build_ext_adv_frame(self) -> BroadcastFrame:
         """构建可接入扩展广播帧 (阶段 a)。

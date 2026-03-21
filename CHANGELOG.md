@@ -9,6 +9,20 @@
 
 ### Added
 
+- 协议解析文档系列 (`docs/explanation/`)
+  - `overview.md`: SparkLink SLE 协议总览, 协议定位、栈结构、核心概念
+  - `physical-layer.md`: 物理层详解, 调制/帧结构/信道编码/TX-RX Pipeline
+  - `mac-layer.md`: MAC 层详解, 广播/接入/链路管理/信令/QoS/调度
+  - `security.md`: 安全子系统详解, 配对/密钥派生/帧加密/隐私/UWB安全
+  - `data-flow.md`: 端到端数据流, 从应用到空口的完整处理链路
+  - 更新 `docs/index.md` toctree, 按从浅到深的顺序组织文档
+
+### Fixed
+
+- GFSK 调制器添加 mod_index [0.45, 0.55] 范围验证 (§6.2.1.1)
+- 广播管理器添加广播间隔 [4ms, 2097.151875s] 范围验证 (§7.1.1)
+- 广播管理器添加 [0, 2ms] 随机延迟计算方法 (§7.1.1)
+
 - Rust 加速模块 (`rust/nearlink_sdr_accel`)
   - PyO3 + maturin 构建的 Polar SC 解码器 Rust 实现
   - SSC 优化 (rate-0/rate-1 子树剪枝) + 标量 f/g 运算
