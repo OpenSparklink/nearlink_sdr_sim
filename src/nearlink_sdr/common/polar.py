@@ -1,7 +1,4 @@
-"""
-Polar code encoder and SC (Successive Cancellation) decoder
-per TXS-10002-2025 standard section 6.9.1.4.
-"""
+"""Polar 编码器与 SC（逐次消去）解码器 -- TXS-10002-2025 标准 6.9.1.4 节。"""
 
 from functools import lru_cache
 
@@ -14,8 +11,8 @@ try:
 except ImportError:
     _HAS_RUST_ACCEL = False
 
-# Reliability sequence Q_0^{N_max-1} for N_max = 1024
-# Sorted by ascending reliability; index i maps to bit index Q_i.
+# N_max=1024 的可靠性序列 Q_0^{N_max-1}
+# 按可靠性升序排列，索引 i 对应比特索引 Q_i。
 RELIABILITY_SEQ_1024 = [
     0,
     1,
@@ -1057,7 +1054,7 @@ VALID_CODE_LENGTHS = {64, 128, 256, 512, 1024}
 
 
 def get_info_bit_count(rate_str: str, N: int) -> int:
-    """Look up the number of information bits K from the rate matching table."""
+    """从速率匹配表中查询给定码率和码长对应的信息位数 K。"""
     if rate_str not in RATE_TABLE:
         raise ValueError(f"Unsupported rate '{rate_str}'. Valid: {list(RATE_TABLE.keys())}")
     if N not in RATE_TABLE[rate_str]:
@@ -1067,18 +1064,18 @@ def get_info_bit_count(rate_str: str, N: int) -> int:
 
 @lru_cache(maxsize=16)
 def _get_reliability_sequence(N: int) -> tuple[int, ...]:
-    """Extract the reliability sequence for code length N from the N_max=1024 sequence.
+    """从 N_max=1024 可靠性序列中提取码长 N 的可靠性序列。
 
-    Filters entries where bit index < N, preserving the reliability order.
+    过滤比特索引 < N 的条目，保持可靠性顺序不变。
     """
     return tuple(q for q in RELIABILITY_SEQ_1024 if q < N)
 
 
 def _get_frozen_and_info_sets(N: int, K: int) -> tuple[set[int], set[int]]:
-    """Determine frozen and information bit positions.
+    """确定冻结位和信息位的位置集合。
 
-    The last K entries (most reliable) in the reliability sequence are info bits;
-    the first N-K entries (least reliable) are frozen.
+    可靠性序列中最后 K 个（最可靠）为信息位，
+    前 N-K 个（最不可靠）为冻结位。
     """
     seq = _get_reliability_sequence(N)
     frozen_set = set(seq[: N - K])
@@ -1087,7 +1084,7 @@ def _get_frozen_and_info_sets(N: int, K: int) -> tuple[set[int], set[int]]:
 
 
 class PolarEncoder:
-    """Polar code encoder using butterfly (recursive) algorithm over GF(2)."""
+    """使用 GF(2) 上蝶形（递归）算法的 Polar 编码器。"""
 
     def __init__(self, N: int, K: int) -> None:
         if N not in VALID_CODE_LENGTHS:
@@ -1108,13 +1105,13 @@ class PolarEncoder:
             )
 
     def encode(self, info_bits: np.ndarray) -> np.ndarray:
-        """Encode K information bits into N coded bits.
+        """将 K 个信息位编码为 N 个编码位。
 
-        Args:
-            info_bits: array of K bits (0 or 1).
+        参数:
+            info_bits: 长度为 K 的比特数组（取值 0 或 1）。
 
-        Returns:
-            Codeword of length N (0 or 1).
+        返回:
+            长度为 N 的码字（取值 0 或 1）。
         """
         info_bits = np.asarray(info_bits, dtype=np.int8)
         if info_bits.shape != (self.K,):
@@ -1204,9 +1201,9 @@ class PolarDecoder:
         return node_type
 
     def decode(self, llr: np.ndarray) -> np.ndarray:
-        """Decode N channel LLRs to K information bits using SC algorithm.
+        """使用 SC 算法将 N 个信道 LLR 解码为 K 个信息位。
 
-        Convention: positive LLR means bit 0 is more likely.
+        约定：正 LLR 表示比特 0 的可能性更高。
         """
         llr = np.asarray(llr, dtype=np.float64)
         if llr.shape != (self.N,):

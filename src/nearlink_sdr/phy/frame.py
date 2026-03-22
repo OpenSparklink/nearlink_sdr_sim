@@ -1,7 +1,6 @@
-"""Frame structure assembly and parsing per TXS-10002-2025 sections 6.3.2-6.3.5.
+"""帧结构组装与解析 -- TXS-10002-2025 标准 6.3.2-6.3.5 节。
 
-Supports frame types 1-4 with preamble, sync sequence, control info,
-data payload, and pilot insertion.
+支持帧类型 1-4，包含前导码、同步序列、控制信息、数据载荷和导频插入。
 """
 
 from dataclasses import dataclass, field
@@ -20,7 +19,7 @@ from nearlink_sdr.phy.sync_sequence import (
 
 @dataclass
 class FrameConfig:
-    """Configuration for a radio frame."""
+    """无线帧配置参数。"""
     frame_type: int  # 1, 2, 3, or 4
     symbol_rate_mhz: float = 1.0
     pilot_interval: int = 0  # 0=no pilot, 4/8/16
@@ -36,13 +35,13 @@ class FrameConfig:
 
 
 def _default_mod_type(frame_type: int) -> str:
-    """Default modulation type for each frame type."""
+    """各帧类型的默认调制方式。"""
     return {1: "GFSK", 2: "QPSK", 3: "QPSK", 4: "BPSK"}[frame_type]
 
 
-# ── Frame parameters per type ──
+# ── 各帧类型参数 ──
 
-# Sync signal config per frame type
+# 各帧类型同步信号配置
 _SYNC_CONFIG = {
     1: {"func": sync_signal_1, "bits": 32, "sync_mod": "GFSK"},
     2: {"func": sync_signal_2, "bits": 64, "sync_mod": "QPSK"},
@@ -50,7 +49,7 @@ _SYNC_CONFIG = {
     4: {"func": sync_signal_4, "bits": 126, "sync_mod": "BPSK"},
 }
 
-# Control info encoding per frame type
+# 各帧类型控制信息编码配置
 _CTRL_CONFIG = {
     1: {"coded_bits": None, "ctrl_mod": "GFSK", "pilot_interval": 0},
     2: {"coded_bits": 64, "ctrl_mod": "QPSK", "pilot_interval": 16},
@@ -61,7 +60,7 @@ _CTRL_CONFIG = {
 
 @dataclass
 class FrameFields:
-    """Assembled frame fields as bit/symbol arrays."""
+    """已组装帧各字段的比特/符号数组。"""
     preamble_bits: np.ndarray = field(default_factory=lambda: np.array([], dtype=np.int8))
     sync_bits: np.ndarray = field(default_factory=lambda: np.array([], dtype=np.int8))
     ctrl_bits: np.ndarray = field(default_factory=lambda: np.array([], dtype=np.int8))
@@ -74,17 +73,17 @@ def assemble_frame_bits(
     data_payload_bits: np.ndarray,
     config: FrameConfig,
 ) -> FrameFields:
-    """Assemble a complete frame at the bit level.
+    """在比特级别组装完整帧结构。
 
-    This produces the bit-level frame structure before modulation.
+    生成调制前的比特级帧结构。
 
-    Args:
-        ctrl_info_bits: physical layer control information bits.
-        data_payload_bits: data + integrity protection + CRC bits.
-        config: frame configuration.
+    参数:
+        ctrl_info_bits: 物理层控制信息比特。
+        data_payload_bits: 数据 + 完整性保护 + CRC 比特。
+        config: 帧配置参数。
 
-    Returns:
-        FrameFields with all frame segments.
+    返回:
+        包含所有帧字段的 FrameFields 对象。
     """
     fields = FrameFields(frame_type=config.frame_type)
 
@@ -113,21 +112,21 @@ def frame_to_symbols(
     fields: FrameFields,
     config: FrameConfig,
 ) -> np.ndarray:
-    """Convert frame fields to a modulated symbol stream with pilot insertion.
+    """将帧字段转换为含导频插入的调制符号流。
 
-    For frame type 1 (GFSK), returns the concatenated bit sequence (not complex symbols).
-    For frame types 2-4 (PSK), returns complex symbol stream with pilots.
+    帧类型 1（GFSK）返回拼接后的比特序列（非复数符号）。
+    帧类型 2-4（PSK）返回含导频的复数符号流。
 
-    Args:
-        fields: assembled frame fields.
-        config: frame configuration.
+    参数:
+        fields: 已组装的帧字段。
+        config: 帧配置参数。
 
-    Returns:
-        For type 1: bit array (to be fed to GFSK modulator).
-        For types 2-4: complex symbol array (baseband).
+    返回:
+        类型 1：比特数组（送入 GFSK 调制器）。
+        类型 2-4：基带复数符号数组。
     """
     if config.frame_type == 1:
-        # Frame type 1: simple bit concatenation, no pilots, no channel coding
+        # 帧类型 1：简单比特拼接，无导频，无信道编码
         return np.concatenate([
             fields.preamble_bits,
             fields.sync_bits,
@@ -135,11 +134,11 @@ def frame_to_symbols(
             fields.data_bits,
         ]).astype(np.int8)
 
-    # PSK frame types (2, 3, 4)
+    # PSK 帧类型（2、3、4）
     segments = []
     symbol_count = 0
 
-    # Preamble symbols (phase alternating [π/4, 0])
+    # 前导码符号（相位交替 [π/4, 0]）
     preamble_phases = np.where(
         fields.preamble_bits == 0,
         np.pi / 4,
@@ -149,17 +148,17 @@ def frame_to_symbols(
     segments.append(preamble_syms)
     symbol_count += len(preamble_syms)
 
-    # Sync symbols
+    # 同步符号
     sync_mod = _SYNC_CONFIG[config.frame_type]["sync_mod"]
     sync_syms = _modulate_bits(fields.sync_bits, sync_mod)
     segments.append(sync_syms)
     symbol_count += len(sync_syms)
 
-    # Control symbols with pilot insertion
+    # 含导频插入的控制符号
     ctrl_cfg = _CTRL_CONFIG[config.frame_type]
     ctrl_syms = _modulate_bits(fields.ctrl_bits, ctrl_cfg["ctrl_mod"])
     if ctrl_cfg["pilot_interval"] > 0:
-        # Determine if last pilot should be omitted based on data existence
+        # 根据数据是否存在决定是否省略最后一个导频
         has_data = len(fields.data_bits) > 0
         data_has_pilot = config.pilot_interval > 0
         omit_ctrl_last = not has_data or not data_has_pilot
@@ -176,7 +175,7 @@ def frame_to_symbols(
         segments.append(ctrl_syms)
         symbol_count += len(ctrl_syms)
 
-    # Data symbols with pilot insertion
+    # 含导频插入的数据符号
     if len(fields.data_bits) > 0:
         data_syms = _modulate_bits(fields.data_bits, config.mod_type)
         if config.pilot_interval > 0:
@@ -200,21 +199,21 @@ def symbols_to_data_bits(
     n_ctrl_coded_bits: int = 0,
     n_data_bits: int = 0,
 ) -> tuple[np.ndarray, np.ndarray]:
-    """Parse received symbol stream back to control and data bits.
+    """将接收符号流解析还原为控制位和数据位。
 
-    This is a simplified parser that assumes known frame parameters.
+    简化解析器，假定已知帧参数。
 
-    Args:
-        symbols: received complex symbol stream.
-        config: frame configuration.
-        n_ctrl_coded_bits: number of coded control bits.
-        n_data_bits: number of data bits (before modulation).
+    参数:
+        symbols: 接收到的复数符号流。
+        config: 帧配置参数。
+        n_ctrl_coded_bits: 编码控制位的数量。
+        n_data_bits: 数据位数量（调制前）。
 
-    Returns:
-        (ctrl_bits, data_bits) — demodulated bit arrays.
+    返回:
+        (ctrl_bits, data_bits) — 解调后的比特数组。
     """
     if config.frame_type == 1:
-        # Frame type 1: bit-level parsing
+        # 帧类型 1：比特级解析
         n_preamble = len(generate_preamble(1, config.symbol_rate_mhz))
         n_sync = 32
         offset = n_preamble + n_sync
@@ -223,20 +222,20 @@ def symbols_to_data_bits(
         data_bits = symbols[data_start : data_start + n_data_bits].real.astype(np.int8)
         return ctrl_bits, data_bits
 
-    # PSK frame types
+    # PSK 帧类型
     pos = 0
 
-    # Skip preamble
+    # 跳过前导码
     n_preamble = len(generate_preamble(config.frame_type, config.symbol_rate_mhz))
     pos += n_preamble
 
-    # Skip sync
+    # 跳过同步序列
     sync_bits_len = _SYNC_CONFIG[config.frame_type]["bits"]
     sync_mod = _SYNC_CONFIG[config.frame_type]["sync_mod"]
     n_sync_syms = _bits_to_symbols_count(sync_bits_len, sync_mod)
     pos += n_sync_syms
 
-    # Control symbols
+    # 控制符号
     ctrl_cfg = _CTRL_CONFIG[config.frame_type]
     n_ctrl_syms = _bits_to_symbols_count(
         ctrl_cfg["coded_bits"] or n_ctrl_coded_bits,
@@ -255,7 +254,7 @@ def symbols_to_data_bits(
     ctrl_bits = _demodulate_symbols(ctrl_syms, ctrl_cfg["ctrl_mod"])
     pos += n_ctrl_with_pilots
 
-    # Data symbols
+    # 数据符号
     remaining = symbols[pos:]
     if config.pilot_interval > 0 and len(remaining) > 0:
         data_syms = remove_pilots(remaining, config.pilot_interval)
@@ -269,11 +268,11 @@ def symbols_to_data_bits(
     return ctrl_bits, data_bits
 
 
-# ── Internal modulation helpers ──
+# ── 内部调制辅助函数 ──
 
 
 def _modulate_bits(bits: np.ndarray, mod_type: str) -> np.ndarray:
-    """Simple bit-to-symbol mapping (no pulse shaping)."""
+    """简单比特-符号映射（无脉冲成形）。"""
     if mod_type == "BPSK":
         phases = np.where(bits == 0, np.pi / 2, -np.pi / 2)
         symbols = np.exp(1j * phases)
@@ -309,7 +308,7 @@ def _modulate_bits(bits: np.ndarray, mod_type: str) -> np.ndarray:
 
 
 def _demodulate_symbols(symbols: np.ndarray, mod_type: str) -> np.ndarray:
-    """Simple symbol-to-bit hard decision (no matched filter)."""
+    """简单符号-比特硬判决（无匹配滤波器）。"""
     if mod_type == "BPSK":
         syms = symbols.copy()
         syms[1::2] *= 1j  # 撤销 -j 旋转
@@ -345,7 +344,7 @@ def _demodulate_symbols(symbols: np.ndarray, mod_type: str) -> np.ndarray:
 
 
 def _bits_to_symbols_count(n_bits: int, mod_type: str) -> int:
-    """Calculate number of symbols for given number of bits."""
+    """计算给定比特数对应的符号数。"""
     if mod_type == "QPSK":
         return n_bits // 2
     elif mod_type == "8PSK":

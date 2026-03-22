@@ -1,8 +1,8 @@
-"""Pilot symbol insertion and extraction per TXS-10002-2025 section 6.2.1.2."""
+"""导频符号插入与提取 -- TXS-10002-2025 标准 6.2.1.2 节。"""
 
 import numpy as np
 
-# Pilot reference phases for each modulation scheme (degrees)
+# 各调制方式的导频参考相位（单位：度）
 # 标准定义: BPSK导频90°, QPSK导频45°, 8PSK导频22.5°
 PILOT_PHASE_DEG = {
     "BPSK": 90.0,
@@ -10,7 +10,7 @@ PILOT_PHASE_DEG = {
     "8PSK": 22.5,
 }
 
-# Phase rotation per even symbol for each modulation scheme (clockwise, degrees)
+# 各调制方式偶数符号的相位旋转量（顺时针，单位：度）
 EVEN_ROTATION_DEG = {
     "BPSK": -90.0,
     "QPSK": -45.0,
@@ -19,15 +19,15 @@ EVEN_ROTATION_DEG = {
 
 
 def pilot_symbol(mod_type: str, symbol_index: int) -> complex:
-    """Generate a single pilot symbol with appropriate phase rotation.
+    """生成带适当相位旋转的单个导频符号。
 
-    Args:
-        mod_type: "BPSK", "QPSK", or "8PSK".
-        symbol_index: 0-based symbol index in the frame (determines odd/even).
-                     The standard says the first symbol is at "odd" position.
+    参数:
+        mod_type: 调制方式，取 "BPSK"、"QPSK" 或 "8PSK"。
+        symbol_index: 帧内以 0 为基的符号索引（决定奇偶位置）。
+                     标准规定第一个符号处于奇数位置。
 
-    Returns:
-        Complex pilot symbol.
+    返回:
+        复数导频符号。
     """
     phase_deg = PILOT_PHASE_DEG[mod_type]
     # "无线帧的第一个符号认为处于奇数位" → index 0 is odd, index 1 is even, ...
@@ -44,20 +44,20 @@ def insert_pilots(
     start_symbol_index: int = 0,
     omit_last_pilot: bool = True,
 ) -> tuple[np.ndarray, int]:
-    """Insert pilot symbols into data symbol stream.
+    """向数据符号流中插入导频符号。
 
-    Every `pilot_interval` data symbols, one pilot symbol is inserted after them.
-    The last pilot in the frame should be omitted per standard.
+    每隔 `pilot_interval` 个数据符号后插入一个导频符号。
+    按标准规定，帧中最后一个导频应省略。
 
-    Args:
-        data_symbols: complex data symbol array.
-        pilot_interval: N in standard (4, 8, or 16).
-        mod_type: modulation type for pilot phase.
-        start_symbol_index: the absolute symbol index of the first data symbol in the frame.
-        omit_last_pilot: whether to omit the last pilot symbol.
+    参数:
+        data_symbols: 复数数据符号数组。
+        pilot_interval: 标准中的 N 值（4、8 或 16）。
+        mod_type: 导频相位所用的调制方式。
+        start_symbol_index: 帧内第一个数据符号的绝对符号索引。
+        omit_last_pilot: 是否省略最后一个导频符号。
 
-    Returns:
-        (output_symbols, total_symbol_count) — symbols with pilots inserted, and count.
+    返回:
+        (output_symbols, total_symbol_count) — 插入导频后的符号数组及总符号数。
     """
     if pilot_interval <= 0:
         return data_symbols.copy(), len(data_symbols)
@@ -69,14 +69,14 @@ def insert_pilots(
     pilot_positions = []
 
     while data_pos < n_data:
-        # Take up to pilot_interval data symbols
+        # 取最多 pilot_interval 个数据符号
         chunk_end = min(data_pos + pilot_interval, n_data)
         chunk = data_symbols[data_pos:chunk_end]
         result.append(chunk)
         sym_idx += len(chunk)
         data_pos = chunk_end
 
-        # Insert pilot after this chunk if chunk is full
+        # 若当前块已满则在其后插入导频
         if len(chunk) == pilot_interval and data_pos <= n_data:
             pilot_positions.append(len(result))
             p = pilot_symbol(mod_type, sym_idx)
@@ -85,15 +85,15 @@ def insert_pilots(
 
     output = np.concatenate(result) if result else np.array([], dtype=complex)
 
-    # Omit last pilot if requested
+    # 按需省略最后一个导频
     if omit_last_pilot and pilot_positions and len(output) > 0:
-        # Check if the last element is a pilot
-        # The last pilot position: find the last pilot we inserted
-        # We need to check if the very last symbol of the output is a pilot
+        # 检查最后一个元素是否为导频
+        # 最后一个导频位置：找到最后插入的导频
+        # 检查输出的最后一个符号是否为导频
         total_data_inserted = n_data
         n_pilots = len(pilot_positions)
         if n_pilots > 0 and total_data_inserted % pilot_interval == 0:
-            # Last symbol is a pilot → remove it
+            # 最后一个符号是导频 → 移除
             output = output[:-1]
 
     return output, len(output)
@@ -104,15 +104,15 @@ def remove_pilots(
     pilot_interval: int,
     last_pilot_omitted: bool = True,
 ) -> np.ndarray:
-    """Remove pilot symbols from the received symbol stream.
+    """从接收符号流中移除导频符号。
 
-    Args:
-        symbols: received symbols with pilots.
-        pilot_interval: N (4, 8, or 16).
-        last_pilot_omitted: whether the last pilot was omitted at TX.
+    参数:
+        symbols: 含导频的接收符号。
+        pilot_interval: N 值（4、8 或 16）。
+        last_pilot_omitted: 发送侧是否已省略最后一个导频。
 
-    Returns:
-        Data symbols with pilots removed.
+    返回:
+        移除导频后的数据符号。
     """
     if pilot_interval <= 0:
         return symbols.copy()
@@ -124,11 +124,11 @@ def remove_pilots(
     while pos < len(symbols):
         remaining = len(symbols) - pos
         if remaining >= stride:
-            # Full group: take data, skip pilot
+            # 完整组：取数据，跳过导频
             result.append(symbols[pos : pos + pilot_interval])
             pos += stride
         else:
-            # Partial group at end (no pilot or pilot was omitted)
+            # 末尾不完整组（无导频或导频已省略）
             result.append(symbols[pos:])
             pos = len(symbols)
 
