@@ -40,7 +40,7 @@ msgstr "Channel Polarization"
 msgid ""
 "Polar 码基于信道极化现象: 对 $N$ 个独立信道实例做线性变换后, 各子信道的可靠性出现分化 --- 部分子信道的容量趋近 1, 其余趋近"
 " 0。Arikan 证明当 $N \\to \\infty$ 时, 这种分化是完全的。"
-msgstr ""
+msgstr "Polar codes exploit channel polarization: after applying a linear transform to $N$ independent channel instances, the sub-channels diverge in reliability \u2014 some approach capacity 1, others approach 0. Arikan proved that this polarization is complete as $N \\to \\infty$."
 
 #: ../../explanation/principles.md:11
 msgid "核心变换矩阵为 Kronecker 幂:"
@@ -76,7 +76,7 @@ msgstr "Reliability Sequence"
 msgid ""
 "SparkLink SLE 标准 6.9.1.4 节定义了固定的可靠性排序表, 给出每个子信道的可靠性排名。编码器根据码率 $R = K/N$ "
 "选取最可靠的 $K$ 个位置放置信息比特, 其余位置填充已知冻结位。"
-msgstr ""
+msgstr "Section 6.9.1.4 of the SparkLink SLE standard defines a fixed reliability ordering table that ranks each sub-channel. The encoder selects the $K$ most reliable positions for information bits (determined by rate $R = K/N$); the remaining positions are filled with known frozen bits."
 
 #: ../../explanation/principles.md:29
 msgid "SC 解码"
@@ -95,7 +95,7 @@ msgstr "If $i$ is a frozen bit, it is directly decided as 0."
 msgid ""
 "若 $i$ 是信息位, 按 LLR 符号做硬判决: $\\hat{u}_i = \\begin{cases} 0, & L_i \\geq 0 "
 "\\\\ 1, & L_i < 0 \\end{cases}$。"
-msgstr ""
+msgstr "If $i$ is an information bit, make a hard decision based on the LLR sign: $\\hat{u}_i = \\begin{cases} 0, & L_i \\geq 0 \\\\ 1, & L_i < 0 \\end{cases}$."
 
 #: ../../explanation/principles.md:36
 msgid "LLR 递归计算依赖两个基本运算:"
@@ -142,7 +142,7 @@ msgstr ""
 #: ../../explanation/principles.md:58
 #, python-brace-format
 msgid "其中 $M \\in \\{2, 4, 8\\}$。比特到符号的映射采用格雷编码, 相邻星座点仅差 1 bit, 降低高信噪比下的比特错误率。"
-msgstr ""
+msgstr "where $M \\in \\{2, 4, 8\\}$. The bit-to-symbol mapping uses Gray coding, so adjacent constellation points differ by only 1 bit, reducing the bit error rate at high SNR."
 
 #: ../../explanation/principles.md:60
 msgid "RRC 脉冲成型"
@@ -169,7 +169,7 @@ msgstr ""
 msgid ""
 "其中 $\\alpha$ 为滚降系数, $T$ 为符号周期。收发两端各用一个 RRC 滤波器, 级联后等效为升余弦滤波器, 满足 Nyquist "
 "无码间干扰准则。标准规定 $\\alpha = 0.5$, 每符号采样数 $L = 4$。"
-msgstr ""
+msgstr "where $\\alpha$ is the roll-off factor and $T$ is the symbol period. An RRC filter at each end cascades to an equivalent raised-cosine filter satisfying the Nyquist ISI-free criterion. The standard specifies $\\alpha = 0.5$ and $L = 4$ samples per symbol."
 
 #: ../../explanation/principles.md:74
 msgid "GFSK 调制"
@@ -188,7 +188,7 @@ msgstr ""
 #: ../../explanation/principles.md:82
 #, python-brace-format
 msgid "其中 $h$ 为调制指数, $a_k \\in \\{-1, +1\\}$ 为数据符号, $g(t)$ 为高斯脉冲 (带宽时间积 $BT$):"
-msgstr ""
+msgstr "where $h$ is the modulation index, $a_k \\in \\{-1, +1\\}$ are data symbols, and $g(t)$ is the Gaussian pulse (bandwidth-time product $BT$):"
 
 #: ../../explanation/principles.md:84
 msgid ""
@@ -227,7 +227,7 @@ msgstr ""
 msgid ""
 "噪声方差与信噪比的关系: $\\sigma^2 = P_s / \\text{SNR}_{\\text{linear}}$, 其中 $P_s$ "
 "为信号平均功率。"
-msgstr ""
+msgstr "The relationship between noise variance and SNR: $\\sigma^2 = P_s / \\text{SNR}_{\\text{linear}}$, where $P_s$ is the average signal power."
 
 #: ../../explanation/principles.md:102
 msgid "Rayleigh 衰落"
@@ -266,7 +266,7 @@ msgstr ""
 
 #: ../../explanation/principles.md:120
 msgid "$K$ 越大表示直射路径越强, $K \\to \\infty$ 退化为 AWGN, $K = 0$ 退化为 Rayleigh。"
-msgstr ""
+msgstr "A larger $K$ indicates a stronger line-of-sight path. $K \\to \\infty$ degenerates to AWGN; $K = 0$ degenerates to Rayleigh."
 
 #: ../../explanation/principles.md:122
 msgid "多径频率选择性"
@@ -286,7 +286,7 @@ msgstr ""
 #: ../../explanation/principles.md:130
 #, python-brace-format
 msgid "其中 $\\{h_l, \\tau_l\\}$ 由功率延迟谱 (PDP) 决定。频率选择性衰落会导致码间干扰, 需要均衡器恢复。"
-msgstr ""
+msgstr "where $\\{h_l, \\tau_l\\}$ are determined by the power delay profile (PDP). Frequency-selective fading causes inter-symbol interference (ISI), which requires an equalizer to compensate."
 
 #: ../../explanation/principles.md:132
 msgid "Doppler 衰落与 Jakes 模型"
@@ -332,7 +332,7 @@ msgstr ""
 msgid ""
 "其中到达角 $\\alpha_n$ 均匀分布于 $[0, 2\\pi)$, 初始相位 $\\theta_n$ 随机。当 $N$ 足够大时, "
 "该过程的统计特性趋近于真实的 Clarke 模型:"
-msgstr ""
+msgstr "where arrival angles $\\alpha_n$ are uniformly distributed over $[0, 2\\pi)$ and initial phases $\\theta_n$ are random. As $N$ grows large, the statistics approach the true Clarke model:"
 
 #: ../../explanation/principles.md:156
 msgid "实部和虚部近似独立高斯"
@@ -344,7 +344,7 @@ msgstr "Envelope approximately follows Rayleigh distribution"
 
 #: ../../explanation/principles.md:158
 msgid "自相关函数趋近 $J_0(2\\pi f_d \\Delta t)$"
-msgstr ""
+msgstr "The autocorrelation function approaches $J_0(2\pi f_d \Delta t)$"
 
 #: ../../explanation/principles.md:160
 msgid "对于 Rician 信道, 散射分量使用 Jakes 模型, 直射路径叠加固定相位:"
@@ -402,7 +402,7 @@ msgstr ""
 msgid ""
 "其中 $z_i(t)$ 为归一化功率的随机干扰基带信号, $\\Delta f_i$ 为干扰者与目标信号之间的频率偏移。当 $\\Delta "
 "f_i = 0$ 时为同信道干扰, $\\Delta f_i \\neq 0$ 时为邻信道干扰, 接收滤波器对邻信道有一定衰减。"
-msgstr ""
+msgstr "where $z_i(t)$ is a normalized-power random interference baseband signal, and $\\Delta f_i$ is the frequency offset between the interferer and the desired signal. $\\Delta f_i = 0$ is co-channel interference; $\\Delta f_i \\neq 0$ is adjacent-channel interference, which the receive filter partially attenuates."
 
 #: ../../explanation/principles.md:190
 msgid "均衡器"
@@ -472,117 +472,117 @@ msgstr "Cyclic redundancy checking detects transmission errors through polynomia
 
 #: ../../explanation/principles.md
 msgid "类型"
-msgstr ""
+msgstr "Type"
 
 #: ../../explanation/principles.md
 msgid "长度"
-msgstr ""
+msgstr "Length"
 
 #: ../../explanation/principles.md
 msgid "生成多项式"
-msgstr ""
+msgstr "Generator Polynomial"
 
 #: ../../explanation/principles.md
 msgid "用途"
-msgstr ""
+msgstr "Usage"
 
 #: ../../explanation/principles.md
 msgid "CRC12"
-msgstr ""
+msgstr "CRC12"
 
 #: ../../explanation/principles.md
 msgid "12 bit"
-msgstr ""
+msgstr "12 bit"
 
 #: ../../explanation/principles.md
 #, python-brace-format
 msgid "$x^{12} + x^{11} + x^3 + x^2 + x + 1$"
-msgstr ""
+msgstr "$x^{12} + x^{11} + x^3 + x^2 + x + 1$"
 
 #: ../../explanation/principles.md
 msgid "FT1/FT2 头部"
-msgstr ""
+msgstr "FT1/FT2 Header"
 
 #: ../../explanation/principles.md
 msgid "CRC24A"
-msgstr ""
+msgstr "CRC24A"
 
 #: ../../explanation/principles.md
 msgid "24 bit"
-msgstr ""
+msgstr "24 bit"
 
 #: ../../explanation/principles.md
 #, python-brace-format
 msgid "$x^{24} + x^{23} + x^6 + x^5 + x + 1$"
-msgstr ""
+msgstr "$x^{24} + x^{23} + x^6 + x^5 + x + 1$"
 
 #: ../../explanation/principles.md
 msgid "数据载荷"
-msgstr ""
+msgstr "Data Payload"
 
 #: ../../explanation/principles.md
 msgid "CRC24B"
-msgstr ""
+msgstr "CRC24B"
 
 #: ../../explanation/principles.md
 #, python-brace-format
 msgid "$x^{24} + x^{23} + x^{14} + x^{12} + x^{8} + 1$"
-msgstr ""
+msgstr "$x^{24} + x^{23} + x^{14} + x^{12} + x^{8} + 1$"
 
 #: ../../explanation/principles.md
 msgid "FT3/FT4 头部"
-msgstr ""
+msgstr "FT3/FT4 Header"
 
 #: ../../explanation/principles.md
 msgid "CRC32"
-msgstr ""
+msgstr "CRC32"
 
 #: ../../explanation/principles.md
 msgid "32 bit"
-msgstr ""
+msgstr "32 bit"
 
 #: ../../explanation/principles.md
 msgid "ITU-T CRC-32"
-msgstr ""
+msgstr "ITU-T CRC-32"
 
 #: ../../explanation/principles.md
 msgid "MAC 层"
-msgstr ""
+msgstr "MAC Layer"
 
 #: ../../explanation/principles.md:231
 #, python-brace-format
 msgid ""
 "CRC24B 在 FT3/FT4 中使用种子 $\\text{seed} = \\texttt{0x555555} \\oplus "
 "\\text{LLID}$, 提供与链路标识绑定的完整性保护。"
-msgstr ""
+msgstr "CRC24B in FT3/FT4 uses seed $\\text{seed} = \\texttt{0x555555} \\oplus \\text{LLID}$, providing integrity protection bound to the link identifier."
 
 #: ../../explanation/principles.md:233
 msgid "码块分割"
-msgstr ""
+msgstr "Code Block Segmentation"
 
 #: ../../explanation/principles.md:235
 msgid "当数据长度超过单个 Polar 码块容量时, 需要分割为多个码块:"
-msgstr ""
+msgstr "When the data length exceeds a single Polar code block capacity, the data must be split into multiple code blocks:"
 
 #: ../../explanation/principles.md:237
 msgid "**segment_without_crc** (FT2): 按 Polar 码块大小 $N$ 和信息位数 $K$ 将数据切分, 各段独立编码。"
-msgstr ""
+msgstr "**segment_without_crc** (FT2): Splits data according to Polar code block size $N$ and information bit count $K$; each segment is encoded independently."
 
 #: ../../explanation/principles.md:238
 msgid "**segment_with_crc** (FT3/FT4): 每个分割段额外附加一个小 CRC, 为每段提供独立的错误检测能力。"
-msgstr ""
+msgstr "**segment_with_crc** (FT3/FT4): Each segment has a small CRC appended, providing independent error detection per segment."
 
 #: ../../explanation/principles.md:240
 msgid "分割后每段独立进行 Polar 编码、速率匹配和调制, 接收端逆序处理。"
-msgstr ""
+msgstr "After splitting, each segment is independently Polar-encoded, rate-matched, and modulated; the receiver processes them in reverse order."
 
 #: ../../explanation/principles.md:242
 msgid "加扰"
-msgstr ""
+msgstr "Scrambling"
 
 #: ../../explanation/principles.md:244
 msgid "信道比特加扰使用 Galois 线性反馈移位寄存器 (LFSR), 生成伪随机序列与编码比特异或:"
-msgstr ""
+msgstr "Channel bit scrambling uses a Galois linear feedback shift register (LFSR) to generate a pseudo-random sequence XOR-ed with encoded bits:"
 
 #: ../../explanation/principles.md:246
 msgid ""
@@ -592,5 +592,5 @@ msgstr ""
 
 #: ../../explanation/principles.md:250
 msgid "加扰的目的是打散长连续 0/1 序列, 改善信号的频谱特性和定时恢复性能。解扰时使用相同的初始种子重新生成序列即可恢复原始比特。"
-msgstr ""
+msgstr "Scrambling disperses long runs of 0s and 1s, improving the spectral properties and timing recovery. Descrambling regenerates the same sequence from the same initial seed to recover the original bits."
 

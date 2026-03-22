@@ -32,7 +32,7 @@ msgstr "All notable changes to this project are recorded in this file."
 msgid ""
 "格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/), 版本号遵循 "
 "[语义化版本](https://semver.org/lang/zh-CN/)。"
-msgstr ""
+msgstr "Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), versioning follows [Semantic Versioning](https://semver.org/)."
 
 #: ../../../CHANGELOG.md:9
 msgid "[1.0.1] - 2025-07-23"
@@ -406,7 +406,7 @@ msgstr "Performance optimization: test suite reduced from 12.36s to 9.48s (23% r
 msgid ""
 "Phase 16 仿真函数 `run_phase16_simulation()` 和示例 `doppler_interference()` 参数化"
 " n_frames"
-msgstr ""
+msgstr "Phase 16 simulation function `run_phase16_simulation()` and example `doppler_interference()` parameterized n_frames"
 
 #: ../../../CHANGELOG.md:121
 msgid "测试用 n_frames=5 替代默认 50, 在验证正确性的同时大幅降低仿真耗时"
@@ -416,7 +416,7 @@ msgstr "Tests use n_frames=5 instead of default 50, greatly reducing simulation 
 msgid ""
 "热点分析结论: Polar SC 解码器占 pipeline 45% 时间, 纯 Python 下已达优化极限, "
 "递归/迭代/标量快速路径等方案均无显著提升, 进一步加速需 Cython/Numba 编译加速"
-msgstr ""
+msgstr "Profiling conclusion: Polar SC decoder accounts for 45% of pipeline time; pure Python has reached optimization limits. Recursion/iteration/scalar fast-path schemes show no significant improvement; further acceleration requires Cython/Numba compilation."
 
 #: ../../../CHANGELOG.md:125
 msgid "文档代码示例重构: 从 markdown 内嵌 Python 代码迁移至独立示例工程"
@@ -442,7 +442,7 @@ msgstr "`examples/node_usage.py`: node lifecycle examples (connection/transmit-r
 msgid ""
 "`examples/run_simulation.py`: 全部仿真场景 "
 "(BER/Pipeline/Phase15/信道损伤/MAC/安全/AMC/HARQ)"
-msgstr ""
+msgstr "`examples/run_simulation.py`: all simulation scenarios (BER/Pipeline/Phase15/channel impairments/MAC/security/AMC/HARQ)"
 
 #: ../../../CHANGELOG.md:131
 msgid "`examples/custom_modulation.py`: 自定义调制方式模板"
@@ -469,7 +469,7 @@ msgid ""
 "架构说明: 新增 "
 "uwb_pulse/measurement_tx/rf_compliance/multitone/smf_scheduler/uwb_measurement_security/data_link"
 " 模块描述, 更新 SleNode 组件图"
-msgstr ""
+msgstr "Architecture explanation: added uwb_pulse/measurement_tx/rf_compliance/multitone/smf_scheduler/uwb_measurement_security/data_link module descriptions, updated SleNode component diagram"
 
 #: ../../../CHANGELOG.md:140
 msgid "参考文档: 补充全部新模块 API 索引, sim 模块拆分 link_sim/usrp_sim"
@@ -543,7 +543,7 @@ msgstr "SMF scheduling: optional `SMFTransmitScheduler` integration, G-node Syst
 msgid ""
 "接入流程: 集成 "
 "`BroadcasterAccessManager`/`InitiatorAccessManager`/`DiscoveryManager`"
-msgstr ""
+msgstr "Access procedure: integrated `BroadcasterAccessManager`/`InitiatorAccessManager`/`DiscoveryManager`"
 
 #: ../../../CHANGELOG.md:160
 msgid "广播: `start_advertising()` 返回真实广播帧, `on_broadcast_received()` 过滤+发现"
@@ -581,7 +581,7 @@ msgstr "`TxResult` added `channel` field, `stats` added channel/tx_power_dbm/hop
 msgid ""
 "`NodeCallback` 新增 "
 "on_broadcast_received/on_discovery_complete/on_measurement_result"
-msgstr ""
+msgstr "`NodeCallback` added on_broadcast_received/on_discovery_complete/on_measurement_result"
 
 #: ../../../CHANGELOG.md:169
 msgid "节点测试: 从 46 增加到 95 个, 覆盖所有新功能"
@@ -739,7 +739,7 @@ msgstr "Indirect coverage clause audit (17 items confirmed implemented, added to
 msgid ""
 "27 个新测试用例 (`tests/test_multitone.py` 22 个 + `tests/test_rf_compliance.py`"
 " 5 个)"
-msgstr ""
+msgstr "27 new test cases (`tests/test_multitone.py` 22 + `tests/test_rf_compliance.py` 5)"
 
 #: ../../../CHANGELOG.md:209
 msgid "射频合规参数校验模块 (`phy/rf_compliance.py`) -- 标准 8.2 ~ 8.4"
@@ -817,7 +817,7 @@ msgstr "Dynamic scheduling parameter updates"
 msgid ""
 "125 个新测试用例 (`tests/test_rf_compliance.py` 93 个 + "
 "`tests/test_smf_scheduler.py` 32 个)"
-msgstr ""
+msgstr "125 new test cases (`tests/test_rf_compliance.py` 93 + `tests/test_smf_scheduler.py` 32)"
 
 #: ../../../CHANGELOG.md:229
 msgid "UWB 脉冲波形模块 (`phy/uwb_pulse.py`) -- 标准 6.2.1.4"
@@ -871,7 +871,7 @@ msgstr "Supports 2.4GHz/5.xGHz hopping maps"
 msgid ""
 "49 个新测试用例 (`tests/test_uwb_pulse.py` 29 个, "
 "`tests/test_non_connected_broadcast.py` 20 个)"
-msgstr ""
+msgstr "49 new test cases (`tests/test_uwb_pulse.py` 29, `tests/test_non_connected_broadcast.py` 20)"
 
 #: ../../../CHANGELOG.md:243
 msgid "测量链路传输与测量量计算 (`phy/measurement_tx.py`) -- 标准 6.7/6.8"
@@ -1103,15 +1103,15 @@ msgstr "Channel quality reporting configuration (7.2.7): configure_channel_repor
 
 #: ../../../CHANGELOG.md:304
 msgid "跳频表更新 (7.2.8): update_hop_table"
-msgstr ""
+msgstr "Frequency hop table update (7.2.8): update_hop_table"
 
 #: ../../../CHANGELOG.md:305
 msgid "跳频地图更新 (7.2.9): update_hop_map"
-msgstr ""
+msgstr "Frequency hop map update (7.2.9): update_hop_map"
 
 #: ../../../CHANGELOG.md:306
 msgid "最少可用信道 (7.2.10): request_min_channels"
-msgstr ""
+msgstr "Minimum available channels (7.2.10): request_min_channels"
 
 #: ../../../CHANGELOG.md:307
 msgid "CRC 切换 (7.2.11): request/indicate_crc_switch"
@@ -1123,201 +1123,201 @@ msgstr "Physical layer update (7.2.12): request/indicate_phy_update"
 
 #: ../../../CHANGELOG.md:309
 msgid "新增测试: BroadcastFilter 11 项, AccessWhitelist 10 项, 控制面流程 15 项"
-msgstr ""
+msgstr "New tests: BroadcastFilter 11 cases, AccessWhitelist 10 cases, control-plane procedure 15 cases"
 
 #: ../../../CHANGELOG.md:311
 msgid "系统管理帧编解码模块 (`mac/smf.py`) -- 标准 6.6"
-msgstr ""
+msgstr "System management frame codec module (`mac/smf.py`) -- standard 6.6"
 
 #: ../../../CHANGELOG.md:312
 msgid "SMFHeader: 分段指示 + 信令编号"
-msgstr ""
+msgstr "SMFHeader: segmentation indicator + signaling number"
 
 #: ../../../CHANGELOG.md:313
 msgid "ScheduleSignaling: 调度信令 (生效时隙/间隔/帧类型/带宽/频点表)"
-msgstr ""
+msgstr "ScheduleSignaling: scheduling signaling (effective slot/interval/frame type/bandwidth/frequency table)"
 
 #: ../../../CHANGELOG.md:314
 msgid "LinkSignaling: 链路信令 (逻辑链路标识/时间资源条目)"
-msgstr ""
+msgstr "LinkSignaling: link signaling (logical link identifier/time resource entries)"
 
 #: ../../../CHANGELOG.md:315
 msgid "OffsetSignaling: 偏移信令 (逻辑链路/偏移量/单位)"
-msgstr ""
+msgstr "OffsetSignaling: offset signaling (logical link/offset/unit)"
 
 #: ../../../CHANGELOG.md:316
 msgid "SystemManagementFrame: 完整帧组装解析与分段重组"
-msgstr ""
+msgstr "SystemManagementFrame: complete frame assembly, parsing, and segment reassembly"
 
 #: ../../../CHANGELOG.md:317
 msgid "非链接态窄带跳频测量信息配置 (`mac/broadcast.py`) -- 标准 7.1.4.10"
-msgstr ""
+msgstr "Non-connected narrowband frequency-hopping measurement config (`mac/broadcast.py`) -- standard 7.1.4.10"
 
 #: ../../../CHANGELOG.md:318
 msgid "NarrowbandMeasurementConfig: 41 个字段, 含可变长跳频信道位图"
-msgstr ""
+msgstr "NarrowbandMeasurementConfig: 41 fields including variable-length frequency-hopping channel bitmap"
 
 #: ../../../CHANGELOG.md:319
 msgid "非链接态超宽带脉冲测量信息配置 (`mac/broadcast.py`) -- 标准 7.1.4.11"
-msgstr ""
+msgstr "Non-connected UWB pulse measurement config (`mac/broadcast.py`) -- standard 7.1.4.11"
 
 #: ../../../CHANGELOG.md:320
 msgid "UWBPulseMeasurementConfig: 38 个字段, 含可变长频点列表"
-msgstr ""
+msgstr "UWBPulseMeasurementConfig: 38 fields including variable-length frequency list"
 
 #: ../../../CHANGELOG.md:321
 msgid "系统管理帧与测量配置测试 (`tests/test_smf.py`)"
-msgstr ""
+msgstr "System management frame and measurement config tests (`tests/test_smf.py`)"
 
 #: ../../../CHANGELOG.md:322
 msgid "44 个测试覆盖全部 pack/unpack 环回、边界值、分段重组"
-msgstr ""
+msgstr "44 tests covering all pack/unpack loopback, boundary values, and segment reassembly"
 
 #: ../../../CHANGELOG.md:324
 msgid "覆盖率补充测试 (`tests/test_coverage_gaps.py`)"
-msgstr ""
+msgstr "Coverage gap tests (`tests/test_coverage_gaps.py`)"
 
 #: ../../../CHANGELOG.md:325
 msgid "67 个测试覆盖 20+ 模块的未覆盖分支/边界条件"
-msgstr ""
+msgstr "67 tests covering uncovered branches/boundary conditions in 20+ modules"
 
 #: ../../../CHANGELOG.md:326
 msgid ""
 "涵盖 scrambler、link_control、link_manager、frame、access、broadcast、 "
 "security_manager、mac_interface、psk、tx/rx_pipeline、polar、scheduler 等"
-msgstr ""
+msgstr "Covering scrambler, link_control, link_manager, frame, access, broadcast, security_manager, mac_interface, psk, tx/rx_pipeline, polar, scheduler, etc."
 
 #: ../../../CHANGELOG.md:328
 msgid "总体覆盖率 91%, 核心模块覆盖率 97%+"
-msgstr ""
+msgstr "Overall coverage 91%, core module coverage 97%+"
 
 #: ../../../CHANGELOG.md:329
 msgid "E310 硬件验证脚本 (`scripts/hw_verify.py`)"
-msgstr ""
+msgstr "E310 hardware verification script (`scripts/hw_verify.py`)"
 
 #: ../../../CHANGELOG.md:330
 msgid "6 步验证流程: 设备初始化 → 频率/信道 → 增益 → IQ 环回 → PHY 帧环回 → 跳频"
-msgstr ""
+msgstr "6-step verification: device init → frequency/channel → gain → IQ loopback → PHY frame loopback → hopping"
 
 #: ../../../CHANGELOG.md:331
 msgid "支持 `--mock` 模式和 `--addr` 真实设备, 25/25 测试项"
-msgstr ""
+msgstr "Supports `--mock` mode and `--addr` real device, 25/25 test items"
 
 #: ../../../CHANGELOG.md:332
 msgid "PHY 回环测试脚本 (`scripts/phy_loopback.py`)"
-msgstr ""
+msgstr "PHY loopback test script (`scripts/phy_loopback.py`)"
 
 #: ../../../CHANGELOG.md:333
 msgid "多帧类型 (FT2/FT3/FT4) × 多 MCS 全链路 BER/FER 统计"
-msgstr ""
+msgstr "Multi-frame-type (FT2/FT3/FT4) × multi-MCS full-link BER/FER statistics"
 
 #: ../../../CHANGELOG.md:334
 msgid "经 SLETransceiver + LoopbackBuffer 完整收发链路"
-msgstr ""
+msgstr "Via SLETransceiver + LoopbackBuffer complete TX/RX chain"
 
 #: ../../../CHANGELOG.md:335
 msgid "FT3/FT4 多码块回环测试 (`TestMultiBlockLoopback` in `test_ft_pipeline.py`)"
-msgstr ""
+msgstr "FT3/FT4 multi-block loopback test (`TestMultiBlockLoopback` in `test_ft_pipeline.py`)"
 
 #: ../../../CHANGELOG.md:336
 msgid "32 字节载荷触发双码块分割场景的全链路闭环验证"
-msgstr ""
+msgstr "32-byte payload triggers dual-block segmentation full-link closed-loop verification"
 
 #: ../../../CHANGELOG.md:338
 msgid "`secure_random_256()` 安全随机函数 (标准 6.10.7), 基于 KDF 生成 256-bit 安全序列"
-msgstr ""
+msgstr "`secure_random_256()` secure random function (standard 6.10.7), KDF-based 256-bit secure sequence generation"
 
 #: ../../../CHANGELOG.md:339
 msgid "`sync_sequence.py` 重构: 同步信号 5/6 改用 `crypto.secure_random_256` 公共 API"
-msgstr ""
+msgstr "`sync_sequence.py` refactor: sync signals 5/6 now use `crypto.secure_random_256` public API"
 
 #: ../../../CHANGELOG.md:340
 msgid "`link_manager.py` 新增休眠/唤醒状态机 (标准 7.2.14)"
-msgstr ""
+msgstr "`link_manager.py` added sleep/wake-up state machine (standard 7.2.14)"
 
 #: ../../../CHANGELOG.md:341
 msgid "DORMANT / WAKING 状态, ENTER_DORMANT / WAKE_UP / WAKE_COMPLETE 事件"
-msgstr ""
+msgstr "DORMANT / WAKING states, ENTER_DORMANT / WAKE_UP / WAKE_COMPLETE events"
 
 #: ../../../CHANGELOG.md:342
 msgid "`is_dormant` 属性, `on_dormant_enter` / `on_wake_complete` 回调"
-msgstr ""
+msgstr "`is_dormant` property, `on_dormant_enter` / `on_wake_complete` callbacks"
 
 #: ../../../CHANGELOG.md:343
 msgid "USRP 环回仿真引擎 (`sim/usrp_sim.py`)"
-msgstr ""
+msgstr "USRP loopback simulation engine (`sim/usrp_sim.py`)"
 
 #: ../../../CHANGELOG.md:344
 msgid "`LoopbackBuffer`: TX→RX 环回缓冲区, 支持信道模型注入"
-msgstr ""
+msgstr "`LoopbackBuffer`: TX→RX loopback buffer with channel model injection support"
 
 #: ../../../CHANGELOG.md:345
 msgid "`USRPLoopbackSim`: 端到端仿真器, 集成 PHY/MAC 全链路"
-msgstr ""
+msgstr "`USRPLoopbackSim`: end-to-end simulator integrating full PHY/MAC chain"
 
 #: ../../../CHANGELOG.md:346
 msgid "支持 IQ 级、PHY 帧级、MAC 数据帧级、信令级环回"
-msgstr ""
+msgstr "Supports IQ-level, PHY-frame-level, MAC-data-frame-level, and signaling-level loopback"
 
 #: ../../../CHANGELOG.md:347
 msgid "跳频序列环回与批量帧仿真"
-msgstr ""
+msgstr "Frequency-hopping sequence loopback and batch frame simulation"
 
 #: ../../../CHANGELOG.md:348
 msgid "MockUSRP/MockStreamer 增加 loopback 模式, TX 发射数据可直接送入 RX"
-msgstr ""
+msgstr "MockUSRP/MockStreamer added loopback mode; TX transmitted data can be fed directly to RX"
 
 #: ../../../CHANGELOG.md:349
 msgid "`TxResult` 新增 `mac_bytes` 字段, 便于接收端确定解码长度"
-msgstr ""
+msgstr "`TxResult` added `mac_bytes` field to help the receiver determine decode length"
 
 #: ../../../CHANGELOG.md:350
 msgid "33 项 USRP 仿真测试覆盖全链路 (FT1-FT4、SleNode 双节点、信令环回)"
-msgstr ""
+msgstr "33 USRP simulation tests covering the full chain (FT1-FT4, SleNode dual-node, signaling loopback)"
 
 #: ../../../CHANGELOG.md:351
 msgid "`get_polar_decoder()` 缓存工厂函数, 消除重复创建 PolarDecoder 的开销"
-msgstr ""
+msgstr "`get_polar_decoder()` cached factory function, eliminating repeated PolarDecoder creation overhead"
 
 #: ../../../CHANGELOG.md:355
 msgid "**FT3/FT4 多码块载荷解码** (`rx_pipeline.py decode_payload`)"
-msgstr ""
+msgstr "**FT3/FT4 multi-block payload decoding** (`rx_pipeline.py decode_payload`)"
 
 #: ../../../CHANGELOG.md:356
 msgid "`segment_with_crc` 多码块场景下, 每块附带 per-segment CRC24B"
-msgstr ""
+msgstr "`segment_with_crc` in multi-block scenarios: each block carries a per-segment CRC24B"
 
 #: ../../../CHANGELOG.md:357
 msgid "旧代码直接取拼接后末尾 b_len 比特, 包含了 per-segment CRC 而非原始数据"
-msgstr ""
+msgstr "Old code directly took the last b_len bits of the concatenated output, which included per-segment CRC instead of raw data"
 
 #: ../../../CHANGELOG.md:358
 msgid "修复为逐块剥离 per-segment CRC24B 并正确处理末块前端补零对齐"
-msgstr ""
+msgstr "Fixed to strip per-segment CRC24B block by block and correctly handle leading zero-padding alignment in the last block"
 
 #: ../../../CHANGELOG.md:362
 msgid "Polar SC 解码器引入 SSC 优化"
-msgstr ""
+msgstr "Polar SC decoder introduces SSC optimization"
 
 #: ../../../CHANGELOG.md:363
 msgid "预计算子树类型 (rate-0 / rate-1 / partial), 剪枝跳过纯冻结/纯信息子树"
-msgstr ""
+msgstr "Pre-compute subtree types (rate-0 / rate-1 / partial), pruning to skip pure-frozen/pure-information subtrees"
 
 #: ../../../CHANGELOG.md:364
 msgid "`_build_node_types()` 改用前缀和 + 迭代, 替代递归 + np.all"
-msgstr ""
+msgstr "`_build_node_types()` switched to prefix-sum + iteration, replacing recursion + np.all"
 
 #: ../../../CHANGELOG.md:365
 msgid "rate-1 子树: 硬判决 + 极性变换直接得到信息位, 跳过逐位递归"
-msgstr ""
+msgstr "rate-1 subtree: hard decision + polarity transform directly yields information bits, skipping bit-by-bit recursion"
 
 #: ../../../CHANGELOG.md:366
 msgid "递归调用从 89100 降至 26700 (70% 减少), 解码耗时下降 53%"
-msgstr ""
+msgstr "Recursive calls reduced from 89100 to 26700 (70% reduction), decoding time reduced by 53%"
 
 #: ../../../CHANGELOG.md:367
 msgid "PolarDecoder 实例缓存消除批量解码的初始化开销"
-msgstr ""
+msgstr "PolarDecoder instance caching eliminates initialization overhead in batch decoding"
 
 #: ../../../CHANGELOG.md:368
 msgid "MAC 环回总耗时 0.443s → 0.289s (35% 提升)"
@@ -1395,7 +1395,7 @@ msgstr "`tests/test_crypto.py`: added 2 tests — NO_INPUT/PASSWORD_VERIFY authe
 msgid ""
 "`tests/test_channel.py`: 新增 4 个测试 — 私有方法 (rayleigh/rician/multipath) "
 "和零功率噪声"
-msgstr ""
+msgstr "`tests/test_channel.py`: 4 new tests — private methods (rayleigh/rician/multipath) and zero-power noise"
 
 #: ../../../CHANGELOG.md:391
 msgid "`tests/test_measurement.py`: 新增 2 个测试 — TYPE_2 扰动索引循环覆盖"
@@ -1497,7 +1497,7 @@ msgstr "`_ber` / `_apply_cfo` / `_channel_impair` helper function tests"
 msgid ""
 "`sim_gfsk_link` / `sim_psk_link` / `sim_polar_coded_psk_link` 无编码/编码 BER "
 "仿真"
-msgstr ""
+msgstr "`sim_gfsk_link` / `sim_psk_link` / `sim_polar_coded_psk_link` uncoded/coded BER simulation"
 
 #: ../../../CHANGELOG.md:426
 msgid "`sim_frame_link` 帧级仿真 (FT2/FT3/FT4, 多种导频配置)"
@@ -1575,13 +1575,13 @@ msgstr "End-to-end integration test enhancement: added 18 MAC-PHY integration te
 msgid ""
 "TestEncryptedPhyRoundtrip (3 个测试): 配对→加密→PHY 传输→解密验证, 多帧 payload_count "
 "递增, MIC 篡改拒绝"
-msgstr ""
+msgstr "TestEncryptedPhyRoundtrip (3 tests): pairing→encryption→PHY TX→decryption verification, multi-frame payload_count increment, MIC tampering rejection"
 
 #: ../../../CHANGELOG.md:445
 msgid ""
 "TestMultiFrameTypeIntegration (6 个测试): FT1/FT2/FT3/FT4 帧类型 roundtrip, 多 "
 "MCS 等级扫描, 多种信令类型"
-msgstr ""
+msgstr "TestMultiFrameTypeIntegration (6 tests): FT1/FT2/FT3/FT4 frame type roundtrip, multi-MCS level scan, multiple signaling types"
 
 #: ../../../CHANGELOG.md:446
 msgid "TestNoisyChannelMacData (3 个测试): AWGN 信道高/低 SNR MAC 数据传输, 广播帧含噪声传输"
@@ -1603,7 +1603,7 @@ msgstr "Test coverage supplement: overall 84% → 85%, added 28 tests (1354 → 
 msgid ""
 "`tests/test_modulator.py`: TestSLEDemodulator (3 个测试) — `demodulator.py` "
 "0% → 100%"
-msgstr ""
+msgstr "`tests/test_modulator.py`: TestSLEDemodulator (3 tests) — `demodulator.py` 0% → 100%"
 
 #: ../../../CHANGELOG.md:451
 msgid "`tests/test_channel.py`: TestDoppler (6 个测试) — `channel.py` 88% → 92%"
@@ -1613,14 +1613,14 @@ msgstr "`tests/test_channel.py`: TestDoppler (6 tests) — `channel.py` 88% → 
 msgid ""
 "`tests/test_link_manager.py`: TestPairingTransitions + "
 "TestSupervisionCheck (8 个测试) — `link_manager.py` 89% → 95%"
-msgstr ""
+msgstr "`tests/test_link_manager.py`: TestPairingTransitions + TestSupervisionCheck (8 tests) — `link_manager.py` 89% → 95%"
 
 #: ../../../CHANGELOG.md:453
 msgid ""
 "`tests/test_code_block_seg.py`: TestSubSegmentation + "
 "TestSubsegmentLastBlockDirect + TestFindRateStr (11 个测试) — "
 "`code_block_seg.py` 67% → 78%"
-msgstr ""
+msgstr "`tests/test_code_block_seg.py`: TestSubSegmentation + TestSubsegmentLastBlockDirect + TestFindRateStr (11 tests) — `code_block_seg.py` 67% → 78%"
 
 #: ../../../CHANGELOG.md:454
 msgid "`sim/link_sim.py` Phase 12: AMC 自适应调制编码 + HARQ 重传 + 跳频多径仿真"
@@ -1666,25 +1666,25 @@ msgstr "Documentation update: added missing modules - Phase 9-12 simulation, sec
 msgid ""
 "`docs/explanation/architecture.md`: MAC 层模块表新增 access/scheduler/security,"
 " 仿真阶段补全至 Phase 12"
-msgstr ""
+msgstr "`docs/explanation/architecture.md`: MAC layer module table added access/scheduler/security, simulation phases extended to Phase 12"
 
 #: ../../../CHANGELOG.md:465
 msgid ""
 "`docs/explanation/standard-mapping.md`: 新增第 9 "
 "章安全子系统、6.2.3/6.2.4/6.3.6-6.3.11 条款映射"
-msgstr ""
+msgstr "`docs/explanation/standard-mapping.md`: added Chapter 9 security subsystem and 6.2.3/6.2.4/6.3.6-6.3.11 clause mappings"
 
 #: ../../../CHANGELOG.md:466
 msgid ""
 "`docs/how-to/run-simulation.md`: 新增 Phase 9-12 操作指南 (MAC "
 "帧仿真/安全仿真/AMC/HARQ/跳频)"
-msgstr ""
+msgstr "`docs/how-to/run-simulation.md`: added Phase 9-12 how-to guides (MAC frame simulation/security simulation/AMC/HARQ/hopping)"
 
 #: ../../../CHANGELOG.md:467
 msgid ""
 "`docs/reference/index.md`: 新增 "
 "mac_interface/measurement/access/scheduler/security 等 8 个模块引用"
-msgstr ""
+msgstr "`docs/reference/index.md`: added 8 module references including mac_interface/measurement/access/scheduler/security"
 
 #: ../../../CHANGELOG.md:468
 msgid "`mac/security_manager.py`: 安全流程集成管理模块 (标准 9.2-9.4)"
@@ -1914,7 +1914,7 @@ msgstr "build_measurement_frame_4: measurement frame type 4, UWB initialization 
 msgid ""
 "build_uwb_sync_field / build_uwb_measurement_field / "
 "build_uwb_pulse_measurement_frame: 超宽带脉冲测量帧 (6.3.11)"
-msgstr ""
+msgstr "build_uwb_sync_field / build_uwb_measurement_field / build_uwb_pulse_measurement_frame: UWB pulse measurement frame (6.3.11)"
 
 #: ../../../CHANGELOG.md:526
 msgid "`tests/test_measurement_frame.py`: 34 个测量帧结构测试"
@@ -1935,7 +1935,7 @@ msgid ""
 "RaMessage, RbMessage, GNodeConfirmCodeWithRandom, "
 "TNodeConfirmCodeWithRandom, GNodeConfirmCode, GNodeDHKeyVerify, "
 "TNodeDHKeyVerify, PairingFailure, RgMessage, RtMessage"
-msgstr ""
+msgstr "16 pairing message types (0x0133-0x0149): PairingInitiate, PairingRequest, PairingResponse, PairingConfirm, PairingInitialInfo, TNodeConfirmCode, RaMessage, RbMessage, GNodeConfirmCodeWithRandom, TNodeConfirmCodeWithRandom, GNodeConfirmCode, GNodeDHKeyVerify, TNodeDHKeyVerify, PairingFailure, RgMessage, RtMessage"
 
 #: ../../../CHANGELOG.md:534
 msgid "`mac/signaling.py`: 注册表扩展至 128 个信令类型 (新增 16 个配对信令)"
@@ -2061,7 +2061,7 @@ msgstr "`mac/link_control.py`: added 57 link control signaling types (0x0035-0x0
 msgid ""
 "Channel5GStatusIndication / HopMap5GUpdate / BroadcastHopMap5GUpdate: 5G "
 "信道与跳频管理"
-msgstr ""
+msgstr "Channel5GStatusIndication / HopMap5GUpdate / BroadcastHopMap5GUpdate: 5G channel and frequency-hopping management"
 
 #: ../../../CHANGELOG.md:569
 msgid "MultiIntervalUpdateRequest/Response/Indication: 多间隔更新"
@@ -2075,7 +2075,7 @@ msgstr "SystemTimeIndication: system time indication"
 msgid ""
 "AsyncMulticastLinkSetup / AsyncMulticastParamExchange\\* / "
 "AsyncMulticastParamUpdate\\*: 异步组播链路管理"
-msgstr ""
+msgstr "AsyncMulticastLinkSetup / AsyncMulticastParamExchange\\* / AsyncMulticastParamUpdate\\*: async multicast link management"
 
 #: ../../../CHANGELOG.md:572
 msgid "NarrowbandMeasCap*/FreqTable*/MeasConfig/MeasReport/MeasAction: 窄带跳频测量"
@@ -2221,7 +2221,7 @@ msgstr "`_channel_impair`: unified channel impairment helper function"
 msgid ""
 "`tests/test_link_sim_mac.py`: 13 个仿真测试覆盖高 SNR 正确性、返回值结构、 "
 "统计单调性、Rayleigh+MMSE 信道场景和频偏退化验证"
-msgstr ""
+msgstr "`tests/test_link_sim_mac.py`: 13 simulation tests covering high-SNR correctness, return value structure, statistical monotonicity, Rayleigh+MMSE channel scenarios, and frequency-offset degradation verification"
 
 #: ../../../CHANGELOG.md:623
 msgid "`sim/link_sim.py` `__main__` 入口重构为 dispatch 字典, 支持 phase1-phase9"
@@ -2291,7 +2291,7 @@ msgstr "[0.19.0] - 2025-07-14"
 msgid ""
 "`mac/link_control.py`: 新增 22 类控制面信令编解码, 覆盖安全流程、信道管理、PHY 更新、 "
 "角色切换、PING、超时更新、广播/组播断开等 (标准 7.3.2.6-7.3.2.63)"
-msgstr ""
+msgstr "`mac/link_control.py`: added 22 control-plane signaling codec types covering security procedures, channel management, PHY updates, role switching, PING, timeout updates, broadcast/multicast disconnect, etc. (standard 7.3.2.6-7.3.2.63)"
 
 #: ../../../CHANGELOG.md:655
 msgid "`mac/signaling.py`: 信令注册表从 17 扩展至 41 条目"
@@ -2306,13 +2306,13 @@ msgid ""
 "`mac/link_control.py`: 修正 IntervalUpdateRequest DATA_TYPE_INDEX 从 0x0001 "
 "→ 0x0000, IntervalUpdateResponse 重命名为 IntervalUpdateIndication (0x0002), "
 "新建正确的 IntervalUpdateResponse (0x0001, 1 字节)"
-msgstr ""
+msgstr "`mac/link_control.py`: fixed IntervalUpdateRequest DATA_TYPE_INDEX from 0x0001 → 0x0000; renamed IntervalUpdateResponse to IntervalUpdateIndication (0x0002); created correct IntervalUpdateResponse (0x0001, 1 byte)"
 
 #: ../../../CHANGELOG.md:663
 msgid ""
 "`mac/link_control.py`: 修正 AsyncMulticastReconfig BYTE_LENGTH 从 31 → 30, "
 "修正 struct unpack 偏移对齐"
-msgstr ""
+msgstr "`mac/link_control.py`: fixed AsyncMulticastReconfig BYTE_LENGTH from 31 → 30; fixed struct unpack offset alignment"
 
 #: ../../../CHANGELOG.md:665
 msgid "`mac/link_control.py`: 修正 AsyncUnicastUpdate pack 输出与标准 15 字节一致"
@@ -2327,7 +2327,7 @@ msgid ""
 "`mac/broadcast.py`: 广播帧编解码实现 (标准 7.1.4), 含 BroadcastFrame、 "
 "ExtAdvResourceConfig、DiscoveryAccessResourceConfig、AccessBasicInfo、 "
 "AccessRequestInfo、AccessResponseInfo、SystemMgmtFrameInfo 等 7 个数据类"
-msgstr ""
+msgstr "`mac/broadcast.py`: broadcast frame codec implementation (standard 7.1.4), containing 7 data classes: BroadcastFrame, ExtAdvResourceConfig, DiscoveryAccessResourceConfig, AccessBasicInfo, AccessRequestInfo, AccessResponseInfo, SystemMgmtFrameInfo"
 
 #: ../../../CHANGELOG.md:674
 msgid "`tests/test_broadcast.py`: 广播帧 20 个测试用例"
@@ -2341,7 +2341,7 @@ msgstr "[0.17.0] - 2026-03-20"
 msgid ""
 "`docs/explanation/principles.md`: 物理层原理讲解, 含 Polar 编码/SC 解码、PSK/GFSK "
 "调制、信道模型、均衡器、CRC、码块分割、加扰等数学推导"
-msgstr ""
+msgstr "`docs/explanation/principles.md`: physical layer principles explanation, covering Polar coding/SC decoding, PSK/GFSK modulation, channel models, equalizer, CRC, code block segmentation, scrambling, etc. with mathematical derivations"
 
 #: ../../../CHANGELOG.md:681
 msgid "`docs/conf.py`: LaTeX/PDF 输出配置, 使用 XeLaTeX + HarmonyOS Sans SC 字体"
@@ -2383,7 +2383,7 @@ msgstr "`phy/channel.py`: `last_taps` property, `apply_fading` caches channel co
 msgid ""
 "`sim/link_sim.py`: `sim_pipeline_channel_link()` 支持 `eq_method` 参数 "
 "(none/zf/mmse)"
-msgstr ""
+msgstr "`sim/link_sim.py`: `sim_pipeline_channel_link()` supports `eq_method` parameter (none/zf/mmse)"
 
 #: ../../../CHANGELOG.md:699
 msgid "平坦衰落 (Rayleigh/Rician) 采用 `equalize_1tap`, 多径采用 `equalize_mmse_freq`"
@@ -2437,7 +2437,7 @@ msgstr "[0.12.0] - 2026-03-20"
 msgid ""
 "`sim/link_sim.py`: 全链路 Pipeline 仿真 (Phase 6), 使用 `tx_chain`/`rx_chain` "
 "端到端 BER/FER 仿真"
-msgstr ""
+msgstr "`sim/link_sim.py`: full-chain pipeline simulation (Phase 6) using `tx_chain`/`rx_chain` end-to-end BER/FER simulation"
 
 #: ../../../CHANGELOG.md:727
 msgid "`sim_pipeline_link()`: 支持 FT1(GFSK)/FT2(QPSK)/FT3(QPSK)/FT4(BPSK) 全帧类型"
@@ -2459,7 +2459,7 @@ msgstr "[0.11.0] - 2026-03-20"
 msgid ""
 "TX/RX Pipeline 全面支持 FT1(GFSK 无 Polar)/FT3(Polar 256 + "
 "segment_with_crc)/FT4 帧类型"
-msgstr ""
+msgstr "TX/RX Pipeline fully supports FT1 (GFSK without Polar) / FT3 (Polar 256 + segment_with_crc) / FT4 frame types"
 
 #: ../../../CHANGELOG.md:739
 msgid "`test_ft_pipeline.py`: FT1(5)/FT3(4)/FT4(4)/帧同步(2) 共 15 个测试"
@@ -2489,7 +2489,7 @@ msgstr "[0.10.0] - 2026-03-20"
 msgid ""
 "TV202(MCS7 多码块)/TV205(MCS6)/TV206(MCS6 大载荷)/TV209(MCS11 8PSK) 全链路 "
 "pipeline 测试"
-msgstr ""
+msgstr "TV202 (MCS7 multi-block) / TV205 (MCS6) / TV206 (MCS6 large payload) / TV209 (MCS11 8PSK) full-chain pipeline tests"
 
 #: ../../../CHANGELOG.md:753
 msgid "RX roundtrip + loopback 测试覆盖 TV202/205/206/209"
@@ -2535,7 +2535,7 @@ msgstr "[0.8.0] - 2026-03-19"
 msgid ""
 "`common/prbs.py`: PRBS11 (x^11+x^2+1) / PRBS17 (x^17+x^3+1) 发生器, 对标标准 "
 "8.3.5"
-msgstr ""
+msgstr "`common/prbs.py`: PRBS11 (x^11+x^2+1) / PRBS17 (x^17+x^3+1) generators, aligned with standard 8.3.5"
 
 #: ../../../CHANGELOG.md:775
 msgid "TV101 端到端验证: PRBS11 -> HeadBits -> CRC12 -> 加扰 -> txHeadW, 全流程匹配附录 H"
@@ -2549,7 +2549,7 @@ msgstr "24 new tests added"
 msgid ""
 "`common/scrambler.py`: 由右移 Fibonacci LFSR 改为左移 Galois LFSR, 输出从 MSB "
 "(bit6), 反馈异或到 bit0 和 bit4 (mask=0x11), 经 TV101 测试向量端到端验证"
-msgstr ""
+msgstr "`common/scrambler.py`: changed from right-shift Fibonacci LFSR to left-shift Galois LFSR, output from MSB (bit6), feedback XOR to bit0 and bit4 (mask=0x11), verified end-to-end with TV101 test vector"
 
 #: ../../../CHANGELOG.md:782
 msgid "[0.7.0] - 2026-03-19"
@@ -2559,19 +2559,19 @@ msgstr "[0.7.0] - 2026-03-19"
 msgid ""
 "`common/scrambler.py`: 7bit LFSR 信道比特加扰, 多项式 x^7+x^4+1, 周期 127, "
 "广播种子/数据链路种子生成, 对标标准 6.10.4"
-msgstr ""
+msgstr "`common/scrambler.py`: 7-bit LFSR channel bit scrambling, polynomial x^7+x^4+1, period 127, broadcast seed/data link seed generation, aligned with standard 6.10.4"
 
 #: ../../../CHANGELOG.md:787
 msgid ""
 "`common/mcs.py`: MCS 表 (MCS0-MCS12, BPSK/QPSK/8PSK) 与速率匹配表 1/2, "
 "`RateConfig` 工厂方法, 对标标准 6.10.5 / 6.10.6"
-msgstr ""
+msgstr "`common/mcs.py`: MCS table (MCS0-MCS12, BPSK/QPSK/8PSK) and rate matching tables 1/2, `RateConfig` factory method, aligned with standard 6.10.5 / 6.10.6"
 
 #: ../../../CHANGELOG.md:788
 msgid ""
 "`phy/control_info.py`: 物理层控制信息 A1-A7 (帧类型 1/2, CRC12) 和 B1-B5 (帧类型 3/4, "
 "CRC24B+LLID 异或), 对标标准 6.4"
-msgstr ""
+msgstr "`phy/control_info.py`: physical layer control information A1-A7 (frame types 1/2, CRC12) and B1-B5 (frame types 3/4, CRC24B+LLID XOR), aligned with standard 6.4"
 
 #: ../../../CHANGELOG.md:789
 msgid "109 个新增测试"
@@ -2585,7 +2585,7 @@ msgstr "[0.6.0] - 2026-03-19"
 msgid ""
 "`phy/usrp.py`: USRP E310 硬件接口封装, 含 "
 "`USRPConfig`/`MockUSRP`/`USRPDevice`/`TXStream`/`RXStream`/`SLETransceiver`"
-msgstr ""
+msgstr "`phy/usrp.py`: USRP E310 hardware interface wrapper containing `USRPConfig`/`MockUSRP`/`USRPDevice`/`TXStream`/`RXStream`/`SLETransceiver`"
 
 #: ../../../CHANGELOG.md:796
 msgid "78 个新增测试"
@@ -2603,7 +2603,7 @@ msgstr "[0.5.0] - 2026-03-19"
 msgid ""
 "`phy/freq_hopping.py`: 射频信道/物理信道映射, 三频段频率表, 伪随机跳频序列, 多带宽过滤与屏蔽信道管理, 对标标准 "
 "6.10.3 / 8.1.2"
-msgstr ""
+msgstr "`phy/freq_hopping.py`: RF/physical channel mapping, three-band frequency table, pseudo-random hopping sequence, multi-bandwidth filtering and blocked channel management, aligned with standard 6.10.3 / 8.1.2"
 
 #: ../../../CHANGELOG.md:807
 msgid "`sim/link_sim.py` Phase 5 跳频仿真"

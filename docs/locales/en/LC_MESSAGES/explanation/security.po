@@ -28,7 +28,7 @@ msgstr "Security Subsystem Details"
 msgid ""
 "本文详细解释 SparkLink SLE 安全子系统的设计与实现, 涵盖配对鉴权、密钥派生、帧加密、隐私保护和 UWB 测量安全, 对标 "
 "TXS-10002-2025 标准第 9 章。"
-msgstr ""
+msgstr "This document explains the design and implementation of the SparkLink SLE security subsystem, covering pairing authentication, key derivation, frame encryption, privacy protection, and UWB measurement security, cross-referenced against Chapter 9 of TXS-10002-2025."
 
 #: ../../explanation/security.md:5
 msgid "安全架构"
@@ -142,13 +142,13 @@ msgstr "**IDLE → REQUEST_SENT**: send `PairingRequest`, carrying IO capabiliti
 msgid ""
 "**REQUEST_SENT → CONFIRM_SENT**: 收到 `PairingResponse`, 发送 "
 "`PairingConfirm` (含 G 节点 P-256 公钥 X/Y 坐标, 各 32 字节)"
-msgstr ""
+msgstr "**REQUEST_SENT → CONFIRM_SENT**: received `PairingResponse`, sends `PairingConfirm` (containing G-node P-256 public key X/Y coordinates, 32 bytes each)"
 
 #: ../../explanation/security.md:53
 msgid ""
 "**CONFIRM_SENT → PUBLIC_KEY_EXCHANGED**: 收到 `PairingInitialInfo` (T "
 "节点公钥), 计算 ECDH 共享密钥, 发送 Ra 随机数"
-msgstr ""
+msgstr "**CONFIRM_SENT → PUBLIC_KEY_EXCHANGED**: received `PairingInitialInfo` (T-node public key), computes ECDH shared secret, sends Ra nonce"
 
 #: ../../explanation/security.md:54
 msgid "**PUBLIC_KEY_EXCHANGED → CONFIRM_CODE_SENT**: 收到 Rb, 发送 `GNodeConfirmCode`"
@@ -174,7 +174,7 @@ msgstr "**INITIATED → RESPONSE_SENT**: received `PairingRequest`, send `Pairin
 msgid ""
 "**RESPONSE_SENT → PUBLIC_KEY_EXCHANGED**: 收到 `PairingConfirm`, 保存 G 公钥, "
 "发送自身公钥"
-msgstr ""
+msgstr "**RESPONSE_SENT → PUBLIC_KEY_EXCHANGED**: received `PairingConfirm`, saves G-node public key, sends its own public key"
 
 #: ../../explanation/security.md:62
 msgid "**PUBLIC_KEY_EXCHANGED → CONFIRM_CODE_SENT**: 收到 Ra, 计算 DH Key, 发送 Rb"
@@ -184,7 +184,7 @@ msgstr "**PUBLIC_KEY_EXCHANGED → CONFIRM_CODE_SENT**: received Ra, compute DH 
 msgid ""
 "**CONFIRM_CODE_SENT → COMPLETED**: 收到 `GNodeConfirmCode`, 验证后发送 "
 "`TNodeConfirmCode`, 派生密钥"
-msgstr ""
+msgstr "**CONFIRM_CODE_SENT → COMPLETED**: received `GNodeConfirmCode`, verifies and sends `TNodeConfirmCode`, derives session keys"
 
 #: ../../explanation/security.md:65
 msgid "失败处理"
@@ -302,7 +302,7 @@ msgstr "Numeric comparison failed"
 msgid ""
 "**代码实现**: `mac.security_manager.PairingManager` 实现状态机, `mac.security` "
 "模块定义 20 种配对信令消息类, `mac.security_manager.ECDHKeyPair` 封装 P-256 椭圆曲线运算。"
-msgstr ""
+msgstr "**Implementation**: `mac.security_manager.PairingManager` implements the state machine; `mac.security` defines 20 pairing signaling message classes; `mac.security_manager.ECDHKeyPair` encapsulates P-256 elliptic curve operations."
 
 #: ../../explanation/security.md:86
 msgid "密钥派生 (§9.3)"
@@ -448,17 +448,17 @@ msgstr "IV base value (8 bytes) XORed with different parameters:"
 
 #: ../../explanation/security.md:170
 msgid "**FT1/FT2**: IV = IV_base $\\oplus$ 同步序列号"
-msgstr ""
+msgstr "**FT1/FT2**: IV = IV_base $\\oplus$ sync sequence number"
 
 #: ../../explanation/security.md:171
 msgid "**FT3/FT4**: IV = IV_base $\\oplus$ 链路 ID"
-msgstr ""
+msgstr "**FT3/FT4**: IV = IV_base $\\oplus$ link ID"
 
 #: ../../explanation/security.md:173
 msgid ""
 "**代码实现**: `mac.security_manager.FrameCryptoContext` 管理加解密上下文, 维护 TX/RX "
 "payload_count, 调用 `mac.crypto.aes_ccm_encrypt()`/`aes_ccm_decrypt()`。"
-msgstr ""
+msgstr "**Implementation**: `mac.security_manager.FrameCryptoContext` manages the encryption/decryption context, maintains TX/RX payload_count, and calls `mac.crypto.aes_ccm_encrypt()`/`aes_ccm_decrypt()`."
 
 #: ../../explanation/security.md:175
 msgid "组播安全 (§9.3.2)"
@@ -480,18 +480,18 @@ msgstr "G node generates RAND and KDF/encryption/integrity algorithm parameters,
 msgid ""
 "G 节点计算 $K_g$ = KDF(link_key, RAND), 发送 $C$ = $K_g \\oplus GK$ 通过 "
 "`MulticastKeyConfig`"
-msgstr ""
+msgstr "The G-node computes $K_g$ = KDF(link_key, RAND) and sends $C$ = $K_g \\oplus GK$ via `MulticastKeyConfig`"
 
 #: ../../explanation/security.md:192
 msgid "T 节点用自身 link_key 计算 $K_g$, 恢复 $GK$ = $C \\oplus K_g$"
-msgstr ""
+msgstr "The T-node computes $K_g$ from its own link_key to recover $GK$ = $C \\oplus K_g$"
 
 #: ../../explanation/security.md:194
 msgid ""
 "**代码实现**: `mac.crypto.generate_group_key()`, "
 "`derive_group_session_key()`, `derive_kg()`; `mac.security` 模块定义 "
 "`MulticastAlgorithmConfig` 和 `MulticastKeyConfig` 信令。"
-msgstr ""
+msgstr "**Implementation**: `mac.crypto.generate_group_key()`, `derive_group_session_key()`, `derive_kg()`; the `mac.security` module defines `MulticastAlgorithmConfig` and `MulticastKeyConfig` signaling messages."
 
 #: ../../explanation/security.md:196
 msgid "隐私保护 (§9.4)"
@@ -517,13 +517,13 @@ msgstr "Devices knowing the IRK can verify and resolve the address; devices with
 msgid ""
 "地址分发通过 `GNodeAddress`/`TNodeAddress` 信令完成, 携带地址类型 (联盟分配、第三方本地、联盟预留、私有) 和 "
 "6 字节地址。"
-msgstr ""
+msgstr "Address distribution is accomplished through `GNodeAddress`/`TNodeAddress` signaling, carrying the address type (consortium-assigned, third-party local, consortium-reserved, private) and a 6-byte address."
 
 #: ../../explanation/security.md:206
 msgid ""
 "**代码实现**: `mac.crypto.generate_resolvable_address(kdf_type, irk, "
 "rand_part)` 和 `resolve_address(kdf_type, irk, addr)`。"
-msgstr ""
+msgstr "**Implementation**: `mac.crypto.generate_resolvable_address(kdf_type, irk, rand_part)` and `resolve_address(kdf_type, irk, addr)`."
 
 #: ../../explanation/security.md:208
 msgid "UWB 测量安全 (§9.5)"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"POT-Creation-Date: 2026-03-22 02:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -23,19 +23,19 @@ msgstr ""
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.md:1
 #, python-brace-format
 msgid "{py:mod}`nearlink_sdr.common.code_block_seg`"
-msgstr ""
+msgstr "{py:mod}`nearlink_sdr.common.code_block_seg`"
 
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:7
-msgid "Code block segmentation per TXS-10002-2025 sections 6.9.1.2 and 6.9.1.3."
+msgid "码块分割 -- TXS-10002-2025 标准 6.9.1.2 / 6.9.1.3 节。"
 msgstr ""
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.md:10
 msgid "Module Contents"
-msgstr ""
+msgstr "Module Contents"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.md:12
 msgid "Functions"
-msgstr ""
+msgstr "Functions"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.md:18
 #, python-brace-format
@@ -53,7 +53,7 @@ msgstr ""
 
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:24
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:103
-msgid "Get K values for each code length at the given rate."
+msgid "获取给定码率下各码长对应的 K 值。"
 msgstr ""
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.md:26
@@ -65,7 +65,7 @@ msgstr ""
 
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:28
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:110
-msgid "Code block segmentation without per-block CRC (section 6.9.1.2)."
+msgid "无逐码块 CRC 的码块分割 (标准 6.9.1.2 节)。"
 msgstr ""
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.md:30
@@ -77,7 +77,7 @@ msgstr ""
 
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:32
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:117
-msgid "Code block segmentation with per-block CRC24B (section 6.9.1.3)."
+msgid "含逐码块 CRC24B 的码块分割 (标准 6.9.1.3 节)。"
 msgstr ""
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.md:34
@@ -89,22 +89,22 @@ msgstr ""
 
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:36
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:124
-msgid "Further sub-segment the last code block per section 6.9.1.3."
+msgid "按标准 6.9.1.3 节对最后一个码块进行子分割。"
 msgstr ""
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.md:40
 msgid "Data"
-msgstr ""
+msgstr "Data"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.md:46
 #, python-brace-format
 msgid "{py:obj}`RATE_TABLE_2 <nearlink_sdr.common.code_block_seg.RATE_TABLE_2>`"
-msgstr ""
+msgstr "{py:obj}`RATE_TABLE_2 <nearlink_sdr.common.code_block_seg.RATE_TABLE_2>`"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.md:50
 #, python-brace-format
 msgid "{py:obj}`_SEG_TABLE_20 <nearlink_sdr.common.code_block_seg._SEG_TABLE_20>`"
-msgstr ""
+msgstr "{py:obj}`_SEG_TABLE_20 <nearlink_sdr.common.code_block_seg._SEG_TABLE_20>`"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.md:54
 #, python-brace-format
@@ -115,12 +115,12 @@ msgstr ""
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.md:60
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.md:66
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.md:86
 msgid "None"
-msgstr ""
+msgstr "None"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.md:76
 msgid ""
@@ -130,47 +130,101 @@ msgstr ""
 
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:105
 msgid ""
-"For 6.9.1.2 (without CRC), use_table24=True for rates in Table 24. For "
-"6.9.1.3 (with CRC), always use Table 23."
+"6.9.1.2（无 CRC 分割）时, 若码率在表 24 中则 use_table24=True。 6.9.1.3（含 CRC 分割）时, "
+"始终使用表 23。"
 msgstr ""
 
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:112
-msgid "Used for frame type 2."
+msgid "适用于帧类型 2。"
 msgstr ""
 
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:114
 #, python-brace-format
 msgid ""
-"Args:     bits: input bit sequence b_0..b_{B-1}, where B = K + L (info + "
-"CRC).     rate_str: target code rate string.     crc_len: L, the CRC "
-"length already appended to bits."
+"参数:     bits: 输入比特序列 b_0..b_{B-1}, 其中 B = K + L (信息位 + CRC)。     "
+"rate_str: 目标码率字符串。     crc_len: L, 已追加到 bits 末尾的 CRC 长度。"
 msgstr ""
 
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:119
-msgid "Returns:     List of (code_length_N, info_bits) tuples for each segment."
+msgid "返回:     每个分段的 (码长 N, 信息比特) 元组列表。"
 msgstr ""
 
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:119
-msgid "Used for frame type 3 and 4."
+msgid "适用于帧类型 3 和 4。"
 msgstr ""
 
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:121
 #, python-brace-format
-msgid ""
-"Args:     bits: input bit sequence b_0..b_{B-1}.     rate_str: target "
-"code rate string."
+msgid "参数:     bits: 输入比特序列 b_0..b_{B-1}。     rate_str: 目标码率字符串。"
 msgstr ""
 
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:125
-msgid ""
-"Returns:     List of (code_length_N, info_bits_with_crc) tuples for each "
-"segment.     For the last segment, further sub-segmentation may be "
-"applied."
+msgid "返回:     每个分段的 (码长 N, 含 CRC 的信息比特) 元组列表。     最后一个分段可能进一步做子分割。"
 msgstr ""
 
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:126
-msgid ""
-"Returns None if no sub-segmentation is needed (K_r fits in 1024 at rate "
-"R)."
+msgid "若无需子分割（K_r 在码率 R 下可放入 1024 块中）则返回 None。"
 msgstr ""
+
+#~ msgid ""
+#~ "Code block segmentation per TXS-10002-2025 "
+#~ "sections 6.9.1.2 and 6.9.1.3."
+#~ msgstr ""
+
+#~ msgid "Get K values for each code length at the given rate."
+#~ msgstr ""
+
+#~ msgid "Code block segmentation without per-block CRC (section 6.9.1.2)."
+#~ msgstr ""
+
+#~ msgid "Code block segmentation with per-block CRC24B (section 6.9.1.3)."
+#~ msgstr ""
+
+#~ msgid "Further sub-segment the last code block per section 6.9.1.3."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "For 6.9.1.2 (without CRC), use_table24=True"
+#~ " for rates in Table 24. For "
+#~ "6.9.1.3 (with CRC), always use Table "
+#~ "23."
+#~ msgstr ""
+
+#~ msgid "Used for frame type 2."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Args:     bits: input bit sequence "
+#~ "b_0..b_{B-1}, where B = K + L "
+#~ "(info + CRC).     rate_str: target code"
+#~ " rate string.     crc_len: L, the CRC"
+#~ " length already appended to bits."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Returns:     List of (code_length_N, "
+#~ "info_bits) tuples for each segment."
+#~ msgstr ""
+
+#~ msgid "Used for frame type 3 and 4."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Args:     bits: input bit sequence "
+#~ "b_0..b_{B-1}.     rate_str: target code rate"
+#~ " string."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Returns:     List of (code_length_N, "
+#~ "info_bits_with_crc) tuples for each segment."
+#~ "     For the last segment, further "
+#~ "sub-segmentation may be applied."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Returns None if no sub-segmentation "
+#~ "is needed (K_r fits in 1024 at "
+#~ "rate R)."
+#~ msgstr ""
 
