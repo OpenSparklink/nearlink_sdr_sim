@@ -1,0 +1,914 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the nearlink-sdr
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: nearlink-sdr 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../how-to/sdr-deployment.md:1
+msgid "SDR E310 部署规划"
+msgstr "SDR E310 Deployment Planning"
+
+#: ../../how-to/sdr-deployment.md:3
+msgid "本文档概述将 NearLink SDR 从纯仿真环境迁移到 USRP E310 硬件的路径。"
+msgstr "This document outlines the path for migrating NearLink SDR from a pure simulation environment to USRP E310 hardware."
+
+#: ../../how-to/sdr-deployment.md:5
+msgid "当前完成度"
+msgstr "Current Completion Status"
+
+#: ../../how-to/sdr-deployment.md:7
+msgid "物理层 (第 6 章) -- 全部完成"
+msgstr "Physical Layer (Chapter 6) -- Fully Complete"
+
+#: ../../how-to/sdr-deployment.md
+msgid "功能"
+msgstr "Feature"
+
+#: ../../how-to/sdr-deployment.md
+msgid "模块"
+msgstr "Module"
+
+#: ../../how-to/sdr-deployment.md
+msgid "标准章节"
+msgstr "Standard Section"
+
+#: ../../how-to/sdr-deployment.md
+msgid "GFSK 调制解调"
+msgstr "GFSK Modulation/Demodulation"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`phy/gfsk.py`"
+msgstr "`phy/gfsk.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "6.2.1.1"
+msgstr "6.2.1.1"
+
+#: ../../how-to/sdr-deployment.md
+msgid "BPSK/QPSK 调制解调"
+msgstr "BPSK/QPSK Modulation/Demodulation"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`phy/psk.py`"
+msgstr "`phy/psk.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "6.2.1.2"
+msgstr "6.2.1.2"
+
+#: ../../how-to/sdr-deployment.md
+msgid "帧结构 FT1-FT4"
+msgstr "Frame Structure FT1-FT4"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`phy/frame.py`"
+msgstr "`phy/frame.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "6.3"
+msgstr "6.3"
+
+#: ../../how-to/sdr-deployment.md
+msgid "前导码"
+msgstr "Preamble"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`phy/preamble.py`"
+msgstr "`phy/preamble.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "6.4"
+msgstr "6.4"
+
+#: ../../how-to/sdr-deployment.md
+msgid "同步信号 1-6"
+msgstr "Sync Signals 1-6"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`phy/sync_sequence.py`"
+msgstr "`phy/sync_sequence.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "6.5/6.6"
+msgstr "6.5/6.6"
+
+#: ../../how-to/sdr-deployment.md
+msgid "导频"
+msgstr "Pilots"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`phy/pilot.py`"
+msgstr "`phy/pilot.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "6.7"
+msgstr "6.7"
+
+#: ../../how-to/sdr-deployment.md
+msgid "控制信息 A/B 组"
+msgstr "Control Information Group A/B"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`phy/control_info.py`"
+msgstr "`phy/control_info.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "CRC-12/24A/24B/32"
+msgstr "CRC-12/24A/24B/32"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`common/crc.py`"
+msgstr "`common/crc.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "6.9"
+msgstr "6.9"
+
+#: ../../how-to/sdr-deployment.md
+msgid "Polar 编解码 (SSC)"
+msgstr "Polar Encoding/Decoding (SSC)"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`common/polar.py`"
+msgstr "`common/polar.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "6.10.1"
+msgstr "6.10.1"
+
+#: ../../how-to/sdr-deployment.md
+msgid "码块分割"
+msgstr "Code Block Segmentation"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`common/code_block_seg.py`"
+msgstr "`common/code_block_seg.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "6.10.2"
+msgstr "6.10.2"
+
+#: ../../how-to/sdr-deployment.md
+msgid "跳频序列 (2.4/5.1/5.8 GHz)"
+msgstr "Frequency Hopping Sequences (2.4/5.1/5.8 GHz)"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`phy/freq_hopping.py`"
+msgstr "`phy/freq_hopping.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "6.10.3"
+msgstr "6.10.3"
+
+#: ../../how-to/sdr-deployment.md
+msgid "信道比特加扰"
+msgstr "Channel Bit Scrambling"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`common/scrambler.py`"
+msgstr "`common/scrambler.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "6.10.4"
+msgstr "6.10.4"
+
+#: ../../how-to/sdr-deployment.md
+msgid "MCS 表与速率匹配"
+msgstr "MCS Table and Rate Matching"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`common/mcs.py`"
+msgstr "`common/mcs.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "6.10.5/6"
+msgstr "6.10.5/6"
+
+#: ../../how-to/sdr-deployment.md
+msgid "BCH 编码"
+msgstr "BCH Coding"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`common/bch.py`"
+msgstr "`common/bch.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "6.11"
+msgstr "6.11"
+
+#: ../../how-to/sdr-deployment.md
+msgid "TX/RX 流水线"
+msgstr "TX/RX Pipeline"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`phy/tx_pipeline.py`, `phy/rx_pipeline.py`"
+msgstr "`phy/tx_pipeline.py`, `phy/rx_pipeline.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "6.10"
+msgstr "6.10"
+
+#: ../../how-to/sdr-deployment.md
+msgid "测量信号 1/2 (多音)"
+msgstr "Measurement Signals 1/2 (Multitone)"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`phy/measurement.py`"
+msgstr "`phy/measurement.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "6.2.4"
+msgstr "6.2.4"
+
+#: ../../how-to/sdr-deployment.md
+msgid "测量帧类型 1-4 + UWB"
+msgstr "Measurement Frame Types 1-4 + UWB"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`phy/measurement_frame.py`"
+msgstr "`phy/measurement_frame.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "6.3.6-11"
+msgstr "6.3.6-11"
+
+#: ../../how-to/sdr-deployment.md
+msgid "安全随机函数"
+msgstr "Secure Random Function"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`mac/crypto.py`"
+msgstr "`mac/crypto.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "6.10.7"
+msgstr "6.10.7"
+
+#: ../../how-to/sdr-deployment.md
+msgid "PRBS11/PRBS17"
+msgstr "PRBS11/PRBS17"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`common/prbs.py`"
+msgstr "`common/prbs.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "8.3.5"
+msgstr "8.3.5"
+
+#: ../../how-to/sdr-deployment.md
+msgid "USRP E310 接口"
+msgstr "USRP E310 Interface"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`phy/usrp.py`"
+msgstr "`phy/usrp.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "-"
+msgstr "-"
+
+#: ../../how-to/sdr-deployment.md
+msgid "MAC-PHY 适配层"
+msgstr "MAC-PHY Adaptation Layer"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`phy/mac_interface.py`"
+msgstr "`phy/mac_interface.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "信道模型 + 均衡器"
+msgstr "Channel Model + Equalizer"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`phy/channel.py`, `phy/equalizer.py`"
+msgstr "`phy/channel.py`, `phy/equalizer.py`"
+
+#: ../../how-to/sdr-deployment.md:34
+msgid "MAC 层 (第 7 章) -- 全部完成"
+msgstr "MAC Layer (Chapter 7) -- Fully Complete"
+
+#: ../../how-to/sdr-deployment.md
+msgid "控制面/数据面/复用帧结构"
+msgstr "Control Plane/Data Plane/Multiplex Frame Structure"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`mac/frame.py`"
+msgstr "`mac/frame.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "7.3"
+msgstr "7.3"
+
+#: ../../how-to/sdr-deployment.md
+msgid "信令注册表 (130 类型)"
+msgstr "Signaling Registry (130 types)"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`mac/signaling.py`"
+msgstr "`mac/signaling.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "7.3.2 全覆盖"
+msgstr "Full coverage of 7.3.2"
+
+#: ../../how-to/sdr-deployment.md
+msgid "链路控制信令"
+msgstr "Link Control Signaling"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`mac/link_control.py`"
+msgstr "`mac/link_control.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "7.3.2.2-114"
+msgstr "7.3.2.2-114"
+
+#: ../../how-to/sdr-deployment.md
+msgid "功率控制"
+msgstr "Power Control"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`mac/power_control.py`"
+msgstr "`mac/power_control.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "7.2.13"
+msgstr "7.2.13"
+
+#: ../../how-to/sdr-deployment.md
+msgid "广播帧 + 子信息 (7.1.4.1-9)"
+msgstr "Broadcast Frames + Sub-info (7.1.4.1-9)"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`mac/broadcast.py`"
+msgstr "`mac/broadcast.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "7.1.4"
+msgstr "7.1.4"
+
+#: ../../how-to/sdr-deployment.md
+msgid "链路管理状态机 (含休眠/唤醒)"
+msgstr "Link Management State Machine (including sleep/wake)"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`mac/link_manager.py`"
+msgstr "`mac/link_manager.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "7.1/7.2/7.2.14"
+msgstr "7.1/7.2/7.2.14"
+
+#: ../../how-to/sdr-deployment.md
+msgid "接入流程"
+msgstr "Access Procedure"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`mac/access.py`"
+msgstr "`mac/access.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "7.1.3"
+msgstr "7.1.3"
+
+#: ../../how-to/sdr-deployment.md
+msgid "时隙调度器"
+msgstr "Slot Scheduler"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`mac/scheduler.py`"
+msgstr "`mac/scheduler.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "6.3.1/7.1.4"
+msgstr "6.3.1/7.1.4"
+
+#: ../../how-to/sdr-deployment.md
+msgid "QoS 管理 (ARQ/HARQ/流控)"
+msgstr "QoS Management (ARQ/HARQ/Flow Control)"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`mac/qos.py`"
+msgstr "`mac/qos.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "6.5"
+msgstr "6.5"
+
+#: ../../how-to/sdr-deployment.md
+msgid "配对信令"
+msgstr "Pairing Signaling"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`mac/security.py`"
+msgstr "`mac/security.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "9.2"
+msgstr "9.2"
+
+#: ../../how-to/sdr-deployment.md
+msgid "加密模块 (AES-CCM/ECDH/KDF)"
+msgstr "Encryption Module (AES-CCM/ECDH/KDF)"
+
+#: ../../how-to/sdr-deployment.md
+msgid "9.3/9.4"
+msgstr "9.3/9.4"
+
+#: ../../how-to/sdr-deployment.md
+msgid "安全管理器"
+msgstr "Security Manager"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`mac/security_manager.py`"
+msgstr "`mac/security_manager.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "9.2-9.4"
+msgstr "9.2-9.4"
+
+#: ../../how-to/sdr-deployment.md:51
+msgid "仿真 (15 阶段 + USRP 环回)"
+msgstr "Simulation (15 Phases + USRP Loopback)"
+
+#: ../../how-to/sdr-deployment.md
+msgid "阶段"
+msgstr "Phase"
+
+#: ../../how-to/sdr-deployment.md
+msgid "内容"
+msgstr "Description"
+
+#: ../../how-to/sdr-deployment.md
+msgid "Phase 1"
+msgstr "Phase 1"
+
+#: ../../how-to/sdr-deployment.md
+msgid "GFSK/BPSK/QPSK 未编码 BER"
+msgstr "GFSK/BPSK/QPSK Uncoded BER"
+
+#: ../../how-to/sdr-deployment.md
+msgid "Phase 2"
+msgstr "Phase 2"
+
+#: ../../how-to/sdr-deployment.md
+msgid "Polar 编码 BER/FER"
+msgstr "Polar-Coded BER/FER"
+
+#: ../../how-to/sdr-deployment.md
+msgid "Phase 3"
+msgstr "Phase 3"
+
+#: ../../how-to/sdr-deployment.md
+msgid "帧级导频 BER/FER"
+msgstr "Frame-Level Pilot BER/FER"
+
+#: ../../how-to/sdr-deployment.md
+msgid "Phase 4"
+msgstr "Phase 4"
+
+#: ../../how-to/sdr-deployment.md
+msgid "多径衰落 + 均衡器性能"
+msgstr "Multipath Fading + Equalizer Performance"
+
+#: ../../how-to/sdr-deployment.md
+msgid "Phase 5"
+msgstr "Phase 5"
+
+#: ../../how-to/sdr-deployment.md
+msgid "频率选择性信道"
+msgstr "Frequency-Selective Channel"
+
+#: ../../how-to/sdr-deployment.md
+msgid "Phase 6"
+msgstr "Phase 6"
+
+#: ../../how-to/sdr-deployment.md
+msgid "全 TX/RX 流水线"
+msgstr "Full TX/RX Pipeline"
+
+#: ../../how-to/sdr-deployment.md
+msgid "Phase 7"
+msgstr "Phase 7"
+
+#: ../../how-to/sdr-deployment.md
+msgid "多径 + 频偏集成"
+msgstr "Multipath + Frequency Offset Integration"
+
+#: ../../how-to/sdr-deployment.md
+msgid "Phase 8"
+msgstr "Phase 8"
+
+#: ../../how-to/sdr-deployment.md
+msgid "Pipeline 全帧类型对比"
+msgstr "Pipeline Full Frame Type Comparison"
+
+#: ../../how-to/sdr-deployment.md
+msgid "Phase 9"
+msgstr "Phase 9"
+
+#: ../../how-to/sdr-deployment.md
+msgid "MAC 帧端到端 (信令/数据/复用)"
+msgstr "MAC Frame End-to-End (Signaling/Data/Multiplex)"
+
+#: ../../how-to/sdr-deployment.md
+msgid "Phase 10"
+msgstr "Phase 10"
+
+#: ../../how-to/sdr-deployment.md
+msgid "多链路调度仿真"
+msgstr "Multi-Link Scheduling Simulation"
+
+#: ../../how-to/sdr-deployment.md
+msgid "Phase 11"
+msgstr "Phase 11"
+
+#: ../../how-to/sdr-deployment.md
+msgid "接入 → 配对 → 加密端到端"
+msgstr "Access → Pairing → Encrypted End-to-End"
+
+#: ../../how-to/sdr-deployment.md
+msgid "Phase 12"
+msgstr "Phase 12"
+
+#: ../../how-to/sdr-deployment.md
+msgid "AMC + HARQ + 跳频多径"
+msgstr "AMC + HARQ + Frequency Hopping Multipath"
+
+#: ../../how-to/sdr-deployment.md
+msgid "Phase 13"
+msgstr "Phase 13"
+
+#: ../../how-to/sdr-deployment.md
+msgid "QoS ARQ/AMC/流控自适应"
+msgstr "QoS ARQ/AMC/Flow Control Adaptation"
+
+#: ../../how-to/sdr-deployment.md
+msgid "Phase 14"
+msgstr "Phase 14"
+
+#: ../../how-to/sdr-deployment.md
+msgid "双节点 SleNode 端到端"
+msgstr "Dual-Node SleNode End-to-End"
+
+#: ../../how-to/sdr-deployment.md
+msgid "Phase 15"
+msgstr "Phase 15"
+
+#: ../../how-to/sdr-deployment.md
+msgid "SleNode 集成仿真 (跳频/接入/功率/信道)"
+msgstr "SleNode Integration Simulation (hopping/access/power/channel)"
+
+#: ../../how-to/sdr-deployment.md
+msgid "USRP Sim"
+msgstr "USRP Sim"
+
+#: ../../how-to/sdr-deployment.md
+msgid "MockUSRP 环回 (IQ/PHY/MAC/跳频/批量)"
+msgstr "MockUSRP Loopback (IQ/PHY/MAC/hopping/batch)"
+
+#: ../../how-to/sdr-deployment.md:72
+msgid "统一实体"
+msgstr "Unified Entity"
+
+#: ../../how-to/sdr-deployment.md
+msgid "SLE 节点实体"
+msgstr "SLE Node Entity"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`node.py`"
+msgstr "`node.py`"
+
+#: ../../how-to/sdr-deployment.md
+msgid "USRP 环回仿真引擎"
+msgstr "USRP Loopback Simulation Engine"
+
+#: ../../how-to/sdr-deployment.md
+msgid "`sim/usrp_sim.py`"
+msgstr "`sim/usrp_sim.py`"
+
+#: ../../how-to/sdr-deployment.md:79
+msgid "测试质量"
+msgstr "Test Quality"
+
+#: ../../how-to/sdr-deployment.md:81
+msgid "2652 个测试用例, 全部通过"
+msgstr "2652 test cases, all passing"
+
+#: ../../how-to/sdr-deployment.md:82
+msgid "整体覆盖率 91%, 核心模块覆盖率 97%+, 测试执行时间 5.00 秒"
+msgstr "Overall coverage 91%, core module coverage 97%+, test execution time 5.00 s"
+
+#: ../../how-to/sdr-deployment.md:83
+msgid "标准第 14 章测试向量 (TV101-TV206, SyncWord2) 全部验证通过"
+msgstr "All standard Chapter 14 test vectors (TV101-TV206, SyncWord2) verified"
+
+#: ../../how-to/sdr-deployment.md:84
+msgid "一致性测试 244 个 (协议/射频/安全)"
+msgstr "244 conformance tests (protocol/RF/security)"
+
+#: ../../how-to/sdr-deployment.md:88
+msgid "未实现的进阶特性"
+msgstr "Unimplemented Advanced Features"
+
+#: ../../how-to/sdr-deployment.md:90
+msgid "以下是标准中定义但当前未实现的进阶功能, 不影响核心 SLE 通信:"
+msgstr "The following advanced features are defined in the standard but not yet implemented; they do not affect core SLE communication:"
+
+#: ../../how-to/sdr-deployment.md
+msgid "特性"
+msgstr "Feature"
+
+#: ../../how-to/sdr-deployment.md
+msgid "说明"
+msgstr "Description"
+
+#: ../../how-to/sdr-deployment.md
+msgid "睡眠时钟精度计算"
+msgstr "Sleep Clock Accuracy Calculation"
+
+#: ../../how-to/sdr-deployment.md
+msgid "8.2.2.4-5"
+msgstr "8.2.2.4-5"
+
+#: ../../how-to/sdr-deployment.md
+msgid "DORMANT/WAKING 状态已实现, 精确漂移补偿需硬件"
+msgstr "DORMANT/WAKING states are implemented; precise drift compensation requires hardware"
+
+#: ../../how-to/sdr-deployment.md:98
+msgid "SDR E310 迁移规划"
+msgstr "SDR E310 Migration Plan"
+
+#: ../../how-to/sdr-deployment.md:100
+msgid "前置条件"
+msgstr "Prerequisites"
+
+#: ../../how-to/sdr-deployment.md:102
+msgid "USRP E310 硬件就绪, UHD 驱动已安装"
+msgstr "USRP E310 hardware ready, UHD driver installed"
+
+#: ../../how-to/sdr-deployment.md:103
+msgid "宿主机与 E310 网络连通 (或直接在 E310 ARM 上运行)"
+msgstr "Host machine connected to E310 over the network (or running directly on E310 ARM)"
+
+#: ../../how-to/sdr-deployment.md:104
+msgid "SLE 2.4 GHz 频段射频校准完成"
+msgstr "SLE 2.4 GHz band RF calibration complete"
+
+#: ../../how-to/sdr-deployment.md:106
+msgid "软件仿真验证 (已完成)"
+msgstr "Software Simulation Verification (Complete)"
+
+#: ../../how-to/sdr-deployment.md:108
+msgid "以下步骤已通过 MockUSRP 环回仿真完成验证:"
+msgstr "The following steps have been verified via MockUSRP loopback simulation:"
+
+#: ../../how-to/sdr-deployment.md:110
+msgid "IQ 级环回: TX IQ 样本 → LoopbackBuffer → RX, AWGN/多径信道可选"
+msgstr "IQ-level loopback: TX IQ samples → LoopbackBuffer → RX, AWGN/multipath channel optional"
+
+#: ../../how-to/sdr-deployment.md:111
+msgid "PHY 全链路: 编码 → 调制 → MockUSRP TX → 信道 → MockUSRP RX → 解调 → 解码"
+msgstr "PHY full chain: encode → modulate → MockUSRP TX → channel → MockUSRP RX → demodulate → decode"
+
+#: ../../how-to/sdr-deployment.md:112
+msgid "MAC 帧级: AsyncDataFrame 打包 → PHY → 环回 → PHY → 解包"
+msgstr "MAC frame level: AsyncDataFrame pack → PHY → loopback → PHY → unpack"
+
+#: ../../how-to/sdr-deployment.md:113
+msgid "跳频序列: 在多个信道上依次发射/接收"
+msgstr "Hopping sequence: transmit/receive sequentially across multiple channels"
+
+#: ../../how-to/sdr-deployment.md:114
+msgid "双节点: SleNode G + SleNode T 端到端通信"
+msgstr "Dual node: SleNode G + SleNode T end-to-end communication"
+
+#: ../../how-to/sdr-deployment.md:115
+msgid "批量帧: 多帧 BER/FER 统计"
+msgstr "Batch frames: multi-frame BER/FER statistics"
+
+#: ../../how-to/sdr-deployment.md:117
+msgid "验证代码: `sim/usrp_sim.py` + `tests/test_usrp_sim.py` (33 个测试)"
+msgstr "Verification code: `sim/usrp_sim.py` + `tests/test_usrp_sim.py` (33 tests)"
+
+#: ../../how-to/sdr-deployment.md:119
+msgid "阶段一: 硬件验证"
+msgstr "Stage 1: Hardware Verification"
+
+#: ../../how-to/sdr-deployment.md:121
+msgid "**目标**: 验证 `phy/usrp.py` 在真实硬件上的基本功能"
+msgstr "**Goal**: Verify the basic functionality of `phy/usrp.py` on real hardware"
+
+#: ../../how-to/sdr-deployment.md:132
+msgid "关键参数:"
+msgstr "Key parameters:"
+
+#: ../../how-to/sdr-deployment.md:134
+msgid "采样率: 1 MHz (GFSK) 或 2 MHz (QPSK)"
+msgstr "Sample rate: 1 MHz (GFSK) or 2 MHz (QPSK)"
+
+#: ../../how-to/sdr-deployment.md:135
+msgid "中心频率: 2440 MHz (信道 19)"
+msgstr "Center frequency: 2440 MHz (channel 19)"
+
+#: ../../how-to/sdr-deployment.md:136
+msgid "TX 增益: 20 dB (初始低功率)"
+msgstr "TX gain: 20 dB (initial low power)"
+
+#: ../../how-to/sdr-deployment.md:137
+msgid "RX 增益: 40 dB"
+msgstr "RX gain: 40 dB"
+
+#: ../../how-to/sdr-deployment.md:139
+msgid "阶段二: 物理层回环"
+msgstr "Stage 2: Physical Layer Loopback"
+
+#: ../../how-to/sdr-deployment.md:141
+msgid "**目标**: TX pipeline → 空口/线缆 → RX pipeline 回环验证"
+msgstr "**Goal**: TX pipeline → air/cable → RX pipeline loopback verification"
+
+#: ../../how-to/sdr-deployment.md:153
+msgid "注意事项:"
+msgstr "Notes:"
+
+#: ../../how-to/sdr-deployment.md:155
+msgid "首次使用线缆回环 + 衰减器, 排除空口干扰"
+msgstr "Use cable loopback + attenuator first to eliminate over-the-air interference"
+
+#: ../../how-to/sdr-deployment.md:156
+msgid "频偏校准: E310 TCXO 精度 ±2.5 ppm, 对应 ±6 kHz@2.4 GHz"
+msgstr "Frequency offset calibration: E310 TCXO accuracy ±2.5 ppm, corresponding to ±6 kHz@2.4 GHz"
+
+#: ../../how-to/sdr-deployment.md:157
+msgid "AGC: 初始固定增益, 后续增加自动增益控制"
+msgstr "AGC: initial fixed gain, then add automatic gain control"
+
+#: ../../how-to/sdr-deployment.md:159
+msgid "阶段三: 双机通信"
+msgstr "Stage 3: Two-Device Communication"
+
+#: ../../how-to/sdr-deployment.md:161
+msgid "**目标**: 两台 E310 之间收发通信"
+msgstr "**Goal**: Transmit/receive communication between two E310 units"
+
+#: ../../how-to/sdr-deployment.md:182
+msgid "阶段四: 协议栈集成"
+msgstr "Stage 4: Protocol Stack Integration"
+
+#: ../../how-to/sdr-deployment.md:184
+msgid "**目标**: MAC 状态机驱动的完整协议栈运行"
+msgstr "**Goal**: Full protocol stack operation driven by the MAC state machine"
+
+#: ../../how-to/sdr-deployment.md:197
+msgid "阶段五: 性能优化"
+msgstr "Stage 5: Performance Optimization"
+
+#: ../../how-to/sdr-deployment.md:199
+msgid "实时性: NumPy 计算耗时评估, 瓶颈识别"
+msgstr "Real-time performance: NumPy computation profiling, bottleneck identification"
+
+#: ../../how-to/sdr-deployment.md:200
+msgid "缓冲区管理: TX/RX 缓冲区大小调优"
+msgstr "Buffer management: TX/RX buffer size tuning"
+
+#: ../../how-to/sdr-deployment.md:201
+msgid "跳频延迟: `tune_channel()` 切换时间测量"
+msgstr "Hopping latency: `tune_channel()` switch time measurement"
+
+#: ../../how-to/sdr-deployment.md:202
+msgid "功率控制: TX 增益动态调节"
+msgstr "Power control: dynamic TX gain adjustment"
+
+#: ../../how-to/sdr-deployment.md:203
+msgid "时钟同步: PPS/GPS 外部参考时钟 (可选)"
+msgstr "Clock synchronization: PPS/GPS external reference clock (optional)"
+
+#: ../../how-to/sdr-deployment.md:207
+msgid "部署优先级"
+msgstr "Deployment Priority"
+
+#: ../../how-to/sdr-deployment.md
+msgid "优先级"
+msgstr "Priority"
+
+#: ../../how-to/sdr-deployment.md
+msgid "任务"
+msgstr "Task"
+
+#: ../../how-to/sdr-deployment.md
+msgid "状态"
+msgstr "Status"
+
+#: ../../how-to/sdr-deployment.md
+msgid "P0"
+msgstr "P0"
+
+#: ../../how-to/sdr-deployment.md
+msgid "广播帧子信息补全 (7.1.4.1-9)"
+msgstr "Broadcast frame sub-info completion (7.1.4.1-9)"
+
+#: ../../how-to/sdr-deployment.md
+msgid "已完成"
+msgstr "Complete"
+
+#: ../../how-to/sdr-deployment.md
+msgid "接入流程实现 (7.1.3)"
+msgstr "Access procedure implementation (7.1.3)"
+
+#: ../../how-to/sdr-deployment.md
+msgid "P1"
+msgstr "P1"
+
+#: ../../how-to/sdr-deployment.md
+msgid "时隙调度子系统"
+msgstr "Slot scheduling subsystem"
+
+#: ../../how-to/sdr-deployment.md
+msgid "MockUSRP 环回仿真验证"
+msgstr "MockUSRP loopback simulation verification"
+
+#: ../../how-to/sdr-deployment.md
+msgid "P2"
+msgstr "P2"
+
+#: ../../how-to/sdr-deployment.md
+msgid "控制面信令类型 (7.3.2 全覆盖)"
+msgstr "Control plane signaling types (full 7.3.2 coverage)"
+
+#: ../../how-to/sdr-deployment.md
+msgid "休眠唤醒状态 (DORMANT/WAKING)"
+msgstr "Sleep/wake states (DORMANT/WAKING)"
+
+#: ../../how-to/sdr-deployment.md
+msgid "**P3**"
+msgstr "**P3**"
+
+#: ../../how-to/sdr-deployment.md
+msgid "**硬件验证脚本**"
+msgstr "**Hardware verification scripts**"
+
+#: ../../how-to/sdr-deployment.md
+msgid "**待 E310 硬件就绪**"
+msgstr "**Pending E310 hardware availability**"
+
+#: ../../how-to/sdr-deployment.md
+msgid "**物理层线缆回环**"
+msgstr "**Physical layer cable loopback**"
+
+#: ../../how-to/sdr-deployment.md
+msgid "**待硬件验证完成**"
+msgstr "**Pending hardware verification**"
+
+#: ../../how-to/sdr-deployment.md
+msgid "**P4**"
+msgstr "**P4**"
+
+#: ../../how-to/sdr-deployment.md
+msgid "**双机空口通信**"
+msgstr "**Two-device over-the-air communication**"
+
+#: ../../how-to/sdr-deployment.md
+msgid "**待物理层回环调通**"
+msgstr "**Pending physical layer loopback commissioning**"
+
+#: ../../how-to/sdr-deployment.md
+msgid "**P5**"
+msgstr "**P5**"
+
+#: ../../how-to/sdr-deployment.md
+msgid "**协议栈 CLI 集成**"
+msgstr "**Protocol stack CLI integration**"
+
+#: ../../how-to/sdr-deployment.md
+msgid "**待双机通信稳定**"
+msgstr "**Pending stable two-device communication**"
+
+#: ../../how-to/sdr-deployment.md
+msgid "**P6**"
+msgstr "**P6**"
+
+#: ../../how-to/sdr-deployment.md
+msgid "**实时性能优化**"
+msgstr "**Real-time performance optimization**"
+
+#: ../../how-to/sdr-deployment.md
+msgid "**待部署后评估**"
+msgstr "**Pending post-deployment evaluation**"
+

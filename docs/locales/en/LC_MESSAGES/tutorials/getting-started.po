@@ -1,0 +1,138 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the nearlink-sdr
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: nearlink-sdr 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../tutorials/getting-started.md:1
+msgid "快速入门"
+msgstr "Quick Start"
+
+#: ../../tutorials/getting-started.md:3
+msgid "本教程引导你从安装到运行第一次链路仿真, 完成对 nearlink-sdr 的初步了解。"
+msgstr "This tutorial guides you from installation to running your first link simulation, giving you an initial understanding of nearlink-sdr."
+
+#: ../../tutorials/getting-started.md:5
+msgid "前置条件"
+msgstr "Prerequisites"
+
+#: ../../tutorials/getting-started.md:7
+msgid "Python 3.14 或更高版本"
+msgstr "Python 3.14 or higher"
+
+#: ../../tutorials/getting-started.md:8
+msgid "[uv](https://docs.astral.sh/uv/) 包管理器"
+msgstr "[uv](https://docs.astral.sh/uv/) package manager"
+
+#: ../../tutorials/getting-started.md:10
+msgid "安装"
+msgstr "Installation"
+
+#: ../../tutorials/getting-started.md:12
+msgid "克隆仓库并安装依赖:"
+msgstr "Clone the repository and install dependencies:"
+
+#: ../../tutorials/getting-started.md:20
+msgid "运行测试"
+msgstr "Run Tests"
+
+#: ../../tutorials/getting-started.md:22
+msgid "确认所有模块工作正常:"
+msgstr "Verify that all modules work correctly:"
+
+#: ../../tutorials/getting-started.md:30
+msgid "第一次仿真: GFSK 链路"
+msgstr "First Simulation: GFSK Link"
+
+#: ../../tutorials/getting-started.md:32
+msgid "GFSK 是 SparkLink SLE 帧类型 1 使用的调制方式。下面的代码演示一次完整的 GFSK 调制-信道-解调流程:"
+msgstr "GFSK is the modulation scheme used by SparkLink SLE Frame Type 1. The following code demonstrates a complete GFSK modulation-channel-demodulation flow:"
+
+#: ../../tutorials/getting-started.md:41
+msgid "完整代码见 `examples/getting_started.py` 中的 `gfsk_link()` 函数。"
+msgstr "See the `gfsk_link()` function in `examples/getting_started.py` for the full code."
+
+#: ../../tutorials/getting-started.md:43
+msgid "第一次仿真: PSK 编码链路"
+msgstr "First Simulation: PSK Coded Link"
+
+#: ../../tutorials/getting-started.md:45
+msgid "帧类型 2/3/4 使用 PSK 调制。结合 Polar 编码可以获得编码增益:"
+msgstr "Frame Types 2/3/4 use PSK modulation. Combined with Polar coding, coding gain is achieved:"
+
+#: ../../tutorials/getting-started.md:54
+msgid "BER 曲线仿真"
+msgstr "BER Curve Simulation"
+
+#: ../../tutorials/getting-started.md:56
+msgid "项目内置了批量仿真函数, 可以直接绘制 BER 曲线:"
+msgstr "The project includes batch simulation functions to directly plot BER curves:"
+
+#: ../../tutorials/getting-started.md:63
+msgid "全链路 Pipeline 仿真"
+msgstr "Full-Chain Pipeline Simulation"
+
+#: ../../tutorials/getting-started.md:65
+msgid "调用 `sim_pipeline_link` 进行端到端仿真, 覆盖 CRC、Polar 编码、加扰、调制、帧组装等全部物理层处理:"
+msgstr "Call `sim_pipeline_link` for end-to-end simulation covering CRC, Polar coding, scrambling, modulation, frame assembly, and all other physical layer processing:"
+
+#: ../../tutorials/getting-started.md:74
+msgid "SleNode 节点仿真"
+msgstr "SleNode Simulation"
+
+#: ../../tutorials/getting-started.md:76
+msgid "`SleNode` 是项目的顶层实体, 将物理层和 MAC 层全部组件整合为统一接口:"
+msgstr "`SleNode` is the top-level entity of the project, integrating all physical and MAC layer components into a unified interface:"
+
+#: ../../tutorials/getting-started.md:85
+msgid "Phase 15 集成仿真"
+msgstr "Phase 15 Integration Simulation"
+
+#: ../../tutorials/getting-started.md:87
+msgid "项目提供基于 SleNode 的完整集成仿真, 覆盖跳频、功率自适应、接入流程和信道扫频:"
+msgstr "The project provides full integration simulation based on SleNode, covering frequency hopping, power adaptation, access procedures, and channel scanning:"
+
+#: ../../tutorials/getting-started.md:94
+msgid "运行示例"
+msgstr "Run Examples"
+
+#: ../../tutorials/getting-started.md:96
+msgid "所有入门示例已整合为独立脚本, 可直接运行:"
+msgstr "All getting-started examples are consolidated into a standalone script that can be run directly:"
+
+#: ../../tutorials/getting-started.md:102
+msgid "下一步"
+msgstr "Next Steps"
+
+#: ../../tutorials/getting-started.md:104
+msgid "阅读 [操作指南](../how-to/index.md) 了解具体任务的操作方法"
+msgstr "Read the [How-To Guides](../how-to/index.md) to learn how to perform specific tasks"
+
+#: ../../tutorials/getting-started.md:105
+msgid "阅读 [协议总览](../explanation/overview.md) 理解 SparkLink SLE 协议全貌"
+msgstr "Read the [Protocol Overview](../explanation/overview.md) to understand the full SparkLink SLE protocol"
+
+#: ../../tutorials/getting-started.md:106
+msgid "阅读 [设计说明](../explanation/architecture.md) 理解系统架构"
+msgstr "Read the [Architecture](../explanation/architecture.md) to understand the system design"
+
+#: ../../tutorials/getting-started.md:107
+msgid "查阅 [技术参考](../reference/index.md) 获取完整的接口文档"
+msgstr "Consult the [API Reference](../reference/index.md) for complete interface documentation"
+

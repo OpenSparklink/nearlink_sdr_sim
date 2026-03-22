@@ -1,0 +1,154 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the nearlink-sdr
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: nearlink-sdr 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../how-to/qos-management.md:1
+msgid "QoS 服务质量管理"
+msgstr "QoS Service Quality Management"
+
+#: ../../how-to/qos-management.md:3
+msgid "概述"
+msgstr "Overview"
+
+#: ../../how-to/qos-management.md:5
+msgid ""
+"`mac.qos` 模块实现了标准 6.5 节定义的数据传输质量控制, 包含 ARQ 重传管理、 HARQ "
+"混合自动重传、流控、链路质量跟踪和优先级发送队列。"
+msgstr ""
+
+#: ../../how-to/qos-management.md:8
+msgid "基本用法"
+msgstr "Basic Usage"
+
+#: ../../how-to/qos-management.md:10
+msgid "创建 QoS 管理器"
+msgstr "Create a QoS Manager"
+
+#: ../../how-to/qos-management.md:19
+msgid "提交数据并发送"
+msgstr "Submit Data and Transmit"
+
+#: ../../how-to/qos-management.md:28
+msgid "处理 ACK/NACK 反馈"
+msgstr "Handle ACK/NACK Feedback"
+
+#: ../../how-to/qos-management.md:37
+msgid "获取控制信息字段"
+msgstr "Get Control Information Fields"
+
+#: ../../how-to/qos-management.md:46
+msgid "ARQ 序列号管理"
+msgstr "ARQ Sequence Number Management"
+
+#: ../../how-to/qos-management.md:48
+msgid "`ArqState` 管理不同帧类型的发送/接收序列号:"
+msgstr "`ArqState` manages transmit/receive sequence numbers for different frame types:"
+
+#: ../../how-to/qos-management.md:39
+msgid "帧类型"
+msgstr "Frame Type"
+
+#: ../../how-to/qos-management.md:39
+msgid "SN 位宽"
+msgstr "SN Bit Width"
+
+#: ../../how-to/qos-management.md:39
+msgid "取值范围"
+msgstr "Value Range"
+
+#: ../../how-to/qos-management.md:39
+msgid "FT1"
+msgstr "FT1"
+
+#: ../../how-to/qos-management.md:39
+msgid "1 bit"
+msgstr "1 bit"
+
+#: ../../how-to/qos-management.md:39
+msgid "0-1"
+msgstr "0-1"
+
+#: ../../how-to/qos-management.md:39
+msgid "FT2"
+msgstr "FT2"
+
+#: ../../how-to/qos-management.md:39
+msgid "FT3/FT4"
+msgstr "FT3/FT4"
+
+#: ../../how-to/qos-management.md:39
+msgid "5 bit"
+msgstr "5 bit"
+
+#: ../../how-to/qos-management.md:39
+msgid "0-31"
+msgstr "0-31"
+
+#: ../../how-to/qos-management.md:56
+msgid "异步链路默认无限重传, 同步链路可设置 `max_retransmit` 限制。"
+msgstr "Asynchronous links allow unlimited retransmissions by default; synchronous links can set a `max_retransmit` limit."
+
+#: ../../how-to/qos-management.md:65
+msgid "HARQ 反馈"
+msgstr "HARQ Feedback"
+
+#: ../../how-to/qos-management.md:67
+msgid "`HarqController` 支持两种反馈模式:"
+msgstr "`HarqController` supports two feedback modes:"
+
+#: ../../how-to/qos-management.md:69
+msgid "**TB 模式**: 整个传输块 ACK/NACK, `harq_feedback` 字段为期望 SN"
+msgstr "**TB mode**: ACK/NACK for the entire transport block; the `harq_feedback` field is the expected SN"
+
+#: ../../how-to/qos-management.md:70
+msgid "**CBG 模式**: 按编码块组反馈, `harq_feedback` 每 bit 对应一个 CBG"
+msgstr "**CBG mode**: Feedback per code block group; each bit in `harq_feedback` corresponds to one CBG"
+
+#: ../../how-to/qos-management.md:79
+msgid "链路质量跟踪与 AMC"
+msgstr "Link Quality Tracking and AMC"
+
+#: ../../how-to/qos-management.md:81
+msgid "`LinkQualityTracker` 通过滑动窗口统计 FER, 建议 MCS 调整:"
+msgstr "`LinkQualityTracker` tracks FER using a sliding window and recommends MCS adjustments:"
+
+#: ../../how-to/qos-management.md:90
+msgid "流控"
+msgstr "Flow Control"
+
+#: ../../how-to/qos-management.md:92
+msgid "`FlowController` 基于高/低水位机制实现背压:"
+msgstr "`FlowController` implements backpressure based on high/low watermark thresholds:"
+
+#: ../../how-to/qos-management.md:101
+msgid "优先级发送队列"
+msgstr "Priority Transmission Queue"
+
+#: ../../how-to/qos-management.md:103
+msgid ""
+"`TxQueue` 提供 5 级优先级 (CONTROL > REALTIME > HIGH > NORMAL > LOW), "
+"重传数据在同优先级内优先出队:"
+msgstr ""
+
+#: ../../how-to/qos-management.md:113
+msgid "运行示例"
+msgstr "Run Examples"
+

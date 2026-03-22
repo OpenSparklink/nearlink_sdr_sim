@@ -1,0 +1,328 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the nearlink-sdr
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: nearlink-sdr 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../explanation/overview.md:1
+msgid "SparkLink SLE 协议总览"
+msgstr "SparkLink SLE Protocol Overview"
+
+#: ../../explanation/overview.md:3
+msgid ""
+"本文从整体视角介绍 SparkLink 同步低功耗空口 (SLE) 协议的核心架构和关键概念, 帮助读者建立对协议体系的全局认知, "
+"为后续深入各子层的详细解释做铺垫。"
+msgstr ""
+
+#: ../../explanation/overview.md:5
+msgid "协议定位"
+msgstr "Protocol Positioning"
+
+#: ../../explanation/overview.md:7
+msgid ""
+"SparkLink 是面向短距无线通信的协议族, SLE 是其中的同步低功耗接入技术分支。对标的国内标准为 "
+"TXS-10002-2025《星闪无线通信系统 接入层 同步低功耗空口技术要求和测试方法》(V2.1.1, 2025-03-26 发布)。"
+msgstr ""
+
+#: ../../explanation/overview.md:9
+msgid "SLE 的设计目标是在 2.4 GHz ISM 频段 (2402-2480 MHz) 实现低功耗、低时延、高可靠的短距无线链路, 典型应用场景包括:"
+msgstr "SLE is designed to achieve low-power, low-latency, high-reliability short-range wireless links in the 2.4 GHz ISM band (2402-2480 MHz). Typical use cases include:"
+
+#: ../../explanation/overview.md:11
+msgid "音频传输 (耳机、车载免提)"
+msgstr "Audio transmission (earphones, in-car hands-free)"
+
+#: ../../explanation/overview.md:12
+msgid "近距离交互 (键鼠、遥控器)"
+msgstr "Short-range interaction (keyboard/mouse, remote controllers)"
+
+#: ../../explanation/overview.md:13
+msgid "传感器网络 (工业测量、环境监控)"
+msgstr "Sensor networks (industrial measurement, environmental monitoring)"
+
+#: ../../explanation/overview.md:14
+msgid "室内定位与感知 (基于窄带跳频或超宽带脉冲)"
+msgstr "Indoor positioning and sensing (narrowband frequency hopping or UWB pulses)"
+
+#: ../../explanation/overview.md:16
+msgid "协议栈层次"
+msgstr "Protocol Stack Layers"
+
+#: ../../explanation/overview.md:18
+msgid "SLE 协议栈属于接入层, 分为两个子层:"
+msgstr "The SLE protocol stack belongs to the access layer and is divided into two sublayers:"
+
+#: ../../explanation/overview.md:41
+msgid ""
+"**物理层**利用无线传输介质为数据链路层提供物理连接, 实现比特流的透明传输。其职责包括: CRC 校验、Polar 码前向纠错、HARQ "
+"重传合并、速率匹配、调制解调、频率/时间同步、无线特性测量和射频处理 (标准 §6.1)。"
+msgstr ""
+
+#: ../../explanation/overview.md:43
+msgid "**数据链路层**负责资源管理、访问控制、数据分段与级联、工作模式切换, 保障数据的可靠传递 (标准 §5)。"
+msgstr "**The data link layer** is responsible for resource management, access control, data segmentation and concatenation, and operating mode switching to ensure reliable data delivery (standard §5)."
+
+#: ../../explanation/overview.md:45
+msgid "核心概念"
+msgstr "Core Concepts"
+
+#: ../../explanation/overview.md:47
+msgid "节点角色"
+msgstr "Node Roles"
+
+#: ../../explanation/overview.md:49
+msgid "SLE 通信链路由两个节点组成。接入完成后, 双方角色确定为:"
+msgstr "An SLE communication link consists of two nodes. After access is complete, the roles are determined as:"
+
+#: ../../explanation/overview.md:51
+msgid "**G 节点** (Grant Node): 通常是功能较强的一方, 负责广播、调度、发起配对"
+msgstr "**G Node** (Grant Node): typically the more capable party, responsible for broadcasting, scheduling, and initiating pairing"
+
+#: ../../explanation/overview.md:52
+msgid "**T 节点** (Terminal Node): 通常是功能较简的一方, 扫描并发起接入请求"
+msgstr "**T Node** (Terminal Node): typically the simpler party, scans and initiates access requests"
+
+#: ../../explanation/overview.md:54
+msgid ""
+"角色在接入阶段通过 GT 角色协商确定, 建链后可通过角色切换流程 (§7.2.15) 互换。项目中对应 `NodeRole.G_NODE` 和 "
+"`NodeRole.T_NODE`。"
+msgstr ""
+
+#: ../../explanation/overview.md ../../explanation/overview.md:56
+msgid "帧类型"
+msgstr "Frame Types"
+
+#: ../../explanation/overview.md:58
+msgid "标准定义了四种物理帧类型, 各自的调制方式、编码策略和用途不同:"
+msgstr "The standard defines four physical frame types, each with different modulation schemes, coding strategies, and purposes:"
+
+#: ../../explanation/overview.md
+msgid "调制"
+msgstr "Modulation"
+
+#: ../../explanation/overview.md
+msgid "信道编码"
+msgstr "Channel Coding"
+
+#: ../../explanation/overview.md
+msgid "同步序列"
+msgstr "Sync Sequence"
+
+#: ../../explanation/overview.md
+msgid "导频"
+msgstr "Pilot"
+
+#: ../../explanation/overview.md
+msgid "典型用途"
+msgstr "Typical Use"
+
+#: ../../explanation/overview.md
+msgid "FT1"
+msgstr "FT1"
+
+#: ../../explanation/overview.md
+msgid "GFSK"
+msgstr "GFSK"
+
+#: ../../explanation/overview.md
+msgid "无 (仅 BCH 保护头部)"
+msgstr "None (BCH header protection only)"
+
+#: ../../explanation/overview.md
+msgid "32 位, GFSK"
+msgstr "32-bit, GFSK"
+
+#: ../../explanation/overview.md
+msgid "无"
+msgstr "None"
+
+#: ../../explanation/overview.md
+msgid "广播/发现"
+msgstr "Broadcast/Discovery"
+
+#: ../../explanation/overview.md
+msgid "FT2"
+msgstr "FT2"
+
+#: ../../explanation/overview.md
+msgid "PSK"
+msgstr "PSK"
+
+#: ../../explanation/overview.md
+msgid "Polar(64,K)"
+msgstr "Polar(64,K)"
+
+#: ../../explanation/overview.md
+msgid "64 位→32 QPSK 符号"
+msgstr "64-bit → 32 QPSK symbols"
+
+#: ../../explanation/overview.md
+msgid "可选"
+msgstr "Optional"
+
+#: ../../explanation/overview.md
+msgid "有连接数据"
+msgstr "Connected data"
+
+#: ../../explanation/overview.md
+msgid "FT3"
+msgstr "FT3"
+
+#: ../../explanation/overview.md
+msgid "Polar(256,K)"
+msgstr "Polar(256,K)"
+
+#: ../../explanation/overview.md
+msgid "31+31 位→62 BPSK 符号"
+msgstr "31+31 bits → 62 BPSK symbols"
+
+#: ../../explanation/overview.md
+msgid "有"
+msgstr "Yes"
+
+#: ../../explanation/overview.md
+msgid "FT4"
+msgstr "FT4"
+
+#: ../../explanation/overview.md
+msgid "63+63 位→126 BPSK 符号"
+msgstr "63+63 bits → 126 BPSK symbols"
+
+#: ../../explanation/overview.md
+msgid "有连接数据/广播"
+msgstr "Connected data/broadcast"
+
+#: ../../explanation/overview.md:67
+msgid "FT1 是最简单的帧类型, 适合低速率广播; FT2-FT4 依次增加同步序列长度和频谱效率, 支持 BPSK/QPSK/8PSK 调制阶数切换。"
+msgstr "FT1 is the simplest frame type, suitable for low-rate broadcasting. FT2-FT4 progressively increase sync sequence length and spectral efficiency, supporting BPSK/QPSK/8PSK modulation order switching."
+
+#: ../../explanation/overview.md:69
+msgid "链路生命周期"
+msgstr "Link Lifecycle"
+
+#: ../../explanation/overview.md:71
+msgid "一条 SLE 链路的典型生命周期:"
+msgstr "The typical lifecycle of an SLE link:"
+
+#: ../../explanation/overview.md:98
+msgid ""
+"项目中 `SleNode` 类封装了完整的生命周期, 对应 `NodeState` 枚举: `IDLE → "
+"BROADCASTING/SCANNING → CONNECTING → CONNECTED → DISCONNECTED`。"
+msgstr ""
+
+#: ../../explanation/overview.md:101
+msgid "时序调度"
+msgstr "Timing Scheduling"
+
+#: ../../explanation/overview.md:103
+#, python-brace-format
+msgid ""
+"SLE 采用同步时分复用调度。系统基础时隙 $T_{sys} = 125\\,\\mu s$, 用 30 位计数器表示时刻。调度时隙可选 "
+"25/50/75/100/125 $\\mu s$ 五种粒度。"
+msgstr ""
+
+#: ../../explanation/overview.md:105
+msgid "G 节点作为调度主控方, 通过系统管理帧 (SMF) 向所有 T 节点广播时隙分配信息。每个调度点的结构:"
+msgstr "The G node acts as the scheduling master, broadcasting slot assignment information to all T nodes via System Management Frames (SMF). The structure of each scheduling point:"
+
+#: ../../explanation/overview.md:111
+msgid "跳频在每个调度点执行一次, 按照预定义的跳频序列切换工作信道。"
+msgstr "Frequency hopping is performed at each scheduling point, switching the working channel according to a predefined hopping sequence."
+
+#: ../../explanation/overview.md:113
+msgid "频率管理"
+msgstr "Frequency Management"
+
+#: ../../explanation/overview.md:115
+msgid ""
+"SLE 窄带系统工作在 2.4 GHz 频段, 共 79 个信道 (2402-2480 MHz, 1 MHz "
+"间隔)。跳频序列由伪随机数生成器驱动, 依据跳频种子和跳频地图计算每一跳的目标信道。"
+msgstr ""
+
+#: ../../explanation/overview.md:117
+msgid "跳频地图标记哪些信道\"可用\", 哪些\"被屏蔽\"。屏蔽原因通常是干扰检测或外部要求, 标准要求最少可用信道数不低于门限 (§7.2.10)。"
+msgstr ""
+
+#: ../../explanation/overview.md:119
+msgid "代码结构与协议映射"
+msgstr "Code Structure and Protocol Mapping"
+
+#: ../../explanation/overview.md:121
+msgid "本项目的代码组织直接映射到 SLE 协议的层次划分:"
+msgstr "The project's code organization maps directly to the SLE protocol layer hierarchy:"
+
+#: ../../explanation/overview.md:132
+msgid "`common/` 是两层共用的编码算法库, 不直接对应标准的独立章节, 而是被物理层和数据链路层的各个流程引用。"
+msgstr "`common/` is a shared coding algorithm library used by both layers. It does not directly correspond to a standalone standard chapter but is referenced by various procedures in the physical and data link layers."
+
+#: ../../explanation/overview.md:134
+msgid ""
+"`node.py` 中的 `SleNode` 是面向应用的顶层入口, 封装了从广播到断开的全部操作, 内部组合了 "
+"`LinkManager`、`QosManager`、`PairingManager`、`FreqHopping`、`PowerController`、`ScheduleManager`"
+" 等组件。"
+msgstr ""
+
+#: ../../explanation/overview.md:136
+msgid "数据传输约定"
+msgstr "Data Transmission Conventions"
+
+#: ../../explanation/overview.md:138
+msgid "标准规定了严格的比特/字节序:"
+msgstr "The standard specifies strict bit/byte ordering:"
+
+#: ../../explanation/overview.md:140
+msgid "最低有效位 (LSB) 最先在空口传输"
+msgstr "Least significant bit (LSB) is transmitted first over the air"
+
+#: ../../explanation/overview.md:141
+msgid "多字节序列按低字节优先传输 (小端序)"
+msgstr "Multi-byte sequences are transmitted low-byte first (little-endian)"
+
+#: ../../explanation/overview.md:142
+msgid "数值默认十进制, 支持 `0b`/`0o`/`0d`/`0x` 前缀"
+msgstr "Values default to decimal; `0b`/`0o`/`0d`/`0x` prefixes are supported"
+
+#: ../../explanation/overview.md:144
+msgid "项目中的比特操作统一遵循此约定, 在 `common/crc.py`, `mac/frame.py` 等模块中均以 LSB-first 处理。"
+msgstr "All bit operations in the project follow this convention; LSB-first processing is used in `common/crc.py`, `mac/frame.py`, and other modules."
+
+#: ../../explanation/overview.md:146
+msgid "下一步阅读"
+msgstr "Further Reading"
+
+#: ../../explanation/overview.md:148
+msgid "[物理层详解](physical-layer.md): 调制波形、帧结构、编码、发射/接收流水线的完整说明"
+msgstr "[Physical Layer Details](physical-layer.md): complete description of modulation waveforms, frame structure, coding, TX/RX pipeline"
+
+#: ../../explanation/overview.md:149
+msgid "[MAC 层详解](mac-layer.md): 广播/发现/接入流程、链路管理状态机、信令编解码"
+msgstr "[MAC Layer Details](mac-layer.md): broadcast/discovery/access procedures, link management state machine, signaling encode/decode"
+
+#: ../../explanation/overview.md:150
+msgid "[安全子系统](security.md): 配对协商、密钥派生、帧加密、隐私保护"
+msgstr "[Security Subsystem](security.md): pairing negotiation, key derivation, frame encryption, privacy protection"
+
+#: ../../explanation/overview.md:151
+msgid "[端到端数据流](data-flow.md): 从应用数据到射频信号的完整处理链路"
+msgstr "[End-to-End Data Flow](data-flow.md): complete processing chain from application data to RF signal"
+
+#: ../../explanation/overview.md:152
+msgid "[数学原理](principles.md): Polar 码、PSK/GFSK 调制、信道模型的数学推导"
+msgstr "[Mathematical Principles](principles.md): mathematical derivation of Polar codes, PSK/GFSK modulation, channel models"
+

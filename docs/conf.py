@@ -1,10 +1,17 @@
 """Sphinx configuration for nearlink-sdr documentation."""
 
 import os
+import tomllib
+
+# 从 pyproject.toml 读取项目版本，避免手动维护版本号
+_PYPROJECT_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "pyproject.toml")
+with open(_PYPROJECT_PATH, "rb") as _f:
+    _PYPROJECT = tomllib.load(_f)
 
 project = "nearlink-sdr"
 author = "nearlink-sdr contributors"
-release = "0.1.0"
+release = _PYPROJECT["project"]["version"]
+version = release
 
 extensions = [
     "myst_parser",
@@ -40,6 +47,13 @@ autodoc2_render_plugin = "myst"
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 language = "zh_CN"
+
+# -- 国际化配置 ----------------------------------------------------------------
+# 中文为主语言（源文件语言），英文通过 .po 翻译文件提供。
+# 构建英文版：sphinx-build -b html -D language=en docs docs/_build/html/en
+
+locale_dirs = ["locales"]
+gettext_compact = False
 
 # -- HTML 输出配置 -------------------------------------------------------------
 

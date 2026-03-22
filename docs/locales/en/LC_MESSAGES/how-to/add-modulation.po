@@ -1,0 +1,90 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the nearlink-sdr
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: nearlink-sdr 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../how-to/add-modulation.md:1
+msgid "添加新的调制方式"
+msgstr "Adding a New Modulation Scheme"
+
+#: ../../how-to/add-modulation.md:3
+msgid "本指南说明如何在 nearlink-sdr 框架中添加一种新的调制方式。"
+msgstr "This guide explains how to add a new modulation scheme to the nearlink-sdr framework."
+
+#: ../../how-to/add-modulation.md:5
+msgid "步骤"
+msgstr "Steps"
+
+#: ../../how-to/add-modulation.md:7
+msgid "1. 在 `src/nearlink_sdr/phy/` 下创建模块"
+msgstr "1. Create a module under `src/nearlink_sdr/phy/`"
+
+#: ../../how-to/add-modulation.md:9
+msgid ""
+"参照 `gfsk.py` 或 `psk.py` 的结构, 创建调制器和解调器类。每个调制器类至少实现 `modulate()` 方法, "
+"解调器至少实现 `demodulate()` 方法:"
+msgstr ""
+
+#: ../../how-to/add-modulation.md:17
+msgid "2. 在 `tests/` 下创建对应的测试文件"
+msgstr "2. Create a corresponding test file under `tests/`"
+
+#: ../../how-to/add-modulation.md:19
+msgid "测试文件命名为 `test_<模块名>.py`, 覆盖核心功能:"
+msgstr "Name the test file `test_<module_name>.py` and cover the core functionality:"
+
+#: ../../how-to/add-modulation.md:21
+msgid "调制输出长度和类型"
+msgstr "Modulation output length and type"
+
+#: ../../how-to/add-modulation.md:22
+msgid "往返一致性 (调制 → 解调 → 比较)"
+msgstr "Round-trip consistency (modulate → demodulate → compare)"
+
+#: ../../how-to/add-modulation.md:23
+msgid "不同输入长度的边界条件"
+msgstr "Boundary conditions for various input lengths"
+
+#: ../../how-to/add-modulation.md:25
+msgid "示例测试结构:"
+msgstr "Example test structure:"
+
+#: ../../how-to/add-modulation.md:33
+msgid "3. 注册到 TX/RX 流水线"
+msgstr "3. Register in the TX/RX pipeline"
+
+#: ../../how-to/add-modulation.md:35
+msgid "在 `phy/tx_pipeline.py` 的 `tx_chain()` 函数中, 根据 `cfg.frame_type` 分支添加新调制方式:"
+msgstr "In the `tx_chain()` function of `phy/tx_pipeline.py`, add the new modulation scheme under the `cfg.frame_type` branch:"
+
+#: ../../how-to/add-modulation.md:43
+msgid ""
+"在 `phy/rx_pipeline.py` 的 `rx_chain()` 中添加对应的解调分支。如果新调制方式需要新的 MCS 配置, 还需更新"
+" `common/mcs.py` 中的 MCS 映射表。"
+msgstr ""
+
+#: ../../how-to/add-modulation.md:45
+msgid "4. 运行验证"
+msgstr "4. Run validation"
+
+#: ../../how-to/add-modulation.md:47
+msgid "确保 lint 和测试全部通过:"
+msgstr "Ensure that lint and all tests pass:"
+

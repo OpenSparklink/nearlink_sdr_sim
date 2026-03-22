@@ -1,0 +1,200 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the nearlink-sdr
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: nearlink-sdr 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../how-to/rust-acceleration.md:1
+msgid "Rust 加速模块"
+msgstr "Rust Acceleration Module"
+
+#: ../../how-to/rust-acceleration.md:3
+msgid ""
+"nearlink-sdr 提供可选的 Rust 加速扩展，用于加速 Polar 编解码等计算密集型操作。安装后无需修改任何代码，Python "
+"模块会自动检测并使用 Rust 实现。"
+msgstr ""
+
+#: ../../how-to/rust-acceleration.md:5
+msgid "前提条件"
+msgstr "Prerequisites"
+
+#: ../../how-to/rust-acceleration.md:7
+msgid "Rust 工具链 (cargo, rustc)：通过 [rustup](https://rustup.rs/) 安装"
+msgstr "Rust toolchain (cargo, rustc): Install via [rustup](https://rustup.rs/)"
+
+#: ../../how-to/rust-acceleration.md:8
+msgid "Python 开发头文件（多数系统已默认包含）"
+msgstr "Python development headers (included by default on most systems)"
+
+#: ../../how-to/rust-acceleration.md:10
+msgid "安装方式"
+msgstr "Installation"
+
+#: ../../how-to/rust-acceleration.md:12
+msgid "自动安装"
+msgstr "Automatic Installation"
+
+#: ../../how-to/rust-acceleration.md:14
+msgid "项目提供了一键安装脚本："
+msgstr "The project provides a one-click installation script:"
+
+#: ../../how-to/rust-acceleration.md:20
+msgid ""
+"脚本会依次检查 Rust 工具链、安装 maturin 构建工具、编译并安装加速模块。安装失败不会影响项目正常使用，所有功能会回退到纯 "
+"Python 实现。"
+msgstr ""
+
+#: ../../how-to/rust-acceleration.md:22
+msgid "手动安装"
+msgstr "Manual Installation"
+
+#: ../../how-to/rust-acceleration.md:30
+msgid "验证安装"
+msgstr "Verify Installation"
+
+#: ../../how-to/rust-acceleration.md:37
+msgid "或者检查模块级标志："
+msgstr "Or check the module-level flag:"
+
+#: ../../how-to/rust-acceleration.md:44
+msgid "性能对比"
+msgstr "Performance Comparison"
+
+#: ../../how-to/rust-acceleration.md:46
+msgid "以 TX→RX 全链路 Pipeline 为基准（单次调用，含 Polar 编解码、调制解调、信道、均衡）："
+msgstr "Benchmarked on the full TX→RX pipeline (single call, including Polar encode/decode, modulation/demodulation, channel, equalization):"
+
+#: ../../how-to/rust-acceleration.md:24
+msgid "配置"
+msgstr "Configuration"
+
+#: ../../how-to/rust-acceleration.md:24
+msgid "耗时"
+msgstr "Elapsed Time"
+
+#: ../../how-to/rust-acceleration.md:24
+msgid "加速比"
+msgstr "Speedup"
+
+#: ../../how-to/rust-acceleration.md:24
+msgid "纯 Python"
+msgstr "Pure Python"
+
+#: ../../how-to/rust-acceleration.md:24
+msgid "389 ms"
+msgstr "389 ms"
+
+#: ../../how-to/rust-acceleration.md:24
+msgid "1.0x"
+msgstr "1.0x"
+
+#: ../../how-to/rust-acceleration.md:24
+msgid "+ Rust SC 解码器"
+msgstr "+ Rust SC decoder"
+
+#: ../../how-to/rust-acceleration.md:24
+msgid "174 ms"
+msgstr "174 ms"
+
+#: ../../how-to/rust-acceleration.md:24
+msgid "2.2x"
+msgstr "2.2x"
+
+#: ../../how-to/rust-acceleration.md:24
+msgid "+ Rust 编码器"
+msgstr "+ Rust encoder"
+
+#: ../../how-to/rust-acceleration.md:24
+msgid "101 ms"
+msgstr "101 ms"
+
+#: ../../how-to/rust-acceleration.md:24
+msgid "3.9x"
+msgstr "3.9x"
+
+#: ../../how-to/rust-acceleration.md:54
+msgid "测试套件总耗时从 12.4 秒降至 4.1 秒。"
+msgstr "Total test suite time reduced from 12.4 s to 4.1 s."
+
+#: ../../how-to/rust-acceleration.md:56
+msgid "加速范围"
+msgstr "Acceleration Scope"
+
+#: ../../how-to/rust-acceleration.md:58
+msgid "当前 Rust 加速覆盖以下模块："
+msgstr "Current Rust acceleration covers the following modules:"
+
+#: ../../how-to/rust-acceleration.md:24
+msgid "模块"
+msgstr "Module"
+
+#: ../../how-to/rust-acceleration.md:24
+msgid "加速内容"
+msgstr "Accelerated Content"
+
+#: ../../how-to/rust-acceleration.md:24
+msgid "实现方式"
+msgstr "Implementation"
+
+#: ../../how-to/rust-acceleration.md:24
+msgid "`common/polar.py`"
+msgstr "`common/polar.py`"
+
+#: ../../how-to/rust-acceleration.md:24
+msgid "SC 解码（SSC 优化）"
+msgstr "SC decoding (SSC optimized)"
+
+#: ../../how-to/rust-acceleration.md:24
+msgid "递归节点类型表 + 标量运算"
+msgstr "Recursive node type table + scalar operations"
+
+#: ../../how-to/rust-acceleration.md:24
+msgid "Polar 编码（蝶形 GF(2) 变换）"
+msgstr "Polar encoding (butterfly GF(2) transform)"
+
+#: ../../how-to/rust-acceleration.md:24
+msgid "原地位运算矩阵乘法"
+msgstr "In-place bitwise matrix multiplication"
+
+#: ../../how-to/rust-acceleration.md:65
+msgid ""
+"Rust 源码位于 `rust/src/lib.rs`，通过 PyO3 暴露为 Python 类，由 maturin 构建为本地扩展模块 "
+"`nearlink_sdr_accel`。"
+msgstr ""
+
+#: ../../how-to/rust-acceleration.md:67
+msgid "故障排除"
+msgstr "Troubleshooting"
+
+#: ../../how-to/rust-acceleration.md:69
+msgid ""
+"**cargo 未找到**：运行 `curl --proto '=https' --tlsv1.2 -sSf "
+"https://sh.rustup.rs | sh` 安装 Rust 工具链。"
+msgstr ""
+
+#: ../../how-to/rust-acceleration.md:71
+msgid "**编译失败**：确保 Rust 版本 >= 1.70，运行 `rustup update` 更新。"
+msgstr "**Build failure**: Ensure Rust version >= 1.70; run `rustup update` to upgrade."
+
+#: ../../how-to/rust-acceleration.md:73
+msgid ""
+"**maturin 找不到虚拟环境**：确认当前处于项目根目录的虚拟环境中（`source .venv/bin/activate` 或 `uv "
+"sync` 后执行）。"
+msgstr ""
+

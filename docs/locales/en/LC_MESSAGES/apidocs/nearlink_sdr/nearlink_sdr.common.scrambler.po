@@ -1,0 +1,205 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the nearlink-sdr
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: nearlink-sdr 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.md:1
+#, python-brace-format
+msgid "{py:mod}`nearlink_sdr.common.scrambler`"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/common/scrambler.py:7
+msgid "信道比特加扰 -- TXS-10002-2025 标准 6.10.4"
+msgstr "Channel bit scrambling -- TXS-10002-2025 Standard 6.10.4"
+
+#: ../../../src/nearlink_sdr/common/scrambler.py:9
+msgid "使用 7bit 左移 Galois LFSR, 生成多项式 x^7 + x^4 + 1。 对编码后的比特序列进行异或加扰, 用于数据白化。"
+msgstr "Uses a 7-bit left-shift Galois LFSR with generator polynomial x^7 + x^4 + 1. XOR scrambles the encoded bit sequence for data whitening."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.md:10
+msgid "Module Contents"
+msgstr "Module Contents"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.md:12
+msgid "Functions"
+msgstr "Functions"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.md:18
+#, python-brace-format
+msgid "{py:obj}`_lfsr_step <nearlink_sdr.common.scrambler._lfsr_step>`"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/common/scrambler.py:20
+#: ../../../src/nearlink_sdr/common/scrambler.py:84
+msgid "Galois LFSR 单步: 输出 1bit, 返回 (output_bit, new_state)。"
+msgstr "Galois LFSR single step: outputs 1 bit, returns (output_bit, new_state)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.md:22
+#, python-brace-format
+msgid ""
+"{py:obj}`_precompute_period "
+"<nearlink_sdr.common.scrambler._precompute_period>`"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/common/scrambler.py:24
+#: ../../../src/nearlink_sdr/common/scrambler.py:112
+msgid "计算种子对应的完整 LFSR 周期输出。"
+msgstr "Compute the complete LFSR period output for the given seed."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.md:26
+#, python-brace-format
+msgid ""
+"{py:obj}`scramble_sequence "
+"<nearlink_sdr.common.scrambler.scramble_sequence>`"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/common/scrambler.py:28
+#: ../../../src/nearlink_sdr/common/scrambler.py:119
+msgid "生成指定长度的加扰序列。"
+msgstr "Generate a scrambling sequence of the specified length."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.md:30
+#, python-brace-format
+msgid "{py:obj}`scramble <nearlink_sdr.common.scrambler.scramble>`"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/common/scrambler.py:32
+#: ../../../src/nearlink_sdr/common/scrambler.py:126
+msgid "对比特序列进行加扰 (XOR)。"
+msgstr "Scramble a bit sequence (XOR)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.md:34
+#, python-brace-format
+msgid "{py:obj}`descramble <nearlink_sdr.common.scrambler.descramble>`"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/common/scrambler.py:36
+#: ../../../src/nearlink_sdr/common/scrambler.py:133
+msgid "解扰。加扰和解扰操作完全相同 (自逆性)。"
+msgstr "Descramble. Scrambling and descrambling operations are identical (self-inverse)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.md:38
+#, python-brace-format
+msgid "{py:obj}`broadcast_seed <nearlink_sdr.common.scrambler.broadcast_seed>`"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/common/scrambler.py:40
+#: ../../../src/nearlink_sdr/common/scrambler.py:140
+msgid "广播帧的加扰种子: 物理信道号。"
+msgstr "Scrambling seed for broadcast frames: physical channel number."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.md:42
+#, python-brace-format
+msgid "{py:obj}`data_link_seed <nearlink_sdr.common.scrambler.data_link_seed>`"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/common/scrambler.py:44
+#: ../../../src/nearlink_sdr/common/scrambler.py:147
+msgid "数据链路的加扰种子。"
+msgstr "Scrambling seed for data links."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.md:48
+msgid "Data"
+msgstr "Data"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.md:54
+#, python-brace-format
+msgid "{py:obj}`_GALOIS_MASK <nearlink_sdr.common.scrambler._GALOIS_MASK>`"
+msgstr ""
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.md:58
+#, python-brace-format
+msgid "{py:obj}`_PERIOD <nearlink_sdr.common.scrambler._PERIOD>`"
+msgstr ""
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.md:62
+#, python-brace-format
+msgid "{py:obj}`_SEED_CACHE <nearlink_sdr.common.scrambler._SEED_CACHE>`"
+msgstr ""
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.md:68
+msgid "API"
+msgstr "API"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.md:74
+msgid "17"
+msgstr "17"
+
+#: ../../../src/nearlink_sdr/common/scrambler.py:86
+msgid ""
+"左移 Galois LFSR, 多项式 x^7 + x^4 + 1。 输出位: 寄存器 6 (MSB)。 反馈: 输出位异或到寄存器位 0 和位 "
+"4。"
+msgstr ""
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.md:91
+msgid "127"
+msgstr "127"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.md:102
+msgid "None"
+msgstr "None"
+
+#: ../../../src/nearlink_sdr/common/scrambler.py:121
+#: ../../../src/nearlink_sdr/common/scrambler.py:128
+#: ../../../src/nearlink_sdr/common/scrambler.py:142
+#: ../../../src/nearlink_sdr/common/scrambler.py:152
+msgid "Parameters"
+msgstr "Parameters"
+
+#: ../../../src/nearlink_sdr/common/scrambler.py:123
+msgid "length : int     需要的加扰比特数。 seed : int     7bit 初始种子 (0 ~ 127)。"
+msgstr "length : int     Number of scrambling bits needed. seed : int     7-bit initial seed (0 ~ 127)."
+
+#: ../../../src/nearlink_sdr/common/scrambler.py:128
+#: ../../../src/nearlink_sdr/common/scrambler.py:135
+#: ../../../src/nearlink_sdr/common/scrambler.py:147
+#: ../../../src/nearlink_sdr/common/scrambler.py:157
+msgid "Returns"
+msgstr "Returns"
+
+#: ../../../src/nearlink_sdr/common/scrambler.py:130
+msgid "NDArray[np.uint8]     加扰序列, 元素为 0 或 1。"
+msgstr "NDArray[np.uint8]     Scrambling sequence, elements are 0 or 1."
+
+#: ../../../src/nearlink_sdr/common/scrambler.py:130
+msgid "bits : NDArray[np.uint8]     待加扰比特, 元素为 0 或 1。 seed : int     7bit 初始种子。"
+msgstr "bits : NDArray[np.uint8]     Bits to be scrambled, elements are 0 or 1. seed : int     7-bit initial seed."
+
+#: ../../../src/nearlink_sdr/common/scrambler.py:137
+msgid "NDArray[np.uint8]     加扰后的比特序列。"
+msgstr "NDArray[np.uint8]     Scrambled bit sequence."
+
+#: ../../../src/nearlink_sdr/common/scrambler.py:144
+msgid "physical_channel : int     物理信道号 (0..397)。取低 7 位。"
+msgstr "physical_channel : int     Physical channel number (0..397). Uses lower 7 bits."
+
+#: ../../../src/nearlink_sdr/common/scrambler.py:149
+#: ../../../src/nearlink_sdr/common/scrambler.py:159
+msgid "int     7bit 种子。"
+msgstr "int     7-bit seed."
+
+#: ../../../src/nearlink_sdr/common/scrambler.py:149
+msgid "将事件起始时刻调度时隙序号的低 6 位设为寄存器 0..5, 寄存器 6 设为 1。"
+msgstr "Sets the lower 6 bits of the event start time scheduling slot number to registers 0..5; register 6 is set to 1."
+
+#: ../../../src/nearlink_sdr/common/scrambler.py:154
+msgid "slot_number : int     调度时隙序号。"
+msgstr "slot_number : int     Scheduling slot number."
+
