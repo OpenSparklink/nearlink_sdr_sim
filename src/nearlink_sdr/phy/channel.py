@@ -317,14 +317,12 @@ def add_interference(
     每个干扰源独立生成与有用信号等长的随机 IQ 序列, 按 SIR 缩放后叠加。
     支持同信道和邻信道干扰 (通过频率偏移实现)。
 
-    Args:
-        signal: 有用信号 (复数 IQ)。
-        interferers: 干扰源配置列表。
-        sample_rate_hz: 采样率 (Hz)。
-        rng: 可选随机数生成器。
+    :param signal: 有用信号 (复数 IQ)。
+    :param interferers: 干扰源配置列表。
+    :param sample_rate_hz: 采样率 (Hz)。
+    :param rng: 可选随机数生成器。
 
-    Returns:
-        叠加干扰后的信号。
+    :returns: 叠加干扰后的信号。
     """
     n = len(signal)
     result = signal.copy()
@@ -364,13 +362,11 @@ def compute_sinr(
 ) -> float:
     """计算 SINR (dB)。
 
-    Args:
-        signal: 纯净有用信号。
-        noise_signal: 含噪声的接收信号 (信号+噪声, 不含干扰)。
-        interference_signal: 干扰叠加后的接收信号 (信号+噪声+干扰)。
+    :param signal: 纯净有用信号。
+    :param noise_signal: 含噪声的接收信号 (信号+噪声, 不含干扰)。
+    :param interference_signal: 干扰叠加后的接收信号 (信号+噪声+干扰)。
 
-    Returns:
-        SINR (dB)。
+    :returns: SINR (dB)。
     """
     s_power = np.mean(np.abs(signal) ** 2)
     n_power = np.mean(np.abs(noise_signal - signal) ** 2)

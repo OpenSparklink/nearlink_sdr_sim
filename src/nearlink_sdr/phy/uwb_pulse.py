@@ -66,12 +66,10 @@ def kaiser_pulse(
 ) -> NDArray[np.float64]:
     """生成 Kaiser 参考脉冲波形 r(t)。
 
-    Args:
-        cfg: UWB 脉冲配置
-        num_samples: 采样点数, 默认根据脉冲持续时间和采样率计算
+    :param cfg: UWB 脉冲配置
+    :param num_samples: 采样点数, 默认根据脉冲持续时间和采样率计算
 
-    Returns:
-        归一化的 Kaiser 脉冲波形采样值
+    :returns: 归一化的 Kaiser 脉冲波形采样值
     """
     l_ns = cfg.pulse_duration_ns
     if num_samples is None:
@@ -98,13 +96,11 @@ def chip_modulate(
     每个码片 c(n) ∈ {-1, 0, +1} 的调制信号为:
         c(n) · r(t - n·Tc) · cos[2π·fc·(t - n·Tc)]
 
-    Args:
-        chips: 码片序列, 值为 -1, 0 或 +1
-        cfg: UWB 脉冲配置
-        fc_ghz: 载波中心频率 (GHz)
+    :param chips: 码片序列, 值为 -1, 0 或 +1
+    :param cfg: UWB 脉冲配置
+    :param fc_ghz: 载波中心频率 (GHz)
 
-    Returns:
-        调制后的时域信号
+    :returns: 调制后的时域信号
     """
     pulse = kaiser_pulse(cfg)
     pulse_len = len(pulse)
@@ -132,12 +128,10 @@ def normalized_cross_correlation(
 ) -> NDArray[np.float64]:
     """计算归一化互相关函数 |φ(τ)|。
 
-    Args:
-        r: 参考脉冲波形
-        p: 发射脉冲波形
+    :param r: 参考脉冲波形
+    :param p: 发射脉冲波形
 
-    Returns:
-        归一化互相关函数的幅度
+    :returns: 归一化互相关函数的幅度
     """
     e_r = np.sum(r ** 2)
     e_p = np.sum(p ** 2)
@@ -157,14 +151,12 @@ def validate_pulse(
 ) -> tuple[bool, float, float]:
     """验证发射脉冲波形是否满足标准要求。
 
-    Args:
-        p: 发射脉冲波形
-        cfg: UWB 脉冲配置
-        main_lobe_threshold: 主瓣最低强度阈值 (默认 0.92)
-        side_lobe_threshold: 旁瓣最高强度阈值 (默认 0.1)
+    :param p: 发射脉冲波形
+    :param cfg: UWB 脉冲配置
+    :param main_lobe_threshold: 主瓣最低强度阈值 (默认 0.92)
+    :param side_lobe_threshold: 旁瓣最高强度阈值 (默认 0.1)
 
-    Returns:
-        (是否通过, 主瓣最小强度, 旁瓣最大强度)
+    :returns: (是否通过, 主瓣最小强度, 旁瓣最大强度)
     """
     r = kaiser_pulse(cfg, num_samples=len(p))
     phi = normalized_cross_correlation(r, p)

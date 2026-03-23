@@ -34,14 +34,12 @@ def generate_m_sequence(order: int, taps: int, init_val: int,
                         length: int | None = None) -> np.ndarray:
     """生成线性反馈移位寄存器产生的m序列。
 
-    Args:
-        order: LFSR阶数（移位寄存器位数）
-        taps: 反馈系数（二进制表示，包含最高位）
-        init_val: 移位寄存器初始值
-        length: 输出序列长度，默认为 2^order - 1（完整m序列周期）
+    :param order: LFSR阶数（移位寄存器位数）
+    :param taps: 反馈系数（二进制表示，包含最高位）
+    :param init_val: 移位寄存器初始值
+    :param length: 输出序列长度，默认为 2^order - 1（完整m序列周期）
 
-    Returns:
-        m序列比特数组, shape (length,), 值为 0/1
+    :returns: m序列比特数组, shape (length,), 值为 0/1
     """
     if length is None:
         length = (1 << order) - 1
@@ -73,9 +71,8 @@ def generate_m_sequence(order: int, taps: int, init_val: int,
 def m31_sequence(index: int, length: int = 31) -> np.ndarray:
     """生成标准中定义的31长m序列。
 
-    Args:
-        index: 序列编号 0~5
-        length: 输出长度，默认31
+    :param index: 序列编号 0~5
+    :param length: 输出长度，默认31
     """
     cfg = M31_CONFIGS[index]
     return generate_m_sequence(5, cfg["taps"], cfg["init"], length)
@@ -84,9 +81,8 @@ def m31_sequence(index: int, length: int = 31) -> np.ndarray:
 def m63_sequence(index: int, length: int = 63) -> np.ndarray:
     """生成标准中定义的63长m序列。
 
-    Args:
-        index: 序列编号 0~5
-        length: 输出长度，默认63
+    :param index: 序列编号 0~5
+    :param length: 输出长度，默认63
     """
     cfg = M63_CONFIGS[index]
     return generate_m_sequence(6, cfg["taps"], cfg["init"], length)

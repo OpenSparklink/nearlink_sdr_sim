@@ -327,8 +327,7 @@ class LinkQualityTracker:
     def suggest_mcs_adjustment(self) -> int:
         """建议 MCS 调整方向。
 
-        Returns:
-            +1: 建议提升 MCS (链路质量好)
+        :returns: +1: 建议提升 MCS (链路质量好)
             -1: 建议降低 MCS (链路质量差)
              0: 保持当前 MCS
         """
@@ -458,8 +457,7 @@ class QosManager:
     def prepare_tx(self) -> tuple[TxDecision, TxQueueItem | None]:
         """准备下一帧发送。
 
-        Returns:
-            (发送决策, 队列项或 None)
+        :returns: (发送决策, 队列项或 None)
         """
         if self.arq.pending_ack:
             return TxDecision.RETRANSMIT, None

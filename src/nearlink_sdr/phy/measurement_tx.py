@@ -135,11 +135,9 @@ class MeasLinkParams:
 def event_schedule(params: MeasLinkParams) -> list[tuple[int, EventFrameType]]:
     """生成一个事件组内的事件调度序列。
 
-    Args:
-        params: 测量链路参数。
+    :param params: 测量链路参数。
 
-    Returns:
-        列表, 每个元素为 (事件索引, 帧类型)。
+    :returns: 列表, 每个元素为 (事件索引, 帧类型)。
     """
     schedule: list[tuple[int, EventFrameType]] = []
 
@@ -178,12 +176,10 @@ def event_start_times(
 ) -> list[float]:
     """计算一个事件组内各事件的起始时刻 (us)。
 
-    Args:
-        params: 测量链路参数。
-        group_index: 事件组序号。
+    :param params: 测量链路参数。
+    :param group_index: 事件组序号。
 
-    Returns:
-        各事件的起始时刻列表 (us)。
+    :returns: 各事件的起始时刻列表 (us)。
     """
     schedule = event_schedule(params)
     group_offset = (params.event_group_start_us
@@ -214,12 +210,10 @@ def event_start_times(
 def ds_twr_2msg(ra: float, db: float) -> float:
     """双边两消息飞行时间估计 (6.8.5.1)。
 
-    Args:
-        ra: 先发节点测量的往返时间差 Ra = Ra2 - Ra1。
-        db: 后发节点测量的处理时间差 Db = Db2 - Db1。
+    :param ra: 先发节点测量的往返时间差 Ra = Ra2 - Ra1。
+    :param db: 后发节点测量的处理时间差 Db = Db2 - Db1。
 
-    Returns:
-        单向飞行时间估计 T_prop (与 ra/db 相同时间单位)。
+    :returns: 单向飞行时间估计 T_prop (与 ra/db 相同时间单位)。
     """
     return 0.5 * (ra - db)
 
@@ -232,14 +226,12 @@ def ds_twr_2msg(ra: float, db: float) -> float:
 def ds_twr_3msg(ra: float, rb: float, da: float, db: float) -> float:
     """双边三消息飞行时间估计 (6.8.5.2)。
 
-    Args:
-        ra: 先发节点 Ra = Ra2 - Ra1。
-        rb: 后发节点 Rb = Rb2 - Rb1。
-        da: 先发节点 Da = Da2 - Da1。
-        db: 后发节点 Db = Db2 - Db1。
+    :param ra: 先发节点 Ra = Ra2 - Ra1。
+    :param rb: 后发节点 Rb = Rb2 - Rb1。
+    :param da: 先发节点 Da = Da2 - Da1。
+    :param db: 后发节点 Db = Db2 - Db1。
 
-    Returns:
-        单向飞行时间估计 T_prop。
+    :returns: 单向飞行时间估计 T_prop。
     """
     numerator = ra * rb - da * db
     denominator = ra + rb + da + db
@@ -260,13 +252,11 @@ def angle_estimate(
 ) -> float:
     """根据相位差估计到达角/出发角 (6.8.5.3)。
 
-    Args:
-        delta_phi: 两天线接收/发送信号的载波相位差 (rad)。
-        wavelength: 信号波长 (m)。
-        antenna_spacing: 天线间距 (m)。
+    :param delta_phi: 两天线接收/发送信号的载波相位差 (rad)。
+    :param wavelength: 信号波长 (m)。
+    :param antenna_spacing: 天线间距 (m)。
 
-    Returns:
-        角度估计值 (rad), 范围 [0, pi]。
+    :returns: 角度估计值 (rad), 范围 [0, pi]。
     """
     cos_val = (delta_phi * wavelength) / (2.0 * math.pi * antenna_spacing)
     cos_val = max(-1.0, min(1.0, cos_val))
@@ -294,13 +284,11 @@ def extract_cir(
 ) -> NDArray[np.complex128]:
     """从接收信号中提取信道冲击响应测量量 (6.8.5.4)。
 
-    Args:
-        rx_signal: 接收到的时域 IQ 信号。
-        config: CIR 测量配置。
-        ref_sample: 参考时间点对应的采样索引。
+    :param rx_signal: 接收到的时域 IQ 信号。
+    :param config: CIR 测量配置。
+    :param ref_sample: 参考时间点对应的采样索引。
 
-    Returns:
-        截取的 CIR (I+jQ 复数数组)。
+    :returns: 截取的 CIR (I+jQ 复数数组)。
     """
     samples_per_ns = config.sample_rate_hz / 1e9
     offset_samples = int(config.delay_offset_ns * samples_per_ns)
@@ -325,11 +313,9 @@ def range_doppler(
 
     对多帧 CIR 数据在慢时间维度做 FFT 获取距离-多普勒图。
 
-    Args:
-        cir_frames: 形状 (n_frames, n_delay_bins) 的多帧 CIR 数据。
+    :param cir_frames: 形状 (n_frames, n_delay_bins) 的多帧 CIR 数据。
 
-    Returns:
-        形状 (n_frames, n_delay_bins) 的距离-多普勒矩阵。
+    :returns: 形状 (n_frames, n_delay_bins) 的距离-多普勒矩阵。
     """
     if cir_frames.ndim == 1:
         return np.fft.fft(cir_frames)
@@ -358,12 +344,10 @@ def compute_csi_feedback(
 ) -> CSIFeedback:
     """从接收功率和信道 IQ 估计值生成 CSI 反馈。
 
-    Args:
-        rx_power_dbm: 接收信号功率 (dBm)。
-        channel_iq: 信道估计的复数 IQ 值。
+    :param rx_power_dbm: 接收信号功率 (dBm)。
+    :param channel_iq: 信道估计的复数 IQ 值。
 
-    Returns:
-        CSIFeedback 实例。
+    :returns: CSIFeedback 实例。
     """
     iq_mag = abs(channel_iq)
     if iq_mag < 1e-30:
@@ -385,11 +369,9 @@ def compute_csi_feedback(
 def csi_to_rx_power(feedback: CSIFeedback) -> float:
     """从 CSI 反馈恢复接收信号功率。
 
-    Args:
-        feedback: CSI 反馈数据。
+    :param feedback: CSI 反馈数据。
 
-    Returns:
-        接收信号功率 (dBm)。
+    :returns: 接收信号功率 (dBm)。
     """
     iq_mag = abs(feedback.relative_iq)
     if iq_mag < 1e-30:
@@ -463,12 +445,10 @@ def uwb_event_sender(
 ) -> int:
     """确定指定事件中谁先发。
 
-    Args:
-        params: UWB 测量参数。
-        event_index: 事件索引。
+    :param params: UWB 测量参数。
+    :param event_index: 事件索引。
 
-    Returns:
-        0=配置方先发, 1=对端先发。
+    :returns: 0=配置方先发, 1=对端先发。
     """
     if not params.alternate_sender:
         return params.first_sender

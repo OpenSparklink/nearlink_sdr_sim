@@ -174,11 +174,9 @@ class TimeSlice:
     ) -> list[tuple[int, int]]:
         """计算此时间片展开后的所有绝对时间区间。
 
-        Args:
-            slot_us: 调度时隙的微秒值。
+        :param slot_us: 调度时隙的微秒值。
 
-        Returns:
-            [(start_us, end_us), ...] 时间区间列表。
+        :returns: [(start_us, end_us), ...] 时间区间列表。
         """
         intervals: list[tuple[int, int]] = []
         for i in range(self.repeat_count):
@@ -295,8 +293,7 @@ class Superframe:
     def active_region_us(self) -> tuple[int, int]:
         """计算活动区间 (从 SMF 到最后一个时间片结束)。
 
-        Returns:
-            (start_us, end_us) 活动区间。start_us 始终为 0 (SMF 起始)。
+        :returns: (start_us, end_us) 活动区间。start_us 始终为 0 (SMF 起始)。
         """
         if not self.link_entries:
             return (0, 0)
@@ -311,8 +308,7 @@ class Superframe:
     def check_conflicts(self) -> list[tuple[int, int, int, int]]:
         """检测时间片冲突。
 
-        Returns:
-            冲突列表 [(link_id_a, link_id_b, overlap_start, overlap_end), ...]。
+        :returns: 冲突列表 [(link_id_a, link_id_b, overlap_start, overlap_end), ...]。
         """
         # 展开所有时间片
         all_intervals: list[tuple[int, int, int]] = []  # (start, end, link_id)
@@ -365,11 +361,9 @@ class EventGroupScheduler:
     ) -> list[int]:
         """计算指定事件组内每个事件的起始时间。
 
-        Args:
-            group_index: 第几个事件组 (从 0 开始)。
+        :param group_index: 第几个事件组 (从 0 开始)。
 
-        Returns:
-            事件起始时间列表 (μs, 绝对时间)。
+        :returns: 事件起始时间列表 (μs, 绝对时间)。
         """
         t = self.timing
         slot_us = t.schedule_slot_us
@@ -393,11 +387,9 @@ class EventGroupScheduler:
     ) -> tuple[int, int]:
         """计算一个事件中先发窗口的时间区间。
 
-        Args:
-            event_start_us: 事件起始时间 (μs)。
+        :param event_start_us: 事件起始时间 (μs)。
 
-        Returns:
-            (start_us, end_us) 先发窗口区间。
+        :returns: (start_us, end_us) 先发窗口区间。
         """
         t = self.timing
         tx_dur = (t.tx_max_offset + 1) * TSYS_US
@@ -408,11 +400,9 @@ class EventGroupScheduler:
     ) -> tuple[int, int]:
         """计算一个事件中后发窗口的时间区间。
 
-        Args:
-            event_start_us: 事件起始时间 (μs)。
+        :param event_start_us: 事件起始时间 (μs)。
 
-        Returns:
-            (start_us, end_us) 后发窗口区间。
+        :returns: (start_us, end_us) 后发窗口区间。
         """
         t = self.timing
         tx_dur = (t.tx_max_offset + 1) * TSYS_US
@@ -427,11 +417,9 @@ class EventGroupScheduler:
 
         返回每个事件的起始时间、先发窗口和后发窗口。
 
-        Args:
-            group_index: 事件组索引。
+        :param group_index: 事件组索引。
 
-        Returns:
-            [{"event_start": int, "tx_window": (s, e), "rx_window": (s, e)}, ...]
+        :returns: [{"event_start": int, "tx_window": (s, e), "rx_window": (s, e)}, ...]
         """
         result: list[dict[str, int | tuple[int, int]]] = []
         for start in self.event_start_times(group_index):
@@ -447,11 +435,9 @@ class EventGroupScheduler:
     ) -> int:
         """计算下一个事件组的起始时间。
 
-        Args:
-            current_us: 当前时间 (μs)。
+        :param current_us: 当前时间 (μs)。
 
-        Returns:
-            下一个事件组起始时间 (μs)。
+        :returns: 下一个事件组起始时间 (μs)。
         """
         anchor = self.anchor_time_us()
         period = self.timing.event_group_period_us
@@ -572,12 +558,11 @@ class ScheduleManager:
     ) -> None:
         """注册链路并配置事件组调度。
 
-        Args:
-            link_id: 逻辑链路标识。
-            timing: 事件计时参数。
-            time_slices: 超帧内时间片列表 (可选)。
-            anchor_slot: 事件组锚点时隙。
-            anchor_offset_us: 事件组起始偏移 (μs)。
+        :param link_id: 逻辑链路标识。
+        :param timing: 事件计时参数。
+        :param time_slices: 超帧内时间片列表 (可选)。
+        :param anchor_slot: 事件组锚点时隙。
+        :param anchor_offset_us: 事件组起始偏移 (μs)。
         """
         # 创建事件组调度器
         self.event_schedulers[link_id] = EventGroupScheduler(
@@ -630,8 +615,7 @@ class ScheduleManager:
     def update_tx_rx_interval(self, interval_type: int) -> int:
         """更新收发间隔类型。
 
-        Returns:
-            更新后的间隔值 (μs)。
+        :returns: 更新后的间隔值 (μs)。
         """
         self.tx_rx_interval = interval_type
         return tx_rx_interval_us(interval_type)
@@ -642,8 +626,7 @@ class ScheduleManager:
         基于事件组调度器的超时参数判断当前时间
         是否超过了锚点 + 超时时限。
 
-        Returns:
-            True 表示已超时。
+        :returns: True 表示已超时。
         """
         sched = self.event_schedulers.get(link_id)
         if sched is None:

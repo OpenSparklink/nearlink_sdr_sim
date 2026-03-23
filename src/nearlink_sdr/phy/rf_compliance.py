@@ -224,13 +224,12 @@ def check_freq_tolerance(
 ) -> bool:
     """校验频率容限是否满足 8.2.2.3。
 
-    Args:
-        band: 频段类型。
-        mod_type: 调制类型 ("GFSK", "BPSK/QPSK", "8PSK")。
-        freq_offset_khz: 初始频率偏差 (kHz)。
-        freq_drift_khz: 频率漂移 (kHz)。
-        drift_rate_hz_per_us: 频率漂移率 (Hz/us)。
-        carrier_freq_mhz: 载波频率 (MHz), sub-1GHz 时用于 ppm 校验。
+    :param band: 频段类型。
+    :param mod_type: 调制类型 ("GFSK", "BPSK/QPSK", "8PSK")。
+    :param freq_offset_khz: 初始频率偏差 (kHz)。
+    :param freq_drift_khz: 频率漂移 (kHz)。
+    :param drift_rate_hz_per_us: 频率漂移率 (Hz/us)。
+    :param carrier_freq_mhz: 载波频率 (MHz), sub-1GHz 时用于 ppm 校验。
     """
     if band == FreqBand.SUB_1G:
         if carrier_freq_mhz <= 0:
@@ -405,9 +404,8 @@ def reference_sensitivity(
 ) -> float:
     """返回参考灵敏度 (dBm)。
 
-    Args:
-        bw_khz: 信道带宽 (kHz)。
-        mcs: MCS 索引。None 时返回 GFSK 灵敏度。
+    :param bw_khz: 信道带宽 (kHz)。
+    :param mcs: MCS 索引。None 时返回 GFSK 灵敏度。
     """
     if mcs is None:
         val = GFSK_SENSITIVITY.get(bw_khz)

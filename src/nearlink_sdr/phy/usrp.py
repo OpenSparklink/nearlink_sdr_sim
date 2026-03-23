@@ -423,10 +423,9 @@ class USRPDevice:
     ):
         """初始化 USRP 设备。
 
-        Args:
-            config: 设备配置, None 时使用默认配置。
-            use_mock: 强制使用 MockUSRP。
-            loopback: 环回缓冲区, 仅 Mock 模式有效。
+        :param config: 设备配置, None 时使用默认配置。
+        :param use_mock: 强制使用 MockUSRP。
+        :param loopback: 环回缓冲区, 仅 Mock 模式有效。
         """
         self._config = config or USRPConfig()
         self._use_mock = use_mock or not _UHD_AVAILABLE
@@ -488,9 +487,8 @@ class USRPDevice:
     def tune_channel(self, channel_num: int, band: str | None = None):
         """切换到指定 SLE 射频信道。
 
-        Args:
-            channel_num: 射频信道号。
-            band: 频段标识, None 沿用当前配置。
+        :param channel_num: 射频信道号。
+        :param band: 频段标识, None 沿用当前配置。
         """
         if band is not None:
             self._config.band = band
@@ -582,11 +580,9 @@ class TXStream:
     def send(self, samples: np.ndarray) -> int:
         """发射一帧 IQ 样本。
 
-        Args:
-            samples: 复基带样本, dtype=complex64, shape (N,)。
+        :param samples: 复基带样本, dtype=complex64, shape (N,)。
 
-        Returns:
-            实际发射的样本数。
+        :returns: 实际发射的样本数。
         """
         if self._streamer is None:
             raise RuntimeError("TX streamer 未打开, 请先调用 open()")
@@ -603,12 +599,10 @@ class TXStream:
     def send_continuous(self, samples: np.ndarray, num_repeats: int = 1) -> int:
         """连续发射, 重复指定次数。
 
-        Args:
-            samples: 单帧 IQ 样本。
-            num_repeats: 重复次数。
+        :param samples: 单帧 IQ 样本。
+        :param num_repeats: 重复次数。
 
-        Returns:
-            总发射样本数。
+        :returns: 总发射样本数。
         """
         if self._streamer is None:
             raise RuntimeError("TX streamer 未打开, 请先调用 open()")
@@ -651,8 +645,7 @@ class RXStream:
     def open(self, samps_per_buffer: int = 1000):
         """创建 RX streamer 并分配接收缓冲区。
 
-        Args:
-            samps_per_buffer: 每次 recv 调用的缓冲区大小。
+        :param samps_per_buffer: 每次 recv 调用的缓冲区大小。
         """
         if self._device.is_mock:
             stream_args = "fc32"
@@ -675,11 +668,9 @@ class RXStream:
     def recv_num_samps(self, num_samps: int) -> np.ndarray:
         """接收指定数量的样本。
 
-        Args:
-            num_samps: 要接收的样本数。
+        :param num_samps: 要接收的样本数。
 
-        Returns:
-            复基带样本数组, shape (num_samps,), dtype=complex64。
+        :returns: 复基带样本数组, shape (num_samps,), dtype=complex64。
         """
         if self._streamer is None:
             raise RuntimeError("RX streamer 未打开, 请先调用 open()")
@@ -730,8 +721,7 @@ class RXStream:
     def recv_once(self) -> np.ndarray:
         """在连续模式下接收一个缓冲区的样本。
 
-        Returns:
-            接收到的样本, 长度可能小于缓冲区大小。
+        :returns: 接收到的样本, 长度可能小于缓冲区大小。
         """
         if not self._running:
             raise RuntimeError("连续接收未启动, 请先调用 start_continuous()")
@@ -787,11 +777,9 @@ class SLETransceiver:
     def transmit_iq(self, iq_samples: np.ndarray) -> int:
         """发射预调制的 IQ 样本。
 
-        Args:
-            iq_samples: 复基带信号。
+        :param iq_samples: 复基带信号。
 
-        Returns:
-            实际发射的样本数。
+        :returns: 实际发射的样本数。
         """
         if not self._is_open:
             raise RuntimeError("Pipeline 未打开")
@@ -800,11 +788,9 @@ class SLETransceiver:
     def receive_iq(self, num_samps: int) -> np.ndarray:
         """接收指定数量的 IQ 样本。
 
-        Args:
-            num_samps: 要接收的样本数。
+        :param num_samps: 要接收的样本数。
 
-        Returns:
-            接收到的复基带信号。
+        :returns: 接收到的复基带信号。
         """
         if not self._is_open:
             raise RuntimeError("Pipeline 未打开")
@@ -817,12 +803,10 @@ class SLETransceiver:
     ) -> int:
         """调制并发射一帧。
 
-        Args:
-            frame_bits: 帧比特序列。
-            modulate_fn: 调制函数, 接收比特数组, 返回 IQ 样本。
+        :param frame_bits: 帧比特序列。
+        :param modulate_fn: 调制函数, 接收比特数组, 返回 IQ 样本。
 
-        Returns:
-            实际发射的样本数。
+        :returns: 实际发射的样本数。
         """
         iq = modulate_fn(frame_bits)
         return self.transmit_iq(iq)
@@ -834,12 +818,10 @@ class SLETransceiver:
     ) -> np.ndarray:
         """接收并解调一帧。
 
-        Args:
-            num_samps: 接收样本数。
-            demodulate_fn: 解调函数, 接收 IQ 样本, 返回比特数组。
+        :param num_samps: 接收样本数。
+        :param demodulate_fn: 解调函数, 接收 IQ 样本, 返回比特数组。
 
-        Returns:
-            解调后的比特序列。
+        :returns: 解调后的比特序列。
         """
         iq = self.receive_iq(num_samps)
         return demodulate_fn(iq)
@@ -852,13 +834,11 @@ class SLETransceiver:
     ) -> int:
         """跳频后发射。
 
-        Args:
-            channel_num: 目标信道号。
-            iq_samples: 要发射的 IQ 样本。
-            band: 频段标识, None 沿用当前配置。
+        :param channel_num: 目标信道号。
+        :param iq_samples: 要发射的 IQ 样本。
+        :param band: 频段标识, None 沿用当前配置。
 
-        Returns:
-            实际发射的样本数。
+        :returns: 实际发射的样本数。
         """
         self._device.tune_channel(channel_num, band)
         return self.transmit_iq(iq_samples)
@@ -871,13 +851,11 @@ class SLETransceiver:
     ) -> np.ndarray:
         """跳频后接收。
 
-        Args:
-            channel_num: 目标信道号。
-            num_samps: 接收样本数。
-            band: 频段标识, None 沿用当前配置。
+        :param channel_num: 目标信道号。
+        :param num_samps: 接收样本数。
+        :param band: 频段标识, None 沿用当前配置。
 
-        Returns:
-            接收到的 IQ 样本。
+        :returns: 接收到的 IQ 样本。
         """
         self._device.tune_channel(channel_num, band)
         return self.receive_iq(num_samps)

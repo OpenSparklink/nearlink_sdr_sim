@@ -168,11 +168,9 @@ class DiscoveryManager:
         若帧中包含发现/接入资源配置且为可查询帧, 返回 True 表示可发送查询请求。
         白名单启用时仅处理白名单内设备。
 
-        Args:
-            frame: 收到的广播帧。
+        :param frame: 收到的广播帧。
 
-        Returns:
-            True 表示可查询, 需要后续发送查询请求。
+        :returns: True 表示可查询, 需要后续发送查询请求。
         """
         if not self.whitelist.check(frame.local_addr):
             return False
@@ -198,13 +196,11 @@ class DiscoveryManager:
     ) -> BroadcastFrame:
         """构造查询请求帧 (阶段 b)。
 
-        Args:
-            target_addr: 目标广播设备地址。
-            filter_info: 查询过滤信息 (按服务UUID过滤)。
-            upper_layer_data: 高层广播数据。
+        :param target_addr: 目标广播设备地址。
+        :param filter_info: 查询过滤信息 (按服务UUID过滤)。
+        :param upper_layer_data: 高层广播数据。
 
-        Returns:
-            查询请求广播帧。
+        :returns: 查询请求广播帧。
         """
         data_items: list[tuple[int, bytes]] = []
         if filter_info is not None:
@@ -233,11 +229,9 @@ class DiscoveryManager:
     ) -> bool:
         """处理查询响应帧 (阶段 d)。
 
-        Args:
-            frame: 收到的查询响应帧。
+        :param frame: 收到的查询响应帧。
 
-        Returns:
-            True 表示发现完成。
+        :returns: True 表示发现完成。
         """
         addr = bytes(frame.local_addr)
         if addr in self._discovered:
@@ -255,12 +249,10 @@ class DiscoveryManager:
     ) -> BroadcastFrame:
         """处理查询请求并构造查询响应帧 (阶段 c)。
 
-        Args:
-            request_frame: 收到的查询请求帧。
-            all_services_data: 本设备支持的所有服务数据。
+        :param request_frame: 收到的查询请求帧。
+        :param all_services_data: 本设备支持的所有服务数据。
 
-        Returns:
-            查询响应广播帧。
+        :returns: 查询响应广播帧。
         """
         requester_addr = bytes(request_frame.local_addr)
 
@@ -312,14 +304,12 @@ def negotiate_gt_role(
     双方各表达角色偏好 (0=T节点, 1=G节点) 和可协商标志。
     冲突时默认: 发起方→G节点, 广播方→T节点。
 
-    Args:
-        broadcaster_pref: 广播方角色偏好 (0=T, 1=G)。
-        broadcaster_negotiable: 广播方角色是否可协商。
-        initiator_pref: 发起方 (接入方) 角色偏好。
-        initiator_negotiable: 发起方角色是否可协商。
+    :param broadcaster_pref: 广播方角色偏好 (0=T, 1=G)。
+    :param broadcaster_negotiable: 广播方角色是否可协商。
+    :param initiator_pref: 发起方 (接入方) 角色偏好。
+    :param initiator_negotiable: 发起方角色是否可协商。
 
-    Returns:
-        协商结果, 从发起方视角: local_role 为发起方角色。
+    :returns: 协商结果, 从发起方视角: local_role 为发起方角色。
     """
     # 若双方偏好一致 (都想当 G 或都想当 T), 存在冲突
     if broadcaster_pref == initiator_pref:
@@ -405,8 +395,7 @@ class BroadcasterAccessManager:
 
         包含发现接入资源配置信息 (7.1.4.2)。
 
-        Returns:
-            填充好的 BroadcastFrame 对象。
+        :returns: 填充好的 BroadcastFrame 对象。
         """
         gt_neg = GTNegotiation.NEGOTIATE_G
         if self.config.gt_preference == 1:
@@ -460,12 +449,10 @@ class BroadcasterAccessManager:
     ) -> tuple[BroadcastFrame | None, bool]:
         """处理接入请求 (阶段 c)。
 
-        Args:
-            request_data: 接入请求帧数据。
-            peer_address: 请求方 MAC 地址。
+        :param request_data: 接入请求帧数据。
+        :param peer_address: 请求方 MAC 地址。
 
-        Returns:
-            (响应帧, 是否接受)。响应帧包含 AccessResponseInfo,
+        :returns: (响应帧, 是否接受)。响应帧包含 AccessResponseInfo,
             以及 (若接受且角色为 G) AccessBasicInfo 或 TransportIndicationInfo。
         """
         self._phase = AccessPhase.RSP_WINDOW
@@ -566,12 +553,10 @@ class BroadcasterAccessManager:
     ) -> BroadcastFrame:
         """拒绝接入请求。
 
-        Args:
-            peer_address: 请求方 MAC 地址。
-            reason: 拒绝原因。
+        :param peer_address: 请求方 MAC 地址。
+        :param reason: 拒绝原因。
 
-        Returns:
-            包含拒绝响应的帧。
+        :returns: 包含拒绝响应的帧。
         """
         response_entry = AccessResponseEntry(
             peer_addr=peer_address,
@@ -624,11 +609,9 @@ class InitiatorAccessManager:
         解析发现接入资源配置, 提取请求窗口参数。
         白名单启用时, 仅处理白名单中设备的广播帧 (7.1.6)。
 
-        Args:
-            frame: 收到的广播帧。
+        :param frame: 收到的广播帧。
 
-        Returns:
-            True 表示帧中包含有效的接入资源配置。
+        :returns: True 表示帧中包含有效的接入资源配置。
         """
         # 白名单检查 (7.1.6)
         if not self.whitelist.check(frame.local_addr):
@@ -654,8 +637,7 @@ class InitiatorAccessManager:
 
         根据本地角色偏好构建 AccessRequestInfo。
 
-        Returns:
-            接入请求帧的序列化数据。
+        :returns: 接入请求帧的序列化数据。
         """
         gt_flag = self.config.gt_preference
         if not self.config.gt_negotiable:
@@ -692,11 +674,9 @@ class InitiatorAccessManager:
     ) -> tuple[Role | None, dict[str, Any]]:
         """处理接入响应 (阶段 d)。
 
-        Args:
-            response_data: 接入响应帧完整数据 (BroadcastFrame.pack() 格式)。
+        :param response_data: 接入响应帧完整数据 (BroadcastFrame.pack() 格式)。
 
-        Returns:
-            (最终角色, 链路参数字典)。角色为 None 表示接入被拒绝。
+        :returns: (最终角色, 链路参数字典)。角色为 None 表示接入被拒绝。
         """
         frame = BroadcastFrame.unpack(response_data)
         link_params: dict[str, Any] = {}
@@ -832,8 +812,7 @@ class NonConnectedBroadcastManager:
         - UNLINKED_BROADCAST_LINK (0x06): NonLinkedBroadcastLinkInfo
         - SYSTEM_MGMT_FRAME (0x05): SystemMgmtFrameInfo
 
-        Returns:
-            构建好的 BroadcastFrame。
+        :returns: 构建好的 BroadcastFrame。
         """
         cfg = self.config
 
@@ -907,11 +886,9 @@ def parse_non_connected_broadcast(
 ) -> NonConnectedBroadcastResult | None:
     """解析扩展广播帧中的非链接态广播信息 (7.1.7.2)。
 
-    Args:
-        frame: 收到的扩展广播帧。
+    :param frame: 收到的扩展广播帧。
 
-    Returns:
-        解析结果; 若帧中不包含非链接态广播信息则返回 None。
+    :returns: 解析结果; 若帧中不包含非链接态广播信息则返回 None。
     """
     link_info: NonLinkedBroadcastLinkInfo | None = None
     smf_info: SystemMgmtFrameInfo | None = None
@@ -946,15 +923,13 @@ def run_access_procedure(
 
     用于仿真和集成测试, 不涉及实际射频传输。
 
-    Args:
-        broadcaster_addr: 广播方 MAC 地址。
-        initiator_addr: 发起方 MAC 地址。
-        broadcaster_config: 广播方配置。
-        initiator_config: 发起方配置。
-        broadcaster_use_smf: 是否使用系统管理帧模式。
+    :param broadcaster_addr: 广播方 MAC 地址。
+    :param initiator_addr: 发起方 MAC 地址。
+    :param broadcaster_config: 广播方配置。
+    :param initiator_config: 发起方配置。
+    :param broadcaster_use_smf: 是否使用系统管理帧模式。
 
-    Returns:
-        (广播方管理器, 发起方管理器) 二元组,
+    :returns: (广播方管理器, 发起方管理器) 二元组,
         两者的 link_manager 在成功时均处于 CONNECTED 状态。
     """
     if broadcaster_config is None:

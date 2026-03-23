@@ -1107,11 +1107,9 @@ class PolarEncoder:
     def encode(self, info_bits: np.ndarray) -> np.ndarray:
         """将 K 个信息位编码为 N 个编码位。
 
-        Args:
-            info_bits: 长度为 K 的比特数组（取值 0 或 1）。
+        :param info_bits: 长度为 K 的比特数组（取值 0 或 1）。
 
-        Returns:
-            长度为 N 的码字（取值 0 或 1）。
+        :returns: 长度为 N 的码字（取值 0 或 1）。
         """
         info_bits = np.asarray(info_bits, dtype=np.int8)
         if info_bits.shape != (self.K,):

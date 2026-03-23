@@ -176,15 +176,13 @@ def compute_tgap(
 ) -> int:
     """计算 TGap (标准 9.5.4)。
 
-    Args:
-        cts_gap: 128-bit ctsGap 密钥.
-        cts_gap_shift: 当前帧对应的移位量 (首帧为 0, 后续每帧 +1).
-        t_base: 基准长度 (Tc 单位).
-        code_len: 码长.
-        delta_l: deltaL 系数.
+    :param cts_gap: 128-bit ctsGap 密钥.
+    :param cts_gap_shift: 当前帧对应的移位量 (首帧为 0, 后续每帧 +1).
+    :param t_base: 基准长度 (Tc 单位).
+    :param code_len: 码长.
+    :param delta_l: deltaL 系数.
 
-    Returns:
-        Tgap = Tbase - Toffset (Tc 单位).
+    :returns: Tgap = Tbase - Toffset (Tc 单位).
     """
     # 将 ctsGap 视为 128-bit 整数 (小端)
     gap_int = int.from_bytes(cts_gap, "little")
@@ -255,16 +253,14 @@ def generate_cts_symbols(
 ) -> CTSSymbolResult:
     """生成 CTS 测量符号索引和加扰 SC 序列 (标准 9.5.5)。
 
-    Args:
-        cts_key: ctsKey (16 字节).
-        cts_v_upper: ctsVUpper (高 96 bit = 12 字节).
-        cts_v_counter: ctsVCounter (32 bit).
-        n_cts: CTS 数据部分符号个数.
-        symbol_count: 符号索引数 (16 或 32).
-        encryption_algo: 加密算法 (默认 AES-128).
+    :param cts_key: ctsKey (16 字节).
+    :param cts_v_upper: ctsVUpper (高 96 bit = 12 字节).
+    :param cts_v_counter: ctsVCounter (32 bit).
+    :param n_cts: CTS 数据部分符号个数.
+    :param symbol_count: 符号索引数 (16 或 32).
+    :param encryption_algo: 加密算法 (默认 AES-128).
 
-    Returns:
-        CTSSymbolResult 包含符号索引和 SC 序列.
+    :returns: CTSSymbolResult 包含符号索引和 SC 序列.
     """
     result = CTSSymbolResult()
     index_bits = 4 if symbol_count <= 16 else 5

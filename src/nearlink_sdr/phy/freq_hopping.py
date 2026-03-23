@@ -150,12 +150,10 @@ def _reverse_16(x: int) -> int:
 def hopping_prng(hop_param1: int, hop_param2: int) -> int:
     """标准 6.10.3.2 伪随机数生成器。
 
-    Args:
-        hop_param1: 16 位跳频参数 1, 通常为调度时隙计数的低 16 位。
-        hop_param2: 16 位跳频参数 2, 由同步序列/逻辑链路标识/随机种子派生。
+    :param hop_param1: 16 位跳频参数 1, 通常为调度时隙计数的低 16 位。
+    :param hop_param2: 16 位跳频参数 2, 由同步序列/逻辑链路标识/随机种子派生。
 
-    Returns:
-        16 位伪随机数。
+    :returns: 16 位伪随机数。
     """
     hop_param1 &= 0xFFFF
     hop_param2 &= 0xFFFF
@@ -176,12 +174,10 @@ def derive_hop_param2(identifier: int, bit_width: int = 32) -> int:
     - 24 位逻辑链路标识: 高位补零至 32 位
     低 16 和高 16 位异或后作为 hop_param2。
 
-    Args:
-        identifier: 同步序列值或逻辑链路标识。
-        bit_width: 标识符位宽 (24/32/64)。
+    :param identifier: 同步序列值或逻辑链路标识。
+    :param bit_width: 标识符位宽 (24/32/64)。
 
-    Returns:
-        16 位 hop_param2。
+    :returns: 16 位 hop_param2。
     """
     if bit_width == 64:
         val = identifier & 0xFFFFFFFF  # 取低 32 位
@@ -204,13 +200,11 @@ def data_link_hop(slot_counter: int, hop_param2: int,
 
     标准 6.10.3.3: PRNG → 初次频点映射 → (无效时) 可用频点映射。
 
-    Args:
-        slot_counter: 当前调度时隙计数。
-        hop_param2: 16 位跳频参数 2。
-        freq_table: 频率表管理对象。
+    :param slot_counter: 当前调度时隙计数。
+    :param hop_param2: 16 位跳频参数 2。
+    :param freq_table: 频率表管理对象。
 
-    Returns:
-        选中的物理信道号。
+    :returns: 选中的物理信道号。
     """
     hop_param1 = slot_counter & 0xFFFF
     rand16 = hopping_prng(hop_param1, hop_param2)
@@ -242,15 +236,12 @@ def _available_freq_map(rand16: int, available: list[int]) -> int:
     标准 6.10.3.3.2 / 6.10.3.4.1 / 6.10.3.5.1:
     index = floor(rand16 * N_available / 2^16), 然后映射到可用频点表。
 
-    Args:
-        rand16: 16 位伪随机数。
-        available: 可用频点表 (升序排列)。
+    :param rand16: 16 位伪随机数。
+    :param available: 可用频点表 (升序排列)。
 
-    Returns:
-        选中的物理信道号。
+    :returns: 选中的物理信道号。
 
-    Raises:
-        ValueError: 可用频点表为空。
+    :raises ValueError: 可用频点表为空。
     """
     if not available:
         raise ValueError("可用频点表为空")
@@ -269,13 +260,11 @@ def mgmt_frame_hop(slot_counter: int, hop_param2: int,
 
     标准 6.10.3.4: PRNG → 可用频点映射, 直接在可用频点表上映射。
 
-    Args:
-        slot_counter: 当前调度时隙计数。
-        hop_param2: 16 位跳频参数 2。
-        freq_table: 频率表管理对象。
+    :param slot_counter: 当前调度时隙计数。
+    :param hop_param2: 16 位跳频参数 2。
+    :param freq_table: 频率表管理对象。
 
-    Returns:
-        选中的物理信道号。
+    :returns: 选中的物理信道号。
     """
     hop_param1 = slot_counter & 0xFFFF
     rand16 = hopping_prng(hop_param1, hop_param2)
@@ -324,12 +313,10 @@ class MeasLinkHopper:
                      is_init_phase: bool = False) -> int:
         """获取下一个跳频信道。
 
-        Args:
-            slot_counter: 当前调度时隙计数 (方案 3 使用)。
-            is_init_phase: 是否处于初始化阶段。
+        :param slot_counter: 当前调度时隙计数 (方案 3 使用)。
+        :param is_init_phase: 是否处于初始化阶段。
 
-        Returns:
-            物理信道号。
+        :returns: 物理信道号。
         """
         if is_init_phase and self.init_channel is not None:
             return self.init_channel
@@ -373,15 +360,13 @@ def generate_hopping_sequence(n_hops: int, hop_param2: int,
                               start_slot: int = 0) -> list[int]:
     """生成指定长度的跳频序列。
 
-    Args:
-        n_hops: 需要的跳频次数。
-        hop_param2: 跳频参数 2。
-        freq_table: 频率表对象, 默认 2.4 GHz 1 MHz 全可用。
-        link_type: "data" / "mgmt" / "meas_asc" / "meas_desc" / "meas_rand"。
-        start_slot: 起始时隙号。
+    :param n_hops: 需要的跳频次数。
+    :param hop_param2: 跳频参数 2。
+    :param freq_table: 频率表对象, 默认 2.4 GHz 1 MHz 全可用。
+    :param link_type: "data" / "mgmt" / "meas_asc" / "meas_desc" / "meas_rand"。
+    :param start_slot: 起始时隙号。
 
-    Returns:
-        物理信道号列表。
+    :returns: 物理信道号列表。
     """
     if freq_table is None:
         freq_table = FreqTable()

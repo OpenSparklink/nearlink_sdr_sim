@@ -28,13 +28,11 @@ class RadioFrameType(IntEnum):
 def _nack_m_sequence(radio_ft: int, m_index: int, cyclic_shift: int) -> np.ndarray:
     """为指定无线帧类型生成 NACK 反馈 m 序列。
 
-    Args:
-        radio_ft: 无线帧类型 (1-4)。
-        m_index: m 序列索引。
-        cyclic_shift: 循环移位量。
+    :param radio_ft: 无线帧类型 (1-4)。
+    :param m_index: m 序列索引。
+    :param cyclic_shift: 循环移位量。
 
-    Returns:
-        NACK 反馈序列比特数组。
+    :returns: NACK 反馈序列比特数组。
     """
     if radio_ft == 1:
         seq = m31_sequence(m_index, 31)
@@ -62,14 +60,12 @@ def build_nack_feedback(
 
     帧结构: 前导信号 | 同步信号 | NACK 反馈序列
 
-    Args:
-        radio_ft: 无线帧类型 (1-4), 决定 m 序列长度。
-        m_index: m 序列索引, 由高层信令配置。
-        cyclic_shift: m 序列循环移位量, 由高层信令配置。
-        symbol_rate_mhz: 符号速率, 用于前导码生成。
+    :param radio_ft: 无线帧类型 (1-4), 决定 m 序列长度。
+    :param m_index: m 序列索引, 由高层信令配置。
+    :param cyclic_shift: m 序列循环移位量, 由高层信令配置。
+    :param symbol_rate_mhz: 符号速率, 用于前导码生成。
 
-    Returns:
-        NACK 反馈序列比特数组 (不含前导和同步, 由调用者拼接)。
+    :returns: NACK 反馈序列比特数组 (不含前导和同步, 由调用者拼接)。
     """
     return _nack_m_sequence(radio_ft, m_index, cyclic_shift)
 
@@ -83,11 +79,9 @@ def equalization_guard(sync_last_bit: int) -> np.ndarray:
     同步信号最后 1 比特为 1 时: 0101 (MSB 优先)
     同步信号最后 1 比特为 0 时: 1010 (MSB 优先)
 
-    Args:
-        sync_last_bit: 同步信号的最后一个比特值 (0 或 1)。
+    :param sync_last_bit: 同步信号的最后一个比特值 (0 或 1)。
 
-    Returns:
-        4 比特均衡保护序列。
+    :returns: 4 比特均衡保护序列。
     """
     if sync_last_bit:
         return np.array([0, 1, 0, 1], dtype=np.int8)
@@ -117,11 +111,9 @@ def build_measurement_frame_1(config: MeasFrameConfig) -> np.ndarray:
     先发节点: 前导信号 | 同步信号 | 均衡保护 | 切换间隔 | 测量信号
     后发节点: 测量信号 | 切换间隔 | 前导信号 | 同步信号 | 均衡保护
 
-    Args:
-        config: 测量帧配置。
+    :param config: 测量帧配置。
 
-    Returns:
-        组装后的帧比特/符号序列。
+    :returns: 组装后的帧比特/符号序列。
     """
     preamble = generate_preamble(config.radio_frame_type, config.symbol_rate_mhz)
     sync = config.sync_signal
@@ -142,11 +134,9 @@ def build_measurement_frame_2(config: MeasFrameConfig) -> np.ndarray:
 
     仅包含测量信号。
 
-    Args:
-        config: 测量帧配置。
+    :param config: 测量帧配置。
 
-    Returns:
-        测量信号序列。
+    :returns: 测量信号序列。
     """
     return config.measurement_signal.copy()
 
@@ -162,11 +152,9 @@ def build_measurement_frame_3(config: MeasFrameConfig) -> np.ndarray:
 
     用于位置测量事件组的初始化阶段。
 
-    Args:
-        config: 测量帧配置。
+    :param config: 测量帧配置。
 
-    Returns:
-        组装后的帧比特/符号序列。
+    :returns: 组装后的帧比特/符号序列。
     """
     preamble = generate_preamble(config.radio_frame_type, config.symbol_rate_mhz)
     sync = config.sync_signal
@@ -191,11 +179,9 @@ def build_measurement_frame_4(config: MeasFrameConfig) -> np.ndarray:
     用于超宽带脉冲测量的初始化同步阶段,
     测量信号应为窄带波形测量信号 1 或 N=1 的窄带波形测量信号 2。
 
-    Args:
-        config: 测量帧配置。
+    :param config: 测量帧配置。
 
-    Returns:
-        组装后的帧比特/符号序列。
+    :returns: 组装后的帧比特/符号序列。
     """
     preamble = generate_preamble(config.radio_frame_type, config.symbol_rate_mhz)
     sync = config.sync_signal
@@ -254,11 +240,9 @@ def build_uwb_sync_field(config: UWBPulseConfig) -> np.ndarray:
     同步字段由 N_sync 个相同符号重复组成, 每个符号经过插零时域扩展。
     总长度: N_sync * K * L 个码片。
 
-    Args:
-        config: UWB 脉冲配置。
+    :param config: UWB 脉冲配置。
 
-    Returns:
-        同步字段码片序列。
+    :returns: 同步字段码片序列。
     """
     if config.N_sync == 0:
         return np.array([], dtype=np.float64)
@@ -299,12 +283,10 @@ def build_uwb_measurement_field(
     测量字段由 M_seg 个测量子片段组成, 每个子片段包含 N_seg 个 CTS 符号,
     相邻子片段之间有时间间隔。
 
-    Args:
-        config: UWB 脉冲配置。
-        cts_symbol_seq: CTS 测量符号序列, 默认使用 config.symbol_seq。
+    :param config: UWB 脉冲配置。
+    :param cts_symbol_seq: CTS 测量符号序列, 默认使用 config.symbol_seq。
 
-    Returns:
-        测量字段码片序列。
+    :returns: 测量字段码片序列。
     """
     N_cts = config.N_seg * config.M_seg
     if N_cts == 0:
@@ -343,12 +325,10 @@ def build_uwb_pulse_measurement_frame(
 
     帧结构: 同步字段 | 测量字段
 
-    Args:
-        config: UWB 脉冲配置。
-        cts_symbol_seq: CTS 测量符号序列, 默认使用同步符号序列。
+    :param config: UWB 脉冲配置。
+    :param cts_symbol_seq: CTS 测量符号序列, 默认使用同步符号序列。
 
-    Returns:
-        完整帧码片序列。
+    :returns: 完整帧码片序列。
     """
     sync = build_uwb_sync_field(config)
     meas = build_uwb_measurement_field(config, cts_symbol_seq)

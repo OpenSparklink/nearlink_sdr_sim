@@ -125,13 +125,11 @@ class USRPLoopbackSim:
     ) -> LoopbackResult:
         """PHY 全链路环回: 编码 → 调制 → USRP TX → 信道 → USRP RX → 解调 → 解码。
 
-        Args:
-            data_bits: 信息比特。
-            cfg: 发射配置。
-            ctrl_bits: 控制信息比特, None 时使用全零。
+        :param data_bits: 信息比特。
+        :param cfg: 发射配置。
+        :param ctrl_bits: 控制信息比特, None 时使用全零。
 
-        Returns:
-            LoopbackResult 包含 CRC 校验结果和 BER。
+        :returns: LoopbackResult 包含 CRC 校验结果和 BER。
         """
         if ctrl_bits is None:
             ctrl_bits = np.zeros(cfg.ctrl_bits_len, dtype=np.int8)
@@ -167,12 +165,10 @@ class USRPLoopbackSim:
     ) -> tuple[MacRxResult, LoopbackResult]:
         """MAC 数据帧环回: bytes → mac_to_iq → USRP → iq_to_mac。
 
-        Args:
-            mac_payload: MAC 层载荷字节。
-            cfg: 发射配置, None 时使用 FT2 MCS7 默认值。
+        :param mac_payload: MAC 层载荷字节。
+        :param cfg: 发射配置, None 时使用 FT2 MCS7 默认值。
 
-        Returns:
-            (MacRxResult, LoopbackResult)
+        :returns: (MacRxResult, LoopbackResult)
         """
         if cfg is None:
             cfg = TxConfig(frame_type=2, mcs_index=7)
@@ -215,8 +211,7 @@ class USRPLoopbackSim:
 
         在每个跳频信道上发射 iq_samples, 然后在同一信道上接收。
 
-        Returns:
-            [(channel_num, rx_samples), ...]
+        :returns: [(channel_num, rx_samples), ...]
         """
         results = []
         for ch in hop_sequence:
@@ -235,12 +230,10 @@ class USRPLoopbackSim:
     ) -> USRPSimResult:
         """批量 MAC 帧环回仿真。
 
-        Args:
-            payloads: MAC 载荷列表。
-            cfg: 发射配置。
+        :param payloads: MAC 载荷列表。
+        :param cfg: 发射配置。
 
-        Returns:
-            USRPSimResult 汇总结果。
+        :returns: USRPSimResult 汇总结果。
         """
         summary = USRPSimResult()
         for payload in payloads:

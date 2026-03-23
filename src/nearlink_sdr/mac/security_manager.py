@@ -116,8 +116,7 @@ class ECDHKeyPair:
     def compute_shared_secret(self, peer_pub_x: bytes, peer_pub_y: bytes) -> bytes:
         """计算 ECDH 共享密钥。
 
-        Returns:
-            共享密钥 (32 字节)。
+        :returns: 共享密钥 (32 字节)。
         """
         from cryptography.hazmat.primitives.asymmetric.ec import (
             ECDH,
@@ -474,12 +473,10 @@ class FrameCryptoContext:
     def encrypt(self, plaintext: bytes, aad: bytes = b"") -> tuple[bytes, bytes]:
         """加密一帧数据, 自动递增 payload_count。
 
-        Args:
-            plaintext: 明文数据。
-            aad: 关联数据 (不加密但参与完整性校验)。
+        :param plaintext: 明文数据。
+        :param aad: 关联数据 (不加密但参与完整性校验)。
 
-        Returns:
-            (密文, MIC)。
+        :returns: (密文, MIC)。
         """
         nonce = self._build_nonce(self._tx_payload_count, len(plaintext))
         ciphertext, mic = aes_ccm_encrypt(
@@ -491,16 +488,12 @@ class FrameCryptoContext:
     def decrypt(self, ciphertext: bytes, mic: bytes, aad: bytes = b"") -> bytes:
         """解密一帧数据, 自动递增 payload_count。
 
-        Args:
-            ciphertext: 密文数据。
-            mic: 消息完整性码。
-            aad: 关联数据。
+        :param ciphertext: 密文数据。
+        :param mic: 消息完整性码。
+        :param aad: 关联数据。
 
-        Returns:
-            解密后的明文。
+        :returns: 解密后的明文。
 
-        Raises:
-            cryptography.exceptions.InvalidTag: MIC 验证失败。
         """
         nonce = self._build_nonce(self._rx_payload_count, len(ciphertext))
         plaintext = aes_ccm_decrypt(
@@ -529,8 +522,7 @@ def run_pairing_procedure(
     模拟 G 节点和 T 节点之间的配对信令交互,
     完成密钥交换和会话密钥派生。
 
-    Returns:
-        (G 节点管理器, T 节点管理器)。
+    :returns: (G 节点管理器, T 节点管理器)。
     """
     g_mgr = PairingManager(
         is_g_node=True,

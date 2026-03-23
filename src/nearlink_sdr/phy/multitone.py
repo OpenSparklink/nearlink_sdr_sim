@@ -83,12 +83,10 @@ def generate_multitone(
 ) -> np.ndarray:
     """生成基带多音信号 (复数采样)。
 
-    Args:
-        config: 多音信号配置.
-        duration_s: 信号持续时间 (秒).
+    :param config: 多音信号配置.
+    :param duration_s: 信号持续时间 (秒).
 
-    Returns:
-        复数基带采样序列, shape=(num_samples,).
+    :returns: 复数基带采样序列, shape=(num_samples,).
     """
     num_samples = int(config.sample_rate_hz * duration_s)
     t = np.arange(num_samples) / config.sample_rate_hz

@@ -39,8 +39,7 @@ def sim_gfsk_link(num_data_bits: int = 1000,
 
     流程: 前导码 + 同步信号1(广播) + 数据 → GFSK调制 → AWGN信道 → GFSK解调 → BER
 
-    Returns:
-        {"snr_db": [...], "ber": [...]}
+    :returns: {"snr_db": [...], "ber": [...]}
     """
     if snr_range_db is None:
         snr_range_db = np.arange(0, 18, 2)
@@ -81,8 +80,7 @@ def sim_psk_link(num_data_bits: int = 1000,
     流程: 数据 → PSK调制 → AWGN信道 → PSK解调 → BER
     (前导和同步信号作为独立信号段，不影响数据BER)
 
-    Returns:
-        {"snr_db": [...], "ber": [...]}
+    :returns: {"snr_db": [...], "ber": [...]}
     """
     if snr_range_db is None:
         snr_range_db = np.arange(0, 18, 2)
@@ -170,8 +168,7 @@ def sim_polar_coded_psk_link(
 
     流程: 信息比特 → Polar编码 → BPSK/QPSK调制 → AWGN信道 → 解调(软判决LLR) → SC解码 → BER
 
-    Returns:
-        {"snr_db": [...], "ber": [...], "fer": [...]}
+    :returns: {"snr_db": [...], "ber": [...], "fer": [...]}
     """
     if snr_range_db is None:
         snr_range_db = np.arange(-2, 12, 1)
@@ -316,17 +313,15 @@ def sim_frame_link(
 ) -> dict:
     """完整帧级仿真: 帧组装 → Polar编码 → PSK调制(含导频) → AWGN → 解调 → 解码 → BER。
 
-    Args:
-        frame_type: 2, 3, or 4.
-        num_data_bits: 数据负载比特数.
-        rate_str: Polar码率.
-        code_length: Polar码长.
-        pilot_interval: 导频插入间隔 (0, 4, 8, 16).
-        snr_range_db: SNR扫描范围.
-        seed: 随机种子.
+    :param frame_type: 2, 3, or 4.
+    :param num_data_bits: 数据负载比特数.
+    :param rate_str: Polar码率.
+    :param code_length: Polar码长.
+    :param pilot_interval: 导频插入间隔 (0, 4, 8, 16).
+    :param snr_range_db: SNR扫描范围.
+    :param seed: 随机种子.
 
-    Returns:
-        {"snr_db": [...], "ber": [...], "fer": [...]}
+    :returns: {"snr_db": [...], "ber": [...], "fer": [...]}
     """
     from nearlink_sdr.phy.frame import (
         FrameConfig,
@@ -520,18 +515,16 @@ def sim_channel_eq_link(
 
     流程: 信息比特 → Polar编码 → BPSK调制 → 信道(衰落+AWGN) → 均衡 → LLR → 解码
 
-    Args:
-        channel_type: "awgn" / "rayleigh" / "rician" / "multipath"。
-        rician_k_db: Rician K 因子。
-        eq_method: "zf" / "mmse" / "none" (不均衡)。
-        rate_str: Polar 码率。
-        code_length: Polar 码长。
-        snr_range_db: SNR 范围。
-        n_frames: 每个 SNR 点的帧数。
-        seed: 随机种子。
+    :param channel_type: "awgn" / "rayleigh" / "rician" / "multipath"。
+    :param rician_k_db: Rician K 因子。
+    :param eq_method: "zf" / "mmse" / "none" (不均衡)。
+    :param rate_str: Polar 码率。
+    :param code_length: Polar 码长。
+    :param snr_range_db: SNR 范围。
+    :param n_frames: 每个 SNR 点的帧数。
+    :param seed: 随机种子。
 
-    Returns:
-        {"snr_db": [...], "ber": [...], "fer": [...]}
+    :returns: {"snr_db": [...], "ber": [...], "fer": [...]}
     """
     from nearlink_sdr.phy.channel import PDP_2TAP, ChannelConfig
     from nearlink_sdr.phy.equalizer import equalize_1tap, equalize_mmse_freq
@@ -717,18 +710,16 @@ def sim_hopping_link(
 
     流程: 生成跳频序列 → 每跳: Polar编码 → BPSK调制 → 独立 Rayleigh 信道 → 均衡 → 解码
 
-    Args:
-        hop_param2: 跳频参数 2。
-        n_hops: 每个 SNR 点的跳频次数 (帧数)。
-        rate_str: Polar 码率。
-        code_length: Polar 码长。
-        snr_range_db: SNR 范围。
-        bandwidth_mhz: 信道带宽 1/2/4 MHz。
-        blocked_ratio: 被阻塞信道占比 (0~1)。
-        seed: 随机种子。
+    :param hop_param2: 跳频参数 2。
+    :param n_hops: 每个 SNR 点的跳频次数 (帧数)。
+    :param rate_str: Polar 码率。
+    :param code_length: Polar 码长。
+    :param snr_range_db: SNR 范围。
+    :param bandwidth_mhz: 信道带宽 1/2/4 MHz。
+    :param blocked_ratio: 被阻塞信道占比 (0~1)。
+    :param seed: 随机种子。
 
-    Returns:
-        {"snr_db": [...], "ber": [...], "fer": [...], "channels_used": [...]}
+    :returns: {"snr_db": [...], "ber": [...], "fer": [...], "channels_used": [...]}
     """
     from nearlink_sdr.phy.channel import ChannelConfig
     from nearlink_sdr.phy.equalizer import equalize_1tap
@@ -899,17 +890,15 @@ def sim_pipeline_link(
 ) -> dict:
     """使用 tx_chain / rx_chain 的全链路端到端仿真。
 
-    Args:
-        frame_type: 帧类型 (1-4)
-        mcs_index: MCS 索引
-        n_data_bytes: 数据长度 (字节)
-        snr_range_db: Eb/N0 扫描范围 (dB)
-        n_frames: 每个 SNR 点的仿真帧数
-        sps: 每符号采样数
-        seed: 随机种子
+    :param frame_type: 帧类型 (1-4)
+    :param mcs_index: MCS 索引
+    :param n_data_bytes: 数据长度 (字节)
+    :param snr_range_db: Eb/N0 扫描范围 (dB)
+    :param n_frames: 每个 SNR 点的仿真帧数
+    :param sps: 每符号采样数
+    :param seed: 随机种子
 
-    Returns:
-        {"snr_db": [...], "ber": [...], "fer": [...]}
+    :returns: {"snr_db": [...], "ber": [...], "fer": [...]}
     """
     from nearlink_sdr.phy.rx_pipeline import rx_chain
     from nearlink_sdr.phy.tx_pipeline import TxConfig, tx_chain
@@ -1077,21 +1066,19 @@ def sim_pipeline_channel_link(
       3. AWGN 噪声
     然后可选地进行均衡, 最后送入 rx_chain 解码。
 
-    Args:
-        frame_type: 帧类型 (1-4)。
-        mcs_index: MCS 索引。
-        n_data_bytes: 数据长度 (字节)。
-        channel_type: "awgn" | "rayleigh" | "rician" | "multipath"。
-        rician_k_db: Rician K 因子 (dB)。
-        cfo_hz: 载波频率偏移 (Hz)。
-        eq_method: "none" | "zf" | "mmse", 仅对衰落信道有效。
-        snr_range_db: Eb/N0 扫描范围。
-        n_frames: 每个 SNR 点的仿真帧数。
-        sps: 每符号采样数。
-        seed: 随机种子。
+    :param frame_type: 帧类型 (1-4)。
+    :param mcs_index: MCS 索引。
+    :param n_data_bytes: 数据长度 (字节)。
+    :param channel_type: "awgn" | "rayleigh" | "rician" | "multipath"。
+    :param rician_k_db: Rician K 因子 (dB)。
+    :param cfo_hz: 载波频率偏移 (Hz)。
+    :param eq_method: "none" | "zf" | "mmse", 仅对衰落信道有效。
+    :param snr_range_db: Eb/N0 扫描范围。
+    :param n_frames: 每个 SNR 点的仿真帧数。
+    :param sps: 每符号采样数。
+    :param seed: 随机种子。
 
-    Returns:
-        {"snr_db": [...], "ber": [...], "fer": [...]}
+    :returns: {"snr_db": [...], "ber": [...], "fer": [...]}
     """
     from nearlink_sdr.phy.channel import ChannelConfig
     from nearlink_sdr.phy.equalizer import equalize_1tap, equalize_mmse_freq
@@ -1392,14 +1379,12 @@ def sim_mac_signaling_link(
     每帧随机选取一种信令类型进行编码,
     经过 PHY 发射/接收流水线和信道后, 统计信令解码成功率。
 
-    Args:
-        channel_type: "awgn" | "rayleigh" | "rician" | "multipath"。
-        cfo_hz: 载波频率偏移 (Hz)。
-        eq_method: "none" | "zf" | "mmse"。
-        rician_k_db: Rician K 因子 (dB)。
+    :param channel_type: "awgn" | "rayleigh" | "rician" | "multipath"。
+    :param cfo_hz: 载波频率偏移 (Hz)。
+    :param eq_method: "none" | "zf" | "mmse"。
+    :param rician_k_db: Rician K 因子 (dB)。
 
-    Returns:
-        {"snr_db": [...], "signaling_success_rate": [...]}
+    :returns: {"snr_db": [...], "signaling_success_rate": [...]}
     """
     from nearlink_sdr.mac.link_control import (
         IntervalUpdateRequest,
@@ -1483,15 +1468,13 @@ def sim_mac_data_link(
 
     对不同载荷大小, 统计字节级误码率和帧正确率。
 
-    Args:
-        payload_sizes: 要测试的载荷大小列表 (字节)。
-        channel_type: "awgn" | "rayleigh" | "rician" | "multipath"。
-        cfo_hz: 载波频率偏移 (Hz)。
-        eq_method: "none" | "zf" | "mmse"。
-        rician_k_db: Rician K 因子 (dB)。
+    :param payload_sizes: 要测试的载荷大小列表 (字节)。
+    :param channel_type: "awgn" | "rayleigh" | "rician" | "multipath"。
+    :param cfo_hz: 载波频率偏移 (Hz)。
+    :param eq_method: "none" | "zf" | "mmse"。
+    :param rician_k_db: Rician K 因子 (dB)。
 
-    Returns:
-        {"snr_db": [...], "results": {size: {"fer": [...], "byte_ber": [...]}}}
+    :returns: {"snr_db": [...], "results": {size: {"fer": [...], "byte_ber": [...]}}}
     """
     from nearlink_sdr.mac.frame import AsyncDataFrame
     from nearlink_sdr.phy.mac_interface import iq_to_mac, mac_to_iq
@@ -1578,14 +1561,12 @@ def sim_mac_mux_link(
 
     每帧包含一条信令和一段数据, 验证复用帧在信道传输后的完整性。
 
-    Args:
-        channel_type: "awgn" | "rayleigh" | "rician" | "multipath"。
-        cfo_hz: 载波频率偏移 (Hz)。
-        eq_method: "none" | "zf" | "mmse"。
-        rician_k_db: Rician K 因子 (dB)。
+    :param channel_type: "awgn" | "rayleigh" | "rician" | "multipath"。
+    :param cfo_hz: 载波频率偏移 (Hz)。
+    :param eq_method: "none" | "zf" | "mmse"。
+    :param rician_k_db: Rician K 因子 (dB)。
 
-    Returns:
-        {"snr_db": [...], "mux_success_rate": [...], "data_match_rate": [...]}
+    :returns: {"snr_db": [...], "mux_success_rate": [...], "data_match_rate": [...]}
     """
     from nearlink_sdr.mac.frame import AsyncDataFrame, MuxFrame
     from nearlink_sdr.mac.link_control import PingRequest
@@ -1805,21 +1786,19 @@ def sim_multi_link(
     使用 ScheduleManager 分配时间资源, 每条链路在各自的事件组窗口内
     发送/接收数据帧, 统计每条链路和总体的 FER。
 
-    Args:
-        n_links: 并发链路数。
-        snr_range_db: 信噪比范围 (dB)。
-        n_superframes: 每个 SNR 点仿真的超帧数。
-        mcs_index: 调制编码策略索引。
-        payload_size: 每帧载荷字节数。
-        channel_type: 信道类型。
-        cfo_hz: 载波频率偏移。
-        eq_method: 均衡方法。
-        rician_k_db: Rician K 因子。
-        smf_interval: SMF 间隔 (基础时隙)。
-        seed: 随机种子。
+    :param n_links: 并发链路数。
+    :param snr_range_db: 信噪比范围 (dB)。
+    :param n_superframes: 每个 SNR 点仿真的超帧数。
+    :param mcs_index: 调制编码策略索引。
+    :param payload_size: 每帧载荷字节数。
+    :param channel_type: 信道类型。
+    :param cfo_hz: 载波频率偏移。
+    :param eq_method: 均衡方法。
+    :param rician_k_db: Rician K 因子。
+    :param smf_interval: SMF 间隔 (基础时隙)。
+    :param seed: 随机种子。
 
-    Returns:
-        {"snr_db": [...],
+    :returns: {"snr_db": [...],
          "aggregate_fer": [...],
          "per_link_fer": {link_id: [...]},
          "throughput_ratio": [...]}
@@ -1956,19 +1935,17 @@ def sim_access_scheduled_link(
     模拟完整的接入建链过程, 然后使用接入参数配置调度器,
     在事件组时间窗口内进行数据帧收发。
 
-    Args:
-        snr_range_db: 信噪比范围 (dB)。
-        n_frames: 每个 SNR 点仿真帧数。
-        mcs_index: MCS 索引。
-        payload_size: 载荷字节数。
-        channel_type: 信道类型。
-        cfo_hz: 载波频率偏移。
-        eq_method: 均衡方法。
-        rician_k_db: Rician K 因子。
-        seed: 随机种子。
+    :param snr_range_db: 信噪比范围 (dB)。
+    :param n_frames: 每个 SNR 点仿真帧数。
+    :param mcs_index: MCS 索引。
+    :param payload_size: 载荷字节数。
+    :param channel_type: 信道类型。
+    :param cfo_hz: 载波频率偏移。
+    :param eq_method: 均衡方法。
+    :param rician_k_db: Rician K 因子。
+    :param seed: 随机种子。
 
-    Returns:
-        {"snr_db": [...],
+    :returns: {"snr_db": [...],
          "fer": [...],
          "access_ok": bool,
          "link_params": dict}
@@ -2093,16 +2070,14 @@ def sim_event_group_timing(
 
     可视化事件组内各事件的 TX/RX 窗口分布和资源利用率。
 
-    Args:
-        event_group_period: 事件组周期 (调度时隙)。
-        event_count: 事件总数。
-        event_period: 事件周期 (调度时隙)。
-        intra_event_interval: 事件内间隔 (μs)。
-        tx_max_offset: TX 最大偏移 (基础时隙)。
-        rx_max_offset: RX 最大偏移 (基础时隙)。
+    :param event_group_period: 事件组周期 (调度时隙)。
+    :param event_count: 事件总数。
+    :param event_period: 事件周期 (调度时隙)。
+    :param intra_event_interval: 事件内间隔 (μs)。
+    :param tx_max_offset: TX 最大偏移 (基础时隙)。
+    :param rx_max_offset: RX 最大偏移 (基础时隙)。
 
-    Returns:
-        {"events": [{"start": int, "tx_window": (s,e), "rx_window": (s,e)}],
+    :returns: {"events": [{"start": int, "tx_window": (s,e), "rx_window": (s,e)}],
          "total_active_us": int,
          "group_period_us": int,
          "utilization": float}
@@ -2145,15 +2120,13 @@ def sim_superframe_capacity(
 ) -> dict:
     """超帧容量分析: 逐步增加链路直到出现时间片冲突。
 
-    Args:
-        smf_interval: SMF 间隔 (基础时隙)。
-        slice_duration: 每条链路时间片持续长度 (调度时隙)。
-        slice_gap: 相邻链路的偏移间距 (调度时隙, 默认等于 slice_duration)。
-            当 gap < slice_duration 时, 链路时间片将发生重叠。
-        max_links: 最大测试链路数。
+    :param smf_interval: SMF 间隔 (基础时隙)。
+    :param slice_duration: 每条链路时间片持续长度 (调度时隙)。
+    :param slice_gap: 相邻链路的偏移间距 (调度时隙, 默认等于 slice_duration)。
+        当 gap < slice_duration 时, 链路时间片将发生重叠。
+    :param max_links: 最大测试链路数。
 
-    Returns:
-        {"n_links": [...],
+    :returns: {"n_links": [...],
          "n_conflicts": [...],
          "max_no_conflict": int,
          "utilization": [...]}
@@ -2360,8 +2333,7 @@ def sim_secure_link(
     2. 配对密钥协商 (run_pairing_procedure)
     3. 加密数据帧经 PHY 管道传输
 
-    Returns:
-        {"snr_db", "fer", "access_ok", "pairing_ok", "encrypted": True}
+    :returns: {"snr_db", "fer", "access_ok", "pairing_ok", "encrypted": True}
     """
     from nearlink_sdr.mac.access import run_access_procedure
     from nearlink_sdr.mac.frame import AsyncDataFrame
@@ -2508,8 +2480,7 @@ def sim_encrypted_vs_plain(
 ) -> dict:
     """对比加密与明文传输的误帧率。
 
-    Returns:
-        {"snr_db", "fer_encrypted", "fer_plain"}
+    :returns: {"snr_db", "fer_encrypted", "fer_plain"}
     """
     from nearlink_sdr.mac.frame import AsyncDataFrame
     from nearlink_sdr.mac.security_manager import (
@@ -2628,8 +2599,7 @@ def sim_pairing_signaling_phy(
     将配对过程中的每条信令编码为 IQ, 经信道传输后解码,
     统计信令传输成功率。
 
-    Returns:
-        {"snr_db", "signaling_success_rate"}
+    :returns: {"snr_db", "signaling_success_rate"}
     """
     from nearlink_sdr.mac.security_manager import PairingManager
     from nearlink_sdr.phy.mac_interface import (
@@ -2798,8 +2768,7 @@ def sim_amc_throughput(
     有效吞吐量 = (1 - FER) * spectral_efficiency (bit/symbol)。
     AMC 策略: 在每个 SNR 点选择吞吐量最高的 MCS。
 
-    Returns:
-        {
+    :returns: {
             "snr_db": [...],
             "mcs_fer": {mcs_idx: [fer_per_snr, ...]},
             "mcs_throughput": {mcs_idx: [throughput_per_snr, ...]},
@@ -2907,8 +2876,7 @@ def sim_harq_link(
     使用 B1 控制信息中的 harq_feedback 和 packet_sn 字段。
     标准 6.10.5 规定 MCS=15 表示重传帧。
 
-    Returns:
-        {
+    :returns: {
             "snr_db": [...],
             "fer_no_harq": [...],     # 无重传 FER
             "fer_harq": [...],        # HARQ FER (超过最大重传仍失败)
@@ -3019,8 +2987,7 @@ def sim_hopping_multipath_link(
     每帧在不同频率信道上传输, 模拟跳频对抗频率选择性衰落的效果。
     对比固定信道 (Rayleigh) 与跳频 (不同信道独立衰落) 的 FER。
 
-    Returns:
-        {
+    :returns: {
             "snr_db": [...],
             "fer_fixed": [...],     # 固定信道 FER
             "fer_hopping": [...],   # 跳频 FER
@@ -3204,8 +3171,7 @@ def sim_qos_arq_link(
     使用 QosLink 封装实现自动 ARQ 重传, 对比无 QoS 管理时的 FER。
     验证 QosManager 的序列号管理、重传决策和链路质量跟踪。
 
-    Returns:
-        {
+    :returns: {
             "snr_db": [...],
             "fer_no_arq": [...],       # 无重传 FER
             "fer_qos_arq": [...],      # QoS ARQ FER
@@ -3333,8 +3299,7 @@ def sim_qos_amc_adaptive(
     模拟 SNR 随时间变化的场景, QoS 管理器根据 FER
     反馈自动调整 MCS, 验证 AMC 跟踪性能。
 
-    Returns:
-        {
+    :returns: {
             "snr_trace": [...],
             "mcs_trace": [...],
             "fer_trace": [...],
@@ -3429,8 +3394,7 @@ def sim_qos_flow_control(
 
     模拟突发数据到达场景, 验证流控背压机制对缓冲区占用和丢包的影响。
 
-    Returns:
-        {
+    :returns: {
             "frame_idx": [...],
             "buffer_occupancy": [...],
             "flow_ctrl_bit": [...],
@@ -3632,8 +3596,7 @@ def sim_dual_node_link(
     创建 G 节点与 T 节点, 完成广播→接入→数据交换全流程。
     G 节点发送随机数据, T 节点接收并统计 FER 与字节误码率。
 
-    Returns:
-        {
+    :returns: {
             "snr_db": [...],
             "fer": [...],
             "byte_ber": [...],
@@ -3734,8 +3697,7 @@ def sim_dual_node_secure_link(
     2. 配对 (ECDH 密钥协商)
     3. 加密数据帧传输
 
-    Returns:
-        {
+    :returns: {
             "snr_db": [...],
             "fer_plain": [...],
             "fer_encrypted": [...],
@@ -3847,8 +3809,7 @@ def sim_dual_node_mcs_adapt(
 
     固定 SNR 下连续帧传输, 跟踪 G 节点的 MCS 自适应过程和吞吐量变化。
 
-    Returns:
-        {
+    :returns: {
             "frame_idx": [...],
             "mcs_history": [...],
             "fer_history": [...],
@@ -4039,8 +4000,7 @@ def sim_node_hopping_link(
     G 节点和 T 节点在跳频序列上逐帧通信,
     每帧发送后推进时隙, 观察信道号变化和传输成功率。
 
-    Returns:
-        {
+    :returns: {
             "channels": 使用过的信道号列表,
             "unique_channels": 唯一信道数,
             "success_count": 成功帧数,
@@ -4123,8 +4083,7 @@ def sim_node_access_flow(seed: int = 42) -> dict:
 
     模拟 G 节点广播 → T 节点扫描/发现 → 接入 → 数据交换 → 断开。
 
-    Returns:
-        {
+    :returns: {
             "g_state": G 节点最终状态,
             "t_state": T 节点最终状态,
             "broadcast_frame_valid": 广播帧是否有效,
@@ -4196,8 +4155,7 @@ def sim_node_channel_sweep(
 
     使用节点内置的 ChannelModel, 遍历 SNR 范围统计 FER。
 
-    Returns:
-        {"snr_db": [...], "fer": [...], "mcs_history": [...]}
+    :returns: {"snr_db": [...], "fer": [...], "mcs_history": [...]}
     """
     from nearlink_sdr.mac.frame import AsyncDataFrame
     from nearlink_sdr.mac.link_manager import Role
@@ -4270,8 +4228,7 @@ def sim_node_power_adapt(
 
     节点逐帧通信, 根据反馈结果动态调整发射功率。
 
-    Returns:
-        {
+    :returns: {
             "frame_idx": [...],
             "power_history": [...],
             "success_history": [...],
@@ -4351,8 +4308,7 @@ def sim_node_measurement(
 ) -> dict:
     """SleNode 测量信号生成仿真。
 
-    Returns:
-        {
+    :returns: {
             "signal_length": 测量信号长度,
             "signal_energy": 信号能量,
         }
@@ -4467,18 +4423,16 @@ def sim_doppler_link(
 
     使用 Jakes 求和正弦模型生成时间相关衰落, 评估 FER 随 Doppler 扩展的变化。
 
-    Args:
-        doppler_range_hz: Doppler 频移扫描范围 (Hz)。
-        snr_db: 固定 SNR (dB)。
-        n_frames: 每个 Doppler 点仿真帧数。
-        mcs_index: MCS 索引。
-        payload_size: 载荷字节数。
-        channel_type: 衰落类型 ("rayleigh" / "rician")。
-        eq_method: 均衡方法。
-        seed: 随机种子。
+    :param doppler_range_hz: Doppler 频移扫描范围 (Hz)。
+    :param snr_db: 固定 SNR (dB)。
+    :param n_frames: 每个 Doppler 点仿真帧数。
+    :param mcs_index: MCS 索引。
+    :param payload_size: 载荷字节数。
+    :param channel_type: 衰落类型 ("rayleigh" / "rician")。
+    :param eq_method: 均衡方法。
+    :param seed: 随机种子。
 
-    Returns:
-        {"doppler_hz": [...], "fer": [...], "avg_fade_depth_db": [...]}
+    :returns: {"doppler_hz": [...], "fer": [...], "avg_fade_depth_db": [...]}
     """
     from nearlink_sdr.phy.channel import ChannelConfig, ChannelModel
     from nearlink_sdr.phy.equalizer import equalize_1tap
@@ -4568,19 +4522,17 @@ def sim_multi_user_interference(
 
     多个干扰用户在同一频段 (或邻信道) 独立发送, 叠加到有用信号上。
 
-    Args:
-        n_interferers_range: 干扰用户数扫描列表。
-        sir_db: 每个干扰用户的 SIR (dB)。
-        snr_db: 噪声 SNR (dB)。
-        n_frames: 每个点仿真帧数。
-        mcs_index: MCS 索引。
-        payload_size: 载荷字节数。
-        channel_type: 信道类型。
-        freq_offset_hz: 干扰频偏 (Hz), 0 为同信道。
-        seed: 随机种子。
+    :param n_interferers_range: 干扰用户数扫描列表。
+    :param sir_db: 每个干扰用户的 SIR (dB)。
+    :param snr_db: 噪声 SNR (dB)。
+    :param n_frames: 每个点仿真帧数。
+    :param mcs_index: MCS 索引。
+    :param payload_size: 载荷字节数。
+    :param channel_type: 信道类型。
+    :param freq_offset_hz: 干扰频偏 (Hz), 0 为同信道。
+    :param seed: 随机种子。
 
-    Returns:
-        {"n_interferers": [...], "fer": [...], "sinr_db": [...]}
+    :returns: {"n_interferers": [...], "fer": [...], "sinr_db": [...]}
     """
     from nearlink_sdr.phy.channel import (
         ChannelConfig,
@@ -4677,18 +4629,16 @@ def sim_sir_sweep(
 ) -> dict:
     """SIR 扫描仿真: 固定干扰用户数, 扫描 SIR 下的 FER。
 
-    Args:
-        sir_range_db: SIR 扫描范围 (dB)。
-        n_interferers: 干扰用户数。
-        snr_db: 噪声 SNR (dB)。
-        n_frames: 每个 SIR 点帧数。
-        mcs_index: MCS 索引。
-        payload_size: 载荷字节数。
-        channel_type: 信道类型。
-        seed: 随机种子。
+    :param sir_range_db: SIR 扫描范围 (dB)。
+    :param n_interferers: 干扰用户数。
+    :param snr_db: 噪声 SNR (dB)。
+    :param n_frames: 每个 SIR 点帧数。
+    :param mcs_index: MCS 索引。
+    :param payload_size: 载荷字节数。
+    :param channel_type: 信道类型。
+    :param seed: 随机种子。
 
-    Returns:
-        {"sir_db": [...], "fer": [...], "sinr_db": [...]}
+    :returns: {"sir_db": [...], "fer": [...], "sinr_db": [...]}
     """
     from nearlink_sdr.phy.channel import (
         ChannelConfig,
@@ -4779,8 +4729,7 @@ def sim_doppler_multipath_link(
     在 ITU Indoor Office B 多径模型基础上叠加 Doppler 时变,
     评估信道时变对频率选择性衰落下的接收性能影响。
 
-    Returns:
-        {"doppler_hz": [...], "fer": [...]}
+    :returns: {"doppler_hz": [...], "fer": [...]}
     """
     from nearlink_sdr.phy.channel import PDP_INDOOR_OFFICE, ChannelConfig, ChannelModel
     from nearlink_sdr.phy.equalizer import equalize_mmse_freq

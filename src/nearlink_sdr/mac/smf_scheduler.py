@@ -219,11 +219,9 @@ class SMFTransmitScheduler:
     ) -> SystemManagementFrame:
         """构建一个 SMF 帧。
 
-        Args:
-            include_schedule: 是否包含调度信令 (通常首帧或参数变更时携带)。
+        :param include_schedule: 是否包含调度信令 (通常首帧或参数变更时携带)。
 
-        Returns:
-            包含当前所有已注册信令的 SystemManagementFrame。
+        :returns: 包含当前所有已注册信令的 SystemManagementFrame。
         """
         frame = SystemManagementFrame(
             header=SMFHeader(
@@ -322,14 +320,12 @@ class SMFTransmitScheduler:
     ) -> OffsetSignaling:
         """计算从 SMF 起始点到链路起始点的偏移量 (6.6.2.3)。
 
-        Args:
-            smf_start_slot: SMF 起始时隙。
-            link_first_slot: 链路第一个起始时隙。
-            base_slot_us: 基础时隙长度 (us)。
-            unit: 偏移量单位。
+        :param smf_start_slot: SMF 起始时隙。
+        :param link_first_slot: 链路第一个起始时隙。
+        :param base_slot_us: 基础时隙长度 (us)。
+        :param unit: 偏移量单位。
 
-        Returns:
-            OffsetSignaling 实例。
+        :returns: OffsetSignaling 实例。
         """
         delta_us = (link_first_slot - smf_start_slot) * base_slot_us
         unit_us = 25 if unit == OffsetUnit.US_25 else 300

@@ -433,8 +433,7 @@ class LinkManager:
     def request_feature_exchange(self, feature_set: int) -> ControlFrame | None:
         """发起特性交互 (7.2.4)
 
-        Args:
-            feature_set: 本端支持特性集 (80-bit 位图)
+        :param feature_set: 本端支持特性集 (80-bit 位图)
         """
         from nearlink_sdr.mac.link_control import FeatureExchangeRequest
         msg = FeatureExchangeRequest(feature_set=feature_set)

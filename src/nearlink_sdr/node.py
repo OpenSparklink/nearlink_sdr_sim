@@ -407,8 +407,7 @@ class SleNode:
 
         在扫描态时, 通过发现管理器和广播过滤器处理帧。
 
-        Returns:
-            True 表示该帧包含有效的接入资源配置。
+        :returns: True 表示该帧包含有效的接入资源配置。
         """
         if not self._broadcast_filter.match(frame):
             return False
@@ -478,8 +477,7 @@ class SleNode:
     def start_pairing(self, peer_address: bytes) -> list:
         """发起配对流程。
 
-        Returns:
-            待发送给对端的配对信令列表。
+        :returns: 待发送给对端的配对信令列表。
         """
         is_g = self._link_mgr.role == Role.G_NODE
         self._pairing = PairingManager(
@@ -494,8 +492,7 @@ class SleNode:
     def process_pairing_message(self, msg: object) -> list:
         """处理收到的配对信令。
 
-        Returns:
-            待发送的响应信令列表。
+        :returns: 待发送的响应信令列表。
         """
         if self._pairing is None:
             return []

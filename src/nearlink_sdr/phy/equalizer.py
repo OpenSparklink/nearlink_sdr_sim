@@ -10,12 +10,10 @@ import numpy as np
 def equalize_zf(rx_signal: np.ndarray, channel_freq: np.ndarray) -> np.ndarray:
     """零强制 (ZF) 频域均衡。
 
-    Args:
-        rx_signal: 接收信号 (时域)。
-        channel_freq: 信道频率响应 H[k], 长度等于 rx_signal 的 FFT 长度。
+    :param rx_signal: 接收信号 (时域)。
+    :param channel_freq: 信道频率响应 H[k], 长度等于 rx_signal 的 FFT 长度。
 
-    Returns:
-        均衡后的时域信号。
+    :returns: 均衡后的时域信号。
     """
     n = len(rx_signal)
     rx_freq = np.fft.fft(rx_signal, n)
@@ -34,13 +32,11 @@ def equalize_mmse_freq(
 
     H_mmse[k] = conj(H[k]) / (|H[k]|^2 + sigma^2)
 
-    Args:
-        rx_signal: 接收信号 (时域)。
-        channel_freq: 信道频率响应 H[k]。
-        noise_var: 噪声方差 sigma^2。
+    :param rx_signal: 接收信号 (时域)。
+    :param channel_freq: 信道频率响应 H[k]。
+    :param noise_var: 噪声方差 sigma^2。
 
-    Returns:
-        均衡后的时域信号。
+    :returns: 均衡后的时域信号。
     """
     n = len(rx_signal)
     rx_freq = np.fft.fft(rx_signal, n)
@@ -59,13 +55,11 @@ def estimate_channel_freq(
 
     H_est[k] = Y[k] / X[k]
 
-    Args:
-        rx_signal: 接收到的训练序列。
-        tx_known: 已知的发送训练序列。
-        n_fft: FFT 长度, 默认为信号长度。
+    :param rx_signal: 接收到的训练序列。
+    :param tx_known: 已知的发送训练序列。
+    :param n_fft: FFT 长度, 默认为信号长度。
 
-    Returns:
-        估计的信道频率响应。
+    :returns: 估计的信道频率响应。
     """
     if n_fft is None:
         n_fft = max(len(rx_signal), len(tx_known))
@@ -92,14 +86,12 @@ def equalize_mmse_time(
         w = R^{-1} p
     其中 R = h自相关 + 噪声, p = h与期望延迟的互相关。
 
-    Args:
-        rx_signal: 接收信号。
-        channel_taps: 信道冲激响应 h[0], h[1], ..., h[L-1]。
-        noise_var: 噪声方差。
-        n_taps_eq: 均衡器 FIR 长度。
+    :param rx_signal: 接收信号。
+    :param channel_taps: 信道冲激响应 h[0], h[1], ..., h[L-1]。
+    :param noise_var: 噪声方差。
+    :param n_taps_eq: 均衡器 FIR 长度。
 
-    Returns:
-        均衡后的信号。
+    :returns: 均衡后的信号。
     """
     h = np.asarray(channel_taps, dtype=complex).flatten()
     l_h = len(h)
@@ -144,14 +136,12 @@ def equalize_1tap(
 ) -> np.ndarray:
     """逐符号 1-tap 均衡 (平坦衰落信道)。
 
-    Args:
-        rx_symbols: 接收符号。
-        h_coeffs: 每个符号的信道系数 (与 rx_symbols 等长)。
-        noise_var: 噪声方差, 仅 MMSE 使用。
-        method: "zf" 或 "mmse"。
+    :param rx_symbols: 接收符号。
+    :param h_coeffs: 每个符号的信道系数 (与 rx_symbols 等长)。
+    :param noise_var: 噪声方差, 仅 MMSE 使用。
+    :param method: "zf" 或 "mmse"。
 
-    Returns:
-        均衡后的符号。
+    :returns: 均衡后的符号。
     """
     h = np.asarray(h_coeffs, dtype=complex)
     if method == "zf":

@@ -112,13 +112,11 @@ def secure_random_256(
     对 KDF 调用两次 (分别使用 time_param 和 time_param+1 作为消息),
     拼接两个 128-bit 输出得到 256-bit 安全序列。
 
-    Args:
-        seed: 128比特安全随机种子 (16字节)
-        time_param: 32比特时间参数 (如调度时隙号*2)
-        kdf_type: KDF 类型
+    :param seed: 128比特安全随机种子 (16字节)
+    :param time_param: 32比特时间参数 (如调度时隙号*2)
+    :param kdf_type: KDF 类型
 
-    Returns:
-        32 字节安全序列
+    :returns: 32 字节安全序列
     """
     m1 = time_param.to_bytes(4, "big")
     m2 = ((time_param + 1) & 0xFFFFFFFF).to_bytes(4, "big")
@@ -464,7 +462,8 @@ def generate_resolvable_address(
     """生成可解析随机标识 (48 bits)。
 
     hash_part = KDF(IRK, rand_part) mod 2^16
-    Returns: 高16位标记 || 中16位随机 || 低16位hash
+
+    :returns: 高16位标记 || 中16位随机 || 低16位hash
     """
     msg = rand_part.to_bytes(2, "big")
     mac = kdf(kdf_type, irk, msg)

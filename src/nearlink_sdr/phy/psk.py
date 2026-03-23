@@ -12,13 +12,11 @@ SLE_RRC_BETA = 0.4
 def rrc_filter(beta: float, sps: int, span: int = 10) -> np.ndarray:
     """生成平方根升余弦脉冲成型滤波器。
 
-    Args:
-        beta: 滚降系数
-        sps: 每符号采样数
-        span: 单侧符号跨度
+    :param beta: 滚降系数
+    :param sps: 每符号采样数
+    :param span: 单侧符号跨度
 
-    Returns:
-        滤波器系数, 归一化使得匹配滤波后采样点增益为1
+    :returns: 滤波器系数, 归一化使得匹配滤波后采样点增益为1
     """
     N = 2 * span * sps + 1
     t = np.arange(-(N - 1) / 2, (N - 1) / 2 + 1) / sps
@@ -142,8 +140,7 @@ class PSKModulator:
     def modulate(self, bits: np.ndarray) -> np.ndarray:
         """PSK调制并进行RRC脉冲成型。
 
-        Returns:
-            复基带IQ信号
+        :returns: 复基带IQ信号
         """
         symbols = self.map_symbols(bits)
 
@@ -191,11 +188,9 @@ class PSKDemodulator:
     def demodulate(self, signal: np.ndarray) -> np.ndarray:
         """PSK解调。
 
-        Args:
-            signal: 复基带IQ信号
+        :param signal: 复基带IQ信号
 
-        Returns:
-            解调后的比特序列
+        :returns: 解调后的比特序列
         """
         # 匹配滤波
         filtered = np.convolve(signal, self._rrc, mode='same')

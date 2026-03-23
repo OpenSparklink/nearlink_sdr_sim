@@ -26,14 +26,12 @@ def crc_calculate(data_bits: np.ndarray, poly: int, crc_len: int,
                   seed: int = 0) -> np.ndarray:
     """按照 TXS-10002-2025 6.10.1 计算循环冗余校验。
 
-    Args:
-        data_bits: 输入信息比特序列, shape (A,), 值为 0/1
-        poly: CRC生成多项式（不含最高位 D^L）
-        crc_len: 校验比特长度 L
-        seed: CRC生成种子
+    :param data_bits: 输入信息比特序列, shape (A,), 值为 0/1
+    :param poly: CRC生成多项式（不含最高位 D^L）
+    :param crc_len: 校验比特长度 L
+    :param seed: CRC生成种子
 
-    Returns:
-        校验比特序列, shape (L,), 值为 0/1
+    :returns: 校验比特序列, shape (L,), 值为 0/1
     """
     if _HAS_RUST_CRC:
         return np.asarray(_rust_crc(np.asarray(data_bits, dtype=np.int64),
@@ -61,8 +59,7 @@ def crc_attach(data_bits: np.ndarray, poly: int, crc_len: int,
                seed: int = 0, mask: np.ndarray | None = None) -> np.ndarray:
     """对输入信息比特序列附加CRC校验比特。
 
-    Returns:
-        b_0, b_1, ..., b_{B-1}, 其中 B = A + L
+    :returns: b_0, b_1, ..., b_{B-1}, 其中 B = A + L
     """
     parity = crc_calculate(data_bits, poly, crc_len, seed)
     if mask is not None:
@@ -74,8 +71,7 @@ def crc_check(received_bits: np.ndarray, poly: int, crc_len: int,
               seed: int = 0, mask: np.ndarray | None = None) -> bool:
     """对接收比特序列进行CRC校验。
 
-    Returns:
-        True 表示校验通过（无错误），False 表示校验失败
+    :returns: True 表示校验通过（无错误），False 表示校验失败
     """
     data_bits = received_bits[:-crc_len]
     rx_parity = received_bits[-crc_len:].copy()

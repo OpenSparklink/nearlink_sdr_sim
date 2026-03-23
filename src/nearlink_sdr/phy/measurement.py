@@ -125,17 +125,15 @@ def measurement_signal_1(
 
     无相位旋转 BPSK 调制, 返回比特序列。
 
-    Args:
-        n_measur: 测量序列长度 [16, 32, 64, 128, 256, 512, 1024, 2048]
-        security_type: 安全类型 (1~4)
-        seed: 安全随机种子 (16 字节)
-        slot_number: 起始调度时隙号
-        is_tx: True=先发节点, False=后发节点
-        n_disturb_max: 最大扰动符号数配置 [0-11]
-        kdf_type: 0=AES-CMAC, 1=HMAC-SM3
+    :param n_measur: 测量序列长度 [16, 32, 64, 128, 256, 512, 1024, 2048]
+    :param security_type: 安全类型 (1~4)
+    :param seed: 安全随机种子 (16 字节)
+    :param slot_number: 起始调度时隙号
+    :param is_tx: True=先发节点, False=后发节点
+    :param n_disturb_max: 最大扰动符号数配置 [0-11]
+    :param kdf_type: 0=AES-CMAC, 1=HMAC-SM3
 
-    Returns:
-        np.ndarray, dtype=int, 长度 n_measur
+    :returns: np.ndarray, dtype=int, 长度 n_measur
     """
     if n_measur not in _VALID_N_MEASUR:
         raise ValueError(
@@ -193,15 +191,13 @@ def measurement_signal_2(
 
     多音信号, 频率对称分布。
 
-    Args:
-        n_tones: 音的个数 [1, 2, 4, 8]
-        bandwidth_mhz: SLE 带宽 [1, 2, 4] MHz
-        duration_us: 信号时长 (微秒)
-        sample_rate: 采样率 (Hz)
-        phase_set: 相位集合 [1, 2], N≥4 时有效
+    :param n_tones: 音的个数 [1, 2, 4, 8]
+    :param bandwidth_mhz: SLE 带宽 [1, 2, 4] MHz
+    :param duration_us: 信号时长 (微秒)
+    :param sample_rate: 采样率 (Hz)
+    :param phase_set: 相位集合 [1, 2], N≥4 时有效
 
-    Returns:
-        np.ndarray, dtype=complex128, 复数基带波形
+    :returns: np.ndarray, dtype=complex128, 复数基带波形
     """
     if n_tones not in {1, 2, 4, 8}:
         raise ValueError(f"n_tones 必须为 1/2/4/8, 收到 {n_tones}")
@@ -254,12 +250,10 @@ def antenna_pair_order_sequential(
 ) -> list[tuple[int, int]]:
     """顺序天线对集合: 优先变更后发节点天线 (6.2.4.3)。
 
-    Args:
-        m: 发送天线数
-        n: 接收天线数
+    :param m: 发送天线数
+    :param n: 接收天线数
 
-    Returns:
-        天线对列表 [(tx_ant, rx_ant), ...]
+    :returns: 天线对列表 [(tx_ant, rx_ant), ...]
 
     示例:
         m=3, n=2: [(0,0), (0,1), (1,0), (1,1), (2,0), (2,1)]
@@ -277,16 +271,14 @@ def antenna_pair_order_random(
 ) -> list[tuple[int, int]]:
     """随机天线对集合 (使用第三安全序列置乱) (6.2.4.3)。
 
-    Args:
-        m: 发送天线数
-        n: 接收天线数
-        seed: 安全随机种子 (16 字节)
-        slot_number: 起始调度时隙号
-        k: 随机数位宽
-        kdf_type: 0=AES-CMAC, 1=HMAC-SM3
+    :param m: 发送天线数
+    :param n: 接收天线数
+    :param seed: 安全随机种子 (16 字节)
+    :param slot_number: 起始调度时隙号
+    :param k: 随机数位宽
+    :param kdf_type: 0=AES-CMAC, 1=HMAC-SM3
 
-    Returns:
-        随机排列的天线对列表 [(tx_ant, rx_ant), ...]
+    :returns: 随机排列的天线对列表 [(tx_ant, rx_ant), ...]
     """
     # 生成顺序天线对集合作为候选
     candidates = antenna_pair_order_sequential(m, n)

@@ -34,11 +34,9 @@ def bch_31_26_encode(info_26: np.ndarray) -> np.ndarray:
         C(d) = d^5 * Ã(d) mod G(d)
         S(d) = Ã(d) + d^26 * C(d)
 
-    Args:
-        info_26: 26比特信息序列（Ã(d)的系数，索引0=d^0）
+    :param info_26: 26比特信息序列（Ã(d)的系数，索引0=d^0）
 
-    Returns:
-        31比特码字
+    :returns: 31比特码字
     """
     g = BCH_31_26_GEN  # 阶数5
     n_parity = 5
@@ -62,11 +60,9 @@ def bch_63_24_encode(info_24: np.ndarray) -> np.ndarray:
         C(d) = d^39 * A(d) mod G(d)
         S(d) = A(d) + d^24 * C(d)
 
-    Args:
-        info_24: 24比特信息序列（A(d)的系数，索引0=d^0）
+    :param info_24: 24比特信息序列（A(d)的系数，索引0=d^0）
 
-    Returns:
-        63比特码字
+    :returns: 63比特码字
     """
     g = BCH_63_24_GEN  # 阶数39
     n_parity = 39

@@ -45,11 +45,9 @@ class GFSKModulator:
     def modulate(self, bits: np.ndarray) -> np.ndarray:
         """GFSK调制。
 
-        Args:
-            bits: 输入比特序列, shape (N,), 值为 0/1
+        :param bits: 输入比特序列, shape (N,), 值为 0/1
 
-        Returns:
-            复基带IQ信号, shape (N*sps,)
+        :returns: 复基带IQ信号, shape (N*sps,)
         """
         # NRZ映射: 0 -> -1, 1 -> +1
         nrz = 2.0 * bits.astype(float) - 1.0
@@ -79,11 +77,9 @@ class GFSKDemodulator:
     def demodulate(self, signal: np.ndarray) -> np.ndarray:
         """GFSK解调。
 
-        Args:
-            signal: 复基带IQ信号
+        :param signal: 复基带IQ信号
 
-        Returns:
-            解调后的比特序列, 值为 0/1
+        :returns: 解调后的比特序列, 值为 0/1
         """
         # 频率鉴别：取相邻采样点的相位差
         phase_diff = np.angle(signal[1:] * np.conj(signal[:-1]))
