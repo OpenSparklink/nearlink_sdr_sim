@@ -91,8 +91,6 @@ jobs:
           TAG="${GITHUB_REF#refs/tags/}"
           mv dist/docs/_build/latex/nearlink-sdr.pdf "dist/nearlink-sdr-zh-${TAG}.pdf"
           mv dist/docs/_build/latex_en/nearlink-sdr.pdf "dist/nearlink-sdr-en-${TAG}.pdf"
-          mv dist/nearlink-sdr-docs-zh-*.tar.gz dist/
-          mv dist/nearlink-sdr-docs-en-*.tar.gz dist/
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
