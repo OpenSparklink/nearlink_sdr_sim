@@ -1,0 +1,164 @@
+# {py:mod}`nearlink_sdr.phy.rx_pipeline`
+
+```{py:module} nearlink_sdr.phy.rx_pipeline
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline
+:allowtitles:
+```
+
+## Module Contents
+
+### Classes
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`RxResult <nearlink_sdr.phy.rx_pipeline.RxResult>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline.RxResult
+    :summary:
+    ```
+````
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`decode_payload <nearlink_sdr.phy.rx_pipeline.decode_payload>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline.decode_payload
+    :summary:
+    ```
+* - {py:obj}`decode_head <nearlink_sdr.phy.rx_pipeline.decode_head>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline.decode_head
+    :summary:
+    ```
+* - {py:obj}`frame_sync <nearlink_sdr.phy.rx_pipeline.frame_sync>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline.frame_sync
+    :summary:
+    ```
+* - {py:obj}`rx_chain <nearlink_sdr.phy.rx_pipeline.rx_chain>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline.rx_chain
+    :summary:
+    ```
+````
+
+### Data
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`_HEAD_CODED_LEN <nearlink_sdr.phy.rx_pipeline._HEAD_CODED_LEN>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline._HEAD_CODED_LEN
+    :summary:
+    ```
+* - {py:obj}`_MOD_STR <nearlink_sdr.phy.rx_pipeline._MOD_STR>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline._MOD_STR
+    :summary:
+    ```
+````
+
+### API
+
+````{py:data} _HEAD_CODED_LEN
+:canonical: nearlink_sdr.phy.rx_pipeline._HEAD_CODED_LEN
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline._HEAD_CODED_LEN
+```
+
+````
+
+````{py:data} _MOD_STR
+:canonical: nearlink_sdr.phy.rx_pipeline._MOD_STR
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline._MOD_STR
+```
+
+````
+
+`````{py:class} RxResult
+:canonical: nearlink_sdr.phy.rx_pipeline.RxResult
+
+```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline.RxResult
+```
+
+````{py:attribute} data_bits
+:canonical: nearlink_sdr.phy.rx_pipeline.RxResult.data_bits
+:type: numpy.ndarray
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline.RxResult.data_bits
+```
+
+````
+
+````{py:attribute} ctrl_bits
+:canonical: nearlink_sdr.phy.rx_pipeline.RxResult.ctrl_bits
+:type: numpy.ndarray
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline.RxResult.ctrl_bits
+```
+
+````
+
+````{py:attribute} crc_ok
+:canonical: nearlink_sdr.phy.rx_pipeline.RxResult.crc_ok
+:type: bool
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline.RxResult.crc_ok
+```
+
+````
+
+````{py:attribute} head_crc_ok
+:canonical: nearlink_sdr.phy.rx_pipeline.RxResult.head_crc_ok
+:type: bool
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline.RxResult.head_crc_ok
+```
+
+````
+
+`````
+
+````{py:function} decode_payload(scrambled_bits: numpy.ndarray, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig, n_info_bits: int) -> tuple[numpy.ndarray, bool]
+:canonical: nearlink_sdr.phy.rx_pipeline.decode_payload
+
+```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline.decode_payload
+```
+````
+
+````{py:function} decode_head(scrambled_bits: numpy.ndarray, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig) -> tuple[numpy.ndarray, bool]
+:canonical: nearlink_sdr.phy.rx_pipeline.decode_head
+
+```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline.decode_head
+```
+````
+
+````{py:function} frame_sync(iq_signal: numpy.ndarray, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig) -> int
+:canonical: nearlink_sdr.phy.rx_pipeline.frame_sync
+
+```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline.frame_sync
+```
+````
+
+````{py:function} rx_chain(iq_signal: numpy.ndarray, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig, n_data_bytes: int) -> nearlink_sdr.phy.rx_pipeline.RxResult
+:canonical: nearlink_sdr.phy.rx_pipeline.rx_chain
+
+```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline.rx_chain
+```
+````

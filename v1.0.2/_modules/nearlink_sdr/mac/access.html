@@ -1,0 +1,1963 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN" data-content_root="../../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><link rel="index" title="索引" href="../../../genindex.html"><link rel="search" title="搜索" href="../../../search.html">
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
+        <title>nearlink_sdr.mac.access - nearlink-sdr 1.0.2 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/version-selector.css?v=022f18c6" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  --color-brand-primary: #1a73e8;
+  --color-brand-content: #1a73e8;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #8ab4f8;
+  --color-brand-content: #8ab4f8;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #8ab4f8;
+  --color-brand-content: #8ab4f8;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">nearlink-sdr 1.0.2 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.2 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/getting-started.html">快速入门</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../how-to/index.html">操作指南</a><input aria-label="Toggle navigation of 操作指南" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/run-simulation.html">运行链路仿真</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/add-modulation.html">添加新的调制方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/qos-management.html">QoS 服务质量管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/node-usage.html">使用 SLE 节点实体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/rust-acceleration.html">Rust 加速模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/sdr-deployment.html">SDR E310 部署规划</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/build-docs.html">构建文档</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../reference/index.html">技术参考</a><input aria-label="Toggle navigation of 技术参考" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.demodulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.demodulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.modulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.modulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.rx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.link_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.link_sim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.usrp_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.usrp_sim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../explanation/index.html">设计说明</a><input aria-label="Toggle navigation of 设计说明" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/overview.html">SparkLink SLE 协议总览</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/principles.html">物理层原理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/physical-layer.html">物理层详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/mac-layer.html">MAC 层详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/security.html">安全子系统详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/data-flow.html">端到端数据流</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/architecture.html">系统架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/standard-mapping.html">标准条款映射</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">更新日志</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../apidocs/index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.demodulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.demodulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.modulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.modulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.rx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.link_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.link_sim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.usrp_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.usrp_sim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <h1>nearlink_sdr.mac.access 源代码</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;接入流程管理 -- TXS-10002-2025 标准 7.1.3。</span>
+
+<span class="sd">实现 SLE 设备发现和接入的完整六阶段流程:</span>
+<span class="sd">  a) 广播方准备并发送可接入扩展广播帧</span>
+<span class="sd">  b) 接入发起方发送接入请求帧</span>
+<span class="sd">  c) 广播方接收请求并发送响应</span>
+<span class="sd">  d) 接入方接收响应并进入链接态</span>
+<span class="sd">  e) 数据链路建立</span>
+<span class="sd">  f) 安全流程 (委托给 security 模块)</span>
+
+<span class="sd">协调 BroadcastFrame、AccessBasicInfo、TransportIndicationInfo、</span>
+<span class="sd">AccessRequestInfo、AccessResponseInfo 等数据结构完成端到端接入。</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">IntEnum</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.mac.broadcast</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AccessBasicInfo</span><span class="p">,</span>
+    <span class="n">AccessRequestInfo</span><span class="p">,</span>
+    <span class="n">AccessResponseEntry</span><span class="p">,</span>
+    <span class="n">AccessResponseInfo</span><span class="p">,</span>
+    <span class="n">AccessResponseType</span><span class="p">,</span>
+    <span class="n">BroadcastDataType</span><span class="p">,</span>
+    <span class="n">BroadcastFrame</span><span class="p">,</span>
+    <span class="n">DiscoveryAccessEntry</span><span class="p">,</span>
+    <span class="n">DiscoveryAccessResourceConfig</span><span class="p">,</span>
+    <span class="n">GTNegotiation</span><span class="p">,</span>
+    <span class="n">NonLinkedBroadcastLinkInfo</span><span class="p">,</span>
+    <span class="n">QueryRequestFilterInfo</span><span class="p">,</span>
+    <span class="n">SystemMgmtFrameInfo</span><span class="p">,</span>
+    <span class="n">TransportIndicationInfo</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.mac.link_manager</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Event</span><span class="p">,</span>
+    <span class="n">EventType</span><span class="p">,</span>
+    <span class="n">LinkManager</span><span class="p">,</span>
+    <span class="n">Role</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># ── 最小时间间隔 (标准 7.1.3, 单位 μs) ──</span>
+<span class="n">MIN_ADV_TO_EXT_ADV_GAP</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">MIN_EXT_ADV_TO_REQUEST_GAP</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">MIN_REQUEST_TO_RESPONSE_GAP</span> <span class="o">=</span> <span class="mi">300</span>
+
+<span class="c1"># ── 广播间隔约束 (标准 7.1.1, 单位 μs) ──</span>
+<span class="n">MIN_ADV_INTERVAL_US</span> <span class="o">=</span> <span class="mi">4_000</span>              <span class="c1"># 4 ms</span>
+<span class="n">MAX_ADV_INTERVAL_US</span> <span class="o">=</span> <span class="mi">2_097_151_875</span>      <span class="c1"># 2097.151875 s</span>
+<span class="n">MAX_ADV_RANDOM_DELAY_US</span> <span class="o">=</span> <span class="mi">2_000</span>          <span class="c1"># 2 ms</span>
+
+
+<div class="viewcode-block" id="AccessPhase">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.AccessPhase">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">AccessPhase</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;接入流程阶段标识。&quot;&quot;&quot;</span>
+    <span class="n">IDLE</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">ADV_SENDING</span> <span class="o">=</span> <span class="mi">1</span>        <span class="c1"># a: 广播方发送扩展广播帧</span>
+    <span class="n">REQ_WINDOW</span> <span class="o">=</span> <span class="mi">2</span>         <span class="c1"># b: 接入请求窗口</span>
+    <span class="n">RSP_WINDOW</span> <span class="o">=</span> <span class="mi">3</span>         <span class="c1"># c: 接入响应窗口</span>
+    <span class="n">LINK_SETUP</span> <span class="o">=</span> <span class="mi">4</span>         <span class="c1"># d/e: 链路建立</span>
+    <span class="n">COMPLETED</span> <span class="o">=</span> <span class="mi">5</span>          <span class="c1"># 接入完成</span></div>
+
+
+
+<div class="viewcode-block" id="AccessConfig">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.AccessConfig">[文档]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AccessConfig</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;接入流程配置参数。&quot;&quot;&quot;</span>
+    <span class="c1"># 广播/接入资源配置</span>
+    <span class="n">request_offset_us</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">600</span>       <span class="c1"># 扩展广播帧结束到请求窗口 (μs)</span>
+    <span class="n">request_max_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">64</span>       <span class="c1"># 接入请求帧最大数据长度 (字节)</span>
+    <span class="n">response_offset_us</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1200</span>     <span class="c1"># 扩展广播帧结束到响应窗口 (μs)</span>
+    <span class="n">window_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>              <span class="c1"># 并行请求窗口个数</span>
+    <span class="c1"># GT 角色协商</span>
+    <span class="n">gt_preference</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>             <span class="c1"># 0=偏好T节点, 1=偏好G节点</span>
+    <span class="n">gt_negotiable</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>         <span class="c1"># 角色是否可协商</span>
+    <span class="c1"># 超时与重试</span>
+    <span class="n">access_timeout_ms</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5000</span>      <span class="c1"># 接入超时</span>
+    <span class="n">max_retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span>               <span class="c1"># 最大重试次数</span></div>
+
+
+
+<div class="viewcode-block" id="NegotiatedRole">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.NegotiatedRole">[文档]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">NegotiatedRole</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;GT 角色协商结果。&quot;&quot;&quot;</span>
+    <span class="n">local_role</span><span class="p">:</span> <span class="n">Role</span>
+    <span class="n">peer_role</span><span class="p">:</span> <span class="n">Role</span>
+    <span class="n">negotiated</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>           <span class="c1"># 是否经过协商 (vs 默认分配)</span></div>
+
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># 7.1.6 接入白名单</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+
+<div class="viewcode-block" id="AccessWhitelist">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.AccessWhitelist">[文档]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AccessWhitelist</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;接入白名单 (7.1.6)</span>
+
+<span class="sd">    广播设备设置白名单后, 只接收白名单中设备的接入请求。</span>
+<span class="sd">    接入设备设置白名单后, 只向白名单中设备发起接入。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_addresses</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">set</span><span class="p">)</span>
+    <span class="n">enabled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="AccessWhitelist.add">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.AccessWhitelist.add">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;添加一个设备地址 (6 字节)&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_addresses</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">address</span><span class="p">[:</span><span class="mi">6</span><span class="p">]))</span></div>
+
+
+<div class="viewcode-block" id="AccessWhitelist.remove">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.AccessWhitelist.remove">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;移除一个设备地址&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_addresses</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">address</span><span class="p">[:</span><span class="mi">6</span><span class="p">]))</span></div>
+
+
+<div class="viewcode-block" id="AccessWhitelist.clear">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.AccessWhitelist.clear">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;清空白名单&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_addresses</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="AccessWhitelist.contains">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.AccessWhitelist.contains">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;检查地址是否在白名单中&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">address</span><span class="p">[:</span><span class="mi">6</span><span class="p">])</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_addresses</span></div>
+
+
+<div class="viewcode-block" id="AccessWhitelist.check">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.AccessWhitelist.check">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;检查是否允许该地址的接入</span>
+
+<span class="sd">        白名单未启用时允许所有地址; 启用后仅允许白名单内地址。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">enabled</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">address</span><span class="p">)</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">addresses</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_addresses</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># 7.1.2 发现流程</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+
+<div class="viewcode-block" id="DiscoveryManager">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.DiscoveryManager">[文档]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DiscoveryManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;发现流程管理器 (标准 7.1.2)</span>
+
+<span class="sd">    实现发现设备接收广播帧后的查询请求/响应流程:</span>
+<span class="sd">      a) 广播设备发送基础广播帧和扩展广播帧</span>
+<span class="sd">      b) 发现设备收到可查询扩展广播帧后发送查询请求帧</span>
+<span class="sd">      c) 广播设备接收请求并发送查询响应帧</span>
+<span class="sd">      d) 发现设备接收查询响应帧, 完成发现</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">local_address</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">6</span>
+    <span class="n">whitelist</span><span class="p">:</span> <span class="n">AccessWhitelist</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">AccessWhitelist</span><span class="p">)</span>
+    <span class="c1"># 发现到的设备列表: {地址: (广播帧, 查询响应帧)}</span>
+    <span class="n">_discovered</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">BroadcastFrame</span><span class="p">,</span> <span class="n">BroadcastFrame</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="c1"># 广播方: 查询请求处理器的数据存储</span>
+    <span class="n">_query_responses</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="n">BroadcastFrame</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
+
+    <span class="c1"># -- 发现设备端 --</span>
+
+<div class="viewcode-block" id="DiscoveryManager.on_broadcast_received">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.DiscoveryManager.on_broadcast_received">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_broadcast_received</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="n">BroadcastFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;处理收到的广播帧。</span>
+
+<span class="sd">        若帧中包含发现/接入资源配置且为可查询帧, 返回 True 表示可发送查询请求。</span>
+<span class="sd">        白名单启用时仅处理白名单内设备。</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            frame: 收到的广播帧。</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            True 表示可查询, 需要后续发送查询请求。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">whitelist</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">local_addr</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="n">addr</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">local_addr</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_discovered</span><span class="p">[</span><span class="n">addr</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="c1"># 检查是否包含可查询的发现接入资源配置</span>
+        <span class="k">for</span> <span class="n">data_type</span><span class="p">,</span> <span class="n">data_bytes</span> <span class="ow">in</span> <span class="n">frame</span><span class="o">.</span><span class="n">data_items</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="n">BroadcastDataType</span><span class="o">.</span><span class="n">DISCOVERY_ACCESS_RESOURCE</span><span class="p">:</span>
+                <span class="n">config</span> <span class="o">=</span> <span class="n">DiscoveryAccessResourceConfig</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">data_bytes</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">entries</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">entries</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">entry</span><span class="o">.</span><span class="n">request_type</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># 可查询</span>
+                            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="DiscoveryManager.build_query_request">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.DiscoveryManager.build_query_request">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">build_query_request</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">target_addr</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
+        <span class="n">filter_info</span><span class="p">:</span> <span class="n">QueryRequestFilterInfo</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">upper_layer_data</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BroadcastFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;构造查询请求帧 (阶段 b)。</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            target_addr: 目标广播设备地址。</span>
+<span class="sd">            filter_info: 查询过滤信息 (按服务UUID过滤)。</span>
+<span class="sd">            upper_layer_data: 高层广播数据。</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            查询请求广播帧。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data_items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">filter_info</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">data_items</span><span class="o">.</span><span class="n">append</span><span class="p">((</span>
+                <span class="n">BroadcastDataType</span><span class="o">.</span><span class="n">QUERY_REQUEST_FILTER</span><span class="p">,</span>
+                <span class="n">filter_info</span><span class="o">.</span><span class="n">pack</span><span class="p">(),</span>
+            <span class="p">))</span>
+        <span class="k">if</span> <span class="n">upper_layer_data</span><span class="p">:</span>
+            <span class="n">data_items</span><span class="o">.</span><span class="n">append</span><span class="p">((</span>
+                <span class="n">BroadcastDataType</span><span class="o">.</span><span class="n">UPPER_LAYER_DATA</span><span class="p">,</span>
+                <span class="n">upper_layer_data</span><span class="p">,</span>
+            <span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">BroadcastFrame</span><span class="p">(</span>
+            <span class="n">structure_indication</span><span class="o">=</span><span class="mh">0x10</span><span class="p">,</span>
+            <span class="n">local_addr_type</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">peer_addr_type</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">local_addr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">local_address</span><span class="p">,</span>
+            <span class="n">irk_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">peer_addr</span><span class="o">=</span><span class="n">target_addr</span><span class="p">,</span>
+            <span class="n">data_items</span><span class="o">=</span><span class="n">data_items</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DiscoveryManager.handle_query_response">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.DiscoveryManager.handle_query_response">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_query_response</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="n">BroadcastFrame</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;处理查询响应帧 (阶段 d)。</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            frame: 收到的查询响应帧。</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            True 表示发现完成。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">addr</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">local_addr</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">addr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_discovered</span><span class="p">:</span>
+            <span class="n">original</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_discovered</span><span class="p">[</span><span class="n">addr</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_discovered</span><span class="p">[</span><span class="n">addr</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">original</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+    <span class="c1"># -- 广播设备端 --</span>
+
+<div class="viewcode-block" id="DiscoveryManager.handle_query_request">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.DiscoveryManager.handle_query_request">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_query_request</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">request_frame</span><span class="p">:</span> <span class="n">BroadcastFrame</span><span class="p">,</span>
+        <span class="n">all_services_data</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BroadcastFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;处理查询请求并构造查询响应帧 (阶段 c)。</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            request_frame: 收到的查询请求帧。</span>
+<span class="sd">            all_services_data: 本设备支持的所有服务数据。</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            查询响应广播帧。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">requester_addr</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">request_frame</span><span class="o">.</span><span class="n">local_addr</span><span class="p">)</span>
+
+        <span class="c1"># 判断是否携带查询过滤信息</span>
+        <span class="n">response_data</span> <span class="o">=</span> <span class="n">all_services_data</span>
+        <span class="k">for</span> <span class="n">data_type</span><span class="p">,</span> <span class="n">_data_bytes</span> <span class="ow">in</span> <span class="n">request_frame</span><span class="o">.</span><span class="n">data_items</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="n">BroadcastDataType</span><span class="o">.</span><span class="n">QUERY_REQUEST_FILTER</span><span class="p">:</span>
+                <span class="c1"># 有过滤信息时, 应仅返回过滤指定的服务数据</span>
+                <span class="c1"># 此处简化处理: 返回全部数据, 由上层做更精确过滤</span>
+                <span class="k">break</span>
+
+        <span class="n">data_items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">response_data</span><span class="p">:</span>
+            <span class="n">data_items</span><span class="o">.</span><span class="n">append</span><span class="p">((</span>
+                <span class="n">BroadcastDataType</span><span class="o">.</span><span class="n">UPPER_LAYER_DATA</span><span class="p">,</span> <span class="n">response_data</span><span class="p">,</span>
+            <span class="p">))</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">BroadcastFrame</span><span class="p">(</span>
+            <span class="n">structure_indication</span><span class="o">=</span><span class="mh">0x10</span><span class="p">,</span>
+            <span class="n">local_addr_type</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">peer_addr_type</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">local_addr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">local_address</span><span class="p">,</span>
+            <span class="n">irk_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">peer_addr</span><span class="o">=</span><span class="n">requester_addr</span><span class="p">,</span>
+            <span class="n">data_items</span><span class="o">=</span><span class="n">data_items</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_query_responses</span><span class="p">[</span><span class="n">requester_addr</span><span class="p">]</span> <span class="o">=</span> <span class="n">response</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">discovered_devices</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">BroadcastFrame</span><span class="p">,</span> <span class="n">BroadcastFrame</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;返回已发现的设备及其广播帧/查询响应帧。&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_discovered</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DiscoveryManager.clear">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.DiscoveryManager.clear">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;清空发现结果。&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_discovered</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_query_responses</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="negotiate_gt_role">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.negotiate_gt_role">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">negotiate_gt_role</span><span class="p">(</span>
+    <span class="n">broadcaster_pref</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">broadcaster_negotiable</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+    <span class="n">initiator_pref</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">initiator_negotiable</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NegotiatedRole</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;根据标准 7.1.3 执行 GT 角色协商。</span>
+
+<span class="sd">    双方各表达角色偏好 (0=T节点, 1=G节点) 和可协商标志。</span>
+<span class="sd">    冲突时默认: 发起方→G节点, 广播方→T节点。</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        broadcaster_pref: 广播方角色偏好 (0=T, 1=G)。</span>
+<span class="sd">        broadcaster_negotiable: 广播方角色是否可协商。</span>
+<span class="sd">        initiator_pref: 发起方 (接入方) 角色偏好。</span>
+<span class="sd">        initiator_negotiable: 发起方角色是否可协商。</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        协商结果, 从发起方视角: local_role 为发起方角色。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 若双方偏好一致 (都想当 G 或都想当 T), 存在冲突</span>
+    <span class="k">if</span> <span class="n">broadcaster_pref</span> <span class="o">==</span> <span class="n">initiator_pref</span><span class="p">:</span>
+        <span class="c1"># 均不可协商 → 默认分配: 发起方=G, 广播方=T</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">broadcaster_negotiable</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">initiator_negotiable</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">NegotiatedRole</span><span class="p">(</span>
+                <span class="n">local_role</span><span class="o">=</span><span class="n">Role</span><span class="o">.</span><span class="n">G_NODE</span><span class="p">,</span>
+                <span class="n">peer_role</span><span class="o">=</span><span class="n">Role</span><span class="o">.</span><span class="n">T_NODE</span><span class="p">,</span>
+                <span class="n">negotiated</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="c1"># 广播方可协商 → 发起方保持偏好</span>
+        <span class="k">if</span> <span class="n">broadcaster_negotiable</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">initiator_pref</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">NegotiatedRole</span><span class="p">(</span><span class="n">Role</span><span class="o">.</span><span class="n">G_NODE</span><span class="p">,</span> <span class="n">Role</span><span class="o">.</span><span class="n">T_NODE</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">NegotiatedRole</span><span class="p">(</span><span class="n">Role</span><span class="o">.</span><span class="n">T_NODE</span><span class="p">,</span> <span class="n">Role</span><span class="o">.</span><span class="n">G_NODE</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># 发起方可协商 → 广播方保持偏好</span>
+        <span class="k">if</span> <span class="n">broadcaster_pref</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">NegotiatedRole</span><span class="p">(</span><span class="n">Role</span><span class="o">.</span><span class="n">T_NODE</span><span class="p">,</span> <span class="n">Role</span><span class="o">.</span><span class="n">G_NODE</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">NegotiatedRole</span><span class="p">(</span><span class="n">Role</span><span class="o">.</span><span class="n">G_NODE</span><span class="p">,</span> <span class="n">Role</span><span class="o">.</span><span class="n">T_NODE</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># 偏好互补: 一方想 G, 另一方想 T → 各取所好</span>
+    <span class="k">if</span> <span class="n">initiator_pref</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">NegotiatedRole</span><span class="p">(</span><span class="n">Role</span><span class="o">.</span><span class="n">G_NODE</span><span class="p">,</span> <span class="n">Role</span><span class="o">.</span><span class="n">T_NODE</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">NegotiatedRole</span><span class="p">(</span><span class="n">Role</span><span class="o">.</span><span class="n">T_NODE</span><span class="p">,</span> <span class="n">Role</span><span class="o">.</span><span class="n">G_NODE</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># ── 广播方接入管理 ──</span>
+
+
+<div class="viewcode-block" id="BroadcasterAccessManager">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.BroadcasterAccessManager">[文档]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">BroadcasterAccessManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;广播方接入管理器 (标准 7.1.3 阶段 a/c)。</span>
+
+<span class="sd">    职责:</span>
+<span class="sd">    - 构造可接入扩展广播帧</span>
+<span class="sd">    - 处理收到的接入请求</span>
+<span class="sd">    - 生成接入响应</span>
+<span class="sd">    - 完成 GT 角色协商</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">config</span><span class="p">:</span> <span class="n">AccessConfig</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">AccessConfig</span><span class="p">)</span>
+    <span class="n">link_manager</span><span class="p">:</span> <span class="n">LinkManager</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">LinkManager</span><span class="p">)</span>
+    <span class="n">local_address</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">6</span>
+    <span class="c1"># 链路配置 (用于 AccessBasicInfo 或 TransportIndicationInfo)</span>
+    <span class="n">use_smf</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">smf_baseline_slot</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">smf_offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">300</span>
+    <span class="n">smf_link_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mh">0x00000001</span>
+    <span class="n">smf_period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">800</span>
+    <span class="n">smf_frame_type</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">smf_bandwidth</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">smf_pilot_density</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">access_link_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mh">0x000001</span>
+    <span class="n">access_period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">40</span>
+    <span class="n">access_timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span>
+    <span class="n">sleep_clock_accuracy</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">7</span>
+    <span class="n">access_crc_type</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">access_crc_init</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">hop_map</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\xFF</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">10</span>
+    <span class="n">smf_channel_table</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00\x01\x02</span><span class="s2">&quot;</span>
+    <span class="n">whitelist</span><span class="p">:</span> <span class="n">AccessWhitelist</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">AccessWhitelist</span><span class="p">)</span>
+    <span class="c1"># 广播间隔 (标准 7.1.1, 固定时间间隔, 单位 μs)</span>
+    <span class="n">adv_interval_us</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100_000</span>  <span class="c1"># 默认 100 ms</span>
+    <span class="c1"># 内部状态</span>
+    <span class="n">_phase</span><span class="p">:</span> <span class="n">AccessPhase</span> <span class="o">=</span> <span class="n">AccessPhase</span><span class="o">.</span><span class="n">IDLE</span>
+    <span class="n">_pending_requests</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BroadcasterAccessManager.__post_init__">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.BroadcasterAccessManager.__post_init__">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">MIN_ADV_INTERVAL_US</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adv_interval_us</span> <span class="o">&lt;=</span> <span class="n">MAX_ADV_INTERVAL_US</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;adv_interval_us=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">adv_interval_us</span><span class="si">}</span><span class="s2"> 超出标准范围 &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">MIN_ADV_INTERVAL_US</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">MAX_ADV_INTERVAL_US</span><span class="si">}</span><span class="s2">] (§7.1.1)&quot;</span>
+            <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BroadcasterAccessManager.next_adv_delay_us">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.BroadcasterAccessManager.next_adv_delay_us">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">next_adv_delay_us</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;计算下一次广播的总间隔 (§7.1.1)。</span>
+
+<span class="sd">        返回固定间隔加 [0, 2ms] 随机延迟, 单位 μs。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">adv_interval_us</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">MAX_ADV_RANDOM_DELAY_US</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BroadcasterAccessManager.build_ext_adv_frame">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.BroadcasterAccessManager.build_ext_adv_frame">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">build_ext_adv_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BroadcastFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;构建可接入扩展广播帧 (阶段 a)。</span>
+
+<span class="sd">        包含发现接入资源配置信息 (7.1.4.2)。</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            填充好的 BroadcastFrame 对象。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">gt_neg</span> <span class="o">=</span> <span class="n">GTNegotiation</span><span class="o">.</span><span class="n">NEGOTIATE_G</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">gt_preference</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">gt_negotiable</span><span class="p">:</span>
+                <span class="n">gt_neg</span> <span class="o">=</span> <span class="n">GTNegotiation</span><span class="o">.</span><span class="n">NEGOTIATE_G</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">gt_neg</span> <span class="o">=</span> <span class="n">GTNegotiation</span><span class="o">.</span><span class="n">FIXED_G</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">gt_negotiable</span><span class="p">:</span>
+                <span class="n">gt_neg</span> <span class="o">=</span> <span class="n">GTNegotiation</span><span class="o">.</span><span class="n">NEGOTIATE_T</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">gt_neg</span> <span class="o">=</span> <span class="n">GTNegotiation</span><span class="o">.</span><span class="n">FIXED_T</span>
+
+        <span class="n">discovery_config</span> <span class="o">=</span> <span class="n">DiscoveryAccessResourceConfig</span><span class="p">(</span>
+            <span class="n">request_offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">request_offset_us</span><span class="p">,</span>
+            <span class="n">request_max_length</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">request_max_length</span><span class="p">,</span>
+            <span class="n">response_offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">response_offset_us</span><span class="p">,</span>
+            <span class="n">gt_negotiation</span><span class="o">=</span><span class="n">gt_neg</span><span class="p">,</span>
+            <span class="n">entry_count</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">window_count</span><span class="p">,</span>
+            <span class="n">entries</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">DiscoveryAccessEntry</span><span class="p">(</span>
+                    <span class="n">request_type</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                    <span class="n">carry_info_indication</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                    <span class="n">peer_addr_type</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                    <span class="n">addr_present</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                    <span class="n">peer_addr</span><span class="o">=</span><span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">window_count</span><span class="p">)</span>
+            <span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">BroadcastFrame</span><span class="p">(</span>
+            <span class="n">structure_indication</span><span class="o">=</span><span class="mh">0x11</span><span class="p">,</span>
+            <span class="n">local_addr_type</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">peer_addr_type</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">local_addr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">local_address</span><span class="p">,</span>
+            <span class="n">irk_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">peer_addr</span><span class="o">=</span><span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">6</span><span class="p">,</span>
+            <span class="n">data_items</span><span class="o">=</span><span class="p">[</span>
+                <span class="p">(</span><span class="n">BroadcastDataType</span><span class="o">.</span><span class="n">DISCOVERY_ACCESS_RESOURCE</span><span class="p">,</span>
+                 <span class="n">discovery_config</span><span class="o">.</span><span class="n">pack</span><span class="p">()),</span>
+            <span class="p">],</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_phase</span> <span class="o">=</span> <span class="n">AccessPhase</span><span class="o">.</span><span class="n">ADV_SENDING</span>
+        <span class="k">return</span> <span class="n">frame</span></div>
+
+
+<div class="viewcode-block" id="BroadcasterAccessManager.handle_access_request">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.BroadcasterAccessManager.handle_access_request">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_access_request</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">request_data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
+        <span class="n">peer_address</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">BroadcastFrame</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;处理接入请求 (阶段 c)。</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            request_data: 接入请求帧数据。</span>
+<span class="sd">            peer_address: 请求方 MAC 地址。</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (响应帧, 是否接受)。响应帧包含 AccessResponseInfo,</span>
+<span class="sd">            以及 (若接受且角色为 G) AccessBasicInfo 或 TransportIndicationInfo。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_phase</span> <span class="o">=</span> <span class="n">AccessPhase</span><span class="o">.</span><span class="n">RSP_WINDOW</span>
+
+        <span class="c1"># 白名单检查 (7.1.6)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">whitelist</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">peer_address</span><span class="p">):</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;接入请求被白名单拒绝: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">peer_address</span><span class="o">.</span><span class="n">hex</span><span class="p">())</span>
+            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">False</span>
+
+        <span class="c1"># 解析接入请求</span>
+        <span class="n">req</span> <span class="o">=</span> <span class="n">AccessRequestInfo</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">request_data</span><span class="p">)</span>
+
+        <span class="c1"># GT 角色协商</span>
+        <span class="n">initiator_gt_pref</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">initiator_negotiable</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">req</span><span class="o">.</span><span class="n">gt_role</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">initiator_gt_pref</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">gt_role</span> <span class="o">&amp;</span> <span class="mh">0x01</span>
+            <span class="n">initiator_negotiable</span> <span class="o">=</span> <span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">gt_role</span> <span class="o">&amp;</span> <span class="mh">0x02</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+
+        <span class="n">negotiation</span> <span class="o">=</span> <span class="n">negotiate_gt_role</span><span class="p">(</span>
+            <span class="n">broadcaster_pref</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">gt_preference</span><span class="p">,</span>
+            <span class="n">broadcaster_negotiable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">gt_negotiable</span><span class="p">,</span>
+            <span class="n">initiator_pref</span><span class="o">=</span><span class="n">initiator_gt_pref</span><span class="p">,</span>
+            <span class="n">initiator_negotiable</span><span class="o">=</span><span class="n">initiator_negotiable</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># 从发起方视角看, negotiation.local_role 是发起方角色</span>
+        <span class="c1"># 广播方角色 = negotiation.peer_role</span>
+        <span class="n">broadcaster_role</span> <span class="o">=</span> <span class="n">negotiation</span><span class="o">.</span><span class="n">peer_role</span>
+
+        <span class="c1"># 构建响应</span>
+        <span class="n">response_entry</span> <span class="o">=</span> <span class="n">AccessResponseEntry</span><span class="p">(</span>
+            <span class="n">peer_addr</span><span class="o">=</span><span class="n">peer_address</span><span class="p">,</span>
+            <span class="n">response_type</span><span class="o">=</span><span class="n">AccessResponseType</span><span class="o">.</span><span class="n">ACCEPT</span><span class="p">,</span>
+            <span class="n">peer_addr_type</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">repeat_indication</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">response_info</span> <span class="o">=</span> <span class="n">AccessResponseInfo</span><span class="p">(</span>
+            <span class="n">entries</span><span class="o">=</span><span class="p">[</span><span class="n">response_entry</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="n">data_items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="n">BroadcastDataType</span><span class="o">.</span><span class="n">ACCESS_RESPONSE</span><span class="p">,</span> <span class="n">response_info</span><span class="o">.</span><span class="n">pack</span><span class="p">()),</span>
+        <span class="p">]</span>
+
+        <span class="c1"># 若广播方成为 G 节点, 需在响应中携带链路配置</span>
+        <span class="k">if</span> <span class="n">broadcaster_role</span> <span class="o">==</span> <span class="n">Role</span><span class="o">.</span><span class="n">G_NODE</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_smf</span><span class="p">:</span>
+                <span class="n">access_basic</span> <span class="o">=</span> <span class="n">AccessBasicInfo</span><span class="p">(</span>
+                    <span class="n">smf_baseline_slot</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">smf_baseline_slot</span><span class="p">,</span>
+                    <span class="n">smf_offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">smf_offset</span><span class="p">,</span>
+                    <span class="n">smf_link_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">smf_link_id</span><span class="p">,</span>
+                    <span class="n">smf_period</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">smf_period</span><span class="p">,</span>
+                    <span class="n">smf_frame_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">smf_frame_type</span><span class="p">,</span>
+                    <span class="n">smf_bandwidth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">smf_bandwidth</span><span class="p">,</span>
+                    <span class="n">smf_pilot_density</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">smf_pilot_density</span><span class="p">,</span>
+                    <span class="n">access_link_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">access_link_id</span><span class="p">,</span>
+                    <span class="n">access_period</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">access_period</span><span class="p">,</span>
+                    <span class="n">access_timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">access_timeout</span><span class="p">,</span>
+                    <span class="n">sleep_clock_accuracy</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sleep_clock_accuracy</span><span class="p">,</span>
+                    <span class="n">access_crc_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">access_crc_type</span><span class="p">,</span>
+                    <span class="n">access_crc_init</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">access_crc_init</span><span class="p">,</span>
+                    <span class="n">hop_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hop_map</span><span class="p">,</span>
+                    <span class="n">smf_channel_count</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">smf_channel_table</span><span class="p">),</span>
+                    <span class="n">smf_channel_table</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">smf_channel_table</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="n">data_items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="p">(</span><span class="n">BroadcastDataType</span><span class="o">.</span><span class="n">ACCESS_BASIC</span><span class="p">,</span> <span class="n">access_basic</span><span class="o">.</span><span class="n">pack</span><span class="p">())</span>
+                <span class="p">)</span>
+
+        <span class="n">response_frame</span> <span class="o">=</span> <span class="n">BroadcastFrame</span><span class="p">(</span>
+            <span class="n">structure_indication</span><span class="o">=</span><span class="mh">0x11</span><span class="p">,</span>
+            <span class="n">local_addr_type</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">peer_addr_type</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">local_addr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">local_address</span><span class="p">,</span>
+            <span class="n">irk_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">peer_addr</span><span class="o">=</span><span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">6</span><span class="p">,</span>
+            <span class="n">data_items</span><span class="o">=</span><span class="n">data_items</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># 驱动状态机</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">link_manager</span><span class="o">.</span><span class="n">local_address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_address</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">link_manager</span><span class="o">.</span><span class="n">process_event</span><span class="p">(</span><span class="n">Event</span><span class="p">(</span>
+            <span class="n">EventType</span><span class="o">.</span><span class="n">ACCESS_REQUEST_RECEIVED</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;accepted&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="n">broadcaster_role</span><span class="p">,</span>
+                <span class="s2">&quot;peer_address&quot;</span><span class="p">:</span> <span class="n">peer_address</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_phase</span> <span class="o">=</span> <span class="n">AccessPhase</span><span class="o">.</span><span class="n">COMPLETED</span>
+        <span class="k">return</span> <span class="n">response_frame</span><span class="p">,</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="BroadcasterAccessManager.reject_access_request">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.BroadcasterAccessManager.reject_access_request">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reject_access_request</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">peer_address</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">6</span><span class="p">,</span>
+        <span class="n">reason</span><span class="p">:</span> <span class="n">AccessResponseType</span> <span class="o">=</span> <span class="n">AccessResponseType</span><span class="o">.</span><span class="n">USER_REJECT</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BroadcastFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;拒绝接入请求。</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            peer_address: 请求方 MAC 地址。</span>
+<span class="sd">            reason: 拒绝原因。</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            包含拒绝响应的帧。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">response_entry</span> <span class="o">=</span> <span class="n">AccessResponseEntry</span><span class="p">(</span>
+            <span class="n">peer_addr</span><span class="o">=</span><span class="n">peer_address</span><span class="p">,</span>
+            <span class="n">response_type</span><span class="o">=</span><span class="n">reason</span><span class="p">,</span>
+            <span class="n">peer_addr_type</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">repeat_indication</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">response_info</span> <span class="o">=</span> <span class="n">AccessResponseInfo</span><span class="p">(</span>
+            <span class="n">entries</span><span class="o">=</span><span class="p">[</span><span class="n">response_entry</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">BroadcastFrame</span><span class="p">(</span>
+            <span class="n">structure_indication</span><span class="o">=</span><span class="mh">0x11</span><span class="p">,</span>
+            <span class="n">local_addr_type</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">peer_addr_type</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">local_addr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">local_address</span><span class="p">,</span>
+            <span class="n">irk_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">peer_addr</span><span class="o">=</span><span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">6</span><span class="p">,</span>
+            <span class="n">data_items</span><span class="o">=</span><span class="p">[</span>
+                <span class="p">(</span><span class="n">BroadcastDataType</span><span class="o">.</span><span class="n">ACCESS_RESPONSE</span><span class="p">,</span> <span class="n">response_info</span><span class="o">.</span><span class="n">pack</span><span class="p">()),</span>
+            <span class="p">],</span>
+        <span class="p">)</span></div>
+</div>
+
+
+
+<span class="c1"># ── 接入发起方管理 ──</span>
+
+
+<div class="viewcode-block" id="InitiatorAccessManager">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.InitiatorAccessManager">[文档]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">InitiatorAccessManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;接入发起方管理器 (标准 7.1.3 阶段 b/d)。</span>
+
+<span class="sd">    职责:</span>
+<span class="sd">    - 解析收到的扩展广播帧</span>
+<span class="sd">    - 构造接入请求</span>
+<span class="sd">    - 处理接入响应</span>
+<span class="sd">    - 完成 GT 角色协商</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">config</span><span class="p">:</span> <span class="n">AccessConfig</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">AccessConfig</span><span class="p">)</span>
+    <span class="n">link_manager</span><span class="p">:</span> <span class="n">LinkManager</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">LinkManager</span><span class="p">)</span>
+    <span class="n">local_address</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">6</span>
+    <span class="n">whitelist</span><span class="p">:</span> <span class="n">AccessWhitelist</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">AccessWhitelist</span><span class="p">)</span>
+    <span class="c1"># 解析出的广播方信息</span>
+    <span class="n">_adv_frame</span><span class="p">:</span> <span class="n">BroadcastFrame</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_discovery_config</span><span class="p">:</span> <span class="n">DiscoveryAccessResourceConfig</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_phase</span><span class="p">:</span> <span class="n">AccessPhase</span> <span class="o">=</span> <span class="n">AccessPhase</span><span class="o">.</span><span class="n">IDLE</span>
+    <span class="n">_retry_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+
+<div class="viewcode-block" id="InitiatorAccessManager.process_ext_adv">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.InitiatorAccessManager.process_ext_adv">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">process_ext_adv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="n">BroadcastFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;处理收到的可接入扩展广播帧 (阶段 b 准备)。</span>
+
+<span class="sd">        解析发现接入资源配置, 提取请求窗口参数。</span>
+<span class="sd">        白名单启用时, 仅处理白名单中设备的广播帧 (7.1.6)。</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            frame: 收到的广播帧。</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            True 表示帧中包含有效的接入资源配置。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># 白名单检查 (7.1.6)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">whitelist</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">local_addr</span><span class="p">):</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;广播帧被白名单过滤: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="o">.</span><span class="n">local_addr</span><span class="o">.</span><span class="n">hex</span><span class="p">())</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_adv_frame</span> <span class="o">=</span> <span class="n">frame</span>
+        <span class="k">for</span> <span class="n">data_type</span><span class="p">,</span> <span class="n">data_bytes</span> <span class="ow">in</span> <span class="n">frame</span><span class="o">.</span><span class="n">data_items</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="n">BroadcastDataType</span><span class="o">.</span><span class="n">DISCOVERY_ACCESS_RESOURCE</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_discovery_config</span> <span class="o">=</span> <span class="n">DiscoveryAccessResourceConfig</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span>
+                    <span class="n">data_bytes</span>
+                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_phase</span> <span class="o">=</span> <span class="n">AccessPhase</span><span class="o">.</span><span class="n">REQ_WINDOW</span>
+                <span class="c1"># 通知 link_manager</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">link_manager</span><span class="o">.</span><span class="n">process_event</span><span class="p">(</span><span class="n">Event</span><span class="p">(</span>
+                    <span class="n">EventType</span><span class="o">.</span><span class="n">BROADCAST_RECEIVED</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">frame</span><span class="p">,</span>
+                <span class="p">))</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="InitiatorAccessManager.build_access_request">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.InitiatorAccessManager.build_access_request">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">build_access_request</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;构造接入请求帧数据 (阶段 b)。</span>
+
+<span class="sd">        根据本地角色偏好构建 AccessRequestInfo。</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            接入请求帧的序列化数据。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">gt_flag</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">gt_preference</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">gt_negotiable</span><span class="p">:</span>
+            <span class="n">gt_flag</span> <span class="o">|=</span> <span class="mh">0x02</span>
+
+        <span class="n">req</span> <span class="o">=</span> <span class="n">AccessRequestInfo</span><span class="p">(</span>
+            <span class="n">structure_indication</span><span class="o">=</span><span class="mh">0xFF</span><span class="p">,</span>  <span class="c1"># 所有字段均存在</span>
+            <span class="n">gt_role</span><span class="o">=</span><span class="n">gt_flag</span><span class="p">,</span>
+            <span class="n">frame_support</span><span class="o">=</span><span class="mh">0x0F</span><span class="p">,</span>          <span class="c1"># 支持 FT1-4</span>
+            <span class="n">bandwidth_support</span><span class="o">=</span><span class="mh">0x07</span><span class="p">,</span>      <span class="c1"># 支持 1M/2M/4M</span>
+            <span class="n">mcs_support</span><span class="o">=</span><span class="mh">0x1FFF</span><span class="p">,</span>          <span class="c1"># 支持所有 MCS</span>
+            <span class="n">pilot_support</span><span class="o">=</span><span class="mh">0x0F</span><span class="p">,</span>          <span class="c1"># 四种导频密度</span>
+            <span class="n">slot_support</span><span class="o">=</span><span class="mh">0x1F</span><span class="p">,</span>           <span class="c1"># 五种调度时隙</span>
+            <span class="n">switch_delay</span><span class="o">=</span><span class="mh">0x00</span><span class="p">,</span>           <span class="c1"># 125μs</span>
+            <span class="n">crc_support</span><span class="o">=</span><span class="mh">0x03</span><span class="p">,</span>            <span class="c1"># CRC24 + CRC32</span>
+        <span class="p">)</span>
+
+        <span class="c1"># 驱动状态机</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">link_manager</span><span class="o">.</span><span class="n">process_event</span><span class="p">(</span><span class="n">Event</span><span class="p">(</span>
+            <span class="n">EventType</span><span class="o">.</span><span class="n">SEND_ACCESS_REQUEST</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;peer_address&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_adv_frame</span><span class="o">.</span><span class="n">local_addr</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_adv_frame</span> <span class="k">else</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="n">Role</span><span class="o">.</span><span class="n">G_NODE</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">gt_preference</span> <span class="o">==</span> <span class="mi">1</span>
+                <span class="k">else</span> <span class="n">Role</span><span class="o">.</span><span class="n">T_NODE</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">req</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="InitiatorAccessManager.handle_access_response">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.InitiatorAccessManager.handle_access_response">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_access_response</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">response_data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Role</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;处理接入响应 (阶段 d)。</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            response_data: 接入响应帧完整数据 (BroadcastFrame.pack() 格式)。</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (最终角色, 链路参数字典)。角色为 None 表示接入被拒绝。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">BroadcastFrame</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">response_data</span><span class="p">)</span>
+        <span class="n">link_params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">response_accepted</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">final_role</span><span class="p">:</span> <span class="n">Role</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">for</span> <span class="n">data_type</span><span class="p">,</span> <span class="n">data_bytes</span> <span class="ow">in</span> <span class="n">frame</span><span class="o">.</span><span class="n">data_items</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="n">BroadcastDataType</span><span class="o">.</span><span class="n">ACCESS_RESPONSE</span><span class="p">:</span>
+                <span class="n">resp</span> <span class="o">=</span> <span class="n">AccessResponseInfo</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">data_bytes</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">entries</span> <span class="ow">and</span> <span class="n">resp</span><span class="o">.</span><span class="n">entries</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">response_type</span> <span class="o">==</span> \
+                        <span class="n">AccessResponseType</span><span class="o">.</span><span class="n">ACCEPT</span><span class="p">:</span>
+                    <span class="n">response_accepted</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">response_accepted</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="k">elif</span> <span class="n">data_type</span> <span class="o">==</span> <span class="n">BroadcastDataType</span><span class="o">.</span><span class="n">ACCESS_BASIC</span><span class="p">:</span>
+                <span class="n">access_info</span> <span class="o">=</span> <span class="n">AccessBasicInfo</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">data_bytes</span><span class="p">)</span>
+                <span class="n">link_params</span><span class="p">[</span><span class="s2">&quot;smf_baseline_slot&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">access_info</span><span class="o">.</span><span class="n">smf_baseline_slot</span>
+                <span class="n">link_params</span><span class="p">[</span><span class="s2">&quot;smf_offset&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">access_info</span><span class="o">.</span><span class="n">smf_offset</span>
+                <span class="n">link_params</span><span class="p">[</span><span class="s2">&quot;smf_link_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">access_info</span><span class="o">.</span><span class="n">smf_link_id</span>
+                <span class="n">link_params</span><span class="p">[</span><span class="s2">&quot;access_link_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">access_info</span><span class="o">.</span><span class="n">access_link_id</span>
+                <span class="n">link_params</span><span class="p">[</span><span class="s2">&quot;supervision_timeout&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="n">access_info</span><span class="o">.</span><span class="n">access_timeout</span> <span class="o">*</span> <span class="mi">10</span>
+                <span class="p">)</span>
+                <span class="n">link_params</span><span class="p">[</span><span class="s2">&quot;crc_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">access_info</span><span class="o">.</span><span class="n">access_crc_type</span>
+                <span class="n">link_params</span><span class="p">[</span><span class="s2">&quot;hop_map&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">access_info</span><span class="o">.</span><span class="n">hop_map</span>
+
+            <span class="k">elif</span> <span class="n">data_type</span> <span class="o">==</span> <span class="n">BroadcastDataType</span><span class="o">.</span><span class="n">TRANSPORT_INDICATION</span><span class="p">:</span>
+                <span class="n">ti</span> <span class="o">=</span> <span class="n">TransportIndicationInfo</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">data_bytes</span><span class="p">)</span>
+                <span class="n">link_params</span><span class="p">[</span><span class="s2">&quot;event_group_period&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ti</span><span class="o">.</span><span class="n">event_group_period</span>
+                <span class="n">link_params</span><span class="p">[</span><span class="s2">&quot;event_period&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ti</span><span class="o">.</span><span class="n">event_period</span>
+
+        <span class="k">if</span> <span class="n">response_accepted</span><span class="p">:</span>
+            <span class="c1"># 确定最终角色: 响应中有 AccessBasicInfo 说明对端是 G 节点</span>
+            <span class="k">if</span> <span class="n">BroadcastDataType</span><span class="o">.</span><span class="n">ACCESS_BASIC</span> <span class="ow">in</span> \
+                    <span class="p">[</span><span class="n">dt</span> <span class="k">for</span> <span class="n">dt</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">frame</span><span class="o">.</span><span class="n">data_items</span><span class="p">]:</span>
+                <span class="n">final_role</span> <span class="o">=</span> <span class="n">Role</span><span class="o">.</span><span class="n">T_NODE</span>  <span class="c1"># 对端 G, 本端 T</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">final_role</span> <span class="o">=</span> <span class="n">Role</span><span class="o">.</span><span class="n">G_NODE</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">gt_preference</span> <span class="o">==</span> <span class="mi">1</span> \
+                    <span class="k">else</span> <span class="n">Role</span><span class="o">.</span><span class="n">T_NODE</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">link_manager</span><span class="o">.</span><span class="n">process_event</span><span class="p">(</span><span class="n">Event</span><span class="p">(</span>
+                <span class="n">EventType</span><span class="o">.</span><span class="n">ACCESS_RESPONSE_RECEIVED</span><span class="p">,</span>
+                <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;accepted&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="n">final_role</span><span class="p">},</span>
+            <span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_phase</span> <span class="o">=</span> <span class="n">AccessPhase</span><span class="o">.</span><span class="n">COMPLETED</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_retry_count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">link_manager</span><span class="o">.</span><span class="n">process_event</span><span class="p">(</span><span class="n">Event</span><span class="p">(</span>
+                <span class="n">EventType</span><span class="o">.</span><span class="n">ACCESS_RESPONSE_RECEIVED</span><span class="p">,</span>
+                <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;accepted&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+            <span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_phase</span> <span class="o">=</span> <span class="n">AccessPhase</span><span class="o">.</span><span class="n">IDLE</span>
+
+        <span class="k">return</span> <span class="n">final_role</span><span class="p">,</span> <span class="n">link_params</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">can_retry</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;是否还能重试接入。&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retry_count</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">max_retries</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">discovery_config</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DiscoveryAccessResourceConfig</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_discovery_config</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">phase</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AccessPhase</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_phase</span></div>
+
+
+
+<span class="c1"># ── 非链接态广播管理 (7.1.7.2) ──</span>
+
+
+<div class="viewcode-block" id="NonConnectedBroadcastConfig">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.NonConnectedBroadcastConfig">[文档]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">NonConnectedBroadcastConfig</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;非链接态广播传输配置。&quot;&quot;&quot;</span>
+    <span class="c1"># 广播链路信息</span>
+    <span class="n">transmission_type</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>           <span class="c1"># 0=异步, 1=同步</span>
+    <span class="n">service_adapt_mode</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>          <span class="c1"># 0=周期, 1=非周期</span>
+    <span class="n">system_slot_seq</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">event_group_offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">event_group_set_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">event_group_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">event_group_interval</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">event_group_period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">160</span>
+    <span class="n">event_period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">40</span>
+    <span class="n">event_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">sync_anchor_delay</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">sync_ref_delay</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">base_link_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mh">0x000001</span>
+    <span class="n">frame_type</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">bandwidth</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">pilot_density</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">sdu_max</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">128</span>
+    <span class="n">sdu_period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span>
+    <span class="n">pdu_max</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">256</span>
+    <span class="n">new_packet_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">crc_type</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">crc_base_init</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">hop_map</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\xFF</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">10</span>
+    <span class="n">is_5g</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="c1"># 系统管理帧信息</span>
+    <span class="n">smf_baseline_slot</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">smf_offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">300</span>
+    <span class="n">smf_access_addr</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mh">0x000001</span>
+    <span class="n">smf_period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">800</span>
+    <span class="n">smf_frame_type</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">smf_bandwidth</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">smf_pilot_density</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">smf_channel_table</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00\x01\x02</span><span class="s2">&quot;</span>
+    <span class="c1"># 加密参数 (可选)</span>
+    <span class="n">encrypted</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">giv</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+    <span class="n">gskd</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="NonConnectedBroadcastManager">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.NonConnectedBroadcastManager">[文档]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">NonConnectedBroadcastManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;非链接态广播管理器 (标准 7.1.7.2)。</span>
+
+<span class="sd">    通过携带非链接态广播信息和启动系统管理帧信息的扩展广播帧</span>
+<span class="sd">    建立非链接态广播传输。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">config</span><span class="p">:</span> <span class="n">NonConnectedBroadcastConfig</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default_factory</span><span class="o">=</span><span class="n">NonConnectedBroadcastConfig</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">local_address</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">6</span>
+
+<div class="viewcode-block" id="NonConnectedBroadcastManager.build_non_connected_broadcast_frame">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.NonConnectedBroadcastManager.build_non_connected_broadcast_frame">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">build_non_connected_broadcast_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BroadcastFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;构建携带非链接态广播信息的扩展广播帧。</span>
+
+<span class="sd">        帧中包含两种数据:</span>
+<span class="sd">        - UNLINKED_BROADCAST_LINK (0x06): NonLinkedBroadcastLinkInfo</span>
+<span class="sd">        - SYSTEM_MGMT_FRAME (0x05): SystemMgmtFrameInfo</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            构建好的 BroadcastFrame。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
+
+        <span class="n">link_info</span> <span class="o">=</span> <span class="n">NonLinkedBroadcastLinkInfo</span><span class="p">(</span>
+            <span class="n">transmission_type</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">transmission_type</span><span class="p">,</span>
+            <span class="n">service_adapt_mode</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">service_adapt_mode</span><span class="p">,</span>
+            <span class="n">system_slot_seq</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">system_slot_seq</span><span class="p">,</span>
+            <span class="n">event_group_offset</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">event_group_offset</span><span class="p">,</span>
+            <span class="n">event_group_set_id</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">event_group_set_id</span><span class="p">,</span>
+            <span class="n">event_group_count</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">event_group_count</span><span class="p">,</span>
+            <span class="n">event_group_interval</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">event_group_interval</span><span class="p">,</span>
+            <span class="n">event_group_period</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">event_group_period</span><span class="p">,</span>
+            <span class="n">event_period</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">event_period</span><span class="p">,</span>
+            <span class="n">event_count</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">event_count</span><span class="p">,</span>
+            <span class="n">sync_anchor_delay</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">sync_anchor_delay</span><span class="p">,</span>
+            <span class="n">sync_ref_delay</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">sync_ref_delay</span><span class="p">,</span>
+            <span class="n">base_link_id</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">base_link_id</span><span class="p">,</span>
+            <span class="n">frame_type</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">frame_type</span><span class="p">,</span>
+            <span class="n">bandwidth</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">bandwidth</span><span class="p">,</span>
+            <span class="n">pilot_density</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">pilot_density</span><span class="p">,</span>
+            <span class="n">sdu_max</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">sdu_max</span><span class="p">,</span>
+            <span class="n">sdu_period</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">sdu_period</span><span class="p">,</span>
+            <span class="n">pdu_max</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">pdu_max</span><span class="p">,</span>
+            <span class="n">new_packet_count</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">new_packet_count</span><span class="p">,</span>
+            <span class="n">crc_type</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">crc_type</span><span class="p">,</span>
+            <span class="n">crc_base_init</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">crc_base_init</span><span class="p">,</span>
+            <span class="n">hop_map</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">hop_map</span><span class="p">,</span>
+            <span class="n">giv</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">giv</span> <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">encrypted</span> <span class="k">else</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="n">gskd</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">gskd</span> <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">encrypted</span> <span class="k">else</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="n">is_5g</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">is_5g</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">smf_info</span> <span class="o">=</span> <span class="n">SystemMgmtFrameInfo</span><span class="p">(</span>
+            <span class="n">baseline_slot</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">smf_baseline_slot</span><span class="p">,</span>
+            <span class="n">offset</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">smf_offset</span><span class="p">,</span>
+            <span class="n">access_addr</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">smf_access_addr</span><span class="p">,</span>
+            <span class="n">period</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">smf_period</span><span class="p">,</span>
+            <span class="n">frame_type</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">smf_frame_type</span><span class="p">,</span>
+            <span class="n">bandwidth</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">smf_bandwidth</span><span class="p">,</span>
+            <span class="n">pilot_density</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">smf_pilot_density</span><span class="p">,</span>
+            <span class="n">channel_count</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">smf_channel_table</span><span class="p">),</span>
+            <span class="n">channel_table</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">smf_channel_table</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">data_items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="n">BroadcastDataType</span><span class="o">.</span><span class="n">UNLINKED_BROADCAST_LINK</span><span class="p">,</span> <span class="n">link_info</span><span class="o">.</span><span class="n">pack</span><span class="p">()),</span>
+            <span class="p">(</span><span class="n">BroadcastDataType</span><span class="o">.</span><span class="n">SYSTEM_MGMT_FRAME</span><span class="p">,</span> <span class="n">smf_info</span><span class="o">.</span><span class="n">pack</span><span class="p">()),</span>
+        <span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">BroadcastFrame</span><span class="p">(</span>
+            <span class="n">structure_indication</span><span class="o">=</span><span class="mh">0x11</span><span class="p">,</span>
+            <span class="n">local_addr_type</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">peer_addr_type</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">local_addr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">local_address</span><span class="p">,</span>
+            <span class="n">irk_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">peer_addr</span><span class="o">=</span><span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">6</span><span class="p">,</span>
+            <span class="n">data_items</span><span class="o">=</span><span class="n">data_items</span><span class="p">,</span>
+        <span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="NonConnectedBroadcastResult">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.NonConnectedBroadcastResult">[文档]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">NonConnectedBroadcastResult</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;解析非链接态广播帧的结果。&quot;&quot;&quot;</span>
+    <span class="n">link_info</span><span class="p">:</span> <span class="n">NonLinkedBroadcastLinkInfo</span>
+    <span class="n">smf_info</span><span class="p">:</span> <span class="n">SystemMgmtFrameInfo</span>
+    <span class="n">broadcaster_addr</span><span class="p">:</span> <span class="nb">bytes</span></div>
+
+
+
+<div class="viewcode-block" id="parse_non_connected_broadcast">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.parse_non_connected_broadcast">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">parse_non_connected_broadcast</span><span class="p">(</span>
+    <span class="n">frame</span><span class="p">:</span> <span class="n">BroadcastFrame</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NonConnectedBroadcastResult</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;解析扩展广播帧中的非链接态广播信息 (7.1.7.2)。</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        frame: 收到的扩展广播帧。</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        解析结果; 若帧中不包含非链接态广播信息则返回 None。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">link_info</span><span class="p">:</span> <span class="n">NonLinkedBroadcastLinkInfo</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">smf_info</span><span class="p">:</span> <span class="n">SystemMgmtFrameInfo</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">for</span> <span class="n">data_type</span><span class="p">,</span> <span class="n">data_bytes</span> <span class="ow">in</span> <span class="n">frame</span><span class="o">.</span><span class="n">data_items</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="n">BroadcastDataType</span><span class="o">.</span><span class="n">UNLINKED_BROADCAST_LINK</span><span class="p">:</span>
+            <span class="n">link_info</span> <span class="o">=</span> <span class="n">NonLinkedBroadcastLinkInfo</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">data_bytes</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">data_type</span> <span class="o">==</span> <span class="n">BroadcastDataType</span><span class="o">.</span><span class="n">SYSTEM_MGMT_FRAME</span><span class="p">:</span>
+            <span class="n">smf_info</span> <span class="o">=</span> <span class="n">SystemMgmtFrameInfo</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">data_bytes</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">link_info</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">smf_info</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="n">NonConnectedBroadcastResult</span><span class="p">(</span>
+        <span class="n">link_info</span><span class="o">=</span><span class="n">link_info</span><span class="p">,</span>
+        <span class="n">smf_info</span><span class="o">=</span><span class="n">smf_info</span><span class="p">,</span>
+        <span class="n">broadcaster_addr</span><span class="o">=</span><span class="n">frame</span><span class="o">.</span><span class="n">local_addr</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<span class="c1"># ── 端到端接入流程 (仿真/测试用) ──</span>
+
+
+<div class="viewcode-block" id="run_access_procedure">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.run_access_procedure">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_access_procedure</span><span class="p">(</span>
+    <span class="n">broadcaster_addr</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x01\x02\x03\x04\x05\x06</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">initiator_addr</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x0A\x0B\x0C\x0D\x0E\x0F</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">broadcaster_config</span><span class="p">:</span> <span class="n">AccessConfig</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">initiator_config</span><span class="p">:</span> <span class="n">AccessConfig</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">broadcaster_use_smf</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">BroadcasterAccessManager</span><span class="p">,</span> <span class="n">InitiatorAccessManager</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;执行完整的端到端接入流程 (标准 7.1.3 阶段 a-e)。</span>
+
+<span class="sd">    用于仿真和集成测试, 不涉及实际射频传输。</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        broadcaster_addr: 广播方 MAC 地址。</span>
+<span class="sd">        initiator_addr: 发起方 MAC 地址。</span>
+<span class="sd">        broadcaster_config: 广播方配置。</span>
+<span class="sd">        initiator_config: 发起方配置。</span>
+<span class="sd">        broadcaster_use_smf: 是否使用系统管理帧模式。</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (广播方管理器, 发起方管理器) 二元组,</span>
+<span class="sd">        两者的 link_manager 在成功时均处于 CONNECTED 状态。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">broadcaster_config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">broadcaster_config</span> <span class="o">=</span> <span class="n">AccessConfig</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">initiator_config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">initiator_config</span> <span class="o">=</span> <span class="n">AccessConfig</span><span class="p">()</span>
+
+    <span class="c1"># 初始化广播方: IDLE → BROADCASTING</span>
+    <span class="n">b_mgr</span> <span class="o">=</span> <span class="n">BroadcasterAccessManager</span><span class="p">(</span>
+        <span class="n">config</span><span class="o">=</span><span class="n">broadcaster_config</span><span class="p">,</span>
+        <span class="n">local_address</span><span class="o">=</span><span class="n">broadcaster_addr</span><span class="p">,</span>
+        <span class="n">use_smf</span><span class="o">=</span><span class="n">broadcaster_use_smf</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">b_mgr</span><span class="o">.</span><span class="n">link_manager</span><span class="o">.</span><span class="n">local_address</span> <span class="o">=</span> <span class="n">broadcaster_addr</span>
+    <span class="n">b_mgr</span><span class="o">.</span><span class="n">link_manager</span><span class="o">.</span><span class="n">process_event</span><span class="p">(</span><span class="n">Event</span><span class="p">(</span><span class="n">EventType</span><span class="o">.</span><span class="n">START_BROADCAST</span><span class="p">))</span>
+
+    <span class="c1"># 初始化发起方: IDLE → SCANNING</span>
+    <span class="n">i_mgr</span> <span class="o">=</span> <span class="n">InitiatorAccessManager</span><span class="p">(</span>
+        <span class="n">config</span><span class="o">=</span><span class="n">initiator_config</span><span class="p">,</span>
+        <span class="n">local_address</span><span class="o">=</span><span class="n">initiator_addr</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">i_mgr</span><span class="o">.</span><span class="n">link_manager</span><span class="o">.</span><span class="n">local_address</span> <span class="o">=</span> <span class="n">initiator_addr</span>
+    <span class="n">i_mgr</span><span class="o">.</span><span class="n">link_manager</span><span class="o">.</span><span class="n">process_event</span><span class="p">(</span><span class="n">Event</span><span class="p">(</span><span class="n">EventType</span><span class="o">.</span><span class="n">START_SCAN</span><span class="p">))</span>
+
+    <span class="c1"># 阶段 a: 广播方构建扩展广播帧</span>
+    <span class="n">ext_adv_frame</span> <span class="o">=</span> <span class="n">b_mgr</span><span class="o">.</span><span class="n">build_ext_adv_frame</span><span class="p">()</span>
+
+    <span class="c1"># 阶段 b: 发起方收到广播帧, 解析并发送接入请求</span>
+    <span class="n">i_mgr</span><span class="o">.</span><span class="n">process_ext_adv</span><span class="p">(</span><span class="n">ext_adv_frame</span><span class="p">)</span>
+    <span class="n">request_data</span> <span class="o">=</span> <span class="n">i_mgr</span><span class="o">.</span><span class="n">build_access_request</span><span class="p">()</span>
+
+    <span class="c1"># 阶段 c: 广播方收到请求, 生成响应</span>
+    <span class="n">response_frame</span><span class="p">,</span> <span class="n">_accepted</span> <span class="o">=</span> <span class="n">b_mgr</span><span class="o">.</span><span class="n">handle_access_request</span><span class="p">(</span>
+        <span class="n">request_data</span><span class="p">,</span> <span class="n">peer_address</span><span class="o">=</span><span class="n">initiator_addr</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># 阶段 d/e: 发起方收到响应</span>
+    <span class="k">if</span> <span class="n">response_frame</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">response_bytes</span> <span class="o">=</span> <span class="n">response_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
+        <span class="n">i_mgr</span><span class="o">.</span><span class="n">handle_access_response</span><span class="p">(</span><span class="n">response_bytes</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">b_mgr</span><span class="p">,</span> <span class="n">i_mgr</span></div>
+
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/sanchuanhehe/nearlink_sdr_sim" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82 .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="../../../_static/documentation_options.js?v=95736de2"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.esm.min.mjs";
+
+
+
+
+
+const initStyles = () => {
+    const defaultStyle = document.createElement('style');
+    defaultStyle.textContent = `pre.mermaid {
+    /* Same as .mermaid-container > pre */
+    display: block;
+    width: 100%;
+}
+
+pre.mermaid > svg {
+    /* Same as .mermaid-container > pre > svg */
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}`;
+    document.head.appendChild(defaultStyle);
+
+    const fullscreenStyle = document.createElement('style');
+    fullscreenStyle.textContent = `.mermaid-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.mermaid-container > pre {
+    display: block;
+    width: 100%;
+}
+
+.mermaid-container > pre > svg {
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}
+
+.mermaid-fullscreen-btn {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+    color: #333;
+}
+
+.mermaid-fullscreen-btn:hover {
+    opacity: 100% !important;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-btn.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-btn.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 95vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    z-index: 9999;
+    padding: 20px;
+    overflow: auto;
+}
+
+.mermaid-fullscreen-modal.dark-theme {
+    background: rgba(0, 0, 0, 0.98);
+}
+
+.mermaid-fullscreen-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen {
+    position: relative;
+    width: 95vw;
+    height: 90vh;
+    max-width: 95vw;
+    max-height: 90vh;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen.dark-theme {
+    background: #1a1a1a;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.mermaid-container-fullscreen pre.mermaid {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen .mermaid svg {
+    height: 100% !important;
+    width: 100% !important;
+    cursor: grab;
+}
+
+.mermaid-fullscreen-close {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s;
+    font-size: 24px;
+    line-height: 1;
+    color: #333;
+}
+
+.mermaid-fullscreen-close:hover {
+    background: white;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-close.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-close.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal .mermaid-fullscreen-btn {
+    display: none !important;
+}`;
+    document.head.appendChild(fullscreenStyle);
+}
+
+// Detect if page has dark background
+const isDarkTheme = () => {
+    // We use a set of heuristics:
+    // 1. Check for common dark mode classes or attributes
+    // 2. Check computed background color brightness
+    if (document.documentElement.classList.contains('dark') ||
+        document.documentElement.getAttribute('data-theme') === 'dark' ||
+        document.body.classList.contains('dark') ||
+        document.body.getAttribute('data-theme') === 'dark') {
+        // console.log("Dark theme detected via class/attribute");
+        return true;
+    }
+    if (document.documentElement.classList.contains('light') ||
+        document.documentElement.getAttribute('data-theme') === 'light' ||
+        document.body.classList.contains('light') ||
+        document.body.getAttribute('data-theme') === 'light') {
+        // console.log("Light theme detected via class/attribute");
+        return false;
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // console.log("Dark theme detected via prefers-color-scheme");
+        return true;
+    }
+    const bgColor = window.getComputedStyle(document.body).backgroundColor;
+    const match = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)/);
+    if (match) {
+        const r = parseInt(match[1]);
+        const g = parseInt(match[2]);
+        const b = parseInt(match[3]);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        // console.log("Background color brightness:", brightness);
+        return brightness < 128;
+    }
+    // console.log("No dark or light theme detected, defaulting to light theme");
+    return false;
+};
+
+let darkTheme = isDarkTheme();
+let modal = null;
+let modalContent = null;
+let previousScrollOffset = [window.scrollX, window.scrollY];
+
+const runMermaid = async (rerun) => {
+    console.log("Running mermaid diagrams, rerun =", rerun);
+    // clear all existing mermaid charts
+    let all_mermaids = document.querySelectorAll(".mermaid");
+
+    if (rerun) {
+        all_mermaids.forEach((el) => {
+            if(!el.hasAttribute("data-original-code")) {
+                // store original code
+                // console.log(`Storing original code for first run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+            if(el.getAttribute("data-processed") === "true") {
+                // remove and restore original
+                el.removeAttribute("data-processed");
+                // console.log(`Restoring original code for re-run: `, el.getAttribute('data-original-code'));
+                el.innerHTML = el.getAttribute('data-original-code');
+            } else {
+                // store original code
+                // console.log(`Storing original code for re-run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+        });
+        await mermaid.run();
+    }
+
+    all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+
+    if ("False" === "True") {
+        const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+        if(mermaids_to_add_zoom > 0) {
+            var svgs = d3.selectAll("");
+            if(all_mermaids.length !== mermaids_processed.length) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else if(svgs.size() !== mermaids_to_add_zoom) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else {
+                svgs.each(function() {
+                    var svg = d3.select(this);
+                    svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                    var inner = svg.select("g");
+                    var zoom = d3.zoom().on("zoom", function(event) {
+                        inner.attr("transform", event.transform);
+                    });
+                    svg.call(zoom);
+                });
+            }
+        }
+    } else if(all_mermaids.length !== mermaids_processed.length) {
+        // Wait for mermaid to process all diagrams
+        setTimeout(() => runMermaid(false), 200);
+        return;
+    }
+
+    // Stop here if not adding fullscreen capability
+    if ("True" !== "True") return;
+
+    if (modal !== null ) {
+        // Destroy existing modal
+        modal.remove();
+        modal = null;
+        modalContent = null;
+    }
+
+    modal = document.createElement('div');
+    modal.className = 'mermaid-fullscreen-modal' + (darkTheme ? ' dark-theme' : '');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Fullscreen diagram viewer');
+    modal.innerHTML = `
+        <button class="mermaid-fullscreen-close${darkTheme ? ' dark-theme' : ''}" aria-label="Close fullscreen">✕</button>
+        <div class="mermaid-container-fullscreen${darkTheme ? ' dark-theme' : ''}"></div>
+    `;
+    document.body.appendChild(modal);
+
+    modalContent = modal.querySelector('.mermaid-container-fullscreen');
+    const closeBtn = modal.querySelector('.mermaid-fullscreen-close');
+
+    const closeModal = () => {
+        modal.classList.remove('active');
+        modalContent.innerHTML = '';
+        document.body.style.overflow = ''
+        window.scrollTo({left: previousScrollOffset[0], top: previousScrollOffset[1], behavior: 'instant'});
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    document.querySelectorAll('.mermaid').forEach((mermaidDiv) => {
+        if (mermaidDiv.parentNode.classList.contains('mermaid-container') ||
+            mermaidDiv.closest('.mermaid-fullscreen-modal')) {
+            // Already processed, adjust button class if needed
+            const existingBtn = mermaidDiv.parentNode.querySelector('.mermaid-fullscreen-btn');
+            if (existingBtn) {
+                existingBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+            }
+            return;
+        }
+
+        const container = document.createElement('div');
+        container.className = 'mermaid-container';
+        mermaidDiv.parentNode.insertBefore(container, mermaidDiv);
+        container.appendChild(mermaidDiv);
+
+        const fullscreenBtn = document.createElement('button');
+        fullscreenBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+        fullscreenBtn.setAttribute('aria-label', 'View diagram in fullscreen');
+        fullscreenBtn.textContent = '⛶';
+        fullscreenBtn.style.opacity = '50%';
+
+        // Calculate dynamic position based on diagram's margin and padding
+        const diagramStyle = window.getComputedStyle(mermaidDiv);
+        const marginTop = parseFloat(diagramStyle.marginTop) || 0;
+        const marginRight = parseFloat(diagramStyle.marginRight) || 0;
+        const paddingTop = parseFloat(diagramStyle.paddingTop) || 0;
+        const paddingRight = parseFloat(diagramStyle.paddingRight) || 0;
+        fullscreenBtn.style.top = `${marginTop + paddingTop + 4}px`;
+        fullscreenBtn.style.right = `${marginRight + paddingRight + 4}px`;
+
+        fullscreenBtn.addEventListener('click', () => {
+            previousScrollOffset = [window.scroll, window.scrollY];
+            const clone = mermaidDiv.cloneNode(true);
+            modalContent.innerHTML = '';
+            modalContent.appendChild(clone);
+
+            const svg = clone.querySelector('svg');
+            if (svg) {
+                svg.removeAttribute('width');
+                svg.removeAttribute('height');
+                svg.style.width = '100%';
+                svg.style.height = 'auto';
+                svg.style.maxWidth = '100%';
+                svg.style.sdisplay = 'block';
+
+                if ("False" === "True") {
+                    setTimeout(() => {
+                        const g = svg.querySelector('g');
+                        if (g) {
+                            var svgD3 = d3.select(svg);
+                            svgD3.html("<g class='wrapper'>" + svgD3.html() + "</g>");
+                            var inner = svgD3.select("g");
+                            var zoom = d3.zoom().on("zoom", function(event) {
+                                inner.attr("transform", event.transform);
+                            });
+                            svgD3.call(zoom);
+                        }
+                    }, 100);
+                }
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        container.appendChild(fullscreenBtn);
+    });
+};
+
+const load = async () => {
+    initStyles();
+
+    await runMermaid(true);
+
+    const reRunIfThemeChanges = async () => {
+        const newDarkTheme = isDarkTheme();
+        if (newDarkTheme !== darkTheme) {
+            darkTheme = newDarkTheme;
+            console.log("Theme change detected, re-running mermaid with", darkTheme ? "dark" : "default", "theme");
+            await mermaid.initialize(
+                {...JSON.parse(
+                    `{"startOnLoad": false}`
+                ),
+                ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+                }
+            );
+            await runMermaid(true);
+        }
+    };
+
+    // Update theme classes when theme changes
+    const themeObserver = new MutationObserver(reRunIfThemeChanges);
+    themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+    themeObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+};
+
+
+
+
+
+console.log("Initializing mermaid with", darkTheme ? "dark" : "default", "theme");
+mermaid.initialize(
+    {...JSON.parse(
+        `{"startOnLoad": false}`
+    ),
+    ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+    }
+);
+
+window.addEventListener("load", load);
+window.runMermaid = runMermaid;</script>
+    <script src="../../../_static/version-selector.js?v=7d36e42c"></script>
+    </body>
+</html>

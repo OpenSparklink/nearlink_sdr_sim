@@ -1,0 +1,89 @@
+# {py:mod}`nearlink_sdr.phy.pilot`
+
+```{py:module} nearlink_sdr.phy.pilot
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.pilot
+:allowtitles:
+```
+
+## Module Contents
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`pilot_symbol <nearlink_sdr.phy.pilot.pilot_symbol>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.pilot.pilot_symbol
+    :summary:
+    ```
+* - {py:obj}`insert_pilots <nearlink_sdr.phy.pilot.insert_pilots>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.pilot.insert_pilots
+    :summary:
+    ```
+* - {py:obj}`remove_pilots <nearlink_sdr.phy.pilot.remove_pilots>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.pilot.remove_pilots
+    :summary:
+    ```
+````
+
+### Data
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`PILOT_PHASE_DEG <nearlink_sdr.phy.pilot.PILOT_PHASE_DEG>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.pilot.PILOT_PHASE_DEG
+    :summary:
+    ```
+* - {py:obj}`EVEN_ROTATION_DEG <nearlink_sdr.phy.pilot.EVEN_ROTATION_DEG>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.pilot.EVEN_ROTATION_DEG
+    :summary:
+    ```
+````
+
+### API
+
+````{py:data} PILOT_PHASE_DEG
+:canonical: nearlink_sdr.phy.pilot.PILOT_PHASE_DEG
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.pilot.PILOT_PHASE_DEG
+```
+
+````
+
+````{py:data} EVEN_ROTATION_DEG
+:canonical: nearlink_sdr.phy.pilot.EVEN_ROTATION_DEG
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.pilot.EVEN_ROTATION_DEG
+```
+
+````
+
+````{py:function} pilot_symbol(mod_type: str, symbol_index: int) -> complex
+:canonical: nearlink_sdr.phy.pilot.pilot_symbol
+
+```{autodoc2-docstring} nearlink_sdr.phy.pilot.pilot_symbol
+```
+````
+
+````{py:function} insert_pilots(data_symbols: numpy.ndarray, pilot_interval: int, mod_type: str, start_symbol_index: int = 0, omit_last_pilot: bool = True) -> tuple[numpy.ndarray, int]
+:canonical: nearlink_sdr.phy.pilot.insert_pilots
+
+```{autodoc2-docstring} nearlink_sdr.phy.pilot.insert_pilots
+```
+````
+
+````{py:function} remove_pilots(symbols: numpy.ndarray, pilot_interval: int, last_pilot_omitted: bool = True) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.pilot.remove_pilots
+
+```{autodoc2-docstring} nearlink_sdr.phy.pilot.remove_pilots
+```
+````

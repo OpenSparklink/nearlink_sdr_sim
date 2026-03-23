@@ -1,0 +1,1365 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="nearlink_sdr.phy.measurement_tx" href="nearlink_sdr.phy.measurement_tx.html"><link rel="prev" title="nearlink_sdr.phy.pilot" href="nearlink_sdr.phy.pilot.html">
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
+        <title>nearlink_sdr.phy.data_link - nearlink-sdr 1.0.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/version-selector.css?v=022f18c6" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  --color-brand-primary: #1a73e8;
+  --color-brand-content: #1a73e8;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #8ab4f8;
+  --color-brand-content: #8ab4f8;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #8ab4f8;
+  --color-brand-content: #8ab4f8;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">nearlink-sdr 1.0.2 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.2 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/getting-started.html">Quick Start</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../how-to/index.html">How-To Guides</a><input aria-label="Toggle navigation of How-To Guides" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/run-simulation.html">Running Link Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/add-modulation.html">Adding a New Modulation Scheme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/qos-management.html">QoS Service Quality Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/node-usage.html">Using the SLE Node Entity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/rust-acceleration.html">Rust Acceleration Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/sdr-deployment.html">SDR E310 Deployment Planning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/build-docs.html">Building Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../../reference/index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 current has-children"><a class="reference internal" href="nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.demodulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.demodulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.modulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.modulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.rx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.sim.link_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.link_sim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.sim.usrp_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.usrp_sim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../explanation/index.html">Explanation</a><input aria-label="Toggle navigation of Explanation" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/overview.html">SparkLink SLE Protocol Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/principles.html">Physical Layer Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/physical-layer.html">Physical Layer Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/mac-layer.html">MAC Layer Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/security.html">Security Subsystem Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/data-flow.html">End-to-End Data Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/architecture.html">System Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/standard-mapping.html">Standard Clause Mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 current has-children"><a class="reference internal" href="nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.demodulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.demodulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4 current current-page"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.modulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.modulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.rx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.sim.link_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.link_sim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.sim.usrp_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.usrp_sim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/apidocs/nearlink_sdr/nearlink_sdr.phy.data_link.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section class="tex2jax_ignore mathjax_ignore" id="module-nearlink_sdr.phy.data_link">
+<span id="nearlink-sdr-phy-data-link"></span><h1><a class="reference internal" href="#module-nearlink_sdr.phy.data_link" title="nearlink_sdr.phy.data_link"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a><a class="headerlink" href="#module-nearlink_sdr.phy.data_link" title="Link to this heading">¶</a></h1>
+<p>Asynchronous/synchronous data link transmission procedure (standard 6.5.1 ~ 6.5.3).</p>
+<p>Implements data link parameter management, flow control decisions, synchronous data discard mechanism, event group set scheduling, and segmentation/reassembly logic for synchronous service adaptation (periodic/aperiodic).</p>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-left">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.data_link.TransmissionMode" title="nearlink_sdr.phy.data_link.TransmissionMode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransmissionMode</span></code></a></p></td>
+<td><p>Transmission mode (6.5.1.4 ~ 6.5.1.7, 6.5.2.6 ~ 6.5.2.10).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.data_link.AdaptMode" title="nearlink_sdr.phy.data_link.AdaptMode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AdaptMode</span></code></a></p></td>
+<td><p>sync业务适配方式 (6.5.3.1)。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams" title="nearlink_sdr.phy.data_link.AsyncDataLinkParams"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncDataLinkParams</span></code></a></p></td>
+<td><p>异步datalinkparameter (6.5.1.2)。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncFlowControl" title="nearlink_sdr.phy.data_link.AsyncFlowControl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncFlowControl</span></code></a></p></td>
+<td><p>异步datalink流控决策 (6.5.1.3)。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams" title="nearlink_sdr.phy.data_link.SyncDataLinkParams"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SyncDataLinkParams</span></code></a></p></td>
+<td><p>syncdatalinkparameter (6.5.2.2)。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataDiscard" title="nearlink_sdr.phy.data_link.SyncDataDiscard"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SyncDataDiscard</span></code></a></p></td>
+<td><p>syncdata丢弃机制 (6.5.2.4)。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncFlowControl" title="nearlink_sdr.phy.data_link.SyncFlowControl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SyncFlowControl</span></code></a></p></td>
+<td><p>syncdatalink流控 (6.5.2.3)。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.data_link.EventGroupSet" title="nearlink_sdr.phy.data_link.EventGroupSet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventGroupSet</span></code></a></p></td>
+<td><p>事件组集合 (6.5.2.5)。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor" title="nearlink_sdr.phy.data_link.PeriodicServiceAdaptor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PeriodicServiceAdaptor</span></code></a></p></td>
+<td><p>syncdatalinkperiod适配 (6.5.3.2)。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.data_link.AperiodicFragment" title="nearlink_sdr.phy.data_link.AperiodicFragment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AperiodicFragment</span></code></a></p></td>
+<td><p>非period适配分片 (6.5.3.3)。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.data_link.AperiodicServiceAdaptor" title="nearlink_sdr.phy.data_link.AperiodicServiceAdaptor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AperiodicServiceAdaptor</span></code></a></p></td>
+<td><p>syncdatalink非period适配 (6.5.3.3)。</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="api">
+<h3>API<a class="headerlink" href="#api" title="Link to this heading">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.TransmissionMode">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.data_link.</span></span><span class="sig-name descname"><span class="pre">TransmissionMode</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#TransmissionMode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.TransmissionMode" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
+<p>Transmission mode (6.5.1.4 ~ 6.5.1.7, 6.5.2.6 ~ 6.5.2.10).</p>
+<p class="rubric">Initialization</p>
+<p>Initialize self. See help(type(self)) for accurate signature.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.TransmissionMode.UNICAST">
+<span class="sig-name descname"><span class="pre">UNICAST</span></span><a class="headerlink" href="#nearlink_sdr.phy.data_link.TransmissionMode.UNICAST" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.TransmissionMode.MULTICAST">
+<span class="sig-name descname"><span class="pre">MULTICAST</span></span><a class="headerlink" href="#nearlink_sdr.phy.data_link.TransmissionMode.MULTICAST" title="Link to this definition">¶</a></dt>
+<dd><p>1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.TransmissionMode.BIDIRECTIONAL_MULTICAST">
+<span class="sig-name descname"><span class="pre">BIDIRECTIONAL_MULTICAST</span></span><a class="headerlink" href="#nearlink_sdr.phy.data_link.TransmissionMode.BIDIRECTIONAL_MULTICAST" title="Link to this definition">¶</a></dt>
+<dd><p>2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.TransmissionMode.FEEDBACK_MULTICAST">
+<span class="sig-name descname"><span class="pre">FEEDBACK_MULTICAST</span></span><a class="headerlink" href="#nearlink_sdr.phy.data_link.TransmissionMode.FEEDBACK_MULTICAST" title="Link to this definition">¶</a></dt>
+<dd><p>3</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.TransmissionMode.BROADCAST_ASYNC">
+<span class="sig-name descname"><span class="pre">BROADCAST_ASYNC</span></span><a class="headerlink" href="#nearlink_sdr.phy.data_link.TransmissionMode.BROADCAST_ASYNC" title="Link to this definition">¶</a></dt>
+<dd><p>4</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.TransmissionMode.BROADCAST_SYNC">
+<span class="sig-name descname"><span class="pre">BROADCAST_SYNC</span></span><a class="headerlink" href="#nearlink_sdr.phy.data_link.TransmissionMode.BROADCAST_SYNC" title="Link to this definition">¶</a></dt>
+<dd><p>5</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AdaptMode">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.data_link.</span></span><span class="sig-name descname"><span class="pre">AdaptMode</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#AdaptMode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.AdaptMode" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
+<p>sync业务适配方式 (6.5.3.1)。</p>
+<p class="rubric">Initialization</p>
+<p>Initialize self. See help(type(self)) for accurate signature.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AdaptMode.PERIODIC">
+<span class="sig-name descname"><span class="pre">PERIODIC</span></span><a class="headerlink" href="#nearlink_sdr.phy.data_link.AdaptMode.PERIODIC" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AdaptMode.APERIODIC">
+<span class="sig-name descname"><span class="pre">APERIODIC</span></span><a class="headerlink" href="#nearlink_sdr.phy.data_link.AdaptMode.APERIODIC" title="Link to this definition">¶</a></dt>
+<dd><p>1</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncDataLinkParams">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.data_link.</span></span><span class="sig-name descname"><span class="pre">AsyncDataLinkParams</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#AsyncDataLinkParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams" title="Link to this definition">¶</a></dt>
+<dd><p>异步datalinkparameter (6.5.1.2)。</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncDataLinkParams.event_group_start_us">
+<span class="sig-name descname"><span class="pre">event_group_start_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.event_group_start_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncDataLinkParams.event_group_period_us">
+<span class="sig-name descname"><span class="pre">event_group_period_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.event_group_period_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncDataLinkParams.event_period_us">
+<span class="sig-name descname"><span class="pre">event_period_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.event_period_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncDataLinkParams.intra_event_interval_us">
+<span class="sig-name descname"><span class="pre">intra_event_interval_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.intra_event_interval_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncDataLinkParams.inter_event_interval_us">
+<span class="sig-name descname"><span class="pre">inter_event_interval_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.inter_event_interval_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncDataLinkParams.event_group_interval_us">
+<span class="sig-name descname"><span class="pre">event_group_interval_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.event_group_interval_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncDataLinkParams.first_tx">
+<span class="sig-name descname"><span class="pre">first_tx</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.first_tx" title="Link to this definition">¶</a></dt>
+<dd><p>True</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncDataLinkParams.tx_pdu_max">
+<span class="sig-name descname"><span class="pre">tx_pdu_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.tx_pdu_max" title="Link to this definition">¶</a></dt>
+<dd><p>251</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncDataLinkParams.rx_pdu_max">
+<span class="sig-name descname"><span class="pre">rx_pdu_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.rx_pdu_max" title="Link to this definition">¶</a></dt>
+<dd><p>251</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncDataLinkParams.tx_max_time_us">
+<span class="sig-name descname"><span class="pre">tx_max_time_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.tx_max_time_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncDataLinkParams.rx_max_time_us">
+<span class="sig-name descname"><span class="pre">rx_max_time_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.rx_max_time_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncDataLinkParams.tx_time_offset">
+<span class="sig-name descname"><span class="pre">tx_time_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.tx_time_offset" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncDataLinkParams.rx_time_offset">
+<span class="sig-name descname"><span class="pre">rx_time_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.rx_time_offset" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncDataLinkParams.tx_max_time_offset">
+<span class="sig-name descname"><span class="pre">tx_max_time_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.tx_max_time_offset" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncDataLinkParams.rx_max_time_offset">
+<span class="sig-name descname"><span class="pre">rx_max_time_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.rx_max_time_offset" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncDataLinkParams.tx_sdu_max">
+<span class="sig-name descname"><span class="pre">tx_sdu_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.tx_sdu_max" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncDataLinkParams.rx_sdu_max">
+<span class="sig-name descname"><span class="pre">rx_sdu_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.rx_sdu_max" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncDataLinkParams.mode">
+<span class="sig-name descname"><span class="pre">mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.phy.data_link.TransmissionMode" title="nearlink_sdr.phy.data_link.TransmissionMode"><span class="pre">nearlink_sdr.phy.data_link.TransmissionMode</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.mode" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncDataLinkParams.max_event_length">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">max_event_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.max_event_length" title="Link to this definition">¶</a></dt>
+<dd><p>事件maximumlength = 先发maximumoffset + 后发maximumoffset。</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncFlowControl">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.data_link.</span></span><span class="sig-name descname"><span class="pre">AsyncFlowControl</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#AsyncFlowControl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncFlowControl" title="Link to this definition">¶</a></dt>
+<dd><p>异步datalink流控决策 (6.5.1.3)。</p>
+<p>根据standard规则, 判断先发节点是否应停止在当前事件组 后续事件中transmit。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncFlowControl.should_stop_unicast_tx">
+<span class="sig-name descname"><span class="pre">should_stop_unicast_tx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tx_flow_ctrl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rx_flow_ctrl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rx_ack</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rx_data_len</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#AsyncFlowControl.should_stop_unicast_tx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncFlowControl.should_stop_unicast_tx" title="Link to this definition">¶</a></dt>
+<dd><p>单播先发节点停止条件 (6.5.1.3)。</p>
+<p>条件一: 先发transmit flow_ctrl=0 且收到后发 flow_ctrl=0, ACK, data_len=0 条件二: 先发transmit了message但未收到后发message (rx parameter为 None)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncFlowControl.should_stop_multicast_semi_reliable">
+<span class="sig-name descname"><span class="pre">should_stop_multicast_semi_reliable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tx_flow_ctrl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">any_nack</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#AsyncFlowControl.should_stop_multicast_semi_reliable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncFlowControl.should_stop_multicast_semi_reliable" title="Link to this definition">¶</a></dt>
+<dd><p>半可靠组播组长停止条件。</p>
+<p>组长transmit flow=0 且未收到任何 NACK。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncFlowControl.should_stop_multicast_full">
+<span class="sig-name descname"><span class="pre">should_stop_multicast_full</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tx_flow_ctrl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">member_feedbacks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#AsyncFlowControl.should_stop_multicast_full"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncFlowControl.should_stop_multicast_full" title="Link to this definition">¶</a></dt>
+<dd><p>非半可靠组播/双向组播组长停止条件。</p>
+<p>组长transmit flow=0, 收到所有组员 flow=0、ACK、data_len=0。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncFlowControl.should_stop_feedback_multicast_leader">
+<span class="sig-name descname"><span class="pre">should_stop_feedback_multicast_leader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tx_flow_ctrl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">member_feedbacks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#AsyncFlowControl.should_stop_feedback_multicast_leader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncFlowControl.should_stop_feedback_multicast_leader" title="Link to this definition">¶</a></dt>
+<dd><p>feedback组播组长停止条件, 同 should_stop_multicast_full。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AsyncFlowControl.should_stop_feedback_multicast_member">
+<span class="sig-name descname"><span class="pre">should_stop_feedback_multicast_member</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prev_flow_ctrl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">leader_ack</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#AsyncFlowControl.should_stop_feedback_multicast_member"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.AsyncFlowControl.should_stop_feedback_multicast_member" title="Link to this definition">¶</a></dt>
+<dd><p>feedback组播组员停止条件。</p>
+<p>前一事件中组员transmit flow=0, 当前事件收到组长 ACK=success。</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.data_link.</span></span><span class="sig-name descname"><span class="pre">SyncDataLinkParams</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#SyncDataLinkParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams" title="Link to this definition">¶</a></dt>
+<dd><p>syncdatalinkparameter (6.5.2.2)。</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.event_group_start_us">
+<span class="sig-name descname"><span class="pre">event_group_start_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.event_group_start_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.event_group_period_us">
+<span class="sig-name descname"><span class="pre">event_group_period_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.event_group_period_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.event_period_us">
+<span class="sig-name descname"><span class="pre">event_period_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.event_period_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.intra_event_interval_us">
+<span class="sig-name descname"><span class="pre">intra_event_interval_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.intra_event_interval_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.inter_event_interval_us">
+<span class="sig-name descname"><span class="pre">inter_event_interval_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.inter_event_interval_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.event_group_interval_us">
+<span class="sig-name descname"><span class="pre">event_group_interval_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.event_group_interval_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.event_count">
+<span class="sig-name descname"><span class="pre">event_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.event_count" title="Link to this definition">¶</a></dt>
+<dd><p>1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.first_tx">
+<span class="sig-name descname"><span class="pre">first_tx</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.first_tx" title="Link to this definition">¶</a></dt>
+<dd><p>True</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.tx_pdu_max">
+<span class="sig-name descname"><span class="pre">tx_pdu_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.tx_pdu_max" title="Link to this definition">¶</a></dt>
+<dd><p>251</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.rx_pdu_max">
+<span class="sig-name descname"><span class="pre">rx_pdu_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.rx_pdu_max" title="Link to this definition">¶</a></dt>
+<dd><p>251</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.tx_max_time_us">
+<span class="sig-name descname"><span class="pre">tx_max_time_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.tx_max_time_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.rx_max_time_us">
+<span class="sig-name descname"><span class="pre">rx_max_time_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.rx_max_time_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.tx_time_offset">
+<span class="sig-name descname"><span class="pre">tx_time_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.tx_time_offset" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.rx_time_offset">
+<span class="sig-name descname"><span class="pre">rx_time_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.rx_time_offset" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.tx_max_time_offset">
+<span class="sig-name descname"><span class="pre">tx_max_time_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.tx_max_time_offset" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.rx_max_time_offset">
+<span class="sig-name descname"><span class="pre">rx_max_time_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.rx_max_time_offset" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.tx_sdu_max">
+<span class="sig-name descname"><span class="pre">tx_sdu_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.tx_sdu_max" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.rx_sdu_max">
+<span class="sig-name descname"><span class="pre">rx_sdu_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.rx_sdu_max" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.new_pkt_count">
+<span class="sig-name descname"><span class="pre">new_pkt_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.new_pkt_count" title="Link to this definition">¶</a></dt>
+<dd><p>1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.discard_period">
+<span class="sig-name descname"><span class="pre">discard_period</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.discard_period" title="Link to this definition">¶</a></dt>
+<dd><p>3</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.adapt_mode">
+<span class="sig-name descname"><span class="pre">adapt_mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.phy.data_link.AdaptMode" title="nearlink_sdr.phy.data_link.AdaptMode"><span class="pre">nearlink_sdr.phy.data_link.AdaptMode</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.adapt_mode" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.sync_anchor_delay_us">
+<span class="sig-name descname"><span class="pre">sync_anchor_delay_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.sync_anchor_delay_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.sync_ref_delay_us">
+<span class="sig-name descname"><span class="pre">sync_ref_delay_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.sync_ref_delay_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.mode">
+<span class="sig-name descname"><span class="pre">mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.phy.data_link.TransmissionMode" title="nearlink_sdr.phy.data_link.TransmissionMode"><span class="pre">nearlink_sdr.phy.data_link.TransmissionMode</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.mode" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataLinkParams.max_event_length">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">max_event_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.max_event_length" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataDiscard">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.data_link.</span></span><span class="sig-name descname"><span class="pre">SyncDataDiscard</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#SyncDataDiscard"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataDiscard" title="Link to this definition">¶</a></dt>
+<dd><p>syncdata丢弃机制 (6.5.2.4)。</p>
+<p>跟踪transmitsequence号、本地基准值和valid载荷计数, 支持 主动丢弃和被动丢弃判定。</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataDiscard.new_pkt_count">
+<span class="sig-name descname"><span class="pre">new_pkt_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.new_pkt_count" title="Link to this definition">¶</a></dt>
+<dd><p>2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataDiscard.discard_period">
+<span class="sig-name descname"><span class="pre">discard_period</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.discard_period" title="Link to this definition">¶</a></dt>
+<dd><p>3</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataDiscard.tx_sn">
+<span class="sig-name descname"><span class="pre">tx_sn</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.tx_sn" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataDiscard.event_group_index">
+<span class="sig-name descname"><span class="pre">event_group_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.event_group_index" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataDiscard.payload_count">
+<span class="sig-name descname"><span class="pre">payload_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.payload_count" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataDiscard._last_ack">
+<span class="sig-name descname"><span class="pre">_last_ack</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataDiscard._last_ack" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataDiscard.local_baseline">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">local_baseline</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.local_baseline" title="Link to this definition">¶</a></dt>
+<dd><p>本地基准值 (6.5.2.4)。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataDiscard.on_ack">
+<span class="sig-name descname"><span class="pre">on_ack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#SyncDataDiscard.on_ack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.on_ack" title="Link to this definition">¶</a></dt>
+<dd><p>收到 ACK, transmitsequence号 +1。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataDiscard.on_nack_or_timeout">
+<span class="sig-name descname"><span class="pre">on_nack_or_timeout</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#SyncDataDiscard.on_nack_or_timeout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.on_nack_or_timeout" title="Link to this definition">¶</a></dt>
+<dd><p>收到 NACK 或未收到feedback, sequence号不变。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataDiscard.on_event_group_boundary">
+<span class="sig-name descname"><span class="pre">on_event_group_boundary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#SyncDataDiscard.on_event_group_boundary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.on_event_group_boundary" title="Link to this definition">¶</a></dt>
+<dd><p>跨事件组边界, updatesequence号和事件组索引。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataDiscard.is_discarded">
+<span class="sig-name descname"><span class="pre">is_discarded</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#SyncDataDiscard.is_discarded"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.is_discarded" title="Link to this definition">¶</a></dt>
+<dd><p>判定 payload_id 是否已被被动丢弃。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataDiscard.should_active_discard">
+<span class="sig-name descname"><span class="pre">should_active_discard</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_retransmit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#SyncDataDiscard.should_active_discard"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.should_active_discard" title="Link to this definition">¶</a></dt>
+<dd><p>主动丢弃判定: 对于 FT3/FT4, transmitter可自主决定。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncDataDiscard.active_discard">
+<span class="sig-name descname"><span class="pre">active_discard</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#SyncDataDiscard.active_discard"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.active_discard" title="Link to this definition">¶</a></dt>
+<dd><p>执行主动丢弃, 翻转sequence号transmit下一包。</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncFlowControl">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.data_link.</span></span><span class="sig-name descname"><span class="pre">SyncFlowControl</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#SyncFlowControl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncFlowControl" title="Link to this definition">¶</a></dt>
+<dd><p>syncdatalink流控 (6.5.2.3)。</p>
+<p>与异步流控逻辑基本一致, 但synclink中先发节点在 满足停止条件后直接停止, 后发节点的行为由事件组 内事件总数约束。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncFlowControl.should_stop_unicast_tx">
+<span class="sig-name descname"><span class="pre">should_stop_unicast_tx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tx_flow_ctrl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rx_flow_ctrl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rx_ack</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rx_data_len</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#SyncFlowControl.should_stop_unicast_tx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncFlowControl.should_stop_unicast_tx" title="Link to this definition">¶</a></dt>
+<dd><p>单播先发停止 (6.5.2.3)。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncFlowControl.should_stop_multicast_semi_reliable">
+<span class="sig-name descname"><span class="pre">should_stop_multicast_semi_reliable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tx_flow_ctrl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">any_nack</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#SyncFlowControl.should_stop_multicast_semi_reliable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncFlowControl.should_stop_multicast_semi_reliable" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncFlowControl.should_stop_multicast_full">
+<span class="sig-name descname"><span class="pre">should_stop_multicast_full</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tx_flow_ctrl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">member_feedbacks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#SyncFlowControl.should_stop_multicast_full"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncFlowControl.should_stop_multicast_full" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncFlowControl.should_stop_feedback_leader">
+<span class="sig-name descname"><span class="pre">should_stop_feedback_leader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tx_flow_ctrl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">member_feedbacks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#SyncFlowControl.should_stop_feedback_leader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncFlowControl.should_stop_feedback_leader" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.SyncFlowControl.should_stop_feedback_member">
+<span class="sig-name descname"><span class="pre">should_stop_feedback_member</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prev_flow_ctrl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">leader_ack</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#SyncFlowControl.should_stop_feedback_member"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.SyncFlowControl.should_stop_feedback_member" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.EventGroupSet">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.data_link.</span></span><span class="sig-name descname"><span class="pre">EventGroupSet</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#EventGroupSet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.EventGroupSet" title="Link to this definition">¶</a></dt>
+<dd><p>事件组集合 (6.5.2.5)。</p>
+<p>多个具有相同事件组period的事件组可组合为事件组集合。</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.EventGroupSet.event_group_count">
+<span class="sig-name descname"><span class="pre">event_group_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.EventGroupSet.event_group_count" title="Link to this definition">¶</a></dt>
+<dd><p>1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.EventGroupSet.event_group_spacing_slots">
+<span class="sig-name descname"><span class="pre">event_group_spacing_slots</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.EventGroupSet.event_group_spacing_slots" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.EventGroupSet.event_group_period_us">
+<span class="sig-name descname"><span class="pre">event_group_period_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.EventGroupSet.event_group_period_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.EventGroupSet.schedule_slot_us">
+<span class="sig-name descname"><span class="pre">schedule_slot_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.EventGroupSet.schedule_slot_us" title="Link to this definition">¶</a></dt>
+<dd><p>125</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.EventGroupSet.event_group_offsets">
+<span class="sig-name descname"><span class="pre">event_group_offsets</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#EventGroupSet.event_group_offsets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.EventGroupSet.event_group_offsets" title="Link to this definition">¶</a></dt>
+<dd><p>返回集合中各事件组相对于集合起始的offset (μs)。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.EventGroupSet.set_duration_us">
+<span class="sig-name descname"><span class="pre">set_duration_us</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#EventGroupSet.set_duration_us"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.EventGroupSet.set_duration_us" title="Link to this definition">¶</a></dt>
+<dd><p>集合总时长 (μs): 最后一个事件组起始 + 事件组period。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.EventGroupSet.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#EventGroupSet.validate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.EventGroupSet.validate" title="Link to this definition">¶</a></dt>
+<dd><p>check事件组集合的time资源不能交叠。</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.PeriodicServiceAdaptor">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.data_link.</span></span><span class="sig-name descname"><span class="pre">PeriodicServiceAdaptor</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#PeriodicServiceAdaptor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor" title="Link to this definition">¶</a></dt>
+<dd><p>syncdatalinkperiod适配 (6.5.3.2)。</p>
+<p>将上层 SDU segment为 PDU, 并按事件组period进行timesync。</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sdu_max">
+<span class="sig-name descname"><span class="pre">sdu_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sdu_max" title="Link to this definition">¶</a></dt>
+<dd><p>256</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.pdu_max">
+<span class="sig-name descname"><span class="pre">pdu_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.pdu_max" title="Link to this definition">¶</a></dt>
+<dd><p>251</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.event_group_period_us">
+<span class="sig-name descname"><span class="pre">event_group_period_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.event_group_period_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sdu_period_us">
+<span class="sig-name descname"><span class="pre">sdu_period_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sdu_period_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sync_ref_delay_us">
+<span class="sig-name descname"><span class="pre">sync_ref_delay_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sync_ref_delay_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sync_anchor_delay_us">
+<span class="sig-name descname"><span class="pre">sync_anchor_delay_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sync_anchor_delay_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.discard_period">
+<span class="sig-name descname"><span class="pre">discard_period</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.discard_period" title="Link to this definition">¶</a></dt>
+<dd><p>3</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.segments_per_sdu">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">segments_per_sdu</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.segments_per_sdu" title="Link to this definition">¶</a></dt>
+<dd><p>每个 SDU 需要的 PDU segment数。</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sdus_per_event_group">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sdus_per_event_group</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sdus_per_event_group" title="Link to this definition">¶</a></dt>
+<dd><p>每个事件组period内传输的 SDU 数量。</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.frames_per_event_group">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">frames_per_event_group</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.frames_per_event_group" title="Link to this definition">¶</a></dt>
+<dd><p>每个事件组period内传输的无线frame数。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.segment_sdu">
+<span class="sig-name descname"><span class="pre">segment_sdu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sdu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#PeriodicServiceAdaptor.segment_sdu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.segment_sdu" title="Link to this definition">¶</a></dt>
+<dd><p>将 SDU segment为 PDU 列表。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.reassemble_sdu">
+<span class="sig-name descname"><span class="pre">reassemble_sdu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pdus</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#PeriodicServiceAdaptor.reassemble_sdu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.reassemble_sdu" title="Link to this definition">¶</a></dt>
+<dd><p>将 PDU 列表重组为 SDU。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.tx_accept_time">
+<span class="sig-name descname"><span class="pre">tx_accept_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_group_start_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#PeriodicServiceAdaptor.tx_accept_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.tx_accept_time" title="Link to this definition">¶</a></dt>
+<dd><p>transmitter t0: 开始receive SDU 的时刻。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.rx_deliver_time">
+<span class="sig-name descname"><span class="pre">rx_deliver_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_group_start_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#PeriodicServiceAdaptor.rx_deliver_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.rx_deliver_time" title="Link to this definition">¶</a></dt>
+<dd><p>receiver r1: 向高层递交第一个 SDU 的时刻。</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AperiodicFragment">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.data_link.</span></span><span class="sig-name descname"><span class="pre">AperiodicFragment</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#AperiodicFragment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.AperiodicFragment" title="Link to this definition">¶</a></dt>
+<dd><p>非period适配分片 (6.5.3.3)。</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AperiodicFragment.is_first">
+<span class="sig-name descname"><span class="pre">is_first</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.AperiodicFragment.is_first" title="Link to this definition">¶</a></dt>
+<dd><p>False</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AperiodicFragment.is_last">
+<span class="sig-name descname"><span class="pre">is_last</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.AperiodicFragment.is_last" title="Link to this definition">¶</a></dt>
+<dd><p>False</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AperiodicFragment.time_offset_us">
+<span class="sig-name descname"><span class="pre">time_offset_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.AperiodicFragment.time_offset_us" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AperiodicFragment.data">
+<span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.data_link.AperiodicFragment.data" title="Link to this definition">¶</a></dt>
+<dd><p>b’’</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AperiodicServiceAdaptor">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.data_link.</span></span><span class="sig-name descname"><span class="pre">AperiodicServiceAdaptor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pdu_max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">251</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#AperiodicServiceAdaptor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.AperiodicServiceAdaptor" title="Link to this definition">¶</a></dt>
+<dd><p>syncdatalink非period适配 (6.5.3.3)。</p>
+<p>将 SDU 分片, 每个包含首段的分片携带timeoffset量。</p>
+<p class="rubric">Initialization</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AperiodicServiceAdaptor.fragment_sdu">
+<span class="sig-name descname"><span class="pre">fragment_sdu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sdu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_offset_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nearlink_sdr.phy.data_link.AperiodicFragment" title="nearlink_sdr.phy.data_link.AperiodicFragment"><span class="pre">nearlink_sdr.phy.data_link.AperiodicFragment</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#AperiodicServiceAdaptor.fragment_sdu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.AperiodicServiceAdaptor.fragment_sdu" title="Link to this definition">¶</a></dt>
+<dd><p>将 SDU 分片。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AperiodicServiceAdaptor.reassemble_sdu">
+<span class="sig-name descname"><span class="pre">reassemble_sdu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fragments</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nearlink_sdr.phy.data_link.AperiodicFragment" title="nearlink_sdr.phy.data_link.AperiodicFragment"><span class="pre">nearlink_sdr.phy.data_link.AperiodicFragment</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#AperiodicServiceAdaptor.reassemble_sdu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.AperiodicServiceAdaptor.reassemble_sdu" title="Link to this definition">¶</a></dt>
+<dd><p>从分片重组 SDU, 返回 (sdu, time_offset_us)。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.data_link.AperiodicServiceAdaptor.rx_deliver_time">
+<span class="sig-name descname"><span class="pre">rx_deliver_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_group_start_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sync_anchor_delay_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">discard_period</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_group_period_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sdu_period_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sdu_time_offset_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/data_link.html#AperiodicServiceAdaptor.rx_deliver_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.data_link.AperiodicServiceAdaptor.rx_deliver_time" title="Link to this definition">¶</a></dt>
+<dd><p>receiver r1 (6.5.3.3.2)。</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="nearlink_sdr.phy.measurement_tx.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="nearlink_sdr.phy.pilot.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/sanchuanhehe/nearlink_sdr_sim" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82 .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#api">API</a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.TransmissionMode"><code class="docutils literal notranslate"><span class="pre">TransmissionMode</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.TransmissionMode.UNICAST"><code class="docutils literal notranslate"><span class="pre">TransmissionMode.UNICAST</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.TransmissionMode.MULTICAST"><code class="docutils literal notranslate"><span class="pre">TransmissionMode.MULTICAST</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.TransmissionMode.BIDIRECTIONAL_MULTICAST"><code class="docutils literal notranslate"><span class="pre">TransmissionMode.BIDIRECTIONAL_MULTICAST</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.TransmissionMode.FEEDBACK_MULTICAST"><code class="docutils literal notranslate"><span class="pre">TransmissionMode.FEEDBACK_MULTICAST</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.TransmissionMode.BROADCAST_ASYNC"><code class="docutils literal notranslate"><span class="pre">TransmissionMode.BROADCAST_ASYNC</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.TransmissionMode.BROADCAST_SYNC"><code class="docutils literal notranslate"><span class="pre">TransmissionMode.BROADCAST_SYNC</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AdaptMode"><code class="docutils literal notranslate"><span class="pre">AdaptMode</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AdaptMode.PERIODIC"><code class="docutils literal notranslate"><span class="pre">AdaptMode.PERIODIC</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AdaptMode.APERIODIC"><code class="docutils literal notranslate"><span class="pre">AdaptMode.APERIODIC</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams"><code class="docutils literal notranslate"><span class="pre">AsyncDataLinkParams</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.event_group_start_us"><code class="docutils literal notranslate"><span class="pre">AsyncDataLinkParams.event_group_start_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.event_group_period_us"><code class="docutils literal notranslate"><span class="pre">AsyncDataLinkParams.event_group_period_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.event_period_us"><code class="docutils literal notranslate"><span class="pre">AsyncDataLinkParams.event_period_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.intra_event_interval_us"><code class="docutils literal notranslate"><span class="pre">AsyncDataLinkParams.intra_event_interval_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.inter_event_interval_us"><code class="docutils literal notranslate"><span class="pre">AsyncDataLinkParams.inter_event_interval_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.event_group_interval_us"><code class="docutils literal notranslate"><span class="pre">AsyncDataLinkParams.event_group_interval_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.first_tx"><code class="docutils literal notranslate"><span class="pre">AsyncDataLinkParams.first_tx</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.tx_pdu_max"><code class="docutils literal notranslate"><span class="pre">AsyncDataLinkParams.tx_pdu_max</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.rx_pdu_max"><code class="docutils literal notranslate"><span class="pre">AsyncDataLinkParams.rx_pdu_max</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.tx_max_time_us"><code class="docutils literal notranslate"><span class="pre">AsyncDataLinkParams.tx_max_time_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.rx_max_time_us"><code class="docutils literal notranslate"><span class="pre">AsyncDataLinkParams.rx_max_time_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.tx_time_offset"><code class="docutils literal notranslate"><span class="pre">AsyncDataLinkParams.tx_time_offset</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.rx_time_offset"><code class="docutils literal notranslate"><span class="pre">AsyncDataLinkParams.rx_time_offset</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.tx_max_time_offset"><code class="docutils literal notranslate"><span class="pre">AsyncDataLinkParams.tx_max_time_offset</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.rx_max_time_offset"><code class="docutils literal notranslate"><span class="pre">AsyncDataLinkParams.rx_max_time_offset</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.tx_sdu_max"><code class="docutils literal notranslate"><span class="pre">AsyncDataLinkParams.tx_sdu_max</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.rx_sdu_max"><code class="docutils literal notranslate"><span class="pre">AsyncDataLinkParams.rx_sdu_max</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.mode"><code class="docutils literal notranslate"><span class="pre">AsyncDataLinkParams.mode</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncDataLinkParams.max_event_length"><code class="docutils literal notranslate"><span class="pre">AsyncDataLinkParams.max_event_length</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncFlowControl"><code class="docutils literal notranslate"><span class="pre">AsyncFlowControl</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncFlowControl.should_stop_unicast_tx"><code class="docutils literal notranslate"><span class="pre">AsyncFlowControl.should_stop_unicast_tx()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncFlowControl.should_stop_multicast_semi_reliable"><code class="docutils literal notranslate"><span class="pre">AsyncFlowControl.should_stop_multicast_semi_reliable()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncFlowControl.should_stop_multicast_full"><code class="docutils literal notranslate"><span class="pre">AsyncFlowControl.should_stop_multicast_full()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncFlowControl.should_stop_feedback_multicast_leader"><code class="docutils literal notranslate"><span class="pre">AsyncFlowControl.should_stop_feedback_multicast_leader()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AsyncFlowControl.should_stop_feedback_multicast_member"><code class="docutils literal notranslate"><span class="pre">AsyncFlowControl.should_stop_feedback_multicast_member()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.event_group_start_us"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.event_group_start_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.event_group_period_us"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.event_group_period_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.event_period_us"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.event_period_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.intra_event_interval_us"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.intra_event_interval_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.inter_event_interval_us"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.inter_event_interval_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.event_group_interval_us"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.event_group_interval_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.event_count"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.event_count</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.first_tx"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.first_tx</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.tx_pdu_max"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.tx_pdu_max</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.rx_pdu_max"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.rx_pdu_max</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.tx_max_time_us"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.tx_max_time_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.rx_max_time_us"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.rx_max_time_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.tx_time_offset"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.tx_time_offset</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.rx_time_offset"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.rx_time_offset</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.tx_max_time_offset"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.tx_max_time_offset</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.rx_max_time_offset"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.rx_max_time_offset</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.tx_sdu_max"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.tx_sdu_max</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.rx_sdu_max"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.rx_sdu_max</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.new_pkt_count"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.new_pkt_count</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.discard_period"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.discard_period</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.adapt_mode"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.adapt_mode</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.sync_anchor_delay_us"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.sync_anchor_delay_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.sync_ref_delay_us"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.sync_ref_delay_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.mode"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.mode</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataLinkParams.max_event_length"><code class="docutils literal notranslate"><span class="pre">SyncDataLinkParams.max_event_length</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataDiscard"><code class="docutils literal notranslate"><span class="pre">SyncDataDiscard</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.new_pkt_count"><code class="docutils literal notranslate"><span class="pre">SyncDataDiscard.new_pkt_count</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.discard_period"><code class="docutils literal notranslate"><span class="pre">SyncDataDiscard.discard_period</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.tx_sn"><code class="docutils literal notranslate"><span class="pre">SyncDataDiscard.tx_sn</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.event_group_index"><code class="docutils literal notranslate"><span class="pre">SyncDataDiscard.event_group_index</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.payload_count"><code class="docutils literal notranslate"><span class="pre">SyncDataDiscard.payload_count</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataDiscard._last_ack"><code class="docutils literal notranslate"><span class="pre">SyncDataDiscard._last_ack</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.local_baseline"><code class="docutils literal notranslate"><span class="pre">SyncDataDiscard.local_baseline</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.on_ack"><code class="docutils literal notranslate"><span class="pre">SyncDataDiscard.on_ack()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.on_nack_or_timeout"><code class="docutils literal notranslate"><span class="pre">SyncDataDiscard.on_nack_or_timeout()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.on_event_group_boundary"><code class="docutils literal notranslate"><span class="pre">SyncDataDiscard.on_event_group_boundary()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.is_discarded"><code class="docutils literal notranslate"><span class="pre">SyncDataDiscard.is_discarded()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.should_active_discard"><code class="docutils literal notranslate"><span class="pre">SyncDataDiscard.should_active_discard()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncDataDiscard.active_discard"><code class="docutils literal notranslate"><span class="pre">SyncDataDiscard.active_discard()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncFlowControl"><code class="docutils literal notranslate"><span class="pre">SyncFlowControl</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncFlowControl.should_stop_unicast_tx"><code class="docutils literal notranslate"><span class="pre">SyncFlowControl.should_stop_unicast_tx()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncFlowControl.should_stop_multicast_semi_reliable"><code class="docutils literal notranslate"><span class="pre">SyncFlowControl.should_stop_multicast_semi_reliable()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncFlowControl.should_stop_multicast_full"><code class="docutils literal notranslate"><span class="pre">SyncFlowControl.should_stop_multicast_full()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncFlowControl.should_stop_feedback_leader"><code class="docutils literal notranslate"><span class="pre">SyncFlowControl.should_stop_feedback_leader()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.SyncFlowControl.should_stop_feedback_member"><code class="docutils literal notranslate"><span class="pre">SyncFlowControl.should_stop_feedback_member()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.EventGroupSet"><code class="docutils literal notranslate"><span class="pre">EventGroupSet</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.EventGroupSet.event_group_count"><code class="docutils literal notranslate"><span class="pre">EventGroupSet.event_group_count</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.EventGroupSet.event_group_spacing_slots"><code class="docutils literal notranslate"><span class="pre">EventGroupSet.event_group_spacing_slots</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.EventGroupSet.event_group_period_us"><code class="docutils literal notranslate"><span class="pre">EventGroupSet.event_group_period_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.EventGroupSet.schedule_slot_us"><code class="docutils literal notranslate"><span class="pre">EventGroupSet.schedule_slot_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.EventGroupSet.event_group_offsets"><code class="docutils literal notranslate"><span class="pre">EventGroupSet.event_group_offsets()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.EventGroupSet.set_duration_us"><code class="docutils literal notranslate"><span class="pre">EventGroupSet.set_duration_us()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.EventGroupSet.validate"><code class="docutils literal notranslate"><span class="pre">EventGroupSet.validate()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor"><code class="docutils literal notranslate"><span class="pre">PeriodicServiceAdaptor</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sdu_max"><code class="docutils literal notranslate"><span class="pre">PeriodicServiceAdaptor.sdu_max</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.pdu_max"><code class="docutils literal notranslate"><span class="pre">PeriodicServiceAdaptor.pdu_max</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.event_group_period_us"><code class="docutils literal notranslate"><span class="pre">PeriodicServiceAdaptor.event_group_period_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sdu_period_us"><code class="docutils literal notranslate"><span class="pre">PeriodicServiceAdaptor.sdu_period_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sync_ref_delay_us"><code class="docutils literal notranslate"><span class="pre">PeriodicServiceAdaptor.sync_ref_delay_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sync_anchor_delay_us"><code class="docutils literal notranslate"><span class="pre">PeriodicServiceAdaptor.sync_anchor_delay_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.discard_period"><code class="docutils literal notranslate"><span class="pre">PeriodicServiceAdaptor.discard_period</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.segments_per_sdu"><code class="docutils literal notranslate"><span class="pre">PeriodicServiceAdaptor.segments_per_sdu</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sdus_per_event_group"><code class="docutils literal notranslate"><span class="pre">PeriodicServiceAdaptor.sdus_per_event_group</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.frames_per_event_group"><code class="docutils literal notranslate"><span class="pre">PeriodicServiceAdaptor.frames_per_event_group</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.segment_sdu"><code class="docutils literal notranslate"><span class="pre">PeriodicServiceAdaptor.segment_sdu()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.reassemble_sdu"><code class="docutils literal notranslate"><span class="pre">PeriodicServiceAdaptor.reassemble_sdu()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.tx_accept_time"><code class="docutils literal notranslate"><span class="pre">PeriodicServiceAdaptor.tx_accept_time()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.rx_deliver_time"><code class="docutils literal notranslate"><span class="pre">PeriodicServiceAdaptor.rx_deliver_time()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AperiodicFragment"><code class="docutils literal notranslate"><span class="pre">AperiodicFragment</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AperiodicFragment.is_first"><code class="docutils literal notranslate"><span class="pre">AperiodicFragment.is_first</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AperiodicFragment.is_last"><code class="docutils literal notranslate"><span class="pre">AperiodicFragment.is_last</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AperiodicFragment.time_offset_us"><code class="docutils literal notranslate"><span class="pre">AperiodicFragment.time_offset_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AperiodicFragment.data"><code class="docutils literal notranslate"><span class="pre">AperiodicFragment.data</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AperiodicServiceAdaptor"><code class="docutils literal notranslate"><span class="pre">AperiodicServiceAdaptor</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AperiodicServiceAdaptor.fragment_sdu"><code class="docutils literal notranslate"><span class="pre">AperiodicServiceAdaptor.fragment_sdu()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AperiodicServiceAdaptor.reassemble_sdu"><code class="docutils literal notranslate"><span class="pre">AperiodicServiceAdaptor.reassemble_sdu()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.data_link.AperiodicServiceAdaptor.rx_deliver_time"><code class="docutils literal notranslate"><span class="pre">AperiodicServiceAdaptor.rx_deliver_time()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=c74e6fab"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../_static/version-selector.js?v=7d36e42c"></script>
+    </body>
+</html>
