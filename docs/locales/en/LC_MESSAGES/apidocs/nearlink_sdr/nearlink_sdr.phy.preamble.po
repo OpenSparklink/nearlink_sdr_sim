@@ -83,7 +83,7 @@ msgstr ""
 #: ../../../src/nearlink_sdr/phy/preamble.py:32
 #: ../../../src/nearlink_sdr/phy/preamble.py:99
 msgid "生成指定帧类型的前导码。"
-msgstr "generate指定frame type的preamble。"
+msgstr "Generate the preamble for the specified frame type."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.preamble.md:36
 msgid "Data"
@@ -110,47 +110,50 @@ msgstr "None"
 
 #: ../../../src/nearlink_sdr/phy/preamble.py:70
 msgid "帧类型1使用 [0,1] 交替序列，第一个码元为0。"
-msgstr "frame type1使用 [0,1] 交替sequence，第一个码元为0。"
+msgstr ""
+"Frame type 1 uses an alternating [0,1] sequence, with the first symbol being"
+" 0."
 
 #: ../../../src/nearlink_sdr/phy/preamble.py:72
 #: ../../../src/nearlink_sdr/phy/preamble.py:84
 msgid "参数:     symbol_rate_mhz: 符号速率 (MHz)     duration_us: 前导码持续时间 (μs)"
 msgstr ""
-"parameter:     symbol_rate_mhz: 符号速率 (MHz)     duration_us: preamble持续time "
-"(μs)"
+"Parameters:     symbol_rate_mhz: Symbol rate (MHz).     duration_us: "
+"Preamble duration (μs)."
 
 #: ../../../src/nearlink_sdr/phy/preamble.py:76
 msgid "返回:     前导码比特序列, 值为 0/1"
-msgstr "返回:     preamble比特sequence, valued 0/1"
+msgstr "Returns:     Preamble bit sequence, values 0/1."
 
 #: ../../../src/nearlink_sdr/phy/preamble.py:77
 msgid "帧类型2/3/4使用 [π/4, 0] 交替相位。"
-msgstr "frame type2/3/4使用 [π/4, 0] 交替相位。"
+msgstr "Frame types 2/3/4 use alternating [π/4, 0] phases."
 
 #: ../../../src/nearlink_sdr/phy/preamble.py:79
 msgid ""
 "参数:     symbol_rate_mhz: 符号速率 (MHz)     duration_us: 前导码持续时间 "
 "(μs)，帧类型2=10，帧类型3=12，帧类型4=16"
 msgstr ""
-"parameter:     symbol_rate_mhz: 符号速率 (MHz)     duration_us: preamble持续time "
-"(μs)，frame type2=10，frame type3=12，frame type4=16"
+"Parameters:     symbol_rate_mhz: Symbol rate (MHz).     duration_us: "
+"Preamble duration (μs), frame type 2=10, frame type 3=12, frame type 4=16."
 
 #: ../../../src/nearlink_sdr/phy/preamble.py:83
 msgid "返回:     前导码相位序列 (弧度)"
-msgstr "返回:     preamble相位sequence (弧度)"
+msgstr "Returns:     Preamble phase sequence (radians)."
 
 #: ../../../src/nearlink_sdr/phy/preamble.py:88
 msgid "返回:     前导码复数符号, shape (N,)"
-msgstr "返回:     preamble复数符号, shape (N,)"
+msgstr "Returns:     Preamble complex symbols, shape (N,)."
 
 #: ../../../src/nearlink_sdr/phy/preamble.py:101
 msgid "参数:     frame_type: 帧类型 1~4     symbol_rate_mhz: 符号速率 (MHz)"
 msgstr ""
-"parameter:     frame_type: frame type 1~4     symbol_rate_mhz: 符号速率 (MHz)"
+"Parameters:     frame_type: Frame type 1-4.     symbol_rate_mhz: Symbol rate"
+" (MHz)."
 
 #: ../../../src/nearlink_sdr/phy/preamble.py:105
 msgid ""
 "返回:     帧类型1: 比特数组 (int ndarray)     帧类型2/3/4: 复数符号数组 (complex ndarray)"
 msgstr ""
-"返回:     frame type1: bit array (int ndarray)     frame type2/3/4: 复数符号数组 "
-"(complex ndarray)"
+"Returns:     Frame type 1: bit array (int ndarray).     Frame types 2/3/4: "
+"complex symbol array (complex ndarray)."

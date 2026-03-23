@@ -118,7 +118,7 @@ msgstr ""
 #: ../../../src/nearlink_sdr/mac/power_control.py:36
 #: ../../../src/nearlink_sdr/mac/power_control.py:499
 msgid "单链路功率控制状态管理。"
-msgstr "单linkpower controlstate管理。"
+msgstr "Single-link power control state management."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.power_control.md:40
 msgid "Data"
@@ -183,27 +183,29 @@ msgstr "126"
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:179
 msgid "字段顺序 (MSB → LSB 按标准比特排列):"
-msgstr "字段顺序 (MSB → LSB 按standard比特排列):"
+msgstr "Field order (MSB to LSB per standard bit layout):"
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:180
 msgid "frame_type:       4 bits, 无线帧类型指示 (0-15)"
-msgstr "frame_type:       4 bits, 无线帧类型指示 (0-15)"
+msgstr "frame_type:       4 bits, radio frame type indication (0-15)"
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:181
 msgid "bandwidth:        2 bits, 带宽指示 (Bandwidth 枚举)"
-msgstr "bandwidth:        2 bits, 带宽指示 (Bandwidth 枚举)"
+msgstr "bandwidth:        2 bits, bandwidthindication (Bandwidth enum)"
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:182
 msgid "freq_density:     2 bits, 频密度指示 (FreqDensity 枚举)"
-msgstr "freq_density:     2 bits, 频密度指示 (FreqDensity 枚举)"
+msgstr ""
+"freq_density:     2 bits, frequency density indication (FreqDensity enum)"
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:183
 msgid "tx_power_change:  8 bits, 有符号, 要求接收方发射功率变化值 (dB)"
-msgstr "tx_power_change:  8 bits, 有符号, 要求接收方发射功率变化值 (dB)"
+msgstr ""
+"tx_power_change:  8 bits, signed, requested receiver TX power change (dB)"
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:184
 msgid "sender_tx_power:  8 bits, 有符号, 发送方发射功率 (dBm)"
-msgstr "sender_tx_power:  8 bits, 有符号, 发送方发射功率 (dBm)"
+msgstr "sender_tx_power:  8 bits, signed, sender TX power (dBm)"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.power_control.md:184
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.power_control.md:195
@@ -231,26 +233,28 @@ msgstr "25"
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:259
 msgid "编码为 3 字节。"
-msgstr "encode为 3 字节。"
+msgstr "Encode to 3 bytes."
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:268
 msgid "从 3 字节解码。"
-msgstr "从 3 字节decode。"
+msgstr "Decode from 3 bytes."
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:279
 #: ../../../src/nearlink_sdr/mac/power_control.py:379
 msgid "字段顺序:"
-msgstr "字段顺序:"
+msgstr "Field order:"
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:280
 msgid "sender_min_power:          1 bit, 置 1 表示发送端以最小功率发送"
 msgstr ""
-"sender_min_power:          1 bit, 置 1 表示transmitter以minimumpowertransmit"
+"sender_min_power:          1 bit, set to 1 indicates the sender transmits at"
+" minimum power"
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:281
 msgid "sender_max_power:          1 bit, 置 1 表示发送端以最大功率发送"
 msgstr ""
-"sender_max_power:          1 bit, 置 1 表示transmitter以maximumpowertransmit"
+"sender_max_power:          1 bit, set to 1 indicates the sender transmits at"
+" maximum power"
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:282
 msgid "reserved:                  6 bits"
@@ -258,15 +262,18 @@ msgstr "reserved:                  6 bits"
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:283
 msgid "tx_power_change:           8 bits, 有符号, 本端实际功率变化值 (dB)"
-msgstr "tx_power_change:           8 bits, 有符号, 本端实际power变化值 (dB)"
+msgstr ""
+"tx_power_change:           8 bits, signed, local actual power change (dB)"
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:284
 msgid "sender_tx_power:           8 bits, 有符号, 发送端发射功率 (dBm)"
-msgstr "sender_tx_power:           8 bits, 有符号, 发送端发射功率 (dBm)"
+msgstr "sender_tx_power:           8 bits, signed, sender TX power (dBm)"
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:285
 msgid "acceptable_power_reduction: 8 bits, 无符号, 可接受的功率减少量 (dB)"
-msgstr "acceptable_power_reduction: 8 bits, 无符号, 可接受的power减少量 (dB)"
+msgstr ""
+"acceptable_power_reduction: 8 bits, unsigned, acceptable power reduction "
+"(dB)"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.power_control.md:338
 msgid "26"
@@ -280,16 +287,16 @@ msgstr "4"
 #: ../../../src/nearlink_sdr/mac/power_control.py:359
 #: ../../../src/nearlink_sdr/mac/power_control.py:481
 msgid "编码为 4 字节。"
-msgstr "encode为 4 字节。"
+msgstr "Encode to 4 bytes."
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:368
 #: ../../../src/nearlink_sdr/mac/power_control.py:490
 msgid "从 4 字节解码。"
-msgstr "从 4 字节decode。"
+msgstr "Decode from 4 bytes."
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:380
 msgid "frame_type:        4 bits, 无线帧类型指示"
-msgstr "frame_type:        4 bits, 无线frame typeindication"
+msgstr "frame_type:        4 bits, radio frame type indication"
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:381
 msgid "bandwidth:         2 bits, 带宽指示"
@@ -297,7 +304,7 @@ msgstr "bandwidth:         2 bits, bandwidthindication"
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:382
 msgid "freq_density:      2 bits, 导频密度指示"
-msgstr "freq_density:      2 bits, pilot密度indication"
+msgstr "freq_density:      2 bits, pilot density indication"
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:383
 msgid "sender_min_power:  1 bit"
@@ -313,11 +320,11 @@ msgstr "reserved:          6 bits"
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:386
 msgid "tx_power_change:   8 bits, 有符号, 本次功率变化值 (dB)"
-msgstr "tx_power_change:   8 bits, 有符号, 本次功率变化值 (dB)"
+msgstr "tx_power_change:   8 bits, signed, power change value (dB)"
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:387
 msgid "sender_tx_power:   8 bits, 有符号, 变更后发射功率 (dBm)"
-msgstr "sender_tx_power:   8 bits, 有符号, 变更后发射功率 (dBm)"
+msgstr "sender_tx_power:   8 bits, signed, TX power after change (dBm)"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.power_control.md:460
 msgid "27"
@@ -326,8 +333,9 @@ msgstr "27"
 #: ../../../src/nearlink_sdr/mac/power_control.py:501
 msgid "管理本端发射功率, 处理对端发来的功率控制请求/响应/变化指示, 并生成需要发送给对端的信令。"
 msgstr ""
-"管理本端发射power, 处理对端发来的power controlrequest/response/变化indication, "
-"并generate需要transmit给对端的signaling。"
+"Manage local TX power, process power control request/response/change "
+"indication from the remote end, and generate signaling to send to the remote"
+" end."
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:504
 msgid "参数"
@@ -338,8 +346,8 @@ msgid ""
 "tx_power_dbm : 当前发射功率 (dBm) min_power_dbm : 最小支持发射功率 (dBm) max_power_dbm : "
 "最大支持发射功率 (dBm)"
 msgstr ""
-"tx_power_dbm : 当前发射功率 (dBm) min_power_dbm : 最小支持发射功率 (dBm) max_power_dbm : "
-"最大支持发射功率 (dBm)"
+"tx_power_dbm : Current TX power (dBm) min_power_dbm : Minimum supported TX "
+"power (dBm) max_power_dbm : Maximum supported TX power (dBm)"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.power_control.md:501
 msgid "Initialization"
@@ -347,11 +355,13 @@ msgstr "Initialization"
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:531
 msgid "可接受的功率减少量 (dB), 0-255 范围。"
-msgstr "可接受的power减少量 (dB), 0-255 范围。"
+msgstr "Acceptable power reduction (dB), range 0-255."
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:547
 msgid "处理对端的功率控制请求, 调整本端功率并返回响应。"
-msgstr "处理对端的power controlrequest, 调整本端power并返回response。"
+msgstr ""
+"Process a power control request from the remote end, adjust local power and "
+"return a response."
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:555
 msgid "生成功率控制请求信令。"
@@ -359,23 +369,27 @@ msgstr "generatepower controlrequestsignaling。"
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:563
 msgid "处理对端的功率控制响应, 可据此调整本端策略。"
-msgstr "处理对端的power controlresponse, 可据此调整本端策略。"
+msgstr ""
+"Process a power control response from the remote end; local strategy may be "
+"adjusted accordingly."
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:565
 msgid "场景 b: 根据对端反馈的 acceptable_power_reduction 调整本端功率。"
-msgstr "场景 b: 根据对端feedback的 acceptable_power_reduction 调整本端power。"
+msgstr ""
+"Scenario b: adjust local power based on the acceptable_power_reduction fed "
+"back by the remote end."
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:571
 msgid "启动功率等级管理。"
-msgstr "启动powerlevel管理。"
+msgstr "Start power level management."
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:579
 msgid "停止功率等级管理。"
-msgstr "停止powerlevel管理。"
+msgstr "Stop power level management."
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:596
 msgid "生成功率变化指示信令 (场景 c)。"
-msgstr "generatepower变化indicationsignaling (场景 c)。"
+msgstr "Generate power change indication signaling (scenario c)."
 
 #: ../../../src/nearlink_sdr/mac/power_control.py:604
 msgid "生成功率查询请求 (tx_power_change=0)。"

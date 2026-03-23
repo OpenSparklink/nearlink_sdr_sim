@@ -41,29 +41,33 @@ msgstr "Supported simulation scenarios:"
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:13
 msgid "单帧 IQ 环回 (AWGN 信道)"
-msgstr "单frame IQ 环回 (AWGN channel)"
+msgstr "Single-frame IQ loopback (AWGN channel)"
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:14
 msgid "PHY 全链路环回 (CRC → Polar → 调制 → 信道 → 解调 → 解码 → CRC)"
 msgstr ""
-"PHY 全link环回 (CRC → Polar → modulation → channel → demodulation → decode → "
-"CRC)"
+"PHY full-chain loopback (CRC → Polar → modulation → channel → demodulation →"
+" decoding → CRC)"
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:15
 msgid "MAC 数据帧环回 (AsyncDataFrame 打包 → PHY → 环回 → PHY → 解包)"
-msgstr "MAC dataframe环回 (AsyncDataFrame 打包 → PHY → 环回 → PHY → 解包)"
+msgstr ""
+"MAC data frame loopback (AsyncDataFrame packing → PHY → loopback → PHY → "
+"unpacking)"
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:16
 msgid "MAC 信令环回 (信令编码 → PHY → 环回 → PHY → 信令解码)"
-msgstr "MAC signaling环回 (signalingencode → PHY → 环回 → PHY → signalingdecode)"
+msgstr ""
+"MAC signaling loopback (signaling encoding → PHY → loopback → PHY → "
+"signaling decoding)"
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:17
 msgid "跳频发射序列"
-msgstr "frequency hopping发射sequence"
+msgstr "Frequency-hopping transmit sequence"
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:18
 msgid "SleNode 双节点端到端"
-msgstr "SleNode 双节点端到端"
+msgstr "SleNode dual-node end-to-end"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.sim.usrp_sim.md:10
 msgid "Module Contents"
@@ -81,7 +85,7 @@ msgstr "{py:obj}`LoopbackResult <nearlink_sdr.sim.usrp_sim.LoopbackResult>`"
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:20
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:61
 msgid "单帧环回仿真结果。"
-msgstr "单frame环回simulation结果。"
+msgstr "Single-frame loopback simulation result."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.sim.usrp_sim.md:22
 #, python-brace-format
@@ -91,7 +95,7 @@ msgstr "{py:obj}`USRPSimResult <nearlink_sdr.sim.usrp_sim.USRPSimResult>`"
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:24
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:135
 msgid "多帧仿真汇总结果。"
-msgstr "多framesimulation汇总结果。"
+msgstr "Multi-frame simulation aggregated result."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.sim.usrp_sim.md:26
 #, python-brace-format
@@ -145,14 +149,15 @@ msgstr "'field(...)'"
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:198
 msgid "帧错误率。"
-msgstr "frame错误率。"
+msgstr "Frame error rate."
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:209
 msgid ""
 "在 MockUSRP loopback 模式下, TX 端发送的 IQ 信号经可选信道模型 后直接送入 RX 端, 实现完整的硬件在环式仿真。"
 msgstr ""
-"在 MockUSRP loopback 模式下, TX 端transmit的 IQ signal经optionalchannel模型 后直接送入 RX "
-"端, 实现完整的硬件在环式simulation。"
+"In MockUSRP loopback mode, IQ signals transmitted by the TX side pass "
+"through an optional channel model and are fed directly to the RX side, "
+"enabling complete hardware-in-the-loop simulation."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.sim.usrp_sim.md:209
 msgid "Initialization"
@@ -160,35 +165,35 @@ msgstr "Initialization"
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:228
 msgid "IQ 样本经 MockUSRP TX → loopback → RX 环回。"
-msgstr "IQ 样本经 MockUSRP TX → loopback → RX 环回。"
+msgstr "IQ samples through MockUSRP TX → loopback → RX roundtrip."
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:236
 msgid "PHY 全链路环回: 编码 → 调制 → USRP TX → 信道 → USRP RX → 解调 → 解码。"
 msgstr ""
-"PHY 全link环回: encode → modulation → USRP TX → channel → USRP RX → "
-"demodulation → decode。"
+"PHY full-chain loopback: encoding → modulation → USRP TX → channel → USRP RX"
+" → demodulation → decoding."
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:238
 msgid ""
 "Args:     data_bits: 信息比特。     cfg: 发射配置。     ctrl_bits: 控制信息比特, None 时使用全零。"
 msgstr ""
-"Args:     data_bits: information bits。     cfg: 发射configuration。     "
-"ctrl_bits: 控制information bits, None 时使用全零。"
+"Args:     data_bits: Information bits.     cfg: Transmit configuration.     "
+"ctrl_bits: Control information bits; None defaults to all zeros."
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:243
 msgid "Returns:     LoopbackResult 包含 CRC 校验结果和 BER。"
-msgstr "Returns:     LoopbackResult 包含 CRC check结果和 BER。"
+msgstr "Returns:     LoopbackResult containing CRC check result and BER."
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:244
 msgid "MAC 数据帧环回: bytes → mac_to_iq → USRP → iq_to_mac。"
-msgstr "MAC dataframe环回: bytes → mac_to_iq → USRP → iq_to_mac。"
+msgstr "MAC data frame loopback: bytes → mac_to_iq → USRP → iq_to_mac."
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:246
 msgid ""
 "Args:     mac_payload: MAC 层载荷字节。     cfg: 发射配置, None 时使用 FT2 MCS7 默认值。"
 msgstr ""
-"Args:     mac_payload: MAC 层载荷字节。     cfg: 发射configuration, None 时使用 FT2 "
-"MCS7 default值。"
+"Args:     mac_payload: MAC layer payload bytes.     cfg: Transmit "
+"configuration; None defaults to FT2 MCS7."
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:250
 msgid "Returns:     (MacRxResult, LoopbackResult)"
@@ -196,11 +201,13 @@ msgstr "Returns:     (MacRxResult, LoopbackResult)"
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:252
 msgid "跳频发射 + 接收环回。"
-msgstr "frequency hopping发射 + receive环回。"
+msgstr "Frequency-hopping transmit + receive loopback."
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:254
 msgid "在每个跳频信道上发射 iq_samples, 然后在同一信道上接收。"
-msgstr "在每个frequency hoppingchannel上发射 iq_samples, 然后在同一channel上receive。"
+msgstr ""
+"Transmit iq_samples on each hopping channel, then receive on the same "
+"channel."
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:256
 msgid "Returns:     [(channel_num, rx_samples), ...]"
@@ -208,12 +215,13 @@ msgstr "Returns:     [(channel_num, rx_samples), ...]"
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:260
 msgid "批量 MAC 帧环回仿真。"
-msgstr "批量 MAC frame环回simulation。"
+msgstr "Batch MAC frame loopback simulation."
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:262
 msgid "Args:     payloads: MAC 载荷列表。     cfg: 发射配置。"
-msgstr "Args:     payloads: MAC 载荷列表。     cfg: 发射configuration。"
+msgstr ""
+"Args:     payloads: List of MAC payloads.     cfg: Transmit configuration."
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:266
 msgid "Returns:     USRPSimResult 汇总结果。"
-msgstr "Returns:     USRPSimResult 汇总结果。"
+msgstr "Returns:     USRPSimResult summary."

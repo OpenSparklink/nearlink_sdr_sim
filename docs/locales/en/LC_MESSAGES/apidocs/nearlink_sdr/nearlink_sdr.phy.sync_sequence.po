@@ -101,7 +101,9 @@ msgstr ""
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:40
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:193
 msgid "验证32比特同步序列是否满足标准约束条件。"
-msgstr "validate32比特syncsequence是否满足standard约束条件。"
+msgstr ""
+"Verify whether a 32-bit sync word satisfies the standard constraint "
+"conditions."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sync_sequence.md:42
 #, python-brace-format
@@ -115,7 +117,8 @@ msgstr ""
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:44
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:200
 msgid "安全随机函数 (6.10.7), 生成256比特安全序列。"
-msgstr "security随机函数 (6.10.7), generate256比特securitysequence。"
+msgstr ""
+"Security random function (6.10.7), generates a 256-bit security sequence."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sync_sequence.md:46
 #, python-brace-format
@@ -129,7 +132,7 @@ msgstr ""
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:48
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:207
 msgid "从安全序列中提取随机同步序列。"
-msgstr "从securitysequence中提取随机syncsequence。"
+msgstr "Extract a random sync word from the security sequence."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sync_sequence.md:50
 #, python-brace-format
@@ -140,7 +143,7 @@ msgstr ""
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:52
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:214
 msgid "生成同步信号5的随机同步序列 (GFSK调制)。"
-msgstr "generatesyncsignal5的随机syncsequence (GFSKmodulation)。"
+msgstr "Generate the random sync word for sync signal 5 (GFSK modulation)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sync_sequence.md:54
 #, python-brace-format
@@ -151,7 +154,9 @@ msgstr ""
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:56
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:221
 msgid "生成同步信号6的随机同步序列 (无相位旋转BPSK调制)。"
-msgstr "generatesyncsignal6的随机syncsequence (无相位旋转BPSKmodulation)。"
+msgstr ""
+"Generate the random sync word for sync signal 6 (non-rotated BPSK "
+"modulation)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sync_sequence.md:60
 msgid "Data"
@@ -226,20 +231,24 @@ msgstr "standard6.2.3.1:"
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:168
 msgid "广播帧: 固定序列0x5A2BDA62"
-msgstr "broadcast frame: 固定sequence0x5A2BDA62"
+msgstr "Broadcast frame: fixed sequence 0x5A2BDA62."
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:169
 msgid "其他帧: 24位逻辑链路标识 → 补\"10\" → BCH(31,26) → m31异或 → 补\"0\""
-msgstr "其他frame: 24位逻辑link标识 → 补\"10\" → BCH(31,26) → m31XOR → 补\"0\""
+msgstr ""
+"Other frames: 24-bit logical link identifier → append \"10\" → BCH(31,26) → "
+"XOR with m31 → append \"0\"."
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:171
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:178
 msgid "参数:     link_id_24: 24位逻辑链路标识，None表示广播帧"
-msgstr "parameter:     link_id_24: 24位逻辑link标识，None表示broadcast frame"
+msgstr ""
+"Parameters:     link_id_24: 24-bit logical link identifier, None for "
+"broadcast frames."
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:174
 msgid "返回:     32比特同步序列"
-msgstr "返回:     32比特syncsequence"
+msgstr "Returns:     32-bit sync word."
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:174
 msgid "标准6.2.3.2:"
@@ -247,85 +256,98 @@ msgstr "standard6.2.3.2:"
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:175
 msgid "广播帧: 固定序列0x7DE7585C6D226540"
-msgstr "broadcast frame: 固定sequence0x7DE7585C6D226540"
+msgstr "Broadcast frame: fixed sequence 0x7DE7585C6D226540."
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:176
 msgid "其他帧: 24位逻辑链路标识 → BCH(63,24) → m63异或 → 补\"0\""
-msgstr "其他frame: 24位逻辑link标识 → BCH(63,24) → m63XOR → 补\"0\""
+msgstr ""
+"Other frames: 24-bit logical link identifier → BCH(63,24) → XOR with m63 → "
+"append \"0\"."
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:181
 msgid "返回:     64比特同步序列"
-msgstr "返回:     64比特syncsequence"
+msgstr "Returns:     64-bit sync word."
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:181
 msgid "标准6.2.3.3: 两个相同的31长m序列串联。 经BPSK调制后产生62个符号。"
-msgstr "standard6.2.3.3: 两个相同的31长msequence串联。 经BPSKmodulation后产生62个符号。"
+msgstr ""
+"Standard 6.2.3.3: concatenation of two identical length-31 m-sequences. "
+"After BPSK modulation, produces 62 symbols."
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:184
 msgid "参数:     m_seq_index: m31序列编号 0~5，基础广播信道为0"
-msgstr "parameter:     m_seq_index: m31sequence编号 0~5，基础broadcastchannel为0"
+msgstr ""
+"parameter: m_seq_index: m31sequencenumber 0~5, basebroadcastchannelis0"
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:187
 msgid "返回:     62比特序列"
-msgstr "返回:     62比特sequence"
+msgstr "Returns:     62-bit sequence."
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:188
 msgid "标准6.2.3.4: 两个相同的63长m序列串联。 经BPSK调制后产生126个符号。"
-msgstr "standard6.2.3.4: 两个相同的63长msequence串联。 经BPSKmodulation后产生126个符号。"
+msgstr ""
+"Standard 6.2.3.4: concatenation of two identical length-63 m-sequences. "
+"After BPSK modulation, produces 126 symbols."
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:191
 msgid "参数:     m_seq_index: m63序列编号 0~5，基础广播信道为0"
-msgstr "parameter:     m_seq_index: m63sequence编号 0~5，基础broadcastchannel为0"
+msgstr ""
+"parameter: m_seq_index: m63sequencenumber 0~5, basebroadcastchannelis0"
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:194
 msgid "返回:     126比特序列"
-msgstr "返回:     126比特sequence"
+msgstr "Returns:     126-bit sequence."
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:195
 msgid "标准6.2.3.1要求:"
-msgstr "standard6.2.3.1要求:"
+msgstr "Standard 6.2.3.1 requirements:"
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:196
 msgid "不能出现7个或以上连续的0或1"
-msgstr "不能出现7个或以上连续的0或1"
+msgstr "Must not contain 7 or more consecutive 0s or 1s."
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:197
 msgid "不能出现26次或以上的0/1跳转"
-msgstr "不能出现26次或以上的0/1跳转"
+msgstr "Must not contain 26 or more 0/1 transitions."
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:198
 msgid "不能和广播帧同步序列相同"
-msgstr "不能和broadcast framesyncsequence相同"
+msgstr "Must not be identical to the broadcast frame sync word."
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:202
 msgid ""
 "参数:     seed: 128比特安全随机种子 (16字节)     time_param: 32比特时间参数 (如调度时隙号×2)     "
 "kdf_type: 0=AES-CMAC, 1=HMAC-SM3"
 msgstr ""
-"parameter:     seed: 128比特security随机种子 (16字节)     time_param: "
-"32比特timeparameter (如调度time slot号×2)     kdf_type: 0=AES-CMAC, 1=HMAC-SM3"
+"Parameters:     seed: 128-bit security random seed (16 bytes).     "
+"time_param: 32-bit time parameter (e.g. scheduling slot number × 2).     "
+"kdf_type: 0=AES-CMAC, 1=HMAC-SM3."
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:207
 msgid "返回:     256比特数组"
-msgstr "返回:     256bit array"
+msgstr "Returns:     256-bit array."
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:209
 msgid "先发节点: 偶数索引比特的前 n_sync 个 后发节点: 奇数索引比特的前 n_sync 个"
-msgstr "先发节点: 偶数索引比特的前 n_sync 个 后发节点: 奇数索引比特的前 n_sync 个"
+msgstr ""
+"Initiator node: first n_sync bits at even indices. Responder node: first "
+"n_sync bits at odd indices."
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:212
 msgid ""
 "参数:     security_seq: 256比特安全序列     n_sync: 同步序列长度 (32, 64, 128)     is_tx: "
 "True=先发节点, False=后发节点"
 msgstr ""
-"parameter:     security_seq: 256比特securitysequence     n_sync: "
-"syncsequencelength (32, 64, 128)     is_tx: True=先发节点, False=后发节点"
+"Parameters:     security_seq: 256-bit security sequence.     n_sync: Sync "
+"word length (32, 64, 128).     is_tx: True=initiator node, False=responder "
+"node."
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:216
 msgid "标准6.2.3.5: 使用安全随机函数生成256比特安全序列, 先发/后发节点分别取偶数/奇数索引比特。"
 msgstr ""
-"standard6.2.3.5: 使用security随机函数generate256比特securitysequence, "
-"先发/后发节点分别取偶数/奇数索引比特。"
+"Standard 6.2.3.5: use the security random function to generate a 256-bit "
+"security sequence; initiator/responder nodes take even/odd indexed bits "
+"respectively."
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:219
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:226
@@ -334,11 +356,13 @@ msgid ""
 " 64, 128]     is_tx: True=先发节点, False=后发节点     kdf_type: 0=AES-CMAC, 1=HMAC-"
 "SM3"
 msgstr ""
-"parameter:     seed: security随机种子 (16字节)     slot_number: 起始调度time slot号"
-"     n_sync: syncsequencelength [32, 64, 128]     is_tx: True=先发节点, "
-"False=后发节点     kdf_type: 0=AES-CMAC, 1=HMAC-SM3"
+"Parameters:     seed: Security random seed (16 bytes).     slot_number: "
+"Starting scheduling slot number.     n_sync: Sync word length [32, 64, 128]."
+"     is_tx: True=initiator node, False=responder node.     kdf_type: 0=AES-"
+"CMAC, 1=HMAC-SM3."
 
 #: ../../../src/nearlink_sdr/phy/sync_sequence.py:223
 msgid "标准6.2.3.6: 与同步信号5生成方式相同, 区别仅在调制方式 (BPSK vs GFSK)。"
 msgstr ""
-"standard6.2.3.6: 与syncsignal5generate方式相同, 区别仅在modulation方式 (BPSK vs GFSK)。"
+"Standard 6.2.3.6: same generation method as sync signal 5, differing only in"
+" modulation scheme (BPSK vs GFSK)."

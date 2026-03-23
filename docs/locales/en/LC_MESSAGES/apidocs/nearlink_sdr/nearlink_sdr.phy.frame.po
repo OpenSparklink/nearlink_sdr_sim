@@ -78,7 +78,7 @@ msgstr ""
 #: ../../../src/nearlink_sdr/phy/frame.py:36
 #: ../../../src/nearlink_sdr/phy/frame.py:167
 msgid "各帧类型的默认调制方式。"
-msgstr "各frame type的defaultmodulation方式。"
+msgstr "Default modulation scheme for each frame type."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.frame.md:38
 #, python-brace-format
@@ -201,51 +201,56 @@ msgstr "1"
 
 #: ../../../src/nearlink_sdr/phy/frame.py:259
 msgid "生成调制前的比特级帧结构。"
-msgstr "generatemodulation前的比特级frame structure。"
+msgstr "Generate the bit-level frame structure before modulation."
 
 #: ../../../src/nearlink_sdr/phy/frame.py:261
 msgid ""
 "参数:     ctrl_info_bits: 物理层控制信息比特。     data_payload_bits: 数据 + 完整性保护 + CRC "
 "比特。     config: 帧配置参数。"
 msgstr ""
-"parameter:     ctrl_info_bits: 物理层控制information bits。     data_payload_bits:"
-" data + 完整性保护 + CRC 比特。     config: frameconfigurationparameter。"
+"Parameters:     ctrl_info_bits: Physical layer control information bits."
+"     data_payload_bits: Data + integrity protection + CRC bits.     config: "
+"Frame configuration parameters."
 
 #: ../../../src/nearlink_sdr/phy/frame.py:266
 msgid "返回:     包含所有帧字段的 FrameFields 对象。"
-msgstr "返回:     包含所有frame字段的 FrameFields 对象。"
+msgstr "Returns:     A FrameFields object containing all frame fields."
 
 #: ../../../src/nearlink_sdr/phy/frame.py:266
 msgid "帧类型 1（GFSK）返回拼接后的比特序列（非复数符号）。 帧类型 2-4（PSK）返回含导频的复数符号流。"
 msgstr ""
-"frame type 1（GFSK）返回concatenation后的比特sequence（非复数符号）。 frame type "
-"2-4（PSK）返回含pilot的复数符号流。"
+"Frame type 1 (GFSK) returns the concatenated bit sequence (not complex "
+"symbols). Frame types 2-4 (PSK) return a complex symbol stream with pilot "
+"insertion."
 
 #: ../../../src/nearlink_sdr/phy/frame.py:269
 msgid "参数:     fields: 已组装的帧字段。     config: 帧配置参数。"
 msgstr ""
-"parameter:     fields: 已组装的frame字段。     config: frameconfigurationparameter。"
+"Parameters:     fields: Assembled frame fields.     config: Frame "
+"configuration parameters."
 
 #: ../../../src/nearlink_sdr/phy/frame.py:273
 msgid "返回:     类型 1：比特数组（送入 GFSK 调制器）。     类型 2-4：基带复数符号数组。"
-msgstr "返回:     类型 1：bit array（送入 GFSK modulation器）。     类型 2-4：基带复数符号数组。"
+msgstr ""
+"Returns:     Type 1: bit array (fed to the GFSK modulator).     Types 2-4: "
+"baseband complex symbol array."
 
 #: ../../../src/nearlink_sdr/phy/frame.py:273
 msgid "简化解析器，假定已知帧参数。"
-msgstr "简化parse器，假定已知frameparameter。"
+msgstr "Simplified parser, assuming known frame parameters."
 
 #: ../../../src/nearlink_sdr/phy/frame.py:275
 msgid ""
 "参数:     symbols: 接收到的复数符号流。     config: 帧配置参数。     n_ctrl_coded_bits: "
 "编码控制位的数量。     n_data_bits: 数据位数量（调制前）。"
 msgstr ""
-"parameter:     symbols: receive到的复数符号流。     config: "
-"frameconfigurationparameter。     n_ctrl_coded_bits: encode控制位的数量。     "
-"n_data_bits: data位数量（modulation前）。"
+"Parameters:     symbols: Received complex symbol stream.     config: Frame "
+"configuration parameters.     n_ctrl_coded_bits: Number of coded control "
+"bits.     n_data_bits: Number of data bits (before modulation)."
 
 #: ../../../src/nearlink_sdr/phy/frame.py:281
 msgid "返回:     (ctrl_bits, data_bits) — 解调后的比特数组。"
-msgstr "返回:     (ctrl_bits, data_bits) — demodulation后的bit array。"
+msgstr "Returns:     (ctrl_bits, data_bits) — demodulated bit arrays."
 
 #~ msgid ""
 #~ "Frame structure assembly and parsing per TXS-10002-2025 sections "

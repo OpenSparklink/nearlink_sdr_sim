@@ -175,8 +175,8 @@ msgstr "Filter entries with bit index < N, preserving the reliability order."
 #: ../../../src/nearlink_sdr/common/polar.py:128
 msgid "可靠性序列中最后 K 个（最可靠）为信息位， 前 N-K 个（最不可靠）为冻结位。"
 msgstr ""
-"reliability sequence中最后 K 个（最可靠）为information bits， 前 N-K 个（最不可靠）为frozen "
-"bits。"
+"The last K positions in the reliability sequence (most reliable) are "
+"information bits; the first N-K positions (least reliable) are frozen bits."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:136
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:158
@@ -189,11 +189,11 @@ msgstr "Encode K information bits into N coded bits."
 
 #: ../../../src/nearlink_sdr/common/polar.py:149
 msgid "参数:     info_bits: 长度为 K 的比特数组（取值 0 或 1）。"
-msgstr "parameter:     info_bits: length为 K 的bit array（range 0 或 1）。"
+msgstr "parameter: info_bits: lengthis K bit array(range 0 or 1)."
 
 #: ../../../src/nearlink_sdr/common/polar.py:152
 msgid "返回:     长度为 N 的码字（取值 0 或 1）。"
-msgstr "返回:     length为 N 的codeword（range 0 或 1）。"
+msgstr "Returns:     Codeword of length N (values 0 or 1)."
 
 #: ../../../src/nearlink_sdr/common/polar.py:158
 msgid "使用预分配的二维数组存储中间 LLR 和 partial sums, 避免递归中频繁分配内存。"
@@ -229,9 +229,9 @@ msgid ""
 "rate-0 子树: 所有位为冻结位, 直接置零。 rate-1 子树: 硬判决 LLR 得到编码位, 极性变换得到信息位。 partial 子树: "
 "标准 f/g 递归。"
 msgstr ""
-"rate-0 subtree: 所有位为frozen bits, 直接置零。 rate-1 subtree: hard decision LLR "
-"得到coded bits, 极性变换得到information bits。 partial subtree: standard f/g "
-"recursion。"
+"rate-0 subtree: all bits are frozen, set to zero directly. rate-1 subtree: "
+"hard-decide LLR to obtain coded bits, then polar transform to recover "
+"information bits. partial subtree: standard f/g recursion."
 
 #~ msgid ""
 #~ "Polar code encoder and SC (Successive Cancellation) decoder per "

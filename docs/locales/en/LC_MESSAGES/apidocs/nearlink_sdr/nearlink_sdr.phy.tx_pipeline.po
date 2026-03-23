@@ -66,7 +66,7 @@ msgstr "{py:obj}`_head_len <nearlink_sdr.phy.tx_pipeline._head_len>`"
 #: ../../../src/nearlink_sdr/phy/tx_pipeline.py:32
 #: ../../../src/nearlink_sdr/phy/tx_pipeline.py:84
 msgid "返回头部编码后的码长。"
-msgstr "返回头部encode后的code length。"
+msgstr "Return the code length after header encoding."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:34
 #, python-brace-format
@@ -77,7 +77,7 @@ msgstr ""
 #: ../../../src/nearlink_sdr/phy/tx_pipeline.py:36
 #: ../../../src/nearlink_sdr/phy/tx_pipeline.py:292
 msgid "载荷编码: CRC → [分段 → Polar] → 加扰。"
-msgstr "载荷encode: CRC → [segment → Polar] → 加扰。"
+msgstr "Payload encoding: CRC → [segmentation → Polar] → scrambling."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:38
 #, python-brace-format
@@ -87,7 +87,7 @@ msgstr "{py:obj}`encode_head <nearlink_sdr.phy.tx_pipeline.encode_head>`"
 #: ../../../src/nearlink_sdr/phy/tx_pipeline.py:40
 #: ../../../src/nearlink_sdr/phy/tx_pipeline.py:299
 msgid "控制信息头部编码: [Polar(64, K)] → 加扰。"
-msgstr "控制信息头部encode: [Polar(64, K)] → 加扰。"
+msgstr "Control information header encoding: [Polar(64, K)] → scrambling."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:42
 #, python-brace-format
@@ -97,7 +97,9 @@ msgstr "{py:obj}`tx_chain <nearlink_sdr.phy.tx_pipeline.tx_chain>`"
 #: ../../../src/nearlink_sdr/phy/tx_pipeline.py:44
 #: ../../../src/nearlink_sdr/phy/tx_pipeline.py:306
 msgid "完整发射链路: 头部编码 + 载荷编码 → 帧组装 → 调制。"
-msgstr "完整发射link: 头部encode + 载荷encode → frame组装 → modulation。"
+msgstr ""
+"Complete transmit chain: header encoding + payload encoding → frame assembly"
+" → modulation."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:46
 #, python-brace-format
@@ -111,7 +113,9 @@ msgstr ""
 #: ../../../src/nearlink_sdr/phy/tx_pipeline.py:48
 #: ../../../src/nearlink_sdr/phy/tx_pipeline.py:313
 msgid "对已包含导频的复数符号序列进行上采样和 RRC 脉冲成型。"
-msgstr "对已包含pilot的复数符号sequence进行上采样和 RRC 脉冲成型。"
+msgstr ""
+"Perform upsampling and RRC pulse shaping on the complex symbol sequence that"
+" already includes pilots."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:52
 msgid "Data"
@@ -152,10 +156,11 @@ msgid ""
 "ctrl_bits_len : 控制信息有效比特数 (不含 CRC12) pilot_interval : 导频间隔 (4/8/16), 0 表示无导频"
 " sps : 每符号采样数 (脉冲成型用) symbol_rate_mhz : 符号速率 (MHz)"
 msgstr ""
-"frame_type : 帧类型 (1-4) mcs_index : 编码调制索引 (0-12) pid : 24-bit PID, 用于生成同步字 "
-"whitening_seed : 7-bit 加扰种子 crc_seed : CRC 初始值 crc_len : CRC 比特长度 (24 或 32) "
-"ctrl_bits_len : 控制信息有效比特数 (不含 CRC12) pilot_interval : 导频间隔 (4/8/16), 0 表示无导频"
-" sps : 每符号采样数 (脉冲成型用) symbol_rate_mhz : 符号速率 (MHz)"
+"frame_type : Frame type (1-4). mcs_index : MCS index (0-12). pid : 24-bit "
+"PID, used to generate the sync word. whitening_seed : 7-bit scrambling seed."
+" crc_seed : CRC initial value. crc_len : CRC bit length (24 or 32). "
+"ctrl_bits_len : Control information effective bit count (excluding CRC12). "
+"pilot_interval : Pilot interval."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:109
 msgid "2"
@@ -197,7 +202,9 @@ msgstr "'field(...)'"
 
 #: ../../../src/nearlink_sdr/phy/tx_pipeline.py:296
 msgid "data_bits : 原始载荷比特 (不含 CRC) cfg : 发射配置"
-msgstr "data_bits : 原始载荷比特 (不含 CRC) cfg : 发射配置"
+msgstr ""
+"data_bits : Original payload bits (excluding CRC). cfg : Transmit "
+"configuration."
 
 #: ../../../src/nearlink_sdr/phy/tx_pipeline.py:299
 #: ../../../src/nearlink_sdr/phy/tx_pipeline.py:306
@@ -207,23 +214,26 @@ msgstr "Returns"
 
 #: ../../../src/nearlink_sdr/phy/tx_pipeline.py:301
 msgid "txPyLdW : 加扰后的载荷比特"
-msgstr "txPyLdW : 加扰后的载荷比特"
+msgstr "txPyLdW : scramblingnextpayloadbit"
 
 #: ../../../src/nearlink_sdr/phy/tx_pipeline.py:303
 msgid "ctrl_info_bits : 控制信息 + CRC12 比特 (已 pack 好的) cfg : 发射配置"
-msgstr "ctrl_info_bits : 控制信息 + CRC12 比特 (已 pack 好的) cfg : 发射配置"
+msgstr ""
+"ctrl_info_bits : Control information + CRC12 bits (already packed). cfg : "
+"Transmit configuration."
 
 #: ../../../src/nearlink_sdr/phy/tx_pipeline.py:308
 msgid "txHeadW : 加扰后的头部比特"
-msgstr "txHeadW : 加扰后的头部比特"
+msgstr "txHeadW : Scrambled header bits."
 
 #: ../../../src/nearlink_sdr/phy/tx_pipeline.py:310
 msgid ""
 "ctrl_info_bits : 控制信息 + CRC12 比特 data_bits : 原始数据比特 (不含 CRC) cfg : 发射配置"
 msgstr ""
-"ctrl_info_bits : 控制信息 + CRC12 比特 data_bits : 原始data比特 (不含 CRC) cfg : "
-"发射configuration"
+"ctrl_info_bits : Control information + CRC12 bits. data_bits : Original data"
+" bits (excluding CRC). cfg : Transmit configuration."
 
 #: ../../../src/nearlink_sdr/phy/tx_pipeline.py:316
 msgid "iq : 基带 IQ 信号 (complex128), 长度 = 帧符号数 × sps"
-msgstr "iq : 基带 IQ 信号 (complex128), 长度 = 帧符号数 × sps"
+msgstr ""
+"iq : Baseband IQ signal (complex128), length = frame symbol count × sps."

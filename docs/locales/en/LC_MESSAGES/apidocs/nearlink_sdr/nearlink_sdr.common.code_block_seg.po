@@ -153,8 +153,9 @@ msgid ""
 "6.9.1.2（无 CRC 分割）时, 若码率在表 24 中则 use_table24=True。 6.9.1.3（含 CRC 分割）时, 始终使用表 "
 "23。"
 msgstr ""
-"6.9.1.2（无 CRC segmentation）时, 若code rate在表 24 中则 use_table24=True。 6.9.1.3（含"
-" CRC segmentation）时, 始终使用表 23。"
+"6.9.1.2(no CRC segmentation)when, ifcode rateattable 24 inthen "
+"use_table24=True. 6.9.1.3(including CRC segmentation)when, alwaysusestable "
+"23."
 
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:112
 msgid "适用于帧类型 2。"
@@ -166,13 +167,14 @@ msgid ""
 "参数:     bits: 输入比特序列 b_0..b_{B-1}, 其中 B = K + L (信息位 + CRC)。     rate_str: "
 "目标码率字符串。     crc_len: L, 已追加到 bits 末尾的 CRC 长度。"
 msgstr ""
-"parameter:     bits: input bit sequence b_0..b_{B-1}, 其中 B = K + L "
-"(information bits + CRC)。     rate_str: 目标code rate字符串。     crc_len: L, 已追加到"
-" bits 末尾的 CRC length。"
+"parameter: bits: input bit sequence b_0..b_{B-1}, where B = K + L "
+"(information bits + CRC). rate_str: targetcode ratestring. crc_len: L, "
+"appended to bits end CRC length."
 
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:119
 msgid "返回:     每个分段的 (码长 N, 信息比特) 元组列表。"
-msgstr "返回:     每个segment的 (code length N, information bits) 元组列表。"
+msgstr ""
+"Returns:     List of (code_length N, info_bits) tuples for each segment."
 
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:119
 msgid "适用于帧类型 3 和 4。"
@@ -182,14 +184,14 @@ msgstr "Used for frame types 3 and 4."
 #, python-brace-format
 msgid "参数:     bits: 输入比特序列 b_0..b_{B-1}。     rate_str: 目标码率字符串。"
 msgstr ""
-"parameter:     bits: input bit sequence b_0..b_{B-1}。     rate_str: 目标code "
-"rate字符串。"
+"parameter: bits: input bit sequence b_0..b_{B-1}. rate_str: targetcode "
+"ratestring."
 
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:125
 msgid "返回:     每个分段的 (码长 N, 含 CRC 的信息比特) 元组列表。     最后一个分段可能进一步做子分割。"
 msgstr ""
-"返回:     每个segment的 (code length N, 含 CRC 的information bits) 元组列表。     "
-"最后一个segment可能进一步做子segmentation。"
+"Returns:     List of (code_length N, info_bits_with_CRC) tuples for each "
+"segment.     The last segment may be further sub-segmented."
 
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:126
 msgid "若无需子分割（K_r 在码率 R 下可放入 1024 块中）则返回 None。"

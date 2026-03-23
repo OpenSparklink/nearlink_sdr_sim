@@ -34,8 +34,9 @@ msgid ""
 "A 组: 无线帧类型 1 和 2, CRC12, 种子为同步序列低 12 位。 B 组: 无线帧类型 3 和 4, CRC24B, 种子 "
 "0x555555, CRC 与 LLID 异或。"
 msgstr ""
-"A 组: 无线frame type 1 和 2, CRC12, 种子为syncsequence低 12 位。 B 组: 无线frame type 3 和"
-" 4, CRC24B, 种子 0x555555, CRC 与 LLID XOR。"
+"Group A: radio frame types 1 and 2, CRC12, seed is the lower 12 bits of the "
+"sync word. Group B: radio frame types 3 and 4, CRC24B, seed 0x555555, CRC "
+"XOR-ed with LLID."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.md:10
 msgid "Module Contents"
@@ -139,7 +140,7 @@ msgstr "{py:obj}`_bits_to_int <nearlink_sdr.phy.control_info._bits_to_int>`"
 #: ../../../src/nearlink_sdr/phy/control_info.py:84
 #: ../../../src/nearlink_sdr/phy/control_info.py:141
 msgid "将低位在前 (LSB-first) 的比特数组转为无符号整数。"
-msgstr "将低位在前 (LSB-first) 的bit array转为无符号整数。"
+msgstr "Convert an LSB-first bit array to an unsigned integer."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.md:86
 #, python-brace-format
@@ -149,7 +150,8 @@ msgstr "{py:obj}`_a_group_pack <nearlink_sdr.phy.control_info._a_group_pack>`"
 #: ../../../src/nearlink_sdr/phy/control_info.py:88
 #: ../../../src/nearlink_sdr/phy/control_info.py:284
 msgid "A 组通用打包: 拼接 LQI(可选) + info_bits + CRC12。"
-msgstr "A 组通用打包: concatenation LQI(optional) + info_bits + CRC12。"
+msgstr ""
+"Group A generic packing: concatenate LQI (optional) + info_bits + CRC12."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.md:90
 #, python-brace-format
@@ -161,7 +163,7 @@ msgstr ""
 #: ../../../src/nearlink_sdr/phy/control_info.py:92
 #: ../../../src/nearlink_sdr/phy/control_info.py:291
 msgid "A 组通用解包: 校验 CRC12, 返回 (lqi, info_bits)。"
-msgstr "A 组通用解包: check CRC12, 返回 (lqi, info_bits)。"
+msgstr "Group A generic unpacking: verify CRC12, return (lqi, info_bits)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.md:94
 #, python-brace-format
@@ -171,7 +173,7 @@ msgstr "{py:obj}`_llid_mask <nearlink_sdr.phy.control_info._llid_mask>`"
 #: ../../../src/nearlink_sdr/phy/control_info.py:96
 #: ../../../src/nearlink_sdr/phy/control_info.py:1000
 msgid "将 LLID 扩展为 24 位掩码用于 CRC 异或。"
-msgstr "将 LLID 扩展为 24 位掩码用于 CRC XOR。"
+msgstr "Expand LLID to a 24-bit mask for CRC XOR."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.md:98
 #, python-brace-format
@@ -181,7 +183,8 @@ msgstr "{py:obj}`_b_group_pack <nearlink_sdr.phy.control_info._b_group_pack>`"
 #: ../../../src/nearlink_sdr/phy/control_info.py:100
 #: ../../../src/nearlink_sdr/phy/control_info.py:1007
 msgid "B 组通用打包: info_bits + CRC24B (种子 0x555555, 异或 LLID)。"
-msgstr "B 组通用打包: info_bits + CRC24B (种子 0x555555, XOR LLID)。"
+msgstr ""
+"Group B generic packing: info_bits + CRC24B (seed 0x555555, XOR with LLID)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.md:102
 #, python-brace-format
@@ -193,7 +196,7 @@ msgstr ""
 #: ../../../src/nearlink_sdr/phy/control_info.py:104
 #: ../../../src/nearlink_sdr/phy/control_info.py:1014
 msgid "B 组通用解包: 校验 CRC24B, 返回 info_bits。"
-msgstr "B 组通用解包: check CRC24B, 返回 info_bits。"
+msgstr "Group B generic unpacking: verify CRC24B, return info_bits."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.md:106
 #, python-brace-format
@@ -207,7 +210,7 @@ msgstr ""
 #: ../../../src/nearlink_sdr/phy/control_info.py:108
 #: ../../../src/nearlink_sdr/phy/control_info.py:1498
 msgid "对帧类型 2 的 A 组控制信息进行 Polar 编码。"
-msgstr "对frame type 2 的 A 组控制信息进行 Polar encode。"
+msgstr "Polar-encode Group A control information for frame type 2."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.md:110
 #, python-brace-format
@@ -221,7 +224,7 @@ msgstr ""
 #: ../../../src/nearlink_sdr/phy/control_info.py:112
 #: ../../../src/nearlink_sdr/phy/control_info.py:1505
 msgid "对帧类型 2 的 A 组控制信息进行 Polar 解码。"
-msgstr "对frame type 2 的 A 组控制信息进行 Polar decode。"
+msgstr "Polar-decode Group A control information for frame type 2."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.md:116
 msgid "Data"
@@ -385,8 +388,8 @@ msgstr "5592405"
 
 #: ../../../src/nearlink_sdr/phy/control_info.py:1500
 msgid "输入 40 或 48 比特 (含 LQI + CRC12), 编码到 64 比特。"
-msgstr "输入 40 或 48 比特 (含 LQI + CRC12), encode到 64 比特。"
+msgstr "Input 40 or 48 bits (including LQI + CRC12), encode to 64 bits."
 
 #: ../../../src/nearlink_sdr/phy/control_info.py:1507
 msgid "输入 64 比特, 解码到 k_info 比特 (40 或 48)。"
-msgstr "输入 64 比特, decode到 k_info 比特 (40 或 48)。"
+msgstr "Input 64 bits, decode to k_info bits (40 or 48)."

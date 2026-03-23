@@ -45,47 +45,47 @@ msgstr "Secure random function (6.10.7)"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:12
 msgid "CCM Nonce 构建 (9.3.1.3)"
-msgstr "CCM Nonce 构建 (9.3.1.3)"
+msgstr "CCM Nonce build (9.3.1.3)"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:13
 msgid "AES-CCM 加解密 (9.3.1.3)"
-msgstr "AES-CCM 加decrypt (9.3.1.3)"
+msgstr "AES-CCM encryption/decryption (clause 9.3.1.3)"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:14
 msgid "初始化向量计算"
-msgstr "初始化向量compute"
+msgstr "Initialization vector computation"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:15
 msgid "会话密钥派生 (9.3.1.1)"
-msgstr "会话key派生 (9.3.1.1)"
+msgstr "Session key derivation (clause 9.3.1.1)"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:16
 msgid "链路密钥与 DH Key 验证码密钥 (9.3.4.4)"
-msgstr "linkkey与 DH Key validate码key (9.3.4.4)"
+msgstr "linkkeyand DH Key validatecodekey (9.3.4.4)"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:17
 msgid "确认码生成 (9.3.4.3)"
-msgstr "acknowledgment码generate (9.3.4.3)"
+msgstr "acknowledgmentcodegenerate (9.3.4.3)"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:18
 msgid "DH Key 验证码 (9.3.4.5)"
-msgstr "DH Key validate码 (9.3.4.5)"
+msgstr "DH Key validatecode (9.3.4.5)"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:19
 msgid "6位数字比较码 (9.3.4.6)"
-msgstr "6位数字比较码 (9.3.4.6)"
+msgstr "6-digit numeric comparison code (9.3.4.6)"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:20
 msgid "混淆算法 (9.3.4.7)"
-msgstr "混淆算法 (9.3.4.7)"
+msgstr "Obfuscation algorithm (clause 9.3.4.7)"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:21
 msgid "组播密钥管理 (9.3.2)"
-msgstr "组播key管理 (9.3.2)"
+msgstr "Multicast key management (clause 9.3.2)"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:22
 msgid "隐私管理 (9.4)"
-msgstr "隐私管理 (9.4)"
+msgstr "privacymanagement (9.4)"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:10
 msgid "Module Contents"
@@ -103,7 +103,7 @@ msgstr "{py:obj}`KdfType <nearlink_sdr.mac.crypto.KdfType>`"
 #: ../../../src/nearlink_sdr/mac/crypto.py:20
 #: ../../../src/nearlink_sdr/mac/crypto.py:129
 msgid "密钥派生函数类型"
-msgstr "key派生函数类型"
+msgstr "Key derivation function type"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:22
 #, python-brace-format
@@ -113,7 +113,7 @@ msgstr "{py:obj}`AuthMethod <nearlink_sdr.mac.crypto.AuthMethod>`"
 #: ../../../src/nearlink_sdr/mac/crypto.py:24
 #: ../../../src/nearlink_sdr/mac/crypto.py:165
 msgid "鉴权方式 (9.3.4.3)"
-msgstr "鉴权方式 (9.3.4.3)"
+msgstr "authenticationmethod (9.3.4.3)"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:28
 msgid "Functions"
@@ -127,7 +127,7 @@ msgstr "{py:obj}`aes_cmac <nearlink_sdr.mac.crypto.aes_cmac>`"
 #: ../../../src/nearlink_sdr/mac/crypto.py:36
 #: ../../../src/nearlink_sdr/mac/crypto.py:238
 msgid "AES-CMAC, 输入 128-bit key, 输出 128-bit MAC。"
-msgstr "AES-CMAC, 输入 128-bit key, 输出 128-bit MAC。"
+msgstr "AES-CMAC, input 128-bit key, output 128-bit MAC."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:38
 #, python-brace-format
@@ -137,7 +137,7 @@ msgstr "{py:obj}`hmac_sm3 <nearlink_sdr.mac.crypto.hmac_sm3>`"
 #: ../../../src/nearlink_sdr/mac/crypto.py:40
 #: ../../../src/nearlink_sdr/mac/crypto.py:245
 msgid "HMAC-SM3, 输出 256-bit 取低 128-bit。"
-msgstr "HMAC-SM3, 输出 256-bit 取低 128-bit。"
+msgstr "HMAC-SM3, output 256-bit truncated to lower 128-bit."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:42
 #, python-brace-format
@@ -147,7 +147,7 @@ msgstr "{py:obj}`kdf <nearlink_sdr.mac.crypto.kdf>`"
 #: ../../../src/nearlink_sdr/mac/crypto.py:44
 #: ../../../src/nearlink_sdr/mac/crypto.py:252
 msgid "根据 kdf_type 选择 AES-CMAC 或 HMAC-SM3。"
-msgstr "根据 kdf_type 选择 AES-CMAC 或 HMAC-SM3。"
+msgstr "based on kdf_type select AES-CMAC or HMAC-SM3."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:46
 #, python-brace-format
@@ -159,7 +159,9 @@ msgstr ""
 #: ../../../src/nearlink_sdr/mac/crypto.py:48
 #: ../../../src/nearlink_sdr/mac/crypto.py:259
 msgid "安全随机函数 (6.10.7), 生成256比特 (32字节) 安全序列。"
-msgstr "security随机函数 (6.10.7), generate256比特 (32字节) securitysequence。"
+msgstr ""
+"Secure random function (clause 6.10.7), generates a 256-bit (32-byte) secure"
+" sequence."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:50
 #, python-brace-format
@@ -173,7 +175,9 @@ msgstr ""
 #: ../../../src/nearlink_sdr/mac/crypto.py:52
 #: ../../../src/nearlink_sdr/mac/crypto.py:266
 msgid "异步/同步单播组播链路的 CCM nonce (16 bytes)。"
-msgstr "异步/sync单播组播link的 CCM nonce (16 bytes)。"
+msgstr ""
+"CCM nonce for asynchronous/synchronous unicast and multicast links (16 "
+"bytes)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:54
 #, python-brace-format
@@ -187,7 +191,7 @@ msgstr ""
 #: ../../../src/nearlink_sdr/mac/crypto.py:56
 #: ../../../src/nearlink_sdr/mac/crypto.py:273
 msgid "其他链路的 CCM nonce (16 bytes)。"
-msgstr "其他link的 CCM nonce (16 bytes)。"
+msgstr "CCM nonce for other link types (16 bytes)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:58
 #, python-brace-format
@@ -197,7 +201,7 @@ msgstr "{py:obj}`aes_ccm_encrypt <nearlink_sdr.mac.crypto.aes_ccm_encrypt>`"
 #: ../../../src/nearlink_sdr/mac/crypto.py:60
 #: ../../../src/nearlink_sdr/mac/crypto.py:280
 msgid "AES-CCM 加密, 返回 (密文, MIC)。"
-msgstr "AES-CCM encrypt, 返回 (密文, MIC)。"
+msgstr "AES-CCM encryption, returns (ciphertext, MIC)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:62
 #, python-brace-format
@@ -207,7 +211,7 @@ msgstr "{py:obj}`aes_ccm_decrypt <nearlink_sdr.mac.crypto.aes_ccm_decrypt>`"
 #: ../../../src/nearlink_sdr/mac/crypto.py:64
 #: ../../../src/nearlink_sdr/mac/crypto.py:287
 msgid "AES-CCM 解密, 验证失败抛出 InvalidTag。"
-msgstr "AES-CCM decrypt, validatefailure抛出 InvalidTag。"
+msgstr "AES-CCM decryption; raises InvalidTag on verification failure."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:66
 #, python-brace-format
@@ -217,7 +221,7 @@ msgstr "{py:obj}`compute_iv <nearlink_sdr.mac.crypto.compute_iv>`"
 #: ../../../src/nearlink_sdr/mac/crypto.py:68
 #: ../../../src/nearlink_sdr/mac/crypto.py:294
 msgid "计算最终 IV (8 bytes)。"
-msgstr "compute最终 IV (8 bytes)。"
+msgstr "Compute the final IV (8 bytes)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:70
 #, python-brace-format
@@ -253,7 +257,7 @@ msgstr ""
 #: ../../../src/nearlink_sdr/mac/crypto.py:80
 #: ../../../src/nearlink_sdr/mac/crypto.py:315
 msgid "DH Key 验证码密钥 = KDF(dh_key_low128, \"dk\" || ...)。"
-msgstr "DH Key validate码key = KDF(dh_key_low128, \"dk\" || ...)。"
+msgstr "DH Key validatecodekey = KDF(dh_key_low128, \"dk\" || ...)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:82
 #, python-brace-format
@@ -267,7 +271,7 @@ msgstr ""
 #: ../../../src/nearlink_sdr/mac/crypto.py:84
 #: ../../../src/nearlink_sdr/mac/crypto.py:322
 msgid "生成确认码 (16 bytes)。"
-msgstr "generateacknowledgment码 (16 bytes)。"
+msgstr "generateacknowledgmentcode (16 bytes)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:86
 #, python-brace-format
@@ -281,7 +285,7 @@ msgstr ""
 #: ../../../src/nearlink_sdr/mac/crypto.py:88
 #: ../../../src/nearlink_sdr/mac/crypto.py:329
 msgid "生成 DH Key 验证码 (16 bytes)。"
-msgstr "generate DH Key validate码 (16 bytes)。"
+msgstr "generate DH Key validatecode (16 bytes)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:90
 #, python-brace-format
@@ -295,7 +299,7 @@ msgstr ""
 #: ../../../src/nearlink_sdr/mac/crypto.py:92
 #: ../../../src/nearlink_sdr/mac/crypto.py:336
 msgid "生成6位数字比较码 (0-999999)。"
-msgstr "generate6位数字比较码 (0-999999)。"
+msgstr "Generate a 6-digit numeric comparison code (0-999999)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:94
 #, python-brace-format
@@ -305,7 +309,7 @@ msgstr "{py:obj}`obfuscate <nearlink_sdr.mac.crypto.obfuscate>`"
 #: ../../../src/nearlink_sdr/mac/crypto.py:96
 #: ../../../src/nearlink_sdr/mac/crypto.py:343
 msgid "混淆算法, 返回 16 bytes 混淆码。"
-msgstr "混淆算法, 返回 16 bytes 混淆码。"
+msgstr "Obfuscation algorithm, returns 16-byte obfuscation code."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:98
 #, python-brace-format
@@ -331,7 +335,7 @@ msgstr ""
 #: ../../../src/nearlink_sdr/mac/crypto.py:104
 #: ../../../src/nearlink_sdr/mac/crypto.py:357
 msgid "派生组播会话密钥。"
-msgstr "派生组播会话key。"
+msgstr "Derive multicast session key."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:106
 #, python-brace-format
@@ -355,7 +359,7 @@ msgstr ""
 #: ../../../src/nearlink_sdr/mac/crypto.py:112
 #: ../../../src/nearlink_sdr/mac/crypto.py:371
 msgid "生成可解析随机标识 (48 bits)。"
-msgstr "generate可parse随机标识 (48 bits)。"
+msgstr "Generate a resolvable random identifier (48 bits)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:114
 #, python-brace-format
@@ -365,7 +369,7 @@ msgstr "{py:obj}`resolve_address <nearlink_sdr.mac.crypto.resolve_address>`"
 #: ../../../src/nearlink_sdr/mac/crypto.py:116
 #: ../../../src/nearlink_sdr/mac/crypto.py:378
 msgid "验证可解析随机标识。"
-msgstr "validate可parse随机标识。"
+msgstr "Verify a resolvable random identifier."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:120
 msgid "API"
@@ -418,81 +422,86 @@ msgid ""
 "对 KDF 调用两次 (分别使用 time_param 和 time_param+1 作为消息), 拼接两个 128-bit 输出得到 256-bit "
 "安全序列。"
 msgstr ""
-"对 KDF 调用两次 (分别使用 time_param 和 time_param+1 作为message), concatenation两个 "
-"128-bit 输出得到 256-bit securitysequence。"
+"Call KDF twice (using time_param and time_param+1 as messages respectively),"
+" concatenate two 128-bit outputs to obtain a 256-bit secure sequence."
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:264
 msgid ""
 "参数:     seed: 128比特安全随机种子 (16字节)     time_param: 32比特时间参数 (如调度时隙号*2)     "
 "kdf_type: KDF 类型"
 msgstr ""
-"parameter:     seed: 128比特security随机种子 (16字节)     time_param: "
-"32比特timeparameter (如调度time slot号*2)     kdf_type: KDF 类型"
+"Args:     seed: 128-bit secure random seed (16 bytes)     time_param: 32-bit"
+" time parameter (e.g., scheduling slot number * 2)     kdf_type: KDF type"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:269
 msgid "返回:     32 字节安全序列"
-msgstr "返回:     32 字节securitysequence"
+msgstr "Returns:     32-byte secure sequence"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:268
 msgid ""
 "布局: flag(1B) | payload_count[38:0] (39b) | direction (1b)       | IV[63:0] "
 "(64b) | data_len_hi(1B) | data_len_lo(1B)"
 msgstr ""
-"布局: flag(1B) | payload_count[38:0] (39b) | direction (1b)       | IV[63:0] "
-"(64b) | data_len_hi(1B) | data_len_lo(1B)"
+"layout: flag(1B) | payload_count[38:0] (39b) | direction (1b)       | "
+"IV[63:0] (64b) | data_len_hi(1B) | data_len_lo(1B)"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:275
 msgid ""
 "布局: flag(1B) | system_slot_seq[29:0] (30b) | day_count[9:0] (10b)       | "
 "IV[63:0] (64b) | data_len_hi(1B) | data_len_lo(1B)"
 msgstr ""
-"布局: flag(1B) | system_slot_seq[29:0] (30b) | day_count[9:0] (10b)       | "
-"IV[63:0] (64b) | data_len_hi(1B) | data_len_lo(1B)"
+"layout: flag(1B) | system_slot_seq[29:0] (30b) | day_count[9:0] (10b)       "
+"| IV[63:0] (64b) | data_len_hi(1B) | data_len_lo(1B)"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:296
 msgid ""
 "FT1/FT2: iv_base 低32位 XOR sync_seq 低32位 FT3/FT4: iv_base 低24位 XOR link_id "
 "24位"
 msgstr ""
-"FT1/FT2: iv_base 低32位 XOR sync_seq 低32位 FT3/FT4: iv_base 低24位 XOR link_id "
-"24位"
+"FT1/FT2: iv_base low32bit XOR sync_seq low32bit FT3/FT4: iv_base low24bit "
+"XOR link_id 24bit"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:303
 msgid ""
 "认证加密: SK = KDF(link_key, g_div || t_div), 返回 (SK, None) 分离算法: EnK / InK "
 "分别派生, 返回 (EnK, InK)"
 msgstr ""
-"authenticationencrypt: SK = KDF(link_key, g_div || t_div), 返回 (SK, None) "
-"分离算法: EnK / InK 分别派生, 返回 (EnK, InK)"
+"Authenticated encryption: SK = KDF(link_key, g_div || t_div), returns (SK, "
+"None) Split algorithm: EnK / InK derived separately, returns (EnK, InK)"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:324
 msgid ""
 "random_value: Ra (G节点) 或 Rb (T节点), PSK鉴权时为 PSK obfuscated: 通行码/口令鉴权的混淆码, "
 "PSK鉴权的对端随机数"
 msgstr ""
-"random_value: Ra (G节点) 或 Rb (T节点), PSK鉴权时为 PSK obfuscated: 通行码/口令鉴权的混淆码, "
-"PSK鉴权的对端随机数"
+"random_value: Ra (Gnode) or Rb (Tnode), PSKauthenticationwhenis PSK "
+"obfuscated: passkey/passwordauthenticationobfuscationcode, "
+"PSKauthenticationpeerrandom number"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:338
 msgid ""
 "K = G节点公钥X 低128比特 (g_pubkey_x 后16字节) M = G节点公钥X 高128比特 || T节点公钥 || Ra || Rb"
 msgstr ""
-"K = G节点公钥X 低128比特 (g_pubkey_x 后16字节) M = G节点公钥X 高128比特 || T节点公钥 || Ra || Rb"
+"K = Gnodepublic keyX low128bit (g_pubkey_x next16byte) M = Gnodepublic keyX "
+"high128bit || Tnodepublic key || Ra || Rb"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:345
 msgid "K = G节点公钥X 低128比特 (g_pubkey_x 后16字节) 输出 = KDF(K, value)"
-msgstr "K = G节点公钥X 低128比特 (g_pubkey_x 后16字节) 输出 = KDF(K, value)"
+msgstr ""
+"K = Gnodepublic keyX low128bit (g_pubkey_x next16byte) output = KDF(K, "
+"value)"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:359
 msgid ""
 "认证加密: GSK = KDF(GK, \"gsk\"), 返回 (GSK, None) 分离算法: GEnK / GInK 分别派生, 返回 "
 "(GEnK, GInK)"
 msgstr ""
-"authenticationencrypt: GSK = KDF(GK, \"gsk\"), 返回 (GSK, None) 分离算法: GEnK / "
-"GInK 分别派生, 返回 (GEnK, GInK)"
+"Authenticated encryption: GSK = KDF(GK, \"gsk\"), returns (GSK, None) Split "
+"algorithm: GEnK / GInK derived separately, returns (GEnK, GInK)"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:373
 msgid ""
 "hash_part = KDF(IRK, rand_part) mod 2^16 返回: 高16位标记 || 中16位随机 || 低16位hash"
 msgstr ""
-"hash_part = KDF(IRK, rand_part) mod 2^16 返回: 高16位标记 || 中16位随机 || 低16位hash"
+"hash_part = KDF(IRK, rand_part) mod 2^16 Returns: upper 16-bit tag || middle"
+" 16-bit random || lower 16-bit hash"

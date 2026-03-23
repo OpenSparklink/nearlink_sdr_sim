@@ -74,7 +74,7 @@ msgstr ""
 #: ../../../src/nearlink_sdr/mac/link_manager.py:28
 #: ../../../src/nearlink_sdr/mac/link_manager.py:237
 msgid "断开原因。"
-msgstr "断开原因。"
+msgstr "Disconnection reason."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.md:30
 #, python-brace-format
@@ -84,7 +84,7 @@ msgstr "{py:obj}`LinkParams <nearlink_sdr.mac.link_manager.LinkParams>`"
 #: ../../../src/nearlink_sdr/mac/link_manager.py:32
 #: ../../../src/nearlink_sdr/mac/link_manager.py:291
 msgid "链路运行参数集合。"
-msgstr "link运行parameter集合。"
+msgstr "Link operating parameter set."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.md:34
 #, python-brace-format
@@ -94,7 +94,7 @@ msgstr "{py:obj}`EventType <nearlink_sdr.mac.link_manager.EventType>`"
 #: ../../../src/nearlink_sdr/mac/link_manager.py:36
 #: ../../../src/nearlink_sdr/mac/link_manager.py:389
 msgid "状态机输入事件类型。"
-msgstr "state machine输入事件类型。"
+msgstr "State machine input event type."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.md:38
 #, python-brace-format
@@ -104,7 +104,7 @@ msgstr "{py:obj}`Event <nearlink_sdr.mac.link_manager.Event>`"
 #: ../../../src/nearlink_sdr/mac/link_manager.py:40
 #: ../../../src/nearlink_sdr/mac/link_manager.py:593
 msgid "状态机事件。"
-msgstr "state machine事件。"
+msgstr "State machine event."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.md:42
 #, python-brace-format
@@ -118,7 +118,9 @@ msgstr ""
 #: ../../../src/nearlink_sdr/mac/link_manager.py:44
 #: ../../../src/nearlink_sdr/mac/link_manager.py:623
 msgid "链路管理回调接口。子类可覆盖需要的方法。"
-msgstr "link management回调interface。子类可覆盖需要的方法。"
+msgstr ""
+"Link management callback interface. Subclasses may override methods as "
+"needed."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.md:46
 #, python-brace-format
@@ -223,11 +225,13 @@ msgid ""
 "链接态，异步数据链路已建立 PAIRING     -- 配对态，执行安全流程（9.2） DORMANT     -- "
 "休眠态，保持链路但停止数据传输（7.2.14） DISCONNECTED -- 链路已断开"
 msgstr ""
-"IDLE        -- 初始待机 BROADCASTING -- broadcast态，periodtransmit基础/扩展broadcast "
-"frame（7.1.1） SCANNING    -- 发现态，receivebroadcast frame（7.1.2） ACCESSING   --"
-" access态，transmitaccessrequest/等待response（7.1.3） CONNECTED   -- connected "
-"state，异步datalink已建立 PAIRING     -- pairing态，执行securityprocedure（9.2） DORMANT"
-"     -- 休眠态，保持link但停止data传输（7.2.14） DISCONNECTED -- link已断开"
+"IDLE        -- Initial standby BROADCASTING -- Broadcasting state, "
+"periodically send basic/extended advertising frames (7.1.1) SCANNING    -- "
+"Scanning state, receive broadcast frames (7.1.2) ACCESSING   -- Accessing "
+"state, send access request/waiting for response (7.1.3) CONNECTED   -- "
+"Connected state, asynchronous data link established PAIRING     -- Pairing "
+"state, execute security process (9.2) DORMANT     -- Dormant state, maintain"
+" link but stop data transmission (7.2.14) DISCONNECTED -- Link disconnected"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.md:249
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.md:353
@@ -279,43 +283,43 @@ msgstr "None"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:630
 msgid "状态变迁通知。"
-msgstr "state变迁通知。"
+msgstr "State transition notification."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:638
 msgid "接收到广播帧。"
-msgstr "receive到broadcast frame。"
+msgstr "receivetobroadcast frame."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:646
 msgid "接入成功，角色已确定。"
-msgstr "accesssuccess，role已确定。"
+msgstr "Access succeeded, role determined."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:654
 msgid "接入被拒绝。"
-msgstr "access被拒绝。"
+msgstr "Access rejected."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:662
 msgid "收到控制面信令。"
-msgstr "收到控制面signaling。"
+msgstr "Control plane signaling received."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:670
 msgid "链路断开。"
-msgstr "link断开。"
+msgstr "Link disconnected."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:678
 msgid "进入休眠态（7.2.14）。"
-msgstr "进入休眠态（7.2.14）。"
+msgstr "enter sleep state(7.2.14)."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:686
 msgid "从休眠态唤醒（7.2.14）。"
-msgstr "从休眠态唤醒（7.2.14）。"
+msgstr "wake from sleep state(7.2.14)."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:708
 msgid ""
 "以事件驱动方式管理链路生命周期： IDLE → BROADCASTING / SCANNING → ACCESSING → CONNECTED → "
 "DISCONNECTED。"
 msgstr ""
-"以事件驱动方式管理link生命period： IDLE → BROADCASTING / SCANNING → ACCESSING → "
-"CONNECTED → DISCONNECTED。"
+"Manage the link lifecycle in an event-driven manner: IDLE -> BROADCASTING / "
+"SCANNING -> ACCESSING -> CONNECTED -> DISCONNECTED."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.md:735
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.md:746
@@ -329,83 +333,88 @@ msgstr "0.0"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:812
 msgid "处理一个事件，驱动状态转换。"
-msgstr "处理一个事件，驱动stateconversion。"
+msgstr "Process one event and drive state transition."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:820
 msgid "重置到 IDLE 状态。"
-msgstr "重置到 IDLE state。"
+msgstr "Reset to IDLE state."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:895
 msgid "发现态收到广播帧（7.1.2）。"
-msgstr "发现态收到broadcast frame（7.1.2）。"
+msgstr "Broadcast frame received in scanning state (7.1.2)."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:903
 msgid "发现态发起接入请求（7.1.3）。"
-msgstr "发现态发起accessrequest（7.1.3）。"
+msgstr "Initiate access request in scanning state (7.1.3)."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:911
 msgid "接入态收到接入响应（7.1.3d）。"
-msgstr "access态收到accessresponse（7.1.3d）。"
+msgstr "Access response received in accessing state (7.1.3d)."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:919
 msgid "广播态收到接入请求（7.1.3c），广播设备侧。"
-msgstr "broadcast态收到accessrequest（7.1.3c），broadcastdevice侧。"
+msgstr ""
+"Access request received in broadcasting state (7.1.3c), broadcaster side."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:927
 msgid "链接态收到控制面信令（7.2）。"
-msgstr "connected state收到控制面signaling（7.2）。"
+msgstr "Control plane signaling received in connected state (7.2)."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:935
 msgid "链接态发送控制面信令。"
-msgstr "connected statetransmit控制面signaling。"
+msgstr "Send control plane signaling in connected state."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:937
 msgid "实际发送由上层完成，此处仅编码并返回 ControlFrame。"
-msgstr "实际transmit由上层完成，此处仅encode并返回 ControlFrame。"
+msgstr ""
+"Actual transmission is done by upper layers; this only encodes and returns a"
+" ControlFrame."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:943
 msgid "本端请求断开（7.2.17）。"
-msgstr "本端request断开（7.2.17）。"
+msgstr "Local end requests disconnection (7.2.17)."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:951
 msgid "收到对端断开指示（7.2.17）。"
-msgstr "收到对端断开indication（7.2.17）。"
+msgstr "Disconnection indication received from remote end (7.2.17)."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:959
 msgid "监督超时（链接态）。"
-msgstr "监督timeout（connected state）。"
+msgstr "Supervision timeout (connected state)."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:967
 msgid "链接态发起配对流程（9.2）。"
-msgstr "connected state发起pairingprocedure（9.2）。"
+msgstr "Initiate pairing process in connected state (9.2)."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:975
 msgid "配对完成，返回链接态（加密）。"
-msgstr "pairing完成，返回connected state（encrypt）。"
+msgstr "Pairing completed, return to connected state (encrypted)."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:983
 msgid "配对失败，断开链路。"
-msgstr "pairingfailure，断开link。"
+msgstr "Pairing failed, disconnect link."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:991
 msgid "链接态发起休眠（7.2.14）。"
-msgstr "connected state发起休眠（7.2.14）。"
+msgstr "Initiate dormancy in connected state (7.2.14)."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:999
 msgid "本端请求唤醒（7.2.14）。"
-msgstr "本端request唤醒（7.2.14）。"
+msgstr "Local end requests wake-up (7.2.14)."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1007
 msgid "收到对端唤醒指示（7.2.14）。"
-msgstr "收到对端唤醒indication（7.2.14）。"
+msgstr "Wake-up indication received from remote end (7.2.14)."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1015
 msgid "休眠态断开链路。"
-msgstr "休眠态断开link。"
+msgstr "Disconnect link in dormant state."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1023
 msgid "在链接态发送一条控制面信令，返回编码后的 ControlFrame。"
-msgstr "在connected statetransmit一条控制面signaling，返回encode后的 ControlFrame。"
+msgstr ""
+"Send one control plane signaling message in connected state and return the "
+"encoded ControlFrame."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1031
 msgid "更新链路参数。"
@@ -413,123 +422,127 @@ msgstr "updatelinkparameter。"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1039
 msgid "角色切换（7.2.15），仅交换本地角色标记。"
-msgstr "role切换（7.2.15），仅交换本地role标记。"
+msgstr "Role switch (7.2.15), only swap local role flag."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1047
 msgid "检查监督定时器是否超时。返回 True 表示已超时并触发断开。"
-msgstr "检查监督定时器是否timeout。返回 True 表示已timeout并触发断开。"
+msgstr ""
+"Check whether the supervision timer has timed out. Return True if timed out "
+"and trigger disconnection."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1055
 msgid "发起特性交互 (7.2.4)"
-msgstr "发起特性interaction (7.2.4)"
+msgstr "Initiate feature exchange (7.2.4)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1057
 msgid "Args:     feature_set: 本端支持特性集 (80-bit 位图)"
-msgstr "Args:     feature_set: 本端支持特性集 (80-bit 位图)"
+msgstr "Args:     feature_set: Local supported feature set (80-bit bitmap)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1063
 msgid "回复特性交互 (7.2.4)"
-msgstr "回复特性interaction (7.2.4)"
+msgstr "Reply to feature exchange (7.2.4)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1071
 msgid "发起版本交互 (7.2.5)"
-msgstr "发起版本interaction (7.2.5)"
+msgstr "Initiate version exchange (7.2.5)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1079
 msgid "发起数据长度更新 (7.2.6)"
-msgstr "发起datalengthupdate (7.2.6)"
+msgstr "Initiate data length update (7.2.6)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1087
 msgid "回复数据长度更新 (7.2.6)"
-msgstr "回复datalengthupdate (7.2.6)"
+msgstr "Reply to data length update (7.2.6)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1095
 msgid "配置信道质量上报 (7.2.7), 由 G 节点发送"
-msgstr "configurationchannel quality上报 (7.2.7), 由 G 节点transmit"
+msgstr "Configure channel quality reporting (7.2.7), sent by G node"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1103
 msgid "更新跳频频点表 (7.2.8), 由 G 节点发送"
-msgstr "updatefrequency hopping频点表 (7.2.8), 由 G 节点transmit"
+msgstr "Update frequency hopping table (7.2.8), sent by G node"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1111
 msgid "更新跳频地图 (7.2.9), 由 G 节点发送"
-msgstr "updatehopping map (7.2.9), 由 G 节点transmit"
+msgstr "Update frequency hopping map (7.2.9), sent by G node"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1119
 msgid "最少可用信道请求 (7.2.10), 由 T 节点发送"
-msgstr "最少可用channelrequest (7.2.10), 由 T 节点transmit"
+msgstr "Minimum available channels request (7.2.10), sent by T node"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1127
 msgid "请求 CRC 切换 (7.2.11)"
-msgstr "request CRC 切换 (7.2.11)"
+msgstr "Request CRC switch (7.2.11)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1135
 msgid "指示 CRC 切换 (7.2.11), 由 G 节点直接切换"
-msgstr "indication CRC 切换 (7.2.11), 由 G 节点直接切换"
+msgstr "Indicate CRC switch (7.2.11), directly switched by G node"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1143
 msgid "请求物理层类型更新 (7.2.12)"
-msgstr "request物理层类型update (7.2.12)"
+msgstr "Request PHY type update (7.2.12)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1151
 msgid "指示物理层类型更新 (7.2.12), 由 G 节点直接更新"
-msgstr "indication物理层类型update (7.2.12), 由 G 节点直接update"
+msgstr "Indicate PHY type update (7.2.12), directly updated by G node"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1159
 msgid "发起角色切换请求 (7.2.15), 发送 RoleSwitchRequest 信令"
-msgstr "发起role切换request (7.2.15), transmit RoleSwitchRequest signaling"
+msgstr ""
+"Initiate role switch request (7.2.15), send RoleSwitchRequest signaling"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1167
 msgid "执行角色切换: 发送信令并交换本地角色标记"
-msgstr "执行role切换: transmitsignaling并交换本地role标记"
+msgstr "Execute role switch: send signaling and swap local role flag"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1175
 msgid "发起 PING 请求 (7.2.16)"
-msgstr "发起 PING request (7.2.16)"
+msgstr "Initiate PING request (7.2.16)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1183
 msgid "回复 PING 响应 (7.2.16)"
-msgstr "回复 PING response (7.2.16)"
+msgstr "Reply with PING response (7.2.16)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1191
 msgid "发起链路断开 (7.2.17)"
-msgstr "发起link断开 (7.2.17)"
+msgstr "Initiate link disconnection (7.2.17)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1193
 msgid "驱动状态机进入 DISCONNECTED 状态。"
-msgstr "驱动state machine进入 DISCONNECTED state。"
+msgstr "Drive the state machine into DISCONNECTED state."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1199
 msgid "发起异步链路参数更新请求 (7.2.18)"
-msgstr "发起异步linkparameterupdaterequest (7.2.18)"
+msgstr "Initiate asynchronous link parameter update request (7.2.18)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1207
 msgid "回复异步链路参数更新 (7.2.18)"
-msgstr "回复异步linkparameterupdate (7.2.18)"
+msgstr "Reply to asynchronous link parameter update (7.2.18)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1215
 msgid "发起同步等时链路建链 (7.2.19.1)"
-msgstr "发起sync等时link建链 (7.2.19.1)"
+msgstr "Initiate synchronous isochronous link establishment (7.2.19.1)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1223
 msgid "发起同步等时参数交互请求 (7.2.19.2)"
-msgstr "发起sync等时parameterinteractionrequest (7.2.19.2)"
+msgstr ""
+"Initiate synchronous isochronous parameter exchange request (7.2.19.2)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1231
 msgid "回复同步等时参数交互 (7.2.19.2)"
-msgstr "回复sync等时parameterinteraction (7.2.19.2)"
+msgstr "Reply to synchronous isochronous parameter exchange (7.2.19.2)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1239
 msgid "发起同步等时参数更新请求 (7.2.19.3)"
-msgstr "发起sync等时parameterupdaterequest (7.2.19.3)"
+msgstr "Initiate synchronous isochronous parameter update request (7.2.19.3)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1247
 msgid "发送同步等时参数更新指示 (7.2.19.3)"
-msgstr "transmitsync等时parameterupdateindication (7.2.19.3)"
+msgstr "Send synchronous isochronous parameter update indication (7.2.19.3)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1255
 msgid "发送链接态广播链路建立指示 (7.2.20)"
-msgstr "transmitconnected statebroadcastlink建立indication (7.2.20)"
+msgstr "Send connected-state broadcast link establishment indication (7.2.20)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1263
 msgid "发送广播链路参数更新指示 (7.2.20)"
@@ -541,217 +554,234 @@ msgstr "transmitbroadcastlinkhopping mapupdateindication (7.2.20)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1279
 msgid "发送广播链路断开指示 (7.2.20)"
-msgstr "transmitbroadcastlink断开indication (7.2.20)"
+msgstr "Send broadcast link disconnection indication (7.2.20)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1287
 msgid "发送系统管理帧参数更新请求 (7.2.21)"
-msgstr "transmit系统管理frameparameterupdaterequest (7.2.21)"
+msgstr "transmitsystem managementframeparameterupdaterequest (7.2.21)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1295
 msgid "发送系统管理帧参数更新指示 (7.2.21)"
-msgstr "transmit系统管理frameparameterupdateindication (7.2.21)"
+msgstr "transmitsystem managementframeparameterupdateindication (7.2.21)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1303
 msgid "发送系统管理帧时间片更新请求 (7.2.21)"
-msgstr "transmit系统管理frametime片updaterequest (7.2.21)"
+msgstr "Send system management frame time slice update request (7.2.21)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1311
 msgid "发送系统管理帧时间片更新响应 (7.2.21)"
-msgstr "transmit系统管理frametime片updateresponse (7.2.21)"
+msgstr "Send system management frame time slice update response (7.2.21)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1319
 msgid "发送系统管理帧信令传输终止 (7.2.21)"
-msgstr "transmit系统管理framesignaling传输终止 (7.2.21)"
+msgstr ""
+"Send system management frame signaling transmission termination (7.2.21)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1327
 msgid "发送异步组播链路建链指示 (7.2.22)"
-msgstr "transmit异步组播link建链indication (7.2.22)"
+msgstr "Send asynchronous multicast link establishment indication (7.2.22)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1335
 msgid "发送异步组播链路参数交互请求 (7.2.22)"
-msgstr "transmit异步组播linkparameterinteractionrequest (7.2.22)"
+msgstr "Send asynchronous multicast link parameter exchange request (7.2.22)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1343
 msgid "发送异步组播链路参数交互响应 (7.2.22)"
-msgstr "transmit异步组播linkparameterinteractionresponse (7.2.22)"
+msgstr "Send asynchronous multicast link parameter exchange response (7.2.22)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1351
 msgid "发送异步组播链路参数更新请求 (7.2.22)"
-msgstr "transmit异步组播linkparameterupdaterequest (7.2.22)"
+msgstr "Send asynchronous multicast link parameter update request (7.2.22)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1359
 msgid "发送异步组播链路参数更新指示 (7.2.22)"
-msgstr "transmit异步组播linkparameterupdateindication (7.2.22)"
+msgstr "Send asynchronous multicast link parameter update indication (7.2.22)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1367
 msgid "发送异步组播链路参数重配置指示 (7.2.22)"
-msgstr "transmit异步组播linkparameter重configurationindication (7.2.22)"
+msgstr ""
+"Send asynchronous multicast link parameter reconfiguration indication "
+"(7.2.22)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1375
 msgid "发送组播链路断开指示 (7.2.22)"
-msgstr "transmit组播link断开indication (7.2.22)"
+msgstr "Send multicast link disconnection indication (7.2.22)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1383
 msgid "发送窄带跳频测量能力请求 (7.2.23)"
-msgstr "transmit窄带frequency hopping测量能力request (7.2.23)"
+msgstr ""
+"Send narrowband frequency hopping measurement capability request (7.2.23)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1391
 msgid "发送窄带跳频测量能力响应 (7.2.23)"
-msgstr "transmit窄带frequency hopping测量能力response (7.2.23)"
+msgstr ""
+"Send narrowband frequency hopping measurement capability response (7.2.23)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1399
 msgid "发送窄带跳频测量信号配置 (7.2.23)"
-msgstr "transmit窄带frequency hopping测量signalconfiguration (7.2.23)"
+msgstr ""
+"Send narrowband frequency hopping measurement signal configuration (7.2.23)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1407
 msgid "发送窄带跳频测量信息上报 (7.2.23)"
-msgstr "transmit窄带frequency hopping测量信息上报 (7.2.23)"
+msgstr ""
+"Send narrowband frequency hopping measurement information report (7.2.23)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1415
 msgid "发送窄带跳频测量行为指示 (7.2.23)"
-msgstr "transmit窄带frequency hopping测量行为indication (7.2.23)"
+msgstr ""
+"Send narrowband frequency hopping measurement behavior indication (7.2.23)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1423
 msgid "发送坐标信息请求 (7.2.23)"
-msgstr "transmit坐标信息request (7.2.23)"
+msgstr "transmitcoordinate informationrequest (7.2.23)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1431
 msgid "发送坐标信息上报 (7.2.23)"
-msgstr "transmit坐标信息上报 (7.2.23)"
+msgstr "Send coordinate information report (7.2.23)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1439
 msgid "发送坐标信息配置 (7.2.23)"
-msgstr "transmit坐标信息configuration (7.2.23)"
+msgstr "transmitcoordinate informationconfiguration (7.2.23)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1447
 msgid "发送窄带跳频测量时延信息请求 (7.2.23)"
-msgstr "transmit窄带frequency hopping测量时延信息request (7.2.23)"
+msgstr ""
+"Send narrowband frequency hopping measurement delay information request "
+"(7.2.23)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1455
 msgid "发送窄带跳频测量时延信息响应 (7.2.23)"
-msgstr "transmit窄带frequency hopping测量时延信息response (7.2.23)"
+msgstr ""
+"Send narrowband frequency hopping measurement delay information response "
+"(7.2.23)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1463
 msgid "发送超宽带脉冲测量能力请求 (7.2.24)"
-msgstr "transmit超宽带脉冲测量能力request (7.2.24)"
+msgstr "Send UWB pulse measurement capability request (7.2.24)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1471
 msgid "发送超宽带脉冲测量能力响应 (7.2.24)"
-msgstr "transmit超宽带脉冲测量能力response (7.2.24)"
+msgstr "Send UWB pulse measurement capability response (7.2.24)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1479
 msgid "发送超宽带脉冲测量配置 (7.2.24)"
-msgstr "transmit超宽带脉冲测量configuration (7.2.24)"
+msgstr "Send UWB pulse measurement configuration (7.2.24)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1487
 msgid "发送超宽带脉冲测量配置反馈 (7.2.24)"
-msgstr "transmit超宽带脉冲测量configurationfeedback (7.2.24)"
+msgstr "Send UWB pulse measurement configuration feedback (7.2.24)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1495
 msgid "发送超宽带脉冲测量信息上报 (7.2.24)"
-msgstr "transmit超宽带脉冲测量信息上报 (7.2.24)"
+msgstr "Send UWB pulse measurement information report (7.2.24)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1503
 msgid "发送超宽带脉冲测量行为指示 (7.2.24)"
-msgstr "transmit超宽带脉冲测量行为indication (7.2.24)"
+msgstr "Send UWB pulse measurement behavior indication (7.2.24)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1511
 msgid "发送超宽带脉冲感知能力请求 (7.2.24)"
-msgstr "transmit超宽带脉冲感知能力request (7.2.24)"
+msgstr "Send UWB pulse sensing capability request (7.2.24)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1519
 msgid "发送超宽带脉冲感知能力响应 (7.2.24)"
-msgstr "transmit超宽带脉冲感知能力response (7.2.24)"
+msgstr "Send UWB pulse sensing capability response (7.2.24)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1527
 msgid "发送超宽带脉冲感知配置 (7.2.24)"
-msgstr "transmit超宽带脉冲感知configuration (7.2.24)"
+msgstr "Send UWB pulse sensing configuration (7.2.24)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1535
 msgid "发送超宽带脉冲感知配置反馈 (7.2.24)"
-msgstr "transmit超宽带脉冲感知configurationfeedback (7.2.24)"
+msgstr "Send UWB pulse sensing configuration feedback (7.2.24)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1543
 msgid "发送超宽带脉冲感知信息上报 (7.2.24)"
-msgstr "transmit超宽带脉冲感知信息上报 (7.2.24)"
+msgstr "Send UWB pulse sensing information report (7.2.24)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1551
 msgid "发送超宽带脉冲感知行为指示 (7.2.24)"
-msgstr "transmit超宽带脉冲感知行为indication (7.2.24)"
+msgstr "Send UWB pulse sensing behavior indication (7.2.24)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1559
 msgid "发送超宽带脉冲感知流程请求 (7.2.24)"
-msgstr "transmit超宽带脉冲感知procedurerequest (7.2.24)"
+msgstr "Send UWB pulse sensing process request (7.2.24)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1567
 msgid "发送超宽带脉冲感知流程反馈 (7.2.24)"
-msgstr "transmit超宽带脉冲感知procedurefeedback (7.2.24)"
+msgstr "Send UWB pulse sensing process feedback (7.2.24)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1575
 msgid "发送超宽带脉冲代理感知请求 (7.2.24)"
-msgstr "transmit超宽带脉冲代理感知request (7.2.24)"
+msgstr "Send UWB pulse proxy sensing request (7.2.24)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1583
 msgid "发送超宽带脉冲代理感知反馈 (7.2.24)"
-msgstr "transmit超宽带脉冲代理感知feedback (7.2.24)"
+msgstr "Send UWB pulse proxy sensing feedback (7.2.24)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1591
 msgid "发送窄带跳频感知流程请求 (7.2.25)"
-msgstr "transmit窄带frequency hopping感知procedurerequest (7.2.25)"
+msgstr "Send narrowband frequency hopping sensing process request (7.2.25)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1599
 msgid "发送窄带跳频感知流程反馈 (7.2.25)"
-msgstr "transmit窄带frequency hopping感知procedurefeedback (7.2.25)"
+msgstr "Send narrowband frequency hopping sensing process feedback (7.2.25)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1607
 msgid "发送窄带跳频感知能力请求 (7.2.25)"
-msgstr "transmit窄带frequency hopping感知能力request (7.2.25)"
+msgstr "Send narrowband frequency hopping sensing capability request (7.2.25)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1615
 msgid "发送窄带跳频感知能力响应 (7.2.25)"
-msgstr "transmit窄带frequency hopping感知能力response (7.2.25)"
+msgstr ""
+"Send narrowband frequency hopping sensing capability response (7.2.25)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1623
 msgid "发送窄带跳频感知配置 (7.2.25)"
-msgstr "transmit窄带frequency hopping感知configuration (7.2.25)"
+msgstr "Send narrowband frequency hopping sensing configuration (7.2.25)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1631
 msgid "发送窄带跳频感知配置反馈 (7.2.25)"
-msgstr "transmit窄带frequency hopping感知configurationfeedback (7.2.25)"
+msgstr ""
+"Send narrowband frequency hopping sensing configuration feedback (7.2.25)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1639
 msgid "发送窄带跳频感知信息上报 (7.2.25)"
-msgstr "transmit窄带frequency hopping感知信息上报 (7.2.25)"
+msgstr "Send narrowband frequency hopping sensing information report (7.2.25)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1647
 msgid "发送窄带跳频感知行为指示 (7.2.25)"
-msgstr "transmit窄带frequency hopping感知行为indication (7.2.25)"
+msgstr ""
+"Send narrowband frequency hopping sensing behavior indication (7.2.25)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1655
 msgid "发送窄带跳频代理感知请求 (7.2.25)"
-msgstr "transmit窄带frequency hopping代理感知request (7.2.25)"
+msgstr "Send narrowband frequency hopping proxy sensing request (7.2.25)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1663
 msgid "发送窄带跳频代理感知反馈 (7.2.25)"
-msgstr "transmit窄带frequency hopping代理感知feedback (7.2.25)"
+msgstr "Send narrowband frequency hopping proxy sensing feedback (7.2.25)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1671
 msgid "发送窄带跳频测量信号配置更新请求 (7.2.25)"
 msgstr ""
-"transmit窄带frequency hopping测量signalconfigurationupdaterequest (7.2.25)"
+"Send narrowband frequency hopping measurement signal configuration update "
+"request (7.2.25)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1679
 msgid "发送窄带跳频测量信号配置更新指示 (7.2.25)"
 msgstr ""
-"transmit窄带frequency hopping测量signalconfigurationupdateindication (7.2.25)"
+"Send narrowband frequency hopping measurement signal configuration update "
+"indication (7.2.25)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1687
 msgid "发送资源预留指示 (7.3.2.91)"
-msgstr "transmit资源预留indication (7.3.2.91)"
+msgstr "transmitresource reservationindication (7.3.2.91)"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1695
 msgid "发送资源预留终止 (7.3.2.92)"
-msgstr "transmit资源预留终止 (7.3.2.92)"
+msgstr "Send resource reservation termination (7.3.2.92)"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.md:1703
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.md:1719
@@ -761,7 +791,7 @@ msgstr "Bases: {py:obj}`Exception`"
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1706
 msgid "非法状态转换。"
-msgstr "非法stateconversion。"
+msgstr "Illegal state transition."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1712
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1728
@@ -770,7 +800,7 @@ msgstr "Initialize self. See help(type(self)) for accurate signature."
 
 #: ../../../src/nearlink_sdr/mac/link_manager.py:1722
 msgid "当前状态不允许此操作。"
-msgstr "当前state不允许此操作。"
+msgstr "Current state does not allow this operation."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.md:1735
 msgid "'type(...)'"

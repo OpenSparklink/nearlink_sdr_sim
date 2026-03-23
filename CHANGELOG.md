@@ -5,6 +5,14 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/),
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.0.3] - 2026-03-23
+
+### Fixed
+
+- 英文本地化: 手动翻译全部 API 文档中文残留条目 (common/phy/mac/sim/node 共 1200+ 条), 消除所有中文穿透
+- 修复架构文档阶段数错误 (十二→十六)
+- 统一"收发间隔"术语为 transceive interval
+
 ## [1.0.2] - 2026-03-23
 
 ### Added

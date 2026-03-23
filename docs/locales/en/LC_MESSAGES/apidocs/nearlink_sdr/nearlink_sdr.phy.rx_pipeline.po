@@ -33,8 +33,9 @@ msgstr "Physical layer receive pipeline — TXS-10002-2025 standard"
 msgid ""
 "完成 TX 发射链路的逆操作: IQ 信号 → 帧同步 → 匹配滤波/解调 → 解扰 → Polar 解码 → CRC 校验, 还原 MAC 层载荷。"
 msgstr ""
-"完成 TX 发射link的逆操作: IQ signal → framesync → matching滤波/demodulation → 解扰 → "
-"Polar decode → CRC check, 还原 MAC 层载荷。"
+"Reverse the TX transmit chain: IQ signal → frame synchronization → matched "
+"filter / demodulation → descrambling → Polar decoding → CRC check, "
+"recovering the MAC layer payload."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.rx_pipeline.md:10
 msgid "Module Contents"
@@ -77,7 +78,9 @@ msgstr "{py:obj}`decode_head <nearlink_sdr.phy.rx_pipeline.decode_head>`"
 #: ../../../src/nearlink_sdr/phy/rx_pipeline.py:36
 #: ../../../src/nearlink_sdr/phy/rx_pipeline.py:149
 msgid "头部解码: 解扰 → [Polar 解码] → 返回控制信息比特。"
-msgstr "头部decode: 解扰 → [Polar decode] → 返回控制information bits。"
+msgstr ""
+"Header decoding: descramble → [Polar decode] → return control information "
+"bits."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.rx_pipeline.md:38
 #, python-brace-format
@@ -87,7 +90,8 @@ msgstr "{py:obj}`frame_sync <nearlink_sdr.phy.rx_pipeline.frame_sync>`"
 #: ../../../src/nearlink_sdr/phy/rx_pipeline.py:40
 #: ../../../src/nearlink_sdr/phy/rx_pipeline.py:156
 msgid "帧同步: 同步序列互相关峰值搜索。"
-msgstr "framesync: syncsequence互相关峰值搜索。"
+msgstr ""
+"Frame synchronization: cross-correlation peak search using the sync word."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.rx_pipeline.md:42
 #, python-brace-format
@@ -97,7 +101,7 @@ msgstr "{py:obj}`rx_chain <nearlink_sdr.phy.rx_pipeline.rx_chain>`"
 #: ../../../src/nearlink_sdr/phy/rx_pipeline.py:44
 #: ../../../src/nearlink_sdr/phy/rx_pipeline.py:163
 msgid "完整接收链路: IQ → 帧解析 → 解码 → CRC 校验。"
-msgstr "完整receivelink: IQ → frameparse → decode → CRC check。"
+msgstr "Complete receive chain: IQ → frame parsing → decoding → CRC check."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.rx_pipeline.md:48
 msgid "Data"
@@ -140,8 +144,9 @@ msgid ""
 "scrambled_bits : 加扰后的载荷比特 (txPyLdW) cfg : 发射/接收配置 n_info_bits : 原始信息比特数 "
 "(data_bytes * 8, 不含 CRC)"
 msgstr ""
-"scrambled_bits : 加扰后的载荷比特 (txPyLdW) cfg : 发射/接收配置 n_info_bits : 原始信息比特数 "
-"(data_bytes * 8, 不含 CRC)"
+"scrambled_bits : Scrambled payload bits (txPyLdW). cfg : Transmit/receive "
+"configuration. n_info_bits : Original information bit count (data_bytes * 8,"
+" excluding CRC)."
 
 #: ../../../src/nearlink_sdr/phy/rx_pipeline.py:150
 #: ../../../src/nearlink_sdr/phy/rx_pipeline.py:156
@@ -152,33 +157,41 @@ msgstr "Returns"
 
 #: ../../../src/nearlink_sdr/phy/rx_pipeline.py:152
 msgid "(data_bits, crc_ok) : 原始数据比特 和 CRC 校验结果"
-msgstr "(data_bits, crc_ok) : 原始data比特 和 CRC check结果"
+msgstr "(data_bits, crc_ok) : Original data bits and CRC check result."
 
 #: ../../../src/nearlink_sdr/phy/rx_pipeline.py:153
 msgid "scrambled_bits : 加扰后的头部比特 (txHeadW) cfg : 发射/接收配置"
-msgstr "scrambled_bits : 加扰后的头部比特 (txHeadW) cfg : 发射/接收配置"
+msgstr ""
+"scrambled_bits : Scrambled header bits (txHeadW). cfg : Transmit/receive "
+"configuration."
 
 #: ../../../src/nearlink_sdr/phy/rx_pipeline.py:158
 msgid "(ctrl_bits, crc12_ok) : 控制信息 + CRC12 比特, CRC12 校验结果"
-msgstr "(ctrl_bits, crc12_ok) : 控制信息 + CRC12 比特, CRC12 check结果"
+msgstr ""
+"(ctrl_bits, crc12_ok) : Control information + CRC12 bits, CRC12 check "
+"result."
 
 #: ../../../src/nearlink_sdr/phy/rx_pipeline.py:160
 msgid "iq_signal : 接收到的基带 IQ 信号 (已匹配滤波 + 下采样到 1 sps) cfg : 配置 (需要 pid 生成同步序列)"
 msgstr ""
-"iq_signal : 接收到的基带 IQ 信号 (已匹配滤波 + 下采样到 1 sps) cfg : 配置 (需要 pid 生成同步序列)"
+"iq_signal : Received baseband IQ signal (matched-filtered + downsampled to 1"
+" sps). cfg : Configuration (pid needed to generate the sync word)."
 
 #: ../../../src/nearlink_sdr/phy/rx_pipeline.py:165
 msgid "sync_start : 同步序列起始符号位置, -1 表示未检测到"
-msgstr "sync_start : syncsequence起始符号位置, -1 表示未检测到"
+msgstr ""
+"sync_start : Start symbol position of the sync word, -1 if not detected."
 
 #: ../../../src/nearlink_sdr/phy/rx_pipeline.py:167
 msgid ""
 "iq_signal : 基带 IQ 信号 cfg : 发射/接收参数配置 (与发射端相同) n_data_bytes : 数据长度 (字节), "
 "用于确定码块分割"
 msgstr ""
-"iq_signal : 基带 IQ 信号 cfg : 发射/接收参数配置 (与发射端相同) n_data_bytes : 数据长度 (字节), "
-"用于确定码块分割"
+"iq_signal : Baseband IQ signal. cfg : Transmit/receive parameter "
+"configuration (same as the transmitter). n_data_bytes : Data length (bytes),"
+" used to determine code block segmentation."
 
 #: ../../../src/nearlink_sdr/phy/rx_pipeline.py:173
 msgid "RxResult : 包含恢复数据、控制信息和校验结果"
-msgstr "RxResult : 包含恢复data、控制信息和check结果"
+msgstr ""
+"RxResult : Contains recovered data, control information and check results."
