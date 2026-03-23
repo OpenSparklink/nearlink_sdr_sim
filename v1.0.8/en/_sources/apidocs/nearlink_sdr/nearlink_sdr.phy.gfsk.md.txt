@@ -1,0 +1,113 @@
+# {py:mod}`nearlink_sdr.phy.gfsk`
+
+```{py:module} nearlink_sdr.phy.gfsk
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.gfsk
+:allowtitles:
+```
+
+## Module Contents
+
+### Classes
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`GFSKModulator <nearlink_sdr.phy.gfsk.GFSKModulator>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.gfsk.GFSKModulator
+    :summary:
+    ```
+* - {py:obj}`GFSKDemodulator <nearlink_sdr.phy.gfsk.GFSKDemodulator>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.gfsk.GFSKDemodulator
+    :summary:
+    ```
+````
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`_gaussian_filter <nearlink_sdr.phy.gfsk._gaussian_filter>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.gfsk._gaussian_filter
+    :summary:
+    ```
+````
+
+### Data
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`GFSK_BW_CONFIG <nearlink_sdr.phy.gfsk.GFSK_BW_CONFIG>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.gfsk.GFSK_BW_CONFIG
+    :summary:
+    ```
+````
+
+### API
+
+````{py:data} GFSK_BW_CONFIG
+:canonical: nearlink_sdr.phy.gfsk.GFSK_BW_CONFIG
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.gfsk.GFSK_BW_CONFIG
+```
+
+````
+
+````{py:function} _gaussian_filter(bt: float, span: int, sps: int) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.gfsk._gaussian_filter
+
+```{autodoc2-docstring} nearlink_sdr.phy.gfsk._gaussian_filter
+```
+````
+
+`````{py:class} GFSKModulator(sps: int = 8, mod_index: float = 0.5, bt: float = 0.5, gauss_span: int = 3)
+:canonical: nearlink_sdr.phy.gfsk.GFSKModulator
+
+```{autodoc2-docstring} nearlink_sdr.phy.gfsk.GFSKModulator
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.gfsk.GFSKModulator.__init__
+```
+
+````{py:method} modulate(bits: numpy.ndarray) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.gfsk.GFSKModulator.modulate
+
+```{autodoc2-docstring} nearlink_sdr.phy.gfsk.GFSKModulator.modulate
+```
+
+````
+
+`````
+
+`````{py:class} GFSKDemodulator(sps: int = 8)
+:canonical: nearlink_sdr.phy.gfsk.GFSKDemodulator
+
+```{autodoc2-docstring} nearlink_sdr.phy.gfsk.GFSKDemodulator
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.gfsk.GFSKDemodulator.__init__
+```
+
+````{py:method} demodulate(signal: numpy.ndarray) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.gfsk.GFSKDemodulator.demodulate
+
+```{autodoc2-docstring} nearlink_sdr.phy.gfsk.GFSKDemodulator.demodulate
+```
+
+````
+
+`````
