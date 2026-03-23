@@ -849,33 +849,33 @@
 <a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.smf.html#nearlink_sdr.mac.smf.SystemManagementFrame.get_schedules">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_schedules</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ScheduleSignaling</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;提取所有调度信令&quot;&quot;&quot;</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">tlv</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">signalings</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">tlv</span><span class="o">.</span><span class="n">sig_type</span> <span class="o">==</span> <span class="n">SMFSignalingType</span><span class="o">.</span><span class="n">SCHEDULE</span><span class="p">:</span>
-                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ScheduleSignaling</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">tlv</span><span class="o">.</span><span class="n">content</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">result</span></div>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="n">ScheduleSignaling</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">tlv</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">tlv</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">signalings</span>
+            <span class="k">if</span> <span class="n">tlv</span><span class="o">.</span><span class="n">sig_type</span> <span class="o">==</span> <span class="n">SMFSignalingType</span><span class="o">.</span><span class="n">SCHEDULE</span>
+        <span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="SystemManagementFrame.get_links">
 <a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.smf.html#nearlink_sdr.mac.smf.SystemManagementFrame.get_links">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_links</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">LinkSignaling</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;提取所有链路信令&quot;&quot;&quot;</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">tlv</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">signalings</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">tlv</span><span class="o">.</span><span class="n">sig_type</span> <span class="o">==</span> <span class="n">SMFSignalingType</span><span class="o">.</span><span class="n">LINK</span><span class="p">:</span>
-                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LinkSignaling</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">tlv</span><span class="o">.</span><span class="n">content</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">result</span></div>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="n">LinkSignaling</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">tlv</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">tlv</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">signalings</span>
+            <span class="k">if</span> <span class="n">tlv</span><span class="o">.</span><span class="n">sig_type</span> <span class="o">==</span> <span class="n">SMFSignalingType</span><span class="o">.</span><span class="n">LINK</span>
+        <span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="SystemManagementFrame.get_offsets">
 <a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.smf.html#nearlink_sdr.mac.smf.SystemManagementFrame.get_offsets">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_offsets</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">OffsetSignaling</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;提取所有偏移信令&quot;&quot;&quot;</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">tlv</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">signalings</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">tlv</span><span class="o">.</span><span class="n">sig_type</span> <span class="o">==</span> <span class="n">SMFSignalingType</span><span class="o">.</span><span class="n">OFFSET</span><span class="p">:</span>
-                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">OffsetSignaling</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">tlv</span><span class="o">.</span><span class="n">content</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">result</span></div>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="n">OffsetSignaling</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">tlv</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">tlv</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">signalings</span>
+            <span class="k">if</span> <span class="n">tlv</span><span class="o">.</span><span class="n">sig_type</span> <span class="o">==</span> <span class="n">SMFSignalingType</span><span class="o">.</span><span class="n">OFFSET</span>
+        <span class="p">]</span></div>
 </div>
 
 

@@ -628,7 +628,7 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;AES-CCM 加密, 返回 (密文, MIC)。&quot;&quot;&quot;</span>
     <span class="n">aesccm</span> <span class="o">=</span> <span class="n">AESCCM</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">tag_length</span><span class="o">=</span><span class="n">mic_len</span><span class="p">)</span>
     <span class="n">ct_and_tag</span> <span class="o">=</span> <span class="n">aesccm</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span>
-        <span class="n">nonce</span><span class="p">,</span> <span class="n">plaintext</span><span class="p">,</span> <span class="n">associated_data</span> <span class="k">if</span> <span class="n">associated_data</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">nonce</span><span class="p">,</span> <span class="n">plaintext</span><span class="p">,</span> <span class="n">associated_data</span> <span class="ow">or</span> <span class="kc">None</span>
     <span class="p">)</span>
     <span class="n">ciphertext</span> <span class="o">=</span> <span class="n">ct_and_tag</span><span class="p">[:</span><span class="o">-</span><span class="n">mic_len</span><span class="p">]</span>
     <span class="n">mic</span> <span class="o">=</span> <span class="n">ct_and_tag</span><span class="p">[</span><span class="o">-</span><span class="n">mic_len</span><span class="p">:]</span>
@@ -651,7 +651,7 @@
     <span class="k">return</span> <span class="n">aesccm</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span>
         <span class="n">nonce</span><span class="p">,</span>
         <span class="n">ciphertext</span> <span class="o">+</span> <span class="n">mic</span><span class="p">,</span>
-        <span class="n">associated_data</span> <span class="k">if</span> <span class="n">associated_data</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">associated_data</span> <span class="ow">or</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span></div>
 
 

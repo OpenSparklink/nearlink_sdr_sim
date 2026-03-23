@@ -897,14 +897,14 @@
 
 <span class="sd">        :returns: [{&quot;event_start&quot;: int, &quot;tx_window&quot;: (s, e), &quot;rx_window&quot;: (s, e)}, ...]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">result</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_start_times</span><span class="p">(</span><span class="n">group_index</span><span class="p">):</span>
-            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="p">{</span>
                 <span class="s2">&quot;event_start&quot;</span><span class="p">:</span> <span class="n">start</span><span class="p">,</span>
                 <span class="s2">&quot;tx_window&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">tx_window</span><span class="p">(</span><span class="n">start</span><span class="p">),</span>
                 <span class="s2">&quot;rx_window&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">rx_window</span><span class="p">(</span><span class="n">start</span><span class="p">),</span>
-            <span class="p">})</span>
-        <span class="k">return</span> <span class="n">result</span></div>
+            <span class="p">}</span>
+            <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_start_times</span><span class="p">(</span><span class="n">group_index</span><span class="p">)</span>
+        <span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="EventGroupScheduler.next_event_group_start">
