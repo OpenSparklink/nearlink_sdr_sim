@@ -21,12 +21,12 @@ EVEN_ROTATION_DEG = {
 def pilot_symbol(mod_type: str, symbol_index: int) -> complex:
     """生成带适当相位旋转的单个导频符号。
 
-    参数:
+    Args:
         mod_type: 调制方式，取 "BPSK"、"QPSK" 或 "8PSK"。
         symbol_index: 帧内以 0 为基的符号索引（决定奇偶位置）。
                      标准规定第一个符号处于奇数位置。
 
-    返回:
+    Returns:
         复数导频符号。
     """
     phase_deg = PILOT_PHASE_DEG[mod_type]
@@ -49,14 +49,14 @@ def insert_pilots(
     每隔 `pilot_interval` 个数据符号后插入一个导频符号。
     按标准规定，帧中最后一个导频应省略。
 
-    参数:
+    Args:
         data_symbols: 复数数据符号数组。
         pilot_interval: 标准中的 N 值（4、8 或 16）。
         mod_type: 导频相位所用的调制方式。
         start_symbol_index: 帧内第一个数据符号的绝对符号索引。
         omit_last_pilot: 是否省略最后一个导频符号。
 
-    返回:
+    Returns:
         (output_symbols, total_symbol_count) — 插入导频后的符号数组及总符号数。
     """
     if pilot_interval <= 0:
@@ -106,12 +106,12 @@ def remove_pilots(
 ) -> np.ndarray:
     """从接收符号流中移除导频符号。
 
-    参数:
+    Args:
         symbols: 含导频的接收符号。
         pilot_interval: N 值（4、8 或 16）。
         last_pilot_omitted: 发送侧是否已省略最后一个导频。
 
-    返回:
+    Returns:
         移除导频后的数据符号。
     """
     if pilot_interval <= 0:

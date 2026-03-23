@@ -20,11 +20,11 @@ def gfsk_preamble_bits(symbol_rate_mhz: float = 1.0,
 
     帧类型1使用 [0,1] 交替序列，第一个码元为0。
 
-    参数:
+    Args:
         symbol_rate_mhz: 符号速率 (MHz)
         duration_us: 前导码持续时间 (μs)
 
-    返回:
+    Returns:
         前导码比特序列, 值为 0/1
     """
     n_symbols = int(symbol_rate_mhz * duration_us)
@@ -39,11 +39,11 @@ def psk_preamble_phases(symbol_rate_mhz: float = 1.0,
 
     帧类型2/3/4使用 [π/4, 0] 交替相位。
 
-    参数:
+    Args:
         symbol_rate_mhz: 符号速率 (MHz)
         duration_us: 前导码持续时间 (μs)，帧类型2=10，帧类型3=12，帧类型4=16
 
-    返回:
+    Returns:
         前导码相位序列 (弧度)
     """
     n_symbols = int(symbol_rate_mhz * duration_us)
@@ -56,11 +56,11 @@ def psk_preamble_symbols(symbol_rate_mhz: float = 1.0,
                          duration_us: float = 10.0) -> np.ndarray:
     """生成PSK前导码复数符号序列。
 
-    参数:
+    Args:
         symbol_rate_mhz: 符号速率 (MHz)
         duration_us: 前导码持续时间 (μs)
 
-    返回:
+    Returns:
         前导码复数符号, shape (N,)
     """
     phases = psk_preamble_phases(symbol_rate_mhz, duration_us)
@@ -80,11 +80,11 @@ def generate_preamble(frame_type: int,
                       symbol_rate_mhz: float = 1.0):
     """生成指定帧类型的前导码。
 
-    参数:
+    Args:
         frame_type: 帧类型 1~4
         symbol_rate_mhz: 符号速率 (MHz)
 
-    返回:
+    Returns:
         帧类型1: 比特数组 (int ndarray)
         帧类型2/3/4: 复数符号数组 (complex ndarray)
     """

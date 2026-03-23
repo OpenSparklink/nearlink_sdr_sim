@@ -70,12 +70,12 @@ def segment_without_crc(
 
     适用于帧类型 2。
 
-    参数:
+    Args:
         bits: 输入比特序列 b_0..b_{B-1}, 其中 B = K + L (信息位 + CRC)。
         rate_str: 目标码率字符串。
         crc_len: L, 已追加到 bits 末尾的 CRC 长度。
 
-    返回:
+    Returns:
         每个分段的 (码长 N, 信息比特) 元组列表。
     """
     B = len(bits)
@@ -155,11 +155,11 @@ def segment_with_crc(
 
     适用于帧类型 3 和 4。
 
-    参数:
+    Args:
         bits: 输入比特序列 b_0..b_{B-1}。
         rate_str: 目标码率字符串。
 
-    返回:
+    Returns:
         每个分段的 (码长 N, 含 CRC 的信息比特) 元组列表。
         最后一个分段可能进一步做子分割。
     """

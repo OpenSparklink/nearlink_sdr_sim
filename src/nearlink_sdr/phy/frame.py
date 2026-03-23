@@ -77,12 +77,12 @@ def assemble_frame_bits(
 
     生成调制前的比特级帧结构。
 
-    参数:
+    Args:
         ctrl_info_bits: 物理层控制信息比特。
         data_payload_bits: 数据 + 完整性保护 + CRC 比特。
         config: 帧配置参数。
 
-    返回:
+    Returns:
         包含所有帧字段的 FrameFields 对象。
     """
     fields = FrameFields(frame_type=config.frame_type)
@@ -117,11 +117,11 @@ def frame_to_symbols(
     帧类型 1（GFSK）返回拼接后的比特序列（非复数符号）。
     帧类型 2-4（PSK）返回含导频的复数符号流。
 
-    参数:
+    Args:
         fields: 已组装的帧字段。
         config: 帧配置参数。
 
-    返回:
+    Returns:
         类型 1：比特数组（送入 GFSK 调制器）。
         类型 2-4：基带复数符号数组。
     """
@@ -203,13 +203,13 @@ def symbols_to_data_bits(
 
     简化解析器，假定已知帧参数。
 
-    参数:
+    Args:
         symbols: 接收到的复数符号流。
         config: 帧配置参数。
         n_ctrl_coded_bits: 编码控制位的数量。
         n_data_bits: 数据位数量（调制前）。
 
-    返回:
+    Returns:
         (ctrl_bits, data_bits) — 解调后的比特数组。
     """
     if config.frame_type == 1:

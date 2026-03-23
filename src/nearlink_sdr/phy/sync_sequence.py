@@ -143,10 +143,10 @@ def sync_signal_1(link_id_24: int | None = None) -> np.ndarray:
     - 广播帧: 固定序列0x5A2BDA62
     - 其他帧: 24位逻辑链路标识 → 补"10" → BCH(31,26) → m31异或 → 补"0"
 
-    参数:
+    Args:
         link_id_24: 24位逻辑链路标识，None表示广播帧
 
-    返回:
+    Returns:
         32比特同步序列
     """
     if link_id_24 is None:
@@ -183,10 +183,10 @@ def sync_signal_2(link_id_24: int | None = None) -> np.ndarray:
     - 广播帧: 固定序列0x7DE7585C6D226540
     - 其他帧: 24位逻辑链路标识 → BCH(63,24) → m63异或 → 补"0"
 
-    参数:
+    Args:
         link_id_24: 24位逻辑链路标识，None表示广播帧
 
-    返回:
+    Returns:
         64比特同步序列
     """
     if link_id_24 is None:
@@ -216,10 +216,10 @@ def sync_signal_3(m_seq_index: int = 0) -> np.ndarray:
     标准6.2.3.3: 两个相同的31长m序列串联。
     经BPSK调制后产生62个符号。
 
-    参数:
+    Args:
         m_seq_index: m31序列编号 0~5，基础广播信道为0
 
-    返回:
+    Returns:
         62比特序列
     """
     m31 = m31_sequence(m_seq_index, 31)
@@ -232,10 +232,10 @@ def sync_signal_4(m_seq_index: int = 0) -> np.ndarray:
     标准6.2.3.4: 两个相同的63长m序列串联。
     经BPSK调制后产生126个符号。
 
-    参数:
+    Args:
         m_seq_index: m63序列编号 0~5，基础广播信道为0
 
-    返回:
+    Returns:
         126比特序列
     """
     m63 = m63_sequence(m_seq_index, 63)
@@ -283,12 +283,12 @@ def _secure_random_sequence(
 ) -> np.ndarray:
     """安全随机函数 (6.10.7), 生成256比特安全序列。
 
-    参数:
+    Args:
         seed: 128比特安全随机种子 (16字节)
         time_param: 32比特时间参数 (如调度时隙号×2)
         kdf_type: 0=AES-CMAC, 1=HMAC-SM3
 
-    返回:
+    Returns:
         256比特数组
     """
     from nearlink_sdr.mac.crypto import KdfType, secure_random_256
@@ -313,7 +313,7 @@ def _extract_sync_from_security_seq(
     先发节点: 偶数索引比特的前 n_sync 个
     后发节点: 奇数索引比特的前 n_sync 个
 
-    参数:
+    Args:
         security_seq: 256比特安全序列
         n_sync: 同步序列长度 (32, 64, 128)
         is_tx: True=先发节点, False=后发节点
@@ -340,7 +340,7 @@ def sync_signal_5(
     标准6.2.3.5: 使用安全随机函数生成256比特安全序列,
     先发/后发节点分别取偶数/奇数索引比特。
 
-    参数:
+    Args:
         seed: 安全随机种子 (16字节)
         slot_number: 起始调度时隙号
         n_sync: 同步序列长度 [32, 64, 128]
@@ -369,7 +369,7 @@ def sync_signal_6(
     标准6.2.3.6: 与同步信号5生成方式相同,
     区别仅在调制方式 (BPSK vs GFSK)。
 
-    参数:
+    Args:
         seed: 安全随机种子 (16字节)
         slot_number: 起始调度时隙号
         n_sync: 同步序列长度 [32, 64, 128]

@@ -39,7 +39,7 @@ def sim_gfsk_link(num_data_bits: int = 1000,
 
     流程: 前导码 + 同步信号1(广播) + 数据 → GFSK调制 → AWGN信道 → GFSK解调 → BER
 
-    返回:
+    Returns:
         {"snr_db": [...], "ber": [...]}
     """
     if snr_range_db is None:
@@ -81,7 +81,7 @@ def sim_psk_link(num_data_bits: int = 1000,
     流程: 数据 → PSK调制 → AWGN信道 → PSK解调 → BER
     (前导和同步信号作为独立信号段，不影响数据BER)
 
-    返回:
+    Returns:
         {"snr_db": [...], "ber": [...]}
     """
     if snr_range_db is None:
@@ -170,7 +170,7 @@ def sim_polar_coded_psk_link(
 
     流程: 信息比特 → Polar编码 → BPSK/QPSK调制 → AWGN信道 → 解调(软判决LLR) → SC解码 → BER
 
-    返回:
+    Returns:
         {"snr_db": [...], "ber": [...], "fer": [...]}
     """
     if snr_range_db is None:
