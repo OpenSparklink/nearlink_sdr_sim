@@ -1,0 +1,1433 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN" data-content_root="../../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><link rel="index" title="索引" href="../../../genindex.html"><link rel="search" title="搜索" href="../../../search.html">
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
+        <title>nearlink_sdr.phy.measurement_tx - nearlink-sdr 1.0.8 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/version-selector.css?v=022f18c6" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  --color-brand-primary: #1a73e8;
+  --color-brand-content: #1a73e8;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #8ab4f8;
+  --color-brand-content: #8ab4f8;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #8ab4f8;
+  --color-brand-content: #8ab4f8;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">nearlink-sdr 1.0.8 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.8 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/getting-started.html">快速入门</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../how-to/index.html">操作指南</a><input aria-label="Toggle navigation of 操作指南" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/run-simulation.html">运行链路仿真</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/add-modulation.html">添加新的调制方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/qos-management.html">QoS 服务质量管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/node-usage.html">使用 SLE 节点实体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/rust-acceleration.html">Rust 加速模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/sdr-deployment.html">SDR E310 部署规划</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/build-docs.html">构建文档</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../reference/index.html">技术参考</a><input aria-label="Toggle navigation of 技术参考" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.rx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.link_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.link_sim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.usrp_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.usrp_sim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../explanation/index.html">设计说明</a><input aria-label="Toggle navigation of 设计说明" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/overview.html">SparkLink SLE 协议总览</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/principles.html">物理层原理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/physical-layer.html">物理层详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/mac-layer.html">MAC 层详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/security.html">安全子系统详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/data-flow.html">端到端数据流</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/architecture.html">系统架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/standard-mapping.html">标准条款映射</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">更新日志</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../apidocs/index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.rx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.link_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.link_sim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.usrp_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.usrp_sim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <h1>nearlink_sdr.phy.measurement_tx 源代码</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;测量链路传输与测量量计算 -- TXS-10002-2025 标准 6.7/6.8。</span>
+
+<span class="sd">实现窄带跳频和超宽带脉冲测量链路的参数配置、时间资源调度和测量量计算:</span>
+<span class="sd">  - 6.7.2/6.7.3: 测量/感知链路参数模型</span>
+<span class="sd">  - 6.7.4: 时间资源配置 (事件组调度)</span>
+<span class="sd">  - 6.7.5/6.8.5: 测量量 (飞行时间/角度/CIR/距离多普勒)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;UWB_CONFIG_TIME_GRANULARITY_TC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AntennaOrderType&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CIRConfig&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CSIFeedback&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ChannelSpliceMode&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EventFrameType&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HoppingOrder&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MeasBandwidth&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MeasDirection&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MeasLinkParams&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NodeMeasConfig&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SecurityType&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TimeRefType&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;UWBMeasLinkParams&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;UWBMeasMode&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;angle_estimate&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;compute_csi_feedback&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;csi_to_rx_power&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ds_twr_2msg&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ds_twr_3msg&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;event_schedule&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;event_start_times&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;extract_cir&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;range_doppler&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;uwb_event_count_per_mode&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;uwb_event_sender&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cmath</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">IntEnum</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">NDArray</span>
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># 枚举定义</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+
+<div class="viewcode-block" id="MeasDirection">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.MeasDirection">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">MeasDirection</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;测量方向。&quot;&quot;&quot;</span>
+    <span class="n">UNIDIRECTIONAL</span> <span class="o">=</span> <span class="mi">0</span>    <span class="c1"># 单向测量</span>
+    <span class="n">BIDIRECTIONAL</span> <span class="o">=</span> <span class="mi">1</span>     <span class="c1"># 双向测量</span></div>
+
+
+
+<div class="viewcode-block" id="HoppingOrder">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.HoppingOrder">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">HoppingOrder</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;跳频方式 (6.7.2)。&quot;&quot;&quot;</span>
+    <span class="n">LOW_TO_HIGH</span> <span class="o">=</span> <span class="mi">0</span>       <span class="c1"># 信道号从低到高</span>
+    <span class="n">HIGH_TO_LOW</span> <span class="o">=</span> <span class="mi">1</span>       <span class="c1"># 信道号从高到低</span>
+    <span class="n">ALGORITHMIC</span> <span class="o">=</span> <span class="mi">2</span>       <span class="c1"># 按跳频算法</span></div>
+
+
+
+<div class="viewcode-block" id="MeasBandwidth">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.MeasBandwidth">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">MeasBandwidth</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;测量信号带宽 (6.7.2)。&quot;&quot;&quot;</span>
+    <span class="n">BW_1MHZ</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">BW_2MHZ</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">BW_4MHZ</span> <span class="o">=</span> <span class="mi">2</span></div>
+
+
+
+<div class="viewcode-block" id="SecurityType">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.SecurityType">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SecurityType</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;安全类型。&quot;&quot;&quot;</span>
+    <span class="n">NONE</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">SECURE</span> <span class="o">=</span> <span class="mi">1</span></div>
+
+
+
+<div class="viewcode-block" id="TimeRefType">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.TimeRefType">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TimeRefType</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;初始时间参考类型 (6.8.5.4)。&quot;&quot;&quot;</span>
+    <span class="n">FIRST_PATH</span> <span class="o">=</span> <span class="mi">0</span>        <span class="c1"># 第一径到达时间</span>
+    <span class="n">STRONGEST_PATH</span> <span class="o">=</span> <span class="mi">1</span>    <span class="c1"># 最强径到达时间</span>
+    <span class="n">TX_TIME</span> <span class="o">=</span> <span class="mi">2</span>           <span class="c1"># 信号发送时间</span></div>
+
+
+
+<div class="viewcode-block" id="AntennaOrderType">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.AntennaOrderType">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">AntennaOrderType</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;天线对次序类型 (6.7.2)。&quot;&quot;&quot;</span>
+    <span class="n">SEQUENTIAL</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">RANDOM</span> <span class="o">=</span> <span class="mi">1</span></div>
+
+
+
+<div class="viewcode-block" id="EventFrameType">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.EventFrameType">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">EventFrameType</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;事件中传输的帧类型。&quot;&quot;&quot;</span>
+    <span class="n">INIT</span> <span class="o">=</span> <span class="mi">0</span>              <span class="c1"># 初始化阶段事件</span>
+    <span class="n">TYPE_1</span> <span class="o">=</span> <span class="mi">1</span>            <span class="c1"># 测量帧类型 1</span>
+    <span class="n">TYPE_2</span> <span class="o">=</span> <span class="mi">2</span>            <span class="c1"># 测量帧类型 2</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># 6.7.2/6.7.3 测量/感知链路参数</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+
+<div class="viewcode-block" id="NodeMeasConfig">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.NodeMeasConfig">[文档]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">NodeMeasConfig</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;单个节点的测量参数。&quot;&quot;&quot;</span>
+    <span class="n">sync_signal_type</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>       <span class="c1"># 同步信号类型</span>
+    <span class="n">sync_signal_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">64</span>    <span class="c1"># 同步信号长度</span>
+    <span class="n">meas_signal_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">128</span>   <span class="c1"># 测量序列长度</span>
+    <span class="n">switch_interval_us</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>   <span class="c1"># 同步-测量切换间隔 (us)</span>
+    <span class="n">ft1_duration_us</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">200</span>    <span class="c1"># 测量帧类型1传输时长 (us)</span>
+    <span class="n">ft2_duration_us</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">100</span>    <span class="c1"># 测量帧类型2传输时长 (us)</span>
+    <span class="n">security_type</span><span class="p">:</span> <span class="n">SecurityType</span> <span class="o">=</span> <span class="n">SecurityType</span><span class="o">.</span><span class="n">NONE</span>
+    <span class="n">antenna_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span></div>
+
+
+
+<div class="viewcode-block" id="MeasLinkParams">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.MeasLinkParams">[文档]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MeasLinkParams</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;测量/感知链路参数 (6.7.2/6.7.3)。&quot;&quot;&quot;</span>
+    <span class="c1"># 事件组时间参数</span>
+    <span class="n">event_group_start_us</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>       <span class="c1"># 事件组起始时刻 (us)</span>
+    <span class="n">event_group_period_us</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">10000</span>  <span class="c1"># 事件组周期 (us)</span>
+    <span class="n">ft1_inter_event_us</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">500</span>       <span class="c1"># 类型1事件间间隔 (us)</span>
+    <span class="n">ft2_inter_event_us</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">300</span>       <span class="c1"># 类型2事件间间隔 (us)</span>
+    <span class="n">init_inter_event_us</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">400</span>      <span class="c1"># 初始化阶段事件间间隔 (us)</span>
+    <span class="n">intra_event_us</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">100</span>           <span class="c1"># 事件内间隔 (us)</span>
+    <span class="n">inter_event_us</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">200</span>           <span class="c1"># 事件间间隔 (us)</span>
+    <span class="n">inter_group_us</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1000</span>          <span class="c1"># 事件组间间隔 (us)</span>
+    <span class="n">event_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span>                  <span class="c1"># 事件总数/事件组</span>
+    <span class="n">ft1_period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span>                   <span class="c1"># 类型1事件周期</span>
+    <span class="n">has_init_phase</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>          <span class="c1"># 是否存在初始化阶段</span>
+
+    <span class="c1"># 方向与跳频</span>
+    <span class="n">direction</span><span class="p">:</span> <span class="n">MeasDirection</span> <span class="o">=</span> <span class="n">MeasDirection</span><span class="o">.</span><span class="n">UNIDIRECTIONAL</span>
+    <span class="n">first_sender</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>                 <span class="c1"># 先发后发指示 (0=配置方先发)</span>
+    <span class="n">hopping_order</span><span class="p">:</span> <span class="n">HoppingOrder</span> <span class="o">=</span> <span class="n">HoppingOrder</span><span class="o">.</span><span class="n">LOW_TO_HIGH</span>
+    <span class="n">bandwidth</span><span class="p">:</span> <span class="n">MeasBandwidth</span> <span class="o">=</span> <span class="n">MeasBandwidth</span><span class="o">.</span><span class="n">BW_1MHZ</span>
+    <span class="n">init_channel</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>                 <span class="c1"># 初始化频点信道号</span>
+
+    <span class="c1"># 先发/后发节点配置</span>
+    <span class="n">first_node</span><span class="p">:</span> <span class="n">NodeMeasConfig</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">NodeMeasConfig</span><span class="p">)</span>
+    <span class="n">second_node</span><span class="p">:</span> <span class="n">NodeMeasConfig</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">NodeMeasConfig</span><span class="p">)</span>
+
+    <span class="c1"># 多天线参数</span>
+    <span class="n">antenna_switch_interval_us</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># 天线切换间隔 (us)</span>
+    <span class="n">first_sub_signal_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>        <span class="c1"># 第一个子测量信号长度</span>
+    <span class="n">antenna_order_type</span><span class="p">:</span> <span class="n">AntennaOrderType</span> <span class="o">=</span> <span class="n">AntennaOrderType</span><span class="o">.</span><span class="n">SEQUENTIAL</span>
+    <span class="n">antenna_random_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>               <span class="c1"># 天线随机数位宽</span>
+
+    <span class="c1"># 安全</span>
+    <span class="n">security_random_seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">has_multi_antenna</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">first_node</span><span class="o">.</span><span class="n">antenna_count</span> <span class="o">&gt;</span> <span class="mi">1</span>
+                <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">second_node</span><span class="o">.</span><span class="n">antenna_count</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># 6.7.4 时间资源配置</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+
+<div class="viewcode-block" id="event_schedule">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.event_schedule">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">event_schedule</span><span class="p">(</span><span class="n">params</span><span class="p">:</span> <span class="n">MeasLinkParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">EventFrameType</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;生成一个事件组内的事件调度序列。</span>
+
+<span class="sd">    :param params: 测量链路参数。</span>
+
+<span class="sd">    :returns: 列表, 每个元素为 (事件索引, 帧类型)。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">schedule</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">EventFrameType</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">event_count</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">has_init_phase</span> <span class="ow">and</span> <span class="n">idx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">schedule</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">idx</span><span class="p">,</span> <span class="n">EventFrameType</span><span class="o">.</span><span class="n">INIT</span><span class="p">))</span>
+            <span class="k">continue</span>
+
+        <span class="n">effective_idx</span> <span class="o">=</span> <span class="n">idx</span>
+
+        <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">ft1_period</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># 所有事件都是类型2</span>
+            <span class="n">schedule</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">idx</span><span class="p">,</span> <span class="n">EventFrameType</span><span class="o">.</span><span class="n">TYPE_2</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">params</span><span class="o">.</span><span class="n">ft1_period</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">schedule</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">idx</span><span class="p">,</span> <span class="n">EventFrameType</span><span class="o">.</span><span class="n">TYPE_1</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># 初始化占了第0个, 其余按周期分</span>
+            <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">has_init_phase</span><span class="p">:</span>
+                <span class="c1"># 索引0已是INIT, 其余看 effective_idx 是否为 ft1_period 倍数</span>
+                <span class="k">if</span> <span class="n">effective_idx</span> <span class="o">%</span> <span class="n">params</span><span class="o">.</span><span class="n">ft1_period</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">schedule</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">idx</span><span class="p">,</span> <span class="n">EventFrameType</span><span class="o">.</span><span class="n">TYPE_1</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">schedule</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">idx</span><span class="p">,</span> <span class="n">EventFrameType</span><span class="o">.</span><span class="n">TYPE_2</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">effective_idx</span> <span class="o">%</span> <span class="n">params</span><span class="o">.</span><span class="n">ft1_period</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">schedule</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">idx</span><span class="p">,</span> <span class="n">EventFrameType</span><span class="o">.</span><span class="n">TYPE_1</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">schedule</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">idx</span><span class="p">,</span> <span class="n">EventFrameType</span><span class="o">.</span><span class="n">TYPE_2</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">schedule</span></div>
+
+
+
+<div class="viewcode-block" id="event_start_times">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.event_start_times">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">event_start_times</span><span class="p">(</span>
+    <span class="n">params</span><span class="p">:</span> <span class="n">MeasLinkParams</span><span class="p">,</span>
+    <span class="n">group_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;计算一个事件组内各事件的起始时刻 (us)。</span>
+
+<span class="sd">    :param params: 测量链路参数。</span>
+<span class="sd">    :param group_index: 事件组序号。</span>
+
+<span class="sd">    :returns: 各事件的起始时刻列表 (us)。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">schedule</span> <span class="o">=</span> <span class="n">event_schedule</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    <span class="n">group_offset</span> <span class="o">=</span> <span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">event_group_start_us</span>
+                    <span class="o">+</span> <span class="n">group_index</span> <span class="o">*</span> <span class="n">params</span><span class="o">.</span><span class="n">event_group_period_us</span><span class="p">)</span>
+
+    <span class="n">times</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="n">group_offset</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">ft</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">schedule</span><span class="p">):</span>
+        <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">schedule</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">ft</span> <span class="o">==</span> <span class="n">EventFrameType</span><span class="o">.</span><span class="n">INIT</span><span class="p">:</span>
+                <span class="n">gap</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">init_inter_event_us</span>
+            <span class="k">elif</span> <span class="n">ft</span> <span class="o">==</span> <span class="n">EventFrameType</span><span class="o">.</span><span class="n">TYPE_1</span><span class="p">:</span>
+                <span class="n">gap</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">ft1_inter_event_us</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">gap</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">ft2_inter_event_us</span>
+            <span class="n">current</span> <span class="o">+=</span> <span class="n">gap</span>
+
+    <span class="k">return</span> <span class="n">times</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># 6.8.5.1 双边两消息测量量 (DS-TWR 2-message)</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+
+<div class="viewcode-block" id="ds_twr_2msg">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.ds_twr_2msg">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">ds_twr_2msg</span><span class="p">(</span><span class="n">ra</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">db</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;双边两消息飞行时间估计 (6.8.5.1)。</span>
+
+<span class="sd">    :param ra: 先发节点测量的往返时间差 Ra = Ra2 - Ra1。</span>
+<span class="sd">    :param db: 后发节点测量的处理时间差 Db = Db2 - Db1。</span>
+
+<span class="sd">    :returns: 单向飞行时间估计 T_prop (与 ra/db 相同时间单位)。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">ra</span> <span class="o">-</span> <span class="n">db</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># 6.8.5.2 双边三消息测量量 (DS-TWR 3-message)</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+
+<div class="viewcode-block" id="ds_twr_3msg">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.ds_twr_3msg">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">ds_twr_3msg</span><span class="p">(</span><span class="n">ra</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">rb</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">da</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">db</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;双边三消息飞行时间估计 (6.8.5.2)。</span>
+
+<span class="sd">    :param ra: 先发节点 Ra = Ra2 - Ra1。</span>
+<span class="sd">    :param rb: 后发节点 Rb = Rb2 - Rb1。</span>
+<span class="sd">    :param da: 先发节点 Da = Da2 - Da1。</span>
+<span class="sd">    :param db: 后发节点 Db = Db2 - Db1。</span>
+
+<span class="sd">    :returns: 单向飞行时间估计 T_prop。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">numerator</span> <span class="o">=</span> <span class="n">ra</span> <span class="o">*</span> <span class="n">rb</span> <span class="o">-</span> <span class="n">da</span> <span class="o">*</span> <span class="n">db</span>
+    <span class="n">denominator</span> <span class="o">=</span> <span class="n">ra</span> <span class="o">+</span> <span class="n">rb</span> <span class="o">+</span> <span class="n">da</span> <span class="o">+</span> <span class="n">db</span>
+    <span class="k">if</span> <span class="n">denominator</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="k">return</span> <span class="n">numerator</span> <span class="o">/</span> <span class="n">denominator</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># 6.8.5.3 角度测量量 (AoA/AoD)</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+
+<div class="viewcode-block" id="angle_estimate">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.angle_estimate">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">angle_estimate</span><span class="p">(</span>
+    <span class="n">delta_phi</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">wavelength</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">antenna_spacing</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;根据相位差估计到达角/出发角 (6.8.5.3)。</span>
+
+<span class="sd">    :param delta_phi: 两天线接收/发送信号的载波相位差 (rad)。</span>
+<span class="sd">    :param wavelength: 信号波长 (m)。</span>
+<span class="sd">    :param antenna_spacing: 天线间距 (m)。</span>
+
+<span class="sd">    :returns: 角度估计值 (rad), 范围 [0, pi]。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">cos_val</span> <span class="o">=</span> <span class="p">(</span><span class="n">delta_phi</span> <span class="o">*</span> <span class="n">wavelength</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">antenna_spacing</span><span class="p">)</span>
+    <span class="n">cos_val</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">cos_val</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">acos</span><span class="p">(</span><span class="n">cos_val</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># 6.8.5.4 信道冲击响应测量量 (CIR)</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+
+<div class="viewcode-block" id="CIRConfig">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.CIRConfig">[文档]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CIRConfig</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;信道冲击响应测量配置。&quot;&quot;&quot;</span>
+    <span class="n">time_ref</span><span class="p">:</span> <span class="n">TimeRefType</span> <span class="o">=</span> <span class="n">TimeRefType</span><span class="o">.</span><span class="n">FIRST_PATH</span>
+    <span class="n">delay_offset_ns</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>      <span class="c1"># 多径时延偏移量 (ns)</span>
+    <span class="n">delay_length_ns</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">100.0</span>    <span class="c1"># 多径时延指示长度 (ns)</span>
+    <span class="n">sample_rate_hz</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">499.2e6</span>   <span class="c1"># 时域采样频率</span></div>
+
+
+
+<div class="viewcode-block" id="extract_cir">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.extract_cir">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">extract_cir</span><span class="p">(</span>
+    <span class="n">rx_signal</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">],</span>
+    <span class="n">config</span><span class="p">:</span> <span class="n">CIRConfig</span><span class="p">,</span>
+    <span class="n">ref_sample</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;从接收信号中提取信道冲击响应测量量 (6.8.5.4)。</span>
+
+<span class="sd">    :param rx_signal: 接收到的时域 IQ 信号。</span>
+<span class="sd">    :param config: CIR 测量配置。</span>
+<span class="sd">    :param ref_sample: 参考时间点对应的采样索引。</span>
+
+<span class="sd">    :returns: 截取的 CIR (I+jQ 复数数组)。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">samples_per_ns</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">sample_rate_hz</span> <span class="o">/</span> <span class="mf">1e9</span>
+    <span class="n">offset_samples</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">delay_offset_ns</span> <span class="o">*</span> <span class="n">samples_per_ns</span><span class="p">)</span>
+    <span class="n">length_samples</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">delay_length_ns</span> <span class="o">*</span> <span class="n">samples_per_ns</span><span class="p">))</span>
+
+    <span class="n">start</span> <span class="o">=</span> <span class="n">ref_sample</span> <span class="o">+</span> <span class="n">offset_samples</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rx_signal</span><span class="p">),</span> <span class="n">start</span> <span class="o">+</span> <span class="n">length_samples</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">rx_signal</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># 6.8.5.5 距离多普勒测量量</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+
+<div class="viewcode-block" id="range_doppler">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.range_doppler">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">range_doppler</span><span class="p">(</span>
+    <span class="n">cir_frames</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;距离多普勒测量量计算 (6.8.5.5)。</span>
+
+<span class="sd">    对多帧 CIR 数据在慢时间维度做 FFT 获取距离-多普勒图。</span>
+
+<span class="sd">    :param cir_frames: 形状 (n_frames, n_delay_bins) 的多帧 CIR 数据。</span>
+
+<span class="sd">    :returns: 形状 (n_frames, n_delay_bins) 的距离-多普勒矩阵。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">cir_frames</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">cir_frames</span><span class="p">)</span>
+    <span class="c1"># 沿帧维度 (慢时间, axis=0) 做 FFT</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">cir_frames</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># CSI 反馈量化 (6.7.5)</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+
+<div class="viewcode-block" id="CSIFeedback">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.CSIFeedback">[文档]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CSIFeedback</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;信道状态信息反馈 (6.7.5)。</span>
+
+<span class="sd">    接收信号功率(dBm) = 20*lg(abs(相对IQ值/1024)) + 参考接收功率值</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ref_power_dbm</span><span class="p">:</span> <span class="nb">float</span>         <span class="c1"># 参考接收功率值 (dBm)</span>
+    <span class="n">relative_iq</span><span class="p">:</span> <span class="nb">complex</span>         <span class="c1"># 相对 IQ 值 (线性复数)</span></div>
+
+
+
+<div class="viewcode-block" id="compute_csi_feedback">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.compute_csi_feedback">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_csi_feedback</span><span class="p">(</span>
+    <span class="n">rx_power_dbm</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">channel_iq</span><span class="p">:</span> <span class="nb">complex</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CSIFeedback</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;从接收功率和信道 IQ 估计值生成 CSI 反馈。</span>
+
+<span class="sd">    :param rx_power_dbm: 接收信号功率 (dBm)。</span>
+<span class="sd">    :param channel_iq: 信道估计的复数 IQ 值。</span>
+
+<span class="sd">    :returns: CSIFeedback 实例。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">iq_mag</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">channel_iq</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">iq_mag</span> <span class="o">&lt;</span> <span class="mf">1e-30</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">CSIFeedback</span><span class="p">(</span><span class="n">ref_power_dbm</span><span class="o">=</span><span class="n">rx_power_dbm</span><span class="p">,</span> <span class="n">relative_iq</span><span class="o">=</span><span class="mi">0</span><span class="n">j</span><span class="p">)</span>
+
+    <span class="c1"># 选择 ref_power 使 relative_iq 量化精度最好</span>
+    <span class="c1"># 标准: rx_power = 20*lg(|rel_iq|/1024) + ref_power</span>
+    <span class="c1"># 取 ref_power = rx_power, 则 |rel_iq| = 1024</span>
+    <span class="c1"># 保持相位: rel_iq = 1024 * exp(j*angle)</span>
+    <span class="n">phase</span> <span class="o">=</span> <span class="n">cmath</span><span class="o">.</span><span class="n">phase</span><span class="p">(</span><span class="n">channel_iq</span><span class="p">)</span>
+    <span class="n">relative_iq</span> <span class="o">=</span> <span class="mf">1024.0</span> <span class="o">*</span> <span class="n">cmath</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">phase</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">CSIFeedback</span><span class="p">(</span>
+        <span class="n">ref_power_dbm</span><span class="o">=</span><span class="n">rx_power_dbm</span><span class="p">,</span>
+        <span class="n">relative_iq</span><span class="o">=</span><span class="n">relative_iq</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="csi_to_rx_power">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.csi_to_rx_power">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">csi_to_rx_power</span><span class="p">(</span><span class="n">feedback</span><span class="p">:</span> <span class="n">CSIFeedback</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;从 CSI 反馈恢复接收信号功率。</span>
+
+<span class="sd">    :param feedback: CSI 反馈数据。</span>
+
+<span class="sd">    :returns: 接收信号功率 (dBm)。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">iq_mag</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">feedback</span><span class="o">.</span><span class="n">relative_iq</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">iq_mag</span> <span class="o">&lt;</span> <span class="mf">1e-30</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">feedback</span><span class="o">.</span><span class="n">ref_power_dbm</span> <span class="o">-</span> <span class="mf">200.0</span>
+    <span class="k">return</span> <span class="mf">20.0</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">iq_mag</span> <span class="o">/</span> <span class="mf">1024.0</span><span class="p">)</span> <span class="o">+</span> <span class="n">feedback</span><span class="o">.</span><span class="n">ref_power_dbm</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># 6.8.3/6.8.4 超宽带脉冲测量链路参数与配置</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+
+<div class="viewcode-block" id="UWBMeasMode">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.UWBMeasMode">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">UWBMeasMode</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;超宽带脉冲测量模式 (6.8.1)。&quot;&quot;&quot;</span>
+    <span class="n">ONE_WAY</span> <span class="o">=</span> <span class="mi">0</span>           <span class="c1"># 单向</span>
+    <span class="n">DS_TWR_2MSG</span> <span class="o">=</span> <span class="mi">1</span>       <span class="c1"># 双边两消息</span>
+    <span class="n">DS_TWR_3MSG</span> <span class="o">=</span> <span class="mi">2</span>       <span class="c1"># 双边三消息</span></div>
+
+
+
+<div class="viewcode-block" id="ChannelSpliceMode">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.ChannelSpliceMode">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ChannelSpliceMode</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;信道拼接方式 (6.8.3)。&quot;&quot;&quot;</span>
+    <span class="n">NONE</span> <span class="o">=</span> <span class="mi">0</span>              <span class="c1"># 不拼接</span>
+    <span class="n">OVERLAP</span> <span class="o">=</span> <span class="mi">1</span>           <span class="c1"># 重叠方式</span>
+    <span class="n">CONTINUOUS</span> <span class="o">=</span> <span class="mi">2</span>        <span class="c1"># 连续方式</span>
+    <span class="n">NON_CONTINUOUS</span> <span class="o">=</span> <span class="mi">3</span>    <span class="c1"># 非连续方式</span></div>
+
+
+
+<span class="n">UWB_CONFIG_TIME_GRANULARITY_TC</span> <span class="o">=</span> <span class="mi">256</span>  <span class="c1"># 超宽带脉冲配置时间粒度 = 256*Tc</span>
+
+
+<div class="viewcode-block" id="UWBMeasLinkParams">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams">[文档]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">UWBMeasLinkParams</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;超宽带脉冲测量链路参数 (6.8.3/6.8.4)。&quot;&quot;&quot;</span>
+    <span class="n">mode</span><span class="p">:</span> <span class="n">UWBMeasMode</span> <span class="o">=</span> <span class="n">UWBMeasMode</span><span class="o">.</span><span class="n">DS_TWR_2MSG</span>
+    <span class="n">event_group_period_us</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">10000</span>
+    <span class="n">event_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">intra_event_us</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">100</span>         <span class="c1"># 事件内间隔</span>
+    <span class="n">inter_event_us</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">500</span>         <span class="c1"># 事件间间隔</span>
+    <span class="n">inter_group_us</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">2000</span>        <span class="c1"># 事件组间间隔</span>
+    <span class="n">first_sender</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>               <span class="c1"># 0=配置方先发</span>
+    <span class="n">alternate_sender</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>      <span class="c1"># 交替先发标志</span>
+
+    <span class="c1"># 信道</span>
+    <span class="n">channels</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">splice_mode</span><span class="p">:</span> <span class="n">ChannelSpliceMode</span> <span class="o">=</span> <span class="n">ChannelSpliceMode</span><span class="o">.</span><span class="n">NONE</span>
+
+    <span class="c1"># 符号</span>
+    <span class="n">code_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">31</span>              <span class="c1"># 码字长度</span>
+    <span class="n">cyclic_shift</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>              <span class="c1"># 码字循环移位</span>
+
+    <span class="c1"># 多天线</span>
+    <span class="n">tx_antenna_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">rx_antenna_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">antenna_switch_start_seg</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># 天线切换起始测量子片段</span>
+    <span class="n">sub_segment_gap_us</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">5.0</span>    <span class="c1"># 测量子片段间间隔</span>
+
+    <span class="c1"># 安全</span>
+    <span class="n">secure_mode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1"># 聚合上报</span>
+    <span class="n">aggregate_events</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>          <span class="c1"># 聚合多少个事件后上报</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">total_antenna_pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tx_antenna_count</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">rx_antenna_count</span></div>
+
+
+
+<div class="viewcode-block" id="uwb_event_sender">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.uwb_event_sender">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">uwb_event_sender</span><span class="p">(</span>
+    <span class="n">params</span><span class="p">:</span> <span class="n">UWBMeasLinkParams</span><span class="p">,</span>
+    <span class="n">event_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;确定指定事件中谁先发。</span>
+
+<span class="sd">    :param params: UWB 测量参数。</span>
+<span class="sd">    :param event_index: 事件索引。</span>
+
+<span class="sd">    :returns: 0=配置方先发, 1=对端先发。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">params</span><span class="o">.</span><span class="n">alternate_sender</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">params</span><span class="o">.</span><span class="n">first_sender</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">first_sender</span> <span class="o">+</span> <span class="n">event_index</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span></div>
+
+
+
+<div class="viewcode-block" id="uwb_event_count_per_mode">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html#nearlink_sdr.phy.measurement_tx.uwb_event_count_per_mode">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">uwb_event_count_per_mode</span><span class="p">(</span><span class="n">mode</span><span class="p">:</span> <span class="n">UWBMeasMode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;每个测量事件中包含的 UWB 帧数。&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="n">UWBMeasMode</span><span class="o">.</span><span class="n">ONE_WAY</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="n">UWBMeasMode</span><span class="o">.</span><span class="n">DS_TWR_2MSG</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="mi">3</span>  <span class="c1"># DS_TWR_3MSG</span></div>
+
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/sanchuanhehe/nearlink_sdr_sim" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82 .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="../../../_static/documentation_options.js?v=4e91a71a"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.esm.min.mjs";
+
+
+
+
+
+const initStyles = () => {
+    const defaultStyle = document.createElement('style');
+    defaultStyle.textContent = `pre.mermaid {
+    /* Same as .mermaid-container > pre */
+    display: block;
+    width: 100%;
+}
+
+pre.mermaid > svg {
+    /* Same as .mermaid-container > pre > svg */
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}`;
+    document.head.appendChild(defaultStyle);
+
+    const fullscreenStyle = document.createElement('style');
+    fullscreenStyle.textContent = `.mermaid-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.mermaid-container > pre {
+    display: block;
+    width: 100%;
+}
+
+.mermaid-container > pre > svg {
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}
+
+.mermaid-fullscreen-btn {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+    color: #333;
+}
+
+.mermaid-fullscreen-btn:hover {
+    opacity: 100% !important;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-btn.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-btn.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 95vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    z-index: 9999;
+    padding: 20px;
+    overflow: auto;
+}
+
+.mermaid-fullscreen-modal.dark-theme {
+    background: rgba(0, 0, 0, 0.98);
+}
+
+.mermaid-fullscreen-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen {
+    position: relative;
+    width: 95vw;
+    height: 90vh;
+    max-width: 95vw;
+    max-height: 90vh;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen.dark-theme {
+    background: #1a1a1a;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.mermaid-container-fullscreen pre.mermaid {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen .mermaid svg {
+    height: 100% !important;
+    width: 100% !important;
+    cursor: grab;
+}
+
+.mermaid-fullscreen-close {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s;
+    font-size: 24px;
+    line-height: 1;
+    color: #333;
+}
+
+.mermaid-fullscreen-close:hover {
+    background: white;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-close.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-close.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal .mermaid-fullscreen-btn {
+    display: none !important;
+}`;
+    document.head.appendChild(fullscreenStyle);
+}
+
+// Detect if page has dark background
+const isDarkTheme = () => {
+    // We use a set of heuristics:
+    // 1. Check for common dark mode classes or attributes
+    // 2. Check computed background color brightness
+    if (document.documentElement.classList.contains('dark') ||
+        document.documentElement.getAttribute('data-theme') === 'dark' ||
+        document.body.classList.contains('dark') ||
+        document.body.getAttribute('data-theme') === 'dark') {
+        // console.log("Dark theme detected via class/attribute");
+        return true;
+    }
+    if (document.documentElement.classList.contains('light') ||
+        document.documentElement.getAttribute('data-theme') === 'light' ||
+        document.body.classList.contains('light') ||
+        document.body.getAttribute('data-theme') === 'light') {
+        // console.log("Light theme detected via class/attribute");
+        return false;
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // console.log("Dark theme detected via prefers-color-scheme");
+        return true;
+    }
+    const bgColor = window.getComputedStyle(document.body).backgroundColor;
+    const match = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)/);
+    if (match) {
+        const r = parseInt(match[1]);
+        const g = parseInt(match[2]);
+        const b = parseInt(match[3]);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        // console.log("Background color brightness:", brightness);
+        return brightness < 128;
+    }
+    // console.log("No dark or light theme detected, defaulting to light theme");
+    return false;
+};
+
+let darkTheme = isDarkTheme();
+let modal = null;
+let modalContent = null;
+let previousScrollOffset = [window.scrollX, window.scrollY];
+
+const runMermaid = async (rerun) => {
+    console.log("Running mermaid diagrams, rerun =", rerun);
+    // clear all existing mermaid charts
+    let all_mermaids = document.querySelectorAll(".mermaid");
+
+    if (rerun) {
+        all_mermaids.forEach((el) => {
+            if(!el.hasAttribute("data-original-code")) {
+                // store original code
+                // console.log(`Storing original code for first run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+            if(el.getAttribute("data-processed") === "true") {
+                // remove and restore original
+                el.removeAttribute("data-processed");
+                // console.log(`Restoring original code for re-run: `, el.getAttribute('data-original-code'));
+                el.innerHTML = el.getAttribute('data-original-code');
+            } else {
+                // store original code
+                // console.log(`Storing original code for re-run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+        });
+        await mermaid.run();
+    }
+
+    all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+
+    if ("False" === "True") {
+        const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+        if(mermaids_to_add_zoom > 0) {
+            var svgs = d3.selectAll("");
+            if(all_mermaids.length !== mermaids_processed.length) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else if(svgs.size() !== mermaids_to_add_zoom) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else {
+                svgs.each(function() {
+                    var svg = d3.select(this);
+                    svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                    var inner = svg.select("g");
+                    var zoom = d3.zoom().on("zoom", function(event) {
+                        inner.attr("transform", event.transform);
+                    });
+                    svg.call(zoom);
+                });
+            }
+        }
+    } else if(all_mermaids.length !== mermaids_processed.length) {
+        // Wait for mermaid to process all diagrams
+        setTimeout(() => runMermaid(false), 200);
+        return;
+    }
+
+    // Stop here if not adding fullscreen capability
+    if ("True" !== "True") return;
+
+    if (modal !== null ) {
+        // Destroy existing modal
+        modal.remove();
+        modal = null;
+        modalContent = null;
+    }
+
+    modal = document.createElement('div');
+    modal.className = 'mermaid-fullscreen-modal' + (darkTheme ? ' dark-theme' : '');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Fullscreen diagram viewer');
+    modal.innerHTML = `
+        <button class="mermaid-fullscreen-close${darkTheme ? ' dark-theme' : ''}" aria-label="Close fullscreen">✕</button>
+        <div class="mermaid-container-fullscreen${darkTheme ? ' dark-theme' : ''}"></div>
+    `;
+    document.body.appendChild(modal);
+
+    modalContent = modal.querySelector('.mermaid-container-fullscreen');
+    const closeBtn = modal.querySelector('.mermaid-fullscreen-close');
+
+    const closeModal = () => {
+        modal.classList.remove('active');
+        modalContent.innerHTML = '';
+        document.body.style.overflow = ''
+        window.scrollTo({left: previousScrollOffset[0], top: previousScrollOffset[1], behavior: 'instant'});
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    document.querySelectorAll('.mermaid').forEach((mermaidDiv) => {
+        if (mermaidDiv.parentNode.classList.contains('mermaid-container') ||
+            mermaidDiv.closest('.mermaid-fullscreen-modal')) {
+            // Already processed, adjust button class if needed
+            const existingBtn = mermaidDiv.parentNode.querySelector('.mermaid-fullscreen-btn');
+            if (existingBtn) {
+                existingBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+            }
+            return;
+        }
+
+        const container = document.createElement('div');
+        container.className = 'mermaid-container';
+        mermaidDiv.parentNode.insertBefore(container, mermaidDiv);
+        container.appendChild(mermaidDiv);
+
+        const fullscreenBtn = document.createElement('button');
+        fullscreenBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+        fullscreenBtn.setAttribute('aria-label', 'View diagram in fullscreen');
+        fullscreenBtn.textContent = '⛶';
+        fullscreenBtn.style.opacity = '50%';
+
+        // Calculate dynamic position based on diagram's margin and padding
+        const diagramStyle = window.getComputedStyle(mermaidDiv);
+        const marginTop = parseFloat(diagramStyle.marginTop) || 0;
+        const marginRight = parseFloat(diagramStyle.marginRight) || 0;
+        const paddingTop = parseFloat(diagramStyle.paddingTop) || 0;
+        const paddingRight = parseFloat(diagramStyle.paddingRight) || 0;
+        fullscreenBtn.style.top = `${marginTop + paddingTop + 4}px`;
+        fullscreenBtn.style.right = `${marginRight + paddingRight + 4}px`;
+
+        fullscreenBtn.addEventListener('click', () => {
+            previousScrollOffset = [window.scroll, window.scrollY];
+            const clone = mermaidDiv.cloneNode(true);
+            modalContent.innerHTML = '';
+            modalContent.appendChild(clone);
+
+            const svg = clone.querySelector('svg');
+            if (svg) {
+                svg.removeAttribute('width');
+                svg.removeAttribute('height');
+                svg.style.width = '100%';
+                svg.style.height = 'auto';
+                svg.style.maxWidth = '100%';
+                svg.style.sdisplay = 'block';
+
+                if ("False" === "True") {
+                    setTimeout(() => {
+                        const g = svg.querySelector('g');
+                        if (g) {
+                            var svgD3 = d3.select(svg);
+                            svgD3.html("<g class='wrapper'>" + svgD3.html() + "</g>");
+                            var inner = svgD3.select("g");
+                            var zoom = d3.zoom().on("zoom", function(event) {
+                                inner.attr("transform", event.transform);
+                            });
+                            svgD3.call(zoom);
+                        }
+                    }, 100);
+                }
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        container.appendChild(fullscreenBtn);
+    });
+};
+
+const load = async () => {
+    initStyles();
+
+    await runMermaid(true);
+
+    const reRunIfThemeChanges = async () => {
+        const newDarkTheme = isDarkTheme();
+        if (newDarkTheme !== darkTheme) {
+            darkTheme = newDarkTheme;
+            console.log("Theme change detected, re-running mermaid with", darkTheme ? "dark" : "default", "theme");
+            await mermaid.initialize(
+                {...JSON.parse(
+                    `{"startOnLoad": false}`
+                ),
+                ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+                }
+            );
+            await runMermaid(true);
+        }
+    };
+
+    // Update theme classes when theme changes
+    const themeObserver = new MutationObserver(reRunIfThemeChanges);
+    themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+    themeObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+};
+
+
+
+
+
+console.log("Initializing mermaid with", darkTheme ? "dark" : "default", "theme");
+mermaid.initialize(
+    {...JSON.parse(
+        `{"startOnLoad": false}`
+    ),
+    ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+    }
+);
+
+window.addEventListener("load", load);
+window.runMermaid = runMermaid;</script>
+    <script src="../../../_static/version-selector.js?v=7d36e42c"></script>
+    </body>
+</html>

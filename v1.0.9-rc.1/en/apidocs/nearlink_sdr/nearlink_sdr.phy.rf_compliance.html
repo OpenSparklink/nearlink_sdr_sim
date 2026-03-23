@@ -1,0 +1,1492 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="nearlink_sdr.phy.rx_pipeline" href="nearlink_sdr.phy.rx_pipeline.html"><link rel="prev" title="nearlink_sdr.phy.psk" href="nearlink_sdr.phy.psk.html">
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
+        <title>nearlink_sdr.phy.rf_compliance - nearlink-sdr 1.0.8 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/version-selector.css?v=022f18c6" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  --color-brand-primary: #1a73e8;
+  --color-brand-content: #1a73e8;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #8ab4f8;
+  --color-brand-content: #8ab4f8;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #8ab4f8;
+  --color-brand-content: #8ab4f8;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">nearlink-sdr 1.0.8 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.8 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/getting-started.html">Quick Start</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../how-to/index.html">How-To Guides</a><input aria-label="Toggle navigation of How-To Guides" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/run-simulation.html">Running Link Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/add-modulation.html">Adding a New Modulation Scheme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/qos-management.html">QoS Service Quality Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/node-usage.html">Using the SLE Node Entity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/rust-acceleration.html">Rust Acceleration Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/sdr-deployment.html">SDR E310 Deployment Planning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/build-docs.html">Building Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../../reference/index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 current has-children"><a class="reference internal" href="nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.rx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.sim.link_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.link_sim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.sim.usrp_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.usrp_sim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../explanation/index.html">Explanation</a><input aria-label="Toggle navigation of Explanation" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/overview.html">SparkLink SLE Protocol Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/principles.html">Physical Layer Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/physical-layer.html">Physical Layer Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/mac-layer.html">MAC Layer Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/security.html">Security Subsystem Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/data-flow.html">End-to-End Data Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/architecture.html">System Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/standard-mapping.html">Standard Clause Mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 current has-children"><a class="reference internal" href="nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4 current current-page"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.rx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.sim.link_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.link_sim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.sim.usrp_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.usrp_sim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/apidocs/nearlink_sdr/nearlink_sdr.phy.rf_compliance.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section class="tex2jax_ignore mathjax_ignore" id="module-nearlink_sdr.phy.rf_compliance">
+<span id="nearlink-sdr-phy-rf-compliance"></span><h1><a class="reference internal" href="#module-nearlink_sdr.phy.rf_compliance" title="nearlink_sdr.phy.rf_compliance"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a><a class="headerlink" href="#module-nearlink_sdr.phy.rf_compliance" title="Link to this heading">¶</a></h1>
+<p>RF compliance parameters and verification — standard chapter 8.</p>
+<p>Implements narrowband/UWB RF metrics defined in TXS-10002-2025 standard sections 8.2-8.4:</p>
+<ul class="simple">
+<li><p>8.2.1  Output power level</p></li>
+<li><p>8.2.2  Modulation accuracy (GFSK deviation / PSK EVM / frequency tolerance / clock accuracy)</p></li>
+<li><p>8.2.3  Unwanted emissions (GFSK/PSK in-band spurious)</p></li>
+<li><p>8.3.1  Receiver sensitivity and maximum input level</p></li>
+<li><p>8.3.2  Receiver selectivity</p></li>
+<li><p>8.3.4  RSSI Accuracy</p></li>
+<li><p>8.4    UWB RF (channel, spectral mask, frequency tolerance, RMS error)</p></li>
+</ul>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-left">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth" title="nearlink_sdr.phy.rf_compliance.ChannelBandwidth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChannelBandwidth</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.EVMLimit" title="nearlink_sdr.phy.rf_compliance.EVMLimit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EVMLimit</span></code></a></p></td>
+<td><p>EVM limits.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.FreqBand" title="nearlink_sdr.phy.rf_compliance.FreqBand"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FreqBand</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.FreqToleranceSpec" title="nearlink_sdr.phy.rf_compliance.FreqToleranceSpec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FreqToleranceSpec</span></code></a></p></td>
+<td><p>Frequency tolerance specification.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult" title="nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GFSKFreqDevResult</span></code></a></p></td>
+<td><p>GFSK deviation check result.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec" title="nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GFSKFreqDevSpec</span></code></a></p></td>
+<td><p>GFSK modulation deviation specification — for a single symbol rate.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.IntermodEntry" title="nearlink_sdr.phy.rf_compliance.IntermodEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntermodEntry</span></code></a></p></td>
+<td><p>Receiver intermodulation requirement.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.OutOfBandEntry" title="nearlink_sdr.phy.rf_compliance.OutOfBandEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OutOfBandEntry</span></code></a></p></td>
+<td><p>Out-of-band selectivity requirement entry.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PSKModulation" title="nearlink_sdr.phy.rf_compliance.PSKModulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PSKModulation</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PSKSpectrumMask" title="nearlink_sdr.phy.rf_compliance.PSKSpectrumMask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PSKSpectrumMask</span></code></a></p></td>
+<td><p>Reference offset frequencies (MHz) in the PSK transmit spectral mask.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PowerClass" title="nearlink_sdr.phy.rf_compliance.PowerClass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PowerClass</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport" title="nearlink_sdr.phy.rf_compliance.RFComplianceReport"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RFComplianceReport</span></code></a></p></td>
+<td><p>RF compliance comprehensive report.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.SelectivityEntry" title="nearlink_sdr.phy.rf_compliance.SelectivityEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SelectivityEntry</span></code></a></p></td>
+<td><p>Receiver selectivity requirement entry.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.UWBSpectrumMask" title="nearlink_sdr.phy.rf_compliance.UWBSpectrumMask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWBSpectrumMask</span></code></a></p></td>
+<td><p>UWB spectrum maskparameter (8.4.3).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-left">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.check_clock_accuracy" title="nearlink_sdr.phy.rf_compliance.check_clock_accuracy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_clock_accuracy</span></code></a></p></td>
+<td><p>Check clock accuracy (8.2.2.4 / 8.2.2.5).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.check_evm" title="nearlink_sdr.phy.rf_compliance.check_evm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_evm</span></code></a></p></td>
+<td><p>Check whether PSK EVM meets the Table 53 limits.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.check_freq_tolerance" title="nearlink_sdr.phy.rf_compliance.check_freq_tolerance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_freq_tolerance</span></code></a></p></td>
+<td><p>Check whether frequency tolerance meets 8.2.2.3.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.check_gfsk_freq_dev" title="nearlink_sdr.phy.rf_compliance.check_gfsk_freq_dev"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_gfsk_freq_dev</span></code></a></p></td>
+<td><p>Check whether GFSK frequency deviation meets standard 8.2.2.1.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.check_rssi_accuracy" title="nearlink_sdr.phy.rf_compliance.check_rssi_accuracy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_rssi_accuracy</span></code></a></p></td>
+<td><p>Check RSSI measurement accuracy (8.3.4).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.check_rx_spurious_emission" title="nearlink_sdr.phy.rf_compliance.check_rx_spurious_emission"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_rx_spurious_emission</span></code></a></p></td>
+<td><p>Check receiver spurious emissions (8.3.3).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.check_uwb_nrmse" title="nearlink_sdr.phy.rf_compliance.check_uwb_nrmse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_uwb_nrmse</span></code></a></p></td>
+<td><p>Check UWB normalized RMS error (8.4.5).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.classify_power" title="nearlink_sdr.phy.rf_compliance.classify_power"><code class="xref py py-obj docutils literal notranslate"><span class="pre">classify_power</span></code></a></p></td>
+<td><p>Determine the power class from the maximum output power.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.get_psk_spectrum_mask" title="nearlink_sdr.phy.rf_compliance.get_psk_spectrum_mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_psk_spectrum_mask</span></code></a></p></td>
+<td><p>Get the PSK spectral mask for the specified bandwidth.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.gfsk_inband_spurious_limit_dbm" title="nearlink_sdr.phy.rf_compliance.gfsk_inband_spurious_limit_dbm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gfsk_inband_spurious_limit_dbm</span></code></a></p></td>
+<td><p>Compute GFSK in-band spurious emission limit (dBm).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.reference_sensitivity" title="nearlink_sdr.phy.rf_compliance.reference_sensitivity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_sensitivity</span></code></a></p></td>
+<td><p>Return the reference sensitivity (dBm).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.selectivity_freq_offsets" title="nearlink_sdr.phy.rf_compliance.selectivity_freq_offsets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">selectivity_freq_offsets</span></code></a></p></td>
+<td><p>Return f1/f2/f3 frequency offsets (MHz) for the specified bandwidth.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.uwb_channel_center_freq_mhz" title="nearlink_sdr.phy.rf_compliance.uwb_channel_center_freq_mhz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">uwb_channel_center_freq_mhz</span></code></a></p></td>
+<td><p>Compute UWB physical channel center frequency (MHz).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.validate_power_step" title="nearlink_sdr.phy.rf_compliance.validate_power_step"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_power_step</span></code></a></p></td>
+<td><p>Check whether adjacent transmit power difference does not exceed 8 dB (8.2.1).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="data">
+<h3>Data<a class="headerlink" href="#data" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-left">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.ACTIVE_CLOCK_JITTER_US" title="nearlink_sdr.phy.rf_compliance.ACTIVE_CLOCK_JITTER_US"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ACTIVE_CLOCK_JITTER_US</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.ACTIVE_CLOCK_PPM" title="nearlink_sdr.phy.rf_compliance.ACTIVE_CLOCK_PPM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ACTIVE_CLOCK_PPM</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.MAX_INPUT_LEVEL_DBM" title="nearlink_sdr.phy.rf_compliance.MAX_INPUT_LEVEL_DBM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MAX_INPUT_LEVEL_DBM</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.RSSI_ACCURACY_DB" title="nearlink_sdr.phy.rf_compliance.RSSI_ACCURACY_DB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RSSI_ACCURACY_DB</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.RSSI_SIGNAL_OFFSET_DB" title="nearlink_sdr.phy.rf_compliance.RSSI_SIGNAL_OFFSET_DB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RSSI_SIGNAL_OFFSET_DB</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.SLEEP_CLOCK_JITTER_US" title="nearlink_sdr.phy.rf_compliance.SLEEP_CLOCK_JITTER_US"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SLEEP_CLOCK_JITTER_US</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.SLEEP_CLOCK_PPM" title="nearlink_sdr.phy.rf_compliance.SLEEP_CLOCK_PPM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SLEEP_CLOCK_PPM</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.SUB_1G_TOLERANCE_PPM" title="nearlink_sdr.phy.rf_compliance.SUB_1G_TOLERANCE_PPM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SUB_1G_TOLERANCE_PPM</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.UWB_CLOCK_TOLERANCE_PPM" title="nearlink_sdr.phy.rf_compliance.UWB_CLOCK_TOLERANCE_PPM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWB_CLOCK_TOLERANCE_PPM</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.UWB_FREQ_TOLERANCE_PPM" title="nearlink_sdr.phy.rf_compliance.UWB_FREQ_TOLERANCE_PPM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWB_FREQ_TOLERANCE_PPM</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.UWB_MAX_NRMSE_DIFF_DB" title="nearlink_sdr.phy.rf_compliance.UWB_MAX_NRMSE_DIFF_DB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWB_MAX_NRMSE_DIFF_DB</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.UWB_MAX_NRMSE_PCT" title="nearlink_sdr.phy.rf_compliance.UWB_MAX_NRMSE_PCT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWB_MAX_NRMSE_PCT</span></code></a></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="api">
+<h3>API<a class="headerlink" href="#api" title="Link to this heading">¶</a></h3>
+<dl class="py data">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.ACTIVE_CLOCK_JITTER_US">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">ACTIVE_CLOCK_JITTER_US</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.ACTIVE_CLOCK_JITTER_US" title="Link to this definition">¶</a></dt>
+<dd><p>2.0</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.ACTIVE_CLOCK_PPM">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">ACTIVE_CLOCK_PPM</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.ACTIVE_CLOCK_PPM" title="Link to this definition">¶</a></dt>
+<dd><p>20.0</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.MAX_INPUT_LEVEL_DBM">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">MAX_INPUT_LEVEL_DBM</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.MAX_INPUT_LEVEL_DBM" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.RSSI_ACCURACY_DB">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">RSSI_ACCURACY_DB</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.RSSI_ACCURACY_DB" title="Link to this definition">¶</a></dt>
+<dd><p>6.0</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.RSSI_SIGNAL_OFFSET_DB">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">RSSI_SIGNAL_OFFSET_DB</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.RSSI_SIGNAL_OFFSET_DB" title="Link to this definition">¶</a></dt>
+<dd><p>6.0</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.SLEEP_CLOCK_JITTER_US">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">SLEEP_CLOCK_JITTER_US</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.SLEEP_CLOCK_JITTER_US" title="Link to this definition">¶</a></dt>
+<dd><p>16.0</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.SLEEP_CLOCK_PPM">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">SLEEP_CLOCK_PPM</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.SLEEP_CLOCK_PPM" title="Link to this definition">¶</a></dt>
+<dd><p>500.0</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.SUB_1G_TOLERANCE_PPM">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">SUB_1G_TOLERANCE_PPM</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.SUB_1G_TOLERANCE_PPM" title="Link to this definition">¶</a></dt>
+<dd><p>100.0</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.UWB_CLOCK_TOLERANCE_PPM">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">UWB_CLOCK_TOLERANCE_PPM</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.UWB_CLOCK_TOLERANCE_PPM" title="Link to this definition">¶</a></dt>
+<dd><p>20.0</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.UWB_FREQ_TOLERANCE_PPM">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">UWB_FREQ_TOLERANCE_PPM</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.UWB_FREQ_TOLERANCE_PPM" title="Link to this definition">¶</a></dt>
+<dd><p>20.0</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.UWB_MAX_NRMSE_DIFF_DB">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">UWB_MAX_NRMSE_DIFF_DB</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.UWB_MAX_NRMSE_DIFF_DB" title="Link to this definition">¶</a></dt>
+<dd><p>2.0</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.UWB_MAX_NRMSE_PCT">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">UWB_MAX_NRMSE_PCT</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.UWB_MAX_NRMSE_PCT" title="Link to this definition">¶</a></dt>
+<dd><p>25.0</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.ChannelBandwidth">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">ChannelBandwidth</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#ChannelBandwidth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_100K">
+<span class="sig-name descname"><span class="pre">BW_100K</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_100K" title="Link to this definition">¶</a></dt>
+<dd><p>100</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_125K">
+<span class="sig-name descname"><span class="pre">BW_125K</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_125K" title="Link to this definition">¶</a></dt>
+<dd><p>125</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_250K">
+<span class="sig-name descname"><span class="pre">BW_250K</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_250K" title="Link to this definition">¶</a></dt>
+<dd><p>250</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_500K">
+<span class="sig-name descname"><span class="pre">BW_500K</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_500K" title="Link to this definition">¶</a></dt>
+<dd><p>500</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_1M">
+<span class="sig-name descname"><span class="pre">BW_1M</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_1M" title="Link to this definition">¶</a></dt>
+<dd><p>1000</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_2M">
+<span class="sig-name descname"><span class="pre">BW_2M</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_2M" title="Link to this definition">¶</a></dt>
+<dd><p>2000</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_4M">
+<span class="sig-name descname"><span class="pre">BW_4M</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_4M" title="Link to this definition">¶</a></dt>
+<dd><p>4000</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.EVMLimit">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">EVMLimit</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#EVMLimit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.EVMLimit" title="Link to this definition">¶</a></dt>
+<dd><p>EVM limits.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.EVMLimit.rms_pct">
+<span class="sig-name descname"><span class="pre">rms_pct</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.EVMLimit.rms_pct" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.EVMLimit.pct99">
+<span class="sig-name descname"><span class="pre">pct99</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.EVMLimit.pct99" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.EVMLimit.peak_pct">
+<span class="sig-name descname"><span class="pre">peak_pct</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.EVMLimit.peak_pct" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.FreqBand">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">FreqBand</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#FreqBand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.FreqBand" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.FreqBand.BAND_2400">
+<span class="sig-name descname"><span class="pre">BAND_2400</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.FreqBand.BAND_2400" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.FreqBand.BAND_5100">
+<span class="sig-name descname"><span class="pre">BAND_5100</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.FreqBand.BAND_5100" title="Link to this definition">¶</a></dt>
+<dd><p>1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.FreqBand.BAND_5800">
+<span class="sig-name descname"><span class="pre">BAND_5800</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.FreqBand.BAND_5800" title="Link to this definition">¶</a></dt>
+<dd><p>2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.FreqBand.SUB_1G">
+<span class="sig-name descname"><span class="pre">SUB_1G</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.FreqBand.SUB_1G" title="Link to this definition">¶</a></dt>
+<dd><p>3</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.FreqToleranceSpec">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">FreqToleranceSpec</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#FreqToleranceSpec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.FreqToleranceSpec" title="Link to this definition">¶</a></dt>
+<dd><p>Frequency tolerance specification.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.FreqToleranceSpec.freq_offset_khz">
+<span class="sig-name descname"><span class="pre">freq_offset_khz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.FreqToleranceSpec.freq_offset_khz" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.FreqToleranceSpec.freq_drift_khz">
+<span class="sig-name descname"><span class="pre">freq_drift_khz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.FreqToleranceSpec.freq_drift_khz" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.FreqToleranceSpec.drift_rate_hz_per_us">
+<span class="sig-name descname"><span class="pre">drift_rate_hz_per_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.FreqToleranceSpec.drift_rate_hz_per_us" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">GFSKFreqDevResult</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#GFSKFreqDevResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult" title="Link to this definition">¶</a></dt>
+<dd><p>GFSK deviation check result.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.min_ok">
+<span class="sig-name descname"><span class="pre">min_ok</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.min_ok" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.fd1_ok">
+<span class="sig-name descname"><span class="pre">fd1_ok</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.fd1_ok" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.fd2_ok">
+<span class="sig-name descname"><span class="pre">fd2_ok</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.fd2_ok" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.ratio_ok">
+<span class="sig-name descname"><span class="pre">ratio_ok</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.ratio_ok" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.zero_crossing_ok">
+<span class="sig-name descname"><span class="pre">zero_crossing_ok</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.zero_crossing_ok" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.passed">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">passed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.passed" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">GFSKFreqDevSpec</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#GFSKFreqDevSpec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec" title="Link to this definition">¶</a></dt>
+<dd><p>GFSK modulation deviation specification — for a single symbol rate.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.symbol_rate_msps">
+<span class="sig-name descname"><span class="pre">symbol_rate_msps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.symbol_rate_msps" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.symbol_interval_us">
+<span class="sig-name descname"><span class="pre">symbol_interval_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.symbol_interval_us" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.min_deviation_khz">
+<span class="sig-name descname"><span class="pre">min_deviation_khz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.min_deviation_khz" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.fd1_min_khz">
+<span class="sig-name descname"><span class="pre">fd1_min_khz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.fd1_min_khz" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.fd1_max_khz">
+<span class="sig-name descname"><span class="pre">fd1_max_khz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.fd1_max_khz" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.fd2_min_khz">
+<span class="sig-name descname"><span class="pre">fd2_min_khz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.fd2_min_khz" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.fd2_fd1_ratio_min">
+<span class="sig-name descname"><span class="pre">fd2_fd1_ratio_min</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.fd2_fd1_ratio_min" title="Link to this definition">¶</a></dt>
+<dd><p>0.8</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.zero_crossing_margin">
+<span class="sig-name descname"><span class="pre">zero_crossing_margin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.zero_crossing_margin" title="Link to this definition">¶</a></dt>
+<dd><p>0.125</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.IntermodEntry">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">IntermodEntry</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#IntermodEntry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.IntermodEntry" title="Link to this definition">¶</a></dt>
+<dd><p>Receiver intermodulation requirement.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.IntermodEntry.bw_khz">
+<span class="sig-name descname"><span class="pre">bw_khz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.IntermodEntry.bw_khz" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.IntermodEntry.signal_offset_db">
+<span class="sig-name descname"><span class="pre">signal_offset_db</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.IntermodEntry.signal_offset_db" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.IntermodEntry.interferer_level_dbm">
+<span class="sig-name descname"><span class="pre">interferer_level_dbm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.IntermodEntry.interferer_level_dbm" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.IntermodEntry.n_values">
+<span class="sig-name descname"><span class="pre">n_values</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.IntermodEntry.n_values" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.OutOfBandEntry">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">OutOfBandEntry</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#OutOfBandEntry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.OutOfBandEntry" title="Link to this definition">¶</a></dt>
+<dd><p>Out-of-band selectivity requirement entry.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.OutOfBandEntry.freq_range">
+<span class="sig-name descname"><span class="pre">freq_range</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.OutOfBandEntry.freq_range" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.OutOfBandEntry.interferer_level_dbm">
+<span class="sig-name descname"><span class="pre">interferer_level_dbm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.OutOfBandEntry.interferer_level_dbm" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.OutOfBandEntry.step_mhz">
+<span class="sig-name descname"><span class="pre">step_mhz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.OutOfBandEntry.step_mhz" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.PSKModulation">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">PSKModulation</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#PSKModulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.PSKModulation" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.PSKModulation.PI2_BPSK">
+<span class="sig-name descname"><span class="pre">PI2_BPSK</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.PSKModulation.PI2_BPSK" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.PSKModulation.PI4_QPSK">
+<span class="sig-name descname"><span class="pre">PI4_QPSK</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.PSKModulation.PI4_QPSK" title="Link to this definition">¶</a></dt>
+<dd><p>1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.PSKModulation.PI8_8PSK">
+<span class="sig-name descname"><span class="pre">PI8_8PSK</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.PSKModulation.PI8_8PSK" title="Link to this definition">¶</a></dt>
+<dd><p>2</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.PSKSpectrumMask">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">PSKSpectrumMask</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#PSKSpectrumMask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.PSKSpectrumMask" title="Link to this definition">¶</a></dt>
+<dd><p>Reference offset frequencies (MHz) in the PSK transmit spectral mask.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.bw">
+<span class="sig-name descname"><span class="pre">bw</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth" title="nearlink_sdr.phy.rf_compliance.ChannelBandwidth"><span class="pre">nearlink_sdr.phy.rf_compliance.ChannelBandwidth</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.bw" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.f1_mhz">
+<span class="sig-name descname"><span class="pre">f1_mhz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.f1_mhz" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.f2_mhz">
+<span class="sig-name descname"><span class="pre">f2_mhz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.f2_mhz" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.f3_mhz">
+<span class="sig-name descname"><span class="pre">f3_mhz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.f3_mhz" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.f4_mhz">
+<span class="sig-name descname"><span class="pre">f4_mhz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.f4_mhz" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.PowerClass">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">PowerClass</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#PowerClass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.PowerClass" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_0">
+<span class="sig-name descname"><span class="pre">CLASS_0</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_0" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_1">
+<span class="sig-name descname"><span class="pre">CLASS_1</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_1" title="Link to this definition">¶</a></dt>
+<dd><p>1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_2">
+<span class="sig-name descname"><span class="pre">CLASS_2</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_2" title="Link to this definition">¶</a></dt>
+<dd><p>2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_3">
+<span class="sig-name descname"><span class="pre">CLASS_3</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_3" title="Link to this definition">¶</a></dt>
+<dd><p>3</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_4">
+<span class="sig-name descname"><span class="pre">CLASS_4</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_4" title="Link to this definition">¶</a></dt>
+<dd><p>4</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_5">
+<span class="sig-name descname"><span class="pre">CLASS_5</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_5" title="Link to this definition">¶</a></dt>
+<dd><p>5</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_6">
+<span class="sig-name descname"><span class="pre">CLASS_6</span></span><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_6" title="Link to this definition">¶</a></dt>
+<dd><p>6</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.RFComplianceReport">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">RFComplianceReport</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#RFComplianceReport"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport" title="Link to this definition">¶</a></dt>
+<dd><p>RF compliance comprehensive report.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.RFComplianceReport.power_class">
+<span class="sig-name descname"><span class="pre">power_class</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PowerClass" title="nearlink_sdr.phy.rf_compliance.PowerClass"><span class="pre">nearlink_sdr.phy.rf_compliance.PowerClass</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.power_class" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.RFComplianceReport.power_step_ok">
+<span class="sig-name descname"><span class="pre">power_step_ok</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.power_step_ok" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.RFComplianceReport.gfsk_dev">
+<span class="sig-name descname"><span class="pre">gfsk_dev</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult" title="nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult"><span class="pre">nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.gfsk_dev" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.RFComplianceReport.evm_ok">
+<span class="sig-name descname"><span class="pre">evm_ok</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.evm_ok" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.RFComplianceReport.freq_tolerance_ok">
+<span class="sig-name descname"><span class="pre">freq_tolerance_ok</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.freq_tolerance_ok" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.RFComplianceReport.clock_ok">
+<span class="sig-name descname"><span class="pre">clock_ok</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.clock_ok" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.RFComplianceReport.spurious_ok">
+<span class="sig-name descname"><span class="pre">spurious_ok</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.spurious_ok" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.RFComplianceReport.sensitivity_dbm">
+<span class="sig-name descname"><span class="pre">sensitivity_dbm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.sensitivity_dbm" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.RFComplianceReport.selectivity_ok">
+<span class="sig-name descname"><span class="pre">selectivity_ok</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.selectivity_ok" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.RFComplianceReport.rssi_ok">
+<span class="sig-name descname"><span class="pre">rssi_ok</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.rssi_ok" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.RFComplianceReport.uwb_spectrum_ok">
+<span class="sig-name descname"><span class="pre">uwb_spectrum_ok</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.uwb_spectrum_ok" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.RFComplianceReport.uwb_nrmse_ok">
+<span class="sig-name descname"><span class="pre">uwb_nrmse_ok</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.uwb_nrmse_ok" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.RFComplianceReport.errors">
+<span class="sig-name descname"><span class="pre">errors</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.errors" title="Link to this definition">¶</a></dt>
+<dd><p>‘field(…)’</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.RFComplianceReport.passed">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">passed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.passed" title="Link to this definition">¶</a></dt>
+<dd><p>Return True when all checked items pass.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.SelectivityEntry">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">SelectivityEntry</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#SelectivityEntry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.SelectivityEntry" title="Link to this definition">¶</a></dt>
+<dd><p>Receiver selectivity requirement entry.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.SelectivityEntry.signal_level_offset_db">
+<span class="sig-name descname"><span class="pre">signal_level_offset_db</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.SelectivityEntry.signal_level_offset_db" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.SelectivityEntry.interferer_level_dbm">
+<span class="sig-name descname"><span class="pre">interferer_level_dbm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.SelectivityEntry.interferer_level_dbm" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.SelectivityEntry.freq_offset_type">
+<span class="sig-name descname"><span class="pre">freq_offset_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.SelectivityEntry.freq_offset_type" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.UWBSpectrumMask">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">UWBSpectrumMask</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#UWBSpectrumMask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.UWBSpectrumMask" title="Link to this definition">¶</a></dt>
+<dd><p>UWB spectrum maskparameter (8.4.3).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.UWBSpectrumMask.pulse_width_ns">
+<span class="sig-name descname"><span class="pre">pulse_width_ns</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.UWBSpectrumMask.pulse_width_ns" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.UWBSpectrumMask.transition_band_hz">
+<span class="sig-name descname"><span class="pre">transition_band_hz</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#UWBSpectrumMask.transition_band_hz"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.UWBSpectrumMask.transition_band_hz" title="Link to this definition">¶</a></dt>
+<dd><p>Transition band range [0.65/Tp, 0.8/Tp] Hz.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.UWBSpectrumMask.check_spectrum">
+<span class="sig-name descname"><span class="pre">check_spectrum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq_offset_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">psd_db_relative</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#UWBSpectrumMask.check_spectrum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.UWBSpectrumMask.check_spectrum" title="Link to this definition">¶</a></dt>
+<dd><p>Check whether PSD meets the spectral mask requirements.</p>
+<ul class="simple">
+<li><p>|f-fc| in [0.65/Tp, 0.8/Tp]: below peak 10 dB</p></li>
+<li><p>|f-fc| &gt; 0.8/Tp: below peak 18 dB</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.check_clock_accuracy">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">check_clock_accuracy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ppm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">jitter_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_sleep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#check_clock_accuracy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.check_clock_accuracy" title="Link to this definition">¶</a></dt>
+<dd><p>Check clock accuracy (8.2.2.4 / 8.2.2.5).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.check_evm">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">check_evm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mod</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PSKModulation" title="nearlink_sdr.phy.rf_compliance.PSKModulation"><span class="pre">nearlink_sdr.phy.rf_compliance.PSKModulation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rms_evm_pct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct99_evm_pct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak_evm_pct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#check_evm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.check_evm" title="Link to this definition">¶</a></dt>
+<dd><p>Check whether PSK EVM meets the Table 53 limits.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.check_freq_tolerance">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">check_freq_tolerance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">band</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.FreqBand" title="nearlink_sdr.phy.rf_compliance.FreqBand"><span class="pre">nearlink_sdr.phy.rf_compliance.FreqBand</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mod_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_offset_khz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_drift_khz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">drift_rate_hz_per_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">carrier_freq_mhz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#check_freq_tolerance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.check_freq_tolerance" title="Link to this definition">¶</a></dt>
+<dd><p>Check whether frequency tolerance meets 8.2.2.3.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>band</strong> – frequency band type.</p></li>
+<li><p><strong>mod_type</strong> – modulation type (“GFSK”, “BPSK/QPSK”, “8PSK”).</p></li>
+<li><p><strong>freq_offset_khz</strong> – Initial frequency deviation (kHz).</p></li>
+<li><p><strong>freq_drift_khz</strong> – Frequency drift (kHz).</p></li>
+<li><p><strong>drift_rate_hz_per_us</strong> – Frequency drift rate (Hz/us).</p></li>
+<li><p><strong>carrier_freq_mhz</strong> – Carrier frequency (MHz), used for ppm check at sub-1GHz.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.check_gfsk_freq_dev">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">check_gfsk_freq_dev</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_rate_msps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_deviation_khz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fd1_khz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fd2_khz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_zero_crossing_error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult" title="nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult"><span class="pre">nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#check_gfsk_freq_dev"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.check_gfsk_freq_dev" title="Link to this definition">¶</a></dt>
+<dd><p>Check whether GFSK frequency deviation meets standard 8.2.2.1.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.check_rssi_accuracy">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">check_rssi_accuracy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measured_rssi_dbm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">actual_level_dbm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_sensitivity_dbm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#check_rssi_accuracy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.check_rssi_accuracy" title="Link to this definition">¶</a></dt>
+<dd><p>Check RSSI measurement accuracy (8.3.4).</p>
+<p>At reference sensitivity +6 dB, the error shall not exceed ±6 dB.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.check_rx_spurious_emission">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">check_rx_spurious_emission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spurious_dbm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_dbm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-57.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#check_rx_spurious_emission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.check_rx_spurious_emission" title="Link to this definition">¶</a></dt>
+<dd><p>Check receiver spurious emissions (8.3.3).</p>
+<p>The standard requires receiver spurious emissions to comply with national spectrum regulations. Default limit -57 dBm (30 MHz - 1 GHz band, GB/T 9254.1 limit).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.check_uwb_nrmse">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">check_uwb_nrmse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sync_nrmse_pct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">meas_nrmse_pct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#check_uwb_nrmse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.check_uwb_nrmse" title="Link to this definition">¶</a></dt>
+<dd><p>Check UWB normalized RMS error (8.4.5).</p>
+<p>Sync signal and measurement signal NRMSE shall not exceed 25%, and their difference shall not exceed ±2 dB.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.classify_power">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">classify_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmax_dbm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PowerClass" title="nearlink_sdr.phy.rf_compliance.PowerClass"><span class="pre">nearlink_sdr.phy.rf_compliance.PowerClass</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#classify_power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.classify_power" title="Link to this definition">¶</a></dt>
+<dd><p>Determine the power class from the maximum output power.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.get_psk_spectrum_mask">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">get_psk_spectrum_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bw</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth" title="nearlink_sdr.phy.rf_compliance.ChannelBandwidth"><span class="pre">nearlink_sdr.phy.rf_compliance.ChannelBandwidth</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PSKSpectrumMask" title="nearlink_sdr.phy.rf_compliance.PSKSpectrumMask"><span class="pre">nearlink_sdr.phy.rf_compliance.PSKSpectrumMask</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#get_psk_spectrum_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.get_psk_spectrum_mask" title="Link to this definition">¶</a></dt>
+<dd><p>Get the PSK spectral mask for the specified bandwidth.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.gfsk_inband_spurious_limit_dbm">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">gfsk_inband_spurious_limit_dbm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bw</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth" title="nearlink_sdr.phy.rf_compliance.ChannelBandwidth"><span class="pre">nearlink_sdr.phy.rf_compliance.ChannelBandwidth</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">k_offset_mhz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#gfsk_inband_spurious_limit_dbm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.gfsk_inband_spurious_limit_dbm" title="Link to this definition">¶</a></dt>
+<dd><p>Compute GFSK in-band spurious emission limit (dBm).</p>
+<p>For wide channels (1/2/4 MHz, Table 56) returns dBm/MHz; for narrow channels (100-500 kHz, Table 57) returns dBm/100kHz.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.reference_sensitivity">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">reference_sensitivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bw_khz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mcs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#reference_sensitivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.reference_sensitivity" title="Link to this definition">¶</a></dt>
+<dd><p>Return the reference sensitivity (dBm).</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bw_khz</strong> – channel bandwidth (kHz).</p></li>
+<li><p><strong>mcs</strong> – MCS index. Returns GFSK sensitivity when None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.selectivity_freq_offsets">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">selectivity_freq_offsets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bw_khz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#selectivity_freq_offsets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.selectivity_freq_offsets" title="Link to this definition">¶</a></dt>
+<dd><p>Return f1/f2/f3 frequency offsets (MHz) for the specified bandwidth.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.uwb_channel_center_freq_mhz">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">uwb_channel_center_freq_mhz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#uwb_channel_center_freq_mhz"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.uwb_channel_center_freq_mhz" title="Link to this definition">¶</a></dt>
+<dd><p>Compute UWB physical channel center frequency (MHz).</p>
+<p>fc = 499.2 + Nc * 124.8  (Nc in 0..79) Special channels: 125 -&gt; 7542.6, 126 -&gt; 18041.8, 127 -&gt; 8541.0</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.validate_power_step">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">validate_power_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prev_dbm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">curr_dbm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#validate_power_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.validate_power_step" title="Link to this definition">¶</a></dt>
+<dd><p>Check whether adjacent transmit power difference does not exceed 8 dB (8.2.1).</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="nearlink_sdr.phy.rx_pipeline.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="nearlink_sdr.phy.psk.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/sanchuanhehe/nearlink_sdr_sim" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82 .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#data">Data</a></li>
+<li><a class="reference internal" href="#api">API</a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.ACTIVE_CLOCK_JITTER_US"><code class="docutils literal notranslate"><span class="pre">ACTIVE_CLOCK_JITTER_US</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.ACTIVE_CLOCK_PPM"><code class="docutils literal notranslate"><span class="pre">ACTIVE_CLOCK_PPM</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.MAX_INPUT_LEVEL_DBM"><code class="docutils literal notranslate"><span class="pre">MAX_INPUT_LEVEL_DBM</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.RSSI_ACCURACY_DB"><code class="docutils literal notranslate"><span class="pre">RSSI_ACCURACY_DB</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.RSSI_SIGNAL_OFFSET_DB"><code class="docutils literal notranslate"><span class="pre">RSSI_SIGNAL_OFFSET_DB</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.SLEEP_CLOCK_JITTER_US"><code class="docutils literal notranslate"><span class="pre">SLEEP_CLOCK_JITTER_US</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.SLEEP_CLOCK_PPM"><code class="docutils literal notranslate"><span class="pre">SLEEP_CLOCK_PPM</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.SUB_1G_TOLERANCE_PPM"><code class="docutils literal notranslate"><span class="pre">SUB_1G_TOLERANCE_PPM</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.UWB_CLOCK_TOLERANCE_PPM"><code class="docutils literal notranslate"><span class="pre">UWB_CLOCK_TOLERANCE_PPM</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.UWB_FREQ_TOLERANCE_PPM"><code class="docutils literal notranslate"><span class="pre">UWB_FREQ_TOLERANCE_PPM</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.UWB_MAX_NRMSE_DIFF_DB"><code class="docutils literal notranslate"><span class="pre">UWB_MAX_NRMSE_DIFF_DB</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.UWB_MAX_NRMSE_PCT"><code class="docutils literal notranslate"><span class="pre">UWB_MAX_NRMSE_PCT</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth"><code class="docutils literal notranslate"><span class="pre">ChannelBandwidth</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_100K"><code class="docutils literal notranslate"><span class="pre">ChannelBandwidth.BW_100K</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_125K"><code class="docutils literal notranslate"><span class="pre">ChannelBandwidth.BW_125K</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_250K"><code class="docutils literal notranslate"><span class="pre">ChannelBandwidth.BW_250K</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_500K"><code class="docutils literal notranslate"><span class="pre">ChannelBandwidth.BW_500K</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_1M"><code class="docutils literal notranslate"><span class="pre">ChannelBandwidth.BW_1M</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_2M"><code class="docutils literal notranslate"><span class="pre">ChannelBandwidth.BW_2M</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_4M"><code class="docutils literal notranslate"><span class="pre">ChannelBandwidth.BW_4M</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.EVMLimit"><code class="docutils literal notranslate"><span class="pre">EVMLimit</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.EVMLimit.rms_pct"><code class="docutils literal notranslate"><span class="pre">EVMLimit.rms_pct</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.EVMLimit.pct99"><code class="docutils literal notranslate"><span class="pre">EVMLimit.pct99</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.EVMLimit.peak_pct"><code class="docutils literal notranslate"><span class="pre">EVMLimit.peak_pct</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.FreqBand"><code class="docutils literal notranslate"><span class="pre">FreqBand</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.FreqBand.BAND_2400"><code class="docutils literal notranslate"><span class="pre">FreqBand.BAND_2400</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.FreqBand.BAND_5100"><code class="docutils literal notranslate"><span class="pre">FreqBand.BAND_5100</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.FreqBand.BAND_5800"><code class="docutils literal notranslate"><span class="pre">FreqBand.BAND_5800</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.FreqBand.SUB_1G"><code class="docutils literal notranslate"><span class="pre">FreqBand.SUB_1G</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.FreqToleranceSpec"><code class="docutils literal notranslate"><span class="pre">FreqToleranceSpec</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.FreqToleranceSpec.freq_offset_khz"><code class="docutils literal notranslate"><span class="pre">FreqToleranceSpec.freq_offset_khz</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.FreqToleranceSpec.freq_drift_khz"><code class="docutils literal notranslate"><span class="pre">FreqToleranceSpec.freq_drift_khz</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.FreqToleranceSpec.drift_rate_hz_per_us"><code class="docutils literal notranslate"><span class="pre">FreqToleranceSpec.drift_rate_hz_per_us</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult"><code class="docutils literal notranslate"><span class="pre">GFSKFreqDevResult</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.min_ok"><code class="docutils literal notranslate"><span class="pre">GFSKFreqDevResult.min_ok</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.fd1_ok"><code class="docutils literal notranslate"><span class="pre">GFSKFreqDevResult.fd1_ok</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.fd2_ok"><code class="docutils literal notranslate"><span class="pre">GFSKFreqDevResult.fd2_ok</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.ratio_ok"><code class="docutils literal notranslate"><span class="pre">GFSKFreqDevResult.ratio_ok</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.zero_crossing_ok"><code class="docutils literal notranslate"><span class="pre">GFSKFreqDevResult.zero_crossing_ok</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.passed"><code class="docutils literal notranslate"><span class="pre">GFSKFreqDevResult.passed</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec"><code class="docutils literal notranslate"><span class="pre">GFSKFreqDevSpec</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.symbol_rate_msps"><code class="docutils literal notranslate"><span class="pre">GFSKFreqDevSpec.symbol_rate_msps</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.symbol_interval_us"><code class="docutils literal notranslate"><span class="pre">GFSKFreqDevSpec.symbol_interval_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.min_deviation_khz"><code class="docutils literal notranslate"><span class="pre">GFSKFreqDevSpec.min_deviation_khz</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.fd1_min_khz"><code class="docutils literal notranslate"><span class="pre">GFSKFreqDevSpec.fd1_min_khz</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.fd1_max_khz"><code class="docutils literal notranslate"><span class="pre">GFSKFreqDevSpec.fd1_max_khz</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.fd2_min_khz"><code class="docutils literal notranslate"><span class="pre">GFSKFreqDevSpec.fd2_min_khz</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.fd2_fd1_ratio_min"><code class="docutils literal notranslate"><span class="pre">GFSKFreqDevSpec.fd2_fd1_ratio_min</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.zero_crossing_margin"><code class="docutils literal notranslate"><span class="pre">GFSKFreqDevSpec.zero_crossing_margin</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.IntermodEntry"><code class="docutils literal notranslate"><span class="pre">IntermodEntry</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.IntermodEntry.bw_khz"><code class="docutils literal notranslate"><span class="pre">IntermodEntry.bw_khz</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.IntermodEntry.signal_offset_db"><code class="docutils literal notranslate"><span class="pre">IntermodEntry.signal_offset_db</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.IntermodEntry.interferer_level_dbm"><code class="docutils literal notranslate"><span class="pre">IntermodEntry.interferer_level_dbm</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.IntermodEntry.n_values"><code class="docutils literal notranslate"><span class="pre">IntermodEntry.n_values</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.OutOfBandEntry"><code class="docutils literal notranslate"><span class="pre">OutOfBandEntry</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.OutOfBandEntry.freq_range"><code class="docutils literal notranslate"><span class="pre">OutOfBandEntry.freq_range</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.OutOfBandEntry.interferer_level_dbm"><code class="docutils literal notranslate"><span class="pre">OutOfBandEntry.interferer_level_dbm</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.OutOfBandEntry.step_mhz"><code class="docutils literal notranslate"><span class="pre">OutOfBandEntry.step_mhz</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PSKModulation"><code class="docutils literal notranslate"><span class="pre">PSKModulation</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PSKModulation.PI2_BPSK"><code class="docutils literal notranslate"><span class="pre">PSKModulation.PI2_BPSK</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PSKModulation.PI4_QPSK"><code class="docutils literal notranslate"><span class="pre">PSKModulation.PI4_QPSK</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PSKModulation.PI8_8PSK"><code class="docutils literal notranslate"><span class="pre">PSKModulation.PI8_8PSK</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PSKSpectrumMask"><code class="docutils literal notranslate"><span class="pre">PSKSpectrumMask</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.bw"><code class="docutils literal notranslate"><span class="pre">PSKSpectrumMask.bw</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.f1_mhz"><code class="docutils literal notranslate"><span class="pre">PSKSpectrumMask.f1_mhz</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.f2_mhz"><code class="docutils literal notranslate"><span class="pre">PSKSpectrumMask.f2_mhz</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.f3_mhz"><code class="docutils literal notranslate"><span class="pre">PSKSpectrumMask.f3_mhz</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.f4_mhz"><code class="docutils literal notranslate"><span class="pre">PSKSpectrumMask.f4_mhz</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PowerClass"><code class="docutils literal notranslate"><span class="pre">PowerClass</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_0"><code class="docutils literal notranslate"><span class="pre">PowerClass.CLASS_0</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_1"><code class="docutils literal notranslate"><span class="pre">PowerClass.CLASS_1</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_2"><code class="docutils literal notranslate"><span class="pre">PowerClass.CLASS_2</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_3"><code class="docutils literal notranslate"><span class="pre">PowerClass.CLASS_3</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_4"><code class="docutils literal notranslate"><span class="pre">PowerClass.CLASS_4</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_5"><code class="docutils literal notranslate"><span class="pre">PowerClass.CLASS_5</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_6"><code class="docutils literal notranslate"><span class="pre">PowerClass.CLASS_6</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport"><code class="docutils literal notranslate"><span class="pre">RFComplianceReport</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.power_class"><code class="docutils literal notranslate"><span class="pre">RFComplianceReport.power_class</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.power_step_ok"><code class="docutils literal notranslate"><span class="pre">RFComplianceReport.power_step_ok</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.gfsk_dev"><code class="docutils literal notranslate"><span class="pre">RFComplianceReport.gfsk_dev</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.evm_ok"><code class="docutils literal notranslate"><span class="pre">RFComplianceReport.evm_ok</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.freq_tolerance_ok"><code class="docutils literal notranslate"><span class="pre">RFComplianceReport.freq_tolerance_ok</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.clock_ok"><code class="docutils literal notranslate"><span class="pre">RFComplianceReport.clock_ok</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.spurious_ok"><code class="docutils literal notranslate"><span class="pre">RFComplianceReport.spurious_ok</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.sensitivity_dbm"><code class="docutils literal notranslate"><span class="pre">RFComplianceReport.sensitivity_dbm</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.selectivity_ok"><code class="docutils literal notranslate"><span class="pre">RFComplianceReport.selectivity_ok</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.rssi_ok"><code class="docutils literal notranslate"><span class="pre">RFComplianceReport.rssi_ok</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.uwb_spectrum_ok"><code class="docutils literal notranslate"><span class="pre">RFComplianceReport.uwb_spectrum_ok</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.uwb_nrmse_ok"><code class="docutils literal notranslate"><span class="pre">RFComplianceReport.uwb_nrmse_ok</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.errors"><code class="docutils literal notranslate"><span class="pre">RFComplianceReport.errors</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.passed"><code class="docutils literal notranslate"><span class="pre">RFComplianceReport.passed</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.SelectivityEntry"><code class="docutils literal notranslate"><span class="pre">SelectivityEntry</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.SelectivityEntry.signal_level_offset_db"><code class="docutils literal notranslate"><span class="pre">SelectivityEntry.signal_level_offset_db</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.SelectivityEntry.interferer_level_dbm"><code class="docutils literal notranslate"><span class="pre">SelectivityEntry.interferer_level_dbm</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.SelectivityEntry.freq_offset_type"><code class="docutils literal notranslate"><span class="pre">SelectivityEntry.freq_offset_type</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.UWBSpectrumMask"><code class="docutils literal notranslate"><span class="pre">UWBSpectrumMask</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.UWBSpectrumMask.pulse_width_ns"><code class="docutils literal notranslate"><span class="pre">UWBSpectrumMask.pulse_width_ns</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.UWBSpectrumMask.transition_band_hz"><code class="docutils literal notranslate"><span class="pre">UWBSpectrumMask.transition_band_hz()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.UWBSpectrumMask.check_spectrum"><code class="docutils literal notranslate"><span class="pre">UWBSpectrumMask.check_spectrum()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.check_clock_accuracy"><code class="docutils literal notranslate"><span class="pre">check_clock_accuracy()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.check_evm"><code class="docutils literal notranslate"><span class="pre">check_evm()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.check_freq_tolerance"><code class="docutils literal notranslate"><span class="pre">check_freq_tolerance()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.check_gfsk_freq_dev"><code class="docutils literal notranslate"><span class="pre">check_gfsk_freq_dev()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.check_rssi_accuracy"><code class="docutils literal notranslate"><span class="pre">check_rssi_accuracy()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.check_rx_spurious_emission"><code class="docutils literal notranslate"><span class="pre">check_rx_spurious_emission()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.check_uwb_nrmse"><code class="docutils literal notranslate"><span class="pre">check_uwb_nrmse()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.classify_power"><code class="docutils literal notranslate"><span class="pre">classify_power()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.get_psk_spectrum_mask"><code class="docutils literal notranslate"><span class="pre">get_psk_spectrum_mask()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.gfsk_inband_spurious_limit_dbm"><code class="docutils literal notranslate"><span class="pre">gfsk_inband_spurious_limit_dbm()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.reference_sensitivity"><code class="docutils literal notranslate"><span class="pre">reference_sensitivity()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.selectivity_freq_offsets"><code class="docutils literal notranslate"><span class="pre">selectivity_freq_offsets()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.uwb_channel_center_freq_mhz"><code class="docutils literal notranslate"><span class="pre">uwb_channel_center_freq_mhz()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.validate_power_step"><code class="docutils literal notranslate"><span class="pre">validate_power_step()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=04eb31d1"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../_static/version-selector.js?v=7d36e42c"></script>
+    </body>
+</html>

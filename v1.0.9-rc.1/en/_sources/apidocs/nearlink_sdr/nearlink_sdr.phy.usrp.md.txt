@@ -1,0 +1,703 @@
+# {py:mod}`nearlink_sdr.phy.usrp`
+
+```{py:module} nearlink_sdr.phy.usrp
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp
+:allowtitles:
+```
+
+## Module Contents
+
+### Classes
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`RXStream <nearlink_sdr.phy.usrp.RXStream>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.usrp.RXStream
+    :summary:
+    ```
+* - {py:obj}`SLETransceiver <nearlink_sdr.phy.usrp.SLETransceiver>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.usrp.SLETransceiver
+    :summary:
+    ```
+* - {py:obj}`TXStream <nearlink_sdr.phy.usrp.TXStream>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.usrp.TXStream
+    :summary:
+    ```
+* - {py:obj}`USRPConfig <nearlink_sdr.phy.usrp.USRPConfig>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPConfig
+    :summary:
+    ```
+* - {py:obj}`USRPDevice <nearlink_sdr.phy.usrp.USRPDevice>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPDevice
+    :summary:
+    ```
+````
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`uhd_available <nearlink_sdr.phy.usrp.uhd_available>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.usrp.uhd_available
+    :summary:
+    ```
+````
+
+### Data
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`DEFAULT_CPU_FORMAT <nearlink_sdr.phy.usrp.DEFAULT_CPU_FORMAT>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.usrp.DEFAULT_CPU_FORMAT
+    :summary:
+    ```
+* - {py:obj}`DEFAULT_WIRE_FORMAT <nearlink_sdr.phy.usrp.DEFAULT_WIRE_FORMAT>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.usrp.DEFAULT_WIRE_FORMAT
+    :summary:
+    ```
+* - {py:obj}`E310_ADC_BITS <nearlink_sdr.phy.usrp.E310_ADC_BITS>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.usrp.E310_ADC_BITS
+    :summary:
+    ```
+* - {py:obj}`E310_BW_MAX_HZ <nearlink_sdr.phy.usrp.E310_BW_MAX_HZ>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.usrp.E310_BW_MAX_HZ
+    :summary:
+    ```
+* - {py:obj}`E310_FREQ_MAX_HZ <nearlink_sdr.phy.usrp.E310_FREQ_MAX_HZ>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.usrp.E310_FREQ_MAX_HZ
+    :summary:
+    ```
+* - {py:obj}`E310_FREQ_MIN_HZ <nearlink_sdr.phy.usrp.E310_FREQ_MIN_HZ>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.usrp.E310_FREQ_MIN_HZ
+    :summary:
+    ```
+* - {py:obj}`E310_RX_GAIN_MAX <nearlink_sdr.phy.usrp.E310_RX_GAIN_MAX>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.usrp.E310_RX_GAIN_MAX
+    :summary:
+    ```
+* - {py:obj}`E310_RX_GAIN_MIN <nearlink_sdr.phy.usrp.E310_RX_GAIN_MIN>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.usrp.E310_RX_GAIN_MIN
+    :summary:
+    ```
+* - {py:obj}`E310_TX_GAIN_MAX <nearlink_sdr.phy.usrp.E310_TX_GAIN_MAX>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.usrp.E310_TX_GAIN_MAX
+    :summary:
+    ```
+* - {py:obj}`E310_TX_GAIN_MIN <nearlink_sdr.phy.usrp.E310_TX_GAIN_MIN>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.usrp.E310_TX_GAIN_MIN
+    :summary:
+    ```
+* - {py:obj}`SLE_BANDWIDTHS_MHZ <nearlink_sdr.phy.usrp.SLE_BANDWIDTHS_MHZ>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.usrp.SLE_BANDWIDTHS_MHZ
+    :summary:
+    ```
+````
+
+### API
+
+````{py:data} DEFAULT_CPU_FORMAT
+:canonical: nearlink_sdr.phy.usrp.DEFAULT_CPU_FORMAT
+:value: >
+   'fc32'
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.DEFAULT_CPU_FORMAT
+```
+
+````
+
+````{py:data} DEFAULT_WIRE_FORMAT
+:canonical: nearlink_sdr.phy.usrp.DEFAULT_WIRE_FORMAT
+:value: >
+   'sc16'
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.DEFAULT_WIRE_FORMAT
+```
+
+````
+
+````{py:data} E310_ADC_BITS
+:canonical: nearlink_sdr.phy.usrp.E310_ADC_BITS
+:value: >
+   12
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.E310_ADC_BITS
+```
+
+````
+
+````{py:data} E310_BW_MAX_HZ
+:canonical: nearlink_sdr.phy.usrp.E310_BW_MAX_HZ
+:value: >
+   56000000.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.E310_BW_MAX_HZ
+```
+
+````
+
+````{py:data} E310_FREQ_MAX_HZ
+:canonical: nearlink_sdr.phy.usrp.E310_FREQ_MAX_HZ
+:value: >
+   6000000000.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.E310_FREQ_MAX_HZ
+```
+
+````
+
+````{py:data} E310_FREQ_MIN_HZ
+:canonical: nearlink_sdr.phy.usrp.E310_FREQ_MIN_HZ
+:value: >
+   70000000.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.E310_FREQ_MIN_HZ
+```
+
+````
+
+````{py:data} E310_RX_GAIN_MAX
+:canonical: nearlink_sdr.phy.usrp.E310_RX_GAIN_MAX
+:value: >
+   76.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.E310_RX_GAIN_MAX
+```
+
+````
+
+````{py:data} E310_RX_GAIN_MIN
+:canonical: nearlink_sdr.phy.usrp.E310_RX_GAIN_MIN
+:value: >
+   0.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.E310_RX_GAIN_MIN
+```
+
+````
+
+````{py:data} E310_TX_GAIN_MAX
+:canonical: nearlink_sdr.phy.usrp.E310_TX_GAIN_MAX
+:value: >
+   89.75
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.E310_TX_GAIN_MAX
+```
+
+````
+
+````{py:data} E310_TX_GAIN_MIN
+:canonical: nearlink_sdr.phy.usrp.E310_TX_GAIN_MIN
+:value: >
+   0.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.E310_TX_GAIN_MIN
+```
+
+````
+
+````{py:data} SLE_BANDWIDTHS_MHZ
+:canonical: nearlink_sdr.phy.usrp.SLE_BANDWIDTHS_MHZ
+:value: >
+   (1.0, 2.0, 4.0)
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.SLE_BANDWIDTHS_MHZ
+```
+
+````
+
+`````{py:class} RXStream(device: nearlink_sdr.phy.usrp.USRPDevice)
+:canonical: nearlink_sdr.phy.usrp.RXStream
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.RXStream
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.RXStream.__init__
+```
+
+````{py:method} open(samps_per_buffer: int = 1000)
+:canonical: nearlink_sdr.phy.usrp.RXStream.open
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.RXStream.open
+```
+
+````
+
+````{py:method} recv_num_samps(num_samps: int) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.usrp.RXStream.recv_num_samps
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.RXStream.recv_num_samps
+```
+
+````
+
+````{py:method} start_continuous()
+:canonical: nearlink_sdr.phy.usrp.RXStream.start_continuous
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.RXStream.start_continuous
+```
+
+````
+
+````{py:method} recv_once() -> numpy.ndarray
+:canonical: nearlink_sdr.phy.usrp.RXStream.recv_once
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.RXStream.recv_once
+```
+
+````
+
+````{py:method} stop_continuous()
+:canonical: nearlink_sdr.phy.usrp.RXStream.stop_continuous
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.RXStream.stop_continuous
+```
+
+````
+
+````{py:method} close()
+:canonical: nearlink_sdr.phy.usrp.RXStream.close
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.RXStream.close
+```
+
+````
+
+`````
+
+`````{py:class} SLETransceiver(device: nearlink_sdr.phy.usrp.USRPDevice)
+:canonical: nearlink_sdr.phy.usrp.SLETransceiver
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.SLETransceiver
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.SLETransceiver.__init__
+```
+
+````{py:method} open(rx_buf_size: int = 1000)
+:canonical: nearlink_sdr.phy.usrp.SLETransceiver.open
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.SLETransceiver.open
+```
+
+````
+
+````{py:method} transmit_iq(iq_samples: numpy.ndarray) -> int
+:canonical: nearlink_sdr.phy.usrp.SLETransceiver.transmit_iq
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.SLETransceiver.transmit_iq
+```
+
+````
+
+````{py:method} receive_iq(num_samps: int) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.usrp.SLETransceiver.receive_iq
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.SLETransceiver.receive_iq
+```
+
+````
+
+````{py:method} transmit_frame(frame_bits: numpy.ndarray, modulate_fn: collections.abc.Callable[[numpy.ndarray], numpy.ndarray]) -> int
+:canonical: nearlink_sdr.phy.usrp.SLETransceiver.transmit_frame
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.SLETransceiver.transmit_frame
+```
+
+````
+
+````{py:method} receive_frame(num_samps: int, demodulate_fn: collections.abc.Callable[[numpy.ndarray], numpy.ndarray]) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.usrp.SLETransceiver.receive_frame
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.SLETransceiver.receive_frame
+```
+
+````
+
+````{py:method} hop_and_transmit(channel_num: int, iq_samples: numpy.ndarray, band: str | None = None) -> int
+:canonical: nearlink_sdr.phy.usrp.SLETransceiver.hop_and_transmit
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.SLETransceiver.hop_and_transmit
+```
+
+````
+
+````{py:method} hop_and_receive(channel_num: int, num_samps: int, band: str | None = None) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.usrp.SLETransceiver.hop_and_receive
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.SLETransceiver.hop_and_receive
+```
+
+````
+
+````{py:method} close()
+:canonical: nearlink_sdr.phy.usrp.SLETransceiver.close
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.SLETransceiver.close
+```
+
+````
+
+````{py:property} device
+:canonical: nearlink_sdr.phy.usrp.SLETransceiver.device
+:type: nearlink_sdr.phy.usrp.USRPDevice
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.SLETransceiver.device
+```
+
+````
+
+````{py:property} is_open
+:canonical: nearlink_sdr.phy.usrp.SLETransceiver.is_open
+:type: bool
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.SLETransceiver.is_open
+```
+
+````
+
+`````
+
+`````{py:class} TXStream(device: nearlink_sdr.phy.usrp.USRPDevice)
+:canonical: nearlink_sdr.phy.usrp.TXStream
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.TXStream
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.TXStream.__init__
+```
+
+````{py:method} open()
+:canonical: nearlink_sdr.phy.usrp.TXStream.open
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.TXStream.open
+```
+
+````
+
+````{py:method} send(samples: numpy.ndarray) -> int
+:canonical: nearlink_sdr.phy.usrp.TXStream.send
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.TXStream.send
+```
+
+````
+
+````{py:method} send_continuous(samples: numpy.ndarray, num_repeats: int = 1) -> int
+:canonical: nearlink_sdr.phy.usrp.TXStream.send_continuous
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.TXStream.send_continuous
+```
+
+````
+
+````{py:method} close()
+:canonical: nearlink_sdr.phy.usrp.TXStream.close
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.TXStream.close
+```
+
+````
+
+`````
+
+`````{py:class} USRPConfig
+:canonical: nearlink_sdr.phy.usrp.USRPConfig
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPConfig
+```
+
+````{py:attribute} device_args
+:canonical: nearlink_sdr.phy.usrp.USRPConfig.device_args
+:type: str
+:value: <Multiline-String>
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPConfig.device_args
+```
+
+````
+
+````{py:attribute} channel_num
+:canonical: nearlink_sdr.phy.usrp.USRPConfig.channel_num
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPConfig.channel_num
+```
+
+````
+
+````{py:attribute} band
+:canonical: nearlink_sdr.phy.usrp.USRPConfig.band
+:type: str
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPConfig.band
+```
+
+````
+
+````{py:attribute} sample_rate_hz
+:canonical: nearlink_sdr.phy.usrp.USRPConfig.sample_rate_hz
+:type: float
+:value: >
+   1000000.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPConfig.sample_rate_hz
+```
+
+````
+
+````{py:attribute} rx_gain_db
+:canonical: nearlink_sdr.phy.usrp.USRPConfig.rx_gain_db
+:type: float
+:value: >
+   30.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPConfig.rx_gain_db
+```
+
+````
+
+````{py:attribute} tx_gain_db
+:canonical: nearlink_sdr.phy.usrp.USRPConfig.tx_gain_db
+:type: float
+:value: >
+   20.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPConfig.tx_gain_db
+```
+
+````
+
+````{py:attribute} bandwidth_hz
+:canonical: nearlink_sdr.phy.usrp.USRPConfig.bandwidth_hz
+:type: float
+:value: >
+   0.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPConfig.bandwidth_hz
+```
+
+````
+
+````{py:attribute} rx_antenna
+:canonical: nearlink_sdr.phy.usrp.USRPConfig.rx_antenna
+:type: str
+:value: >
+   'RX2'
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPConfig.rx_antenna
+```
+
+````
+
+````{py:attribute} tx_antenna
+:canonical: nearlink_sdr.phy.usrp.USRPConfig.tx_antenna
+:type: str
+:value: >
+   'TX/RX'
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPConfig.tx_antenna
+```
+
+````
+
+````{py:attribute} clock_source
+:canonical: nearlink_sdr.phy.usrp.USRPConfig.clock_source
+:type: str
+:value: >
+   'internal'
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPConfig.clock_source
+```
+
+````
+
+````{py:attribute} time_source
+:canonical: nearlink_sdr.phy.usrp.USRPConfig.time_source
+:type: str
+:value: >
+   'internal'
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPConfig.time_source
+```
+
+````
+
+````{py:attribute} cpu_format
+:canonical: nearlink_sdr.phy.usrp.USRPConfig.cpu_format
+:type: str
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPConfig.cpu_format
+```
+
+````
+
+````{py:attribute} wire_format
+:canonical: nearlink_sdr.phy.usrp.USRPConfig.wire_format
+:type: str
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPConfig.wire_format
+```
+
+````
+
+````{py:attribute} num_recv_frames
+:canonical: nearlink_sdr.phy.usrp.USRPConfig.num_recv_frames
+:type: int
+:value: >
+   512
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPConfig.num_recv_frames
+```
+
+````
+
+````{py:attribute} stream_timeout_s
+:canonical: nearlink_sdr.phy.usrp.USRPConfig.stream_timeout_s
+:type: float
+:value: >
+   3.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPConfig.stream_timeout_s
+```
+
+````
+
+````{py:method} validate()
+:canonical: nearlink_sdr.phy.usrp.USRPConfig.validate
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPConfig.validate
+```
+
+````
+
+````{py:property} center_freq_hz
+:canonical: nearlink_sdr.phy.usrp.USRPConfig.center_freq_hz
+:type: float
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPConfig.center_freq_hz
+```
+
+````
+
+````{py:property} bandwidth_mhz
+:canonical: nearlink_sdr.phy.usrp.USRPConfig.bandwidth_mhz
+:type: float
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPConfig.bandwidth_mhz
+```
+
+````
+
+`````
+
+`````{py:class} USRPDevice(config: nearlink_sdr.phy.usrp.USRPConfig | None = None, use_mock: bool = False, loopback: nearlink_sdr.phy.usrp.LoopbackBuffer | None = None)
+:canonical: nearlink_sdr.phy.usrp.USRPDevice
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPDevice
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPDevice.__init__
+```
+
+````{py:method} tune_channel(channel_num: int, band: str | None = None)
+:canonical: nearlink_sdr.phy.usrp.USRPDevice.tune_channel
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPDevice.tune_channel
+```
+
+````
+
+````{py:method} set_rx_gain(gain_db: float)
+:canonical: nearlink_sdr.phy.usrp.USRPDevice.set_rx_gain
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPDevice.set_rx_gain
+```
+
+````
+
+````{py:method} set_tx_gain(gain_db: float)
+:canonical: nearlink_sdr.phy.usrp.USRPDevice.set_tx_gain
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPDevice.set_tx_gain
+```
+
+````
+
+````{py:method} set_sample_rate(rate_hz: float)
+:canonical: nearlink_sdr.phy.usrp.USRPDevice.set_sample_rate
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPDevice.set_sample_rate
+```
+
+````
+
+````{py:property} config
+:canonical: nearlink_sdr.phy.usrp.USRPDevice.config
+:type: nearlink_sdr.phy.usrp.USRPConfig
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPDevice.config
+```
+
+````
+
+````{py:property} usrp
+:canonical: nearlink_sdr.phy.usrp.USRPDevice.usrp
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPDevice.usrp
+```
+
+````
+
+````{py:property} is_mock
+:canonical: nearlink_sdr.phy.usrp.USRPDevice.is_mock
+:type: bool
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPDevice.is_mock
+```
+
+````
+
+````{py:method} status_string() -> str
+:canonical: nearlink_sdr.phy.usrp.USRPDevice.status_string
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.USRPDevice.status_string
+```
+
+````
+
+`````
+
+````{py:function} uhd_available() -> bool
+:canonical: nearlink_sdr.phy.usrp.uhd_available
+
+```{autodoc2-docstring} nearlink_sdr.phy.usrp.uhd_available
+```
+````

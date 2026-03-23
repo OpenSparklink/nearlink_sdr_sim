@@ -1,0 +1,1284 @@
+# {py:mod}`nearlink_sdr.phy.measurement_tx`
+
+```{py:module} nearlink_sdr.phy.measurement_tx
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx
+:allowtitles:
+```
+
+## Module Contents
+
+### Classes
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`AntennaOrderType <nearlink_sdr.phy.measurement_tx.AntennaOrderType>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.AntennaOrderType
+    :summary:
+    ```
+* - {py:obj}`CIRConfig <nearlink_sdr.phy.measurement_tx.CIRConfig>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.CIRConfig
+    :summary:
+    ```
+* - {py:obj}`CSIFeedback <nearlink_sdr.phy.measurement_tx.CSIFeedback>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.CSIFeedback
+    :summary:
+    ```
+* - {py:obj}`ChannelSpliceMode <nearlink_sdr.phy.measurement_tx.ChannelSpliceMode>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.ChannelSpliceMode
+    :summary:
+    ```
+* - {py:obj}`EventFrameType <nearlink_sdr.phy.measurement_tx.EventFrameType>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.EventFrameType
+    :summary:
+    ```
+* - {py:obj}`HoppingOrder <nearlink_sdr.phy.measurement_tx.HoppingOrder>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.HoppingOrder
+    :summary:
+    ```
+* - {py:obj}`MeasBandwidth <nearlink_sdr.phy.measurement_tx.MeasBandwidth>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasBandwidth
+    :summary:
+    ```
+* - {py:obj}`MeasDirection <nearlink_sdr.phy.measurement_tx.MeasDirection>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasDirection
+    :summary:
+    ```
+* - {py:obj}`MeasLinkParams <nearlink_sdr.phy.measurement_tx.MeasLinkParams>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams
+    :summary:
+    ```
+* - {py:obj}`NodeMeasConfig <nearlink_sdr.phy.measurement_tx.NodeMeasConfig>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.NodeMeasConfig
+    :summary:
+    ```
+* - {py:obj}`SecurityType <nearlink_sdr.phy.measurement_tx.SecurityType>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.SecurityType
+    :summary:
+    ```
+* - {py:obj}`TimeRefType <nearlink_sdr.phy.measurement_tx.TimeRefType>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.TimeRefType
+    :summary:
+    ```
+* - {py:obj}`UWBMeasLinkParams <nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams
+    :summary:
+    ```
+* - {py:obj}`UWBMeasMode <nearlink_sdr.phy.measurement_tx.UWBMeasMode>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasMode
+    :summary:
+    ```
+````
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`angle_estimate <nearlink_sdr.phy.measurement_tx.angle_estimate>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.angle_estimate
+    :summary:
+    ```
+* - {py:obj}`compute_csi_feedback <nearlink_sdr.phy.measurement_tx.compute_csi_feedback>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.compute_csi_feedback
+    :summary:
+    ```
+* - {py:obj}`csi_to_rx_power <nearlink_sdr.phy.measurement_tx.csi_to_rx_power>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.csi_to_rx_power
+    :summary:
+    ```
+* - {py:obj}`ds_twr_2msg <nearlink_sdr.phy.measurement_tx.ds_twr_2msg>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.ds_twr_2msg
+    :summary:
+    ```
+* - {py:obj}`ds_twr_3msg <nearlink_sdr.phy.measurement_tx.ds_twr_3msg>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.ds_twr_3msg
+    :summary:
+    ```
+* - {py:obj}`event_schedule <nearlink_sdr.phy.measurement_tx.event_schedule>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.event_schedule
+    :summary:
+    ```
+* - {py:obj}`event_start_times <nearlink_sdr.phy.measurement_tx.event_start_times>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.event_start_times
+    :summary:
+    ```
+* - {py:obj}`extract_cir <nearlink_sdr.phy.measurement_tx.extract_cir>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.extract_cir
+    :summary:
+    ```
+* - {py:obj}`range_doppler <nearlink_sdr.phy.measurement_tx.range_doppler>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.range_doppler
+    :summary:
+    ```
+* - {py:obj}`uwb_event_count_per_mode <nearlink_sdr.phy.measurement_tx.uwb_event_count_per_mode>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.uwb_event_count_per_mode
+    :summary:
+    ```
+* - {py:obj}`uwb_event_sender <nearlink_sdr.phy.measurement_tx.uwb_event_sender>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.uwb_event_sender
+    :summary:
+    ```
+````
+
+### Data
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`UWB_CONFIG_TIME_GRANULARITY_TC <nearlink_sdr.phy.measurement_tx.UWB_CONFIG_TIME_GRANULARITY_TC>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWB_CONFIG_TIME_GRANULARITY_TC
+    :summary:
+    ```
+````
+
+### API
+
+````{py:data} UWB_CONFIG_TIME_GRANULARITY_TC
+:canonical: nearlink_sdr.phy.measurement_tx.UWB_CONFIG_TIME_GRANULARITY_TC
+:value: >
+   256
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWB_CONFIG_TIME_GRANULARITY_TC
+```
+
+````
+
+`````{py:class} AntennaOrderType()
+:canonical: nearlink_sdr.phy.measurement_tx.AntennaOrderType
+
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.AntennaOrderType
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.AntennaOrderType.__init__
+```
+
+````{py:attribute} SEQUENTIAL
+:canonical: nearlink_sdr.phy.measurement_tx.AntennaOrderType.SEQUENTIAL
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.AntennaOrderType.SEQUENTIAL
+```
+
+````
+
+````{py:attribute} RANDOM
+:canonical: nearlink_sdr.phy.measurement_tx.AntennaOrderType.RANDOM
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.AntennaOrderType.RANDOM
+```
+
+````
+
+`````
+
+`````{py:class} CIRConfig
+:canonical: nearlink_sdr.phy.measurement_tx.CIRConfig
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.CIRConfig
+```
+
+````{py:attribute} time_ref
+:canonical: nearlink_sdr.phy.measurement_tx.CIRConfig.time_ref
+:type: nearlink_sdr.phy.measurement_tx.TimeRefType
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.CIRConfig.time_ref
+```
+
+````
+
+````{py:attribute} delay_offset_ns
+:canonical: nearlink_sdr.phy.measurement_tx.CIRConfig.delay_offset_ns
+:type: float
+:value: >
+   0.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.CIRConfig.delay_offset_ns
+```
+
+````
+
+````{py:attribute} delay_length_ns
+:canonical: nearlink_sdr.phy.measurement_tx.CIRConfig.delay_length_ns
+:type: float
+:value: >
+   100.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.CIRConfig.delay_length_ns
+```
+
+````
+
+````{py:attribute} sample_rate_hz
+:canonical: nearlink_sdr.phy.measurement_tx.CIRConfig.sample_rate_hz
+:type: float
+:value: >
+   499200000.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.CIRConfig.sample_rate_hz
+```
+
+````
+
+`````
+
+`````{py:class} CSIFeedback
+:canonical: nearlink_sdr.phy.measurement_tx.CSIFeedback
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.CSIFeedback
+```
+
+````{py:attribute} ref_power_dbm
+:canonical: nearlink_sdr.phy.measurement_tx.CSIFeedback.ref_power_dbm
+:type: float
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.CSIFeedback.ref_power_dbm
+```
+
+````
+
+````{py:attribute} relative_iq
+:canonical: nearlink_sdr.phy.measurement_tx.CSIFeedback.relative_iq
+:type: complex
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.CSIFeedback.relative_iq
+```
+
+````
+
+`````
+
+`````{py:class} ChannelSpliceMode()
+:canonical: nearlink_sdr.phy.measurement_tx.ChannelSpliceMode
+
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.ChannelSpliceMode
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.ChannelSpliceMode.__init__
+```
+
+````{py:attribute} NONE
+:canonical: nearlink_sdr.phy.measurement_tx.ChannelSpliceMode.NONE
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.ChannelSpliceMode.NONE
+```
+
+````
+
+````{py:attribute} OVERLAP
+:canonical: nearlink_sdr.phy.measurement_tx.ChannelSpliceMode.OVERLAP
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.ChannelSpliceMode.OVERLAP
+```
+
+````
+
+````{py:attribute} CONTINUOUS
+:canonical: nearlink_sdr.phy.measurement_tx.ChannelSpliceMode.CONTINUOUS
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.ChannelSpliceMode.CONTINUOUS
+```
+
+````
+
+````{py:attribute} NON_CONTINUOUS
+:canonical: nearlink_sdr.phy.measurement_tx.ChannelSpliceMode.NON_CONTINUOUS
+:value: >
+   3
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.ChannelSpliceMode.NON_CONTINUOUS
+```
+
+````
+
+`````
+
+`````{py:class} EventFrameType()
+:canonical: nearlink_sdr.phy.measurement_tx.EventFrameType
+
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.EventFrameType
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.EventFrameType.__init__
+```
+
+````{py:attribute} INIT
+:canonical: nearlink_sdr.phy.measurement_tx.EventFrameType.INIT
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.EventFrameType.INIT
+```
+
+````
+
+````{py:attribute} TYPE_1
+:canonical: nearlink_sdr.phy.measurement_tx.EventFrameType.TYPE_1
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.EventFrameType.TYPE_1
+```
+
+````
+
+````{py:attribute} TYPE_2
+:canonical: nearlink_sdr.phy.measurement_tx.EventFrameType.TYPE_2
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.EventFrameType.TYPE_2
+```
+
+````
+
+`````
+
+`````{py:class} HoppingOrder()
+:canonical: nearlink_sdr.phy.measurement_tx.HoppingOrder
+
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.HoppingOrder
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.HoppingOrder.__init__
+```
+
+````{py:attribute} LOW_TO_HIGH
+:canonical: nearlink_sdr.phy.measurement_tx.HoppingOrder.LOW_TO_HIGH
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.HoppingOrder.LOW_TO_HIGH
+```
+
+````
+
+````{py:attribute} HIGH_TO_LOW
+:canonical: nearlink_sdr.phy.measurement_tx.HoppingOrder.HIGH_TO_LOW
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.HoppingOrder.HIGH_TO_LOW
+```
+
+````
+
+````{py:attribute} ALGORITHMIC
+:canonical: nearlink_sdr.phy.measurement_tx.HoppingOrder.ALGORITHMIC
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.HoppingOrder.ALGORITHMIC
+```
+
+````
+
+`````
+
+`````{py:class} MeasBandwidth()
+:canonical: nearlink_sdr.phy.measurement_tx.MeasBandwidth
+
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasBandwidth
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasBandwidth.__init__
+```
+
+````{py:attribute} BW_1MHZ
+:canonical: nearlink_sdr.phy.measurement_tx.MeasBandwidth.BW_1MHZ
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasBandwidth.BW_1MHZ
+```
+
+````
+
+````{py:attribute} BW_2MHZ
+:canonical: nearlink_sdr.phy.measurement_tx.MeasBandwidth.BW_2MHZ
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasBandwidth.BW_2MHZ
+```
+
+````
+
+````{py:attribute} BW_4MHZ
+:canonical: nearlink_sdr.phy.measurement_tx.MeasBandwidth.BW_4MHZ
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasBandwidth.BW_4MHZ
+```
+
+````
+
+`````
+
+`````{py:class} MeasDirection()
+:canonical: nearlink_sdr.phy.measurement_tx.MeasDirection
+
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasDirection
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasDirection.__init__
+```
+
+````{py:attribute} UNIDIRECTIONAL
+:canonical: nearlink_sdr.phy.measurement_tx.MeasDirection.UNIDIRECTIONAL
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasDirection.UNIDIRECTIONAL
+```
+
+````
+
+````{py:attribute} BIDIRECTIONAL
+:canonical: nearlink_sdr.phy.measurement_tx.MeasDirection.BIDIRECTIONAL
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasDirection.BIDIRECTIONAL
+```
+
+````
+
+`````
+
+`````{py:class} MeasLinkParams
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams
+```
+
+````{py:attribute} event_group_start_us
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.event_group_start_us
+:type: float
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.event_group_start_us
+```
+
+````
+
+````{py:attribute} event_group_period_us
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.event_group_period_us
+:type: float
+:value: >
+   10000
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.event_group_period_us
+```
+
+````
+
+````{py:attribute} ft1_inter_event_us
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.ft1_inter_event_us
+:type: float
+:value: >
+   500
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.ft1_inter_event_us
+```
+
+````
+
+````{py:attribute} ft2_inter_event_us
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.ft2_inter_event_us
+:type: float
+:value: >
+   300
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.ft2_inter_event_us
+```
+
+````
+
+````{py:attribute} init_inter_event_us
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.init_inter_event_us
+:type: float
+:value: >
+   400
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.init_inter_event_us
+```
+
+````
+
+````{py:attribute} intra_event_us
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.intra_event_us
+:type: float
+:value: >
+   100
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.intra_event_us
+```
+
+````
+
+````{py:attribute} inter_event_us
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.inter_event_us
+:type: float
+:value: >
+   200
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.inter_event_us
+```
+
+````
+
+````{py:attribute} inter_group_us
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.inter_group_us
+:type: float
+:value: >
+   1000
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.inter_group_us
+```
+
+````
+
+````{py:attribute} event_count
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.event_count
+:type: int
+:value: >
+   4
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.event_count
+```
+
+````
+
+````{py:attribute} ft1_period
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.ft1_period
+:type: int
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.ft1_period
+```
+
+````
+
+````{py:attribute} has_init_phase
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.has_init_phase
+:type: bool
+:value: >
+   False
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.has_init_phase
+```
+
+````
+
+````{py:attribute} direction
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.direction
+:type: nearlink_sdr.phy.measurement_tx.MeasDirection
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.direction
+```
+
+````
+
+````{py:attribute} first_sender
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.first_sender
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.first_sender
+```
+
+````
+
+````{py:attribute} hopping_order
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.hopping_order
+:type: nearlink_sdr.phy.measurement_tx.HoppingOrder
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.hopping_order
+```
+
+````
+
+````{py:attribute} bandwidth
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.bandwidth
+:type: nearlink_sdr.phy.measurement_tx.MeasBandwidth
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.bandwidth
+```
+
+````
+
+````{py:attribute} init_channel
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.init_channel
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.init_channel
+```
+
+````
+
+````{py:attribute} first_node
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.first_node
+:type: nearlink_sdr.phy.measurement_tx.NodeMeasConfig
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.first_node
+```
+
+````
+
+````{py:attribute} second_node
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.second_node
+:type: nearlink_sdr.phy.measurement_tx.NodeMeasConfig
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.second_node
+```
+
+````
+
+````{py:attribute} antenna_switch_interval_us
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.antenna_switch_interval_us
+:type: float
+:value: >
+   10
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.antenna_switch_interval_us
+```
+
+````
+
+````{py:attribute} first_sub_signal_length
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.first_sub_signal_length
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.first_sub_signal_length
+```
+
+````
+
+````{py:attribute} antenna_order_type
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.antenna_order_type
+:type: nearlink_sdr.phy.measurement_tx.AntennaOrderType
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.antenna_order_type
+```
+
+````
+
+````{py:attribute} antenna_random_k
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.antenna_random_k
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.antenna_random_k
+```
+
+````
+
+````{py:attribute} security_random_seed
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.security_random_seed
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.security_random_seed
+```
+
+````
+
+````{py:property} has_multi_antenna
+:canonical: nearlink_sdr.phy.measurement_tx.MeasLinkParams.has_multi_antenna
+:type: bool
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.MeasLinkParams.has_multi_antenna
+```
+
+````
+
+`````
+
+`````{py:class} NodeMeasConfig
+:canonical: nearlink_sdr.phy.measurement_tx.NodeMeasConfig
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.NodeMeasConfig
+```
+
+````{py:attribute} sync_signal_type
+:canonical: nearlink_sdr.phy.measurement_tx.NodeMeasConfig.sync_signal_type
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.NodeMeasConfig.sync_signal_type
+```
+
+````
+
+````{py:attribute} sync_signal_length
+:canonical: nearlink_sdr.phy.measurement_tx.NodeMeasConfig.sync_signal_length
+:type: int
+:value: >
+   64
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.NodeMeasConfig.sync_signal_length
+```
+
+````
+
+````{py:attribute} meas_signal_length
+:canonical: nearlink_sdr.phy.measurement_tx.NodeMeasConfig.meas_signal_length
+:type: int
+:value: >
+   128
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.NodeMeasConfig.meas_signal_length
+```
+
+````
+
+````{py:attribute} switch_interval_us
+:canonical: nearlink_sdr.phy.measurement_tx.NodeMeasConfig.switch_interval_us
+:type: float
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.NodeMeasConfig.switch_interval_us
+```
+
+````
+
+````{py:attribute} ft1_duration_us
+:canonical: nearlink_sdr.phy.measurement_tx.NodeMeasConfig.ft1_duration_us
+:type: float
+:value: >
+   200
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.NodeMeasConfig.ft1_duration_us
+```
+
+````
+
+````{py:attribute} ft2_duration_us
+:canonical: nearlink_sdr.phy.measurement_tx.NodeMeasConfig.ft2_duration_us
+:type: float
+:value: >
+   100
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.NodeMeasConfig.ft2_duration_us
+```
+
+````
+
+````{py:attribute} security_type
+:canonical: nearlink_sdr.phy.measurement_tx.NodeMeasConfig.security_type
+:type: nearlink_sdr.phy.measurement_tx.SecurityType
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.NodeMeasConfig.security_type
+```
+
+````
+
+````{py:attribute} antenna_count
+:canonical: nearlink_sdr.phy.measurement_tx.NodeMeasConfig.antenna_count
+:type: int
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.NodeMeasConfig.antenna_count
+```
+
+````
+
+`````
+
+`````{py:class} SecurityType()
+:canonical: nearlink_sdr.phy.measurement_tx.SecurityType
+
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.SecurityType
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.SecurityType.__init__
+```
+
+````{py:attribute} NONE
+:canonical: nearlink_sdr.phy.measurement_tx.SecurityType.NONE
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.SecurityType.NONE
+```
+
+````
+
+````{py:attribute} SECURE
+:canonical: nearlink_sdr.phy.measurement_tx.SecurityType.SECURE
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.SecurityType.SECURE
+```
+
+````
+
+`````
+
+`````{py:class} TimeRefType()
+:canonical: nearlink_sdr.phy.measurement_tx.TimeRefType
+
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.TimeRefType
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.TimeRefType.__init__
+```
+
+````{py:attribute} FIRST_PATH
+:canonical: nearlink_sdr.phy.measurement_tx.TimeRefType.FIRST_PATH
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.TimeRefType.FIRST_PATH
+```
+
+````
+
+````{py:attribute} STRONGEST_PATH
+:canonical: nearlink_sdr.phy.measurement_tx.TimeRefType.STRONGEST_PATH
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.TimeRefType.STRONGEST_PATH
+```
+
+````
+
+````{py:attribute} TX_TIME
+:canonical: nearlink_sdr.phy.measurement_tx.TimeRefType.TX_TIME
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.TimeRefType.TX_TIME
+```
+
+````
+
+`````
+
+`````{py:class} UWBMeasLinkParams
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams
+```
+
+````{py:attribute} mode
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.mode
+:type: nearlink_sdr.phy.measurement_tx.UWBMeasMode
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.mode
+```
+
+````
+
+````{py:attribute} event_group_period_us
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.event_group_period_us
+:type: float
+:value: >
+   10000
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.event_group_period_us
+```
+
+````
+
+````{py:attribute} event_count
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.event_count
+:type: int
+:value: >
+   4
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.event_count
+```
+
+````
+
+````{py:attribute} intra_event_us
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.intra_event_us
+:type: float
+:value: >
+   100
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.intra_event_us
+```
+
+````
+
+````{py:attribute} inter_event_us
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.inter_event_us
+:type: float
+:value: >
+   500
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.inter_event_us
+```
+
+````
+
+````{py:attribute} inter_group_us
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.inter_group_us
+:type: float
+:value: >
+   2000
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.inter_group_us
+```
+
+````
+
+````{py:attribute} first_sender
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.first_sender
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.first_sender
+```
+
+````
+
+````{py:attribute} alternate_sender
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.alternate_sender
+:type: bool
+:value: >
+   False
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.alternate_sender
+```
+
+````
+
+````{py:attribute} channels
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.channels
+:type: list[int]
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.channels
+```
+
+````
+
+````{py:attribute} splice_mode
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.splice_mode
+:type: nearlink_sdr.phy.measurement_tx.ChannelSpliceMode
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.splice_mode
+```
+
+````
+
+````{py:attribute} code_length
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.code_length
+:type: int
+:value: >
+   31
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.code_length
+```
+
+````
+
+````{py:attribute} cyclic_shift
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.cyclic_shift
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.cyclic_shift
+```
+
+````
+
+````{py:attribute} tx_antenna_count
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.tx_antenna_count
+:type: int
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.tx_antenna_count
+```
+
+````
+
+````{py:attribute} rx_antenna_count
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.rx_antenna_count
+:type: int
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.rx_antenna_count
+```
+
+````
+
+````{py:attribute} antenna_switch_start_seg
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.antenna_switch_start_seg
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.antenna_switch_start_seg
+```
+
+````
+
+````{py:attribute} sub_segment_gap_us
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.sub_segment_gap_us
+:type: float
+:value: >
+   5.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.sub_segment_gap_us
+```
+
+````
+
+````{py:attribute} secure_mode
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.secure_mode
+:type: bool
+:value: >
+   False
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.secure_mode
+```
+
+````
+
+````{py:attribute} aggregate_events
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.aggregate_events
+:type: int
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.aggregate_events
+```
+
+````
+
+````{py:property} total_antenna_pairs
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.total_antenna_pairs
+:type: int
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.total_antenna_pairs
+```
+
+````
+
+`````
+
+`````{py:class} UWBMeasMode()
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasMode
+
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasMode
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasMode.__init__
+```
+
+````{py:attribute} ONE_WAY
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasMode.ONE_WAY
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasMode.ONE_WAY
+```
+
+````
+
+````{py:attribute} DS_TWR_2MSG
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasMode.DS_TWR_2MSG
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasMode.DS_TWR_2MSG
+```
+
+````
+
+````{py:attribute} DS_TWR_3MSG
+:canonical: nearlink_sdr.phy.measurement_tx.UWBMeasMode.DS_TWR_3MSG
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.UWBMeasMode.DS_TWR_3MSG
+```
+
+````
+
+`````
+
+````{py:function} angle_estimate(delta_phi: float, wavelength: float, antenna_spacing: float) -> float
+:canonical: nearlink_sdr.phy.measurement_tx.angle_estimate
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.angle_estimate
+```
+````
+
+````{py:function} compute_csi_feedback(rx_power_dbm: float, channel_iq: complex) -> nearlink_sdr.phy.measurement_tx.CSIFeedback
+:canonical: nearlink_sdr.phy.measurement_tx.compute_csi_feedback
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.compute_csi_feedback
+```
+````
+
+````{py:function} csi_to_rx_power(feedback: nearlink_sdr.phy.measurement_tx.CSIFeedback) -> float
+:canonical: nearlink_sdr.phy.measurement_tx.csi_to_rx_power
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.csi_to_rx_power
+```
+````
+
+````{py:function} ds_twr_2msg(ra: float, db: float) -> float
+:canonical: nearlink_sdr.phy.measurement_tx.ds_twr_2msg
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.ds_twr_2msg
+```
+````
+
+````{py:function} ds_twr_3msg(ra: float, rb: float, da: float, db: float) -> float
+:canonical: nearlink_sdr.phy.measurement_tx.ds_twr_3msg
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.ds_twr_3msg
+```
+````
+
+````{py:function} event_schedule(params: nearlink_sdr.phy.measurement_tx.MeasLinkParams) -> list[tuple[int, nearlink_sdr.phy.measurement_tx.EventFrameType]]
+:canonical: nearlink_sdr.phy.measurement_tx.event_schedule
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.event_schedule
+```
+````
+
+````{py:function} event_start_times(params: nearlink_sdr.phy.measurement_tx.MeasLinkParams, group_index: int = 0) -> list[float]
+:canonical: nearlink_sdr.phy.measurement_tx.event_start_times
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.event_start_times
+```
+````
+
+````{py:function} extract_cir(rx_signal: numpy.typing.NDArray[numpy.complex128], config: nearlink_sdr.phy.measurement_tx.CIRConfig, ref_sample: int = 0) -> numpy.typing.NDArray[numpy.complex128]
+:canonical: nearlink_sdr.phy.measurement_tx.extract_cir
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.extract_cir
+```
+````
+
+````{py:function} range_doppler(cir_frames: numpy.typing.NDArray[numpy.complex128]) -> numpy.typing.NDArray[numpy.complex128]
+:canonical: nearlink_sdr.phy.measurement_tx.range_doppler
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.range_doppler
+```
+````
+
+````{py:function} uwb_event_count_per_mode(mode: nearlink_sdr.phy.measurement_tx.UWBMeasMode) -> int
+:canonical: nearlink_sdr.phy.measurement_tx.uwb_event_count_per_mode
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.uwb_event_count_per_mode
+```
+````
+
+````{py:function} uwb_event_sender(params: nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams, event_index: int) -> int
+:canonical: nearlink_sdr.phy.measurement_tx.uwb_event_sender
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_tx.uwb_event_sender
+```
+````

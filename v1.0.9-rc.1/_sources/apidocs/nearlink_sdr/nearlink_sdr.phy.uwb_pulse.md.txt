@@ -1,0 +1,184 @@
+# {py:mod}`nearlink_sdr.phy.uwb_pulse`
+
+```{py:module} nearlink_sdr.phy.uwb_pulse
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse
+:allowtitles:
+```
+
+## Module Contents
+
+### Classes
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`UWBPulseConfig <nearlink_sdr.phy.uwb_pulse.UWBPulseConfig>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.UWBPulseConfig
+    :summary:
+    ```
+````
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`chip_modulate <nearlink_sdr.phy.uwb_pulse.chip_modulate>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.chip_modulate
+    :summary:
+    ```
+* - {py:obj}`kaiser_pulse <nearlink_sdr.phy.uwb_pulse.kaiser_pulse>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.kaiser_pulse
+    :summary:
+    ```
+* - {py:obj}`normalized_cross_correlation <nearlink_sdr.phy.uwb_pulse.normalized_cross_correlation>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.normalized_cross_correlation
+    :summary:
+    ```
+* - {py:obj}`validate_pulse <nearlink_sdr.phy.uwb_pulse.validate_pulse>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.validate_pulse
+    :summary:
+    ```
+````
+
+### API
+
+`````{py:class} UWBPulseConfig
+:canonical: nearlink_sdr.phy.uwb_pulse.UWBPulseConfig
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.UWBPulseConfig
+```
+
+````{py:attribute} tp_ns
+:canonical: nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.tp_ns
+:type: float
+:value: >
+   2.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.tp_ns
+```
+
+````
+
+````{py:attribute} tw_ns
+:canonical: nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.tw_ns
+:type: float
+:value: >
+   0.5
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.tw_ns
+```
+
+````
+
+````{py:attribute} beta
+:canonical: nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.beta
+:type: float
+:value: >
+   10.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.beta
+```
+
+````
+
+````{py:attribute} max_prf_mhz
+:canonical: nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.max_prf_mhz
+:type: float
+:value: >
+   499.2
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.max_prf_mhz
+```
+
+````
+
+````{py:attribute} sample_rate_ghz
+:canonical: nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.sample_rate_ghz
+:type: float
+:value: >
+   4.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.sample_rate_ghz
+```
+
+````
+
+````{py:method} bw_500mhz() -> nearlink_sdr.phy.uwb_pulse.UWBPulseConfig
+:canonical: nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.bw_500mhz
+:classmethod:
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.bw_500mhz
+```
+
+````
+
+````{py:method} bw_1300mhz() -> nearlink_sdr.phy.uwb_pulse.UWBPulseConfig
+:canonical: nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.bw_1300mhz
+:classmethod:
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.bw_1300mhz
+```
+
+````
+
+````{py:property} pulse_duration_ns
+:canonical: nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.pulse_duration_ns
+:type: float
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.pulse_duration_ns
+```
+
+````
+
+````{py:property} chip_duration_ns
+:canonical: nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.chip_duration_ns
+:type: float
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.chip_duration_ns
+```
+
+````
+
+````{py:property} samples_per_chip
+:canonical: nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.samples_per_chip
+:type: int
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.samples_per_chip
+```
+
+````
+
+`````
+
+````{py:function} chip_modulate(chips: numpy.typing.NDArray[numpy.int8], cfg: nearlink_sdr.phy.uwb_pulse.UWBPulseConfig, fc_ghz: float) -> numpy.typing.NDArray[numpy.float64]
+:canonical: nearlink_sdr.phy.uwb_pulse.chip_modulate
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.chip_modulate
+```
+````
+
+````{py:function} kaiser_pulse(cfg: nearlink_sdr.phy.uwb_pulse.UWBPulseConfig, num_samples: int | None = None) -> numpy.typing.NDArray[numpy.float64]
+:canonical: nearlink_sdr.phy.uwb_pulse.kaiser_pulse
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.kaiser_pulse
+```
+````
+
+````{py:function} normalized_cross_correlation(r: numpy.typing.NDArray[numpy.float64], p: numpy.typing.NDArray[numpy.float64]) -> numpy.typing.NDArray[numpy.float64]
+:canonical: nearlink_sdr.phy.uwb_pulse.normalized_cross_correlation
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.normalized_cross_correlation
+```
+````
+
+````{py:function} validate_pulse(p: numpy.typing.NDArray[numpy.float64], cfg: nearlink_sdr.phy.uwb_pulse.UWBPulseConfig, main_lobe_threshold: float = 0.92, side_lobe_threshold: float = 0.1) -> tuple[bool, float, float]
+:canonical: nearlink_sdr.phy.uwb_pulse.validate_pulse
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.validate_pulse
+```
+````
