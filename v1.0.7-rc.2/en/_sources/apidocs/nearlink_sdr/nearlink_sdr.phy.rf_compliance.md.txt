@@ -1,0 +1,1552 @@
+# {py:mod}`nearlink_sdr.phy.rf_compliance`
+
+```{py:module} nearlink_sdr.phy.rf_compliance
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance
+:allowtitles:
+```
+
+## Module Contents
+
+### Classes
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`PowerClass <nearlink_sdr.phy.rf_compliance.PowerClass>`
+  -
+* - {py:obj}`GFSKFreqDevSpec <nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec
+    :summary:
+    ```
+* - {py:obj}`GFSKFreqDevResult <nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult
+    :summary:
+    ```
+* - {py:obj}`PSKModulation <nearlink_sdr.phy.rf_compliance.PSKModulation>`
+  -
+* - {py:obj}`EVMLimit <nearlink_sdr.phy.rf_compliance.EVMLimit>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.EVMLimit
+    :summary:
+    ```
+* - {py:obj}`FreqBand <nearlink_sdr.phy.rf_compliance.FreqBand>`
+  -
+* - {py:obj}`FreqToleranceSpec <nearlink_sdr.phy.rf_compliance.FreqToleranceSpec>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.FreqToleranceSpec
+    :summary:
+    ```
+* - {py:obj}`ChannelBandwidth <nearlink_sdr.phy.rf_compliance.ChannelBandwidth>`
+  -
+* - {py:obj}`PSKSpectrumMask <nearlink_sdr.phy.rf_compliance.PSKSpectrumMask>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PSKSpectrumMask
+    :summary:
+    ```
+* - {py:obj}`SelectivityEntry <nearlink_sdr.phy.rf_compliance.SelectivityEntry>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.SelectivityEntry
+    :summary:
+    ```
+* - {py:obj}`OutOfBandEntry <nearlink_sdr.phy.rf_compliance.OutOfBandEntry>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.OutOfBandEntry
+    :summary:
+    ```
+* - {py:obj}`IntermodEntry <nearlink_sdr.phy.rf_compliance.IntermodEntry>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.IntermodEntry
+    :summary:
+    ```
+* - {py:obj}`UWBSpectrumMask <nearlink_sdr.phy.rf_compliance.UWBSpectrumMask>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.UWBSpectrumMask
+    :summary:
+    ```
+* - {py:obj}`RFComplianceReport <nearlink_sdr.phy.rf_compliance.RFComplianceReport>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.RFComplianceReport
+    :summary:
+    ```
+````
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`classify_power <nearlink_sdr.phy.rf_compliance.classify_power>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.classify_power
+    :summary:
+    ```
+* - {py:obj}`validate_power_step <nearlink_sdr.phy.rf_compliance.validate_power_step>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.validate_power_step
+    :summary:
+    ```
+* - {py:obj}`check_gfsk_freq_dev <nearlink_sdr.phy.rf_compliance.check_gfsk_freq_dev>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.check_gfsk_freq_dev
+    :summary:
+    ```
+* - {py:obj}`check_evm <nearlink_sdr.phy.rf_compliance.check_evm>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.check_evm
+    :summary:
+    ```
+* - {py:obj}`check_freq_tolerance <nearlink_sdr.phy.rf_compliance.check_freq_tolerance>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.check_freq_tolerance
+    :summary:
+    ```
+* - {py:obj}`check_clock_accuracy <nearlink_sdr.phy.rf_compliance.check_clock_accuracy>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.check_clock_accuracy
+    :summary:
+    ```
+* - {py:obj}`gfsk_inband_spurious_limit_dbm <nearlink_sdr.phy.rf_compliance.gfsk_inband_spurious_limit_dbm>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.gfsk_inband_spurious_limit_dbm
+    :summary:
+    ```
+* - {py:obj}`get_psk_spectrum_mask <nearlink_sdr.phy.rf_compliance.get_psk_spectrum_mask>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.get_psk_spectrum_mask
+    :summary:
+    ```
+* - {py:obj}`reference_sensitivity <nearlink_sdr.phy.rf_compliance.reference_sensitivity>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.reference_sensitivity
+    :summary:
+    ```
+* - {py:obj}`selectivity_freq_offsets <nearlink_sdr.phy.rf_compliance.selectivity_freq_offsets>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.selectivity_freq_offsets
+    :summary:
+    ```
+* - {py:obj}`check_rssi_accuracy <nearlink_sdr.phy.rf_compliance.check_rssi_accuracy>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.check_rssi_accuracy
+    :summary:
+    ```
+* - {py:obj}`uwb_channel_center_freq_mhz <nearlink_sdr.phy.rf_compliance.uwb_channel_center_freq_mhz>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.uwb_channel_center_freq_mhz
+    :summary:
+    ```
+* - {py:obj}`check_uwb_nrmse <nearlink_sdr.phy.rf_compliance.check_uwb_nrmse>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.check_uwb_nrmse
+    :summary:
+    ```
+* - {py:obj}`check_rx_spurious_emission <nearlink_sdr.phy.rf_compliance.check_rx_spurious_emission>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.check_rx_spurious_emission
+    :summary:
+    ```
+````
+
+### Data
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`_POWER_CLASS_UPPER <nearlink_sdr.phy.rf_compliance._POWER_CLASS_UPPER>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance._POWER_CLASS_UPPER
+    :summary:
+    ```
+* - {py:obj}`_POWER_CLASS_LOWER <nearlink_sdr.phy.rf_compliance._POWER_CLASS_LOWER>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance._POWER_CLASS_LOWER
+    :summary:
+    ```
+* - {py:obj}`GFSK_FREQ_DEV_SPECS <nearlink_sdr.phy.rf_compliance.GFSK_FREQ_DEV_SPECS>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.GFSK_FREQ_DEV_SPECS
+    :summary:
+    ```
+* - {py:obj}`PSK_EVM_LIMITS <nearlink_sdr.phy.rf_compliance.PSK_EVM_LIMITS>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PSK_EVM_LIMITS
+    :summary:
+    ```
+* - {py:obj}`FREQ_TOLERANCE_2400 <nearlink_sdr.phy.rf_compliance.FREQ_TOLERANCE_2400>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.FREQ_TOLERANCE_2400
+    :summary:
+    ```
+* - {py:obj}`FREQ_TOLERANCE_5G <nearlink_sdr.phy.rf_compliance.FREQ_TOLERANCE_5G>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.FREQ_TOLERANCE_5G
+    :summary:
+    ```
+* - {py:obj}`SUB_1G_TOLERANCE_PPM <nearlink_sdr.phy.rf_compliance.SUB_1G_TOLERANCE_PPM>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.SUB_1G_TOLERANCE_PPM
+    :summary:
+    ```
+* - {py:obj}`ACTIVE_CLOCK_PPM <nearlink_sdr.phy.rf_compliance.ACTIVE_CLOCK_PPM>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.ACTIVE_CLOCK_PPM
+    :summary:
+    ```
+* - {py:obj}`ACTIVE_CLOCK_JITTER_US <nearlink_sdr.phy.rf_compliance.ACTIVE_CLOCK_JITTER_US>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.ACTIVE_CLOCK_JITTER_US
+    :summary:
+    ```
+* - {py:obj}`SLEEP_CLOCK_PPM <nearlink_sdr.phy.rf_compliance.SLEEP_CLOCK_PPM>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.SLEEP_CLOCK_PPM
+    :summary:
+    ```
+* - {py:obj}`SLEEP_CLOCK_JITTER_US <nearlink_sdr.phy.rf_compliance.SLEEP_CLOCK_JITTER_US>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.SLEEP_CLOCK_JITTER_US
+    :summary:
+    ```
+* - {py:obj}`PSK_SPECTRUM_MASK_WIDE <nearlink_sdr.phy.rf_compliance.PSK_SPECTRUM_MASK_WIDE>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PSK_SPECTRUM_MASK_WIDE
+    :summary:
+    ```
+* - {py:obj}`PSK_SPECTRUM_MASK_NARROW <nearlink_sdr.phy.rf_compliance.PSK_SPECTRUM_MASK_NARROW>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PSK_SPECTRUM_MASK_NARROW
+    :summary:
+    ```
+* - {py:obj}`_BW_KEYS <nearlink_sdr.phy.rf_compliance._BW_KEYS>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance._BW_KEYS
+    :summary:
+    ```
+* - {py:obj}`GFSK_SENSITIVITY <nearlink_sdr.phy.rf_compliance.GFSK_SENSITIVITY>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.GFSK_SENSITIVITY
+    :summary:
+    ```
+* - {py:obj}`PSK_SENSITIVITY <nearlink_sdr.phy.rf_compliance.PSK_SENSITIVITY>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PSK_SENSITIVITY
+    :summary:
+    ```
+* - {py:obj}`_PSK_ROWS <nearlink_sdr.phy.rf_compliance._PSK_ROWS>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance._PSK_ROWS
+    :summary:
+    ```
+* - {py:obj}`MAX_INPUT_LEVEL_DBM <nearlink_sdr.phy.rf_compliance.MAX_INPUT_LEVEL_DBM>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.MAX_INPUT_LEVEL_DBM
+    :summary:
+    ```
+* - {py:obj}`SELECTIVITY_TABLE <nearlink_sdr.phy.rf_compliance.SELECTIVITY_TABLE>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.SELECTIVITY_TABLE
+    :summary:
+    ```
+* - {py:obj}`SELECTIVITY_FREQ_OFFSET <nearlink_sdr.phy.rf_compliance.SELECTIVITY_FREQ_OFFSET>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.SELECTIVITY_FREQ_OFFSET
+    :summary:
+    ```
+* - {py:obj}`OOB_SUB1G <nearlink_sdr.phy.rf_compliance.OOB_SUB1G>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.OOB_SUB1G
+    :summary:
+    ```
+* - {py:obj}`OOB_2400 <nearlink_sdr.phy.rf_compliance.OOB_2400>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.OOB_2400
+    :summary:
+    ```
+* - {py:obj}`OOB_5G <nearlink_sdr.phy.rf_compliance.OOB_5G>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.OOB_5G
+    :summary:
+    ```
+* - {py:obj}`INTERMOD_TABLE <nearlink_sdr.phy.rf_compliance.INTERMOD_TABLE>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.INTERMOD_TABLE
+    :summary:
+    ```
+* - {py:obj}`RSSI_ACCURACY_DB <nearlink_sdr.phy.rf_compliance.RSSI_ACCURACY_DB>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.RSSI_ACCURACY_DB
+    :summary:
+    ```
+* - {py:obj}`RSSI_SIGNAL_OFFSET_DB <nearlink_sdr.phy.rf_compliance.RSSI_SIGNAL_OFFSET_DB>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.RSSI_SIGNAL_OFFSET_DB
+    :summary:
+    ```
+* - {py:obj}`UWB_FREQ_TOLERANCE_PPM <nearlink_sdr.phy.rf_compliance.UWB_FREQ_TOLERANCE_PPM>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.UWB_FREQ_TOLERANCE_PPM
+    :summary:
+    ```
+* - {py:obj}`UWB_CLOCK_TOLERANCE_PPM <nearlink_sdr.phy.rf_compliance.UWB_CLOCK_TOLERANCE_PPM>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.UWB_CLOCK_TOLERANCE_PPM
+    :summary:
+    ```
+* - {py:obj}`UWB_MAX_NRMSE_PCT <nearlink_sdr.phy.rf_compliance.UWB_MAX_NRMSE_PCT>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.UWB_MAX_NRMSE_PCT
+    :summary:
+    ```
+* - {py:obj}`UWB_MAX_NRMSE_DIFF_DB <nearlink_sdr.phy.rf_compliance.UWB_MAX_NRMSE_DIFF_DB>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.UWB_MAX_NRMSE_DIFF_DB
+    :summary:
+    ```
+````
+
+### API
+
+`````{py:class} PowerClass()
+:canonical: nearlink_sdr.phy.rf_compliance.PowerClass
+
+Bases: {py:obj}`enum.IntEnum`
+
+````{py:attribute} CLASS_0
+:canonical: nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_0
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_0
+```
+
+````
+
+````{py:attribute} CLASS_1
+:canonical: nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_1
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_1
+```
+
+````
+
+````{py:attribute} CLASS_2
+:canonical: nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_2
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_2
+```
+
+````
+
+````{py:attribute} CLASS_3
+:canonical: nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_3
+:value: >
+   3
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_3
+```
+
+````
+
+````{py:attribute} CLASS_4
+:canonical: nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_4
+:value: >
+   4
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_4
+```
+
+````
+
+````{py:attribute} CLASS_5
+:canonical: nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_5
+:value: >
+   5
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_5
+```
+
+````
+
+````{py:attribute} CLASS_6
+:canonical: nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_6
+:value: >
+   6
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PowerClass.CLASS_6
+```
+
+````
+
+`````
+
+````{py:data} _POWER_CLASS_UPPER
+:canonical: nearlink_sdr.phy.rf_compliance._POWER_CLASS_UPPER
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance._POWER_CLASS_UPPER
+```
+
+````
+
+````{py:data} _POWER_CLASS_LOWER
+:canonical: nearlink_sdr.phy.rf_compliance._POWER_CLASS_LOWER
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance._POWER_CLASS_LOWER
+```
+
+````
+
+````{py:function} classify_power(pmax_dbm: float) -> nearlink_sdr.phy.rf_compliance.PowerClass
+:canonical: nearlink_sdr.phy.rf_compliance.classify_power
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.classify_power
+```
+````
+
+````{py:function} validate_power_step(prev_dbm: float, curr_dbm: float) -> bool
+:canonical: nearlink_sdr.phy.rf_compliance.validate_power_step
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.validate_power_step
+```
+````
+
+`````{py:class} GFSKFreqDevSpec
+:canonical: nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec
+```
+
+````{py:attribute} symbol_rate_msps
+:canonical: nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.symbol_rate_msps
+:type: float
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.symbol_rate_msps
+```
+
+````
+
+````{py:attribute} symbol_interval_us
+:canonical: nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.symbol_interval_us
+:type: float
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.symbol_interval_us
+```
+
+````
+
+````{py:attribute} min_deviation_khz
+:canonical: nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.min_deviation_khz
+:type: float
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.min_deviation_khz
+```
+
+````
+
+````{py:attribute} fd1_min_khz
+:canonical: nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.fd1_min_khz
+:type: float
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.fd1_min_khz
+```
+
+````
+
+````{py:attribute} fd1_max_khz
+:canonical: nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.fd1_max_khz
+:type: float
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.fd1_max_khz
+```
+
+````
+
+````{py:attribute} fd2_min_khz
+:canonical: nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.fd2_min_khz
+:type: float
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.fd2_min_khz
+```
+
+````
+
+````{py:attribute} fd2_fd1_ratio_min
+:canonical: nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.fd2_fd1_ratio_min
+:type: float
+:value: >
+   0.8
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.fd2_fd1_ratio_min
+```
+
+````
+
+````{py:attribute} zero_crossing_margin
+:canonical: nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.zero_crossing_margin
+:type: float
+:value: >
+   0.125
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.zero_crossing_margin
+```
+
+````
+
+`````
+
+````{py:data} GFSK_FREQ_DEV_SPECS
+:canonical: nearlink_sdr.phy.rf_compliance.GFSK_FREQ_DEV_SPECS
+:type: dict[float, nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec]
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.GFSK_FREQ_DEV_SPECS
+```
+
+````
+
+`````{py:class} GFSKFreqDevResult
+:canonical: nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult
+```
+
+````{py:attribute} min_ok
+:canonical: nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.min_ok
+:type: bool
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.min_ok
+```
+
+````
+
+````{py:attribute} fd1_ok
+:canonical: nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.fd1_ok
+:type: bool
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.fd1_ok
+```
+
+````
+
+````{py:attribute} fd2_ok
+:canonical: nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.fd2_ok
+:type: bool
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.fd2_ok
+```
+
+````
+
+````{py:attribute} ratio_ok
+:canonical: nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.ratio_ok
+:type: bool
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.ratio_ok
+```
+
+````
+
+````{py:attribute} zero_crossing_ok
+:canonical: nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.zero_crossing_ok
+:type: bool
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.zero_crossing_ok
+```
+
+````
+
+````{py:property} passed
+:canonical: nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.passed
+:type: bool
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.passed
+```
+
+````
+
+`````
+
+````{py:function} check_gfsk_freq_dev(symbol_rate_msps: float, min_deviation_khz: float, fd1_khz: float, fd2_khz: float, max_zero_crossing_error: float = 0.0) -> nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult
+:canonical: nearlink_sdr.phy.rf_compliance.check_gfsk_freq_dev
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.check_gfsk_freq_dev
+```
+````
+
+`````{py:class} PSKModulation()
+:canonical: nearlink_sdr.phy.rf_compliance.PSKModulation
+
+Bases: {py:obj}`enum.IntEnum`
+
+````{py:attribute} PI2_BPSK
+:canonical: nearlink_sdr.phy.rf_compliance.PSKModulation.PI2_BPSK
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PSKModulation.PI2_BPSK
+```
+
+````
+
+````{py:attribute} PI4_QPSK
+:canonical: nearlink_sdr.phy.rf_compliance.PSKModulation.PI4_QPSK
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PSKModulation.PI4_QPSK
+```
+
+````
+
+````{py:attribute} PI8_8PSK
+:canonical: nearlink_sdr.phy.rf_compliance.PSKModulation.PI8_8PSK
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PSKModulation.PI8_8PSK
+```
+
+````
+
+`````
+
+`````{py:class} EVMLimit
+:canonical: nearlink_sdr.phy.rf_compliance.EVMLimit
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.EVMLimit
+```
+
+````{py:attribute} rms_pct
+:canonical: nearlink_sdr.phy.rf_compliance.EVMLimit.rms_pct
+:type: float
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.EVMLimit.rms_pct
+```
+
+````
+
+````{py:attribute} pct99
+:canonical: nearlink_sdr.phy.rf_compliance.EVMLimit.pct99
+:type: float
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.EVMLimit.pct99
+```
+
+````
+
+````{py:attribute} peak_pct
+:canonical: nearlink_sdr.phy.rf_compliance.EVMLimit.peak_pct
+:type: float
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.EVMLimit.peak_pct
+```
+
+````
+
+`````
+
+````{py:data} PSK_EVM_LIMITS
+:canonical: nearlink_sdr.phy.rf_compliance.PSK_EVM_LIMITS
+:type: dict[nearlink_sdr.phy.rf_compliance.PSKModulation, nearlink_sdr.phy.rf_compliance.EVMLimit]
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PSK_EVM_LIMITS
+```
+
+````
+
+````{py:function} check_evm(mod: nearlink_sdr.phy.rf_compliance.PSKModulation, rms_evm_pct: float, pct99_evm_pct: float, peak_evm_pct: float) -> bool
+:canonical: nearlink_sdr.phy.rf_compliance.check_evm
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.check_evm
+```
+````
+
+`````{py:class} FreqBand()
+:canonical: nearlink_sdr.phy.rf_compliance.FreqBand
+
+Bases: {py:obj}`enum.IntEnum`
+
+````{py:attribute} BAND_2400
+:canonical: nearlink_sdr.phy.rf_compliance.FreqBand.BAND_2400
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.FreqBand.BAND_2400
+```
+
+````
+
+````{py:attribute} BAND_5100
+:canonical: nearlink_sdr.phy.rf_compliance.FreqBand.BAND_5100
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.FreqBand.BAND_5100
+```
+
+````
+
+````{py:attribute} BAND_5800
+:canonical: nearlink_sdr.phy.rf_compliance.FreqBand.BAND_5800
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.FreqBand.BAND_5800
+```
+
+````
+
+````{py:attribute} SUB_1G
+:canonical: nearlink_sdr.phy.rf_compliance.FreqBand.SUB_1G
+:value: >
+   3
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.FreqBand.SUB_1G
+```
+
+````
+
+`````
+
+`````{py:class} FreqToleranceSpec
+:canonical: nearlink_sdr.phy.rf_compliance.FreqToleranceSpec
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.FreqToleranceSpec
+```
+
+````{py:attribute} freq_offset_khz
+:canonical: nearlink_sdr.phy.rf_compliance.FreqToleranceSpec.freq_offset_khz
+:type: float
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.FreqToleranceSpec.freq_offset_khz
+```
+
+````
+
+````{py:attribute} freq_drift_khz
+:canonical: nearlink_sdr.phy.rf_compliance.FreqToleranceSpec.freq_drift_khz
+:type: float
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.FreqToleranceSpec.freq_drift_khz
+```
+
+````
+
+````{py:attribute} drift_rate_hz_per_us
+:canonical: nearlink_sdr.phy.rf_compliance.FreqToleranceSpec.drift_rate_hz_per_us
+:type: float
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.FreqToleranceSpec.drift_rate_hz_per_us
+```
+
+````
+
+`````
+
+````{py:data} FREQ_TOLERANCE_2400
+:canonical: nearlink_sdr.phy.rf_compliance.FREQ_TOLERANCE_2400
+:type: dict[str, nearlink_sdr.phy.rf_compliance.FreqToleranceSpec]
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.FREQ_TOLERANCE_2400
+```
+
+````
+
+````{py:data} FREQ_TOLERANCE_5G
+:canonical: nearlink_sdr.phy.rf_compliance.FREQ_TOLERANCE_5G
+:type: dict[str, nearlink_sdr.phy.rf_compliance.FreqToleranceSpec]
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.FREQ_TOLERANCE_5G
+```
+
+````
+
+````{py:data} SUB_1G_TOLERANCE_PPM
+:canonical: nearlink_sdr.phy.rf_compliance.SUB_1G_TOLERANCE_PPM
+:value: >
+   100.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.SUB_1G_TOLERANCE_PPM
+```
+
+````
+
+````{py:function} check_freq_tolerance(band: nearlink_sdr.phy.rf_compliance.FreqBand, mod_type: str, freq_offset_khz: float, freq_drift_khz: float, drift_rate_hz_per_us: float, carrier_freq_mhz: float = 0.0) -> bool
+:canonical: nearlink_sdr.phy.rf_compliance.check_freq_tolerance
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.check_freq_tolerance
+```
+````
+
+````{py:data} ACTIVE_CLOCK_PPM
+:canonical: nearlink_sdr.phy.rf_compliance.ACTIVE_CLOCK_PPM
+:value: >
+   20.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.ACTIVE_CLOCK_PPM
+```
+
+````
+
+````{py:data} ACTIVE_CLOCK_JITTER_US
+:canonical: nearlink_sdr.phy.rf_compliance.ACTIVE_CLOCK_JITTER_US
+:value: >
+   2.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.ACTIVE_CLOCK_JITTER_US
+```
+
+````
+
+````{py:data} SLEEP_CLOCK_PPM
+:canonical: nearlink_sdr.phy.rf_compliance.SLEEP_CLOCK_PPM
+:value: >
+   500.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.SLEEP_CLOCK_PPM
+```
+
+````
+
+````{py:data} SLEEP_CLOCK_JITTER_US
+:canonical: nearlink_sdr.phy.rf_compliance.SLEEP_CLOCK_JITTER_US
+:value: >
+   16.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.SLEEP_CLOCK_JITTER_US
+```
+
+````
+
+````{py:function} check_clock_accuracy(ppm: float, jitter_us: float, is_sleep: bool = False) -> bool
+:canonical: nearlink_sdr.phy.rf_compliance.check_clock_accuracy
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.check_clock_accuracy
+```
+````
+
+`````{py:class} ChannelBandwidth()
+:canonical: nearlink_sdr.phy.rf_compliance.ChannelBandwidth
+
+Bases: {py:obj}`enum.IntEnum`
+
+````{py:attribute} BW_100K
+:canonical: nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_100K
+:value: >
+   100
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_100K
+```
+
+````
+
+````{py:attribute} BW_125K
+:canonical: nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_125K
+:value: >
+   125
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_125K
+```
+
+````
+
+````{py:attribute} BW_250K
+:canonical: nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_250K
+:value: >
+   250
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_250K
+```
+
+````
+
+````{py:attribute} BW_500K
+:canonical: nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_500K
+:value: >
+   500
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_500K
+```
+
+````
+
+````{py:attribute} BW_1M
+:canonical: nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_1M
+:value: >
+   1000
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_1M
+```
+
+````
+
+````{py:attribute} BW_2M
+:canonical: nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_2M
+:value: >
+   2000
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_2M
+```
+
+````
+
+````{py:attribute} BW_4M
+:canonical: nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_4M
+:value: >
+   4000
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.ChannelBandwidth.BW_4M
+```
+
+````
+
+`````
+
+````{py:function} gfsk_inband_spurious_limit_dbm(bw: nearlink_sdr.phy.rf_compliance.ChannelBandwidth, k_offset_mhz: float) -> float
+:canonical: nearlink_sdr.phy.rf_compliance.gfsk_inband_spurious_limit_dbm
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.gfsk_inband_spurious_limit_dbm
+```
+````
+
+`````{py:class} PSKSpectrumMask
+:canonical: nearlink_sdr.phy.rf_compliance.PSKSpectrumMask
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PSKSpectrumMask
+```
+
+````{py:attribute} bw
+:canonical: nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.bw
+:type: nearlink_sdr.phy.rf_compliance.ChannelBandwidth
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.bw
+```
+
+````
+
+````{py:attribute} f1_mhz
+:canonical: nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.f1_mhz
+:type: float
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.f1_mhz
+```
+
+````
+
+````{py:attribute} f2_mhz
+:canonical: nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.f2_mhz
+:type: float
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.f2_mhz
+```
+
+````
+
+````{py:attribute} f3_mhz
+:canonical: nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.f3_mhz
+:type: float | None
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.f3_mhz
+```
+
+````
+
+````{py:attribute} f4_mhz
+:canonical: nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.f4_mhz
+:type: float | None
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.f4_mhz
+```
+
+````
+
+`````
+
+````{py:data} PSK_SPECTRUM_MASK_WIDE
+:canonical: nearlink_sdr.phy.rf_compliance.PSK_SPECTRUM_MASK_WIDE
+:type: dict[nearlink_sdr.phy.rf_compliance.ChannelBandwidth, nearlink_sdr.phy.rf_compliance.PSKSpectrumMask]
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PSK_SPECTRUM_MASK_WIDE
+```
+
+````
+
+````{py:data} PSK_SPECTRUM_MASK_NARROW
+:canonical: nearlink_sdr.phy.rf_compliance.PSK_SPECTRUM_MASK_NARROW
+:type: dict[nearlink_sdr.phy.rf_compliance.ChannelBandwidth, nearlink_sdr.phy.rf_compliance.PSKSpectrumMask]
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PSK_SPECTRUM_MASK_NARROW
+```
+
+````
+
+````{py:function} get_psk_spectrum_mask(bw: nearlink_sdr.phy.rf_compliance.ChannelBandwidth) -> nearlink_sdr.phy.rf_compliance.PSKSpectrumMask
+:canonical: nearlink_sdr.phy.rf_compliance.get_psk_spectrum_mask
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.get_psk_spectrum_mask
+```
+````
+
+````{py:data} _BW_KEYS
+:canonical: nearlink_sdr.phy.rf_compliance._BW_KEYS
+:value: >
+   [100, 125, 250, 500, 1000, 2000, 4000]
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance._BW_KEYS
+```
+
+````
+
+````{py:data} GFSK_SENSITIVITY
+:canonical: nearlink_sdr.phy.rf_compliance.GFSK_SENSITIVITY
+:type: dict[int, float]
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.GFSK_SENSITIVITY
+```
+
+````
+
+````{py:data} PSK_SENSITIVITY
+:canonical: nearlink_sdr.phy.rf_compliance.PSK_SENSITIVITY
+:type: dict[tuple[int, int], float]
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.PSK_SENSITIVITY
+```
+
+````
+
+````{py:data} _PSK_ROWS
+:canonical: nearlink_sdr.phy.rf_compliance._PSK_ROWS
+:value: >
+   [(0, None), (1, None), (2, None), (3, None), (4, None), (5, None), (6, None), (7, None), (8, None), ...
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance._PSK_ROWS
+```
+
+````
+
+````{py:function} reference_sensitivity(bw_khz: int, mcs: int | None = None) -> float
+:canonical: nearlink_sdr.phy.rf_compliance.reference_sensitivity
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.reference_sensitivity
+```
+````
+
+````{py:data} MAX_INPUT_LEVEL_DBM
+:canonical: nearlink_sdr.phy.rf_compliance.MAX_INPUT_LEVEL_DBM
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.MAX_INPUT_LEVEL_DBM
+```
+
+````
+
+`````{py:class} SelectivityEntry
+:canonical: nearlink_sdr.phy.rf_compliance.SelectivityEntry
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.SelectivityEntry
+```
+
+````{py:attribute} signal_level_offset_db
+:canonical: nearlink_sdr.phy.rf_compliance.SelectivityEntry.signal_level_offset_db
+:type: float
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.SelectivityEntry.signal_level_offset_db
+```
+
+````
+
+````{py:attribute} interferer_level_dbm
+:canonical: nearlink_sdr.phy.rf_compliance.SelectivityEntry.interferer_level_dbm
+:type: float
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.SelectivityEntry.interferer_level_dbm
+```
+
+````
+
+````{py:attribute} freq_offset_type
+:canonical: nearlink_sdr.phy.rf_compliance.SelectivityEntry.freq_offset_type
+:type: str
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.SelectivityEntry.freq_offset_type
+```
+
+````
+
+`````
+
+````{py:data} SELECTIVITY_TABLE
+:canonical: nearlink_sdr.phy.rf_compliance.SELECTIVITY_TABLE
+:type: list[nearlink_sdr.phy.rf_compliance.SelectivityEntry]
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.SELECTIVITY_TABLE
+```
+
+````
+
+````{py:data} SELECTIVITY_FREQ_OFFSET
+:canonical: nearlink_sdr.phy.rf_compliance.SELECTIVITY_FREQ_OFFSET
+:type: dict[int, tuple[float, float, float]]
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.SELECTIVITY_FREQ_OFFSET
+```
+
+````
+
+````{py:function} selectivity_freq_offsets(bw_khz: int) -> tuple[float, float, float]
+:canonical: nearlink_sdr.phy.rf_compliance.selectivity_freq_offsets
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.selectivity_freq_offsets
+```
+````
+
+`````{py:class} OutOfBandEntry
+:canonical: nearlink_sdr.phy.rf_compliance.OutOfBandEntry
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.OutOfBandEntry
+```
+
+````{py:attribute} freq_range
+:canonical: nearlink_sdr.phy.rf_compliance.OutOfBandEntry.freq_range
+:type: tuple[float, float]
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.OutOfBandEntry.freq_range
+```
+
+````
+
+````{py:attribute} interferer_level_dbm
+:canonical: nearlink_sdr.phy.rf_compliance.OutOfBandEntry.interferer_level_dbm
+:type: float
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.OutOfBandEntry.interferer_level_dbm
+```
+
+````
+
+````{py:attribute} step_mhz
+:canonical: nearlink_sdr.phy.rf_compliance.OutOfBandEntry.step_mhz
+:type: float
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.OutOfBandEntry.step_mhz
+```
+
+````
+
+`````
+
+````{py:data} OOB_SUB1G
+:canonical: nearlink_sdr.phy.rf_compliance.OOB_SUB1G
+:type: list[nearlink_sdr.phy.rf_compliance.OutOfBandEntry]
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.OOB_SUB1G
+```
+
+````
+
+````{py:data} OOB_2400
+:canonical: nearlink_sdr.phy.rf_compliance.OOB_2400
+:type: list[nearlink_sdr.phy.rf_compliance.OutOfBandEntry]
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.OOB_2400
+```
+
+````
+
+````{py:data} OOB_5G
+:canonical: nearlink_sdr.phy.rf_compliance.OOB_5G
+:type: list[nearlink_sdr.phy.rf_compliance.OutOfBandEntry]
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.OOB_5G
+```
+
+````
+
+`````{py:class} IntermodEntry
+:canonical: nearlink_sdr.phy.rf_compliance.IntermodEntry
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.IntermodEntry
+```
+
+````{py:attribute} bw_khz
+:canonical: nearlink_sdr.phy.rf_compliance.IntermodEntry.bw_khz
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.IntermodEntry.bw_khz
+```
+
+````
+
+````{py:attribute} signal_offset_db
+:canonical: nearlink_sdr.phy.rf_compliance.IntermodEntry.signal_offset_db
+:type: float
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.IntermodEntry.signal_offset_db
+```
+
+````
+
+````{py:attribute} interferer_level_dbm
+:canonical: nearlink_sdr.phy.rf_compliance.IntermodEntry.interferer_level_dbm
+:type: float
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.IntermodEntry.interferer_level_dbm
+```
+
+````
+
+````{py:attribute} n_values
+:canonical: nearlink_sdr.phy.rf_compliance.IntermodEntry.n_values
+:type: tuple[int, ...]
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.IntermodEntry.n_values
+```
+
+````
+
+`````
+
+````{py:data} INTERMOD_TABLE
+:canonical: nearlink_sdr.phy.rf_compliance.INTERMOD_TABLE
+:type: list[nearlink_sdr.phy.rf_compliance.IntermodEntry]
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.INTERMOD_TABLE
+```
+
+````
+
+````{py:data} RSSI_ACCURACY_DB
+:canonical: nearlink_sdr.phy.rf_compliance.RSSI_ACCURACY_DB
+:value: >
+   6.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.RSSI_ACCURACY_DB
+```
+
+````
+
+````{py:data} RSSI_SIGNAL_OFFSET_DB
+:canonical: nearlink_sdr.phy.rf_compliance.RSSI_SIGNAL_OFFSET_DB
+:value: >
+   6.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.RSSI_SIGNAL_OFFSET_DB
+```
+
+````
+
+````{py:function} check_rssi_accuracy(measured_rssi_dbm: float, actual_level_dbm: float, ref_sensitivity_dbm: float) -> bool
+:canonical: nearlink_sdr.phy.rf_compliance.check_rssi_accuracy
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.check_rssi_accuracy
+```
+````
+
+````{py:function} uwb_channel_center_freq_mhz(nc: int) -> float
+:canonical: nearlink_sdr.phy.rf_compliance.uwb_channel_center_freq_mhz
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.uwb_channel_center_freq_mhz
+```
+````
+
+`````{py:class} UWBSpectrumMask
+:canonical: nearlink_sdr.phy.rf_compliance.UWBSpectrumMask
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.UWBSpectrumMask
+```
+
+````{py:attribute} pulse_width_ns
+:canonical: nearlink_sdr.phy.rf_compliance.UWBSpectrumMask.pulse_width_ns
+:type: float
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.UWBSpectrumMask.pulse_width_ns
+```
+
+````
+
+````{py:method} transition_band_hz() -> tuple[float, float]
+:canonical: nearlink_sdr.phy.rf_compliance.UWBSpectrumMask.transition_band_hz
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.UWBSpectrumMask.transition_band_hz
+```
+
+````
+
+````{py:method} check_spectrum(freq_offset_hz: float, psd_db_relative: float) -> bool
+:canonical: nearlink_sdr.phy.rf_compliance.UWBSpectrumMask.check_spectrum
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.UWBSpectrumMask.check_spectrum
+```
+
+````
+
+`````
+
+````{py:data} UWB_FREQ_TOLERANCE_PPM
+:canonical: nearlink_sdr.phy.rf_compliance.UWB_FREQ_TOLERANCE_PPM
+:value: >
+   20.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.UWB_FREQ_TOLERANCE_PPM
+```
+
+````
+
+````{py:data} UWB_CLOCK_TOLERANCE_PPM
+:canonical: nearlink_sdr.phy.rf_compliance.UWB_CLOCK_TOLERANCE_PPM
+:value: >
+   20.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.UWB_CLOCK_TOLERANCE_PPM
+```
+
+````
+
+````{py:data} UWB_MAX_NRMSE_PCT
+:canonical: nearlink_sdr.phy.rf_compliance.UWB_MAX_NRMSE_PCT
+:value: >
+   25.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.UWB_MAX_NRMSE_PCT
+```
+
+````
+
+````{py:data} UWB_MAX_NRMSE_DIFF_DB
+:canonical: nearlink_sdr.phy.rf_compliance.UWB_MAX_NRMSE_DIFF_DB
+:value: >
+   2.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.UWB_MAX_NRMSE_DIFF_DB
+```
+
+````
+
+````{py:function} check_uwb_nrmse(sync_nrmse_pct: float, meas_nrmse_pct: float) -> bool
+:canonical: nearlink_sdr.phy.rf_compliance.check_uwb_nrmse
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.check_uwb_nrmse
+```
+````
+
+````{py:function} check_rx_spurious_emission(spurious_dbm: float, limit_dbm: float = -57.0) -> bool
+:canonical: nearlink_sdr.phy.rf_compliance.check_rx_spurious_emission
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.check_rx_spurious_emission
+```
+````
+
+`````{py:class} RFComplianceReport
+:canonical: nearlink_sdr.phy.rf_compliance.RFComplianceReport
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.RFComplianceReport
+```
+
+````{py:attribute} power_class
+:canonical: nearlink_sdr.phy.rf_compliance.RFComplianceReport.power_class
+:type: nearlink_sdr.phy.rf_compliance.PowerClass | None
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.RFComplianceReport.power_class
+```
+
+````
+
+````{py:attribute} power_step_ok
+:canonical: nearlink_sdr.phy.rf_compliance.RFComplianceReport.power_step_ok
+:type: bool | None
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.RFComplianceReport.power_step_ok
+```
+
+````
+
+````{py:attribute} gfsk_dev
+:canonical: nearlink_sdr.phy.rf_compliance.RFComplianceReport.gfsk_dev
+:type: nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult | None
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.RFComplianceReport.gfsk_dev
+```
+
+````
+
+````{py:attribute} evm_ok
+:canonical: nearlink_sdr.phy.rf_compliance.RFComplianceReport.evm_ok
+:type: bool | None
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.RFComplianceReport.evm_ok
+```
+
+````
+
+````{py:attribute} freq_tolerance_ok
+:canonical: nearlink_sdr.phy.rf_compliance.RFComplianceReport.freq_tolerance_ok
+:type: bool | None
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.RFComplianceReport.freq_tolerance_ok
+```
+
+````
+
+````{py:attribute} clock_ok
+:canonical: nearlink_sdr.phy.rf_compliance.RFComplianceReport.clock_ok
+:type: bool | None
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.RFComplianceReport.clock_ok
+```
+
+````
+
+````{py:attribute} spurious_ok
+:canonical: nearlink_sdr.phy.rf_compliance.RFComplianceReport.spurious_ok
+:type: bool | None
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.RFComplianceReport.spurious_ok
+```
+
+````
+
+````{py:attribute} sensitivity_dbm
+:canonical: nearlink_sdr.phy.rf_compliance.RFComplianceReport.sensitivity_dbm
+:type: float | None
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.RFComplianceReport.sensitivity_dbm
+```
+
+````
+
+````{py:attribute} selectivity_ok
+:canonical: nearlink_sdr.phy.rf_compliance.RFComplianceReport.selectivity_ok
+:type: bool | None
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.RFComplianceReport.selectivity_ok
+```
+
+````
+
+````{py:attribute} rssi_ok
+:canonical: nearlink_sdr.phy.rf_compliance.RFComplianceReport.rssi_ok
+:type: bool | None
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.RFComplianceReport.rssi_ok
+```
+
+````
+
+````{py:attribute} uwb_spectrum_ok
+:canonical: nearlink_sdr.phy.rf_compliance.RFComplianceReport.uwb_spectrum_ok
+:type: bool | None
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.RFComplianceReport.uwb_spectrum_ok
+```
+
+````
+
+````{py:attribute} uwb_nrmse_ok
+:canonical: nearlink_sdr.phy.rf_compliance.RFComplianceReport.uwb_nrmse_ok
+:type: bool | None
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.RFComplianceReport.uwb_nrmse_ok
+```
+
+````
+
+````{py:attribute} errors
+:canonical: nearlink_sdr.phy.rf_compliance.RFComplianceReport.errors
+:type: list[str]
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.RFComplianceReport.errors
+```
+
+````
+
+````{py:property} passed
+:canonical: nearlink_sdr.phy.rf_compliance.RFComplianceReport.passed
+:type: bool
+
+```{autodoc2-docstring} nearlink_sdr.phy.rf_compliance.RFComplianceReport.passed
+```
+
+````
+
+`````

@@ -1,0 +1,148 @@
+# {py:mod}`nearlink_sdr.common.scrambler`
+
+```{py:module} nearlink_sdr.common.scrambler
+```
+
+```{autodoc2-docstring} nearlink_sdr.common.scrambler
+:allowtitles:
+```
+
+## Module Contents
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`_lfsr_step <nearlink_sdr.common.scrambler._lfsr_step>`
+  - ```{autodoc2-docstring} nearlink_sdr.common.scrambler._lfsr_step
+    :summary:
+    ```
+* - {py:obj}`_precompute_period <nearlink_sdr.common.scrambler._precompute_period>`
+  - ```{autodoc2-docstring} nearlink_sdr.common.scrambler._precompute_period
+    :summary:
+    ```
+* - {py:obj}`scramble_sequence <nearlink_sdr.common.scrambler.scramble_sequence>`
+  - ```{autodoc2-docstring} nearlink_sdr.common.scrambler.scramble_sequence
+    :summary:
+    ```
+* - {py:obj}`scramble <nearlink_sdr.common.scrambler.scramble>`
+  - ```{autodoc2-docstring} nearlink_sdr.common.scrambler.scramble
+    :summary:
+    ```
+* - {py:obj}`descramble <nearlink_sdr.common.scrambler.descramble>`
+  - ```{autodoc2-docstring} nearlink_sdr.common.scrambler.descramble
+    :summary:
+    ```
+* - {py:obj}`broadcast_seed <nearlink_sdr.common.scrambler.broadcast_seed>`
+  - ```{autodoc2-docstring} nearlink_sdr.common.scrambler.broadcast_seed
+    :summary:
+    ```
+* - {py:obj}`data_link_seed <nearlink_sdr.common.scrambler.data_link_seed>`
+  - ```{autodoc2-docstring} nearlink_sdr.common.scrambler.data_link_seed
+    :summary:
+    ```
+````
+
+### Data
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`_GALOIS_MASK <nearlink_sdr.common.scrambler._GALOIS_MASK>`
+  - ```{autodoc2-docstring} nearlink_sdr.common.scrambler._GALOIS_MASK
+    :summary:
+    ```
+* - {py:obj}`_PERIOD <nearlink_sdr.common.scrambler._PERIOD>`
+  - ```{autodoc2-docstring} nearlink_sdr.common.scrambler._PERIOD
+    :summary:
+    ```
+* - {py:obj}`_SEED_CACHE <nearlink_sdr.common.scrambler._SEED_CACHE>`
+  - ```{autodoc2-docstring} nearlink_sdr.common.scrambler._SEED_CACHE
+    :summary:
+    ```
+````
+
+### API
+
+````{py:data} _GALOIS_MASK
+:canonical: nearlink_sdr.common.scrambler._GALOIS_MASK
+:value: >
+   17
+
+```{autodoc2-docstring} nearlink_sdr.common.scrambler._GALOIS_MASK
+```
+
+````
+
+````{py:function} _lfsr_step(state: int) -> tuple[int, int]
+:canonical: nearlink_sdr.common.scrambler._lfsr_step
+
+```{autodoc2-docstring} nearlink_sdr.common.scrambler._lfsr_step
+```
+````
+
+````{py:data} _PERIOD
+:canonical: nearlink_sdr.common.scrambler._PERIOD
+:value: >
+   127
+
+```{autodoc2-docstring} nearlink_sdr.common.scrambler._PERIOD
+```
+
+````
+
+````{py:data} _SEED_CACHE
+:canonical: nearlink_sdr.common.scrambler._SEED_CACHE
+:type: dict[int, numpy.typing.NDArray[numpy.uint8]]
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.common.scrambler._SEED_CACHE
+```
+
+````
+
+````{py:function} _precompute_period(seed: int) -> numpy.typing.NDArray[numpy.uint8]
+:canonical: nearlink_sdr.common.scrambler._precompute_period
+
+```{autodoc2-docstring} nearlink_sdr.common.scrambler._precompute_period
+```
+````
+
+````{py:function} scramble_sequence(length: int, seed: int) -> numpy.typing.NDArray[numpy.uint8]
+:canonical: nearlink_sdr.common.scrambler.scramble_sequence
+
+```{autodoc2-docstring} nearlink_sdr.common.scrambler.scramble_sequence
+```
+````
+
+````{py:function} scramble(bits: numpy.typing.NDArray[numpy.uint8], seed: int) -> numpy.typing.NDArray[numpy.uint8]
+:canonical: nearlink_sdr.common.scrambler.scramble
+
+```{autodoc2-docstring} nearlink_sdr.common.scrambler.scramble
+```
+````
+
+````{py:function} descramble(bits: numpy.typing.NDArray[numpy.uint8], seed: int) -> numpy.typing.NDArray[numpy.uint8]
+:canonical: nearlink_sdr.common.scrambler.descramble
+
+```{autodoc2-docstring} nearlink_sdr.common.scrambler.descramble
+```
+````
+
+````{py:function} broadcast_seed(physical_channel: int) -> int
+:canonical: nearlink_sdr.common.scrambler.broadcast_seed
+
+```{autodoc2-docstring} nearlink_sdr.common.scrambler.broadcast_seed
+```
+````
+
+````{py:function} data_link_seed(slot_number: int) -> int
+:canonical: nearlink_sdr.common.scrambler.data_link_seed
+
+```{autodoc2-docstring} nearlink_sdr.common.scrambler.data_link_seed
+```
+````

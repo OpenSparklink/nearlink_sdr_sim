@@ -1,0 +1,75 @@
+# {py:mod}`nearlink_sdr.phy.equalizer`
+
+```{py:module} nearlink_sdr.phy.equalizer
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.equalizer
+:allowtitles:
+```
+
+## Module Contents
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`equalize_zf <nearlink_sdr.phy.equalizer.equalize_zf>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.equalizer.equalize_zf
+    :summary:
+    ```
+* - {py:obj}`equalize_mmse_freq <nearlink_sdr.phy.equalizer.equalize_mmse_freq>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.equalizer.equalize_mmse_freq
+    :summary:
+    ```
+* - {py:obj}`estimate_channel_freq <nearlink_sdr.phy.equalizer.estimate_channel_freq>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.equalizer.estimate_channel_freq
+    :summary:
+    ```
+* - {py:obj}`equalize_mmse_time <nearlink_sdr.phy.equalizer.equalize_mmse_time>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.equalizer.equalize_mmse_time
+    :summary:
+    ```
+* - {py:obj}`equalize_1tap <nearlink_sdr.phy.equalizer.equalize_1tap>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.equalizer.equalize_1tap
+    :summary:
+    ```
+````
+
+### API
+
+````{py:function} equalize_zf(rx_signal: numpy.ndarray, channel_freq: numpy.ndarray) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.equalizer.equalize_zf
+
+```{autodoc2-docstring} nearlink_sdr.phy.equalizer.equalize_zf
+```
+````
+
+````{py:function} equalize_mmse_freq(rx_signal: numpy.ndarray, channel_freq: numpy.ndarray, noise_var: float) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.equalizer.equalize_mmse_freq
+
+```{autodoc2-docstring} nearlink_sdr.phy.equalizer.equalize_mmse_freq
+```
+````
+
+````{py:function} estimate_channel_freq(rx_signal: numpy.ndarray, tx_known: numpy.ndarray, n_fft: int | None = None) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.equalizer.estimate_channel_freq
+
+```{autodoc2-docstring} nearlink_sdr.phy.equalizer.estimate_channel_freq
+```
+````
+
+````{py:function} equalize_mmse_time(rx_signal: numpy.ndarray, channel_taps: numpy.ndarray, noise_var: float, n_taps_eq: int = 11) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.equalizer.equalize_mmse_time
+
+```{autodoc2-docstring} nearlink_sdr.phy.equalizer.equalize_mmse_time
+```
+````
+
+````{py:function} equalize_1tap(rx_symbols: numpy.ndarray, h_coeffs: numpy.ndarray, noise_var: float = 0.0, method: str = 'mmse') -> numpy.ndarray
+:canonical: nearlink_sdr.phy.equalizer.equalize_1tap
+
+```{autodoc2-docstring} nearlink_sdr.phy.equalizer.equalize_1tap
+```
+````
