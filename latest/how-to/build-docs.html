@@ -6,7 +6,7 @@
 <link rel="index" title="索引" href="../genindex.html"><link rel="search" title="搜索" href="../search.html"><link rel="next" title="技术参考" href="../reference/index.html"><link rel="prev" title="SDR E310 部署规划" href="sdr-deployment.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>构建文档 - nearlink-sdr 1.0.4 文档</title>
+        <title>构建文档 - nearlink-sdr 1.0.6 文档</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -168,7 +168,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">nearlink-sdr 1.0.4 文档</div></a>
+      <a href="../index.html"><div class="brand">nearlink-sdr 1.0.6 文档</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -189,7 +189,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
-  <span class="sidebar-brand-text">nearlink-sdr 1.0.4 文档</span>
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.6 文档</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
@@ -438,6 +438,7 @@
 <h3>编译 PDF<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="w">	</span>uv<span class="w"> </span>run<span class="w"> </span>sphinx-build<span class="w"> </span>-b<span class="w"> </span>latex<span class="w"> </span>docs<span class="w"> </span>docs/_build/latex
 <span class="w">	</span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/\\begin{longtable}{ll}/\\begin{longtable}{l p{0.55\\linewidth}}/g&#39;</span><span class="w"> </span>docs/_build/latex/nearlink-sdr.tex
+<span class="w">	</span><span class="k">for</span><span class="w"> </span>f<span class="w"> </span><span class="k">in</span><span class="w"> </span>docs/_build/latex/mermaid-*.pdf<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$$</span><span class="s2">f&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pdfcrop<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$$</span><span class="s2">f&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$$</span><span class="s2">f&quot;</span><span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">done</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
 <span class="w">	</span><span class="nb">cd</span><span class="w"> </span>docs/_build/latex<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make
 </pre></div>
 </div>
@@ -548,7 +549,7 @@
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=6afdd675"></script>
+</div><script src="../_static/documentation_options.js?v=895742c7"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
