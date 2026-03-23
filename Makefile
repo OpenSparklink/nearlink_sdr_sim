@@ -70,6 +70,7 @@ docs-strict:  ## 严格模式构建文档 (CI 用)
 docs-pdf:  ## 构建 PDF 文档 (需提前运行 make install)
 # [docs-pdf-start]
 	uv run sphinx-build -b latex docs docs/_build/latex
+	sed -i 's/\\begin{longtable}{ll}/\\begin{longtable}{l p{0.55\\linewidth}}/g' docs/_build/latex/nearlink-sdr.tex
 	cd docs/_build/latex && make
 # [docs-pdf-end]
 
@@ -77,6 +78,7 @@ docs-pdf-en:  ## 构建英文版 PDF 文档
 # [docs-pdf-en-start]
 	uv run sphinx-intl build -d docs/locales
 	uv run sphinx-build -b latex -D language=en docs docs/_build/latex_en
+	sed -i 's/\\begin{longtable}{ll}/\\begin{longtable}{l p{0.55\\linewidth}}/g' docs/_build/latex_en/nearlink-sdr.tex
 	cd docs/_build/latex_en && make
 # [docs-pdf-en-end]
 
