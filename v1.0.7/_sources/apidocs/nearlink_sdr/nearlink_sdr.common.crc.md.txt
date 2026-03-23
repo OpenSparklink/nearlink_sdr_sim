@@ -1,0 +1,117 @@
+# {py:mod}`nearlink_sdr.common.crc`
+
+```{py:module} nearlink_sdr.common.crc
+```
+
+```{autodoc2-docstring} nearlink_sdr.common.crc
+:allowtitles:
+```
+
+## Module Contents
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`crc_calculate <nearlink_sdr.common.crc.crc_calculate>`
+  - ```{autodoc2-docstring} nearlink_sdr.common.crc.crc_calculate
+    :summary:
+    ```
+* - {py:obj}`crc_attach <nearlink_sdr.common.crc.crc_attach>`
+  - ```{autodoc2-docstring} nearlink_sdr.common.crc.crc_attach
+    :summary:
+    ```
+* - {py:obj}`crc_check <nearlink_sdr.common.crc.crc_check>`
+  - ```{autodoc2-docstring} nearlink_sdr.common.crc.crc_check
+    :summary:
+    ```
+````
+
+### Data
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`CRC12_POLY <nearlink_sdr.common.crc.CRC12_POLY>`
+  - ```{autodoc2-docstring} nearlink_sdr.common.crc.CRC12_POLY
+    :summary:
+    ```
+* - {py:obj}`CRC24A_POLY <nearlink_sdr.common.crc.CRC24A_POLY>`
+  - ```{autodoc2-docstring} nearlink_sdr.common.crc.CRC24A_POLY
+    :summary:
+    ```
+* - {py:obj}`CRC24B_POLY <nearlink_sdr.common.crc.CRC24B_POLY>`
+  - ```{autodoc2-docstring} nearlink_sdr.common.crc.CRC24B_POLY
+    :summary:
+    ```
+* - {py:obj}`CRC32_POLY <nearlink_sdr.common.crc.CRC32_POLY>`
+  - ```{autodoc2-docstring} nearlink_sdr.common.crc.CRC32_POLY
+    :summary:
+    ```
+````
+
+### API
+
+````{py:data} CRC12_POLY
+:canonical: nearlink_sdr.common.crc.CRC12_POLY
+:value: >
+   2063
+
+```{autodoc2-docstring} nearlink_sdr.common.crc.CRC12_POLY
+```
+
+````
+
+````{py:data} CRC24A_POLY
+:canonical: nearlink_sdr.common.crc.CRC24A_POLY
+:value: >
+   1627
+
+```{autodoc2-docstring} nearlink_sdr.common.crc.CRC24A_POLY
+```
+
+````
+
+````{py:data} CRC24B_POLY
+:canonical: nearlink_sdr.common.crc.CRC24B_POLY
+:value: >
+   11710743
+
+```{autodoc2-docstring} nearlink_sdr.common.crc.CRC24B_POLY
+```
+
+````
+
+````{py:data} CRC32_POLY
+:canonical: nearlink_sdr.common.crc.CRC32_POLY
+:value: >
+   79764919
+
+```{autodoc2-docstring} nearlink_sdr.common.crc.CRC32_POLY
+```
+
+````
+
+````{py:function} crc_calculate(data_bits: numpy.ndarray, poly: int, crc_len: int, seed: int = 0) -> numpy.ndarray
+:canonical: nearlink_sdr.common.crc.crc_calculate
+
+```{autodoc2-docstring} nearlink_sdr.common.crc.crc_calculate
+```
+````
+
+````{py:function} crc_attach(data_bits: numpy.ndarray, poly: int, crc_len: int, seed: int = 0, mask: numpy.ndarray | None = None) -> numpy.ndarray
+:canonical: nearlink_sdr.common.crc.crc_attach
+
+```{autodoc2-docstring} nearlink_sdr.common.crc.crc_attach
+```
+````
+
+````{py:function} crc_check(received_bits: numpy.ndarray, poly: int, crc_len: int, seed: int = 0, mask: numpy.ndarray | None = None) -> bool
+:canonical: nearlink_sdr.common.crc.crc_check
+
+```{autodoc2-docstring} nearlink_sdr.common.crc.crc_check
+```
+````

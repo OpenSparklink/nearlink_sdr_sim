@@ -1,0 +1,1530 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN" data-content_root="../../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><link rel="index" title="索引" href="../../../genindex.html"><link rel="search" title="搜索" href="../../../search.html">
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
+        <title>nearlink_sdr.mac.security_manager - nearlink-sdr 1.0.7 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/version-selector.css?v=022f18c6" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  --color-brand-primary: #1a73e8;
+  --color-brand-content: #1a73e8;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #8ab4f8;
+  --color-brand-content: #8ab4f8;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #8ab4f8;
+  --color-brand-content: #8ab4f8;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">nearlink-sdr 1.0.7 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.7 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/getting-started.html">快速入门</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../how-to/index.html">操作指南</a><input aria-label="Toggle navigation of 操作指南" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/run-simulation.html">运行链路仿真</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/add-modulation.html">添加新的调制方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/qos-management.html">QoS 服务质量管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/node-usage.html">使用 SLE 节点实体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/rust-acceleration.html">Rust 加速模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/sdr-deployment.html">SDR E310 部署规划</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/build-docs.html">构建文档</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../reference/index.html">技术参考</a><input aria-label="Toggle navigation of 技术参考" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.demodulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.demodulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.modulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.modulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.rx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.link_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.link_sim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.usrp_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.usrp_sim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../explanation/index.html">设计说明</a><input aria-label="Toggle navigation of 设计说明" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/overview.html">SparkLink SLE 协议总览</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/principles.html">物理层原理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/physical-layer.html">物理层详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/mac-layer.html">MAC 层详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/security.html">安全子系统详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/data-flow.html">端到端数据流</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/architecture.html">系统架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/standard-mapping.html">标准条款映射</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">更新日志</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../apidocs/index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.demodulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.demodulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.modulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.modulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.rx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.link_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.link_sim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.usrp_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.usrp_sim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <h1>nearlink_sdr.mac.security_manager 源代码</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;安全流程集成管理 -- TXS-10002-2025 标准 9.2-9.4。</span>
+
+<span class="sd">将配对信令 (security.py)、密码学原语 (crypto.py) 和链路管理器</span>
+<span class="sd">整合为端到端的安全流程:</span>
+<span class="sd">- 配对状态机 (PairingManager): 驱动配对信令交互和密钥协商</span>
+<span class="sd">- 帧加密上下文 (FrameCryptoContext): 管理 payload_count 和 AES-CCM 加解密</span>
+<span class="sd">- ECDH 密钥交换 (P-256): 生成密钥对和共享密钥</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">IntEnum</span><span class="p">,</span> <span class="n">auto</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.mac.crypto</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AuthMethod</span><span class="p">,</span>
+    <span class="n">KdfType</span><span class="p">,</span>
+    <span class="n">aes_ccm_decrypt</span><span class="p">,</span>
+    <span class="n">aes_ccm_encrypt</span><span class="p">,</span>
+    <span class="n">build_ccm_nonce_async</span><span class="p">,</span>
+    <span class="n">compute_iv</span><span class="p">,</span>
+    <span class="n">derive_link_key</span><span class="p">,</span>
+    <span class="n">derive_session_key</span><span class="p">,</span>
+    <span class="n">generate_confirm_code</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.mac.security</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GNodeConfirmCode</span><span class="p">,</span>
+    <span class="n">PairingConfirm</span><span class="p">,</span>
+    <span class="n">PairingFailure</span><span class="p">,</span>
+    <span class="n">PairingInitialInfo</span><span class="p">,</span>
+    <span class="n">PairingInitiate</span><span class="p">,</span>
+    <span class="n">PairingRequest</span><span class="p">,</span>
+    <span class="n">PairingResponse</span><span class="p">,</span>
+    <span class="n">RaMessage</span><span class="p">,</span>
+    <span class="n">RbMessage</span><span class="p">,</span>
+    <span class="n">TNodeConfirmCode</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="c1"># ── 配对状态 ──</span>
+
+
+<div class="viewcode-block" id="PairingState">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.PairingState">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PairingState</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;配对流程状态。&quot;&quot;&quot;</span>
+    <span class="n">IDLE</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">INITIATED</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">REQUEST_SENT</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">RESPONSE_SENT</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">CONFIRM_SENT</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">PUBLIC_KEY_EXCHANGED</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">CONFIRM_CODE_SENT</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">COMPLETED</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">FAILED</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="PairingFailureReason">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.PairingFailureReason">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PairingFailureReason</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;配对失败原因 (标准 9.2)。&quot;&quot;&quot;</span>
+    <span class="n">PASSKEY_ENTRY_FAILED</span> <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">OOB_NOT_AVAILABLE</span> <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">AUTHENTICATION_REQUIREMENTS</span> <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">CONFIRM_VALUE_FAILED</span> <span class="o">=</span> <span class="mh">0x04</span>
+    <span class="n">PAIRING_NOT_SUPPORTED</span> <span class="o">=</span> <span class="mh">0x05</span>
+    <span class="n">ENCRYPTION_KEY_SIZE</span> <span class="o">=</span> <span class="mh">0x06</span>
+    <span class="n">COMMAND_NOT_SUPPORTED</span> <span class="o">=</span> <span class="mh">0x07</span>
+    <span class="n">UNSPECIFIED_REASON</span> <span class="o">=</span> <span class="mh">0x08</span>
+    <span class="n">REPEATED_ATTEMPTS</span> <span class="o">=</span> <span class="mh">0x09</span>
+    <span class="n">INVALID_PARAMETERS</span> <span class="o">=</span> <span class="mh">0x0A</span>
+    <span class="n">DHKEY_CHECK_FAILED</span> <span class="o">=</span> <span class="mh">0x0B</span>
+    <span class="n">NUMERIC_COMPARISON_FAILED</span> <span class="o">=</span> <span class="mh">0x0C</span></div>
+
+
+
+<span class="c1"># ── ECDH P-256 密钥交换 ──</span>
+
+
+<div class="viewcode-block" id="ECDHKeyPair">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.ECDHKeyPair">[文档]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ECDHKeyPair</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;P-256 椭圆曲线密钥对。&quot;&quot;&quot;</span>
+    <span class="n">private_key_bytes</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+    <span class="n">public_key_x</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+    <span class="n">public_key_y</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+
+<div class="viewcode-block" id="ECDHKeyPair.generate">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.ECDHKeyPair.generate">[文档]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ECDHKeyPair</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;生成 P-256 密钥对。&quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">cryptography.hazmat.primitives.asymmetric.ec</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+            <span class="n">SECP256R1</span><span class="p">,</span>
+            <span class="n">generate_private_key</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">cryptography.hazmat.primitives.serialization</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+            <span class="n">Encoding</span><span class="p">,</span>
+            <span class="n">NoEncryption</span><span class="p">,</span>
+            <span class="n">PrivateFormat</span><span class="p">,</span>
+            <span class="n">PublicFormat</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">private_key</span> <span class="o">=</span> <span class="n">generate_private_key</span><span class="p">(</span><span class="n">SECP256R1</span><span class="p">())</span>
+        <span class="n">private_bytes</span> <span class="o">=</span> <span class="n">private_key</span><span class="o">.</span><span class="n">private_bytes</span><span class="p">(</span>
+            <span class="n">Encoding</span><span class="o">.</span><span class="n">DER</span><span class="p">,</span> <span class="n">PrivateFormat</span><span class="o">.</span><span class="n">PKCS8</span><span class="p">,</span> <span class="n">NoEncryption</span><span class="p">(),</span>
+        <span class="p">)</span>
+        <span class="n">public_bytes</span> <span class="o">=</span> <span class="n">private_key</span><span class="o">.</span><span class="n">public_key</span><span class="p">()</span><span class="o">.</span><span class="n">public_bytes</span><span class="p">(</span>
+            <span class="n">Encoding</span><span class="o">.</span><span class="n">X962</span><span class="p">,</span> <span class="n">PublicFormat</span><span class="o">.</span><span class="n">UncompressedPoint</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="c1"># X962 uncompressed: 0x04 || X(32B) || Y(32B)</span>
+        <span class="n">pub_x</span> <span class="o">=</span> <span class="n">public_bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">33</span><span class="p">]</span>
+        <span class="n">pub_y</span> <span class="o">=</span> <span class="n">public_bytes</span><span class="p">[</span><span class="mi">33</span><span class="p">:</span><span class="mi">65</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">private_key_bytes</span><span class="o">=</span><span class="n">private_bytes</span><span class="p">,</span>
+            <span class="n">public_key_x</span><span class="o">=</span><span class="n">pub_x</span><span class="p">,</span>
+            <span class="n">public_key_y</span><span class="o">=</span><span class="n">pub_y</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ECDHKeyPair.compute_shared_secret">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.ECDHKeyPair.compute_shared_secret">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_shared_secret</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">peer_pub_x</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">peer_pub_y</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;计算 ECDH 共享密钥。</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            共享密钥 (32 字节)。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">cryptography.hazmat.primitives.asymmetric.ec</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+            <span class="n">ECDH</span><span class="p">,</span>
+            <span class="n">SECP256R1</span><span class="p">,</span>
+            <span class="n">EllipticCurvePublicKey</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">cryptography.hazmat.primitives.serialization</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+            <span class="n">load_der_private_key</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">private_key</span> <span class="o">=</span> <span class="n">load_der_private_key</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">private_key_bytes</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="c1"># 构建对端公钥</span>
+        <span class="n">peer_pub_bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x04</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">peer_pub_x</span> <span class="o">+</span> <span class="n">peer_pub_y</span>
+        <span class="n">peer_public_key</span> <span class="o">=</span> <span class="n">EllipticCurvePublicKey</span><span class="o">.</span><span class="n">from_encoded_point</span><span class="p">(</span>
+            <span class="n">SECP256R1</span><span class="p">(),</span> <span class="n">peer_pub_bytes</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">shared_key</span> <span class="o">=</span> <span class="n">private_key</span><span class="o">.</span><span class="n">exchange</span><span class="p">(</span><span class="n">ECDH</span><span class="p">(),</span> <span class="n">peer_public_key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">shared_key</span></div>
+</div>
+
+
+
+<span class="c1"># ── 配对管理器 ──</span>
+
+
+<div class="viewcode-block" id="PairingManager">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.PairingManager">[文档]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PairingManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;配对流程状态机 (标准 9.2)。</span>
+
+<span class="sd">    驱动 G 节点与 T 节点之间的配对信令交互, 完成:</span>
+<span class="sd">    1. 配对发起/请求/响应</span>
+<span class="sd">    2. ECDH 公钥交换</span>
+<span class="sd">    3. 确认码互验</span>
+<span class="sd">    4. 链路密钥派生</span>
+<span class="sd">    5. 会话密钥派生</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        is_g_node: 本端是否为 G 节点。</span>
+<span class="sd">        kdf_type: 密钥派生函数类型。</span>
+<span class="sd">        auth_method: 鉴权方式。</span>
+<span class="sd">        max_key_length: 最大密钥长度 (字节)。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">is_g_node</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">kdf_type</span><span class="p">:</span> <span class="n">KdfType</span> <span class="o">=</span> <span class="n">KdfType</span><span class="o">.</span><span class="n">AES_CMAC</span>
+    <span class="n">auth_method</span><span class="p">:</span> <span class="n">AuthMethod</span> <span class="o">=</span> <span class="n">AuthMethod</span><span class="o">.</span><span class="n">NUMERIC_COMPARISON</span>
+    <span class="n">max_key_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">16</span>
+    <span class="n">local_address</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">6</span>
+    <span class="n">peer_address</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">6</span>
+
+    <span class="c1"># 状态</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">PairingState</span> <span class="o">=</span> <span class="n">PairingState</span><span class="o">.</span><span class="n">IDLE</span>
+    <span class="n">failure_reason</span><span class="p">:</span> <span class="n">PairingFailureReason</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># 密钥材料</span>
+    <span class="n">local_keypair</span><span class="p">:</span> <span class="n">ECDHKeyPair</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">ECDHKeyPair</span><span class="p">)</span>
+    <span class="n">peer_pub_x</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+    <span class="n">peer_pub_y</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+    <span class="n">local_random</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+    <span class="n">peer_random</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+    <span class="n">dh_key</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+    <span class="n">link_key</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+    <span class="n">session_key</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+    <span class="n">integrity_key</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># 信令历史</span>
+    <span class="n">_outgoing</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PairingManager.start_pairing">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.PairingManager.start_pairing">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start_pairing</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;发起配对, 返回待发送的信令列表。</span>
+
+<span class="sd">        G 节点发送: PairingInitiate → PairingRequest</span>
+<span class="sd">        T 节点发送: (等待 G 节点发起)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">PairingState</span><span class="o">.</span><span class="n">IDLE</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_outgoing</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+        <span class="c1"># 生成本端密钥对</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">local_keypair</span> <span class="o">=</span> <span class="n">ECDHKeyPair</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span>
+        <span class="c1"># 生成本端随机数</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">local_random</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">urandom</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_g_node</span><span class="p">:</span>
+            <span class="n">initiate</span> <span class="o">=</span> <span class="n">PairingInitiate</span><span class="p">(</span><span class="n">auth_request</span><span class="o">=</span><span class="mh">0x01</span><span class="p">)</span>
+            <span class="n">request</span> <span class="o">=</span> <span class="n">PairingRequest</span><span class="p">(</span>
+                <span class="n">io_capability</span><span class="o">=</span><span class="mh">0x03</span><span class="p">,</span>
+                <span class="n">oob_data_flag</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">auth_request</span><span class="o">=</span><span class="mh">0x01</span><span class="p">,</span>
+                <span class="n">max_key_length</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_key_length</span><span class="p">,</span>
+                <span class="n">security_dist_info</span><span class="o">=</span><span class="mh">0x01</span><span class="p">,</span>
+                <span class="n">crypto_capability</span><span class="o">=</span><span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x01\x00\x00\x00</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">psk_indication</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_outgoing</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">initiate</span><span class="p">,</span> <span class="n">request</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">PairingState</span><span class="o">.</span><span class="n">REQUEST_SENT</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># T 节点等待接收</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">PairingState</span><span class="o">.</span><span class="n">INITIATED</span>
+
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_outgoing</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PairingManager.process_message">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.PairingManager.process_message">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">process_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;处理收到的配对信令, 返回待发送的响应信令。&quot;&quot;&quot;</span>
+        <span class="n">responses</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">PairingInitiate</span><span class="p">):</span>
+            <span class="n">responses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_initiate</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">PairingRequest</span><span class="p">):</span>
+            <span class="n">responses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_request</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">PairingResponse</span><span class="p">):</span>
+            <span class="n">responses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_response</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">PairingConfirm</span><span class="p">):</span>
+            <span class="n">responses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_confirm</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">PairingInitialInfo</span><span class="p">):</span>
+            <span class="n">responses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_initial_info</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">RaMessage</span><span class="p">):</span>
+            <span class="n">responses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_ra</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">RbMessage</span><span class="p">):</span>
+            <span class="n">responses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_rb</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">TNodeConfirmCode</span><span class="p">):</span>
+            <span class="n">responses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_t_confirm</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">GNodeConfirmCode</span><span class="p">):</span>
+            <span class="n">responses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_g_confirm</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">PairingFailure</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">PairingState</span><span class="o">.</span><span class="n">FAILED</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">failure_reason</span> <span class="o">=</span> <span class="n">PairingFailureReason</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">reason</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;配对失败: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">failure_reason</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_outgoing</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">responses</span></div>
+
+
+<div class="viewcode-block" id="PairingManager._handle_initiate">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.PairingManager._handle_initiate">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_handle_initiate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">PairingInitiate</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_g_node</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">PairingState</span><span class="o">.</span><span class="n">INITIATED</span>
+        <span class="k">return</span> <span class="p">[]</span></div>
+
+
+<div class="viewcode-block" id="PairingManager._handle_request">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.PairingManager._handle_request">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_handle_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">PairingRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_g_node</span><span class="p">:</span>
+            <span class="c1"># T 节点: 响应配对请求</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">PairingResponse</span><span class="p">(</span>
+                <span class="n">io_capability</span><span class="o">=</span><span class="mh">0x03</span><span class="p">,</span>
+                <span class="n">oob_data_flag</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">auth_request</span><span class="o">=</span><span class="mh">0x01</span><span class="p">,</span>
+                <span class="n">max_key_length</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_key_length</span><span class="p">,</span>
+                <span class="n">security_dist_info</span><span class="o">=</span><span class="mh">0x01</span><span class="p">,</span>
+                <span class="n">crypto_capability</span><span class="o">=</span><span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x01\x00\x00\x00</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">psk_indication</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">PairingState</span><span class="o">.</span><span class="n">RESPONSE_SENT</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">response</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[]</span></div>
+
+
+<div class="viewcode-block" id="PairingManager._handle_response">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.PairingManager._handle_response">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_handle_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">PairingResponse</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_g_node</span><span class="p">:</span>
+            <span class="c1"># G 节点: 发送 PairingConfirm (含公钥)</span>
+            <span class="n">confirm</span> <span class="o">=</span> <span class="n">PairingConfirm</span><span class="p">(</span>
+                <span class="n">key_length</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_key_length</span><span class="p">,</span>
+                <span class="n">auth_method</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">auth_method</span><span class="p">),</span>
+                <span class="n">crypto_algorithm</span><span class="o">=</span><span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x01\x00\x00\x00</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">g_public_key_x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">local_keypair</span><span class="o">.</span><span class="n">public_key_x</span><span class="p">,</span>
+                <span class="n">g_public_key_y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">local_keypair</span><span class="o">.</span><span class="n">public_key_y</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">PairingState</span><span class="o">.</span><span class="n">CONFIRM_SENT</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">confirm</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[]</span></div>
+
+
+<div class="viewcode-block" id="PairingManager._handle_confirm">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.PairingManager._handle_confirm">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_handle_confirm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">PairingConfirm</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_g_node</span><span class="p">:</span>
+            <span class="c1"># T 节点: 保存 G 公钥, 发送 T 公钥</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">peer_pub_x</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">g_public_key_x</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">peer_pub_y</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">g_public_key_y</span>
+            <span class="n">initial_info</span> <span class="o">=</span> <span class="n">PairingInitialInfo</span><span class="p">(</span>
+                <span class="n">t_public_key_x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">local_keypair</span><span class="o">.</span><span class="n">public_key_x</span><span class="p">,</span>
+                <span class="n">t_public_key_y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">local_keypair</span><span class="o">.</span><span class="n">public_key_y</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">PairingState</span><span class="o">.</span><span class="n">PUBLIC_KEY_EXCHANGED</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">initial_info</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[]</span></div>
+
+
+<div class="viewcode-block" id="PairingManager._handle_initial_info">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.PairingManager._handle_initial_info">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_handle_initial_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">PairingInitialInfo</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_g_node</span><span class="p">:</span>
+            <span class="c1"># G 节点: 保存 T 公钥, 计算 DH Key, 发送 Ra</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">peer_pub_x</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">t_public_key_x</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">peer_pub_y</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">t_public_key_y</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_compute_dh_key</span><span class="p">()</span>
+            <span class="n">ra</span> <span class="o">=</span> <span class="n">RaMessage</span><span class="p">(</span><span class="n">ra</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">local_random</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">PairingState</span><span class="o">.</span><span class="n">PUBLIC_KEY_EXCHANGED</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">ra</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[]</span></div>
+
+
+<div class="viewcode-block" id="PairingManager._handle_ra">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.PairingManager._handle_ra">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_handle_ra</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">RaMessage</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_g_node</span><span class="p">:</span>
+            <span class="c1"># T 节点: 保存 Ra, 计算 DH Key, 发送 Rb</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">peer_random</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">ra</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_compute_dh_key</span><span class="p">()</span>
+            <span class="n">rb</span> <span class="o">=</span> <span class="n">RbMessage</span><span class="p">(</span><span class="n">rb</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">local_random</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">rb</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[]</span></div>
+
+
+<div class="viewcode-block" id="PairingManager._handle_rb">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.PairingManager._handle_rb">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_handle_rb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">RbMessage</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_g_node</span><span class="p">:</span>
+            <span class="c1"># G 节点: 保存 Rb, 生成并发送确认码</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">peer_random</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">rb</span>
+            <span class="n">confirm_code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_confirm_code</span><span class="p">()</span>
+            <span class="n">g_confirm</span> <span class="o">=</span> <span class="n">GNodeConfirmCode</span><span class="p">(</span><span class="n">confirm_code</span><span class="o">=</span><span class="n">confirm_code</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">PairingState</span><span class="o">.</span><span class="n">CONFIRM_CODE_SENT</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">g_confirm</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[]</span></div>
+
+
+<div class="viewcode-block" id="PairingManager._handle_t_confirm">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.PairingManager._handle_t_confirm">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_handle_t_confirm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">TNodeConfirmCode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_g_node</span><span class="p">:</span>
+            <span class="c1"># G 节点: 验证 T 确认码</span>
+            <span class="n">expected</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_peer_confirm_code</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">msg</span><span class="o">.</span><span class="n">confirm_code</span> <span class="o">==</span> <span class="n">expected</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_derive_keys</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">PairingState</span><span class="o">.</span><span class="n">COMPLETED</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;配对完成 (G 节点)&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">PairingState</span><span class="o">.</span><span class="n">FAILED</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">failure_reason</span> <span class="o">=</span> <span class="n">PairingFailureReason</span><span class="o">.</span><span class="n">CONFIRM_VALUE_FAILED</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">PairingFailure</span><span class="p">(</span><span class="n">reason</span><span class="o">=</span><span class="mh">0x04</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="p">[]</span></div>
+
+
+<div class="viewcode-block" id="PairingManager._handle_g_confirm">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.PairingManager._handle_g_confirm">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_handle_g_confirm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">GNodeConfirmCode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_g_node</span><span class="p">:</span>
+            <span class="c1"># T 节点: 验证 G 确认码, 发送 T 确认码</span>
+            <span class="n">expected</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_peer_confirm_code</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">msg</span><span class="o">.</span><span class="n">confirm_code</span> <span class="o">==</span> <span class="n">expected</span><span class="p">:</span>
+                <span class="n">confirm_code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_confirm_code</span><span class="p">()</span>
+                <span class="n">t_confirm</span> <span class="o">=</span> <span class="n">TNodeConfirmCode</span><span class="p">(</span><span class="n">confirm_code</span><span class="o">=</span><span class="n">confirm_code</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_derive_keys</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">PairingState</span><span class="o">.</span><span class="n">COMPLETED</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;配对完成 (T 节点)&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">t_confirm</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">PairingState</span><span class="o">.</span><span class="n">FAILED</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">failure_reason</span> <span class="o">=</span> <span class="n">PairingFailureReason</span><span class="o">.</span><span class="n">CONFIRM_VALUE_FAILED</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">PairingFailure</span><span class="p">(</span><span class="n">reason</span><span class="o">=</span><span class="mh">0x04</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="p">[]</span></div>
+
+
+<div class="viewcode-block" id="PairingManager._compute_dh_key">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.PairingManager._compute_dh_key">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compute_dh_key</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;计算 ECDH 共享密钥。&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dh_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_keypair</span><span class="o">.</span><span class="n">compute_shared_secret</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">peer_pub_x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">peer_pub_y</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PairingManager._generate_confirm_code">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.PairingManager._generate_confirm_code">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_confirm_code</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;生成本端确认码。&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_g_node</span><span class="p">:</span>
+            <span class="n">g_pub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_keypair</span><span class="o">.</span><span class="n">public_key_x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_keypair</span><span class="o">.</span><span class="n">public_key_y</span>
+            <span class="n">t_pub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">peer_pub_x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">peer_pub_y</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">g_pub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">peer_pub_x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">peer_pub_y</span>
+            <span class="n">t_pub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_keypair</span><span class="o">.</span><span class="n">public_key_x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_keypair</span><span class="o">.</span><span class="n">public_key_y</span>
+
+        <span class="k">return</span> <span class="n">generate_confirm_code</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kdf_type</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">auth_method</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">local_random</span><span class="p">,</span>
+            <span class="n">g_pub</span><span class="p">,</span>
+            <span class="n">t_pub</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PairingManager._generate_peer_confirm_code">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.PairingManager._generate_peer_confirm_code">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_peer_confirm_code</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;生成对端确认码 (用于验证)。&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_g_node</span><span class="p">:</span>
+            <span class="n">g_pub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_keypair</span><span class="o">.</span><span class="n">public_key_x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_keypair</span><span class="o">.</span><span class="n">public_key_y</span>
+            <span class="n">t_pub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">peer_pub_x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">peer_pub_y</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">g_pub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">peer_pub_x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">peer_pub_y</span>
+            <span class="n">t_pub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_keypair</span><span class="o">.</span><span class="n">public_key_x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_keypair</span><span class="o">.</span><span class="n">public_key_y</span>
+
+        <span class="k">return</span> <span class="n">generate_confirm_code</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kdf_type</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">auth_method</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">peer_random</span><span class="p">,</span>
+            <span class="n">g_pub</span><span class="p">,</span>
+            <span class="n">t_pub</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PairingManager._derive_keys">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.PairingManager._derive_keys">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_derive_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;从 DH Key 派生链路密钥和会话密钥。&quot;&quot;&quot;</span>
+        <span class="n">ra</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_random</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_g_node</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">peer_random</span>
+        <span class="n">rb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">peer_random</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_g_node</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_random</span>
+        <span class="n">g_addr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_address</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_g_node</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">peer_address</span>
+        <span class="n">t_addr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">peer_address</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_g_node</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_address</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">link_key</span> <span class="o">=</span> <span class="n">derive_link_key</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kdf_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dh_key</span><span class="p">,</span> <span class="n">ra</span><span class="p">,</span> <span class="n">rb</span><span class="p">,</span> <span class="n">g_addr</span><span class="p">,</span> <span class="n">t_addr</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># 确定性生成分散因子: 从 Ra 和 Rb 截取前 8 字节</span>
+        <span class="n">g_div</span> <span class="o">=</span> <span class="n">ra</span><span class="p">[:</span><span class="mi">8</span><span class="p">]</span>
+        <span class="n">t_div</span> <span class="o">=</span> <span class="n">rb</span><span class="p">[:</span><span class="mi">8</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session_key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">integrity_key</span> <span class="o">=</span> <span class="n">derive_session_key</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kdf_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">link_key</span><span class="p">,</span> <span class="n">g_div</span><span class="p">,</span> <span class="n">t_div</span><span class="p">,</span>
+            <span class="n">use_authenticated</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_paired</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">PairingState</span><span class="o">.</span><span class="n">COMPLETED</span></div>
+
+
+
+<span class="c1"># ── 帧加密上下文 ──</span>
+
+
+<div class="viewcode-block" id="FrameCryptoContext">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.FrameCryptoContext">[文档]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FrameCryptoContext</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;帧级 AES-CCM 加解密上下文。</span>
+
+<span class="sd">    管理 payload_count 单调递增和 nonce 构建,</span>
+<span class="sd">    为 MAC 帧提供加解密服务。</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        session_key: 会话密钥 (16 字节)。</span>
+<span class="sd">        iv_base: 初始化向量基底 (8 字节)。</span>
+<span class="sd">        direction: 传输方向 (0=G→T, 1=T→G)。</span>
+<span class="sd">        mic_len: MIC 长度 (字节, 4/8/12/16)。</span>
+<span class="sd">        frame_type: 帧类型 (用于 IV 计算)。</span>
+<span class="sd">        link_id: 链路标识 (用于 IV 计算)。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">session_key</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">16</span>
+    <span class="n">iv_base</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">8</span>
+    <span class="n">direction</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">mic_len</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">frame_type</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">link_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">_tx_payload_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">_rx_payload_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">tx_count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tx_payload_count</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rx_count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rx_payload_count</span>
+
+<div class="viewcode-block" id="FrameCryptoContext._build_nonce">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.FrameCryptoContext._build_nonce">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_build_nonce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">payload_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">data_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;构建 CCM nonce (13 字节)。</span>
+
+<span class="sd">        build_ccm_nonce_async 返回 16 字节 B0 块:</span>
+<span class="sd">        flag(1B) | nonce(13B) | data_length(2B)</span>
+<span class="sd">        AESCCM 需要 13 字节 nonce 部分。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">iv</span> <span class="o">=</span> <span class="n">compute_iv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iv_base</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">link_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">frame_type</span><span class="p">)</span>
+        <span class="n">b0_block</span> <span class="o">=</span> <span class="n">build_ccm_nonce_async</span><span class="p">(</span>
+            <span class="n">payload_count</span><span class="o">=</span><span class="n">payload_count</span><span class="p">,</span>
+            <span class="n">direction</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">,</span>
+            <span class="n">iv_base</span><span class="o">=</span><span class="n">iv</span><span class="p">,</span>
+            <span class="n">data_length</span><span class="o">=</span><span class="n">data_length</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">b0_block</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">14</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="FrameCryptoContext.encrypt">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.FrameCryptoContext.encrypt">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">encrypt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plaintext</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">aad</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;加密一帧数据, 自动递增 payload_count。</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            plaintext: 明文数据。</span>
+<span class="sd">            aad: 关联数据 (不加密但参与完整性校验)。</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (密文, MIC)。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">nonce</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_nonce</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tx_payload_count</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">plaintext</span><span class="p">))</span>
+        <span class="n">ciphertext</span><span class="p">,</span> <span class="n">mic</span> <span class="o">=</span> <span class="n">aes_ccm_encrypt</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">session_key</span><span class="p">,</span> <span class="n">nonce</span><span class="p">,</span> <span class="n">plaintext</span><span class="p">,</span> <span class="n">aad</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mic_len</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tx_payload_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">ciphertext</span><span class="p">,</span> <span class="n">mic</span></div>
+
+
+<div class="viewcode-block" id="FrameCryptoContext.decrypt">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.FrameCryptoContext.decrypt">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decrypt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ciphertext</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">mic</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">aad</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;解密一帧数据, 自动递增 payload_count。</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ciphertext: 密文数据。</span>
+<span class="sd">            mic: 消息完整性码。</span>
+<span class="sd">            aad: 关联数据。</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            解密后的明文。</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            cryptography.exceptions.InvalidTag: MIC 验证失败。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">nonce</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_nonce</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rx_payload_count</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">))</span>
+        <span class="n">plaintext</span> <span class="o">=</span> <span class="n">aes_ccm_decrypt</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">session_key</span><span class="p">,</span> <span class="n">nonce</span><span class="p">,</span> <span class="n">ciphertext</span><span class="p">,</span> <span class="n">mic</span><span class="p">,</span> <span class="n">aad</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mic_len</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rx_payload_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">plaintext</span></div>
+
+
+<div class="viewcode-block" id="FrameCryptoContext.reset_counters">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.FrameCryptoContext.reset_counters">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reset_counters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;重置 payload 计数器。&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tx_payload_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rx_payload_count</span> <span class="o">=</span> <span class="mi">0</span></div>
+</div>
+
+
+
+<span class="c1"># ── 端到端配对流程 (仿真/测试用) ──</span>
+
+
+<div class="viewcode-block" id="run_pairing_procedure">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html#nearlink_sdr.mac.security_manager.run_pairing_procedure">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_pairing_procedure</span><span class="p">(</span>
+    <span class="n">g_address</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x01\x02\x03\x04\x05\x06</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">t_address</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x0A\x0B\x0C\x0D\x0E\x0F</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">kdf_type</span><span class="p">:</span> <span class="n">KdfType</span> <span class="o">=</span> <span class="n">KdfType</span><span class="o">.</span><span class="n">AES_CMAC</span><span class="p">,</span>
+    <span class="n">auth_method</span><span class="p">:</span> <span class="n">AuthMethod</span> <span class="o">=</span> <span class="n">AuthMethod</span><span class="o">.</span><span class="n">NUMERIC_COMPARISON</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">PairingManager</span><span class="p">,</span> <span class="n">PairingManager</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;执行完整的端到端配对流程。</span>
+
+<span class="sd">    模拟 G 节点和 T 节点之间的配对信令交互,</span>
+<span class="sd">    完成密钥交换和会话密钥派生。</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (G 节点管理器, T 节点管理器)。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">g_mgr</span> <span class="o">=</span> <span class="n">PairingManager</span><span class="p">(</span>
+        <span class="n">is_g_node</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">kdf_type</span><span class="o">=</span><span class="n">kdf_type</span><span class="p">,</span>
+        <span class="n">auth_method</span><span class="o">=</span><span class="n">auth_method</span><span class="p">,</span>
+        <span class="n">local_address</span><span class="o">=</span><span class="n">g_address</span><span class="p">,</span>
+        <span class="n">peer_address</span><span class="o">=</span><span class="n">t_address</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">t_mgr</span> <span class="o">=</span> <span class="n">PairingManager</span><span class="p">(</span>
+        <span class="n">is_g_node</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">kdf_type</span><span class="o">=</span><span class="n">kdf_type</span><span class="p">,</span>
+        <span class="n">auth_method</span><span class="o">=</span><span class="n">auth_method</span><span class="p">,</span>
+        <span class="n">local_address</span><span class="o">=</span><span class="n">t_address</span><span class="p">,</span>
+        <span class="n">peer_address</span><span class="o">=</span><span class="n">g_address</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># G 节点发起</span>
+    <span class="n">g_msgs</span> <span class="o">=</span> <span class="n">g_mgr</span><span class="o">.</span><span class="n">start_pairing</span><span class="p">()</span>
+    <span class="c1"># T 节点也准备密钥</span>
+    <span class="n">t_mgr</span><span class="o">.</span><span class="n">start_pairing</span><span class="p">()</span>
+
+    <span class="c1"># G 产生的消息发给 T, T 产生的消息发给 G</span>
+    <span class="c1"># 用 (source, msg) 元组跟踪消息来源</span>
+    <span class="n">pending</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">g_msgs</span><span class="p">]</span>
+    <span class="n">max_rounds</span> <span class="o">=</span> <span class="mi">20</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_rounds</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">pending</span><span class="p">:</span>
+            <span class="k">break</span>
+
+        <span class="n">next_pending</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">source</span><span class="p">,</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">pending</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">source</span> <span class="o">==</span> <span class="s2">&quot;g&quot;</span><span class="p">:</span>
+                <span class="c1"># G 发送的消息由 T 处理</span>
+                <span class="n">responses</span> <span class="o">=</span> <span class="n">t_mgr</span><span class="o">.</span><span class="n">process_message</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="n">next_pending</span><span class="o">.</span><span class="n">extend</span><span class="p">((</span><span class="s2">&quot;t&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># T 发送的消息由 G 处理</span>
+                <span class="n">responses</span> <span class="o">=</span> <span class="n">g_mgr</span><span class="o">.</span><span class="n">process_message</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="n">next_pending</span><span class="o">.</span><span class="n">extend</span><span class="p">((</span><span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">)</span>
+
+        <span class="n">pending</span> <span class="o">=</span> <span class="n">next_pending</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">g_mgr</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">PairingState</span><span class="o">.</span><span class="n">COMPLETED</span>
+                <span class="ow">and</span> <span class="n">t_mgr</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">PairingState</span><span class="o">.</span><span class="n">COMPLETED</span><span class="p">):</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="n">g_mgr</span><span class="p">,</span> <span class="n">t_mgr</span></div>
+
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/sanchuanhehe/nearlink_sdr_sim" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82 .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="../../../_static/documentation_options.js?v=f882089e"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.esm.min.mjs";
+
+
+
+
+
+const initStyles = () => {
+    const defaultStyle = document.createElement('style');
+    defaultStyle.textContent = `pre.mermaid {
+    /* Same as .mermaid-container > pre */
+    display: block;
+    width: 100%;
+}
+
+pre.mermaid > svg {
+    /* Same as .mermaid-container > pre > svg */
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}`;
+    document.head.appendChild(defaultStyle);
+
+    const fullscreenStyle = document.createElement('style');
+    fullscreenStyle.textContent = `.mermaid-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.mermaid-container > pre {
+    display: block;
+    width: 100%;
+}
+
+.mermaid-container > pre > svg {
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}
+
+.mermaid-fullscreen-btn {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+    color: #333;
+}
+
+.mermaid-fullscreen-btn:hover {
+    opacity: 100% !important;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-btn.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-btn.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 95vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    z-index: 9999;
+    padding: 20px;
+    overflow: auto;
+}
+
+.mermaid-fullscreen-modal.dark-theme {
+    background: rgba(0, 0, 0, 0.98);
+}
+
+.mermaid-fullscreen-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen {
+    position: relative;
+    width: 95vw;
+    height: 90vh;
+    max-width: 95vw;
+    max-height: 90vh;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen.dark-theme {
+    background: #1a1a1a;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.mermaid-container-fullscreen pre.mermaid {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen .mermaid svg {
+    height: 100% !important;
+    width: 100% !important;
+    cursor: grab;
+}
+
+.mermaid-fullscreen-close {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s;
+    font-size: 24px;
+    line-height: 1;
+    color: #333;
+}
+
+.mermaid-fullscreen-close:hover {
+    background: white;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-close.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-close.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal .mermaid-fullscreen-btn {
+    display: none !important;
+}`;
+    document.head.appendChild(fullscreenStyle);
+}
+
+// Detect if page has dark background
+const isDarkTheme = () => {
+    // We use a set of heuristics:
+    // 1. Check for common dark mode classes or attributes
+    // 2. Check computed background color brightness
+    if (document.documentElement.classList.contains('dark') ||
+        document.documentElement.getAttribute('data-theme') === 'dark' ||
+        document.body.classList.contains('dark') ||
+        document.body.getAttribute('data-theme') === 'dark') {
+        // console.log("Dark theme detected via class/attribute");
+        return true;
+    }
+    if (document.documentElement.classList.contains('light') ||
+        document.documentElement.getAttribute('data-theme') === 'light' ||
+        document.body.classList.contains('light') ||
+        document.body.getAttribute('data-theme') === 'light') {
+        // console.log("Light theme detected via class/attribute");
+        return false;
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // console.log("Dark theme detected via prefers-color-scheme");
+        return true;
+    }
+    const bgColor = window.getComputedStyle(document.body).backgroundColor;
+    const match = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)/);
+    if (match) {
+        const r = parseInt(match[1]);
+        const g = parseInt(match[2]);
+        const b = parseInt(match[3]);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        // console.log("Background color brightness:", brightness);
+        return brightness < 128;
+    }
+    // console.log("No dark or light theme detected, defaulting to light theme");
+    return false;
+};
+
+let darkTheme = isDarkTheme();
+let modal = null;
+let modalContent = null;
+let previousScrollOffset = [window.scrollX, window.scrollY];
+
+const runMermaid = async (rerun) => {
+    console.log("Running mermaid diagrams, rerun =", rerun);
+    // clear all existing mermaid charts
+    let all_mermaids = document.querySelectorAll(".mermaid");
+
+    if (rerun) {
+        all_mermaids.forEach((el) => {
+            if(!el.hasAttribute("data-original-code")) {
+                // store original code
+                // console.log(`Storing original code for first run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+            if(el.getAttribute("data-processed") === "true") {
+                // remove and restore original
+                el.removeAttribute("data-processed");
+                // console.log(`Restoring original code for re-run: `, el.getAttribute('data-original-code'));
+                el.innerHTML = el.getAttribute('data-original-code');
+            } else {
+                // store original code
+                // console.log(`Storing original code for re-run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+        });
+        await mermaid.run();
+    }
+
+    all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+
+    if ("False" === "True") {
+        const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+        if(mermaids_to_add_zoom > 0) {
+            var svgs = d3.selectAll("");
+            if(all_mermaids.length !== mermaids_processed.length) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else if(svgs.size() !== mermaids_to_add_zoom) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else {
+                svgs.each(function() {
+                    var svg = d3.select(this);
+                    svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                    var inner = svg.select("g");
+                    var zoom = d3.zoom().on("zoom", function(event) {
+                        inner.attr("transform", event.transform);
+                    });
+                    svg.call(zoom);
+                });
+            }
+        }
+    } else if(all_mermaids.length !== mermaids_processed.length) {
+        // Wait for mermaid to process all diagrams
+        setTimeout(() => runMermaid(false), 200);
+        return;
+    }
+
+    // Stop here if not adding fullscreen capability
+    if ("True" !== "True") return;
+
+    if (modal !== null ) {
+        // Destroy existing modal
+        modal.remove();
+        modal = null;
+        modalContent = null;
+    }
+
+    modal = document.createElement('div');
+    modal.className = 'mermaid-fullscreen-modal' + (darkTheme ? ' dark-theme' : '');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Fullscreen diagram viewer');
+    modal.innerHTML = `
+        <button class="mermaid-fullscreen-close${darkTheme ? ' dark-theme' : ''}" aria-label="Close fullscreen">✕</button>
+        <div class="mermaid-container-fullscreen${darkTheme ? ' dark-theme' : ''}"></div>
+    `;
+    document.body.appendChild(modal);
+
+    modalContent = modal.querySelector('.mermaid-container-fullscreen');
+    const closeBtn = modal.querySelector('.mermaid-fullscreen-close');
+
+    const closeModal = () => {
+        modal.classList.remove('active');
+        modalContent.innerHTML = '';
+        document.body.style.overflow = ''
+        window.scrollTo({left: previousScrollOffset[0], top: previousScrollOffset[1], behavior: 'instant'});
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    document.querySelectorAll('.mermaid').forEach((mermaidDiv) => {
+        if (mermaidDiv.parentNode.classList.contains('mermaid-container') ||
+            mermaidDiv.closest('.mermaid-fullscreen-modal')) {
+            // Already processed, adjust button class if needed
+            const existingBtn = mermaidDiv.parentNode.querySelector('.mermaid-fullscreen-btn');
+            if (existingBtn) {
+                existingBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+            }
+            return;
+        }
+
+        const container = document.createElement('div');
+        container.className = 'mermaid-container';
+        mermaidDiv.parentNode.insertBefore(container, mermaidDiv);
+        container.appendChild(mermaidDiv);
+
+        const fullscreenBtn = document.createElement('button');
+        fullscreenBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+        fullscreenBtn.setAttribute('aria-label', 'View diagram in fullscreen');
+        fullscreenBtn.textContent = '⛶';
+        fullscreenBtn.style.opacity = '50%';
+
+        // Calculate dynamic position based on diagram's margin and padding
+        const diagramStyle = window.getComputedStyle(mermaidDiv);
+        const marginTop = parseFloat(diagramStyle.marginTop) || 0;
+        const marginRight = parseFloat(diagramStyle.marginRight) || 0;
+        const paddingTop = parseFloat(diagramStyle.paddingTop) || 0;
+        const paddingRight = parseFloat(diagramStyle.paddingRight) || 0;
+        fullscreenBtn.style.top = `${marginTop + paddingTop + 4}px`;
+        fullscreenBtn.style.right = `${marginRight + paddingRight + 4}px`;
+
+        fullscreenBtn.addEventListener('click', () => {
+            previousScrollOffset = [window.scroll, window.scrollY];
+            const clone = mermaidDiv.cloneNode(true);
+            modalContent.innerHTML = '';
+            modalContent.appendChild(clone);
+
+            const svg = clone.querySelector('svg');
+            if (svg) {
+                svg.removeAttribute('width');
+                svg.removeAttribute('height');
+                svg.style.width = '100%';
+                svg.style.height = 'auto';
+                svg.style.maxWidth = '100%';
+                svg.style.sdisplay = 'block';
+
+                if ("False" === "True") {
+                    setTimeout(() => {
+                        const g = svg.querySelector('g');
+                        if (g) {
+                            var svgD3 = d3.select(svg);
+                            svgD3.html("<g class='wrapper'>" + svgD3.html() + "</g>");
+                            var inner = svgD3.select("g");
+                            var zoom = d3.zoom().on("zoom", function(event) {
+                                inner.attr("transform", event.transform);
+                            });
+                            svgD3.call(zoom);
+                        }
+                    }, 100);
+                }
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        container.appendChild(fullscreenBtn);
+    });
+};
+
+const load = async () => {
+    initStyles();
+
+    await runMermaid(true);
+
+    const reRunIfThemeChanges = async () => {
+        const newDarkTheme = isDarkTheme();
+        if (newDarkTheme !== darkTheme) {
+            darkTheme = newDarkTheme;
+            console.log("Theme change detected, re-running mermaid with", darkTheme ? "dark" : "default", "theme");
+            await mermaid.initialize(
+                {...JSON.parse(
+                    `{"startOnLoad": false}`
+                ),
+                ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+                }
+            );
+            await runMermaid(true);
+        }
+    };
+
+    // Update theme classes when theme changes
+    const themeObserver = new MutationObserver(reRunIfThemeChanges);
+    themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+    themeObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+};
+
+
+
+
+
+console.log("Initializing mermaid with", darkTheme ? "dark" : "default", "theme");
+mermaid.initialize(
+    {...JSON.parse(
+        `{"startOnLoad": false}`
+    ),
+    ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+    }
+);
+
+window.addEventListener("load", load);
+window.runMermaid = runMermaid;</script>
+    <script src="../../../_static/version-selector.js?v=7d36e42c"></script>
+    </body>
+</html>
