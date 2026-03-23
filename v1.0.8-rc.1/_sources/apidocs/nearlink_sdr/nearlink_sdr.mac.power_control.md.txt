@@ -1,0 +1,606 @@
+# {py:mod}`nearlink_sdr.mac.power_control`
+
+```{py:module} nearlink_sdr.mac.power_control
+```
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control
+:allowtitles:
+```
+
+## Module Contents
+
+### Classes
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`Bandwidth <nearlink_sdr.mac.power_control.Bandwidth>`
+  -
+* - {py:obj}`FreqDensity <nearlink_sdr.mac.power_control.FreqDensity>`
+  -
+* - {py:obj}`PowerControlRequest <nearlink_sdr.mac.power_control.PowerControlRequest>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlRequest
+    :summary:
+    ```
+* - {py:obj}`PowerControlResponse <nearlink_sdr.mac.power_control.PowerControlResponse>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlResponse
+    :summary:
+    ```
+* - {py:obj}`PowerChangeIndication <nearlink_sdr.mac.power_control.PowerChangeIndication>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication
+    :summary:
+    ```
+* - {py:obj}`PowerController <nearlink_sdr.mac.power_control.PowerController>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerController
+    :summary:
+    ```
+````
+
+### Data
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`TX_POWER_UNAVAILABLE <nearlink_sdr.mac.power_control.TX_POWER_UNAVAILABLE>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.power_control.TX_POWER_UNAVAILABLE
+    :summary:
+    ```
+* - {py:obj}`TX_POWER_STOP_MANAGEMENT <nearlink_sdr.mac.power_control.TX_POWER_STOP_MANAGEMENT>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.power_control.TX_POWER_STOP_MANAGEMENT
+    :summary:
+    ```
+````
+
+### API
+
+`````{py:class} Bandwidth()
+:canonical: nearlink_sdr.mac.power_control.Bandwidth
+
+Bases: {py:obj}`enum.IntEnum`
+
+````{py:attribute} BW_1MHZ
+:canonical: nearlink_sdr.mac.power_control.Bandwidth.BW_1MHZ
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.Bandwidth.BW_1MHZ
+```
+
+````
+
+````{py:attribute} BW_2MHZ
+:canonical: nearlink_sdr.mac.power_control.Bandwidth.BW_2MHZ
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.Bandwidth.BW_2MHZ
+```
+
+````
+
+````{py:attribute} BW_4MHZ
+:canonical: nearlink_sdr.mac.power_control.Bandwidth.BW_4MHZ
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.Bandwidth.BW_4MHZ
+```
+
+````
+
+````{py:attribute} RESERVED
+:canonical: nearlink_sdr.mac.power_control.Bandwidth.RESERVED
+:value: >
+   3
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.Bandwidth.RESERVED
+```
+
+````
+
+`````
+
+`````{py:class} FreqDensity()
+:canonical: nearlink_sdr.mac.power_control.FreqDensity
+
+Bases: {py:obj}`enum.IntEnum`
+
+````{py:attribute} RATIO_4_1
+:canonical: nearlink_sdr.mac.power_control.FreqDensity.RATIO_4_1
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.FreqDensity.RATIO_4_1
+```
+
+````
+
+````{py:attribute} RATIO_8_1
+:canonical: nearlink_sdr.mac.power_control.FreqDensity.RATIO_8_1
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.FreqDensity.RATIO_8_1
+```
+
+````
+
+````{py:attribute} RATIO_16_1
+:canonical: nearlink_sdr.mac.power_control.FreqDensity.RATIO_16_1
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.FreqDensity.RATIO_16_1
+```
+
+````
+
+````{py:attribute} NO_PILOT
+:canonical: nearlink_sdr.mac.power_control.FreqDensity.NO_PILOT
+:value: >
+   3
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.FreqDensity.NO_PILOT
+```
+
+````
+
+`````
+
+````{py:data} TX_POWER_UNAVAILABLE
+:canonical: nearlink_sdr.mac.power_control.TX_POWER_UNAVAILABLE
+:value: >
+   127
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.TX_POWER_UNAVAILABLE
+```
+
+````
+
+````{py:data} TX_POWER_STOP_MANAGEMENT
+:canonical: nearlink_sdr.mac.power_control.TX_POWER_STOP_MANAGEMENT
+:value: >
+   126
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.TX_POWER_STOP_MANAGEMENT
+```
+
+````
+
+`````{py:class} PowerControlRequest
+:canonical: nearlink_sdr.mac.power_control.PowerControlRequest
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlRequest
+```
+
+````{py:attribute} frame_type
+:canonical: nearlink_sdr.mac.power_control.PowerControlRequest.frame_type
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlRequest.frame_type
+```
+
+````
+
+````{py:attribute} bandwidth
+:canonical: nearlink_sdr.mac.power_control.PowerControlRequest.bandwidth
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlRequest.bandwidth
+```
+
+````
+
+````{py:attribute} freq_density
+:canonical: nearlink_sdr.mac.power_control.PowerControlRequest.freq_density
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlRequest.freq_density
+```
+
+````
+
+````{py:attribute} tx_power_change
+:canonical: nearlink_sdr.mac.power_control.PowerControlRequest.tx_power_change
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlRequest.tx_power_change
+```
+
+````
+
+````{py:attribute} sender_tx_power
+:canonical: nearlink_sdr.mac.power_control.PowerControlRequest.sender_tx_power
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlRequest.sender_tx_power
+```
+
+````
+
+````{py:attribute} DATA_TYPE_INDEX
+:canonical: nearlink_sdr.mac.power_control.PowerControlRequest.DATA_TYPE_INDEX
+:value: >
+   25
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlRequest.DATA_TYPE_INDEX
+```
+
+````
+
+````{py:attribute} BYTE_LENGTH
+:canonical: nearlink_sdr.mac.power_control.PowerControlRequest.BYTE_LENGTH
+:value: >
+   3
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlRequest.BYTE_LENGTH
+```
+
+````
+
+````{py:method} pack() -> bytes
+:canonical: nearlink_sdr.mac.power_control.PowerControlRequest.pack
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlRequest.pack
+```
+
+````
+
+````{py:method} unpack(data: bytes) -> nearlink_sdr.mac.power_control.PowerControlRequest
+:canonical: nearlink_sdr.mac.power_control.PowerControlRequest.unpack
+:classmethod:
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlRequest.unpack
+```
+
+````
+
+`````
+
+`````{py:class} PowerControlResponse
+:canonical: nearlink_sdr.mac.power_control.PowerControlResponse
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlResponse
+```
+
+````{py:attribute} sender_min_power
+:canonical: nearlink_sdr.mac.power_control.PowerControlResponse.sender_min_power
+:type: bool
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlResponse.sender_min_power
+```
+
+````
+
+````{py:attribute} sender_max_power
+:canonical: nearlink_sdr.mac.power_control.PowerControlResponse.sender_max_power
+:type: bool
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlResponse.sender_max_power
+```
+
+````
+
+````{py:attribute} tx_power_change
+:canonical: nearlink_sdr.mac.power_control.PowerControlResponse.tx_power_change
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlResponse.tx_power_change
+```
+
+````
+
+````{py:attribute} sender_tx_power
+:canonical: nearlink_sdr.mac.power_control.PowerControlResponse.sender_tx_power
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlResponse.sender_tx_power
+```
+
+````
+
+````{py:attribute} acceptable_power_reduction
+:canonical: nearlink_sdr.mac.power_control.PowerControlResponse.acceptable_power_reduction
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlResponse.acceptable_power_reduction
+```
+
+````
+
+````{py:attribute} DATA_TYPE_INDEX
+:canonical: nearlink_sdr.mac.power_control.PowerControlResponse.DATA_TYPE_INDEX
+:value: >
+   26
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlResponse.DATA_TYPE_INDEX
+```
+
+````
+
+````{py:attribute} BYTE_LENGTH
+:canonical: nearlink_sdr.mac.power_control.PowerControlResponse.BYTE_LENGTH
+:value: >
+   4
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlResponse.BYTE_LENGTH
+```
+
+````
+
+````{py:method} pack() -> bytes
+:canonical: nearlink_sdr.mac.power_control.PowerControlResponse.pack
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlResponse.pack
+```
+
+````
+
+````{py:method} unpack(data: bytes) -> nearlink_sdr.mac.power_control.PowerControlResponse
+:canonical: nearlink_sdr.mac.power_control.PowerControlResponse.unpack
+:classmethod:
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlResponse.unpack
+```
+
+````
+
+`````
+
+`````{py:class} PowerChangeIndication
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication
+```
+
+````{py:attribute} frame_type
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.frame_type
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.frame_type
+```
+
+````
+
+````{py:attribute} bandwidth
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.bandwidth
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.bandwidth
+```
+
+````
+
+````{py:attribute} freq_density
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.freq_density
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.freq_density
+```
+
+````
+
+````{py:attribute} sender_min_power
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.sender_min_power
+:type: bool
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.sender_min_power
+```
+
+````
+
+````{py:attribute} sender_max_power
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.sender_max_power
+:type: bool
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.sender_max_power
+```
+
+````
+
+````{py:attribute} tx_power_change
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.tx_power_change
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.tx_power_change
+```
+
+````
+
+````{py:attribute} sender_tx_power
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.sender_tx_power
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.sender_tx_power
+```
+
+````
+
+````{py:attribute} DATA_TYPE_INDEX
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.DATA_TYPE_INDEX
+:value: >
+   27
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.DATA_TYPE_INDEX
+```
+
+````
+
+````{py:attribute} BYTE_LENGTH
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.BYTE_LENGTH
+:value: >
+   4
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.BYTE_LENGTH
+```
+
+````
+
+````{py:method} pack() -> bytes
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.pack
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.pack
+```
+
+````
+
+````{py:method} unpack(data: bytes) -> nearlink_sdr.mac.power_control.PowerChangeIndication
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.unpack
+:classmethod:
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.unpack
+```
+
+````
+
+`````
+
+`````{py:class} PowerController(tx_power_dbm: float = 0.0, min_power_dbm: float = -127.0, max_power_dbm: float = 20.0)
+:canonical: nearlink_sdr.mac.power_control.PowerController
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerController
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerController.__init__
+```
+
+````{py:property} is_at_min_power
+:canonical: nearlink_sdr.mac.power_control.PowerController.is_at_min_power
+:type: bool
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerController.is_at_min_power
+```
+
+````
+
+````{py:property} is_at_max_power
+:canonical: nearlink_sdr.mac.power_control.PowerController.is_at_max_power
+:type: bool
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerController.is_at_max_power
+```
+
+````
+
+````{py:property} acceptable_power_reduction
+:canonical: nearlink_sdr.mac.power_control.PowerController.acceptable_power_reduction
+:type: int
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerController.acceptable_power_reduction
+```
+
+````
+
+````{py:method} _clamp_power(power_dbm: float) -> float
+:canonical: nearlink_sdr.mac.power_control.PowerController._clamp_power
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerController._clamp_power
+```
+
+````
+
+````{py:method} handle_request(req: nearlink_sdr.mac.power_control.PowerControlRequest) -> nearlink_sdr.mac.power_control.PowerControlResponse
+:canonical: nearlink_sdr.mac.power_control.PowerController.handle_request
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerController.handle_request
+```
+
+````
+
+````{py:method} create_request(requested_change_db: int, frame_type: int = 0, bandwidth: int = Bandwidth.BW_1MHZ, freq_density: int = FreqDensity.RATIO_4_1) -> nearlink_sdr.mac.power_control.PowerControlRequest
+:canonical: nearlink_sdr.mac.power_control.PowerController.create_request
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerController.create_request
+```
+
+````
+
+````{py:method} apply_response(resp: nearlink_sdr.mac.power_control.PowerControlResponse) -> None
+:canonical: nearlink_sdr.mac.power_control.PowerController.apply_response
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerController.apply_response
+```
+
+````
+
+````{py:method} start_power_management() -> None
+:canonical: nearlink_sdr.mac.power_control.PowerController.start_power_management
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerController.start_power_management
+```
+
+````
+
+````{py:method} stop_power_management() -> None
+:canonical: nearlink_sdr.mac.power_control.PowerController.stop_power_management
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerController.stop_power_management
+```
+
+````
+
+````{py:property} power_management_active
+:canonical: nearlink_sdr.mac.power_control.PowerController.power_management_active
+:type: bool
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerController.power_management_active
+```
+
+````
+
+````{py:method} create_change_indication(actual_change_db: int, frame_type: int = 0, bandwidth: int = Bandwidth.BW_1MHZ, freq_density: int = FreqDensity.RATIO_4_1) -> nearlink_sdr.mac.power_control.PowerChangeIndication
+:canonical: nearlink_sdr.mac.power_control.PowerController.create_change_indication
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerController.create_change_indication
+```
+
+````
+
+````{py:method} create_query_request(frame_type: int = 0, bandwidth: int = Bandwidth.BW_1MHZ, freq_density: int = FreqDensity.RATIO_4_1) -> nearlink_sdr.mac.power_control.PowerControlRequest
+:canonical: nearlink_sdr.mac.power_control.PowerController.create_query_request
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerController.create_query_request
+```
+
+````
+
+`````
