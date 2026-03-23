@@ -12,12 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2026-03-21 23:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: en\n"
 "Language-Team: en <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../explanation/architecture.md:1
@@ -29,6 +29,10 @@ msgid ""
 "nearlink-sdr 是一个链路级仿真系统, 实现了 TXS-10002-2025 SparkLink SLE "
 "标准定义的物理层处理链路。本文说明系统的整体结构和设计思路。"
 msgstr ""
+"nearlink-sdr is a link-level simulation system that implements the physical-"
+"layer processing pipeline defined by the TXS-10002-2025 SparkLink SLE "
+"standard. This article describes the overall architecture and design "
+"philosophy."
 
 #: ../../explanation/architecture.md:5
 msgid "模块组织"
@@ -256,7 +260,9 @@ msgstr "`channel`"
 
 #: ../../explanation/architecture.md
 msgid "AWGN/Rayleigh/Rician/多径信道, Jakes Doppler 衰落, 多用户干扰"
-msgstr "AWGN/Rayleigh/Rician/multipath channel, Jakes Doppler fading, multi-user interference"
+msgstr ""
+"AWGN/Rayleigh/Rician/multipath channel, Jakes Doppler fading, multi-user "
+"interference"
 
 #: ../../explanation/architecture.md
 msgid "--"
@@ -568,7 +574,9 @@ msgstr "sim -- Simulation"
 
 #: ../../explanation/architecture.md:78
 msgid "`link_sim` 模块封装了端到端仿真流程, 分为十二个阶段:"
-msgstr "The `link_sim` module encapsulates the end-to-end simulation process in sixteen phases:"
+msgstr ""
+"The `link_sim` module encapsulates the end-to-end simulation process in "
+"sixteen phases:"
 
 #: ../../explanation/architecture.md
 msgid "阶段"
@@ -703,6 +711,8 @@ msgid ""
 "`sim_multi_link`, `sim_access_scheduled_link`, `sim_event_group_timing`, "
 "`sim_superframe_capacity`"
 msgstr ""
+"`sim_multi_link`, `sim_access_scheduled_link`, `sim_event_group_timing`, "
+"`sim_superframe_capacity`"
 
 #: ../../explanation/architecture.md
 msgid "Phase 11"
@@ -713,8 +723,10 @@ msgid "安全通信端到端仿真"
 msgstr "Secure communication end-to-end simulation"
 
 #: ../../explanation/architecture.md
-msgid "`sim_secure_link`, `sim_encrypted_vs_plain`, `sim_pairing_signaling_phy`"
-msgstr "`sim_secure_link`, `sim_encrypted_vs_plain`, `sim_pairing_signaling_phy`"
+msgid ""
+"`sim_secure_link`, `sim_encrypted_vs_plain`, `sim_pairing_signaling_phy`"
+msgstr ""
+"`sim_secure_link`, `sim_encrypted_vs_plain`, `sim_pairing_signaling_phy`"
 
 #: ../../explanation/architecture.md
 msgid "Phase 12"
@@ -750,9 +762,9 @@ msgstr "Dual-node end-to-end simulation"
 
 #: ../../explanation/architecture.md
 msgid ""
-"`sim_dual_node_link`, `sim_dual_node_secure_link`, "
-"`sim_dual_node_mcs_adapt`"
+"`sim_dual_node_link`, `sim_dual_node_secure_link`, `sim_dual_node_mcs_adapt`"
 msgstr ""
+"`sim_dual_node_link`, `sim_dual_node_secure_link`, `sim_dual_node_mcs_adapt`"
 
 #: ../../explanation/architecture.md
 msgid "Phase 15"
@@ -764,9 +776,11 @@ msgstr "SleNode integration simulation"
 
 #: ../../explanation/architecture.md
 msgid ""
-"`sim_node_hopping_link`, `sim_node_access_flow`, "
-"`sim_node_channel_sweep`, `sim_node_power_adapt`, `sim_node_measurement`"
+"`sim_node_hopping_link`, `sim_node_access_flow`, `sim_node_channel_sweep`, "
+"`sim_node_power_adapt`, `sim_node_measurement`"
 msgstr ""
+"`sim_node_hopping_link`, `sim_node_access_flow`, `sim_node_channel_sweep`, "
+"`sim_node_power_adapt`, `sim_node_measurement`"
 
 #: ../../explanation/architecture.md
 msgid "Phase 16"
@@ -781,10 +795,14 @@ msgid ""
 "`sim_doppler_link`, `sim_multi_user_interference`, `sim_sir_sweep`, "
 "`sim_doppler_multipath_link`"
 msgstr ""
+"`sim_doppler_link`, `sim_multi_user_interference`, `sim_sir_sweep`, "
+"`sim_doppler_multipath_link`"
 
 #: ../../explanation/architecture.md:99
 msgid "每个阶段的仿真函数可独立调用, 也可通过 `run_phaseN_simulation()` 批量执行。"
-msgstr "Each phase's simulation functions can be called independently or executed in batch via `run_phaseN_simulation()`."
+msgstr ""
+"Each phase's simulation functions can be called independently or executed in"
+" batch via `run_phaseN_simulation()`."
 
 #: ../../explanation/architecture.md:101
 msgid "node -- 节点实体"
@@ -792,7 +810,9 @@ msgstr "node -- Node Entity"
 
 #: ../../explanation/architecture.md:103
 msgid "`node` 模块提供顶层 `SleNode` 类, 将所有 MAC/PHY 组件整合为统一的收发接口:"
-msgstr "The `node` module provides the top-level `SleNode` class, integrating all MAC/PHY components into a unified transmit/receive interface:"
+msgstr ""
+"The `node` module provides the top-level `SleNode` class, integrating all "
+"MAC/PHY components into a unified transmit/receive interface:"
 
 #: ../../explanation/architecture.md
 msgid "类"
@@ -808,7 +828,9 @@ msgstr "`NodeConfig`"
 
 #: ../../explanation/architecture.md
 msgid "节点参数配置 (地址、角色、帧类型、MCS、带宽、加密等)"
-msgstr "Node parameter configuration (address, role, frame type, MCS, bandwidth, encryption, etc.)"
+msgstr ""
+"Node parameter configuration (address, role, frame type, MCS, bandwidth, "
+"encryption, etc.)"
 
 #: ../../explanation/architecture.md
 msgid "`SleNode`"
@@ -824,7 +846,8 @@ msgstr "`NodeCallback`"
 
 #: ../../explanation/architecture.md
 msgid "事件回调接口 (状态变迁、连接、断开)"
-msgstr "Event callback interface (state transitions, connection, disconnection)"
+msgstr ""
+"Event callback interface (state transitions, connection, disconnection)"
 
 #: ../../explanation/architecture.md
 msgid "`TxResult` / `RxResult`"
@@ -956,17 +979,25 @@ msgstr "Key Differences:"
 
 #: ../../explanation/architecture.md:173
 msgid "**FT1** 使用 GFSK 调制, 不经 Polar 编码, 头部通过 BCH 编码。`mcs_index=8` 表示非编码直通。"
-msgstr "**FT1** uses GFSK modulation, bypasses Polar coding, and protects the header with BCH coding. `mcs_index=8` indicates uncoded passthrough."
+msgstr ""
+"**FT1** uses GFSK modulation, bypasses Polar coding, and protects the header"
+" with BCH coding. `mcs_index=8` indicates uncoded passthrough."
 
 #: ../../explanation/architecture.md:174
 msgid "**FT2** 使用 PSK 调制, Polar(64,K) 头部编码, `segment_without_crc` 码块分割。"
-msgstr "**FT2** uses PSK modulation, Polar(64,K) header coding, and `segment_without_crc` code block segmentation."
+msgstr ""
+"**FT2** uses PSK modulation, Polar(64,K) header coding, and "
+"`segment_without_crc` code block segmentation."
 
 #: ../../explanation/architecture.md:175
 msgid ""
-"**FT3/FT4** 使用 PSK 调制, Polar(256,K) 头部编码, `segment_with_crc` 码块分割 (每段额外附加"
-" CRC)。B 组控制信息 CRC 种子为 `0x555555 ^ LLID`。"
+"**FT3/FT4** 使用 PSK 调制, Polar(256,K) 头部编码, `segment_with_crc` 码块分割 (每段额外附加 "
+"CRC)。B 组控制信息 CRC 种子为 `0x555555 ^ LLID`。"
 msgstr ""
+"**FT3/FT4** use PSK modulation with Polar(256,K) header coding and "
+"`segment_with_crc` code-block segmentation (each segment appends an "
+"additional CRC). The Group B control information CRC seed is `0x555555 ^ "
+"LLID`."
 
 #: ../../explanation/architecture.md:177
 msgid "硬件对接"
@@ -977,4 +1008,7 @@ msgid ""
 "`phy.usrp` 模块封装了 USRP E310 (Xilinx Zynq-7020 + AD9361) 的收发接口。在无硬件环境下, "
 "`MockUSRP` 提供完整的 UHD API 仿真, 使得收发流程可以离线调试。"
 msgstr ""
-
+"The `phy.usrp` module wraps the USRP E310 (Xilinx Zynq-7020 + AD9361) "
+"transceiver interface. In environments without hardware, `MockUSRP` provides"
+" a full UHD API simulation, enabling offline debugging of the transceiver "
+"pipeline."

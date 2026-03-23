@@ -12,12 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2026-03-21 23:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: en\n"
 "Language-Team: en <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../how-to/qos-management.md:1
@@ -33,6 +33,10 @@ msgid ""
 "`mac.qos` 模块实现了标准 6.5 节定义的数据传输质量控制, 包含 ARQ 重传管理、 HARQ "
 "混合自动重传、流控、链路质量跟踪和优先级发送队列。"
 msgstr ""
+"The `mac.qos` module implements the data transmission quality control "
+"defined in Standard §6.5, including ARQ retransmission management, HARQ "
+"hybrid automatic repeat request, flow control, link quality tracking, and "
+"priority transmit queues."
 
 #: ../../how-to/qos-management.md:8
 msgid "基本用法"
@@ -60,7 +64,9 @@ msgstr "ARQ Sequence Number Management"
 
 #: ../../how-to/qos-management.md:48
 msgid "`ArqState` 管理不同帧类型的发送/接收序列号:"
-msgstr "`ArqState` manages transmit/receive sequence numbers for different frame types:"
+msgstr ""
+"`ArqState` manages transmit/receive sequence numbers for different frame "
+"types:"
 
 #: ../../how-to/qos-management.md:39
 msgid "帧类型"
@@ -104,7 +110,9 @@ msgstr "0-31"
 
 #: ../../how-to/qos-management.md:56
 msgid "异步链路默认无限重传, 同步链路可设置 `max_retransmit` 限制。"
-msgstr "Asynchronous links allow unlimited retransmissions by default; synchronous links can set a `max_retransmit` limit."
+msgstr ""
+"Asynchronous links allow unlimited retransmissions by default; synchronous "
+"links can set a `max_retransmit` limit."
 
 #: ../../how-to/qos-management.md:65
 msgid "HARQ 反馈"
@@ -116,11 +124,15 @@ msgstr "`HarqController` supports two feedback modes:"
 
 #: ../../how-to/qos-management.md:69
 msgid "**TB 模式**: 整个传输块 ACK/NACK, `harq_feedback` 字段为期望 SN"
-msgstr "**TB mode**: ACK/NACK for the entire transport block; the `harq_feedback` field is the expected SN"
+msgstr ""
+"**TB mode**: ACK/NACK for the entire transport block; the `harq_feedback` "
+"field is the expected SN"
 
 #: ../../how-to/qos-management.md:70
 msgid "**CBG 模式**: 按编码块组反馈, `harq_feedback` 每 bit 对应一个 CBG"
-msgstr "**CBG mode**: Feedback per code block group; each bit in `harq_feedback` corresponds to one CBG"
+msgstr ""
+"**CBG mode**: Feedback per code block group; each bit in `harq_feedback` "
+"corresponds to one CBG"
 
 #: ../../how-to/qos-management.md:79
 msgid "链路质量跟踪与 AMC"
@@ -128,7 +140,9 @@ msgstr "Link Quality Tracking and AMC"
 
 #: ../../how-to/qos-management.md:81
 msgid "`LinkQualityTracker` 通过滑动窗口统计 FER, 建议 MCS 调整:"
-msgstr "`LinkQualityTracker` tracks FER using a sliding window and recommends MCS adjustments:"
+msgstr ""
+"`LinkQualityTracker` tracks FER using a sliding window and recommends MCS "
+"adjustments:"
 
 #: ../../how-to/qos-management.md:90
 msgid "流控"
@@ -136,7 +150,9 @@ msgstr "Flow Control"
 
 #: ../../how-to/qos-management.md:92
 msgid "`FlowController` 基于高/低水位机制实现背压:"
-msgstr "`FlowController` implements backpressure based on high/low watermark thresholds:"
+msgstr ""
+"`FlowController` implements backpressure based on high/low watermark "
+"thresholds:"
 
 #: ../../how-to/qos-management.md:101
 msgid "优先级发送队列"
@@ -147,8 +163,9 @@ msgid ""
 "`TxQueue` 提供 5 级优先级 (CONTROL > REALTIME > HIGH > NORMAL > LOW), "
 "重传数据在同优先级内优先出队:"
 msgstr ""
+"`TxQueue` provides 5 priority levels (CONTROL > REALTIME > HIGH > NORMAL > "
+"LOW); retransmission data is dequeued first within the same priority:"
 
 #: ../../how-to/qos-management.md:113
 msgid "运行示例"
 msgstr "Run Examples"
-

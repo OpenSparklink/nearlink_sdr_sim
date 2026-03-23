@@ -12,12 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2026-03-21 23:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: en\n"
 "Language-Team: en <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.md:1
@@ -34,6 +34,8 @@ msgid ""
 "A 组: 无线帧类型 1 和 2, CRC12, 种子为同步序列低 12 位。 B 组: 无线帧类型 3 和 4, CRC24B, 种子 "
 "0x555555, CRC 与 LLID 异或。"
 msgstr ""
+"A 组: 无线frame type 1 和 2, CRC12, 种子为syncsequence低 12 位。 B 组: 无线frame type 3 和"
+" 4, CRC24B, 种子 0x555555, CRC 与 LLID XOR。"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.md:10
 msgid "Module Contents"
@@ -45,8 +47,10 @@ msgstr "Classes"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.md:18
 #, python-brace-format
-msgid "{py:obj}`ControlInfoType <nearlink_sdr.phy.control_info.ControlInfoType>`"
-msgstr "{py:obj}`ControlInfoType <nearlink_sdr.phy.control_info.ControlInfoType>`"
+msgid ""
+"{py:obj}`ControlInfoType <nearlink_sdr.phy.control_info.ControlInfoType>`"
+msgstr ""
+"{py:obj}`ControlInfoType <nearlink_sdr.phy.control_info.ControlInfoType>`"
 
 #: ../../../src/nearlink_sdr/phy/control_info.py:20
 #: ../../../src/nearlink_sdr/phy/control_info.py:151
@@ -135,7 +139,7 @@ msgstr "{py:obj}`_bits_to_int <nearlink_sdr.phy.control_info._bits_to_int>`"
 #: ../../../src/nearlink_sdr/phy/control_info.py:84
 #: ../../../src/nearlink_sdr/phy/control_info.py:141
 msgid "将低位在前 (LSB-first) 的比特数组转为无符号整数。"
-msgstr ""
+msgstr "将低位在前 (LSB-first) 的bit array转为无符号整数。"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.md:86
 #, python-brace-format
@@ -145,17 +149,19 @@ msgstr "{py:obj}`_a_group_pack <nearlink_sdr.phy.control_info._a_group_pack>`"
 #: ../../../src/nearlink_sdr/phy/control_info.py:88
 #: ../../../src/nearlink_sdr/phy/control_info.py:284
 msgid "A 组通用打包: 拼接 LQI(可选) + info_bits + CRC12。"
-msgstr ""
+msgstr "A 组通用打包: concatenation LQI(optional) + info_bits + CRC12。"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.md:90
 #, python-brace-format
-msgid "{py:obj}`_a_group_unpack <nearlink_sdr.phy.control_info._a_group_unpack>`"
-msgstr "{py:obj}`_a_group_unpack <nearlink_sdr.phy.control_info._a_group_unpack>`"
+msgid ""
+"{py:obj}`_a_group_unpack <nearlink_sdr.phy.control_info._a_group_unpack>`"
+msgstr ""
+"{py:obj}`_a_group_unpack <nearlink_sdr.phy.control_info._a_group_unpack>`"
 
 #: ../../../src/nearlink_sdr/phy/control_info.py:92
 #: ../../../src/nearlink_sdr/phy/control_info.py:291
 msgid "A 组通用解包: 校验 CRC12, 返回 (lqi, info_bits)。"
-msgstr ""
+msgstr "A 组通用解包: check CRC12, 返回 (lqi, info_bits)。"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.md:94
 #, python-brace-format
@@ -165,7 +171,7 @@ msgstr "{py:obj}`_llid_mask <nearlink_sdr.phy.control_info._llid_mask>`"
 #: ../../../src/nearlink_sdr/phy/control_info.py:96
 #: ../../../src/nearlink_sdr/phy/control_info.py:1000
 msgid "将 LLID 扩展为 24 位掩码用于 CRC 异或。"
-msgstr ""
+msgstr "将 LLID 扩展为 24 位掩码用于 CRC XOR。"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.md:98
 #, python-brace-format
@@ -175,17 +181,19 @@ msgstr "{py:obj}`_b_group_pack <nearlink_sdr.phy.control_info._b_group_pack>`"
 #: ../../../src/nearlink_sdr/phy/control_info.py:100
 #: ../../../src/nearlink_sdr/phy/control_info.py:1007
 msgid "B 组通用打包: info_bits + CRC24B (种子 0x555555, 异或 LLID)。"
-msgstr ""
+msgstr "B 组通用打包: info_bits + CRC24B (种子 0x555555, XOR LLID)。"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.md:102
 #, python-brace-format
-msgid "{py:obj}`_b_group_check <nearlink_sdr.phy.control_info._b_group_check>`"
-msgstr "{py:obj}`_b_group_check <nearlink_sdr.phy.control_info._b_group_check>`"
+msgid ""
+"{py:obj}`_b_group_check <nearlink_sdr.phy.control_info._b_group_check>`"
+msgstr ""
+"{py:obj}`_b_group_check <nearlink_sdr.phy.control_info._b_group_check>`"
 
 #: ../../../src/nearlink_sdr/phy/control_info.py:104
 #: ../../../src/nearlink_sdr/phy/control_info.py:1014
 msgid "B 组通用解包: 校验 CRC24B, 返回 info_bits。"
-msgstr ""
+msgstr "B 组通用解包: check CRC24B, 返回 info_bits。"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.md:106
 #, python-brace-format
@@ -193,11 +201,13 @@ msgid ""
 "{py:obj}`polar_encode_control "
 "<nearlink_sdr.phy.control_info.polar_encode_control>`"
 msgstr ""
+"{py:obj}`polar_encode_control "
+"<nearlink_sdr.phy.control_info.polar_encode_control>`"
 
 #: ../../../src/nearlink_sdr/phy/control_info.py:108
 #: ../../../src/nearlink_sdr/phy/control_info.py:1498
 msgid "对帧类型 2 的 A 组控制信息进行 Polar 编码。"
-msgstr ""
+msgstr "对frame type 2 的 A 组控制信息进行 Polar encode。"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.md:110
 #, python-brace-format
@@ -205,11 +215,13 @@ msgid ""
 "{py:obj}`polar_decode_control "
 "<nearlink_sdr.phy.control_info.polar_decode_control>`"
 msgstr ""
+"{py:obj}`polar_decode_control "
+"<nearlink_sdr.phy.control_info.polar_decode_control>`"
 
 #: ../../../src/nearlink_sdr/phy/control_info.py:112
 #: ../../../src/nearlink_sdr/phy/control_info.py:1505
 msgid "对帧类型 2 的 A 组控制信息进行 Polar 解码。"
-msgstr ""
+msgstr "对frame type 2 的 A 组控制信息进行 Polar decode。"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.md:116
 msgid "Data"
@@ -373,9 +385,8 @@ msgstr "5592405"
 
 #: ../../../src/nearlink_sdr/phy/control_info.py:1500
 msgid "输入 40 或 48 比特 (含 LQI + CRC12), 编码到 64 比特。"
-msgstr ""
+msgstr "输入 40 或 48 比特 (含 LQI + CRC12), encode到 64 比特。"
 
 #: ../../../src/nearlink_sdr/phy/control_info.py:1507
 msgid "输入 64 比特, 解码到 k_info 比特 (40 或 48)。"
-msgstr ""
-
+msgstr "输入 64 比特, decode到 k_info 比特 (40 或 48)。"

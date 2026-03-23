@@ -56,4 +56,49 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     })
     .catch(function () { /* versions.json 不存在时静默失败 */ });
+
+  // ── 语言切换器 ──
+  (function () {
+    var path = window.location.pathname;
+    var isEn = /\/en\//.test(path);
+    var btn = document.createElement("a");
+    btn.className = "lang-switcher";
+    btn.textContent = isEn ? "中文" : "English";
+    btn.title = isEn ? "切换到中文" : "Switch to English";
+    btn.href = "#";
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (isEn) {
+        window.location.href = path.replace(/\/en\//, "/");
+      } else {
+        // 在当前路径中找到版本号后插入 /en/
+        var parts = path.split("/");
+        var inserted = false;
+        for (var i = 0; i < parts.length; i++) {
+          if (/^\d+\.\d+/.test(parts[i]) || parts[i] === "latest") {
+            parts.splice(i + 1, 0, "en");
+            inserted = true;
+            break;
+          }
+        }
+        if (!inserted) {
+          // 本地预览或无版本路径: 直接替换根目录为 en 子目录
+          var base = path.replace(/\/[^/]*$/, "/en/");
+          var tail = path.replace(/^.*\/([^/]*)$/, "$1");
+          window.location.href = base + tail;
+        } else {
+          window.location.href = parts.join("/");
+        }
+      }
+    });
+
+    var sidebar = document.querySelector(".sidebar-brand") ||
+                  document.querySelector(".sidebar-sticky");
+    if (sidebar) {
+      var langDiv = document.createElement("div");
+      langDiv.className = "lang-switcher-container";
+      langDiv.appendChild(btn);
+      sidebar.appendChild(langDiv);
+    }
+  })();
 });

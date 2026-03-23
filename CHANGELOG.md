@@ -5,6 +5,21 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/),
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.0.2] - 2025-07-23
+
+### Added
+
+- 英文本地化: 76 个 .po 文件全部翻译 (6205/6261 条目, 99.1%)
+- 语言切换器: 侧边栏中文/English 切换按钮 (JS/CSS)
+- Makefile 目标: `docs-en`, `docs-i18n`, `i18n-update`
+- CI 双语构建: docs.yml 同时生成中文和英文 HTML, 英文版部署至 `/en/` 子路径
+
+### Fixed
+
+- PDF 文字堆叠: 消除全部 4 个 vbox overflow, hbox overflow 从 107 降至 86
+- LaTeX preamble: 移除重复 `\usepackage{xeCJK}`, 增加 `\linespread{1.25}` 和 `\sloppy`
+- ruff 配置: 添加 RUF001 ignore, 允许字符串中的中文全角标点
+
 ## [1.0.1] - 2025-07-23
 
 ### Added

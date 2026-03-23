@@ -12,12 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2026-03-21 23:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: en\n"
 "Language-Team: en <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../explanation/principles.md:1
@@ -26,7 +26,9 @@ msgstr "Physical Layer Principles"
 
 #: ../../explanation/principles.md:3
 msgid "本节阐述 SparkLink SLE 物理层中关键信号处理模块的数学原理。"
-msgstr "This section explains the mathematical principles of key signal processing modules in the SparkLink SLE physical layer."
+msgstr ""
+"This section explains the mathematical principles of key signal processing "
+"modules in the SparkLink SLE physical layer."
 
 #: ../../explanation/principles.md:5
 msgid "Polar 编码"
@@ -38,9 +40,13 @@ msgstr "Channel Polarization"
 
 #: ../../explanation/principles.md:9
 msgid ""
-"Polar 码基于信道极化现象: 对 $N$ 个独立信道实例做线性变换后, 各子信道的可靠性出现分化 --- 部分子信道的容量趋近 1, 其余趋近"
-" 0。Arikan 证明当 $N \\to \\infty$ 时, 这种分化是完全的。"
-msgstr "Polar codes exploit channel polarization: after applying a linear transform to $N$ independent channel instances, the sub-channels diverge in reliability \u2014 some approach capacity 1, others approach 0. Arikan proved that this polarization is complete as $N \\to \\infty$."
+"Polar 码基于信道极化现象: 对 $N$ 个独立信道实例做线性变换后, 各子信道的可靠性出现分化 --- 部分子信道的容量趋近 1, 其余趋近 "
+"0。Arikan 证明当 $N \\to \\infty$ 时, 这种分化是完全的。"
+msgstr ""
+"Polar codes exploit channel polarization: after applying a linear transform "
+"to $N$ independent channel instances, the sub-channels diverge in "
+"reliability \\u2014 some approach capacity 1, others approach 0. Arikan "
+"proved that this polarization is complete as $N \\to \\infty$."
 
 #: ../../explanation/principles.md:11
 msgid "核心变换矩阵为 Kronecker 幂:"
@@ -50,23 +56,29 @@ msgstr "The core transform matrix is the Kronecker power:"
 #, python-brace-format
 msgid ""
 "\n"
-"G_N = B_N \\cdot F^{\\otimes n}, \\quad F = \\begin{bmatrix} 1 & 0 \\\\ 1"
-" & 1 \\end{bmatrix}, \\quad N = 2^n\n"
+"G_N = B_N \\cdot F^{\\otimes n}, \\quad F = \\begin{bmatrix} 1 & 0 \\\\ 1 & 1 \\end{bmatrix}, \\quad N = 2^n\n"
 msgstr ""
+"\n"
+"G_N = B_N \\cdot F^{\\otimes n}, \\quad F = \\begin{bmatrix} 1 & 0 \\\\ 1 & 1 \\end{bmatrix}, \\quad N = 2^n\n"
 
 #: ../../explanation/principles.md:17
 msgid "其中 $B_N$ 为比特翻转置换矩阵。编码过程:"
-msgstr "where $B_N$ is the bit-reversal permutation matrix. The encoding process:"
+msgstr ""
+"where $B_N$ is the bit-reversal permutation matrix. The encoding process:"
 
 #: ../../explanation/principles.md:19
 msgid ""
 "\n"
 "x = u \\cdot G_N\n"
 msgstr ""
+"\n"
+"x = u \\cdot G_N\n"
 
 #: ../../explanation/principles.md:23
 msgid "其中 $u$ 的冻结位 (低可靠性子信道) 设为 0, 信息位放在高可靠性子信道上。"
-msgstr "where the frozen bits of $u$ (low-reliability sub-channels) are set to 0, and information bits are placed on high-reliability sub-channels."
+msgstr ""
+"where the frozen bits of $u$ (low-reliability sub-channels) are set to 0, "
+"and information bits are placed on high-reliability sub-channels."
 
 #: ../../explanation/principles.md:25
 msgid "可靠性序列"
@@ -76,7 +88,11 @@ msgstr "Reliability Sequence"
 msgid ""
 "SparkLink SLE 标准 6.9.1.4 节定义了固定的可靠性排序表, 给出每个子信道的可靠性排名。编码器根据码率 $R = K/N$ "
 "选取最可靠的 $K$ 个位置放置信息比特, 其余位置填充已知冻结位。"
-msgstr "Section 6.9.1.4 of the SparkLink SLE standard defines a fixed reliability ordering table that ranks each sub-channel. The encoder selects the $K$ most reliable positions for information bits (determined by rate $R = K/N$); the remaining positions are filled with known frozen bits."
+msgstr ""
+"Section 6.9.1.4 of the SparkLink SLE standard defines a fixed reliability "
+"ordering table that ranks each sub-channel. The encoder selects the $K$ most"
+" reliable positions for information bits (determined by rate $R = K/N$); the"
+" remaining positions are filled with known frozen bits."
 
 #: ../../explanation/principles.md:29
 msgid "SC 解码"
@@ -84,7 +100,9 @@ msgstr "SC Decoding"
 
 #: ../../explanation/principles.md:31
 msgid "逐次消除 (Successive Cancellation) 解码器按自然序逐位判决。对第 $i$ 位:"
-msgstr "The Successive Cancellation (SC) decoder makes bit-by-bit decisions in natural order. For bit $i$:"
+msgstr ""
+"The Successive Cancellation (SC) decoder makes bit-by-bit decisions in "
+"natural order. For bit $i$:"
 
 #: ../../explanation/principles.md:33
 msgid "若 $i$ 是冻结位, 直接判为 0。"
@@ -93,9 +111,12 @@ msgstr "If $i$ is a frozen bit, it is directly decided as 0."
 #: ../../explanation/principles.md:34
 #, python-brace-format
 msgid ""
-"若 $i$ 是信息位, 按 LLR 符号做硬判决: $\\hat{u}_i = \\begin{cases} 0, & L_i \\geq 0 "
-"\\\\ 1, & L_i < 0 \\end{cases}$。"
-msgstr "If $i$ is an information bit, make a hard decision based on the LLR sign: $\\hat{u}_i = \\begin{cases} 0, & L_i \\geq 0 \\\\ 1, & L_i < 0 \\end{cases}$."
+"若 $i$ 是信息位, 按 LLR 符号做硬判决: $\\hat{u}_i = \\begin{cases} 0, & L_i \\geq 0 \\\\"
+" 1, & L_i < 0 \\end{cases}$。"
+msgstr ""
+"If $i$ is an information bit, make a hard decision based on the LLR sign: "
+"$\\hat{u}_i = \\begin{cases} 0, & L_i \\geq 0 \\\\ 1, & L_i < 0 "
+"\\end{cases}$."
 
 #: ../../explanation/principles.md:36
 msgid "LLR 递归计算依赖两个基本运算:"
@@ -105,20 +126,24 @@ msgstr "LLR recursive computation relies on two basic operations:"
 #, python-brace-format
 msgid ""
 "\n"
-"f(a, b) = 2 \\tanh^{-1}\\!\\bigl(\\tanh(a/2) \\cdot \\tanh(b/2)\\bigr) "
-"\\approx \\operatorname{sign}(a) \\cdot \\operatorname{sign}(b) \\cdot "
-"\\min(|a|, |b|)\n"
+"f(a, b) = 2 \\tanh^{-1}\\!\\bigl(\\tanh(a/2) \\cdot \\tanh(b/2)\\bigr) \\approx \\operatorname{sign}(a) \\cdot \\operatorname{sign}(b) \\cdot \\min(|a|, |b|)\n"
 msgstr ""
+"\n"
+"f(a, b) = 2 \\tanh^{-1}\\!\\bigl(\\tanh(a/2) \\cdot \\tanh(b/2)\\bigr) \\approx \\operatorname{sign}(a) \\cdot \\operatorname{sign}(b) \\cdot \\min(|a|, |b|)\n"
 
 #: ../../explanation/principles.md:42
 msgid ""
 "\n"
 "g(a, b, s) = (-1)^s \\cdot a + b\n"
 msgstr ""
+"\n"
+"g(a, b, s) = (-1)^s \\cdot a + b\n"
 
 #: ../../explanation/principles.md:46
 msgid "其中 $a, b$ 是来自子节点的 LLR, $s$ 是已判决的上层比特。"
-msgstr "where $a, b$ are LLRs from child nodes, and $s$ is the already-decided upper-level bit."
+msgstr ""
+"where $a, b$ are LLRs from child nodes, and $s$ is the already-decided "
+"upper-level bit."
 
 #: ../../explanation/principles.md:48
 msgid "PSK 调制"
@@ -130,7 +155,9 @@ msgstr "Constellation Mapping"
 
 #: ../../explanation/principles.md:52
 msgid "SparkLink SLE 支持 BPSK, QPSK 和 8PSK 三种调制方式, 星座点定义为:"
-msgstr "SparkLink SLE supports three modulation schemes: BPSK, QPSK, and 8PSK. Constellation points are defined as:"
+msgstr ""
+"SparkLink SLE supports three modulation schemes: BPSK, QPSK, and 8PSK. "
+"Constellation points are defined as:"
 
 #: ../../explanation/principles.md:54
 #, python-brace-format
@@ -138,11 +165,16 @@ msgid ""
 "\n"
 "s_k = e^{j 2\\pi k / M}, \\quad k = 0, 1, \\ldots, M-1\n"
 msgstr ""
+"\n"
+"s_k = e^{j 2\\pi k / M}, \\quad k = 0, 1, \\ldots, M-1\n"
 
 #: ../../explanation/principles.md:58
 #, python-brace-format
 msgid "其中 $M \\in \\{2, 4, 8\\}$。比特到符号的映射采用格雷编码, 相邻星座点仅差 1 bit, 降低高信噪比下的比特错误率。"
-msgstr "where $M \\in \\{2, 4, 8\\}$. The bit-to-symbol mapping uses Gray coding, so adjacent constellation points differ by only 1 bit, reducing the bit error rate at high SNR."
+msgstr ""
+"where $M \\in \\{2, 4, 8\\}$. The bit-to-symbol mapping uses Gray coding, so"
+" adjacent constellation points differ by only 1 bit, reducing the bit error "
+"rate at high SNR."
 
 #: ../../explanation/principles.md:60
 msgid "RRC 脉冲成型"
@@ -158,18 +190,26 @@ msgid ""
 "\n"
 "H(f) = \\begin{cases}\n"
 "1, & |f| \\leq \\frac{1-\\alpha}{2T} \\\\\n"
-"\\cos\\!\\left(\\frac{\\pi T}{2\\alpha}\\left(|f| - "
-"\\frac{1-\\alpha}{2T}\\right)\\right), & \\frac{1-\\alpha}{2T} < |f| "
-"\\leq \\frac{1+\\alpha}{2T} \\\\\n"
+"\\cos\\!\\left(\\frac{\\pi T}{2\\alpha}\\left(|f| - \\frac{1-\\alpha}{2T}\\right)\\right), & \\frac{1-\\alpha}{2T} < |f| \\leq \\frac{1+\\alpha}{2T} \\\\\n"
 "0, & \\text{otherwise}\n"
 "\\end{cases}\n"
 msgstr ""
+"\n"
+"H(f) = \\begin{cases}\n"
+"1, & |f| \\leq \\frac{1-\\alpha}{2T} \\\\\n"
+"\\cos\\!\\left(\\frac{\\pi T}{2\\alpha}\\left(|f| - \\frac{1-\\alpha}{2T}\\right)\\right), & \\frac{1-\\alpha}{2T} < |f| \\leq \\frac{1+\\alpha}{2T} \\\\\n"
+"0, & \\text{otherwise}\n"
+"\\end{cases}\n"
 
 #: ../../explanation/principles.md:72
 msgid ""
 "其中 $\\alpha$ 为滚降系数, $T$ 为符号周期。收发两端各用一个 RRC 滤波器, 级联后等效为升余弦滤波器, 满足 Nyquist "
 "无码间干扰准则。标准规定 $\\alpha = 0.5$, 每符号采样数 $L = 4$。"
-msgstr "where $\\alpha$ is the roll-off factor and $T$ is the symbol period. An RRC filter at each end cascades to an equivalent raised-cosine filter satisfying the Nyquist ISI-free criterion. The standard specifies $\\alpha = 0.5$ and $L = 4$ samples per symbol."
+msgstr ""
+"where $\\alpha$ is the roll-off factor and $T$ is the symbol period. An RRC "
+"filter at each end cascades to an equivalent raised-cosine filter satisfying"
+" the Nyquist ISI-free criterion. The standard specifies $\\alpha = 0.5$ and "
+"$L = 4$ samples per symbol."
 
 #: ../../explanation/principles.md:74
 msgid "GFSK 调制"
@@ -177,32 +217,37 @@ msgstr "GFSK Modulation"
 
 #: ../../explanation/principles.md:76
 msgid "高斯频移键控的瞬时频率偏移为:"
-msgstr "The instantaneous frequency deviation of Gaussian frequency shift keying is:"
+msgstr ""
+"The instantaneous frequency deviation of Gaussian frequency shift keying is:"
 
 #: ../../explanation/principles.md:78
 msgid ""
 "\n"
 "f(t) = h \\cdot \\sum_k a_k \\cdot g(t - kT)\n"
 msgstr ""
+"\n"
+"f(t) = h \\cdot \\sum_k a_k \\cdot g(t - kT)\n"
 
 #: ../../explanation/principles.md:82
 #, python-brace-format
 msgid "其中 $h$ 为调制指数, $a_k \\in \\{-1, +1\\}$ 为数据符号, $g(t)$ 为高斯脉冲 (带宽时间积 $BT$):"
-msgstr "where $h$ is the modulation index, $a_k \\in \\{-1, +1\\}$ are data symbols, and $g(t)$ is the Gaussian pulse (bandwidth-time product $BT$):"
+msgstr ""
+"where $h$ is the modulation index, $a_k \\in \\{-1, +1\\}$ are data symbols,"
+" and $g(t)$ is the Gaussian pulse (bandwidth-time product $BT$):"
 
 #: ../../explanation/principles.md:84
 msgid ""
 "\n"
-"g(t) = "
-"\\frac{1}{2T}\\left[\\operatorname{erf}\\!\\left(\\frac{\\pi}{\\sqrt{\\ln"
-" 2}} \\cdot BT \\cdot \\frac{t + T/2}{T}\\right) - "
-"\\operatorname{erf}\\!\\left(\\frac{\\pi}{\\sqrt{\\ln 2}} \\cdot BT "
-"\\cdot \\frac{t - T/2}{T}\\right)\\right]\n"
+"g(t) = \\frac{1}{2T}\\left[\\operatorname{erf}\\!\\left(\\frac{\\pi}{\\sqrt{\\ln 2}} \\cdot BT \\cdot \\frac{t + T/2}{T}\\right) - \\operatorname{erf}\\!\\left(\\frac{\\pi}{\\sqrt{\\ln 2}} \\cdot BT \\cdot \\frac{t - T/2}{T}\\right)\\right]\n"
 msgstr ""
+"\n"
+"g(t) = \\frac{1}{2T}\\left[\\operatorname{erf}\\!\\left(\\frac{\\pi}{\\sqrt{\\ln 2}} \\cdot BT \\cdot \\frac{t + T/2}{T}\\right) - \\operatorname{erf}\\!\\left(\\frac{\\pi}{\\sqrt{\\ln 2}} \\cdot BT \\cdot \\frac{t - T/2}{T}\\right)\\right]\n"
 
 #: ../../explanation/principles.md:88
 msgid "SparkLink SLE 标准规定调制指数 $h = 0.5$ (最小频移), $BT = 0.5$。"
-msgstr "The SparkLink SLE standard specifies modulation index $h = 0.5$ (minimum shift), $BT = 0.5$."
+msgstr ""
+"The SparkLink SLE standard specifies modulation index $h = 0.5$ (minimum "
+"shift), $BT = 0.5$."
 
 #: ../../explanation/principles.md:90
 msgid "信道模型"
@@ -222,12 +267,16 @@ msgid ""
 "\n"
 "y = x + n, \\quad n \\sim \\mathcal{CN}(0, \\sigma^2)\n"
 msgstr ""
+"\n"
+"y = x + n, \\quad n \\sim \\mathcal{CN}(0, \\sigma^2)\n"
 
 #: ../../explanation/principles.md:100
 msgid ""
 "噪声方差与信噪比的关系: $\\sigma^2 = P_s / \\text{SNR}_{\\text{linear}}$, 其中 $P_s$ "
 "为信号平均功率。"
-msgstr "The relationship between noise variance and SNR: $\\sigma^2 = P_s / \\text{SNR}_{\\text{linear}}$, where $P_s$ is the average signal power."
+msgstr ""
+"The relationship between noise variance and SNR: $\\sigma^2 = P_s / "
+"\\text{SNR}_{\\text{linear}}$, where $P_s$ is the average signal power."
 
 #: ../../explanation/principles.md:102
 msgid "Rayleigh 衰落"
@@ -243,10 +292,14 @@ msgid ""
 "\n"
 "y = h \\cdot x + n, \\quad h \\sim \\mathcal{CN}(0, 1)\n"
 msgstr ""
+"\n"
+"y = h \\cdot x + n, \\quad h \\sim \\mathcal{CN}(0, 1)\n"
 
 #: ../../explanation/principles.md:110
 msgid "$|h|$ 服从 Rayleigh 分布。在准静态模型中, 整个帧使用同一个衰落系数。"
-msgstr "$|h|$ follows a Rayleigh distribution. In the quasi-static model, the same fading coefficient is used for the entire frame."
+msgstr ""
+"$|h|$ follows a Rayleigh distribution. In the quasi-static model, the same "
+"fading coefficient is used for the entire frame."
 
 #: ../../explanation/principles.md:112
 msgid "Rician 衰落"
@@ -254,19 +307,23 @@ msgstr "Rician Fading"
 
 #: ../../explanation/principles.md:114
 msgid "含直射路径的衰落模型, K 因子定义为直射功率与散射功率之比:"
-msgstr "Fading model with a line-of-sight path; the K-factor is defined as the ratio of LOS power to scattered power:"
+msgstr ""
+"Fading model with a line-of-sight path; the K-factor is defined as the ratio"
+" of LOS power to scattered power:"
 
 #: ../../explanation/principles.md:116
 msgid ""
 "\n"
-"h = \\sqrt{\\frac{K}{K+1}} + \\sqrt{\\frac{1}{K+1}} \\cdot "
-"h_{\\text{scatter}}, \\quad h_{\\text{scatter}} \\sim \\mathcal{CN}(0, 1)"
-"\n"
+"h = \\sqrt{\\frac{K}{K+1}} + \\sqrt{\\frac{1}{K+1}} \\cdot h_{\\text{scatter}}, \\quad h_{\\text{scatter}} \\sim \\mathcal{CN}(0, 1)\n"
 msgstr ""
+"\n"
+"h = \\sqrt{\\frac{K}{K+1}} + \\sqrt{\\frac{1}{K+1}} \\cdot h_{\\text{scatter}}, \\quad h_{\\text{scatter}} \\sim \\mathcal{CN}(0, 1)\n"
 
 #: ../../explanation/principles.md:120
 msgid "$K$ 越大表示直射路径越强, $K \\to \\infty$ 退化为 AWGN, $K = 0$ 退化为 Rayleigh。"
-msgstr "A larger $K$ indicates a stronger line-of-sight path. $K \\to \\infty$ degenerates to AWGN; $K = 0$ degenerates to Rayleigh."
+msgstr ""
+"A larger $K$ indicates a stronger line-of-sight path. $K \\to \\infty$ "
+"degenerates to AWGN; $K = 0$ degenerates to Rayleigh."
 
 #: ../../explanation/principles.md:122
 msgid "多径频率选择性"
@@ -282,11 +339,16 @@ msgid ""
 "\n"
 "y(t) = \\sum_{l=0}^{L-1} h_l(t) \\cdot x(t - \\tau_l) + n(t)\n"
 msgstr ""
+"\n"
+"y(t) = \\sum_{l=0}^{L-1} h_l(t) \\cdot x(t - \\tau_l) + n(t)\n"
 
 #: ../../explanation/principles.md:130
 #, python-brace-format
 msgid "其中 $\\{h_l, \\tau_l\\}$ 由功率延迟谱 (PDP) 决定。频率选择性衰落会导致码间干扰, 需要均衡器恢复。"
-msgstr "where $\\{h_l, \\tau_l\\}$ are determined by the power delay profile (PDP). Frequency-selective fading causes inter-symbol interference (ISI), which requires an equalizer to compensate."
+msgstr ""
+"where $\\{h_l, \\tau_l\\}$ are determined by the power delay profile (PDP). "
+"Frequency-selective fading causes inter-symbol interference (ISI), which "
+"requires an equalizer to compensate."
 
 #: ../../explanation/principles.md:132
 msgid "Doppler 衰落与 Jakes 模型"
@@ -294,7 +356,10 @@ msgstr "Doppler Fading and Jakes Model"
 
 #: ../../explanation/principles.md:134
 msgid "移动通信中, 收发端相对运动引起 Doppler 频移, 使信道系数随时间变化。最大 Doppler 频移为:"
-msgstr "In mobile communications, relative motion between transmitter and receiver causes Doppler frequency shifts, making channel coefficients time-varying. The maximum Doppler shift is:"
+msgstr ""
+"In mobile communications, relative motion between transmitter and receiver "
+"causes Doppler frequency shifts, making channel coefficients time-varying. "
+"The maximum Doppler shift is:"
 
 #: ../../explanation/principles.md:136
 #, python-brace-format
@@ -302,37 +367,52 @@ msgid ""
 "\n"
 "f_d = \\frac{v \\cdot f_c}{c}\n"
 msgstr ""
+"\n"
+"f_d = \\frac{v \\cdot f_c}{c}\n"
 
 #: ../../explanation/principles.md:140
 msgid "其中 $v$ 为相对速度, $f_c$ 为载波频率, $c$ 为光速。"
-msgstr "where $v$ is the relative velocity, $f_c$ is the carrier frequency, and $c$ is the speed of light."
+msgstr ""
+"where $v$ is the relative velocity, $f_c$ is the carrier frequency, and $c$ "
+"is the speed of light."
 
 #: ../../explanation/principles.md:142
 msgid "Clarke 模型指出, 在各向同性散射环境中, 时变信道的自相关函数为零阶第一类 Bessel 函数:"
-msgstr "The Clarke model states that in an isotropic scattering environment, the autocorrelation function of the time-varying channel is the zeroth-order Bessel function of the first kind:"
+msgstr ""
+"The Clarke model states that in an isotropic scattering environment, the "
+"autocorrelation function of the time-varying channel is the zeroth-order "
+"Bessel function of the first kind:"
 
 #: ../../explanation/principles.md:144
 msgid ""
 "\n"
 "R(\\Delta t) = J_0(2\\pi f_d \\Delta t)\n"
 msgstr ""
+"\n"
+"R(\\Delta t) = J_0(2\\pi f_d \\Delta t)\n"
 
 #: ../../explanation/principles.md:148
 msgid "实现上采用 Jakes 求和正弦模型。$N$ 个振荡器的叠加构造时变衰落系数:"
-msgstr "Implementation uses the Jakes sum-of-sinusoids model. Superposition of $N$ oscillators constructs the time-varying fading coefficient:"
+msgstr ""
+"Implementation uses the Jakes sum-of-sinusoids model. Superposition of $N$ "
+"oscillators constructs the time-varying fading coefficient:"
 
 #: ../../explanation/principles.md:150
 msgid ""
 "\n"
-"h(t) = \\frac{1}{\\sqrt{N}} \\sum_{n=1}^{N} e^{j(2\\pi f_d \\cos\\alpha_n"
-" \\cdot t + \\theta_n)}\n"
+"h(t) = \\frac{1}{\\sqrt{N}} \\sum_{n=1}^{N} e^{j(2\\pi f_d \\cos\\alpha_n \\cdot t + \\theta_n)}\n"
 msgstr ""
+"\n"
+"h(t) = \\frac{1}{\\sqrt{N}} \\sum_{n=1}^{N} e^{j(2\\pi f_d \\cos\\alpha_n \\cdot t + \\theta_n)}\n"
 
 #: ../../explanation/principles.md:154
 msgid ""
 "其中到达角 $\\alpha_n$ 均匀分布于 $[0, 2\\pi)$, 初始相位 $\\theta_n$ 随机。当 $N$ 足够大时, "
 "该过程的统计特性趋近于真实的 Clarke 模型:"
-msgstr "where arrival angles $\\alpha_n$ are uniformly distributed over $[0, 2\\pi)$ and initial phases $\\theta_n$ are random. As $N$ grows large, the statistics approach the true Clarke model:"
+msgstr ""
+"where arrival angles $\\alpha_n$ are uniformly distributed over $[0, 2\\pi)$"
+" and initial phases $\\theta_n$ are random. As $N$ grows large, the "
+"statistics approach the true Clarke model:"
 
 #: ../../explanation/principles.md:156
 msgid "实部和虚部近似独立高斯"
@@ -344,22 +424,28 @@ msgstr "Envelope approximately follows Rayleigh distribution"
 
 #: ../../explanation/principles.md:158
 msgid "自相关函数趋近 $J_0(2\\pi f_d \\Delta t)$"
-msgstr "The autocorrelation function approaches $J_0(2\pi f_d \Delta t)$"
+msgstr "The autocorrelation function approaches $J_0(2\\pi f_d \\Delta t)$"
 
 #: ../../explanation/principles.md:160
 msgid "对于 Rician 信道, 散射分量使用 Jakes 模型, 直射路径叠加固定相位:"
-msgstr "For Rician channels, the scattered component uses the Jakes model; the LOS path adds a fixed phase:"
+msgstr ""
+"For Rician channels, the scattered component uses the Jakes model; the LOS "
+"path adds a fixed phase:"
 
 #: ../../explanation/principles.md:162
 msgid ""
 "\n"
-"h(t) = \\sqrt{\\frac{K}{K+1}} \\cdot e^{j 2\\pi f_d t} + "
-"\\sqrt{\\frac{1}{K+1}} \\cdot h_\\text{Jakes}(t)\n"
+"h(t) = \\sqrt{\\frac{K}{K+1}} \\cdot e^{j 2\\pi f_d t} + \\sqrt{\\frac{1}{K+1}} \\cdot h_\\text{Jakes}(t)\n"
 msgstr ""
+"\n"
+"h(t) = \\sqrt{\\frac{K}{K+1}} \\cdot e^{j 2\\pi f_d t} + \\sqrt{\\frac{1}{K+1}} \\cdot h_\\text{Jakes}(t)\n"
 
 #: ../../explanation/principles.md:166
 msgid "$f_d = 0$ 时退化为准静态衰落 (整帧恒定系数), $f_d$ 较大时信道在帧内快速变化, 对均衡器和解码器构成严峻挑战。"
-msgstr "When $f_d = 0$, it degenerates to quasi-static fading (constant coefficient per frame); when $f_d$ is large, the channel varies rapidly within a frame, posing a serious challenge to equalizer and decoder."
+msgstr ""
+"When $f_d = 0$, it degenerates to quasi-static fading (constant coefficient "
+"per frame); when $f_d$ is large, the channel varies rapidly within a frame, "
+"posing a serious challenge to equalizer and decoder."
 
 #: ../../explanation/principles.md:168
 msgid "多用户干扰模型"
@@ -367,13 +453,18 @@ msgstr "Multi-User Interference Model"
 
 #: ../../explanation/principles.md:170
 msgid "多用户干扰 (MUI) 建模为叠加在目标信号上的外部噪声源。第 $i$ 个干扰者的信干比定义为:"
-msgstr "Multi-user interference (MUI) is modeled as an external noise source superimposed on the target signal. The signal-to-interference ratio for the $i$-th interferer is defined as:"
+msgstr ""
+"Multi-user interference (MUI) is modeled as an external noise source "
+"superimposed on the target signal. The signal-to-interference ratio for the "
+"$i$-th interferer is defined as:"
 
 #: ../../explanation/principles.md:172
 msgid ""
 "\n"
 "\\text{SIR}_i = \\frac{P_\\text{signal}}{P_{\\text{interferer},i}}\n"
 msgstr ""
+"\n"
+"\\text{SIR}_i = \\frac{P_\\text{signal}}{P_{\\text{interferer},i}}\n"
 
 #: ../../explanation/principles.md:176
 msgid "信干噪比的综合计算:"
@@ -382,27 +473,36 @@ msgstr "Combined signal-to-interference-plus-noise ratio computation:"
 #: ../../explanation/principles.md:178
 msgid ""
 "\n"
-"\\text{SINR} = \\frac{P_\\text{signal}}{P_\\text{noise} + \\sum_{i=1}^{M}"
-" P_{\\text{interferer},i}}\n"
+"\\text{SINR} = \\frac{P_\\text{signal}}{P_\\text{noise} + \\sum_{i=1}^{M} P_{\\text{interferer},i}}\n"
 msgstr ""
+"\n"
+"\\text{SINR} = \\frac{P_\\text{signal}}{P_\\text{noise} + \\sum_{i=1}^{M} P_{\\text{interferer},i}}\n"
 
 #: ../../explanation/principles.md:182
 msgid "邻信道干扰还需考虑频率偏移。第 $i$ 个干扰信号经频率搬移后叠加:"
-msgstr "Adjacent-channel interference also requires consideration of frequency offset. The $i$-th interfering signal is frequency-shifted and then superimposed:"
+msgstr ""
+"Adjacent-channel interference also requires consideration of frequency "
+"offset. The $i$-th interfering signal is frequency-shifted and then "
+"superimposed:"
 
 #: ../../explanation/principles.md:184
 msgid ""
 "\n"
-"y(t) = s(t) + \\sum_{i=1}^{M} "
-"\\sqrt{\\frac{P_s}{\\text{SIR}_i^\\text{linear}}} \\cdot z_i(t) \\cdot "
-"e^{j 2\\pi \\Delta f_i t} + n(t)\n"
+"y(t) = s(t) + \\sum_{i=1}^{M} \\sqrt{\\frac{P_s}{\\text{SIR}_i^\\text{linear}}} \\cdot z_i(t) \\cdot e^{j 2\\pi \\Delta f_i t} + n(t)\n"
 msgstr ""
+"\n"
+"y(t) = s(t) + \\sum_{i=1}^{M} \\sqrt{\\frac{P_s}{\\text{SIR}_i^\\text{linear}}} \\cdot z_i(t) \\cdot e^{j 2\\pi \\Delta f_i t} + n(t)\n"
 
 #: ../../explanation/principles.md:188
 msgid ""
-"其中 $z_i(t)$ 为归一化功率的随机干扰基带信号, $\\Delta f_i$ 为干扰者与目标信号之间的频率偏移。当 $\\Delta "
-"f_i = 0$ 时为同信道干扰, $\\Delta f_i \\neq 0$ 时为邻信道干扰, 接收滤波器对邻信道有一定衰减。"
-msgstr "where $z_i(t)$ is a normalized-power random interference baseband signal, and $\\Delta f_i$ is the frequency offset between the interferer and the desired signal. $\\Delta f_i = 0$ is co-channel interference; $\\Delta f_i \\neq 0$ is adjacent-channel interference, which the receive filter partially attenuates."
+"其中 $z_i(t)$ 为归一化功率的随机干扰基带信号, $\\Delta f_i$ 为干扰者与目标信号之间的频率偏移。当 $\\Delta f_i ="
+" 0$ 时为同信道干扰, $\\Delta f_i \\neq 0$ 时为邻信道干扰, 接收滤波器对邻信道有一定衰减。"
+msgstr ""
+"where $z_i(t)$ is a normalized-power random interference baseband signal, "
+"and $\\Delta f_i$ is the frequency offset between the interferer and the "
+"desired signal. $\\Delta f_i = 0$ is co-channel interference; $\\Delta f_i "
+"\\neq 0$ is adjacent-channel interference, which the receive filter "
+"partially attenuates."
 
 #: ../../explanation/principles.md:190
 msgid "均衡器"
@@ -422,10 +522,14 @@ msgid ""
 "\n"
 "\\hat{X}(k) = \\frac{Y(k)}{H(k)}\n"
 msgstr ""
+"\n"
+"\\hat{X}(k) = \\frac{Y(k)}{H(k)}\n"
 
 #: ../../explanation/principles.md:200
 msgid "优点是完全消除 ISI, 缺点是在信道零点处放大噪声。"
-msgstr "The advantage is complete ISI elimination; the disadvantage is noise amplification at channel nulls."
+msgstr ""
+"The advantage is complete ISI elimination; the disadvantage is noise "
+"amplification at channel nulls."
 
 #: ../../explanation/principles.md:202
 msgid "MMSE 均衡"
@@ -433,19 +537,24 @@ msgstr "MMSE Equalization"
 
 #: ../../explanation/principles.md:204
 msgid "最小均方误差准则在消除 ISI 和抑制噪声之间取平衡:"
-msgstr "The minimum mean square error criterion balances ISI elimination against noise suppression:"
+msgstr ""
+"The minimum mean square error criterion balances ISI elimination against "
+"noise suppression:"
 
 #: ../../explanation/principles.md:206
 #, python-brace-format
 msgid ""
 "\n"
-"\\hat{X}(k) = \\frac{H^*(k)}{|H(k)|^2 + \\sigma_n^2 / \\sigma_x^2} \\cdot"
-" Y(k)\n"
+"\\hat{X}(k) = \\frac{H^*(k)}{|H(k)|^2 + \\sigma_n^2 / \\sigma_x^2} \\cdot Y(k)\n"
 msgstr ""
+"\n"
+"\\hat{X}(k) = \\frac{H^*(k)}{|H(k)|^2 + \\sigma_n^2 / \\sigma_x^2} \\cdot Y(k)\n"
 
 #: ../../explanation/principles.md:210
 msgid "当 SNR 较高时趋近 ZF; SNR 较低时自动减小增益, 避免噪声放大。"
-msgstr "At high SNR it approaches ZF; at low SNR it automatically reduces gain to avoid noise amplification."
+msgstr ""
+"At high SNR it approaches ZF; at low SNR it automatically reduces gain to "
+"avoid noise amplification."
 
 #: ../../explanation/principles.md:212
 msgid "1-tap 均衡"
@@ -453,7 +562,9 @@ msgstr "1-Tap Equalization"
 
 #: ../../explanation/principles.md:214
 msgid "对平坦衰落信道, 信道系数为标量 $h$, MMSE 均衡退化为单抽头:"
-msgstr "For flat fading channels, the channel coefficient is a scalar $h$, and MMSE equalization degenerates to a single tap:"
+msgstr ""
+"For flat fading channels, the channel coefficient is a scalar $h$, and MMSE "
+"equalization degenerates to a single tap:"
 
 #: ../../explanation/principles.md:216
 #, python-brace-format
@@ -461,6 +572,8 @@ msgid ""
 "\n"
 "\\hat{x} = \\frac{h^*}{|h|^2 + \\sigma^2} \\cdot y\n"
 msgstr ""
+"\n"
+"\\hat{x} = \\frac{h^*}{|h|^2 + \\sigma^2} \\cdot y\n"
 
 #: ../../explanation/principles.md:220
 msgid "CRC 校验"
@@ -468,7 +581,9 @@ msgstr "CRC Verification"
 
 #: ../../explanation/principles.md:222
 msgid "循环冗余校验通过多项式除法检测传输错误。SparkLink SLE 定义了四种 CRC:"
-msgstr "Cyclic redundancy checking detects transmission errors through polynomial division. SparkLink SLE defines four CRC variants:"
+msgstr ""
+"Cyclic redundancy checking detects transmission errors through polynomial "
+"division. SparkLink SLE defines four CRC variants:"
 
 #: ../../explanation/principles.md
 msgid "类型"
@@ -554,7 +669,9 @@ msgstr "MAC Layer"
 msgid ""
 "CRC24B 在 FT3/FT4 中使用种子 $\\text{seed} = \\texttt{0x555555} \\oplus "
 "\\text{LLID}$, 提供与链路标识绑定的完整性保护。"
-msgstr "CRC24B in FT3/FT4 uses seed $\\text{seed} = \\texttt{0x555555} \\oplus \\text{LLID}$, providing integrity protection bound to the link identifier."
+msgstr ""
+"CRC24B in FT3/FT4 uses seed $\\text{seed} = \\texttt{0x555555} \\oplus "
+"\\text{LLID}$, providing integrity protection bound to the link identifier."
 
 #: ../../explanation/principles.md:233
 msgid "码块分割"
@@ -562,19 +679,29 @@ msgstr "Code Block Segmentation"
 
 #: ../../explanation/principles.md:235
 msgid "当数据长度超过单个 Polar 码块容量时, 需要分割为多个码块:"
-msgstr "When the data length exceeds a single Polar code block capacity, the data must be split into multiple code blocks:"
+msgstr ""
+"When the data length exceeds a single Polar code block capacity, the data "
+"must be split into multiple code blocks:"
 
 #: ../../explanation/principles.md:237
-msgid "**segment_without_crc** (FT2): 按 Polar 码块大小 $N$ 和信息位数 $K$ 将数据切分, 各段独立编码。"
-msgstr "**segment_without_crc** (FT2): Splits data according to Polar code block size $N$ and information bit count $K$; each segment is encoded independently."
+msgid ""
+"**segment_without_crc** (FT2): 按 Polar 码块大小 $N$ 和信息位数 $K$ 将数据切分, 各段独立编码。"
+msgstr ""
+"**segment_without_crc** (FT2): Splits data according to Polar code block "
+"size $N$ and information bit count $K$; each segment is encoded "
+"independently."
 
 #: ../../explanation/principles.md:238
 msgid "**segment_with_crc** (FT3/FT4): 每个分割段额外附加一个小 CRC, 为每段提供独立的错误检测能力。"
-msgstr "**segment_with_crc** (FT3/FT4): Each segment has a small CRC appended, providing independent error detection per segment."
+msgstr ""
+"**segment_with_crc** (FT3/FT4): Each segment has a small CRC appended, "
+"providing independent error detection per segment."
 
 #: ../../explanation/principles.md:240
 msgid "分割后每段独立进行 Polar 编码、速率匹配和调制, 接收端逆序处理。"
-msgstr "After splitting, each segment is independently Polar-encoded, rate-matched, and modulated; the receiver processes them in reverse order."
+msgstr ""
+"After splitting, each segment is independently Polar-encoded, rate-matched, "
+"and modulated; the receiver processes them in reverse order."
 
 #: ../../explanation/principles.md:242
 msgid "加扰"
@@ -582,15 +709,21 @@ msgstr "Scrambling"
 
 #: ../../explanation/principles.md:244
 msgid "信道比特加扰使用 Galois 线性反馈移位寄存器 (LFSR), 生成伪随机序列与编码比特异或:"
-msgstr "Channel bit scrambling uses a Galois linear feedback shift register (LFSR) to generate a pseudo-random sequence XOR-ed with encoded bits:"
+msgstr ""
+"Channel bit scrambling uses a Galois linear feedback shift register (LFSR) "
+"to generate a pseudo-random sequence XOR-ed with encoded bits:"
 
 #: ../../explanation/principles.md:246
 msgid ""
 "\n"
 "c_{\\text{scrambled}}(i) = c(i) \\oplus s(i)\n"
 msgstr ""
+"\n"
+"c_{\\text{scrambled}}(i) = c(i) \\oplus s(i)\n"
 
 #: ../../explanation/principles.md:250
 msgid "加扰的目的是打散长连续 0/1 序列, 改善信号的频谱特性和定时恢复性能。解扰时使用相同的初始种子重新生成序列即可恢复原始比特。"
-msgstr "Scrambling disperses long runs of 0s and 1s, improving the spectral properties and timing recovery. Descrambling regenerates the same sequence from the same initial seed to recover the original bits."
-
+msgstr ""
+"Scrambling disperses long runs of 0s and 1s, improving the spectral "
+"properties and timing recovery. Descrambling regenerates the same sequence "
+"from the same initial seed to recover the original bits."
