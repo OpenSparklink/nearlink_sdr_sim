@@ -197,6 +197,12 @@ def _builder_inited(app):
                 "--puppeteerConfigFile", _PUPPETEER_CFG,
                 "--pdfFit",
             ]
+        # 英文构建时替换 PDF 文档标题
+        if app.config.language == "en":
+            app.config.latex_documents = [
+                ("index", "nearlink-sdr.tex",
+                 "nearlink-sdr Technical Documentation", author, "manual"),
+            ]
 
 
 def setup(app):
