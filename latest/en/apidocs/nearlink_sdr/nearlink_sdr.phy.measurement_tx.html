@@ -399,8 +399,8 @@
 <p>Implements parameter configuration, time resource scheduling, and measurement computation for narrowband frequency-hopping and UWB pulse measurement links:</p>
 <ul class="simple">
 <li><p>6.7.2/6.7.3: measurement/sensing link parameter model</p></li>
-<li><p>6.7.4: time资源configuration (事件组调度)</p></li>
-<li><p>6.7.5/6.8.5: 测量量 (飞行time/角度/CIR/距离多普勒)</p></li>
+<li><p>6.7.4: Time resource configuration (event group scheduling).</p></li>
+<li><p>6.7.5/6.8.5: Measurement quantities (time of flight / angle / CIR / range-Doppler).</p></li>
 </ul>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
@@ -410,46 +410,46 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.MeasDirection" title="nearlink_sdr.phy.measurement_tx.MeasDirection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeasDirection</span></code></a></p></td>
-<td><p>测量方向。</p></td>
+<td><p>Measurement direction.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.HoppingOrder" title="nearlink_sdr.phy.measurement_tx.HoppingOrder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HoppingOrder</span></code></a></p></td>
-<td><p>frequency hopping方式 (6.7.2)。</p></td>
+<td><p>Frequency hopping scheme (6.7.2).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.MeasBandwidth" title="nearlink_sdr.phy.measurement_tx.MeasBandwidth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeasBandwidth</span></code></a></p></td>
-<td><p>测量signalbandwidth (6.7.2)。</p></td>
+<td><p>Measurement signal bandwidth (6.7.2).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.SecurityType" title="nearlink_sdr.phy.measurement_tx.SecurityType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SecurityType</span></code></a></p></td>
-<td><p>security类型。</p></td>
+<td><p>Security type.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.TimeRefType" title="nearlink_sdr.phy.measurement_tx.TimeRefType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimeRefType</span></code></a></p></td>
-<td><p>初始time参考类型 (6.8.5.4)。</p></td>
+<td><p>Initial time reference type (6.8.5.4).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.AntennaOrderType" title="nearlink_sdr.phy.measurement_tx.AntennaOrderType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AntennaOrderType</span></code></a></p></td>
-<td><p>天线对次序类型 (6.7.2)。</p></td>
+<td><p>Antenna pair order type (6.7.2).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.EventFrameType" title="nearlink_sdr.phy.measurement_tx.EventFrameType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventFrameType</span></code></a></p></td>
-<td><p>事件中传输的frame type。</p></td>
+<td><p>Frame types transmitted in the event.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.NodeMeasConfig" title="nearlink_sdr.phy.measurement_tx.NodeMeasConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NodeMeasConfig</span></code></a></p></td>
-<td><p>单个节点的测量parameter。</p></td>
+<td><p>Measurement parameters for a single node.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.MeasLinkParams" title="nearlink_sdr.phy.measurement_tx.MeasLinkParams"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeasLinkParams</span></code></a></p></td>
-<td><p>测量/感知linkparameter (6.7.2/6.7.3)。</p></td>
+<td><p>Measurement/sensing link parameters (6.7.2/6.7.3).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.CIRConfig" title="nearlink_sdr.phy.measurement_tx.CIRConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CIRConfig</span></code></a></p></td>
-<td><p>channel冲击response测量configuration。</p></td>
+<td><p>Channel impulse response measurement configuration.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.CSIFeedback" title="nearlink_sdr.phy.measurement_tx.CSIFeedback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSIFeedback</span></code></a></p></td>
-<td><p>channelstate信息feedback (6.7.5)。</p></td>
+<td><p>channelstateinformationfeedback (6.7.5).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.UWBMeasMode" title="nearlink_sdr.phy.measurement_tx.UWBMeasMode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWBMeasMode</span></code></a></p></td>
-<td><p>超宽带脉冲测量模式 (6.8.1)。</p></td>
+<td><p>UWB pulsemeasurementmode (6.8.1).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.ChannelSpliceMode" title="nearlink_sdr.phy.measurement_tx.ChannelSpliceMode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChannelSpliceMode</span></code></a></p></td>
-<td><p>channelconcatenation方式 (6.8.3)。</p></td>
+<td><p>Channel stitching method (6.8.3).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams" title="nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWBMeasLinkParams</span></code></a></p></td>
-<td><p>超宽带脉冲测量linkparameter (6.8.3/6.8.4)。</p></td>
+<td><p>UWB pulse measurement link parameters (6.8.3/6.8.4).</p></td>
 </tr>
 </tbody>
 </table>
@@ -461,37 +461,37 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.event_schedule" title="nearlink_sdr.phy.measurement_tx.event_schedule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">event_schedule</span></code></a></p></td>
-<td><p>generate一个事件组内的事件调度sequence。</p></td>
+<td><p>Generate the event scheduling sequence within an event group.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.event_start_times" title="nearlink_sdr.phy.measurement_tx.event_start_times"><code class="xref py py-obj docutils literal notranslate"><span class="pre">event_start_times</span></code></a></p></td>
-<td><p>compute一个事件组内各事件的起始时刻 (us)。</p></td>
+<td><p>Compute the start time of each event within an event group (us).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.ds_twr_2msg" title="nearlink_sdr.phy.measurement_tx.ds_twr_2msg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ds_twr_2msg</span></code></a></p></td>
-<td><p>双边两message飞行time估计 (6.8.5.1)。</p></td>
+<td><p>Two-way two-message time-of-flight estimation (6.8.5.1).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.ds_twr_3msg" title="nearlink_sdr.phy.measurement_tx.ds_twr_3msg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ds_twr_3msg</span></code></a></p></td>
-<td><p>双边三message飞行time估计 (6.8.5.2)。</p></td>
+<td><p>Two-way three-message time-of-flight estimation (6.8.5.2).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.angle_estimate" title="nearlink_sdr.phy.measurement_tx.angle_estimate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">angle_estimate</span></code></a></p></td>
-<td><p>根据相位差估计到达角/出发角 (6.8.5.3)。</p></td>
+<td><p>Estimate angle of arrival / angle of departure from phase difference (6.8.5.3).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.extract_cir" title="nearlink_sdr.phy.measurement_tx.extract_cir"><code class="xref py py-obj docutils literal notranslate"><span class="pre">extract_cir</span></code></a></p></td>
-<td><p>从receivesignal中提取channel冲击response测量量 (6.8.5.4)。</p></td>
+<td><p>Extract channel impulse response measurements from the received signal (6.8.5.4).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.range_doppler" title="nearlink_sdr.phy.measurement_tx.range_doppler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">range_doppler</span></code></a></p></td>
-<td><p>距离多普勒测量量compute (6.8.5.5)。</p></td>
+<td><p>Range-Doppler measurement quantity computation (6.8.5.5).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.compute_csi_feedback" title="nearlink_sdr.phy.measurement_tx.compute_csi_feedback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_csi_feedback</span></code></a></p></td>
-<td><p>从receivepower和channel IQ 估计值generate CSI feedback。</p></td>
+<td><p>Generate CSI feedback from received power and channel IQ estimates.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.csi_to_rx_power" title="nearlink_sdr.phy.measurement_tx.csi_to_rx_power"><code class="xref py py-obj docutils literal notranslate"><span class="pre">csi_to_rx_power</span></code></a></p></td>
-<td><p>从 CSI feedback恢复receivesignalpower。</p></td>
+<td><p>Recover received signal power from CSI feedback.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.uwb_event_sender" title="nearlink_sdr.phy.measurement_tx.uwb_event_sender"><code class="xref py py-obj docutils literal notranslate"><span class="pre">uwb_event_sender</span></code></a></p></td>
-<td><p>确定指定事件中谁先发。</p></td>
+<td><p>Determine which node transmits first in the specified event.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.uwb_event_count_per_mode" title="nearlink_sdr.phy.measurement_tx.uwb_event_count_per_mode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">uwb_event_count_per_mode</span></code></a></p></td>
-<td><p>每个测量事件中包含的 UWB frame数。</p></td>
+<td><p>Number of UWB frames contained in each measurement event.</p></td>
 </tr>
 </tbody>
 </table>
@@ -515,7 +515,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.MeasDirection">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">MeasDirection</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#MeasDirection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.MeasDirection" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>测量方向。</p>
+<p>Measurement direction.</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -536,7 +536,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.HoppingOrder">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">HoppingOrder</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#HoppingOrder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.HoppingOrder" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>frequency hopping方式 (6.7.2)。</p>
+<p>Frequency hopping scheme (6.7.2).</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -563,7 +563,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.MeasBandwidth">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">MeasBandwidth</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#MeasBandwidth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.MeasBandwidth" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>测量signalbandwidth (6.7.2)。</p>
+<p>Measurement signal bandwidth (6.7.2).</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -590,7 +590,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.SecurityType">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">SecurityType</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#SecurityType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.SecurityType" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>security类型。</p>
+<p>Security type.</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -611,7 +611,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.TimeRefType">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">TimeRefType</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#TimeRefType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.TimeRefType" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>初始time参考类型 (6.8.5.4)。</p>
+<p>Initial time reference type (6.8.5.4).</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -638,7 +638,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.AntennaOrderType">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">AntennaOrderType</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#AntennaOrderType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.AntennaOrderType" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>天线对次序类型 (6.7.2)。</p>
+<p>Antenna pair order type (6.7.2).</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -659,7 +659,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.EventFrameType">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">EventFrameType</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#EventFrameType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.EventFrameType" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>事件中传输的frame type。</p>
+<p>Frame types transmitted in the event.</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -685,7 +685,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.NodeMeasConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">NodeMeasConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#NodeMeasConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.NodeMeasConfig" title="Link to this definition">¶</a></dt>
-<dd><p>单个节点的测量parameter。</p>
+<dd><p>Measurement parameters for a single node.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.NodeMeasConfig.sync_signal_type">
 <span class="sig-name descname"><span class="pre">sync_signal_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.NodeMeasConfig.sync_signal_type" title="Link to this definition">¶</a></dt>
@@ -739,7 +739,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.MeasLinkParams">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">MeasLinkParams</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#MeasLinkParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.MeasLinkParams" title="Link to this definition">¶</a></dt>
-<dd><p>测量/感知linkparameter (6.7.2/6.7.3)。</p>
+<dd><p>Measurement/sensing link parameters (6.7.2/6.7.3).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.MeasLinkParams.event_group_start_us">
 <span class="sig-name descname"><span class="pre">event_group_start_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.MeasLinkParams.event_group_start_us" title="Link to this definition">¶</a></dt>
@@ -888,53 +888,47 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.event_schedule">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">event_schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.MeasLinkParams" title="nearlink_sdr.phy.measurement_tx.MeasLinkParams"><span class="pre">nearlink_sdr.phy.measurement_tx.MeasLinkParams</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.EventFrameType" title="nearlink_sdr.phy.measurement_tx.EventFrameType"><span class="pre">nearlink_sdr.phy.measurement_tx.EventFrameType</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#event_schedule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.event_schedule" title="Link to this definition">¶</a></dt>
-<dd><p>generate一个事件组内的事件调度sequence。</p>
-<p>Args:     params: 测量linkparameter。</p>
-<p>Returns:     列表, 每个元素为 (事件索引, frame type)。</p>
+<dd><p>Generate the event scheduling sequence within an event group.</p>
+<p>Args:     params: Measurement link parameters.</p>
+<p>Returns:     List, each element is (event_index, frame_type).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.event_start_times">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">event_start_times</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.MeasLinkParams" title="nearlink_sdr.phy.measurement_tx.MeasLinkParams"><span class="pre">nearlink_sdr.phy.measurement_tx.MeasLinkParams</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#event_start_times"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.event_start_times" title="Link to this definition">¶</a></dt>
-<dd><p>compute一个事件组内各事件的起始时刻 (us)。</p>
-<p>Args:     params: 测量linkparameter。     group_index: 事件组序号。</p>
-<p>Returns:
-各事件的起始时刻列表 (us)。</p>
+<dd><p>Compute the start time of each event within an event group (us).</p>
+<p>Args:     params: Measurement link parameters.     group_index: Event group index.</p>
+<p>Returns:     List of start times for each event (us).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.ds_twr_2msg">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">ds_twr_2msg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#ds_twr_2msg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.ds_twr_2msg" title="Link to this definition">¶</a></dt>
-<dd><p>双边两message飞行time估计 (6.8.5.1)。</p>
-<p>Args:     ra: 先发节点测量的往返time差 Ra = Ra2 - Ra1。     db: 后发节点测量的处理time差 Db = Db2 - Db1。</p>
-<p>Returns:     单向飞行time估计 T_prop (与 ra/db 相同time单位)。</p>
+<dd><p>Two-way two-message time-of-flight estimation (6.8.5.1).</p>
+<p>Args:     ra: Round-trip time difference measured by the initiator Ra = Ra2 - Ra1.     db: Processing time difference measured by the responder Db = Db2 - Db1.</p>
+<p>Returns:     One-way propagation time estimate T_prop (same time unit as ra/db).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.ds_twr_3msg">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">ds_twr_3msg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rb</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">da</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#ds_twr_3msg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.ds_twr_3msg" title="Link to this definition">¶</a></dt>
-<dd><p>双边三message飞行time估计 (6.8.5.2)。</p>
-<p>Args:
-ra: 先发节点 Ra = Ra2 - Ra1。
-rb: 后发节点 Rb = Rb2 - Rb1。
-da: 先发节点 Da = Da2 - Da1。
-db: 后发节点 Db = Db2 - Db1。</p>
-<p>Returns:     单向飞行time估计 T_prop。</p>
+<dd><p>Two-way three-message time-of-flight estimation (6.8.5.2).</p>
+<p>Args: ra: first-sendnode Ra = Ra2 - Ra1. rb: second-sendnode Rb = Rb2 - Rb1. da: first-sendnode Da = Da2 - Da1. db: second-sendnode Db = Db2 - Db1.</p>
+<p>Returns:     One-way propagation time estimate T_prop.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.angle_estimate">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">angle_estimate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta_phi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelength</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">antenna_spacing</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#angle_estimate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.angle_estimate" title="Link to this definition">¶</a></dt>
-<dd><p>根据相位差估计到达角/出发角 (6.8.5.3)。</p>
-<p>Args:     delta_phi: 两天线receive/transmitsignal的载波相位差 (rad)。     wavelength: signal波长 (m)。     antenna_spacing: 天线间距 (m)。</p>
-<p>Returns:
-角度估计值 (rad), 范围 [0, pi]。</p>
+<dd><p>Estimate angle of arrival / angle of departure from phase difference (6.8.5.3).</p>
+<p>Args:     delta_phi: Carrier phase difference between two antennas for received/transmitted signals (rad).     wavelength: Signal wavelength (m).     antenna_spacing: Antenna spacing (m).</p>
+<p>Returns:     angle estimate (rad), range [0, pi].</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.CIRConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">CIRConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#CIRConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.CIRConfig" title="Link to this definition">¶</a></dt>
-<dd><p>channel冲击response测量configuration。</p>
+<dd><p>Channel impulse response measurement configuration.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.CIRConfig.time_ref">
 <span class="sig-name descname"><span class="pre">time_ref</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.TimeRefType" title="nearlink_sdr.phy.measurement_tx.TimeRefType"><span class="pre">nearlink_sdr.phy.measurement_tx.TimeRefType</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.CIRConfig.time_ref" title="Link to this definition">¶</a></dt>
@@ -964,27 +958,25 @@ db: 后发节点 Db = Db2 - Db1。</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.extract_cir">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">extract_cir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rx_signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.complex128</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.CIRConfig" title="nearlink_sdr.phy.measurement_tx.CIRConfig"><span class="pre">nearlink_sdr.phy.measurement_tx.CIRConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_sample</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.complex128</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#extract_cir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.extract_cir" title="Link to this definition">¶</a></dt>
-<dd><p>从receivesignal中提取channel冲击response测量量 (6.8.5.4)。</p>
-<p>Args:     rx_signal: receive到的时域 IQ signal。     config: CIR 测量configuration。     ref_sample: 参考time点对应的采样索引。</p>
-<p>Returns:
-截取的 CIR (I+jQ 复数数组)。</p>
+<dd><p>Extract channel impulse response measurements from the received signal (6.8.5.4).</p>
+<p>Args:     rx_signal: Received time-domain IQ signal.     config: CIR measurement configuration.     ref_sample: Sample index corresponding to the reference time point.</p>
+<p>Returns:     Truncated CIR (I+jQ complex array).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.range_doppler">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">range_doppler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cir_frames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.complex128</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.complex128</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#range_doppler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.range_doppler" title="Link to this definition">¶</a></dt>
-<dd><p>距离多普勒测量量compute (6.8.5.5)。</p>
-<p>对多frame CIR data在慢time维度做 FFT 获取距离-多普勒图。</p>
-<p>Args:     cir_frames: 形状 (n_frames, n_delay_bins) 的多frame CIR data。</p>
-<p>Returns:
-形状 (n_frames, n_delay_bins) 的距离-多普勒矩阵。</p>
+<dd><p>Range-Doppler measurement quantity computation (6.8.5.5).</p>
+<p>Perform FFT on multi-frame CIR data along the slow-time dimension to obtain a range-Doppler map.</p>
+<p>Args:     cir_frames: Multi-frame CIR data of shape (n_frames, n_delay_bins).</p>
+<p>Returns:     Range-Doppler matrix of shape (n_frames, n_delay_bins).</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.CSIFeedback">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">CSIFeedback</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#CSIFeedback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.CSIFeedback" title="Link to this definition">¶</a></dt>
-<dd><p>channelstate信息feedback (6.7.5)。</p>
-<p>receivesignalpower(dBm) = 20*lg(abs(相对IQ值/1024)) + 参考receivepower值</p>
+<dd><p>channelstateinformationfeedback (6.7.5).</p>
+<p>Received signal power (dBm) = 20*lg(abs(relative_IQ_value / 1024)) + reference receive power value.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.CSIFeedback.ref_power_dbm">
 <span class="sig-name descname"><span class="pre">ref_power_dbm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.CSIFeedback.ref_power_dbm" title="Link to this definition">¶</a></dt>
@@ -1002,16 +994,15 @@ db: 后发节点 Db = Db2 - Db1。</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.compute_csi_feedback">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">compute_csi_feedback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rx_power_dbm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_iq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.14)"><span class="pre">complex</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.CSIFeedback" title="nearlink_sdr.phy.measurement_tx.CSIFeedback"><span class="pre">nearlink_sdr.phy.measurement_tx.CSIFeedback</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#compute_csi_feedback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.compute_csi_feedback" title="Link to this definition">¶</a></dt>
-<dd><p>从receivepower和channel IQ 估计值generate CSI feedback。</p>
-<p>Args:     rx_power_dbm: receivesignalpower (dBm)。     channel_iq: channel估计的复数 IQ 值。</p>
-<p>Returns:
-CSIFeedback 实例。</p>
+<dd><p>Generate CSI feedback from received power and channel IQ estimates.</p>
+<p>Args:     rx_power_dbm: Received signal power (dBm).     channel_iq: Complex IQ value of the channel estimate.</p>
+<p>Returns:     CSIFeedback instance.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.csi_to_rx_power">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">csi_to_rx_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feedback</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.CSIFeedback" title="nearlink_sdr.phy.measurement_tx.CSIFeedback"><span class="pre">nearlink_sdr.phy.measurement_tx.CSIFeedback</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#csi_to_rx_power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.csi_to_rx_power" title="Link to this definition">¶</a></dt>
-<dd><p>从 CSI feedback恢复receivesignalpower。</p>
+<dd><p>Recover received signal power from CSI feedback.</p>
 <p>Args:     feedback: CSI feedbackdata。</p>
 <p>Returns:     receivesignalpower (dBm)。</p>
 </dd></dl>
@@ -1020,7 +1011,7 @@ CSIFeedback 实例。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.UWBMeasMode">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">UWBMeasMode</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#UWBMeasMode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.UWBMeasMode" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>超宽带脉冲测量模式 (6.8.1)。</p>
+<p>UWB pulsemeasurementmode (6.8.1).</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -1047,7 +1038,7 @@ CSIFeedback 实例。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.ChannelSpliceMode">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">ChannelSpliceMode</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#ChannelSpliceMode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.ChannelSpliceMode" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>channelconcatenation方式 (6.8.3)。</p>
+<p>Channel stitching method (6.8.3).</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -1085,7 +1076,7 @@ CSIFeedback 实例。</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">UWBMeasLinkParams</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#UWBMeasLinkParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams" title="Link to this definition">¶</a></dt>
-<dd><p>超宽带脉冲测量linkparameter (6.8.3/6.8.4)。</p>
+<dd><p>UWB pulse measurement link parameters (6.8.3/6.8.4).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.mode">
 <span class="sig-name descname"><span class="pre">mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.UWBMeasMode" title="nearlink_sdr.phy.measurement_tx.UWBMeasMode"><span class="pre">nearlink_sdr.phy.measurement_tx.UWBMeasMode</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams.mode" title="Link to this definition">¶</a></dt>
@@ -1204,15 +1195,15 @@ CSIFeedback 实例。</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.uwb_event_sender">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">uwb_event_sender</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams" title="nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams"><span class="pre">nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#uwb_event_sender"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.uwb_event_sender" title="Link to this definition">¶</a></dt>
-<dd><p>确定指定事件中谁先发。</p>
-<p>Args:     params: UWB 测量parameter。     event_index: 事件索引。</p>
-<p>Returns:     0=configuration方先发, 1=对端先发。</p>
+<dd><p>Determine which node transmits first in the specified event.</p>
+<p>Args:     params: UWB measurement parameters.     event_index: Event index.</p>
+<p>Returns:     0=configurator transmits first, 1=remote peer transmits first.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.uwb_event_count_per_mode">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">uwb_event_count_per_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.UWBMeasMode" title="nearlink_sdr.phy.measurement_tx.UWBMeasMode"><span class="pre">nearlink_sdr.phy.measurement_tx.UWBMeasMode</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#uwb_event_count_per_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.uwb_event_count_per_mode" title="Link to this definition">¶</a></dt>
-<dd><p>每个测量事件中包含的 UWB frame数。</p>
+<dd><p>Number of UWB frames contained in each measurement event.</p>
 </dd></dl>
 
 </section>

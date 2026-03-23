@@ -399,12 +399,12 @@
 <p>Uses MockUSRP loopback mode to connect the complete SLE TX/RX pipeline through a virtual USRP device, verifying end-to-end functional correctness.</p>
 <p>Supported simulation scenarios:</p>
 <ul class="simple">
-<li><p>单frame IQ 环回 (AWGN channel)</p></li>
-<li><p>PHY 全link环回 (CRC → Polar → modulation → channel → demodulation → decode → CRC)</p></li>
-<li><p>MAC dataframe环回 (AsyncDataFrame 打包 → PHY → 环回 → PHY → 解包)</p></li>
-<li><p>MAC signaling环回 (signalingencode → PHY → 环回 → PHY → signalingdecode)</p></li>
-<li><p>frequency hopping发射sequence</p></li>
-<li><p>SleNode 双节点端到端</p></li>
+<li><p>Single-frame IQ loopback (AWGN channel)</p></li>
+<li><p>PHY full-chain loopback (CRC → Polar → modulation → channel → demodulation → decoding → CRC)</p></li>
+<li><p>MAC data frame loopback (AsyncDataFrame packing → PHY → loopback → PHY → unpacking)</p></li>
+<li><p>MAC signaling loopback (signaling encoding → PHY → loopback → PHY → signaling decoding)</p></li>
+<li><p>Frequency-hopping transmit sequence</p></li>
+<li><p>SleNode dual-node end-to-end</p></li>
 </ul>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
@@ -414,10 +414,10 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.usrp_sim.LoopbackResult" title="nearlink_sdr.sim.usrp_sim.LoopbackResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LoopbackResult</span></code></a></p></td>
-<td><p>单frame环回simulation结果。</p></td>
+<td><p>Single-frame loopback simulation result.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.usrp_sim.USRPSimResult" title="nearlink_sdr.sim.usrp_sim.USRPSimResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">USRPSimResult</span></code></a></p></td>
-<td><p>多framesimulation汇总结果。</p></td>
+<td><p>Multi-frame simulation aggregated result.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.usrp_sim.USRPLoopbackSim" title="nearlink_sdr.sim.usrp_sim.USRPLoopbackSim"><code class="xref py py-obj docutils literal notranslate"><span class="pre">USRPLoopbackSim</span></code></a></p></td>
 <td><p>USRP loopback simulator.</p></td>
@@ -449,7 +449,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.sim.usrp_sim.LoopbackResult">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.usrp_sim.</span></span><span class="sig-name descname"><span class="pre">LoopbackResult</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/usrp_sim.html#LoopbackResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.usrp_sim.LoopbackResult" title="Link to this definition">¶</a></dt>
-<dd><p>单frame环回simulation结果。</p>
+<dd><p>Single-frame loopback simulation result.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.sim.usrp_sim.LoopbackResult.tx_samples">
 <span class="sig-name descname"><span class="pre">tx_samples</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.sim.usrp_sim.LoopbackResult.tx_samples" title="Link to this definition">¶</a></dt>
@@ -491,7 +491,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.sim.usrp_sim.USRPSimResult">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.usrp_sim.</span></span><span class="sig-name descname"><span class="pre">USRPSimResult</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/usrp_sim.html#USRPSimResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.usrp_sim.USRPSimResult" title="Link to this definition">¶</a></dt>
-<dd><p>多framesimulation汇总结果。</p>
+<dd><p>Multi-frame simulation aggregated result.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.sim.usrp_sim.USRPSimResult.total_frames">
 <span class="sig-name descname"><span class="pre">total_frames</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.sim.usrp_sim.USRPSimResult.total_frames" title="Link to this definition">¶</a></dt>
@@ -525,7 +525,7 @@
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.sim.usrp_sim.USRPSimResult.fer">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.sim.usrp_sim.USRPSimResult.fer" title="Link to this definition">¶</a></dt>
-<dd><p>frame错误率。</p>
+<dd><p>Frame error rate.</p>
 </dd></dl>
 
 </dd></dl>
@@ -534,7 +534,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.sim.usrp_sim.USRPLoopbackSim">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.usrp_sim.</span></span><span class="sig-name descname"><span class="pre">USRPLoopbackSim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">snr_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">30.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'awgn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/usrp_sim.html#USRPLoopbackSim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.usrp_sim.USRPLoopbackSim" title="Link to this definition">¶</a></dt>
 <dd><p>USRP loopback simulator.</p>
-<p>在 MockUSRP loopback 模式下, TX 端transmit的 IQ signal经optionalchannel模型 后直接送入 RX 端, 实现完整的硬件在环式simulation。</p>
+<p>In MockUSRP loopback mode, IQ signals transmitted by the TX side pass through an optional channel model and are fed directly to the RX side, enabling complete hardware-in-the-loop simulation.</p>
 <p class="rubric">Initialization</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.close">
@@ -544,22 +544,22 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.loopback_iq">
 <span class="sig-name descname"><span class="pre">loopback_iq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iq_samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/usrp_sim.html#USRPLoopbackSim.loopback_iq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.loopback_iq" title="Link to this definition">¶</a></dt>
-<dd><p>IQ 样本经 MockUSRP TX → loopback → RX 环回。</p>
+<dd><p>IQ samples through MockUSRP TX → loopback → RX roundtrip.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.loopback_phy">
 <span class="sig-name descname"><span class="pre">loopback_phy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html#nearlink_sdr.phy.tx_pipeline.TxConfig" title="nearlink_sdr.phy.tx_pipeline.TxConfig"><span class="pre">nearlink_sdr.phy.tx_pipeline.TxConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctrl_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.sim.usrp_sim.LoopbackResult" title="nearlink_sdr.sim.usrp_sim.LoopbackResult"><span class="pre">nearlink_sdr.sim.usrp_sim.LoopbackResult</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/usrp_sim.html#USRPLoopbackSim.loopback_phy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.loopback_phy" title="Link to this definition">¶</a></dt>
-<dd><p>PHY 全link环回: encode → modulation → USRP TX → channel → USRP RX → demodulation → decode。</p>
-<p>Args:     data_bits: information bits。     cfg: 发射configuration。     ctrl_bits: 控制information bits, None 时使用全零。</p>
-<p>Returns:     LoopbackResult 包含 CRC check结果和 BER。</p>
+<dd><p>PHY full-chain loopback: encoding → modulation → USRP TX → channel → USRP RX → demodulation → decoding.</p>
+<p>Args:     data_bits: Information bits.     cfg: Transmit configuration.     ctrl_bits: Control information bits; None defaults to all zeros.</p>
+<p>Returns:     LoopbackResult containing CRC check result and BER.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.loopback_mac_data">
 <span class="sig-name descname"><span class="pre">loopback_mac_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mac_payload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html#nearlink_sdr.phy.tx_pipeline.TxConfig" title="nearlink_sdr.phy.tx_pipeline.TxConfig"><span class="pre">nearlink_sdr.phy.tx_pipeline.TxConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="nearlink_sdr.phy.mac_interface.html#nearlink_sdr.phy.mac_interface.MacRxResult" title="nearlink_sdr.phy.mac_interface.MacRxResult"><span class="pre">nearlink_sdr.phy.mac_interface.MacRxResult</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.sim.usrp_sim.LoopbackResult" title="nearlink_sdr.sim.usrp_sim.LoopbackResult"><span class="pre">nearlink_sdr.sim.usrp_sim.LoopbackResult</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/usrp_sim.html#USRPLoopbackSim.loopback_mac_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.loopback_mac_data" title="Link to this definition">¶</a></dt>
-<dd><p>MAC dataframe环回: bytes → mac_to_iq → USRP → iq_to_mac。</p>
-<p>Args:     mac_payload: MAC 层载荷字节。     cfg: 发射configuration, None 时使用 FT2 MCS7 default值。</p>
+<dd><p>MAC data frame loopback: bytes → mac_to_iq → USRP → iq_to_mac.</p>
+<p>Args:     mac_payload: MAC layer payload bytes.     cfg: Transmit configuration; None defaults to FT2 MCS7.</p>
 <p>Returns:
 (MacRxResult, LoopbackResult)</p>
 </dd></dl>
@@ -567,8 +567,8 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.loopback_hopping">
 <span class="sig-name descname"><span class="pre">loopback_hopping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iq_samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/usrp_sim.html#USRPLoopbackSim.loopback_hopping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.loopback_hopping" title="Link to this definition">¶</a></dt>
-<dd><p>frequency hopping发射 + receive环回。</p>
-<p>在每个frequency hoppingchannel上发射 iq_samples, 然后在同一channel上receive。</p>
+<dd><p>Frequency-hopping transmit + receive loopback.</p>
+<p>Transmit iq_samples on each hopping channel, then receive on the same channel.</p>
 <p>Returns:
 [(channel_num, rx_samples), …]</p>
 </dd></dl>
@@ -576,10 +576,9 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.run_batch">
 <span class="sig-name descname"><span class="pre">run_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payloads</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html#nearlink_sdr.phy.tx_pipeline.TxConfig" title="nearlink_sdr.phy.tx_pipeline.TxConfig"><span class="pre">nearlink_sdr.phy.tx_pipeline.TxConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.sim.usrp_sim.USRPSimResult" title="nearlink_sdr.sim.usrp_sim.USRPSimResult"><span class="pre">nearlink_sdr.sim.usrp_sim.USRPSimResult</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/usrp_sim.html#USRPLoopbackSim.run_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.run_batch" title="Link to this definition">¶</a></dt>
-<dd><p>批量 MAC frame环回simulation。</p>
-<p>Args:     payloads: MAC 载荷列表。     cfg: 发射configuration。</p>
-<p>Returns:
-USRPSimResult 汇总结果。</p>
+<dd><p>Batch MAC frame loopback simulation.</p>
+<p>Args:     payloads: List of MAC payloads.     cfg: Transmit configuration.</p>
+<p>Returns:     USRPSimResult summary.</p>
 </dd></dl>
 
 <dl class="py property">

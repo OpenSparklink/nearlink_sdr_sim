@@ -418,19 +418,19 @@
 <td><p>Generate the 126-bit sequence for sync signal 4.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.sync_sequence.sync_signal_1_validate" title="nearlink_sdr.phy.sync_sequence.sync_signal_1_validate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sync_signal_1_validate</span></code></a></p></td>
-<td><p>validate32比特syncsequence是否满足standard约束条件。</p></td>
+<td><p>Verify whether a 32-bit sync word satisfies the standard constraint conditions.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.sync_sequence._secure_random_sequence" title="nearlink_sdr.phy.sync_sequence._secure_random_sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_secure_random_sequence</span></code></a></p></td>
-<td><p>security随机函数 (6.10.7), generate256比特securitysequence。</p></td>
+<td><p>Security random function (6.10.7), generates a 256-bit security sequence.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.sync_sequence._extract_sync_from_security_seq" title="nearlink_sdr.phy.sync_sequence._extract_sync_from_security_seq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_extract_sync_from_security_seq</span></code></a></p></td>
-<td><p>从securitysequence中提取随机syncsequence。</p></td>
+<td><p>Extract a random sync word from the security sequence.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.sync_sequence.sync_signal_5" title="nearlink_sdr.phy.sync_sequence.sync_signal_5"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sync_signal_5</span></code></a></p></td>
-<td><p>generatesyncsignal5的随机syncsequence (GFSKmodulation)。</p></td>
+<td><p>Generate the random sync word for sync signal 5 (GFSK modulation).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.sync_sequence.sync_signal_6" title="nearlink_sdr.phy.sync_sequence.sync_signal_6"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sync_signal_6</span></code></a></p></td>
-<td><p>generatesyncsignal6的随机syncsequence (无相位旋转BPSKmodulation)。</p></td>
+<td><p>Generate the random sync word for sync signal 6 (non-rotated BPSK modulation).</p></td>
 </tr>
 </tbody>
 </table>
@@ -513,8 +513,8 @@
 <dd><p>Generate the 32-bit sequence for sync signal 1.</p>
 <p>standard6.2.3.1:</p>
 <ul class="simple">
-<li><p>broadcast frame: 固定sequence0x5A2BDA62</p></li>
-<li><p>其他frame: 24位逻辑link标识 → 补”10” → BCH(31,26) → m31XOR → 补”0”</p></li>
+<li><p>Broadcast frame: fixed sequence 0x5A2BDA62.</p></li>
+<li><p>Other frames: 24-bit logical link identifier → append “10” → BCH(31,26) → XOR with m31 → append “0”.</p></li>
 </ul>
 <p>Args:
 link_id_24: 24位逻辑链路标识，None表示广播帧</p>
@@ -528,8 +528,8 @@ link_id_24: 24位逻辑链路标识，None表示广播帧</p>
 <dd><p>Generate the 64-bit sequence for sync signal 2.</p>
 <p>standard6.2.3.2:</p>
 <ul class="simple">
-<li><p>broadcast frame: 固定sequence0x7DE7585C6D226540</p></li>
-<li><p>其他frame: 24位逻辑link标识 → BCH(63,24) → m63XOR → 补”0”</p></li>
+<li><p>Broadcast frame: fixed sequence 0x7DE7585C6D226540.</p></li>
+<li><p>Other frames: 24-bit logical link identifier → BCH(63,24) → XOR with m63 → append “0”.</p></li>
 </ul>
 <p>Args:
 link_id_24: 24位逻辑链路标识，None表示广播帧</p>
@@ -541,7 +541,7 @@ link_id_24: 24位逻辑链路标识，None表示广播帧</p>
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sync_sequence.sync_signal_3">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.sync_sequence.</span></span><span class="sig-name descname"><span class="pre">sync_signal_3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m_seq_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sync_sequence.html#sync_signal_3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sync_sequence.sync_signal_3" title="Link to this definition">¶</a></dt>
 <dd><p>Generate the 62-bit sequence for sync signal 3.</p>
-<p>standard6.2.3.3: 两个相同的31长msequence串联。 经BPSKmodulation后产生62个符号。</p>
+<p>Standard 6.2.3.3: concatenation of two identical length-31 m-sequences. After BPSK modulation, produces 62 symbols.</p>
 <p>Args:
 m_seq_index: m31序列编号 0~5，基础广播信道为0</p>
 <p>Returns:
@@ -552,7 +552,7 @@ m_seq_index: m31序列编号 0~5，基础广播信道为0</p>
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sync_sequence.sync_signal_4">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.sync_sequence.</span></span><span class="sig-name descname"><span class="pre">sync_signal_4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m_seq_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sync_sequence.html#sync_signal_4"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sync_sequence.sync_signal_4" title="Link to this definition">¶</a></dt>
 <dd><p>Generate the 126-bit sequence for sync signal 4.</p>
-<p>standard6.2.3.4: 两个相同的63长msequence串联。 经BPSKmodulation后产生126个符号。</p>
+<p>Standard 6.2.3.4: concatenation of two identical length-63 m-sequences. After BPSK modulation, produces 126 symbols.</p>
 <p>Args:
 m_seq_index: m63序列编号 0~5，基础广播信道为0</p>
 <p>Returns:
@@ -562,19 +562,19 @@ m_seq_index: m63序列编号 0~5，基础广播信道为0</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sync_sequence.sync_signal_1_validate">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.sync_sequence.</span></span><span class="sig-name descname"><span class="pre">sync_signal_1_validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sync_32</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sync_sequence.html#sync_signal_1_validate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sync_sequence.sync_signal_1_validate" title="Link to this definition">¶</a></dt>
-<dd><p>validate32比特syncsequence是否满足standard约束条件。</p>
-<p>standard6.2.3.1要求:</p>
+<dd><p>Verify whether a 32-bit sync word satisfies the standard constraint conditions.</p>
+<p>Standard 6.2.3.1 requirements:</p>
 <ol class="arabic simple">
-<li><p>不能出现7个或以上连续的0或1</p></li>
-<li><p>不能出现26次或以上的0/1跳转</p></li>
-<li><p>不能和broadcast framesyncsequence相同</p></li>
+<li><p>Must not contain 7 or more consecutive 0s or 1s.</p></li>
+<li><p>Must not contain 26 or more 0/1 transitions.</p></li>
+<li><p>Must not be identical to the broadcast frame sync word.</p></li>
 </ol>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sync_sequence._secure_random_sequence">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.sync_sequence.</span></span><span class="sig-name descname"><span class="pre">_secure_random_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_param</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">kdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sync_sequence.html#_secure_random_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sync_sequence._secure_random_sequence" title="Link to this definition">¶</a></dt>
-<dd><p>security随机函数 (6.10.7), generate256比特securitysequence。</p>
+<dd><p>Security random function (6.10.7), generates a 256-bit security sequence.</p>
 <p>Args:
 seed: 128比特安全随机种子 (16字节)
 time_param: 32比特时间参数 (如调度时隙号×2)
@@ -586,9 +586,8 @@ kdf_type: 0=AES-CMAC, 1=HMAC-SM3</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sync_sequence._extract_sync_from_security_seq">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.sync_sequence.</span></span><span class="sig-name descname"><span class="pre">_extract_sync_from_security_seq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">security_seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sync</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_tx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sync_sequence.html#_extract_sync_from_security_seq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sync_sequence._extract_sync_from_security_seq" title="Link to this definition">¶</a></dt>
-<dd><p>从securitysequence中提取随机syncsequence。</p>
-<p>先发节点: 偶数索引比特的前 n_sync 个
-后发节点: 奇数索引比特的前 n_sync 个</p>
+<dd><p>Extract a random sync word from the security sequence.</p>
+<p>Initiator node: first n_sync bits at even indices. Responder node: first n_sync bits at odd indices.</p>
 <p>Args:
 security_seq: 256比特安全序列
 n_sync: 同步序列长度 (32, 64, 128)
@@ -598,8 +597,8 @@ is_tx: True=先发节点, False=后发节点</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sync_sequence.sync_signal_5">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.sync_sequence.</span></span><span class="sig-name descname"><span class="pre">sync_signal_5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">slot_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sync</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">32</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_tx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sync_sequence.html#sync_signal_5"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sync_sequence.sync_signal_5" title="Link to this definition">¶</a></dt>
-<dd><p>generatesyncsignal5的随机syncsequence (GFSKmodulation)。</p>
-<p>standard6.2.3.5: 使用security随机函数generate256比特securitysequence, 先发/后发节点分别取偶数/奇数索引比特。</p>
+<dd><p>Generate the random sync word for sync signal 5 (GFSK modulation).</p>
+<p>Standard 6.2.3.5: use the security random function to generate a 256-bit security sequence; initiator/responder nodes take even/odd indexed bits respectively.</p>
 <p>Args:
 seed: 安全随机种子 (16字节)
 slot_number: 起始调度时隙号
@@ -611,8 +610,8 @@ kdf_type: 0=AES-CMAC, 1=HMAC-SM3</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sync_sequence.sync_signal_6">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.sync_sequence.</span></span><span class="sig-name descname"><span class="pre">sync_signal_6</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">slot_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sync</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">32</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_tx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sync_sequence.html#sync_signal_6"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sync_sequence.sync_signal_6" title="Link to this definition">¶</a></dt>
-<dd><p>generatesyncsignal6的随机syncsequence (无相位旋转BPSKmodulation)。</p>
-<p>standard6.2.3.6: 与syncsignal5generate方式相同, 区别仅在modulation方式 (BPSK vs GFSK)。</p>
+<dd><p>Generate the random sync word for sync signal 6 (non-rotated BPSK modulation).</p>
+<p>Standard 6.2.3.6: same generation method as sync signal 5, differing only in modulation scheme (BPSK vs GFSK).</p>
 <p>Args:
 seed: 安全随机种子 (16字节)
 slot_number: 起始调度时隙号

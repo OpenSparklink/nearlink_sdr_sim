@@ -408,28 +408,28 @@
 <td><p>Node initial role preference.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.node.TransportMode" title="nearlink_sdr.node.TransportMode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransportMode</span></code></a></p></td>
-<td><p>传输模式。</p></td>
+<td><p>Transport mode.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.node.NodeConfig" title="nearlink_sdr.node.NodeConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NodeConfig</span></code></a></p></td>
-<td><p>SLE 节点configuration。</p></td>
+<td><p>SLE node configuration.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.node.NodeState" title="nearlink_sdr.node.NodeState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NodeState</span></code></a></p></td>
-<td><p>节点高层state, 简化自 LinkState。</p></td>
+<td><p>High-level node state, simplified from LinkState.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.node.NodeCallback" title="nearlink_sdr.node.NodeCallback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NodeCallback</span></code></a></p></td>
-<td><p>节点事件回调, 子类可覆盖。</p></td>
+<td><p>Node event callbacks; subclasses may override.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.node.TxResult" title="nearlink_sdr.node.TxResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TxResult</span></code></a></p></td>
-<td><p>发射结果。</p></td>
+<td><p>Transmit result.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.node.RxResult" title="nearlink_sdr.node.RxResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RxResult</span></code></a></p></td>
 <td><p>Receive result.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.node.SleNode" title="nearlink_sdr.node.SleNode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SleNode</span></code></a></p></td>
-<td><p>SparkLink SLE 节点实体。</p></td>
+<td><p>SparkLink SLE node entity.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.node._InternalCallback" title="nearlink_sdr.node._InternalCallback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_InternalCallback</span></code></a></p></td>
-<td><p>将 LinkManager 回调转发到 SleNode。</p></td>
+<td><p>Forward LinkManager callbacks to SleNode.</p></td>
 </tr>
 </tbody>
 </table>
@@ -441,10 +441,10 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.node._build_ctrl_info" title="nearlink_sdr.node._build_ctrl_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_build_ctrl_info</span></code></a></p></td>
-<td><p>从 QoS 控制字段构建 A2 控制信息。</p></td>
+<td><p>Build A2 control information from QoS control fields.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.node._build_ctrl_bits" title="nearlink_sdr.node._build_ctrl_bits"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_build_ctrl_bits</span></code></a></p></td>
-<td><p>从 QoS 控制字段构建控制information bits。</p></td>
+<td><p>Build control information bits from QoS control fields.</p></td>
 </tr>
 </tbody>
 </table>
@@ -501,7 +501,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.node.TransportMode">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.node.</span></span><span class="sig-name descname"><span class="pre">TransportMode</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#TransportMode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.TransportMode" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>传输模式。</p>
+<p>Transport mode.</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -521,8 +521,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.node.NodeConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.node.</span></span><span class="sig-name descname"><span class="pre">NodeConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#NodeConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.NodeConfig" title="Link to this definition">¶</a></dt>
-<dd><p>SLE 节点configuration。</p>
-<p>Attributes:     address: 6 字节device address。     role: role偏好 (AUTO/G_NODE/T_NODE)。     frame_type: frame type (1-4)。     mcs_index: MCS 索引 (0-12)。     bandwidth_mhz: channelbandwidth (1/2/4 MHz)。     pilot_interval: pilot插入interval (0/4/8/16)。     max_pdu: maximum PDU length (字节)。     max_retransmit: maximum重传次数。     enable_encryption: 是否启用encrypt。     transport: 传输模式。     band: 频段标识。     hop_param2: frequency hoppingparameter 2 (0 表示自动从地址派生)。     blocked_channels: 被阻塞的channel号集合。     tx_power_dbm: 初始发射power (dBm)。     max_power_dbm: maximum发射power。     min_power_dbm: minimum发射power。     channel_config: simulation模式下的channel模型configuration (None 表示理想channel)。     usrp_config: USRP 硬件configuration (transport=USRP 时使用)。     smf_enabled: 是否启用系统管理frame调度。</p>
+<dd><p>SLE node configuration.</p>
+<p>Attributes:     address: 6-byte device address.     role: Role preference (AUTO/G_NODE/T_NODE).     frame_type: Frame type (1-4).     mcs_index: MCS index (0-12).     bandwidth_mhz: Channel bandwidth (1/2/4 MHz).     pilot_interval: Pilot insertion interval (0/4/8/16).     max_pdu: Maximum PDU length (bytes).     max_retransmit: Maximum retransmission count.     enable_encryption: Whether to enable encryption.     transport: Transport mode.     band: Band identifier.     hop_param2: Frequency-hopping parameter 2 (0 means auto-derived from address).     blocked_channels: Set of blocked channel numbers.     tx_power_dbm: Initial transmit power (dBm).     max_power_dbm: Maximum transmit power.     min_power_dbm: Minimum transmit power.     channel_config: Channel model configuration for simulation mode (None for ideal channel).     usrp_config: USRP hardware configuration (used when transport=USRP).     smf_enabled: Whether to enable system management frame scheduling.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.node.NodeConfig.address">
 <span class="sig-name descname"><span class="pre">address</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.node.NodeConfig.address" title="Link to this definition">¶</a></dt>
@@ -643,7 +643,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.node.NodeState">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.node.</span></span><span class="sig-name descname"><span class="pre">NodeState</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#NodeState"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.NodeState" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>节点高层state, 简化自 LinkState。</p>
+<p>High-level node state, simplified from LinkState.</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -693,7 +693,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.node.NodeCallback">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.node.</span></span><span class="sig-name descname"><span class="pre">NodeCallback</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#NodeCallback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.NodeCallback" title="Link to this definition">¶</a></dt>
-<dd><p>节点事件回调, 子类可覆盖。</p>
+<dd><p>Node event callbacks; subclasses may override.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.NodeCallback.on_state_changed">
 <span class="sig-name descname"><span class="pre">on_state_changed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">old</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.node.NodeState" title="nearlink_sdr.node.NodeState"><span class="pre">nearlink_sdr.node.NodeState</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">new</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.node.NodeState" title="nearlink_sdr.node.NodeState"><span class="pre">nearlink_sdr.node.NodeState</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#NodeCallback.on_state_changed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.NodeCallback.on_state_changed" title="Link to this definition">¶</a></dt>
@@ -734,7 +734,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.node.TxResult">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.node.</span></span><span class="sig-name descname"><span class="pre">TxResult</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#TxResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.TxResult" title="Link to this definition">¶</a></dt>
-<dd><p>发射结果。</p>
+<dd><p>Transmit result.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.node.TxResult.iq">
 <span class="sig-name descname"><span class="pre">iq</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#nearlink_sdr.node.TxResult.iq" title="Link to this definition">¶</a></dt>
@@ -794,9 +794,9 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.node.</span></span><span class="sig-name descname"><span class="pre">SleNode</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode" title="Link to this definition">¶</a></dt>
-<dd><p>SparkLink SLE 节点实体。</p>
-<p>整合link management、security、QoS、PHY 流水线、frequency hopping、power control、 时序调度、access procedure、channel模型为统一收发interface。</p>
-<p>用法::</p>
+<dd><p>SparkLink SLE node entity.</p>
+<p>Integrates link management, security, QoS, PHY pipeline, frequency hopping, power control, timing scheduling, access procedures, and channel model into a unified transceive interface.</p>
+<p>usage::</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>node = SleNode(NodeConfig(address=b&quot;\x01\x02\x03\x04\x05\x06&quot;))
 node.send(b&quot;hello&quot;, Priority.NORMAL)
 tx_result = node.transmit()
@@ -986,66 +986,66 @@ rx_result = node.receive(rx_iq, n_bytes)
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.start_advertising">
 <span class="sig-name descname"><span class="pre">start_advertising</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.start_advertising"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.start_advertising" title="Link to this definition">¶</a></dt>
-<dd><p>进入broadcast态, 构建并返回扩展broadcast frame。</p>
+<dd><p>Enter broadcast state and build an extended broadcast frame.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.start_scanning">
 <span class="sig-name descname"><span class="pre">start_scanning</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.start_scanning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.start_scanning" title="Link to this definition">¶</a></dt>
-<dd><p>进入扫描态, 搜索broadcast节点。</p>
+<dd><p>Enter scanning state and search for broadcasting nodes.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.on_broadcast_received">
 <span class="sig-name descname"><span class="pre">on_broadcast_received</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.on_broadcast_received"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.on_broadcast_received" title="Link to this definition">¶</a></dt>
-<dd><p>处理收到的broadcast frame。</p>
-<p>在扫描态时, 通过发现manager和broadcast过滤器处理frame。</p>
-<p>Returns:     True 表示该frame包含valid的access资源configuration。</p>
+<dd><p>Process a received broadcast frame.</p>
+<p>In scanning state, process the frame through the discovery manager and broadcast filter.</p>
+<p>Returns:     True if the frame contains a valid access resource configuration.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.connect">
 <span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peer_address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.connect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.connect" title="Link to this definition">¶</a></dt>
-<dd><p>发起accessrequest。</p>
+<dd><p>Initiate an access request.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.accept_connection">
 <span class="sig-name descname"><span class="pre">accept_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peer_address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.link_manager.html#nearlink_sdr.mac.link_manager.Role" title="nearlink_sdr.mac.link_manager.Role"><span class="pre">nearlink_sdr.mac.link_manager.Role</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Role.G_NODE</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.accept_connection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.accept_connection" title="Link to this definition">¶</a></dt>
-<dd><p>接受accessrequest, 直接进入connected state。</p>
-<p>access完成后自动注册link调度资源。</p>
+<dd><p>Accept an access request and enter linked state directly.</p>
+<p>Automatically register link scheduling resources after access completion.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.run_access">
 <span class="sig-name descname"><span class="pre">run_access</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peer_address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_broadcaster</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.BroadcasterAccessManager" title="nearlink_sdr.mac.access.BroadcasterAccessManager"><span class="pre">nearlink_sdr.mac.access.BroadcasterAccessManager</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.InitiatorAccessManager" title="nearlink_sdr.mac.access.InitiatorAccessManager"><span class="pre">nearlink_sdr.mac.access.InitiatorAccessManager</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.run_access"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.run_access" title="Link to this definition">¶</a></dt>
-<dd><p>执行完整access编排procedure。</p>
+<dd><p>Execute the full access orchestration procedure.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.disconnect">
 <span class="sig-name descname"><span class="pre">disconnect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.disconnect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.disconnect" title="Link to this definition">¶</a></dt>
-<dd><p>断开连接。</p>
+<dd><p>disconnectconnection.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.reset">
 <span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.reset" title="Link to this definition">¶</a></dt>
-<dd><p>重置到initial state。</p>
+<dd><p>Reset to initial state.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.start_pairing">
 <span class="sig-name descname"><span class="pre">start_pairing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peer_address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.start_pairing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.start_pairing" title="Link to this definition">¶</a></dt>
 <dd><p>Initiate pairing procedure.</p>
-<p>Returns:     待transmit给对端的pairingsignaling列表。</p>
+<p>Returns:     List of pairing signaling messages to send to the peer.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.process_pairing_message">
 <span class="sig-name descname"><span class="pre">process_pairing_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><span class="pre">object</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.process_pairing_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.process_pairing_message" title="Link to this definition">¶</a></dt>
-<dd><p>处理收到的pairingsignaling。</p>
-<p>Returns:     待transmit的responsesignaling列表。</p>
+<dd><p>Process a received pairing signaling message.</p>
+<p>Returns:     List of response signaling messages to send.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1056,27 +1056,27 @@ rx_result = node.receive(rx_iq, n_bytes)
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.send">
 <span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.qos.html#nearlink_sdr.mac.qos.Priority" title="nearlink_sdr.mac.qos.Priority"><span class="pre">nearlink_sdr.mac.qos.Priority</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Priority.NORMAL</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.send"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.send" title="Link to this definition">¶</a></dt>
-<dd><p>提交data到transmitqueue。</p>
+<dd><p>Submit data to the transmit queue.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.transmit">
 <span class="sig-name descname"><span class="pre">transmit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.node.TxResult" title="nearlink_sdr.node.TxResult"><span class="pre">nearlink_sdr.node.TxResult</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.transmit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.transmit" title="Link to this definition">¶</a></dt>
-<dd><p>从transmitqueue取出data, 构建frame并generate IQ signal。</p>
-<p>自动选择当前frequency hoppingchannel, update发射power。</p>
+<dd><p>Dequeue data from the transmit queue, build a frame, and generate IQ signals.</p>
+<p>Automatically select the current hopping channel and update transmit power.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.receive">
 <span class="sig-name descname"><span class="pre">receive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iq_signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_mac_bytes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.node.RxResult" title="nearlink_sdr.node.RxResult"><span class="pre">nearlink_sdr.node.RxResult</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.receive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.receive" title="Link to this definition">¶</a></dt>
-<dd><p>从 IQ signaldecodedata。</p>
-<p>如果configuration了channel模型, 会在decode前应用channel效应。</p>
+<dd><p>from IQ signaldecodedata.</p>
+<p>If a channel model is configured, channel effects are applied before decoding.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.process_feedback">
 <span class="sig-name descname"><span class="pre">process_feedback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">crc_ok</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nearlink_sdr.mac.qos.html#nearlink_sdr.mac.qos.TxDecision" title="nearlink_sdr.mac.qos.TxDecision"><span class="pre">nearlink_sdr.mac.qos.TxDecision</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.process_feedback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.process_feedback" title="Link to this definition">¶</a></dt>
-<dd><p>处理对端 ACK/NACK feedback。</p>
+<dd><p>Process ACK/NACK feedback from the peer.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -1087,19 +1087,19 @@ rx_result = node.receive(rx_iq, n_bytes)
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.current_channel">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current_channel</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.node.SleNode.current_channel" title="Link to this definition">¶</a></dt>
-<dd><p>当前frequency hoppingchannel号。</p>
+<dd><p>whenpreviousfrequency hoppingchannelnumber.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.block_channel">
 <span class="sig-name descname"><span class="pre">block_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.block_channel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.block_channel" title="Link to this definition">¶</a></dt>
-<dd><p>阻塞指定channel。</p>
+<dd><p>Block a specified channel.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.unblock_channel">
 <span class="sig-name descname"><span class="pre">unblock_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.unblock_channel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.unblock_channel" title="Link to this definition">¶</a></dt>
-<dd><p>解除channel阻塞。</p>
+<dd><p>Unblock a channel.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -1115,7 +1115,7 @@ rx_result = node.receive(rx_iq, n_bytes)
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.adjust_power">
 <span class="sig-name descname"><span class="pre">adjust_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.adjust_power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.adjust_power" title="Link to this definition">¶</a></dt>
-<dd><p>调整发射power, 返回调整后的power值。</p>
+<dd><p>Adjust transmit power and return the adjusted power value.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -1126,13 +1126,13 @@ rx_result = node.receive(rx_iq, n_bytes)
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.advance_slot">
 <span class="sig-name descname"><span class="pre">advance_slot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.advance_slot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.advance_slot" title="Link to this definition">¶</a></dt>
-<dd><p>推进time slot计数器。</p>
+<dd><p>Advance the slot counter.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode._register_link_schedule">
 <span class="sig-name descname"><span class="pre">_register_link_schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">link_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode._register_link_schedule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode._register_link_schedule" title="Link to this definition">¶</a></dt>
-<dd><p>access完成后注册defaultlink调度资源。</p>
+<dd><p>Register default link scheduling resources after access completion.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -1143,7 +1143,7 @@ rx_result = node.receive(rx_iq, n_bytes)
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.configure_smf">
 <span class="sig-name descname"><span class="pre">configure_smf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.smf_scheduler.html#nearlink_sdr.mac.smf_scheduler.SMFScheduleParams" title="nearlink_sdr.mac.smf_scheduler.SMFScheduleParams"><span class="pre">nearlink_sdr.mac.smf_scheduler.SMFScheduleParams</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.configure_smf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.configure_smf" title="Link to this definition">¶</a></dt>
-<dd><p>configuration SMF 调度parameter。</p>
+<dd><p>Configure SMF scheduling parameters.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -1164,13 +1164,13 @@ rx_result = node.receive(rx_iq, n_bytes)
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.set_broadcast_filter">
 <span class="sig-name descname"><span class="pre">set_broadcast_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">broadcast_filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFilter" title="nearlink_sdr.mac.broadcast.BroadcastFilter"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFilter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.set_broadcast_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.set_broadcast_filter" title="Link to this definition">¶</a></dt>
-<dd><p>设置broadcast frame过滤器。</p>
+<dd><p>Set the broadcast frame filter.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.start_non_connected_broadcast">
 <span class="sig-name descname"><span class="pre">start_non_connected_broadcast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nc_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.access.html#nearlink_sdr.mac.access.NonConnectedBroadcastConfig" title="nearlink_sdr.mac.access.NonConnectedBroadcastConfig"><span class="pre">nearlink_sdr.mac.access.NonConnectedBroadcastConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.start_non_connected_broadcast"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.start_non_connected_broadcast" title="Link to this definition">¶</a></dt>
-<dd><p>transmit非connected statebroadcastdataframe。</p>
+<dd><p>transmitnon-connected statebroadcastdataframe.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -1181,13 +1181,13 @@ rx_result = node.receive(rx_iq, n_bytes)
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.set_channel_model">
 <span class="sig-name descname"><span class="pre">set_channel_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.phy.channel.html#nearlink_sdr.phy.channel.ChannelConfig" title="nearlink_sdr.phy.channel.ChannelConfig"><span class="pre">nearlink_sdr.phy.channel.ChannelConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.set_channel_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.set_channel_model" title="Link to this definition">¶</a></dt>
-<dd><p>configurationsimulationchannel模型。</p>
+<dd><p>Configure the simulation channel model.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.clear_channel_model">
 <span class="sig-name descname"><span class="pre">clear_channel_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.clear_channel_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.clear_channel_model" title="Link to this definition">¶</a></dt>
-<dd><p>清除channel模型 (恢复理想channel)。</p>
+<dd><p>Clear the channel model (restore ideal channel).</p>
 </dd></dl>
 
 <dl class="py property">
@@ -1198,25 +1198,25 @@ rx_result = node.receive(rx_iq, n_bytes)
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.open_transceiver">
 <span class="sig-name descname"><span class="pre">open_transceiver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rx_buf_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4096</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.open_transceiver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.open_transceiver" title="Link to this definition">¶</a></dt>
-<dd><p>打开 USRP 硬件收发器。</p>
+<dd><p>open USRP hardware transceiver.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.close_transceiver">
 <span class="sig-name descname"><span class="pre">close_transceiver</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.close_transceiver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.close_transceiver" title="Link to this definition">¶</a></dt>
-<dd><p>关闭 USRP 硬件收发器。</p>
+<dd><p>close USRP hardware transceiver.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.receive_iq">
 <span class="sig-name descname"><span class="pre">receive_iq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_samps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.receive_iq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.receive_iq" title="Link to this definition">¶</a></dt>
-<dd><p>从 USRP receive IQ 采样。</p>
+<dd><p>Receive IQ samples from USRP.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.generate_measurement_signal">
 <span class="sig-name descname"><span class="pre">generate_measurement_signal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_measur</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">security_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.generate_measurement_signal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.generate_measurement_signal" title="Link to this definition">¶</a></dt>
-<dd><p>generate窄带测量signal (standard 6.2.4)。</p>
+<dd><p>Generate a narrowband measurement signal (standard clause 6.2.4).</p>
 </dd></dl>
 
 <dl class="py property">
@@ -1227,31 +1227,31 @@ rx_result = node.receive(rx_iq, n_bytes)
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.send_signaling">
 <span class="sig-name descname"><span class="pre">send_signaling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><span class="pre">object</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nearlink_sdr.mac.frame.html#nearlink_sdr.mac.frame.ControlFrame" title="nearlink_sdr.mac.frame.ControlFrame"><span class="pre">nearlink_sdr.mac.frame.ControlFrame</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.send_signaling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.send_signaling" title="Link to this definition">¶</a></dt>
-<dd><p>通过link management器transmit控制面signaling。</p>
+<dd><p>Send control-plane signaling through the link manager.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.receive_signaling">
 <span class="sig-name descname"><span class="pre">receive_signaling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><span class="pre">object</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.receive_signaling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.receive_signaling" title="Link to this definition">¶</a></dt>
-<dd><p>处理收到的控制面signaling。</p>
+<dd><p>Process received control-plane signaling.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.stats">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stats</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a></em><a class="headerlink" href="#nearlink_sdr.node.SleNode.stats" title="Link to this definition">¶</a></dt>
-<dd><p>返回节点统计信息。</p>
+<dd><p>Return node statistics.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.recommended_mcs">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">recommended_mcs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.node.SleNode.recommended_mcs" title="Link to this definition">¶</a></dt>
-<dd><p>基于link质量建议的 MCS 索引。</p>
+<dd><p>Recommended MCS index based on link quality.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.update_mcs">
 <span class="sig-name descname"><span class="pre">update_mcs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mcs_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.update_mcs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.update_mcs" title="Link to this definition">¶</a></dt>
-<dd><p>update MCS 索引。</p>
+<dd><p>Update the MCS index.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1270,7 +1270,7 @@ rx_result = node.receive(rx_iq, n_bytes)
 <dt class="sig sig-object py" id="nearlink_sdr.node._InternalCallback">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.node.</span></span><span class="sig-name descname"><span class="pre">_InternalCallback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.node.SleNode" title="nearlink_sdr.node.SleNode"><span class="pre">nearlink_sdr.node.SleNode</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#_InternalCallback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node._InternalCallback" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="nearlink_sdr.mac.link_manager.html#nearlink_sdr.mac.link_manager.LinkManagerCallback" title="nearlink_sdr.mac.link_manager.LinkManagerCallback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager.LinkManagerCallback</span></code></a></p>
-<p>将 LinkManager 回调转发到 SleNode。</p>
+<p>Forward LinkManager callbacks to SleNode.</p>
 <p class="rubric">Initialization</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node._InternalCallback.on_access_accepted">
@@ -1287,13 +1287,13 @@ rx_result = node.receive(rx_iq, n_bytes)
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.node._build_ctrl_info">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.node.</span></span><span class="sig-name descname"><span class="pre">_build_ctrl_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctrl_fields</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nearlink_sdr.phy.control_info.html#nearlink_sdr.phy.control_info.ControlInfoA2" title="nearlink_sdr.phy.control_info.ControlInfoA2"><span class="pre">nearlink_sdr.phy.control_info.ControlInfoA2</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#_build_ctrl_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node._build_ctrl_info" title="Link to this definition">¶</a></dt>
-<dd><p>从 QoS 控制字段构建 A2 控制信息。</p>
+<dd><p>Build A2 control information from QoS control fields.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.node._build_ctrl_bits">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.node.</span></span><span class="sig-name descname"><span class="pre">_build_ctrl_bits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctrl_fields</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#_build_ctrl_bits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node._build_ctrl_bits" title="Link to this definition">¶</a></dt>
-<dd><p>从 QoS 控制字段构建控制information bits。</p>
+<dd><p>Build control information bits from QoS control fields.</p>
 </dd></dl>
 
 </section>

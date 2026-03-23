@@ -408,16 +408,16 @@
 <td><p>Segmentation type indicator (7.3.3.2).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.frame.ControlFrame" title="nearlink_sdr.mac.frame.ControlFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ControlFrame</span></code></a></p></td>
-<td><p>控制面frame: [data_type_index: 2B][data_length: 1B][payload: NB]</p></td>
+<td><p>Control plane frame: [data_type_index: 2B][data_length: 1B][payload: NB]</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.frame.AsyncDataFrame" title="nearlink_sdr.mac.frame.AsyncDataFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncDataFrame</span></code></a></p></td>
-<td><p>异步dataframe: [segment类型: 2b][datalength: 11b][预留: 3b][data: NB]</p></td>
+<td><p>Asynchronous data frame: [segment type: 2b][data length: 11b][reserved: 3b][data: NB]</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.frame.SyncDataFrame" title="nearlink_sdr.mac.frame.SyncDataFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SyncDataFrame</span></code></a></p></td>
-<td><p>connected statesyncdataframe (非period适配)。</p></td>
+<td><p>Connected-state synchronous data frame (aperiodic adaptation).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.frame.MuxFrame" title="nearlink_sdr.mac.frame.MuxFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MuxFrame</span></code></a></p></td>
-<td><p>data面与控制面复用frame。</p></td>
+<td><p>Data plane and control plane multiplexed frame.</p></td>
 </tr>
 </tbody>
 </table>
@@ -461,7 +461,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.frame.ControlFrame">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.frame.</span></span><span class="sig-name descname"><span class="pre">ControlFrame</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/frame.html#ControlFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.frame.ControlFrame" title="Link to this definition">¶</a></dt>
-<dd><p>控制面frame: [data_type_index: 2B][data_length: 1B][payload: NB]</p>
+<dd><p>Control plane frame: [data_type_index: 2B][data_length: 1B][payload: NB]</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.frame.ControlFrame.data_type_index">
 <span class="sig-name descname"><span class="pre">data_type_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.frame.ControlFrame.data_type_index" title="Link to this definition">¶</a></dt>
@@ -477,13 +477,13 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.frame.ControlFrame.pack">
 <span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/frame.html#ControlFrame.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.frame.ControlFrame.pack" title="Link to this definition">¶</a></dt>
-<dd><p>encode为byte stream。</p>
+<dd><p>encodeisbyte stream.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.frame.ControlFrame.unpack">
 <em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nearlink_sdr.mac.frame.ControlFrame" title="nearlink_sdr.mac.frame.ControlFrame"><span class="pre">nearlink_sdr.mac.frame.ControlFrame</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/frame.html#ControlFrame.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.frame.ControlFrame.unpack" title="Link to this definition">¶</a></dt>
-<dd><p>从byte streamdecode, 返回 (frame, 已消费字节数)。</p>
+<dd><p>Decode from byte stream, return (frame, consumed byte count).</p>
 </dd></dl>
 
 </dd></dl>
@@ -491,7 +491,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.frame.AsyncDataFrame">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.frame.</span></span><span class="sig-name descname"><span class="pre">AsyncDataFrame</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/frame.html#AsyncDataFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.frame.AsyncDataFrame" title="Link to this definition">¶</a></dt>
-<dd><p>异步dataframe: [segment类型: 2b][datalength: 11b][预留: 3b][data: NB]</p>
+<dd><p>Asynchronous data frame: [segment type: 2b][data length: 11b][reserved: 3b][data: NB]</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.frame.AsyncDataFrame.segment_type">
 <span class="sig-name descname"><span class="pre">segment_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.frame.AsyncDataFrame.segment_type" title="Link to this definition">¶</a></dt>
@@ -507,13 +507,13 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.frame.AsyncDataFrame.pack">
 <span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/frame.html#AsyncDataFrame.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.frame.AsyncDataFrame.pack" title="Link to this definition">¶</a></dt>
-<dd><p>encode为byte stream (不含data包类型索引前缀)。</p>
+<dd><p>Encode to byte stream (without data packet type index prefix).</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.frame.AsyncDataFrame.unpack">
 <em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.frame.AsyncDataFrame" title="nearlink_sdr.mac.frame.AsyncDataFrame"><span class="pre">nearlink_sdr.mac.frame.AsyncDataFrame</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/frame.html#AsyncDataFrame.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.frame.AsyncDataFrame.unpack" title="Link to this definition">¶</a></dt>
-<dd><p>从byte streamdecode (不含data包类型索引)。</p>
+<dd><p>Decode from byte stream (without data packet type index).</p>
 </dd></dl>
 
 </dd></dl>
@@ -521,7 +521,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.frame.SyncDataFrame">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.frame.</span></span><span class="sig-name descname"><span class="pre">SyncDataFrame</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/frame.html#SyncDataFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.frame.SyncDataFrame" title="Link to this definition">¶</a></dt>
-<dd><p>connected statesyncdataframe (非period适配)。</p>
+<dd><p>Connected-state synchronous data frame (aperiodic adaptation).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.frame.SyncDataFrame.pdu_seq">
 <span class="sig-name descname"><span class="pre">pdu_seq</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.frame.SyncDataFrame.pdu_seq" title="Link to this definition">¶</a></dt>
@@ -567,13 +567,13 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.frame.SyncDataFrame.pack">
 <span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/frame.html#SyncDataFrame.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.frame.SyncDataFrame.pack" title="Link to this definition">¶</a></dt>
-<dd><p>encode为byte stream (不含data包类型索引前缀)。</p>
+<dd><p>Encode to byte stream (without data packet type index prefix).</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.frame.SyncDataFrame.unpack">
 <em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.frame.SyncDataFrame" title="nearlink_sdr.mac.frame.SyncDataFrame"><span class="pre">nearlink_sdr.mac.frame.SyncDataFrame</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/frame.html#SyncDataFrame.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.frame.SyncDataFrame.unpack" title="Link to this definition">¶</a></dt>
-<dd><p>从byte streamdecode (不含data包类型索引)。</p>
+<dd><p>Decode from byte stream (without data packet type index).</p>
 </dd></dl>
 
 </dd></dl>
@@ -581,8 +581,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.frame.MuxFrame">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.frame.</span></span><span class="sig-name descname"><span class="pre">MuxFrame</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/frame.html#MuxFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.frame.MuxFrame" title="Link to this definition">¶</a></dt>
-<dd><p>data面与控制面复用frame。</p>
-<p>存储一组控制面frame和一个optionaldataframe (异步或sync)。</p>
+<dd><p>Data plane and control plane multiplexed frame.</p>
+<p>Store a set of control plane frames and an optional data frame (asynchronous or synchronous).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.frame.MuxFrame.control_frames">
 <span class="sig-name descname"><span class="pre">control_frames</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nearlink_sdr.mac.frame.ControlFrame" title="nearlink_sdr.mac.frame.ControlFrame"><span class="pre">nearlink_sdr.mac.frame.ControlFrame</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nearlink_sdr.mac.frame.MuxFrame.control_frames" title="Link to this definition">¶</a></dt>
@@ -598,7 +598,7 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.frame.MuxFrame.pack">
 <span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/frame.html#MuxFrame.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.frame.MuxFrame.pack" title="Link to this definition">¶</a></dt>
-<dd><p>encode全部frame为byte stream。</p>
+<dd><p>Encode all frames to byte stream.</p>
 </dd></dl>
 
 </dd></dl>

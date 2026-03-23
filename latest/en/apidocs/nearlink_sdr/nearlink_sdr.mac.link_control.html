@@ -405,22 +405,22 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.IntervalUpdateRequest" title="nearlink_sdr.mac.link_control.IntervalUpdateRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalUpdateRequest</span></code></a></p></td>
-<td><p>TX/RX interval update request.</p></td>
+<td><p>transceive interval update request.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.IntervalUpdateResponse" title="nearlink_sdr.mac.link_control.IntervalUpdateResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalUpdateResponse</span></code></a></p></td>
-<td><p>TX/RX interval update response.</p></td>
+<td><p>transceive interval update response.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.IntervalUpdateIndication" title="nearlink_sdr.mac.link_control.IntervalUpdateIndication"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalUpdateIndication</span></code></a></p></td>
-<td><p>TX/RX interval update indication.</p></td>
+<td><p>transceive interval update indication.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.SignalingReject" title="nearlink_sdr.mac.link_control.SignalingReject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SignalingReject</span></code></a></p></td>
-<td><p>signaling被拒indication。</p></td>
+<td><p>Signaling rejected indication.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.FeatureExchangeRequest" title="nearlink_sdr.mac.link_control.FeatureExchangeRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FeatureExchangeRequest</span></code></a></p></td>
-<td><p>特性interactionrequest: 80-bit 特性集位图。</p></td>
+<td><p>Feature exchange request: 80-bit feature set bitmap.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.FeatureExchangeResponse" title="nearlink_sdr.mac.link_control.FeatureExchangeResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FeatureExchangeResponse</span></code></a></p></td>
-<td><p>特性interactionresponse: 80-bit 特性集位图。</p></td>
+<td><p>Feature exchange response: 80-bit feature set bitmap.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.VersionExchange" title="nearlink_sdr.mac.link_control.VersionExchange"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VersionExchange</span></code></a></p></td>
 <td><p>Version exchange indication.</p></td>
@@ -429,16 +429,16 @@
 <td><p>datalengthrequest (MTU negotiation)。</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.DataLengthResponse" title="nearlink_sdr.mac.link_control.DataLengthResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataLengthResponse</span></code></a></p></td>
-<td><p>datalengthresponse。字段与 DataLengthRequest 相同。</p></td>
+<td><p>Data length response. Fields are identical to DataLengthRequest.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.ChannelReportConfig" title="nearlink_sdr.mac.link_control.ChannelReportConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChannelReportConfig</span></code></a></p></td>
 <td><p>Channel report indication.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.CrcSwitchRequest" title="nearlink_sdr.mac.link_control.CrcSwitchRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CrcSwitchRequest</span></code></a></p></td>
-<td><p>CRC 切换request。</p></td>
+<td><p>CRC switch request.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.CrcSwitchIndication" title="nearlink_sdr.mac.link_control.CrcSwitchIndication"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CrcSwitchIndication</span></code></a></p></td>
-<td><p>CRC 切换indication。增加生效time slot号。</p></td>
+<td><p>CRC switch indication. Adds effective time slot number.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.ClockAccuracyRequest" title="nearlink_sdr.mac.link_control.ClockAccuracyRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ClockAccuracyRequest</span></code></a></p></td>
 <td><p>Clock precision request.</p></td>
@@ -456,16 +456,16 @@
 <td><p>securityresponse。</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.SecurityStartRequest" title="nearlink_sdr.mac.link_control.SecurityStartRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SecurityStartRequest</span></code></a></p></td>
-<td><p>security启动request (无载荷)。</p></td>
+<td><p>Security start request (no payload).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.SecurityStartResponse" title="nearlink_sdr.mac.link_control.SecurityStartResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SecurityStartResponse</span></code></a></p></td>
-<td><p>security启动response。</p></td>
+<td><p>securitystartresponse.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.SecurityPauseRequest" title="nearlink_sdr.mac.link_control.SecurityPauseRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SecurityPauseRequest</span></code></a></p></td>
-<td><p>security暂停request (无载荷)。</p></td>
+<td><p>Security pause request (no payload).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.SecurityPauseResponse" title="nearlink_sdr.mac.link_control.SecurityPauseResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SecurityPauseResponse</span></code></a></p></td>
-<td><p>security暂停response (无载荷)。</p></td>
+<td><p>Security pause response (no payload).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.UnknownFeatureFeedback" title="nearlink_sdr.mac.link_control.UnknownFeatureFeedback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnknownFeatureFeedback</span></code></a></p></td>
 <td><p>Unknown feature feedback.</p></td>
@@ -474,31 +474,31 @@
 <td><p>channelstateindication。</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.HopTableUpdate" title="nearlink_sdr.mac.link_control.HopTableUpdate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HopTableUpdate</span></code></a></p></td>
-<td><p>frequency hopping表updateindication (系统管理frame)。</p></td>
+<td><p>frequency hoppingtableupdateindication (system managementframe).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.HopMapUpdate" title="nearlink_sdr.mac.link_control.HopMapUpdate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HopMapUpdate</span></code></a></p></td>
 <td><p>hopping mapupdateindication (datalink)。</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.MinAvailableChannels" title="nearlink_sdr.mac.link_control.MinAvailableChannels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MinAvailableChannels</span></code></a></p></td>
-<td><p>最少可用channelindication。</p></td>
+<td><p>Minimum available channels indication.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.PhyUpdateRequest" title="nearlink_sdr.mac.link_control.PhyUpdateRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PhyUpdateRequest</span></code></a></p></td>
-<td><p>物理层updaterequest。</p></td>
+<td><p>PHY update request.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.PhyUpdateIndication" title="nearlink_sdr.mac.link_control.PhyUpdateIndication"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PhyUpdateIndication</span></code></a></p></td>
-<td><p>物理层updateindication (含生效time slot)。</p></td>
+<td><p>PHY update indication (with effective time slot).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.AsyncMulticastReconfig" title="nearlink_sdr.mac.link_control.AsyncMulticastReconfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncMulticastReconfig</span></code></a></p></td>
-<td><p>异步组播linkparameter重configurationindication。</p></td>
+<td><p>Asynchronous multicast link parameter reconfiguration indication.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.AsyncUnicastUpdate" title="nearlink_sdr.mac.link_control.AsyncUnicastUpdate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncUnicastUpdate</span></code></a></p></td>
-<td><p>connected state单播异步linkparameterupdateindication。</p></td>
+<td><p>Connected-state unicast asynchronous link parameter update indication.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.BroadcastLinkDisconnect" title="nearlink_sdr.mac.link_control.BroadcastLinkDisconnect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BroadcastLinkDisconnect</span></code></a></p></td>
 <td><p>Broadcast link disconnect indication.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.SMFSignalingTerminate" title="nearlink_sdr.mac.link_control.SMFSignalingTerminate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SMFSignalingTerminate</span></code></a></p></td>
-<td><p>系统管理framesignaling传输终止。</p></td>
+<td><p>System management frame signaling transmission termination.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.RoleSwitchRequest" title="nearlink_sdr.mac.link_control.RoleSwitchRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RoleSwitchRequest</span></code></a></p></td>
 <td><p>Role switch request.</p></td>
@@ -507,40 +507,40 @@
 <td><p>Time offset indication.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.PingRequest" title="nearlink_sdr.mac.link_control.PingRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PingRequest</span></code></a></p></td>
-<td><p>PING request (无载荷)。</p></td>
+<td><p>PING request (no payload).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.PingResponse" title="nearlink_sdr.mac.link_control.PingResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PingResponse</span></code></a></p></td>
-<td><p>PING response (无载荷)。</p></td>
+<td><p>PING response (no payload).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.TimeoutUpdateRequest" title="nearlink_sdr.mac.link_control.TimeoutUpdateRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimeoutUpdateRequest</span></code></a></p></td>
 <td><p>timeouttimeupdaterequest。</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.MulticastDisconnect" title="nearlink_sdr.mac.link_control.MulticastDisconnect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MulticastDisconnect</span></code></a></p></td>
-<td><p>组播link断开indication。</p></td>
+<td><p>Multicast link disconnection indication.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.AsyncLinkParamRequest" title="nearlink_sdr.mac.link_control.AsyncLinkParamRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncLinkParamRequest</span></code></a></p></td>
-<td><p>connected state异步linkparameterupdaterequest。</p></td>
+<td><p>Connected-state asynchronous link parameter update request.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.AsyncLinkParamResponse" title="nearlink_sdr.mac.link_control.AsyncLinkParamResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncLinkParamResponse</span></code></a></p></td>
-<td><p>connected state异步linkparameterupdateresponse (与request字段完全相同)。</p></td>
+<td><p>Connected-state asynchronous link parameter update response (fields identical to request).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.IsochronousLinkSetup" title="nearlink_sdr.mac.link_control.IsochronousLinkSetup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsochronousLinkSetup</span></code></a></p></td>
 <td><p>Synchronous isochronous link establishment indication.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.IsochronousParamExchangeRequest" title="nearlink_sdr.mac.link_control.IsochronousParamExchangeRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsochronousParamExchangeRequest</span></code></a></p></td>
-<td><p>sync等时linkparameterinteractionrequest。</p></td>
+<td><p>Synchronous isochronous link parameter exchange request.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.IsochronousParamExchangeResponse" title="nearlink_sdr.mac.link_control.IsochronousParamExchangeResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsochronousParamExchangeResponse</span></code></a></p></td>
-<td><p>sync等时linkparameterinteractionresponse (与request字段相同)。</p></td>
+<td><p>Synchronous isochronous link parameter exchange response (fields identical to request).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.IsochronousParamUpdateRequest" title="nearlink_sdr.mac.link_control.IsochronousParamUpdateRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsochronousParamUpdateRequest</span></code></a></p></td>
-<td><p>sync等时linkparameterupdaterequest。</p></td>
+<td><p>Synchronous isochronous link parameter update request.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.IsochronousParamUpdateIndication" title="nearlink_sdr.mac.link_control.IsochronousParamUpdateIndication"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsochronousParamUpdateIndication</span></code></a></p></td>
-<td><p>sync等时linkparameterupdateindication。</p></td>
+<td><p>Synchronous isochronous link parameter update indication.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.BroadcastLinkSetup" title="nearlink_sdr.mac.link_control.BroadcastLinkSetup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BroadcastLinkSetup</span></code></a></p></td>
-<td><p>connected statebroadcastlink建立indication (2.4GHz 80-bit hopping map版本)。</p></td>
+<td><p>Connected-state broadcast link establishment indication (2.4GHz 80-bit frequency hopping map version).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.BroadcastLinkParamUpdate" title="nearlink_sdr.mac.link_control.BroadcastLinkParamUpdate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BroadcastLinkParamUpdate</span></code></a></p></td>
 <td><p>Broadcast link parameter update indication.</p></td>
@@ -549,19 +549,19 @@
 <td><p>broadcastlinkhopping mapupdateindication。</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.SMFParamUpdateRequest" title="nearlink_sdr.mac.link_control.SMFParamUpdateRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SMFParamUpdateRequest</span></code></a></p></td>
-<td><p>系统管理frameparameterupdaterequest。</p></td>
+<td><p>system managementframeparameterupdaterequest.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.SMFParamUpdateIndication" title="nearlink_sdr.mac.link_control.SMFParamUpdateIndication"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SMFParamUpdateIndication</span></code></a></p></td>
-<td><p>系统管理frameparameterupdateindication。</p></td>
+<td><p>system managementframeparameterupdateindication.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.SMFTimeSlotUpdateRequest" title="nearlink_sdr.mac.link_control.SMFTimeSlotUpdateRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SMFTimeSlotUpdateRequest</span></code></a></p></td>
-<td><p>系统管理frametime片updaterequest。</p></td>
+<td><p>System management frame time slice update request.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.SMFTimeSlotUpdateResponse" title="nearlink_sdr.mac.link_control.SMFTimeSlotUpdateResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SMFTimeSlotUpdateResponse</span></code></a></p></td>
-<td><p>系统管理frametime片updateresponse。</p></td>
+<td><p>System management frame time slice update response.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.Channel5GStatusIndication" title="nearlink_sdr.mac.link_control.Channel5GStatusIndication"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Channel5GStatusIndication</span></code></a></p></td>
-<td><p>5GHz 频段channelstateindication (400-bit channel分类)。</p></td>
+<td><p>5GHz band channel status indication (400-bit channel classification).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.HopMap5GUpdate" title="nearlink_sdr.mac.link_control.HopMap5GUpdate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HopMap5GUpdate</span></code></a></p></td>
 <td><p>5GHz hopping mapupdateindication (datalink)。</p></td>
@@ -570,169 +570,169 @@
 <td><p>5GHz broadcastlinkhopping mapupdateindication。</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.MultiIntervalUpdateRequest" title="nearlink_sdr.mac.link_control.MultiIntervalUpdateRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiIntervalUpdateRequest</span></code></a></p></td>
-<td><p>多级收发intervalupdaterequest (31 个interval字节)。</p></td>
+<td><p>Multi-level transceive interval update request (31 interval bytes).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.MultiIntervalUpdateResponse" title="nearlink_sdr.mac.link_control.MultiIntervalUpdateResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiIntervalUpdateResponse</span></code></a></p></td>
-<td><p>多级收发intervalupdateresponse (与request结构相同)。</p></td>
+<td><p>Multi-level transceive interval update response (same structure as request).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.MultiIntervalUpdateIndication" title="nearlink_sdr.mac.link_control.MultiIntervalUpdateIndication"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiIntervalUpdateIndication</span></code></a></p></td>
-<td><p>多级收发intervalupdateindication。</p></td>
+<td><p>Multi-level transceive interval update indication.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.SystemTimeIndication" title="nearlink_sdr.mac.link_control.SystemTimeIndication"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SystemTimeIndication</span></code></a></p></td>
-<td><p>系统timeindication (可变长, 按原始载荷存储)。</p></td>
+<td><p>System time indication (variable length, stored as raw payload).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.AsyncMulticastLinkSetup" title="nearlink_sdr.mac.link_control.AsyncMulticastLinkSetup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncMulticastLinkSetup</span></code></a></p></td>
-<td><p>异步组播link建链indication。</p></td>
+<td><p>Asynchronous multicast link establishment indication.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.AsyncMulticastParamExchangeRequest" title="nearlink_sdr.mac.link_control.AsyncMulticastParamExchangeRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncMulticastParamExchangeRequest</span></code></a></p></td>
-<td><p>异步组播linkparameterinteractionrequest。</p></td>
+<td><p>Asynchronous multicast link parameter exchange request.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.AsyncMulticastParamExchangeResponse" title="nearlink_sdr.mac.link_control.AsyncMulticastParamExchangeResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncMulticastParamExchangeResponse</span></code></a></p></td>
-<td><p>异步组播linkparameterinteractionresponse (与request结构相同)。</p></td>
+<td><p>Asynchronous multicast link parameter exchange response (same structure as request).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.AsyncMulticastParamUpdateRequest" title="nearlink_sdr.mac.link_control.AsyncMulticastParamUpdateRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncMulticastParamUpdateRequest</span></code></a></p></td>
-<td><p>异步组播linkparameterupdaterequest。</p></td>
+<td><p>Asynchronous multicast link parameter update request.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.AsyncMulticastParamUpdateIndication" title="nearlink_sdr.mac.link_control.AsyncMulticastParamUpdateIndication"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncMulticastParamUpdateIndication</span></code></a></p></td>
-<td><p>异步组播linkparameterupdateindication。</p></td>
+<td><p>Asynchronous multicast link parameter update indication.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control._ZeroPayload" title="nearlink_sdr.mac.link_control._ZeroPayload"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_ZeroPayload</span></code></a></p></td>
-<td><p>零载荷signaling基类。</p></td>
+<td><p>Zero-payload signaling base class.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.NarrowbandMeasCapRequest" title="nearlink_sdr.mac.link_control.NarrowbandMeasCapRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NarrowbandMeasCapRequest</span></code></a></p></td>
-<td><p>窄带frequency hopping测量能力request。</p></td>
+<td><p>Narrowband frequency hopping measurement capability request.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.NarrowbandMeasCapResponse" title="nearlink_sdr.mac.link_control.NarrowbandMeasCapResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NarrowbandMeasCapResponse</span></code></a></p></td>
-<td><p>窄带frequency hopping测量能力response。</p></td>
+<td><p>Narrowband frequency hopping measurement capability response.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.NarrowbandFreqTable24Update" title="nearlink_sdr.mac.link_control.NarrowbandFreqTable24Update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NarrowbandFreqTable24Update</span></code></a></p></td>
-<td><p>窄带frequency hopping测量频点表configurationupdateindication (2.4GHz)。</p></td>
+<td><p>Narrowband frequency hopping measurement channel table configuration update indication (2.4GHz).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.NarrowbandFreqTable51Update" title="nearlink_sdr.mac.link_control.NarrowbandFreqTable51Update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NarrowbandFreqTable51Update</span></code></a></p></td>
-<td><p>窄带frequency hopping测量频点表configurationupdateindication (5.1GHz)。</p></td>
+<td><p>Narrowband frequency hopping measurement channel table configuration update indication (5.1GHz).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.NarrowbandFreqTable58Update" title="nearlink_sdr.mac.link_control.NarrowbandFreqTable58Update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NarrowbandFreqTable58Update</span></code></a></p></td>
-<td><p>窄带frequency hopping测量频点表configurationupdateindication (5.8GHz)。</p></td>
+<td><p>Narrowband frequency hopping measurement channel table configuration update indication (5.8GHz).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.NarrowbandMeasConfig" title="nearlink_sdr.mac.link_control.NarrowbandMeasConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NarrowbandMeasConfig</span></code></a></p></td>
-<td><p>窄带frequency hopping测量signalconfiguration (可变长, 按原始载荷存储)。</p></td>
+<td><p>Narrowband frequency hopping measurement signal configuration (variable length, stored as raw payload).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.NarrowbandMeasReport" title="nearlink_sdr.mac.link_control.NarrowbandMeasReport"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NarrowbandMeasReport</span></code></a></p></td>
-<td><p>窄带frequency hopping测量信息上报 (可变长)。</p></td>
+<td><p>Narrowband frequency hopping measurement information report (variable length).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.NarrowbandMeasAction" title="nearlink_sdr.mac.link_control.NarrowbandMeasAction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NarrowbandMeasAction</span></code></a></p></td>
-<td><p>窄带frequency hopping测量行为indication。</p></td>
+<td><p>Narrowband frequency hopping measurement behavior indication.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.CoordinateRequest" title="nearlink_sdr.mac.link_control.CoordinateRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CoordinateRequest</span></code></a></p></td>
 <td><p>Coordinate information request.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.CoordinateReport" title="nearlink_sdr.mac.link_control.CoordinateReport"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CoordinateReport</span></code></a></p></td>
-<td><p>坐标信息上报。</p></td>
+<td><p>coordinate informationreport.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.CoordinateConfig" title="nearlink_sdr.mac.link_control.CoordinateConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CoordinateConfig</span></code></a></p></td>
-<td><p>坐标信息configuration (与上报结构相同)。</p></td>
+<td><p>Coordinate information configuration (same structure as report).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.NarrowbandDelayRequest" title="nearlink_sdr.mac.link_control.NarrowbandDelayRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NarrowbandDelayRequest</span></code></a></p></td>
-<td><p>窄带frequency hopping测量时延信息request。</p></td>
+<td><p>Narrowband frequency hopping measurement delay information request.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.NarrowbandDelayResponse" title="nearlink_sdr.mac.link_control.NarrowbandDelayResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NarrowbandDelayResponse</span></code></a></p></td>
-<td><p>窄带frequency hopping测量时延信息response (可变长)。</p></td>
+<td><p>Narrowband frequency hopping measurement delay information response (variable length).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.AsyncTTLinkSetup" title="nearlink_sdr.mac.link_control.AsyncTTLinkSetup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncTTLinkSetup</span></code></a></p></td>
-<td><p>异步 TT link建链indication (可变长)。</p></td>
+<td><p>Asynchronous TT link establishment indication (variable length).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.UWBMeasCapRequest" title="nearlink_sdr.mac.link_control.UWBMeasCapRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWBMeasCapRequest</span></code></a></p></td>
-<td><p>超宽带脉冲测量能力request。</p></td>
+<td><p>UWB pulse measurement capability request.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.UWBMeasCapResponse" title="nearlink_sdr.mac.link_control.UWBMeasCapResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWBMeasCapResponse</span></code></a></p></td>
-<td><p>超宽带脉冲测量能力response (400 bits / 50 bytes)。</p></td>
+<td><p>UWB pulse measurement capability response (400 bits / 50 bytes).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.UWBMeasConfig" title="nearlink_sdr.mac.link_control.UWBMeasConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWBMeasConfig</span></code></a></p></td>
-<td><p>超宽带脉冲测量configuration (可变长)。</p></td>
+<td><p>UWB pulse measurement configuration (variable length).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.UWBMeasConfigFeedback" title="nearlink_sdr.mac.link_control.UWBMeasConfigFeedback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWBMeasConfigFeedback</span></code></a></p></td>
-<td><p>超宽带脉冲测量configurationfeedback。</p></td>
+<td><p>UWB pulse measurement configuration feedback.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.UWBMeasReport" title="nearlink_sdr.mac.link_control.UWBMeasReport"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWBMeasReport</span></code></a></p></td>
-<td><p>超宽带脉冲测量信息上报 (可变长)。</p></td>
+<td><p>UWB pulse measurement information report (variable length).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.UWBSensingCapRequest" title="nearlink_sdr.mac.link_control.UWBSensingCapRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWBSensingCapRequest</span></code></a></p></td>
-<td><p>超宽带脉冲感知能力request。</p></td>
+<td><p>UWB pulse sensing capability request.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.UWBSensingCapResponse" title="nearlink_sdr.mac.link_control.UWBSensingCapResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWBSensingCapResponse</span></code></a></p></td>
-<td><p>超宽带脉冲感知能力response (408 bits / 51 bytes)。</p></td>
+<td><p>UWB pulse sensing capability response (408 bits / 51 bytes).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.UWBSensingConfig" title="nearlink_sdr.mac.link_control.UWBSensingConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWBSensingConfig</span></code></a></p></td>
-<td><p>超宽带脉冲感知configuration (可变长)。</p></td>
+<td><p>UWB pulse sensing configuration (variable length).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.UWBSensingConfigFeedback" title="nearlink_sdr.mac.link_control.UWBSensingConfigFeedback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWBSensingConfigFeedback</span></code></a></p></td>
-<td><p>超宽带脉冲感知configurationfeedback。</p></td>
+<td><p>UWB pulse sensing configuration feedback.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.UWBSensingReport" title="nearlink_sdr.mac.link_control.UWBSensingReport"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWBSensingReport</span></code></a></p></td>
-<td><p>超宽带脉冲感知信息上报 (可变长)。</p></td>
+<td><p>UWB pulse sensing information report (variable length).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.UWBSensingAction" title="nearlink_sdr.mac.link_control.UWBSensingAction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWBSensingAction</span></code></a></p></td>
-<td><p>超宽带脉冲感知行为indication。</p></td>
+<td><p>UWB pulse sensing behavior indication.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.ResourceReservation" title="nearlink_sdr.mac.link_control.ResourceReservation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceReservation</span></code></a></p></td>
-<td><p>资源预留indication。</p></td>
+<td><p>resource reservationindication.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.ResourceReservationTerminate" title="nearlink_sdr.mac.link_control.ResourceReservationTerminate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceReservationTerminate</span></code></a></p></td>
-<td><p>资源预留终止。</p></td>
+<td><p>resource reservationterminate.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.NarrowbandSensingRequest" title="nearlink_sdr.mac.link_control.NarrowbandSensingRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NarrowbandSensingRequest</span></code></a></p></td>
-<td><p>窄带frequency hopping感知procedurerequest。</p></td>
+<td><p>Narrowband frequency hopping sensing process request.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.NarrowbandSensingFeedback" title="nearlink_sdr.mac.link_control.NarrowbandSensingFeedback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NarrowbandSensingFeedback</span></code></a></p></td>
-<td><p>窄带frequency hopping感知procedurefeedback。</p></td>
+<td><p>Narrowband frequency hopping sensing process feedback.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.NarrowbandProxySensingRequest" title="nearlink_sdr.mac.link_control.NarrowbandProxySensingRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NarrowbandProxySensingRequest</span></code></a></p></td>
-<td><p>窄带frequency hopping代理感知request。</p></td>
+<td><p>Narrowband frequency hopping proxy sensing request.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.NarrowbandProxySensingFeedback" title="nearlink_sdr.mac.link_control.NarrowbandProxySensingFeedback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NarrowbandProxySensingFeedback</span></code></a></p></td>
-<td><p>窄带frequency hopping代理感知feedback。</p></td>
+<td><p>Narrowband frequency hopping proxy sensing feedback.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.NarrowbandSensingCapRequest" title="nearlink_sdr.mac.link_control.NarrowbandSensingCapRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NarrowbandSensingCapRequest</span></code></a></p></td>
-<td><p>窄带frequency hopping感知能力request。</p></td>
+<td><p>Narrowband frequency hopping sensing capability request.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.NarrowbandSensingCapResponse" title="nearlink_sdr.mac.link_control.NarrowbandSensingCapResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NarrowbandSensingCapResponse</span></code></a></p></td>
-<td><p>窄带frequency hopping感知能力response (50 bytes)。</p></td>
+<td><p>Narrowband frequency hopping sensing capability response (50 bytes).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.NarrowbandSensingConfig" title="nearlink_sdr.mac.link_control.NarrowbandSensingConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NarrowbandSensingConfig</span></code></a></p></td>
-<td><p>窄带frequency hopping感知configuration (可变长)。</p></td>
+<td><p>Narrowband frequency hopping sensing configuration (variable length).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.NarrowbandSensingConfigFeedback" title="nearlink_sdr.mac.link_control.NarrowbandSensingConfigFeedback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NarrowbandSensingConfigFeedback</span></code></a></p></td>
-<td><p>窄带frequency hopping感知configurationfeedback。</p></td>
+<td><p>Narrowband frequency hopping sensing configuration feedback.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.SensingDeviceStatusReport" title="nearlink_sdr.mac.link_control.SensingDeviceStatusReport"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SensingDeviceStatusReport</span></code></a></p></td>
-<td><p>感知devicestate上报。</p></td>
+<td><p>Sensing device status report.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.NarrowbandSensingReport" title="nearlink_sdr.mac.link_control.NarrowbandSensingReport"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NarrowbandSensingReport</span></code></a></p></td>
-<td><p>窄带frequency hopping感知信息上报 (可变长)。</p></td>
+<td><p>Narrowband frequency hopping sensing information report (variable length).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.NarrowbandSensingAction" title="nearlink_sdr.mac.link_control.NarrowbandSensingAction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NarrowbandSensingAction</span></code></a></p></td>
-<td><p>窄带frequency hopping感知行为indication。</p></td>
+<td><p>Narrowband frequency hopping sensing behavior indication.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.NarrowbandMeasConfigUpdateRequest" title="nearlink_sdr.mac.link_control.NarrowbandMeasConfigUpdateRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NarrowbandMeasConfigUpdateRequest</span></code></a></p></td>
-<td><p>窄带frequency hopping测量signalconfigurationupdaterequest (32 bytes)。</p></td>
+<td><p>Narrowband frequency hopping measurement signal configuration update request (32 bytes).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.NarrowbandMeasConfigUpdateIndication" title="nearlink_sdr.mac.link_control.NarrowbandMeasConfigUpdateIndication"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NarrowbandMeasConfigUpdateIndication</span></code></a></p></td>
-<td><p>窄带frequency hopping测量signalconfigurationupdateindication (与request结构相同, 32 bytes)。</p></td>
+<td><p>Narrowband frequency hopping measurement signal configuration update indication (same structure as request, 32 bytes).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.UWBSensingProcessRequest" title="nearlink_sdr.mac.link_control.UWBSensingProcessRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWBSensingProcessRequest</span></code></a></p></td>
-<td><p>超宽带脉冲感知procedurerequest (16 bytes)。</p></td>
+<td><p>UWB pulse sensing process request (16 bytes).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.UWBSensingProcessFeedback" title="nearlink_sdr.mac.link_control.UWBSensingProcessFeedback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWBSensingProcessFeedback</span></code></a></p></td>
-<td><p>超宽带脉冲感知procedurefeedback。</p></td>
+<td><p>UWB pulse sensing process feedback.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.UWBProxySensingRequest" title="nearlink_sdr.mac.link_control.UWBProxySensingRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWBProxySensingRequest</span></code></a></p></td>
-<td><p>超宽带脉冲代理感知request (11 bytes)。</p></td>
+<td><p>UWB pulse proxy sensing request (11 bytes).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.UWBProxySensingFeedback" title="nearlink_sdr.mac.link_control.UWBProxySensingFeedback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWBProxySensingFeedback</span></code></a></p></td>
-<td><p>超宽带脉冲代理感知feedback (14 bytes)。</p></td>
+<td><p>UWB pulse proxy sensing feedback (14 bytes).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.link_control.UWBMeasAction" title="nearlink_sdr.mac.link_control.UWBMeasAction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWBMeasAction</span></code></a></p></td>
-<td><p>超宽带脉冲测量行为indication。</p></td>
+<td><p>UWB pulse measurement behavior indication.</p></td>
 </tr>
 </tbody>
 </table>
@@ -743,10 +743,10 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.IntervalUpdateRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">IntervalUpdateRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#IntervalUpdateRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.IntervalUpdateRequest" title="Link to this definition">¶</a></dt>
-<dd><p>TX/RX interval update request.</p>
-<p>字段:</p>
+<dd><p>transceive interval update request.</p>
+<p>field:</p>
 <ul class="simple">
-<li><p>interval_type: 4 bits, 请求的收发间隔类型 (0-15)</p></li>
+<li><p>interval_type: 4 bits, requesttransceive intervaltype (0-15)</p></li>
 <li><p>reserved:      4 bits</p></li>
 </ul>
 <dl class="py attribute">
@@ -782,10 +782,10 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.IntervalUpdateResponse">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">IntervalUpdateResponse</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#IntervalUpdateResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.IntervalUpdateResponse" title="Link to this definition">¶</a></dt>
-<dd><p>TX/RX interval update response.</p>
-<p>字段:</p>
+<dd><p>transceive interval update response.</p>
+<p>field:</p>
 <ul class="simple">
-<li><p>interval_type: 4 bits, 响应的收发间隔类型 (0-15)</p></li>
+<li><p>interval_type: 4 bits, responsetransceive intervaltype (0-15)</p></li>
 <li><p>reserved:      4 bits</p></li>
 </ul>
 <dl class="py attribute">
@@ -821,13 +821,13 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.IntervalUpdateIndication">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">IntervalUpdateIndication</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#IntervalUpdateIndication"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.IntervalUpdateIndication" title="Link to this definition">¶</a></dt>
-<dd><p>TX/RX interval update indication.</p>
-<p>字段:</p>
+<dd><p>transceive interval update indication.</p>
+<p>field:</p>
 <ul class="simple">
-<li><p>link_id:           24 bits, 逻辑link标识</p></li>
-<li><p>interval_type:     4 bits, update后的收发interval类型</p></li>
+<li><p>link_id:           24 bits, logical link identifier</p></li>
+<li><p>interval_type:     4 bits, updated transceive interval type</p></li>
 <li><p>reserved:          4 bits</p></li>
-<li><p>effective_slot:    32 bits, signaling生效time slot号</p></li>
+<li><p>effective_slot:    32 bits, signaling effective time slot number</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.IntervalUpdateIndication.link_id">
@@ -874,11 +874,11 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SignalingReject">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">SignalingReject</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#SignalingReject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.SignalingReject" title="Link to this definition">¶</a></dt>
-<dd><p>signaling被拒indication。</p>
-<p>字段:</p>
+<dd><p>Signaling rejected indication.</p>
+<p>field:</p>
 <ul class="simple">
-<li><p>rejected_index: 16 bits, 被拒的data类型索引</p></li>
-<li><p>error_reason:    8 bits, 出错原因</p></li>
+<li><p>rejected_index: 16 bits, rejected data type index</p></li>
+<li><p>error_reason:    8 bits, error reason</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SignalingReject.rejected_index">
@@ -919,7 +919,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.FeatureExchangeRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">FeatureExchangeRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#FeatureExchangeRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.FeatureExchangeRequest" title="Link to this definition">¶</a></dt>
-<dd><p>特性interactionrequest: 80-bit 特性集位图。</p>
+<dd><p>Feature exchange request: 80-bit feature set bitmap.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.FeatureExchangeRequest.feature_set">
 <span class="sig-name descname"><span class="pre">feature_set</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.FeatureExchangeRequest.feature_set" title="Link to this definition">¶</a></dt>
@@ -953,7 +953,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.FeatureExchangeResponse">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">FeatureExchangeResponse</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#FeatureExchangeResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.FeatureExchangeResponse" title="Link to this definition">¶</a></dt>
-<dd><p>特性interactionresponse: 80-bit 特性集位图。</p>
+<dd><p>Feature exchange response: 80-bit feature set bitmap.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.FeatureExchangeResponse.feature_set">
 <span class="sig-name descname"><span class="pre">feature_set</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.FeatureExchangeResponse.feature_set" title="Link to this definition">¶</a></dt>
@@ -988,11 +988,11 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.VersionExchange">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">VersionExchange</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#VersionExchange"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.VersionExchange" title="Link to this definition">¶</a></dt>
 <dd><p>Version exchange indication.</p>
-<p>字段:</p>
+<p>field:</p>
 <ul class="simple">
-<li><p>spec_version:     8 bits, 规格版本</p></li>
-<li><p>company_id:      16 bits, 公司标识符</p></li>
-<li><p>sub_version:     16 bits, 子规格版本</p></li>
+<li><p>spec_version:     8 bits, spec version</p></li>
+<li><p>company_id:      16 bits, company identifier</p></li>
+<li><p>sub_version:     16 bits, sub-spec version</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.VersionExchange.spec_version">
@@ -1040,12 +1040,12 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.DataLengthRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">DataLengthRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#DataLengthRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.DataLengthRequest" title="Link to this definition">¶</a></dt>
 <dd><p>datalengthrequest (MTU negotiation)。</p>
-<p>字段:</p>
+<p>field:</p>
 <ul class="simple">
-<li><p>max_rx_bytes: 16 bits, 最大接收字节数 (31-2047)</p></li>
-<li><p>max_rx_time:  16 bits, 最大接收时间 (346-65535 us)</p></li>
-<li><p>max_tx_bytes: 16 bits, 最大发送字节数 (31-2047)</p></li>
-<li><p>max_tx_time:  16 bits, 最大发送时间 (346-65535 us)</p></li>
+<li><p>max_rx_bytes: 16 bits, maximum receive byte count (31-2047)</p></li>
+<li><p>max_rx_time:  16 bits, maximum receive time (346-65535 us)</p></li>
+<li><p>max_tx_bytes: 16 bits, maximum transmit byte count (31-2047)</p></li>
+<li><p>max_tx_time:  16 bits, max transmit time (346-65535 us)</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.DataLengthRequest.max_rx_bytes">
@@ -1098,7 +1098,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.DataLengthResponse">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">DataLengthResponse</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#DataLengthResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.DataLengthResponse" title="Link to this definition">¶</a></dt>
-<dd><p>datalengthresponse。字段与 DataLengthRequest 相同。</p>
+<dd><p>Data length response. Fields are identical to DataLengthRequest.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.DataLengthResponse.max_rx_bytes">
 <span class="sig-name descname"><span class="pre">max_rx_bytes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.DataLengthResponse.max_rx_bytes" title="Link to this definition">¶</a></dt>
@@ -1151,11 +1151,11 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.ChannelReportConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">ChannelReportConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#ChannelReportConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.ChannelReportConfig" title="Link to this definition">¶</a></dt>
 <dd><p>Channel report indication.</p>
-<p>字段:</p>
+<p>field:</p>
 <ul class="simple">
-<li><p>enable:       8 bits, 使能信道上报 (0 或 1)</p></li>
-<li><p>min_interval: 8 bits, 最小时间间隔 (5-150, 单位 200ms)</p></li>
-<li><p>max_delay:    8 bits, 最大时延 (5-150, 单位 200ms)</p></li>
+<li><p>enable:       8 bits, enable channel reporting (0 or 1)</p></li>
+<li><p>min_interval: 8 bits, min time interval (5-150, unit 200ms)</p></li>
+<li><p>max_delay:    8 bits, max delay (5-150, unit 200ms)</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.ChannelReportConfig.enable">
@@ -1202,15 +1202,15 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.CrcSwitchRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">CrcSwitchRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#CrcSwitchRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.CrcSwitchRequest" title="Link to this definition">¶</a></dt>
-<dd><p>CRC 切换request。</p>
-<p>字段:</p>
+<dd><p>CRC switch request.</p>
+<p>field:</p>
 <ul class="simple">
-<li><p>link_id:         24 bits, 逻辑link标识</p></li>
-<li><p>tx_crc_type:      1 bit, 先发链路 CRC 类型 (0=CRC24, 1=CRC32)</p></li>
-<li><p>rx_crc_type:      1 bit, 后发link CRC 类型</p></li>
+<li><p>link_id:         24 bits, logical link identifier</p></li>
+<li><p>tx_crc_type: 1 bit, first-sendlink CRC type (0=CRC24, 1=CRC32)</p></li>
+<li><p>rx_crc_type:      1 bit, responder link CRC type</p></li>
 <li><p>reserved:         6 bits</p></li>
-<li><p>tx_crc_init:     32 bits, 先发link CRC initial value</p></li>
-<li><p>rx_crc_init:     32 bits, 后发link CRC initial value</p></li>
+<li><p>tx_crc_init: 32 bits, first-sendlink CRC initial value</p></li>
+<li><p>rx_crc_init: 32 bits, second-sendlink CRC initial value</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.CrcSwitchRequest.link_id">
@@ -1269,7 +1269,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.CrcSwitchIndication">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">CrcSwitchIndication</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#CrcSwitchIndication"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.CrcSwitchIndication" title="Link to this definition">¶</a></dt>
-<dd><p>CRC 切换indication。增加生效time slot号。</p>
+<dd><p>CRC switch indication. Adds effective time slot number.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.CrcSwitchIndication.link_id">
 <span class="sig-name descname"><span class="pre">link_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.CrcSwitchIndication.link_id" title="Link to this definition">¶</a></dt>
@@ -1402,10 +1402,10 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.LinkDisconnect">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">LinkDisconnect</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#LinkDisconnect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.LinkDisconnect" title="Link to this definition">¶</a></dt>
 <dd><p>Link disconnect indication.</p>
-<p>字段:</p>
+<p>field:</p>
 <ul class="simple">
-<li><p>link_id:      24 bits, 逻辑link标识</p></li>
-<li><p>error_reason:  8 bits, 出错原因</p></li>
+<li><p>link_id:      24 bits, logical link identifier</p></li>
+<li><p>error_reason:  8 bits, error reason</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.LinkDisconnect.link_id">
@@ -1447,11 +1447,11 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SecurityRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">SecurityRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#SecurityRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.SecurityRequest" title="Link to this definition">¶</a></dt>
 <dd><p>securityrequest。</p>
-<p>字段:</p>
+<p>field:</p>
 <ul class="simple">
-<li><p>g_node_iv:       32 bits, G节点初始化向量</p></li>
-<li><p>g_node_skd:      64 bits, G节点连接key分散器</p></li>
-<li><p>enc_indication:   8 bits, encrypt和完整性保护indication</p></li>
+<li><p>g_node_iv:       32 bits, G node initialization vector</p></li>
+<li><p>g_node_skd:      64 bits, G node session key diversifier</p></li>
+<li><p>enc_indication:   8 bits, encryption and integrity protection indication</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SecurityRequest.g_node_iv">
@@ -1499,10 +1499,10 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SecurityResponse">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">SecurityResponse</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#SecurityResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.SecurityResponse" title="Link to this definition">¶</a></dt>
 <dd><p>securityresponse。</p>
-<p>字段:</p>
+<p>field:</p>
 <ul class="simple">
-<li><p>t_node_iv:  32 bits, T节点初始化向量</p></li>
-<li><p>t_node_skd: 64 bits, T节点连接key分散器</p></li>
+<li><p>t_node_iv:  32 bits, T node initialization vector</p></li>
+<li><p>t_node_skd: 64 bits, T node session key diversifier</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SecurityResponse.t_node_iv">
@@ -1543,7 +1543,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SecurityStartRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">SecurityStartRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#SecurityStartRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.SecurityStartRequest" title="Link to this definition">¶</a></dt>
-<dd><p>security启动request (无载荷)。</p>
+<dd><p>Security start request (no payload).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SecurityStartRequest.DATA_TYPE_INDEX">
 <span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><a class="headerlink" href="#nearlink_sdr.mac.link_control.SecurityStartRequest.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
@@ -1571,10 +1571,10 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SecurityStartResponse">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">SecurityStartResponse</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#SecurityStartResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.SecurityStartResponse" title="Link to this definition">¶</a></dt>
-<dd><p>security启动response。</p>
-<p>字段:</p>
+<dd><p>securitystartresponse.</p>
+<p>field:</p>
 <ul class="simple">
-<li><p>enc_indication: 8 bits, encrypt和完整性保护indication</p></li>
+<li><p>enc_indication: 8 bits, encryption and integrity protection indication</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SecurityStartResponse.enc_indication">
@@ -1609,7 +1609,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SecurityPauseRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">SecurityPauseRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#SecurityPauseRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.SecurityPauseRequest" title="Link to this definition">¶</a></dt>
-<dd><p>security暂停request (无载荷)。</p>
+<dd><p>Security pause request (no payload).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SecurityPauseRequest.DATA_TYPE_INDEX">
 <span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><a class="headerlink" href="#nearlink_sdr.mac.link_control.SecurityPauseRequest.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
@@ -1637,7 +1637,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SecurityPauseResponse">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">SecurityPauseResponse</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#SecurityPauseResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.SecurityPauseResponse" title="Link to this definition">¶</a></dt>
-<dd><p>security暂停response (无载荷)。</p>
+<dd><p>Security pause response (no payload).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SecurityPauseResponse.DATA_TYPE_INDEX">
 <span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><a class="headerlink" href="#nearlink_sdr.mac.link_control.SecurityPauseResponse.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
@@ -1666,9 +1666,9 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UnknownFeatureFeedback">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">UnknownFeatureFeedback</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#UnknownFeatureFeedback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.UnknownFeatureFeedback" title="Link to this definition">¶</a></dt>
 <dd><p>Unknown feature feedback.</p>
-<p>字段:</p>
+<p>field:</p>
 <ul class="simple">
-<li><p>unknown_type: 16 bits, 收到的未知data类型索引</p></li>
+<li><p>unknown_type: 16 bits, received unknown data type index</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UnknownFeatureFeedback.unknown_type">
@@ -1704,9 +1704,9 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.ChannelStatusIndication">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">ChannelStatusIndication</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#ChannelStatusIndication"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.ChannelStatusIndication" title="Link to this definition">¶</a></dt>
 <dd><p>channelstateindication。</p>
-<p>字段:</p>
+<p>field:</p>
 <ul class="simple">
-<li><p>channel_map: 160 bits, 每信道 2 bit 质量指示 (0=未知, 1=好, 3=差)</p></li>
+<li><p>channel_map: 160 bits, 2-bit quality indication per channel (0=unknown, 1=good, 3=bad)</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.ChannelStatusIndication.channel_map">
@@ -1741,12 +1741,12 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.HopTableUpdate">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">HopTableUpdate</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#HopTableUpdate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.HopTableUpdate" title="Link to this definition">¶</a></dt>
-<dd><p>frequency hopping表updateindication (系统管理frame)。</p>
-<p>字段:</p>
+<dd><p>frequency hoppingtableupdateindication (system managementframe).</p>
+<p>field:</p>
 <ul class="simple">
-<li><p>effective_slot: 32 bits, signaling生效time slot号</p></li>
-<li><p>channel_count:   8 bits, frequency hopping表频点个数</p></li>
-<li><p>channel_table:  可变,  frequency hopping表频点列表</p></li>
+<li><p>effective_slot: 32 bits, signaling effective time slot number</p></li>
+<li><p>channel_count:   8 bits, number of frequency points in hopping table</p></li>
+<li><p>channel_table:  variable, frequency point list of hopping table</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.HopTableUpdate.effective_slot">
@@ -1794,10 +1794,10 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.HopMapUpdate">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">HopMapUpdate</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#HopMapUpdate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.HopMapUpdate" title="Link to this definition">¶</a></dt>
 <dd><p>hopping mapupdateindication (datalink)。</p>
-<p>字段:</p>
+<p>field:</p>
 <ul class="simple">
-<li><p>hop_map:        80 bits, hopping map位图</p></li>
-<li><p>effective_slot: 32 bits, signaling生效time slot号</p></li>
+<li><p>hop_map:        80 bits, frequency hopping map bitmap</p></li>
+<li><p>effective_slot: 32 bits, signaling effective time slot number</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.HopMapUpdate.hop_map">
@@ -1838,13 +1838,13 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.MinAvailableChannels">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">MinAvailableChannels</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#MinAvailableChannels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.MinAvailableChannels" title="Link to this definition">¶</a></dt>
-<dd><p>最少可用channelindication。</p>
-<p>字段:</p>
+<dd><p>Minimum available channels indication.</p>
+<p>field:</p>
 <ul class="simple">
-<li><p>frame_type:     4 bits, 无线frame type</p></li>
+<li><p>frame_type:     4 bits, radio frame type</p></li>
 <li><p>bandwidth:      2 bits, bandwidthindication</p></li>
-<li><p>pilot_density:  2 bits, pilot密度indication</p></li>
-<li><p>min_channels:   8 bits, 最小信道数 (2-76)</p></li>
+<li><p>pilot_density:  2 bits, pilot density indication</p></li>
+<li><p>min_channels:   8 bits, minimum channel count (2-76)</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.MinAvailableChannels.frame_type">
@@ -1897,17 +1897,17 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.PhyUpdateRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">PhyUpdateRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#PhyUpdateRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.PhyUpdateRequest" title="Link to this definition">¶</a></dt>
-<dd><p>物理层updaterequest。</p>
-<p>字段:</p>
+<dd><p>PHY update request.</p>
+<p>field:</p>
 <ul class="simple">
-<li><p>tx_frame_type:      4 bits, 先发link无线frame type</p></li>
-<li><p>rx_frame_type:      4 bits, 后发link无线frame type</p></li>
-<li><p>tx_bandwidth:       2 bits, 先发linkbandwidth</p></li>
-<li><p>rx_bandwidth:       2 bits, 后发linkbandwidth</p></li>
-<li><p>tx_pilot_density:   2 bits, 先发linkpilot密度</p></li>
-<li><p>rx_pilot_density:   2 bits, 后发linkpilot密度</p></li>
-<li><p>tx_feedback_type:   6 bits, 先发linkfeedback类型</p></li>
-<li><p>rx_feedback_type:   3 bits, 后发linkfeedback类型</p></li>
+<li><p>tx_frame_type:      4 bits, initiator link radio frame type</p></li>
+<li><p>rx_frame_type:      4 bits, responder link radio frame type</p></li>
+<li><p>tx_bandwidth: 2 bits, first-sendlinkbandwidth</p></li>
+<li><p>rx_bandwidth: 2 bits, second-sendlinkbandwidth</p></li>
+<li><p>tx_pilot_density:   2 bits, initiator link pilot density</p></li>
+<li><p>rx_pilot_density:   2 bits, responder link pilot density</p></li>
+<li><p>tx_feedback_type:   6 bits, initiator link feedback type</p></li>
+<li><p>rx_feedback_type:   3 bits, responder link feedback type</p></li>
 <li><p>reserved:           7 bits</p></li>
 </ul>
 <dl class="py attribute">
@@ -1985,7 +1985,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.PhyUpdateIndication">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">PhyUpdateIndication</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#PhyUpdateIndication"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.PhyUpdateIndication" title="Link to this definition">¶</a></dt>
-<dd><p>物理层updateindication (含生效time slot)。</p>
+<dd><p>PHY update indication (with effective time slot).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.PhyUpdateIndication.tx_frame_type">
 <span class="sig-name descname"><span class="pre">tx_frame_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.PhyUpdateIndication.tx_frame_type" title="Link to this definition">¶</a></dt>
@@ -2067,7 +2067,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.AsyncMulticastReconfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">AsyncMulticastReconfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#AsyncMulticastReconfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.AsyncMulticastReconfig" title="Link to this definition">¶</a></dt>
-<dd><p>异步组播linkparameter重configurationindication。</p>
+<dd><p>Asynchronous multicast link parameter reconfiguration indication.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.AsyncMulticastReconfig.effective_ref_slot">
 <span class="sig-name descname"><span class="pre">effective_ref_slot</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.AsyncMulticastReconfig.effective_ref_slot" title="Link to this definition">¶</a></dt>
@@ -2191,8 +2191,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.AsyncUnicastUpdate">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">AsyncUnicastUpdate</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#AsyncUnicastUpdate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.AsyncUnicastUpdate" title="Link to this definition">¶</a></dt>
-<dd><p>connected state单播异步linkparameterupdateindication。</p>
-<p>standard定义 120 bits = 15 bytes。timeout 字段不包含在standardsequence化中。</p>
+<dd><p>Connected-state unicast asynchronous link parameter update indication.</p>
+<p>Standard defines 120 bits = 15 bytes. The timeout field is not included in standard serialization.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.AsyncUnicastUpdate.effective_ref_slot">
 <span class="sig-name descname"><span class="pre">effective_ref_slot</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.AsyncUnicastUpdate.effective_ref_slot" title="Link to this definition">¶</a></dt>
@@ -2275,10 +2275,10 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.BroadcastLinkDisconnect">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">BroadcastLinkDisconnect</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#BroadcastLinkDisconnect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.BroadcastLinkDisconnect" title="Link to this definition">¶</a></dt>
 <dd><p>Broadcast link disconnect indication.</p>
-<p>字段:</p>
+<p>field:</p>
 <ul class="simple">
-<li><p>link_id:      24 bits, 逻辑link标识</p></li>
-<li><p>error_reason:  8 bits, 出错原因</p></li>
+<li><p>link_id:      24 bits, logical link identifier</p></li>
+<li><p>error_reason:  8 bits, error reason</p></li>
 <li><p>reserved:      8 bits</p></li>
 </ul>
 <dl class="py attribute">
@@ -2320,7 +2320,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SMFSignalingTerminate">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">SMFSignalingTerminate</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#SMFSignalingTerminate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.SMFSignalingTerminate" title="Link to this definition">¶</a></dt>
-<dd><p>系统管理framesignaling传输终止。</p>
+<dd><p>System management frame signaling transmission termination.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SMFSignalingTerminate.terminate_type">
 <span class="sig-name descname"><span class="pre">terminate_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.SMFSignalingTerminate.terminate_type" title="Link to this definition">¶</a></dt>
@@ -2355,9 +2355,9 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.RoleSwitchRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">RoleSwitchRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#RoleSwitchRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.RoleSwitchRequest" title="Link to this definition">¶</a></dt>
 <dd><p>Role switch request.</p>
-<p>字段:</p>
+<p>field:</p>
 <ul class="simple">
-<li><p>effective_slot: 32 bits, signaling生效time slot号</p></li>
+<li><p>effective_slot: 32 bits, signaling effective time slot number</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.RoleSwitchRequest.effective_slot">
@@ -2426,7 +2426,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.PingRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">PingRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#PingRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.PingRequest" title="Link to this definition">¶</a></dt>
-<dd><p>PING request (无载荷)。</p>
+<dd><p>PING request (no payload).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.PingRequest.DATA_TYPE_INDEX">
 <span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><a class="headerlink" href="#nearlink_sdr.mac.link_control.PingRequest.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
@@ -2454,7 +2454,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.PingResponse">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">PingResponse</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#PingResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.PingResponse" title="Link to this definition">¶</a></dt>
-<dd><p>PING response (无载荷)。</p>
+<dd><p>PING response (no payload).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.PingResponse.DATA_TYPE_INDEX">
 <span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><a class="headerlink" href="#nearlink_sdr.mac.link_control.PingResponse.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
@@ -2516,7 +2516,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.MulticastDisconnect">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">MulticastDisconnect</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#MulticastDisconnect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.MulticastDisconnect" title="Link to this definition">¶</a></dt>
-<dd><p>组播link断开indication。</p>
+<dd><p>Multicast link disconnection indication.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.MulticastDisconnect.link_id">
 <span class="sig-name descname"><span class="pre">link_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.MulticastDisconnect.link_id" title="Link to this definition">¶</a></dt>
@@ -2550,7 +2550,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.AsyncLinkParamRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">AsyncLinkParamRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#AsyncLinkParamRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.AsyncLinkParamRequest" title="Link to this definition">¶</a></dt>
-<dd><p>connected state异步linkparameterupdaterequest。</p>
+<dd><p>Connected-state asynchronous link parameter update request.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.AsyncLinkParamRequest.event_group_period_min">
 <span class="sig-name descname"><span class="pre">event_group_period_min</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.AsyncLinkParamRequest.event_group_period_min" title="Link to this definition">¶</a></dt>
@@ -2632,7 +2632,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.AsyncLinkParamResponse">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">AsyncLinkParamResponse</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#AsyncLinkParamResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.AsyncLinkParamResponse" title="Link to this definition">¶</a></dt>
-<dd><p>connected state异步linkparameterupdateresponse (与request字段完全相同)。</p>
+<dd><p>Connected-state asynchronous link parameter update response (fields identical to request).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.AsyncLinkParamResponse.event_group_period_min">
 <span class="sig-name descname"><span class="pre">event_group_period_min</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.AsyncLinkParamResponse.event_group_period_min" title="Link to this definition">¶</a></dt>
@@ -2982,7 +2982,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.IsochronousParamExchangeRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">IsochronousParamExchangeRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#IsochronousParamExchangeRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.IsochronousParamExchangeRequest" title="Link to this definition">¶</a></dt>
-<dd><p>sync等时linkparameterinteractionrequest。</p>
+<dd><p>Synchronous isochronous link parameter exchange request.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.IsochronousParamExchangeRequest.event_group_set_id">
 <span class="sig-name descname"><span class="pre">event_group_set_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.IsochronousParamExchangeRequest.event_group_set_id" title="Link to this definition">¶</a></dt>
@@ -3245,7 +3245,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.IsochronousParamExchangeResponse">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">IsochronousParamExchangeResponse</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#IsochronousParamExchangeResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.IsochronousParamExchangeResponse" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#nearlink_sdr.mac.link_control.IsochronousParamExchangeRequest" title="nearlink_sdr.mac.link_control.IsochronousParamExchangeRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control.IsochronousParamExchangeRequest</span></code></a></p>
-<p>sync等时linkparameterinteractionresponse (与request字段相同)。</p>
+<p>Synchronous isochronous link parameter exchange response (fields identical to request).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.IsochronousParamExchangeResponse.DATA_TYPE_INDEX">
 <span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><a class="headerlink" href="#nearlink_sdr.mac.link_control.IsochronousParamExchangeResponse.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
@@ -3268,7 +3268,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.IsochronousParamUpdateRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">IsochronousParamUpdateRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#IsochronousParamUpdateRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.IsochronousParamUpdateRequest" title="Link to this definition">¶</a></dt>
-<dd><p>sync等时linkparameterupdaterequest。</p>
+<dd><p>Synchronous isochronous link parameter update request.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.IsochronousParamUpdateRequest.param_tag_id">
 <span class="sig-name descname"><span class="pre">param_tag_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.IsochronousParamUpdateRequest.param_tag_id" title="Link to this definition">¶</a></dt>
@@ -3314,7 +3314,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.IsochronousParamUpdateIndication">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">IsochronousParamUpdateIndication</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#IsochronousParamUpdateIndication"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.IsochronousParamUpdateIndication" title="Link to this definition">¶</a></dt>
-<dd><p>sync等时linkparameterupdateindication。</p>
+<dd><p>Synchronous isochronous link parameter update indication.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.IsochronousParamUpdateIndication.param_tag_id">
 <span class="sig-name descname"><span class="pre">param_tag_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.IsochronousParamUpdateIndication.param_tag_id" title="Link to this definition">¶</a></dt>
@@ -3372,7 +3372,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.BroadcastLinkSetup">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">BroadcastLinkSetup</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#BroadcastLinkSetup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.BroadcastLinkSetup" title="Link to this definition">¶</a></dt>
-<dd><p>connected statebroadcastlink建立indication (2.4GHz 80-bit hopping map版本)。</p>
+<dd><p>Connected-state broadcast link establishment indication (2.4GHz 80-bit frequency hopping map version).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.BroadcastLinkSetup.transmission_type">
 <span class="sig-name descname"><span class="pre">transmission_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.BroadcastLinkSetup.transmission_type" title="Link to this definition">¶</a></dt>
@@ -3726,7 +3726,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SMFParamUpdateRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">SMFParamUpdateRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#SMFParamUpdateRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.SMFParamUpdateRequest" title="Link to this definition">¶</a></dt>
-<dd><p>系统管理frameparameterupdaterequest。</p>
+<dd><p>system managementframeparameterupdaterequest.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SMFParamUpdateRequest.smf_period">
 <span class="sig-name descname"><span class="pre">smf_period</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.SMFParamUpdateRequest.smf_period" title="Link to this definition">¶</a></dt>
@@ -3796,7 +3796,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SMFParamUpdateIndication">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">SMFParamUpdateIndication</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#SMFParamUpdateIndication"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.SMFParamUpdateIndication" title="Link to this definition">¶</a></dt>
-<dd><p>系统管理frameparameterupdateindication。</p>
+<dd><p>system managementframeparameterupdateindication.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SMFParamUpdateIndication.smf_period">
 <span class="sig-name descname"><span class="pre">smf_period</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.SMFParamUpdateIndication.smf_period" title="Link to this definition">¶</a></dt>
@@ -3872,7 +3872,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SMFTimeSlotUpdateRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">SMFTimeSlotUpdateRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#SMFTimeSlotUpdateRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.SMFTimeSlotUpdateRequest" title="Link to this definition">¶</a></dt>
-<dd><p>系统管理frametime片updaterequest。</p>
+<dd><p>System management frame time slice update request.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SMFTimeSlotUpdateRequest.link_id">
 <span class="sig-name descname"><span class="pre">link_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.SMFTimeSlotUpdateRequest.link_id" title="Link to this definition">¶</a></dt>
@@ -3918,7 +3918,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SMFTimeSlotUpdateResponse">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">SMFTimeSlotUpdateResponse</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#SMFTimeSlotUpdateResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.SMFTimeSlotUpdateResponse" title="Link to this definition">¶</a></dt>
-<dd><p>系统管理frametime片updateresponse。</p>
+<dd><p>System management frame time slice update response.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SMFTimeSlotUpdateResponse.link_id">
 <span class="sig-name descname"><span class="pre">link_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.SMFTimeSlotUpdateResponse.link_id" title="Link to this definition">¶</a></dt>
@@ -3964,7 +3964,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.Channel5GStatusIndication">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">Channel5GStatusIndication</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#Channel5GStatusIndication"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.Channel5GStatusIndication" title="Link to this definition">¶</a></dt>
-<dd><p>5GHz 频段channelstateindication (400-bit channel分类)。</p>
+<dd><p>5GHz band channel status indication (400-bit channel classification).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.Channel5GStatusIndication.channel_classification">
 <span class="sig-name descname"><span class="pre">channel_classification</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.Channel5GStatusIndication.channel_classification" title="Link to this definition">¶</a></dt>
@@ -4062,7 +4062,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.MultiIntervalUpdateRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">MultiIntervalUpdateRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#MultiIntervalUpdateRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.MultiIntervalUpdateRequest" title="Link to this definition">¶</a></dt>
-<dd><p>多级收发intervalupdaterequest (31 个interval字节)。</p>
+<dd><p>Multi-level transceive interval update request (31 interval bytes).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.MultiIntervalUpdateRequest.intervals">
 <span class="sig-name descname"><span class="pre">intervals</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.MultiIntervalUpdateRequest.intervals" title="Link to this definition">¶</a></dt>
@@ -4097,7 +4097,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.MultiIntervalUpdateResponse">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">MultiIntervalUpdateResponse</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#MultiIntervalUpdateResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.MultiIntervalUpdateResponse" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#nearlink_sdr.mac.link_control.MultiIntervalUpdateRequest" title="nearlink_sdr.mac.link_control.MultiIntervalUpdateRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control.MultiIntervalUpdateRequest</span></code></a></p>
-<p>多级收发intervalupdateresponse (与request结构相同)。</p>
+<p>Multi-level transceive interval update response (same structure as request).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.MultiIntervalUpdateResponse.DATA_TYPE_INDEX">
 <span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><a class="headerlink" href="#nearlink_sdr.mac.link_control.MultiIntervalUpdateResponse.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
@@ -4120,7 +4120,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.MultiIntervalUpdateIndication">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">MultiIntervalUpdateIndication</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#MultiIntervalUpdateIndication"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.MultiIntervalUpdateIndication" title="Link to this definition">¶</a></dt>
-<dd><p>多级收发intervalupdateindication。</p>
+<dd><p>Multi-level transceive interval update indication.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.MultiIntervalUpdateIndication.intervals">
 <span class="sig-name descname"><span class="pre">intervals</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.MultiIntervalUpdateIndication.intervals" title="Link to this definition">¶</a></dt>
@@ -4166,7 +4166,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SystemTimeIndication">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">SystemTimeIndication</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#SystemTimeIndication"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.SystemTimeIndication" title="Link to this definition">¶</a></dt>
-<dd><p>系统timeindication (可变长, 按原始载荷存储)。</p>
+<dd><p>System time indication (variable length, stored as raw payload).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SystemTimeIndication.payload">
 <span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.SystemTimeIndication.payload" title="Link to this definition">¶</a></dt>
@@ -4200,7 +4200,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.AsyncMulticastLinkSetup">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">AsyncMulticastLinkSetup</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#AsyncMulticastLinkSetup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.AsyncMulticastLinkSetup" title="Link to this definition">¶</a></dt>
-<dd><p>异步组播link建链indication。</p>
+<dd><p>Asynchronous multicast link establishment indication.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.AsyncMulticastLinkSetup.event_group_set_id">
 <span class="sig-name descname"><span class="pre">event_group_set_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.AsyncMulticastLinkSetup.event_group_set_id" title="Link to this definition">¶</a></dt>
@@ -4414,7 +4414,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.AsyncMulticastParamExchangeRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">AsyncMulticastParamExchangeRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#AsyncMulticastParamExchangeRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.AsyncMulticastParamExchangeRequest" title="Link to this definition">¶</a></dt>
-<dd><p>异步组播linkparameterinteractionrequest。</p>
+<dd><p>Asynchronous multicast link parameter exchange request.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.AsyncMulticastParamExchangeRequest.payload">
 <span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.AsyncMulticastParamExchangeRequest.payload" title="Link to this definition">¶</a></dt>
@@ -4448,7 +4448,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.AsyncMulticastParamExchangeResponse">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">AsyncMulticastParamExchangeResponse</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#AsyncMulticastParamExchangeResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.AsyncMulticastParamExchangeResponse" title="Link to this definition">¶</a></dt>
-<dd><p>异步组播linkparameterinteractionresponse (与request结构相同)。</p>
+<dd><p>Asynchronous multicast link parameter exchange response (same structure as request).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.AsyncMulticastParamExchangeResponse.payload">
 <span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.AsyncMulticastParamExchangeResponse.payload" title="Link to this definition">¶</a></dt>
@@ -4482,7 +4482,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.AsyncMulticastParamUpdateRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">AsyncMulticastParamUpdateRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#AsyncMulticastParamUpdateRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.AsyncMulticastParamUpdateRequest" title="Link to this definition">¶</a></dt>
-<dd><p>异步组播linkparameterupdaterequest。</p>
+<dd><p>Asynchronous multicast link parameter update request.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.AsyncMulticastParamUpdateRequest.param_tag_id">
 <span class="sig-name descname"><span class="pre">param_tag_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.AsyncMulticastParamUpdateRequest.param_tag_id" title="Link to this definition">¶</a></dt>
@@ -4528,7 +4528,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.AsyncMulticastParamUpdateIndication">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">AsyncMulticastParamUpdateIndication</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#AsyncMulticastParamUpdateIndication"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.AsyncMulticastParamUpdateIndication" title="Link to this definition">¶</a></dt>
-<dd><p>异步组播linkparameterupdateindication。</p>
+<dd><p>Asynchronous multicast link parameter update indication.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.AsyncMulticastParamUpdateIndication.param_tag_id">
 <span class="sig-name descname"><span class="pre">param_tag_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.AsyncMulticastParamUpdateIndication.param_tag_id" title="Link to this definition">¶</a></dt>
@@ -4586,7 +4586,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control._ZeroPayload">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">_ZeroPayload</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#_ZeroPayload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control._ZeroPayload" title="Link to this definition">¶</a></dt>
-<dd><p>零载荷signaling基类。</p>
+<dd><p>Zero-payload signaling base class.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control._ZeroPayload.pack">
 <span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#_ZeroPayload.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control._ZeroPayload.pack" title="Link to this definition">¶</a></dt>
@@ -4603,7 +4603,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandMeasCapRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">NarrowbandMeasCapRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#NarrowbandMeasCapRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandMeasCapRequest" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#nearlink_sdr.mac.link_control._ZeroPayload" title="nearlink_sdr.mac.link_control._ZeroPayload"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control._ZeroPayload</span></code></a></p>
-<p>窄带frequency hopping测量能力request。</p>
+<p>Narrowband frequency hopping measurement capability request.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandMeasCapRequest.DATA_TYPE_INDEX">
 <span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandMeasCapRequest.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
@@ -4621,7 +4621,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandMeasCapResponse">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">NarrowbandMeasCapResponse</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#NarrowbandMeasCapResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandMeasCapResponse" title="Link to this definition">¶</a></dt>
-<dd><p>窄带frequency hopping测量能力response。</p>
+<dd><p>Narrowband frequency hopping measurement capability response.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandMeasCapResponse.payload">
 <span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandMeasCapResponse.payload" title="Link to this definition">¶</a></dt>
@@ -4655,7 +4655,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandFreqTable24Update">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">NarrowbandFreqTable24Update</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#NarrowbandFreqTable24Update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandFreqTable24Update" title="Link to this definition">¶</a></dt>
-<dd><p>窄带frequency hopping测量频点表configurationupdateindication (2.4GHz)。</p>
+<dd><p>Narrowband frequency hopping measurement channel table configuration update indication (2.4GHz).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandFreqTable24Update.config_index">
 <span class="sig-name descname"><span class="pre">config_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandFreqTable24Update.config_index" title="Link to this definition">¶</a></dt>
@@ -4695,7 +4695,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandFreqTable51Update">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">NarrowbandFreqTable51Update</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#NarrowbandFreqTable51Update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandFreqTable51Update" title="Link to this definition">¶</a></dt>
-<dd><p>窄带frequency hopping测量频点表configurationupdateindication (5.1GHz)。</p>
+<dd><p>Narrowband frequency hopping measurement channel table configuration update indication (5.1GHz).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandFreqTable51Update.config_index">
 <span class="sig-name descname"><span class="pre">config_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandFreqTable51Update.config_index" title="Link to this definition">¶</a></dt>
@@ -4735,7 +4735,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandFreqTable58Update">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">NarrowbandFreqTable58Update</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#NarrowbandFreqTable58Update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandFreqTable58Update" title="Link to this definition">¶</a></dt>
-<dd><p>窄带frequency hopping测量频点表configurationupdateindication (5.8GHz)。</p>
+<dd><p>Narrowband frequency hopping measurement channel table configuration update indication (5.8GHz).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandFreqTable58Update.config_index">
 <span class="sig-name descname"><span class="pre">config_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandFreqTable58Update.config_index" title="Link to this definition">¶</a></dt>
@@ -4775,7 +4775,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandMeasConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">NarrowbandMeasConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#NarrowbandMeasConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandMeasConfig" title="Link to this definition">¶</a></dt>
-<dd><p>窄带frequency hopping测量signalconfiguration (可变长, 按原始载荷存储)。</p>
+<dd><p>Narrowband frequency hopping measurement signal configuration (variable length, stored as raw payload).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandMeasConfig.payload">
 <span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandMeasConfig.payload" title="Link to this definition">¶</a></dt>
@@ -4809,7 +4809,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandMeasReport">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">NarrowbandMeasReport</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#NarrowbandMeasReport"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandMeasReport" title="Link to this definition">¶</a></dt>
-<dd><p>窄带frequency hopping测量信息上报 (可变长)。</p>
+<dd><p>Narrowband frequency hopping measurement information report (variable length).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandMeasReport.payload">
 <span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandMeasReport.payload" title="Link to this definition">¶</a></dt>
@@ -4843,7 +4843,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandMeasAction">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">NarrowbandMeasAction</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#NarrowbandMeasAction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandMeasAction" title="Link to this definition">¶</a></dt>
-<dd><p>窄带frequency hopping测量行为indication。</p>
+<dd><p>Narrowband frequency hopping measurement behavior indication.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandMeasAction.config_index">
 <span class="sig-name descname"><span class="pre">config_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandMeasAction.config_index" title="Link to this definition">¶</a></dt>
@@ -4908,7 +4908,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.CoordinateReport">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">CoordinateReport</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#CoordinateReport"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.CoordinateReport" title="Link to this definition">¶</a></dt>
-<dd><p>坐标信息上报。</p>
+<dd><p>coordinate informationreport.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.CoordinateReport.rel_x">
 <span class="sig-name descname"><span class="pre">rel_x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.CoordinateReport.rel_x" title="Link to this definition">¶</a></dt>
@@ -4972,7 +4972,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.CoordinateConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">CoordinateConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#CoordinateConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.CoordinateConfig" title="Link to this definition">¶</a></dt>
-<dd><p>坐标信息configuration (与上报结构相同)。</p>
+<dd><p>Coordinate information configuration (same structure as report).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.CoordinateConfig.rel_x">
 <span class="sig-name descname"><span class="pre">rel_x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.CoordinateConfig.rel_x" title="Link to this definition">¶</a></dt>
@@ -5037,7 +5037,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandDelayRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">NarrowbandDelayRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#NarrowbandDelayRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandDelayRequest" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#nearlink_sdr.mac.link_control._ZeroPayload" title="nearlink_sdr.mac.link_control._ZeroPayload"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control._ZeroPayload</span></code></a></p>
-<p>窄带frequency hopping测量时延信息request。</p>
+<p>Narrowband frequency hopping measurement delay information request.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandDelayRequest.DATA_TYPE_INDEX">
 <span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandDelayRequest.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
@@ -5055,7 +5055,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandDelayResponse">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">NarrowbandDelayResponse</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#NarrowbandDelayResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandDelayResponse" title="Link to this definition">¶</a></dt>
-<dd><p>窄带frequency hopping测量时延信息response (可变长)。</p>
+<dd><p>Narrowband frequency hopping measurement delay information response (variable length).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandDelayResponse.payload">
 <span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandDelayResponse.payload" title="Link to this definition">¶</a></dt>
@@ -5089,7 +5089,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.AsyncTTLinkSetup">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">AsyncTTLinkSetup</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#AsyncTTLinkSetup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.AsyncTTLinkSetup" title="Link to this definition">¶</a></dt>
-<dd><p>异步 TT link建链indication (可变长)。</p>
+<dd><p>Asynchronous TT link establishment indication (variable length).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.AsyncTTLinkSetup.payload">
 <span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.AsyncTTLinkSetup.payload" title="Link to this definition">¶</a></dt>
@@ -5124,7 +5124,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBMeasCapRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">UWBMeasCapRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#UWBMeasCapRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBMeasCapRequest" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#nearlink_sdr.mac.link_control._ZeroPayload" title="nearlink_sdr.mac.link_control._ZeroPayload"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control._ZeroPayload</span></code></a></p>
-<p>超宽带脉冲测量能力request。</p>
+<p>UWB pulse measurement capability request.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBMeasCapRequest.DATA_TYPE_INDEX">
 <span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBMeasCapRequest.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
@@ -5142,7 +5142,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBMeasCapResponse">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">UWBMeasCapResponse</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#UWBMeasCapResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBMeasCapResponse" title="Link to this definition">¶</a></dt>
-<dd><p>超宽带脉冲测量能力response (400 bits / 50 bytes)。</p>
+<dd><p>UWB pulse measurement capability response (400 bits / 50 bytes).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBMeasCapResponse.payload">
 <span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBMeasCapResponse.payload" title="Link to this definition">¶</a></dt>
@@ -5176,7 +5176,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBMeasConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">UWBMeasConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#UWBMeasConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBMeasConfig" title="Link to this definition">¶</a></dt>
-<dd><p>超宽带脉冲测量configuration (可变长)。</p>
+<dd><p>UWB pulse measurement configuration (variable length).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBMeasConfig.payload">
 <span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBMeasConfig.payload" title="Link to this definition">¶</a></dt>
@@ -5210,7 +5210,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBMeasConfigFeedback">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">UWBMeasConfigFeedback</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#UWBMeasConfigFeedback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBMeasConfigFeedback" title="Link to this definition">¶</a></dt>
-<dd><p>超宽带脉冲测量configurationfeedback。</p>
+<dd><p>UWB pulse measurement configuration feedback.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBMeasConfigFeedback.config_index">
 <span class="sig-name descname"><span class="pre">config_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBMeasConfigFeedback.config_index" title="Link to this definition">¶</a></dt>
@@ -5250,7 +5250,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBMeasReport">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">UWBMeasReport</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#UWBMeasReport"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBMeasReport" title="Link to this definition">¶</a></dt>
-<dd><p>超宽带脉冲测量信息上报 (可变长)。</p>
+<dd><p>UWB pulse measurement information report (variable length).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBMeasReport.payload">
 <span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBMeasReport.payload" title="Link to this definition">¶</a></dt>
@@ -5285,7 +5285,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBSensingCapRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">UWBSensingCapRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#UWBSensingCapRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBSensingCapRequest" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#nearlink_sdr.mac.link_control._ZeroPayload" title="nearlink_sdr.mac.link_control._ZeroPayload"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control._ZeroPayload</span></code></a></p>
-<p>超宽带脉冲感知能力request。</p>
+<p>UWB pulse sensing capability request.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBSensingCapRequest.DATA_TYPE_INDEX">
 <span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBSensingCapRequest.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
@@ -5303,7 +5303,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBSensingCapResponse">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">UWBSensingCapResponse</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#UWBSensingCapResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBSensingCapResponse" title="Link to this definition">¶</a></dt>
-<dd><p>超宽带脉冲感知能力response (408 bits / 51 bytes)。</p>
+<dd><p>UWB pulse sensing capability response (408 bits / 51 bytes).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBSensingCapResponse.payload">
 <span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBSensingCapResponse.payload" title="Link to this definition">¶</a></dt>
@@ -5337,7 +5337,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBSensingConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">UWBSensingConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#UWBSensingConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBSensingConfig" title="Link to this definition">¶</a></dt>
-<dd><p>超宽带脉冲感知configuration (可变长)。</p>
+<dd><p>UWB pulse sensing configuration (variable length).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBSensingConfig.payload">
 <span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBSensingConfig.payload" title="Link to this definition">¶</a></dt>
@@ -5371,7 +5371,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBSensingConfigFeedback">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">UWBSensingConfigFeedback</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#UWBSensingConfigFeedback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBSensingConfigFeedback" title="Link to this definition">¶</a></dt>
-<dd><p>超宽带脉冲感知configurationfeedback。</p>
+<dd><p>UWB pulse sensing configuration feedback.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBSensingConfigFeedback.config_index">
 <span class="sig-name descname"><span class="pre">config_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBSensingConfigFeedback.config_index" title="Link to this definition">¶</a></dt>
@@ -5411,7 +5411,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBSensingReport">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">UWBSensingReport</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#UWBSensingReport"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBSensingReport" title="Link to this definition">¶</a></dt>
-<dd><p>超宽带脉冲感知信息上报 (可变长)。</p>
+<dd><p>UWB pulse sensing information report (variable length).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBSensingReport.payload">
 <span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBSensingReport.payload" title="Link to this definition">¶</a></dt>
@@ -5445,7 +5445,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBSensingAction">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">UWBSensingAction</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#UWBSensingAction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBSensingAction" title="Link to this definition">¶</a></dt>
-<dd><p>超宽带脉冲感知行为indication。</p>
+<dd><p>UWB pulse sensing behavior indication.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBSensingAction.config_index">
 <span class="sig-name descname"><span class="pre">config_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBSensingAction.config_index" title="Link to this definition">¶</a></dt>
@@ -5491,7 +5491,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.ResourceReservation">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">ResourceReservation</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#ResourceReservation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.ResourceReservation" title="Link to this definition">¶</a></dt>
-<dd><p>资源预留indication。</p>
+<dd><p>resource reservationindication.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.ResourceReservation.config_index">
 <span class="sig-name descname"><span class="pre">config_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.ResourceReservation.config_index" title="Link to this definition">¶</a></dt>
@@ -5561,7 +5561,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.ResourceReservationTerminate">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">ResourceReservationTerminate</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#ResourceReservationTerminate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.ResourceReservationTerminate" title="Link to this definition">¶</a></dt>
-<dd><p>资源预留终止。</p>
+<dd><p>resource reservationterminate.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.ResourceReservationTerminate.config_index">
 <span class="sig-name descname"><span class="pre">config_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.ResourceReservationTerminate.config_index" title="Link to this definition">¶</a></dt>
@@ -5601,7 +5601,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandSensingRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">NarrowbandSensingRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#NarrowbandSensingRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandSensingRequest" title="Link to this definition">¶</a></dt>
-<dd><p>窄带frequency hopping感知procedurerequest。</p>
+<dd><p>Narrowband frequency hopping sensing process request.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandSensingRequest.payload">
 <span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandSensingRequest.payload" title="Link to this definition">¶</a></dt>
@@ -5635,7 +5635,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandSensingFeedback">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">NarrowbandSensingFeedback</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#NarrowbandSensingFeedback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandSensingFeedback" title="Link to this definition">¶</a></dt>
-<dd><p>窄带frequency hopping感知procedurefeedback。</p>
+<dd><p>Narrowband frequency hopping sensing process feedback.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandSensingFeedback.process_index">
 <span class="sig-name descname"><span class="pre">process_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandSensingFeedback.process_index" title="Link to this definition">¶</a></dt>
@@ -5675,7 +5675,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandProxySensingRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">NarrowbandProxySensingRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#NarrowbandProxySensingRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandProxySensingRequest" title="Link to this definition">¶</a></dt>
-<dd><p>窄带frequency hopping代理感知request。</p>
+<dd><p>Narrowband frequency hopping proxy sensing request.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandProxySensingRequest.proxy_index">
 <span class="sig-name descname"><span class="pre">proxy_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandProxySensingRequest.proxy_index" title="Link to this definition">¶</a></dt>
@@ -5733,7 +5733,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandProxySensingFeedback">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">NarrowbandProxySensingFeedback</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#NarrowbandProxySensingFeedback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandProxySensingFeedback" title="Link to this definition">¶</a></dt>
-<dd><p>窄带frequency hopping代理感知feedback。</p>
+<dd><p>Narrowband frequency hopping proxy sensing feedback.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandProxySensingFeedback.proxy_index">
 <span class="sig-name descname"><span class="pre">proxy_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandProxySensingFeedback.proxy_index" title="Link to this definition">¶</a></dt>
@@ -5804,7 +5804,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandSensingCapRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">NarrowbandSensingCapRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#NarrowbandSensingCapRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandSensingCapRequest" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#nearlink_sdr.mac.link_control._ZeroPayload" title="nearlink_sdr.mac.link_control._ZeroPayload"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control._ZeroPayload</span></code></a></p>
-<p>窄带frequency hopping感知能力request。</p>
+<p>Narrowband frequency hopping sensing capability request.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandSensingCapRequest.DATA_TYPE_INDEX">
 <span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandSensingCapRequest.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
@@ -5822,7 +5822,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandSensingCapResponse">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">NarrowbandSensingCapResponse</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#NarrowbandSensingCapResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandSensingCapResponse" title="Link to this definition">¶</a></dt>
-<dd><p>窄带frequency hopping感知能力response (50 bytes)。</p>
+<dd><p>Narrowband frequency hopping sensing capability response (50 bytes).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandSensingCapResponse.payload">
 <span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandSensingCapResponse.payload" title="Link to this definition">¶</a></dt>
@@ -5856,7 +5856,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandSensingConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">NarrowbandSensingConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#NarrowbandSensingConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandSensingConfig" title="Link to this definition">¶</a></dt>
-<dd><p>窄带frequency hopping感知configuration (可变长)。</p>
+<dd><p>Narrowband frequency hopping sensing configuration (variable length).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandSensingConfig.payload">
 <span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandSensingConfig.payload" title="Link to this definition">¶</a></dt>
@@ -5890,7 +5890,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandSensingConfigFeedback">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">NarrowbandSensingConfigFeedback</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#NarrowbandSensingConfigFeedback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandSensingConfigFeedback" title="Link to this definition">¶</a></dt>
-<dd><p>窄带frequency hopping感知configurationfeedback。</p>
+<dd><p>Narrowband frequency hopping sensing configuration feedback.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandSensingConfigFeedback.config_index">
 <span class="sig-name descname"><span class="pre">config_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandSensingConfigFeedback.config_index" title="Link to this definition">¶</a></dt>
@@ -5930,7 +5930,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SensingDeviceStatusReport">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">SensingDeviceStatusReport</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#SensingDeviceStatusReport"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.SensingDeviceStatusReport" title="Link to this definition">¶</a></dt>
-<dd><p>感知devicestate上报。</p>
+<dd><p>Sensing device status report.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.SensingDeviceStatusReport.config_index">
 <span class="sig-name descname"><span class="pre">config_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.SensingDeviceStatusReport.config_index" title="Link to this definition">¶</a></dt>
@@ -5970,7 +5970,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandSensingReport">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">NarrowbandSensingReport</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#NarrowbandSensingReport"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandSensingReport" title="Link to this definition">¶</a></dt>
-<dd><p>窄带frequency hopping感知信息上报 (可变长)。</p>
+<dd><p>Narrowband frequency hopping sensing information report (variable length).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandSensingReport.payload">
 <span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandSensingReport.payload" title="Link to this definition">¶</a></dt>
@@ -6004,7 +6004,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandSensingAction">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">NarrowbandSensingAction</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#NarrowbandSensingAction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandSensingAction" title="Link to this definition">¶</a></dt>
-<dd><p>窄带frequency hopping感知行为indication。</p>
+<dd><p>Narrowband frequency hopping sensing behavior indication.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandSensingAction.config_index">
 <span class="sig-name descname"><span class="pre">config_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandSensingAction.config_index" title="Link to this definition">¶</a></dt>
@@ -6050,7 +6050,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandMeasConfigUpdateRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">NarrowbandMeasConfigUpdateRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#NarrowbandMeasConfigUpdateRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandMeasConfigUpdateRequest" title="Link to this definition">¶</a></dt>
-<dd><p>窄带frequency hopping测量signalconfigurationupdaterequest (32 bytes)。</p>
+<dd><p>Narrowband frequency hopping measurement signal configuration update request (32 bytes).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandMeasConfigUpdateRequest.payload">
 <span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandMeasConfigUpdateRequest.payload" title="Link to this definition">¶</a></dt>
@@ -6084,7 +6084,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandMeasConfigUpdateIndication">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">NarrowbandMeasConfigUpdateIndication</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#NarrowbandMeasConfigUpdateIndication"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandMeasConfigUpdateIndication" title="Link to this definition">¶</a></dt>
-<dd><p>窄带frequency hopping测量signalconfigurationupdateindication (与request结构相同, 32 bytes)。</p>
+<dd><p>Narrowband frequency hopping measurement signal configuration update indication (same structure as request, 32 bytes).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.NarrowbandMeasConfigUpdateIndication.payload">
 <span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.NarrowbandMeasConfigUpdateIndication.payload" title="Link to this definition">¶</a></dt>
@@ -6118,7 +6118,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBSensingProcessRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">UWBSensingProcessRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#UWBSensingProcessRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBSensingProcessRequest" title="Link to this definition">¶</a></dt>
-<dd><p>超宽带脉冲感知procedurerequest (16 bytes)。</p>
+<dd><p>UWB pulse sensing process request (16 bytes).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBSensingProcessRequest.payload">
 <span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBSensingProcessRequest.payload" title="Link to this definition">¶</a></dt>
@@ -6152,7 +6152,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBSensingProcessFeedback">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">UWBSensingProcessFeedback</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#UWBSensingProcessFeedback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBSensingProcessFeedback" title="Link to this definition">¶</a></dt>
-<dd><p>超宽带脉冲感知procedurefeedback。</p>
+<dd><p>UWB pulse sensing process feedback.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBSensingProcessFeedback.process_index">
 <span class="sig-name descname"><span class="pre">process_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBSensingProcessFeedback.process_index" title="Link to this definition">¶</a></dt>
@@ -6192,7 +6192,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBProxySensingRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">UWBProxySensingRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#UWBProxySensingRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBProxySensingRequest" title="Link to this definition">¶</a></dt>
-<dd><p>超宽带脉冲代理感知request (11 bytes)。</p>
+<dd><p>UWB pulse proxy sensing request (11 bytes).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBProxySensingRequest.proxy_index">
 <span class="sig-name descname"><span class="pre">proxy_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBProxySensingRequest.proxy_index" title="Link to this definition">¶</a></dt>
@@ -6250,7 +6250,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBProxySensingFeedback">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">UWBProxySensingFeedback</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#UWBProxySensingFeedback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBProxySensingFeedback" title="Link to this definition">¶</a></dt>
-<dd><p>超宽带脉冲代理感知feedback (14 bytes)。</p>
+<dd><p>UWB pulse proxy sensing feedback (14 bytes).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBProxySensingFeedback.proxy_index">
 <span class="sig-name descname"><span class="pre">proxy_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBProxySensingFeedback.proxy_index" title="Link to this definition">¶</a></dt>
@@ -6320,7 +6320,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBMeasAction">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.link_control.</span></span><span class="sig-name descname"><span class="pre">UWBMeasAction</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/link_control.html#UWBMeasAction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBMeasAction" title="Link to this definition">¶</a></dt>
-<dd><p>超宽带脉冲测量行为indication。</p>
+<dd><p>UWB pulse measurement behavior indication.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.link_control.UWBMeasAction.config_index">
 <span class="sig-name descname"><span class="pre">config_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.link_control.UWBMeasAction.config_index" title="Link to this definition">¶</a></dt>

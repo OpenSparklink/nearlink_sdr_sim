@@ -425,7 +425,7 @@
 <td><p>Power change indication signaling.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.power_control.PowerController" title="nearlink_sdr.mac.power_control.PowerController"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PowerController</span></code></a></p></td>
-<td><p>单linkpower controlstate管理。</p></td>
+<td><p>Single-link power control state management.</p></td>
 </tr>
 </tbody>
 </table>
@@ -524,13 +524,13 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.power_control.PowerControlRequest">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.power_control.</span></span><span class="sig-name descname"><span class="pre">PowerControlRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/power_control.html#PowerControlRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.power_control.PowerControlRequest" title="Link to this definition">¶</a></dt>
 <dd><p>Power control request signaling.</p>
-<p>字段顺序 (MSB → LSB 按standard比特排列):</p>
+<p>Field order (MSB to LSB per standard bit layout):</p>
 <ul class="simple">
-<li><p>frame_type:       4 bits, 无线帧类型指示 (0-15)</p></li>
-<li><p>bandwidth:        2 bits, 带宽指示 (Bandwidth 枚举)</p></li>
-<li><p>freq_density:     2 bits, 频密度指示 (FreqDensity 枚举)</p></li>
-<li><p>tx_power_change:  8 bits, 有符号, 要求接收方发射功率变化值 (dB)</p></li>
-<li><p>sender_tx_power:  8 bits, 有符号, 发送方发射功率 (dBm)</p></li>
+<li><p>frame_type:       4 bits, radio frame type indication (0-15)</p></li>
+<li><p>bandwidth:        2 bits, bandwidthindication (Bandwidth enum)</p></li>
+<li><p>freq_density:     2 bits, frequency density indication (FreqDensity enum)</p></li>
+<li><p>tx_power_change:  8 bits, signed, requested receiver TX power change (dB)</p></li>
+<li><p>sender_tx_power:  8 bits, signed, sender TX power (dBm)</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.power_control.PowerControlRequest.frame_type">
@@ -577,13 +577,13 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.power_control.PowerControlRequest.pack">
 <span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/power_control.html#PowerControlRequest.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.power_control.PowerControlRequest.pack" title="Link to this definition">¶</a></dt>
-<dd><p>encode为 3 字节。</p>
+<dd><p>Encode to 3 bytes.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.power_control.PowerControlRequest.unpack">
 <em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.power_control.PowerControlRequest" title="nearlink_sdr.mac.power_control.PowerControlRequest"><span class="pre">nearlink_sdr.mac.power_control.PowerControlRequest</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/power_control.html#PowerControlRequest.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.power_control.PowerControlRequest.unpack" title="Link to this definition">¶</a></dt>
-<dd><p>从 3 字节decode。</p>
+<dd><p>Decode from 3 bytes.</p>
 </dd></dl>
 
 </dd></dl>
@@ -592,14 +592,14 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.power_control.PowerControlResponse">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.power_control.</span></span><span class="sig-name descname"><span class="pre">PowerControlResponse</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/power_control.html#PowerControlResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.power_control.PowerControlResponse" title="Link to this definition">¶</a></dt>
 <dd><p>Power control response signaling.</p>
-<p>字段顺序:</p>
+<p>Field order:</p>
 <ul class="simple">
-<li><p>sender_min_power:          1 bit, 置 1 表示transmitter以minimumpowertransmit</p></li>
-<li><p>sender_max_power:          1 bit, 置 1 表示transmitter以maximumpowertransmit</p></li>
+<li><p>sender_min_power:          1 bit, set to 1 indicates the sender transmits at minimum power</p></li>
+<li><p>sender_max_power:          1 bit, set to 1 indicates the sender transmits at maximum power</p></li>
 <li><p>reserved:                  6 bits</p></li>
-<li><p>tx_power_change:           8 bits, 有符号, 本端实际power变化值 (dB)</p></li>
-<li><p>sender_tx_power:           8 bits, 有符号, 发送端发射功率 (dBm)</p></li>
-<li><p>acceptable_power_reduction: 8 bits, 无符号, 可接受的power减少量 (dB)</p></li>
+<li><p>tx_power_change:           8 bits, signed, local actual power change (dB)</p></li>
+<li><p>sender_tx_power:           8 bits, signed, sender TX power (dBm)</p></li>
+<li><p>acceptable_power_reduction: 8 bits, unsigned, acceptable power reduction (dB)</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.power_control.PowerControlResponse.sender_min_power">
@@ -646,13 +646,13 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.power_control.PowerControlResponse.pack">
 <span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/power_control.html#PowerControlResponse.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.power_control.PowerControlResponse.pack" title="Link to this definition">¶</a></dt>
-<dd><p>encode为 4 字节。</p>
+<dd><p>Encode to 4 bytes.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.power_control.PowerControlResponse.unpack">
 <em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.power_control.PowerControlResponse" title="nearlink_sdr.mac.power_control.PowerControlResponse"><span class="pre">nearlink_sdr.mac.power_control.PowerControlResponse</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/power_control.html#PowerControlResponse.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.power_control.PowerControlResponse.unpack" title="Link to this definition">¶</a></dt>
-<dd><p>从 4 字节decode。</p>
+<dd><p>Decode from 4 bytes.</p>
 </dd></dl>
 
 </dd></dl>
@@ -661,16 +661,16 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.power_control.PowerChangeIndication">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.power_control.</span></span><span class="sig-name descname"><span class="pre">PowerChangeIndication</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/power_control.html#PowerChangeIndication"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.power_control.PowerChangeIndication" title="Link to this definition">¶</a></dt>
 <dd><p>Power change indication signaling.</p>
-<p>字段顺序:</p>
+<p>Field order:</p>
 <ul class="simple">
-<li><p>frame_type:        4 bits, 无线frame typeindication</p></li>
+<li><p>frame_type:        4 bits, radio frame type indication</p></li>
 <li><p>bandwidth:         2 bits, bandwidthindication</p></li>
-<li><p>freq_density:      2 bits, pilot密度indication</p></li>
+<li><p>freq_density:      2 bits, pilot density indication</p></li>
 <li><p>sender_min_power:  1 bit</p></li>
 <li><p>sender_max_power:  1 bit</p></li>
 <li><p>reserved:          6 bits</p></li>
-<li><p>tx_power_change:   8 bits, 有符号, 本次功率变化值 (dB)</p></li>
-<li><p>sender_tx_power:   8 bits, 有符号, 变更后发射功率 (dBm)</p></li>
+<li><p>tx_power_change:   8 bits, signed, power change value (dB)</p></li>
+<li><p>sender_tx_power:   8 bits, signed, TX power after change (dBm)</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.power_control.PowerChangeIndication.frame_type">
@@ -729,13 +729,13 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.power_control.PowerChangeIndication.pack">
 <span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/power_control.html#PowerChangeIndication.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.power_control.PowerChangeIndication.pack" title="Link to this definition">¶</a></dt>
-<dd><p>encode为 4 字节。</p>
+<dd><p>Encode to 4 bytes.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.power_control.PowerChangeIndication.unpack">
 <em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.power_control.PowerChangeIndication" title="nearlink_sdr.mac.power_control.PowerChangeIndication"><span class="pre">nearlink_sdr.mac.power_control.PowerChangeIndication</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/power_control.html#PowerChangeIndication.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.power_control.PowerChangeIndication.unpack" title="Link to this definition">¶</a></dt>
-<dd><p>从 4 字节decode。</p>
+<dd><p>Decode from 4 bytes.</p>
 </dd></dl>
 
 </dd></dl>
@@ -743,12 +743,10 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.power_control.PowerController">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.power_control.</span></span><span class="sig-name descname"><span class="pre">PowerController</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tx_power_dbm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_power_dbm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-127.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_power_dbm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">20.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/power_control.html#PowerController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.power_control.PowerController" title="Link to this definition">¶</a></dt>
-<dd><p>单linkpower controlstate管理。</p>
-<p>管理本端发射power, 处理对端发来的power controlrequest/response/变化indication, 并generate需要transmit给对端的signaling。</p>
+<dd><p>Single-link power control state management.</p>
+<p>Manage local TX power, process power control request/response/change indication from the remote end, and generate signaling to send to the remote end.</p>
 <p class="rubric" id="id2">参数</p>
-<p>tx_power_dbm : 当前发射功率 (dBm)
-min_power_dbm : 最小支持发射功率 (dBm)
-max_power_dbm : 最大支持发射功率 (dBm)</p>
+<p>tx_power_dbm : Current TX power (dBm) min_power_dbm : Minimum supported TX power (dBm) max_power_dbm : Maximum supported TX power (dBm)</p>
 <p class="rubric">Initialization</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.power_control.PowerController.is_at_min_power">
@@ -763,7 +761,7 @@ max_power_dbm : 最大支持发射功率 (dBm)</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.power_control.PowerController.acceptable_power_reduction">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">acceptable_power_reduction</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.power_control.PowerController.acceptable_power_reduction" title="Link to this definition">¶</a></dt>
-<dd><p>可接受的power减少量 (dB), 0-255 范围。</p>
+<dd><p>Acceptable power reduction (dB), range 0-255.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -774,7 +772,7 @@ max_power_dbm : 最大支持发射功率 (dBm)</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.power_control.PowerController.handle_request">
 <span class="sig-name descname"><span class="pre">handle_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">req</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.mac.power_control.PowerControlRequest" title="nearlink_sdr.mac.power_control.PowerControlRequest"><span class="pre">nearlink_sdr.mac.power_control.PowerControlRequest</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.power_control.PowerControlResponse" title="nearlink_sdr.mac.power_control.PowerControlResponse"><span class="pre">nearlink_sdr.mac.power_control.PowerControlResponse</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/power_control.html#PowerController.handle_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.power_control.PowerController.handle_request" title="Link to this definition">¶</a></dt>
-<dd><p>处理对端的power controlrequest, 调整本端power并返回response。</p>
+<dd><p>Process a power control request from the remote end, adjust local power and return a response.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -786,20 +784,20 @@ max_power_dbm : 最大支持发射功率 (dBm)</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.power_control.PowerController.apply_response">
 <span class="sig-name descname"><span class="pre">apply_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.mac.power_control.PowerControlResponse" title="nearlink_sdr.mac.power_control.PowerControlResponse"><span class="pre">nearlink_sdr.mac.power_control.PowerControlResponse</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/power_control.html#PowerController.apply_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.power_control.PowerController.apply_response" title="Link to this definition">¶</a></dt>
-<dd><p>处理对端的power controlresponse, 可据此调整本端策略。</p>
-<p>场景 b: 根据对端feedback的 acceptable_power_reduction 调整本端power。</p>
+<dd><p>Process a power control response from the remote end; local strategy may be adjusted accordingly.</p>
+<p>Scenario b: adjust local power based on the acceptable_power_reduction fed back by the remote end.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.power_control.PowerController.start_power_management">
 <span class="sig-name descname"><span class="pre">start_power_management</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/power_control.html#PowerController.start_power_management"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.power_control.PowerController.start_power_management" title="Link to this definition">¶</a></dt>
-<dd><p>启动powerlevel管理。</p>
+<dd><p>Start power level management.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.power_control.PowerController.stop_power_management">
 <span class="sig-name descname"><span class="pre">stop_power_management</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/power_control.html#PowerController.stop_power_management"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.power_control.PowerController.stop_power_management" title="Link to this definition">¶</a></dt>
-<dd><p>停止powerlevel管理。</p>
+<dd><p>Stop power level management.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -810,7 +808,7 @@ max_power_dbm : 最大支持发射功率 (dBm)</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.power_control.PowerController.create_change_indication">
 <span class="sig-name descname"><span class="pre">create_change_indication</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">actual_change_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandwidth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Bandwidth.BW_1MHZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_density</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">FreqDensity.RATIO_4_1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.power_control.PowerChangeIndication" title="nearlink_sdr.mac.power_control.PowerChangeIndication"><span class="pre">nearlink_sdr.mac.power_control.PowerChangeIndication</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/power_control.html#PowerController.create_change_indication"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.power_control.PowerController.create_change_indication" title="Link to this definition">¶</a></dt>
-<dd><p>generatepower变化indicationsignaling (场景 c)。</p>
+<dd><p>Generate power change indication signaling (scenario c).</p>
 </dd></dl>
 
 <dl class="py method">

@@ -396,7 +396,7 @@
           <section class="tex2jax_ignore mathjax_ignore" id="module-nearlink_sdr.common.prbs">
 <span id="nearlink-sdr-common-prbs"></span><h1><a class="reference internal" href="#module-nearlink_sdr.common.prbs" title="nearlink_sdr.common.prbs"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a><a class="headerlink" href="#module-nearlink_sdr.common.prbs" title="Link to this heading">¶</a></h1>
 <p>Pseudo-random bit sequence generator – TXS-10002-2025 Standard 8.3.5 / 14.1</p>
-<p>PRBS11: x^11 + x^2 + 1, period 2047, 用于testuseful signaldata。 PRBS17: x^17 + x^3 + 1, period 131071, 用于testinterference signaldata。</p>
+<p>PRBS11: x^11 + x^2 + 1, period 2047, used for testing useful signal data. PRBS17: x^17 + x^3 + 1, period 131071, used for testing interference signal data.</p>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
 <section id="functions">
@@ -425,7 +425,7 @@
 <dd><p>General-purpose LFSR sequence generation.</p>
 <p>Structure: left-shift LFSR, output is the highest-order stage, feedback: stage[tap_a] XOR stage[tap_b] → stage[0].</p>
 <p class="rubric" id="id5">Parameters</p>
-<p>state : list[int]     initial state, state[0] 为input, state[-1] 为output。 tap_a, tap_b : int     feedbacktap位置 (stage 编号)。 length : int     generatesequencelength。</p>
+<p>state : list[int]     Initial state, state[0] is the input end, state[-1] is the output end. tap_a, tap_b : int     Feedback tap positions (stage number). length : int     Generated sequence length.</p>
 <p class="rubric" id="id6">Returns</p>
 <p>NDArray[np.uint8]     Output bit sequence.</p>
 </dd></dl>

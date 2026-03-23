@@ -399,10 +399,10 @@
 <p>Implements the standard-defined frequency hopping mechanism, including:</p>
 <ul class="simple">
 <li><p>RF channel/physical channel mapping and frequency table management (8.1.2)</p></li>
-<li><p>伪随机数generate器 (6.10.3.2)</p></li>
+<li><p>Pseudo-random number generator (6.10.3.2)</p></li>
 <li><p>datalinkfrequency hopping (6.10.3.3)</p></li>
-<li><p>系统管理framelinkfrequency hopping (6.10.3.4)</p></li>
-<li><p>测量linkfrequency hopping (6.10.3.5)</p></li>
+<li><p>system managementframelinkfrequency hopping (6.10.3.4)</p></li>
+<li><p>Measurement link frequency hopping (6.10.3.5)</p></li>
 </ul>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
@@ -412,10 +412,10 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.freq_hopping.FreqTable" title="nearlink_sdr.phy.freq_hopping.FreqTable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FreqTable</span></code></a></p></td>
-<td><p>channelfrequency表管理。</p></td>
+<td><p>Channel frequency table management.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.freq_hopping.MeasLinkHopper" title="nearlink_sdr.phy.freq_hopping.MeasLinkHopper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MeasLinkHopper</span></code></a></p></td>
-<td><p>测量linkfrequency hopping器。</p></td>
+<td><p>Measurement link frequency hopper.</p></td>
 </tr>
 </tbody>
 </table>
@@ -427,34 +427,34 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.freq_hopping.channel_to_freq" title="nearlink_sdr.phy.freq_hopping.channel_to_freq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">channel_to_freq</span></code></a></p></td>
-<td><p>射频channel号转中心frequency (MHz)。</p></td>
+<td><p>Convert RF channel number to center frequency (MHz).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.freq_hopping.freq_to_channel" title="nearlink_sdr.phy.freq_hopping.freq_to_channel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">freq_to_channel</span></code></a></p></td>
-<td><p>中心frequency (MHz) 转射频channel号。</p></td>
+<td><p>Convert center frequency (MHz) to RF channel number.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.freq_hopping._bit_reverse_byte" title="nearlink_sdr.phy.freq_hopping._bit_reverse_byte"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_bit_reverse_byte</span></code></a></p></td>
-<td><p>将一个 8 位整数的比特反转。例如 0b10000000 -&gt; 0b00000001。</p></td>
+<td><p>Bit-reverse an 8-bit integer. E.g. 0b10000000 -&gt; 0b00000001.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.freq_hopping._reverse_16" title="nearlink_sdr.phy.freq_hopping._reverse_16"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_reverse_16</span></code></a></p></td>
-<td><p>对 16 位整数的低 8 位和高 8 位分别进行位反转。</p></td>
+<td><p>Bit-reverse the lower 8 bits and upper 8 bits of a 16-bit integer separately.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.freq_hopping.hopping_prng" title="nearlink_sdr.phy.freq_hopping.hopping_prng"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hopping_prng</span></code></a></p></td>
-<td><p>standard 6.10.3.2 伪随机数generate器。</p></td>
+<td><p>Standard 6.10.3.2 pseudo-random number generator.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.freq_hopping.derive_hop_param2" title="nearlink_sdr.phy.freq_hopping.derive_hop_param2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">derive_hop_param2</span></code></a></p></td>
-<td><p>从syncsequence或逻辑link标识派生frequency hoppingparameter 2。</p></td>
+<td><p>Derive hopping parameter 2 from the sync word or logical link identifier.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.freq_hopping.data_link_hop" title="nearlink_sdr.phy.freq_hopping.data_link_hop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">data_link_hop</span></code></a></p></td>
-<td><p>datalinkfrequency hopping: 根据time slot计数和frequency hoppingparameter确定frequency hopping频点。</p></td>
+<td><p>Data link frequency hopping: determine the hopping frequency from the slot counter and hopping parameters.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.freq_hopping._available_freq_map" title="nearlink_sdr.phy.freq_hopping._available_freq_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_available_freq_map</span></code></a></p></td>
-<td><p>可用频点mapping过程。</p></td>
+<td><p>Available frequency point mapping procedure.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.freq_hopping.mgmt_frame_hop" title="nearlink_sdr.phy.freq_hopping.mgmt_frame_hop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mgmt_frame_hop</span></code></a></p></td>
-<td><p>系统管理framelinkfrequency hopping。</p></td>
+<td><p>system managementframelinkfrequency hopping.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.freq_hopping.generate_hopping_sequence" title="nearlink_sdr.phy.freq_hopping.generate_hopping_sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_hopping_sequence</span></code></a></p></td>
-<td><p>generate指定length的frequency hoppingsequence。</p></td>
+<td><p>Generate a frequency hopping sequence of the specified length.</p></td>
 </tr>
 </tbody>
 </table>
@@ -537,21 +537,21 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.channel_to_freq">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.freq_hopping.</span></span><span class="sig-name descname"><span class="pre">channel_to_freq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">band</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">BAND_2400</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#channel_to_freq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.channel_to_freq" title="Link to this definition">¶</a></dt>
-<dd><p>射频channel号转中心frequency (MHz)。</p>
+<dd><p>Convert RF channel number to center frequency (MHz).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.freq_to_channel">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.freq_hopping.</span></span><span class="sig-name descname"><span class="pre">freq_to_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq_mhz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">band</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">BAND_2400</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#freq_to_channel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.freq_to_channel" title="Link to this definition">¶</a></dt>
-<dd><p>中心frequency (MHz) 转射频channel号。</p>
+<dd><p>Convert center frequency (MHz) to RF channel number.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.FreqTable">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.freq_hopping.</span></span><span class="sig-name descname"><span class="pre">FreqTable</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#FreqTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.FreqTable" title="Link to this definition">¶</a></dt>
-<dd><p>channelfrequency表管理。</p>
-<p>管理完整频点表和可用频点表, 支持 1M/2M/4M bandwidth场景。</p>
-<p>Attributes:     band: 频段标识, “2400” / “5100” / “5800”。     bandwidth_mhz: channelbandwidth, 1 / 2 / 4 MHz。     blocked_channels: 被阻塞(不可用)的物理channel号集合。</p>
+<dd><p>Channel frequency table management.</p>
+<p>Manage the full frequency table and available frequency table, supporting 1M/2M/4M bandwidth scenarios.</p>
+<p>Attributes:     band: Band identifier, “2400” / “5100” / “5800”.     bandwidth_mhz: Channel bandwidth, 1 / 2 / 4 MHz.     blocked_channels: Set of blocked (unavailable) physical channel numbers.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.FreqTable.band">
 <span class="sig-name descname"><span class="pre">band</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.FreqTable.band" title="Link to this definition">¶</a></dt>
@@ -573,19 +573,19 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.FreqTable.full_table">
 <span class="sig-name descname"><span class="pre">full_table</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#FreqTable.full_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.FreqTable.full_table" title="Link to this definition">¶</a></dt>
-<dd><p>完整频点表: 对应频段除去broadcastchannel的所有频点, 按物理channel号升序。</p>
+<dd><p>Full frequency table: all frequency points of the corresponding band excluding the broadcast channel, in ascending physical channel number order.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.FreqTable.available_table">
 <span class="sig-name descname"><span class="pre">available_table</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#FreqTable.available_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.FreqTable.available_table" title="Link to this definition">¶</a></dt>
-<dd><p>可用频点表: 完整表中去除阻塞channel, 按物理channel号升序。</p>
+<dd><p>Available frequency table: full table with blocked channels removed, in ascending physical channel number order.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.FreqTable._filter_bandwidth">
 <span class="sig-name descname"><span class="pre">_filter_bandwidth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#FreqTable._filter_bandwidth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.FreqTable._filter_bandwidth" title="Link to this definition">¶</a></dt>
-<dd><p>根据bandwidth过滤可用channel。</p>
+<dd><p>Filter available channels by bandwidth.</p>
 </dd></dl>
 
 </dd></dl>
@@ -593,68 +593,63 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping._bit_reverse_byte">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.freq_hopping.</span></span><span class="sig-name descname"><span class="pre">_bit_reverse_byte</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#_bit_reverse_byte"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping._bit_reverse_byte" title="Link to this definition">¶</a></dt>
-<dd><p>将一个 8 位整数的比特反转。例如 0b10000000 -&gt; 0b00000001。</p>
+<dd><p>Bit-reverse an 8-bit integer. E.g. 0b10000000 -&gt; 0b00000001.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping._reverse_16">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.freq_hopping.</span></span><span class="sig-name descname"><span class="pre">_reverse_16</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#_reverse_16"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping._reverse_16" title="Link to this definition">¶</a></dt>
-<dd><p>对 16 位整数的低 8 位和高 8 位分别进行位反转。</p>
+<dd><p>Bit-reverse the lower 8 bits and upper 8 bits of a 16-bit integer separately.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.hopping_prng">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.freq_hopping.</span></span><span class="sig-name descname"><span class="pre">hopping_prng</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hop_param1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_param2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#hopping_prng"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.hopping_prng" title="Link to this definition">¶</a></dt>
-<dd><p>standard 6.10.3.2 伪随机数generate器。</p>
-<p>Args:     hop_param1: 16 位frequency hoppingparameter 1, 通常为调度time slot计数的低 16 位。     hop_param2: 16 位frequency hoppingparameter 2, 由syncsequence/逻辑link标识/随机种子派生。</p>
-<p>Returns:
-16 位伪随机数。</p>
+<dd><p>Standard 6.10.3.2 pseudo-random number generator.</p>
+<p>Args:     hop_param1: 16-bit hopping parameter 1, typically the lower 16 bits of the scheduling slot counter.     hop_param2: 16-bit hopping parameter 2, derived from the sync word / logical link identifier / random seed.</p>
+<p>Returns:     16-bit pseudo-random number.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.derive_hop_param2">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.freq_hopping.</span></span><span class="sig-name descname"><span class="pre">derive_hop_param2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">bit_width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">32</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#derive_hop_param2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.derive_hop_param2" title="Link to this definition">¶</a></dt>
-<dd><p>从syncsequence或逻辑link标识派生frequency hoppingparameter 2。</p>
+<dd><p>Derive hopping parameter 2 from the sync word or logical link identifier.</p>
 <p>standard 6.10.3.2:</p>
 <ul class="simple">
-<li><p>64 位syncsequence: 截取低 32 位</p></li>
-<li><p>32 位syncsequence: 直接使用</p></li>
-<li><p>24 位逻辑link标识: 高位补零至 32 位 低 16 和高 16 位XOR后作为 hop_param2。</p></li>
+<li><p>64-bit sync word: truncate to the lower 32 bits.</p></li>
+<li><p>32-bit sync word: used directly.</p></li>
+<li><p>24-bit logical link identifier: zero-pad to 32 bits, then XOR the lower 16 and upper 16 bits to produce hop_param2.</p></li>
 </ul>
-<p>Args:     identifier: syncsequence值或逻辑link标识。     bit_width: 标识符位宽 (24/32/64)。</p>
-<p>Returns:
-16 位 hop_param2。</p>
+<p>Args:     identifier: Sync word value or logical link identifier.     bit_width: Identifier bit width (24/32/64).</p>
+<p>Returns:     16 bit hop_param2.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.data_link_hop">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.freq_hopping.</span></span><span class="sig-name descname"><span class="pre">data_link_hop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot_counter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_param2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.freq_hopping.FreqTable" title="nearlink_sdr.phy.freq_hopping.FreqTable"><span class="pre">nearlink_sdr.phy.freq_hopping.FreqTable</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#data_link_hop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.data_link_hop" title="Link to this definition">¶</a></dt>
-<dd><p>datalinkfrequency hopping: 根据time slot计数和frequency hoppingparameter确定frequency hopping频点。</p>
-<p>standard 6.10.3.3: PRNG → 初次频点mapping → (invalid时) 可用频点mapping。</p>
-<p>Args:     slot_counter: 当前调度time slot计数。     hop_param2: 16 位frequency hoppingparameter 2。     freq_table: frequency表管理对象。</p>
-<p>Returns:     选中的物理channel号。</p>
+<dd><p>Data link frequency hopping: determine the hopping frequency from the slot counter and hopping parameters.</p>
+<p>Standard 6.10.3.3: PRNG → initial frequency point mapping → (if invalid) available frequency point mapping.</p>
+<p>Args:     slot_counter: Current scheduling slot counter.     hop_param2: 16-bit hopping parameter 2.     freq_table: Frequency table management object.</p>
+<p>Returns:     Selected physical channel number.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping._available_freq_map">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.freq_hopping.</span></span><span class="sig-name descname"><span class="pre">_available_freq_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rand16</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">available</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#_available_freq_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping._available_freq_map" title="Link to this definition">¶</a></dt>
-<dd><p>可用频点mapping过程。</p>
-<p>standard 6.10.3.3.2 / 6.10.3.4.1 / 6.10.3.5.1: index = floor(rand16 * N_available / 2^16), 然后mapping到可用频点表。</p>
-<p>Args:
-rand16: 16 位伪随机数。
-available: 可用频点表 (升序排列)。</p>
-<p>Returns:     选中的物理channel号。</p>
-<p>Raises:
-ValueError: 可用频点表为空。</p>
+<dd><p>Available frequency point mapping procedure.</p>
+<p>Standard 6.10.3.3.2 / 6.10.3.4.1 / 6.10.3.5.1: index = floor(rand16 * N_available / 2^16), then map to the available frequency table.</p>
+<p>Args:     rand16: 16-bit pseudo-random number.     available: Available frequency table (ascending order).</p>
+<p>Returns:     Selected physical channel number.</p>
+<p>Raises:     ValueError: Available frequency table is empty.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.mgmt_frame_hop">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.freq_hopping.</span></span><span class="sig-name descname"><span class="pre">mgmt_frame_hop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot_counter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_param2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.freq_hopping.FreqTable" title="nearlink_sdr.phy.freq_hopping.FreqTable"><span class="pre">nearlink_sdr.phy.freq_hopping.FreqTable</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#mgmt_frame_hop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.mgmt_frame_hop" title="Link to this definition">¶</a></dt>
-<dd><p>系统管理framelinkfrequency hopping。</p>
-<p>standard 6.10.3.4: PRNG → 可用频点mapping, 直接在可用频点表上mapping。</p>
-<p>Args:     slot_counter: 当前调度time slot计数。     hop_param2: 16 位frequency hoppingparameter 2。     freq_table: frequency表管理对象。</p>
-<p>Returns:     选中的物理channel号。</p>
+<dd><p>system managementframelinkfrequency hopping.</p>
+<p>Standard 6.10.3.4: PRNG → available frequency point mapping, mapped directly onto the available frequency table.</p>
+<p>Args:     slot_counter: Current scheduling slot counter.     hop_param2: 16-bit hopping parameter 2.     freq_table: Frequency table management object.</p>
+<p>Returns:     Selected physical channel number.</p>
 </dd></dl>
 
 <dl class="py data">
@@ -678,9 +673,9 @@ ValueError: 可用频点表为空。</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.MeasLinkHopper">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.freq_hopping.</span></span><span class="sig-name descname"><span class="pre">MeasLinkHopper</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#MeasLinkHopper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.MeasLinkHopper" title="Link to this definition">¶</a></dt>
-<dd><p>测量linkfrequency hopping器。</p>
-<p>standard 6.10.3.5: 支持三种frequency hopping方案。 方案 3 在使用后从可用频点表中delete已用频点, 表空时重置。</p>
-<p>Attributes:     mode: frequency hopping模式, 0/1/2。     freq_table: frequency表对象。     hop_param2: frequency hoppingparameter 2 (方案 3 使用)。     init_channel: 初始化阶段频点 (optional)。</p>
+<dd><p>Measurement link frequency hopper.</p>
+<p>Standard 6.10.3.5: supports three hopping schemes. Scheme 3 removes used frequency points from the available table after use, resetting when empty.</p>
+<p>Attributes:     mode: Hopping mode, 0/1/2.     freq_table: Frequency table object.     hop_param2: Hopping parameter 2 (used by scheme 3).     init_channel: Initialization phase frequency point (optional).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.MeasLinkHopper.mode">
 <span class="sig-name descname"><span class="pre">mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.MeasLinkHopper.mode" title="Link to this definition">¶</a></dt>
@@ -713,15 +708,15 @@ ValueError: 可用频点表为空。</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.MeasLinkHopper.reset">
 <span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#MeasLinkHopper.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.MeasLinkHopper.reset" title="Link to this definition">¶</a></dt>
-<dd><p>重置可用频点表为initial state。</p>
+<dd><p>Reset the available frequency table to the initial state.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.MeasLinkHopper.next_channel">
 <span class="sig-name descname"><span class="pre">next_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot_counter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_init_phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#MeasLinkHopper.next_channel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.MeasLinkHopper.next_channel" title="Link to this definition">¶</a></dt>
-<dd><p>获取下一个frequency hoppingchannel。</p>
-<p>Args:     slot_counter: 当前调度time slot计数 (方案 3 使用)。     is_init_phase: 是否处于初始化阶段。</p>
-<p>Returns:     物理channel号。</p>
+<dd><p>Get the next hopping channel.</p>
+<p>Args:     slot_counter: Current scheduling slot counter (used by scheme 3).     is_init_phase: Whether in the initialization phase.</p>
+<p>Returns:     Physical channel number.</p>
 </dd></dl>
 
 </dd></dl>
@@ -729,9 +724,9 @@ ValueError: 可用频点表为空。</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.generate_hopping_sequence">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.freq_hopping.</span></span><span class="sig-name descname"><span class="pre">generate_hopping_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_hops</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_param2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.freq_hopping.FreqTable" title="nearlink_sdr.phy.freq_hopping.FreqTable"><span class="pre">nearlink_sdr.phy.freq_hopping.FreqTable</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'data'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_slot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#generate_hopping_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.generate_hopping_sequence" title="Link to this definition">¶</a></dt>
-<dd><p>generate指定length的frequency hoppingsequence。</p>
-<p>Args:     n_hops: 需要的frequency hopping次数。     hop_param2: frequency hoppingparameter 2。     freq_table: frequency表对象, default 2.4 GHz 1 MHz 全可用。     link_type: “data” / “mgmt” / “meas_asc” / “meas_desc” / “meas_rand”。     start_slot: 起始time slot号。</p>
-<p>Returns:     物理channel号列表。</p>
+<dd><p>Generate a frequency hopping sequence of the specified length.</p>
+<p>Args:     n_hops: Number of hops needed.     hop_param2: Hopping parameter 2.     freq_table: Frequency table object, default 2.4 GHz 1 MHz all available.     link_type: “data” / “mgmt” / “meas_asc” / “meas_desc” / “meas_rand”.     start_slot: Starting slot number.</p>
+<p>Returns:     List of physical channel numbers.</p>
 </dd></dl>
 
 </section>

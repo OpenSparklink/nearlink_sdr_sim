@@ -417,19 +417,19 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.uwb_pulse._i0" title="nearlink_sdr.phy.uwb_pulse._i0"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_i0</span></code></a></p></td>
-<td><p>第一类零阶修正贝塞尔函数。</p></td>
+<td><p>Modified Bessel function of the first kind, order zero.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.uwb_pulse.kaiser_pulse" title="nearlink_sdr.phy.uwb_pulse.kaiser_pulse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kaiser_pulse</span></code></a></p></td>
-<td><p>generate Kaiser 参考脉冲波形 r(t)。</p></td>
+<td><p>Generate the Kaiser reference pulse waveform r(t).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.uwb_pulse.chip_modulate" title="nearlink_sdr.phy.uwb_pulse.chip_modulate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chip_modulate</span></code></a></p></td>
-<td><p>码片载波modulation。</p></td>
+<td><p>Chip carrier modulation.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.uwb_pulse.normalized_cross_correlation" title="nearlink_sdr.phy.uwb_pulse.normalized_cross_correlation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalized_cross_correlation</span></code></a></p></td>
-<td><p>compute归一化互相关函数 |φ(τ)|。</p></td>
+<td><p>Compute the normalized cross-correlation function |φ(τ)|.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.uwb_pulse.validate_pulse" title="nearlink_sdr.phy.uwb_pulse.validate_pulse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_pulse</span></code></a></p></td>
-<td><p>validate发射脉冲波形是否满足standard要求。</p></td>
+<td><p>Verify whether the transmit pulse waveform meets the standard requirements.</p></td>
 </tr>
 </tbody>
 </table>
@@ -440,14 +440,14 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_pulse._i0">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.uwb_pulse.</span></span><span class="sig-name descname"><span class="pre">_i0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/uwb_pulse.html#_i0"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.uwb_pulse._i0" title="Link to this definition">¶</a></dt>
-<dd><p>第一类零阶修正贝塞尔函数。</p>
+<dd><p>Modified Bessel function of the first kind, order zero.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_pulse.UWBPulseConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.uwb_pulse.</span></span><span class="sig-name descname"><span class="pre">UWBPulseConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/uwb_pulse.html#UWBPulseConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.uwb_pulse.UWBPulseConfig" title="Link to this definition">¶</a></dt>
 <dd><p>UWB pulse configuration parameters.</p>
-<p>Attributes:     tp_ns: bandwidthparameter Tp (ns)     tw_ns: 归一化互相关函数parameter Tw (ns)     beta: Kaiser 波形形状parameter     max_prf_mhz: maximum脉冲重复frequency (MHz)     sample_rate_ghz: 采样率 (GHz)</p>
+<p>Attributes:     tp_ns: Bandwidth parameter Tp (ns).     tw_ns: Normalized cross-correlation function parameter Tw (ns).     beta: Kaiser waveform shape parameter.     max_prf_mhz: Maximum pulse repetition frequency (MHz).     sample_rate_ghz: Sample rate (GHz).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.tp_ns">
 <span class="sig-name descname"><span class="pre">tp_ns</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.tp_ns" title="Link to this definition">¶</a></dt>
@@ -481,31 +481,31 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.bw_500mhz">
 <em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bw_500mhz</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.phy.uwb_pulse.UWBPulseConfig" title="nearlink_sdr.phy.uwb_pulse.UWBPulseConfig"><span class="pre">nearlink_sdr.phy.uwb_pulse.UWBPulseConfig</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/uwb_pulse.html#UWBPulseConfig.bw_500mhz"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.bw_500mhz" title="Link to this definition">¶</a></dt>
-<dd><p>create -10dB bandwidth &gt;= 500MHz 的configuration。</p>
+<dd><p>create -10dB bandwidth &gt;= 500MHz configuration.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.bw_1300mhz">
 <em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bw_1300mhz</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.phy.uwb_pulse.UWBPulseConfig" title="nearlink_sdr.phy.uwb_pulse.UWBPulseConfig"><span class="pre">nearlink_sdr.phy.uwb_pulse.UWBPulseConfig</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/uwb_pulse.html#UWBPulseConfig.bw_1300mhz"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.bw_1300mhz" title="Link to this definition">¶</a></dt>
-<dd><p>create -10dB bandwidth &gt; 1300MHz 的configuration。</p>
+<dd><p>create -10dB bandwidth &gt; 1300MHz configuration.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.pulse_duration_ns">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pulse_duration_ns</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.pulse_duration_ns" title="Link to this definition">¶</a></dt>
-<dd><p>脉冲持续time L = 3 * Tp (ns)。</p>
+<dd><p>Pulse duration L = 3 * Tp (ns).</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.chip_duration_ns">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chip_duration_ns</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.chip_duration_ns" title="Link to this definition">¶</a></dt>
-<dd><p>码片持续time Tc = 1 / max_prf (ns)。</p>
+<dd><p>Chip duration Tc = 1 / max_prf (ns).</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.samples_per_chip">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">samples_per_chip</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.uwb_pulse.UWBPulseConfig.samples_per_chip" title="Link to this definition">¶</a></dt>
-<dd><p>每个码片的采样点数。</p>
+<dd><p>Number of samples per chip.</p>
 </dd></dl>
 
 </dd></dl>
@@ -513,38 +513,34 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_pulse.kaiser_pulse">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.uwb_pulse.</span></span><span class="sig-name descname"><span class="pre">kaiser_pulse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.uwb_pulse.UWBPulseConfig" title="nearlink_sdr.phy.uwb_pulse.UWBPulseConfig"><span class="pre">nearlink_sdr.phy.uwb_pulse.UWBPulseConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.float64</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/uwb_pulse.html#kaiser_pulse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.uwb_pulse.kaiser_pulse" title="Link to this definition">¶</a></dt>
-<dd><p>generate Kaiser 参考脉冲波形 r(t)。</p>
-<p>Args:     cfg: UWB 脉冲configuration     num_samples: 采样点数, default根据脉冲持续time和采样率compute</p>
-<p>Returns:
-归一化的 Kaiser 脉冲波形采样值</p>
+<dd><p>Generate the Kaiser reference pulse waveform r(t).</p>
+<p>Args:     cfg: UWB pulse configuration.     num_samples: Number of samples, default computed from pulse duration and sample rate.</p>
+<p>Returns:     Normalized Kaiser pulse waveform samples.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_pulse.chip_modulate">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.uwb_pulse.</span></span><span class="sig-name descname"><span class="pre">chip_modulate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chips</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.int8</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.uwb_pulse.UWBPulseConfig" title="nearlink_sdr.phy.uwb_pulse.UWBPulseConfig"><span class="pre">nearlink_sdr.phy.uwb_pulse.UWBPulseConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fc_ghz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.float64</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/uwb_pulse.html#chip_modulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.uwb_pulse.chip_modulate" title="Link to this definition">¶</a></dt>
-<dd><p>码片载波modulation。</p>
-<p>每个码片 c(n) ∈ {-1, 0, +1} 的modulationsignal为:     c(n) · r(t - n·Tc) · cos[2π·fc·(t - n·Tc)]</p>
-<p>Args:     chips: 码片sequence, valued -1, 0 或 +1     cfg: UWB 脉冲configuration     fc_ghz: 载波中心frequency (GHz)</p>
-<p>Returns:     modulation后的时域signal</p>
+<dd><p>Chip carrier modulation.</p>
+<p>The modulated signal for each chip c(n) ∈ {-1, 0, +1} is:     c(n) · r(t - n·Tc) · cos[2π·fc·(t - n·Tc)].</p>
+<p>Args:     chips: Chip sequence, values -1, 0 or +1.     cfg: UWB pulse configuration.     fc_ghz: Carrier center frequency (GHz).</p>
+<p>Returns:     Modulated time-domain signal.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_pulse.normalized_cross_correlation">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.uwb_pulse.</span></span><span class="sig-name descname"><span class="pre">normalized_cross_correlation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.float64</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.float64</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.float64</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/uwb_pulse.html#normalized_cross_correlation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.uwb_pulse.normalized_cross_correlation" title="Link to this definition">¶</a></dt>
-<dd><p>compute归一化互相关函数 |φ(τ)|。</p>
-<p>Args:
-r: 参考脉冲波形
-p: 发射脉冲波形</p>
-<p>Returns:
-归一化互相关函数的幅度</p>
+<dd><p>Compute the normalized cross-correlation function |φ(τ)|.</p>
+<p>Args:     r: Reference pulse waveform.     p: Transmit pulse waveform.</p>
+<p>Returns:     Amplitude of normalized cross-correlation function</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_pulse.validate_pulse">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.uwb_pulse.</span></span><span class="sig-name descname"><span class="pre">validate_pulse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.float64</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.uwb_pulse.UWBPulseConfig" title="nearlink_sdr.phy.uwb_pulse.UWBPulseConfig"><span class="pre">nearlink_sdr.phy.uwb_pulse.UWBPulseConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">main_lobe_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.92</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">side_lobe_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/uwb_pulse.html#validate_pulse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.uwb_pulse.validate_pulse" title="Link to this definition">¶</a></dt>
-<dd><p>validate发射脉冲波形是否满足standard要求。</p>
-<p>Args:     p: 发射脉冲波形     cfg: UWB 脉冲configuration     main_lobe_threshold: 主瓣最低强度阈值 (default 0.92)     side_lobe_threshold: 旁瓣最高强度阈值 (default 0.1)</p>
-<p>Returns:     (是否通过, 主瓣minimum强度, 旁瓣maximum强度)</p>
+<dd><p>Verify whether the transmit pulse waveform meets the standard requirements.</p>
+<p>Args:     p: Transmit pulse waveform.     cfg: UWB pulse configuration.     main_lobe_threshold: Minimum main-lobe intensity threshold (default 0.92).     side_lobe_threshold: Maximum side-lobe intensity threshold (default 0.1).</p>
+<p>Returns:     (pass/fail, minimum main-lobe intensity, maximum side-lobe intensity).</p>
 </dd></dl>
 
 </section>

@@ -399,12 +399,12 @@
 <p>Implements narrowband/UWB RF metrics defined in TXS-10002-2025 standard sections 8.2-8.4:</p>
 <ul class="simple">
 <li><p>8.2.1  Output power level</p></li>
-<li><p>8.2.2  modulation精度 (GFSK 频偏 / PSK EVM / frequency容限 / 时钟精度)</p></li>
-<li><p>8.2.3  无用发射 (GFSK/PSK 频段内杂散)</p></li>
+<li><p>8.2.2  Modulation accuracy (GFSK deviation / PSK EVM / frequency tolerance / clock accuracy)</p></li>
+<li><p>8.2.3  Unwanted emissions (GFSK/PSK in-band spurious)</p></li>
 <li><p>8.3.1  Receiver sensitivity and maximum input level</p></li>
-<li><p>8.3.2  receive机选择性</p></li>
-<li><p>8.3.4  RSSI 精度</p></li>
-<li><p>8.4    UWB 射频 (channel、频谱模板、frequency容限、均方根误差)</p></li>
+<li><p>8.3.2  Receiver selectivity</p></li>
+<li><p>8.3.4  RSSI Accuracy</p></li>
+<li><p>8.4    UWB RF (channel, spectral mask, frequency tolerance, RMS error)</p></li>
 </ul>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
@@ -417,43 +417,43 @@
 <td></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec" title="nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GFSKFreqDevSpec</span></code></a></p></td>
-<td><p>GFSK modulation频偏规范 — 针对单个符号速率。</p></td>
+<td><p>GFSK modulation deviation specification — for a single symbol rate.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult" title="nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GFSKFreqDevResult</span></code></a></p></td>
-<td><p>GFSK 频偏check结果。</p></td>
+<td><p>GFSK deviation check result.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PSKModulation" title="nearlink_sdr.phy.rf_compliance.PSKModulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PSKModulation</span></code></a></p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.EVMLimit" title="nearlink_sdr.phy.rf_compliance.EVMLimit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EVMLimit</span></code></a></p></td>
-<td><p>EVM 限值。</p></td>
+<td><p>EVM limits.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.FreqBand" title="nearlink_sdr.phy.rf_compliance.FreqBand"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FreqBand</span></code></a></p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.FreqToleranceSpec" title="nearlink_sdr.phy.rf_compliance.FreqToleranceSpec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FreqToleranceSpec</span></code></a></p></td>
-<td><p>frequency容限规范。</p></td>
+<td><p>Frequency tolerance specification.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth" title="nearlink_sdr.phy.rf_compliance.ChannelBandwidth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChannelBandwidth</span></code></a></p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PSKSpectrumMask" title="nearlink_sdr.phy.rf_compliance.PSKSpectrumMask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PSKSpectrumMask</span></code></a></p></td>
-<td><p>PSK 发射频谱模板中各参考offsetfrequency (MHz)。</p></td>
+<td><p>Reference offset frequencies (MHz) in the PSK transmit spectral mask.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.SelectivityEntry" title="nearlink_sdr.phy.rf_compliance.SelectivityEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SelectivityEntry</span></code></a></p></td>
-<td><p>receive机选择性要求条目。</p></td>
+<td><p>Receiver selectivity requirement entry.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.OutOfBandEntry" title="nearlink_sdr.phy.rf_compliance.OutOfBandEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OutOfBandEntry</span></code></a></p></td>
-<td><p>频段外选择性要求条目。</p></td>
+<td><p>Out-of-band selectivity requirement entry.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.IntermodEntry" title="nearlink_sdr.phy.rf_compliance.IntermodEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntermodEntry</span></code></a></p></td>
-<td><p>receive机干扰互调要求。</p></td>
+<td><p>Receiver intermodulation requirement.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.UWBSpectrumMask" title="nearlink_sdr.phy.rf_compliance.UWBSpectrumMask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWBSpectrumMask</span></code></a></p></td>
-<td><p>UWB 频谱模板parameter (8.4.3)。</p></td>
+<td><p>UWB spectrum maskparameter (8.4.3).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport" title="nearlink_sdr.phy.rf_compliance.RFComplianceReport"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RFComplianceReport</span></code></a></p></td>
-<td><p>射频合规综合报告。</p></td>
+<td><p>RF compliance comprehensive report.</p></td>
 </tr>
 </tbody>
 </table>
@@ -465,46 +465,46 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.classify_power" title="nearlink_sdr.phy.rf_compliance.classify_power"><code class="xref py py-obj docutils literal notranslate"><span class="pre">classify_power</span></code></a></p></td>
-<td><p>根据maximum输出power确定powerlevel。</p></td>
+<td><p>Determine the power class from the maximum output power.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.validate_power_step" title="nearlink_sdr.phy.rf_compliance.validate_power_step"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_power_step</span></code></a></p></td>
-<td><p>check相邻发射power差是否不大于 8 dB (8.2.1)。</p></td>
+<td><p>Check whether adjacent transmit power difference does not exceed 8 dB (8.2.1).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.check_gfsk_freq_dev" title="nearlink_sdr.phy.rf_compliance.check_gfsk_freq_dev"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_gfsk_freq_dev</span></code></a></p></td>
-<td><p>check GFSK frequency偏差是否满足standard 8.2.2.1。</p></td>
+<td><p>Check whether GFSK frequency deviation meets standard 8.2.2.1.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.check_evm" title="nearlink_sdr.phy.rf_compliance.check_evm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_evm</span></code></a></p></td>
-<td><p>check PSK EVM 是否满足表 53 限值。</p></td>
+<td><p>Check whether PSK EVM meets the Table 53 limits.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.check_freq_tolerance" title="nearlink_sdr.phy.rf_compliance.check_freq_tolerance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_freq_tolerance</span></code></a></p></td>
-<td><p>checkfrequency容限是否满足 8.2.2.3。</p></td>
+<td><p>Check whether frequency tolerance meets 8.2.2.3.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.check_clock_accuracy" title="nearlink_sdr.phy.rf_compliance.check_clock_accuracy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_clock_accuracy</span></code></a></p></td>
-<td><p>check时钟精度 (8.2.2.4 / 8.2.2.5)。</p></td>
+<td><p>Check clock accuracy (8.2.2.4 / 8.2.2.5).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.gfsk_inband_spurious_limit_dbm" title="nearlink_sdr.phy.rf_compliance.gfsk_inband_spurious_limit_dbm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gfsk_inband_spurious_limit_dbm</span></code></a></p></td>
-<td><p>compute GFSK 频段内杂散限值 (dBm)。</p></td>
+<td><p>Compute GFSK in-band spurious emission limit (dBm).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.get_psk_spectrum_mask" title="nearlink_sdr.phy.rf_compliance.get_psk_spectrum_mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_psk_spectrum_mask</span></code></a></p></td>
-<td><p>获取指定bandwidth的 PSK 频谱模板。</p></td>
+<td><p>Get the PSK spectral mask for the specified bandwidth.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.reference_sensitivity" title="nearlink_sdr.phy.rf_compliance.reference_sensitivity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_sensitivity</span></code></a></p></td>
-<td><p>返回参考灵敏度 (dBm)。</p></td>
+<td><p>Return the reference sensitivity (dBm).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.selectivity_freq_offsets" title="nearlink_sdr.phy.rf_compliance.selectivity_freq_offsets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">selectivity_freq_offsets</span></code></a></p></td>
-<td><p>返回指定bandwidth的 f1/f2/f3 frequencyoffset (MHz)。</p></td>
+<td><p>Return f1/f2/f3 frequency offsets (MHz) for the specified bandwidth.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.check_rssi_accuracy" title="nearlink_sdr.phy.rf_compliance.check_rssi_accuracy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_rssi_accuracy</span></code></a></p></td>
-<td><p>check RSSI 测量精度 (8.3.4)。</p></td>
+<td><p>Check RSSI measurement accuracy (8.3.4).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.uwb_channel_center_freq_mhz" title="nearlink_sdr.phy.rf_compliance.uwb_channel_center_freq_mhz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">uwb_channel_center_freq_mhz</span></code></a></p></td>
-<td><p>compute UWB 物理channel中心frequency (MHz)。</p></td>
+<td><p>Compute UWB physical channel center frequency (MHz).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.check_uwb_nrmse" title="nearlink_sdr.phy.rf_compliance.check_uwb_nrmse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_uwb_nrmse</span></code></a></p></td>
-<td><p>check UWB standard化均方根误差 (8.4.5)。</p></td>
+<td><p>Check UWB normalized RMS error (8.4.5).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.check_rx_spurious_emission" title="nearlink_sdr.phy.rf_compliance.check_rx_spurious_emission"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_rx_spurious_emission</span></code></a></p></td>
-<td><p>checkreceive机杂散发射 (8.3.3)。</p></td>
+<td><p>Check receiver spurious emissions (8.3.3).</p></td>
 </tr>
 </tbody>
 </table>
@@ -674,19 +674,19 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.classify_power">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">classify_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pmax_dbm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PowerClass" title="nearlink_sdr.phy.rf_compliance.PowerClass"><span class="pre">nearlink_sdr.phy.rf_compliance.PowerClass</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#classify_power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.classify_power" title="Link to this definition">¶</a></dt>
-<dd><p>根据maximum输出power确定powerlevel。</p>
+<dd><p>Determine the power class from the maximum output power.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.validate_power_step">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">validate_power_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prev_dbm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">curr_dbm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#validate_power_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.validate_power_step" title="Link to this definition">¶</a></dt>
-<dd><p>check相邻发射power差是否不大于 8 dB (8.2.1)。</p>
+<dd><p>Check whether adjacent transmit power difference does not exceed 8 dB (8.2.1).</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">GFSKFreqDevSpec</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#GFSKFreqDevSpec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec" title="Link to this definition">¶</a></dt>
-<dd><p>GFSK modulation频偏规范 — 针对单个符号速率。</p>
+<dd><p>GFSK modulation deviation specification — for a single symbol rate.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.symbol_rate_msps">
 <span class="sig-name descname"><span class="pre">symbol_rate_msps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevSpec.symbol_rate_msps" title="Link to this definition">¶</a></dt>
@@ -746,7 +746,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">GFSKFreqDevResult</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#GFSKFreqDevResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult" title="Link to this definition">¶</a></dt>
-<dd><p>GFSK 频偏check结果。</p>
+<dd><p>GFSK deviation check result.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.min_ok">
 <span class="sig-name descname"><span class="pre">min_ok</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult.min_ok" title="Link to this definition">¶</a></dt>
@@ -787,7 +787,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.check_gfsk_freq_dev">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">check_gfsk_freq_dev</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_rate_msps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_deviation_khz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fd1_khz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fd2_khz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_zero_crossing_error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult" title="nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult"><span class="pre">nearlink_sdr.phy.rf_compliance.GFSKFreqDevResult</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#check_gfsk_freq_dev"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.check_gfsk_freq_dev" title="Link to this definition">¶</a></dt>
-<dd><p>check GFSK frequency偏差是否满足standard 8.2.2.1。</p>
+<dd><p>Check whether GFSK frequency deviation meets standard 8.2.2.1.</p>
 </dd></dl>
 
 <dl class="py class">
@@ -817,7 +817,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.EVMLimit">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">EVMLimit</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#EVMLimit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.EVMLimit" title="Link to this definition">¶</a></dt>
-<dd><p>EVM 限值。</p>
+<dd><p>EVM limits.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.EVMLimit.rms_pct">
 <span class="sig-name descname"><span class="pre">rms_pct</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.EVMLimit.rms_pct" title="Link to this definition">¶</a></dt>
@@ -847,7 +847,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.check_evm">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">check_evm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mod</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PSKModulation" title="nearlink_sdr.phy.rf_compliance.PSKModulation"><span class="pre">nearlink_sdr.phy.rf_compliance.PSKModulation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rms_evm_pct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct99_evm_pct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak_evm_pct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#check_evm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.check_evm" title="Link to this definition">¶</a></dt>
-<dd><p>check PSK EVM 是否满足表 53 限值。</p>
+<dd><p>Check whether PSK EVM meets the Table 53 limits.</p>
 </dd></dl>
 
 <dl class="py class">
@@ -883,7 +883,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.FreqToleranceSpec">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">FreqToleranceSpec</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#FreqToleranceSpec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.FreqToleranceSpec" title="Link to this definition">¶</a></dt>
-<dd><p>frequency容限规范。</p>
+<dd><p>Frequency tolerance specification.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.FreqToleranceSpec.freq_offset_khz">
 <span class="sig-name descname"><span class="pre">freq_offset_khz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.FreqToleranceSpec.freq_offset_khz" title="Link to this definition">¶</a></dt>
@@ -925,8 +925,8 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.check_freq_tolerance">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">check_freq_tolerance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">band</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.FreqBand" title="nearlink_sdr.phy.rf_compliance.FreqBand"><span class="pre">nearlink_sdr.phy.rf_compliance.FreqBand</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mod_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_offset_khz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_drift_khz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">drift_rate_hz_per_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">carrier_freq_mhz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#check_freq_tolerance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.check_freq_tolerance" title="Link to this definition">¶</a></dt>
-<dd><p>checkfrequency容限是否满足 8.2.2.3。</p>
-<p>Args:     band: 频段类型。     mod_type: modulation类型 (“GFSK”, “BPSK/QPSK”, “8PSK”)。     freq_offset_khz: 初始frequency偏差 (kHz)。     freq_drift_khz: frequency漂移 (kHz)。     drift_rate_hz_per_us: frequency漂移率 (Hz/us)。     carrier_freq_mhz: 载波frequency (MHz), sub-1GHz 时用于 ppm check。</p>
+<dd><p>Check whether frequency tolerance meets 8.2.2.3.</p>
+<p>Args:     band: Band type.     mod_type: Modulation type (“GFSK”, “BPSK/QPSK”, “8PSK”).     freq_offset_khz: Initial frequency offset (kHz).     freq_drift_khz: Frequency drift (kHz).     drift_rate_hz_per_us: Frequency drift rate (Hz/us).     carrier_freq_mhz: Carrier frequency (MHz).</p>
 </dd></dl>
 
 <dl class="py data">
@@ -956,7 +956,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.check_clock_accuracy">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">check_clock_accuracy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ppm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">jitter_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_sleep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#check_clock_accuracy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.check_clock_accuracy" title="Link to this definition">¶</a></dt>
-<dd><p>check时钟精度 (8.2.2.4 / 8.2.2.5)。</p>
+<dd><p>Check clock accuracy (8.2.2.4 / 8.2.2.5).</p>
 </dd></dl>
 
 <dl class="py class">
@@ -1010,14 +1010,14 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.gfsk_inband_spurious_limit_dbm">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">gfsk_inband_spurious_limit_dbm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bw</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth" title="nearlink_sdr.phy.rf_compliance.ChannelBandwidth"><span class="pre">nearlink_sdr.phy.rf_compliance.ChannelBandwidth</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">k_offset_mhz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#gfsk_inband_spurious_limit_dbm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.gfsk_inband_spurious_limit_dbm" title="Link to this definition">¶</a></dt>
-<dd><p>compute GFSK 频段内杂散限值 (dBm)。</p>
-<p>对宽channel (1/2/4 MHz, 表56) 返回 dBm/MHz; 对窄channel (100-500 kHz, 表57) 返回 dBm/100kHz。</p>
+<dd><p>Compute GFSK in-band spurious emission limit (dBm).</p>
+<p>For wide channels (1/2/4 MHz, Table 56) returns dBm/MHz; for narrow channels (100-500 kHz, Table 57) returns dBm/100kHz.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.PSKSpectrumMask">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">PSKSpectrumMask</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#PSKSpectrumMask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.PSKSpectrumMask" title="Link to this definition">¶</a></dt>
-<dd><p>PSK 发射频谱模板中各参考offsetfrequency (MHz)。</p>
+<dd><p>Reference offset frequencies (MHz) in the PSK transmit spectral mask.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.bw">
 <span class="sig-name descname"><span class="pre">bw</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth" title="nearlink_sdr.phy.rf_compliance.ChannelBandwidth"><span class="pre">nearlink_sdr.phy.rf_compliance.ChannelBandwidth</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.PSKSpectrumMask.bw" title="Link to this definition">¶</a></dt>
@@ -1065,7 +1065,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.get_psk_spectrum_mask">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">get_psk_spectrum_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bw</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.ChannelBandwidth" title="nearlink_sdr.phy.rf_compliance.ChannelBandwidth"><span class="pre">nearlink_sdr.phy.rf_compliance.ChannelBandwidth</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PSKSpectrumMask" title="nearlink_sdr.phy.rf_compliance.PSKSpectrumMask"><span class="pre">nearlink_sdr.phy.rf_compliance.PSKSpectrumMask</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#get_psk_spectrum_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.get_psk_spectrum_mask" title="Link to this definition">¶</a></dt>
-<dd><p>获取指定bandwidth的 PSK 频谱模板。</p>
+<dd><p>Get the PSK spectral mask for the specified bandwidth.</p>
 </dd></dl>
 
 <dl class="py data">
@@ -1095,8 +1095,8 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.reference_sensitivity">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">reference_sensitivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bw_khz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mcs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#reference_sensitivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.reference_sensitivity" title="Link to this definition">¶</a></dt>
-<dd><p>返回参考灵敏度 (dBm)。</p>
-<p>Args:     bw_khz: channelbandwidth (kHz)。     mcs: MCS 索引。None 时返回 GFSK 灵敏度。</p>
+<dd><p>Return the reference sensitivity (dBm).</p>
+<p>Args:     bw_khz: Channel bandwidth (kHz).     mcs: MCS index. None returns GFSK sensitivity.</p>
 </dd></dl>
 
 <dl class="py data">
@@ -1108,7 +1108,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.SelectivityEntry">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">SelectivityEntry</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#SelectivityEntry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.SelectivityEntry" title="Link to this definition">¶</a></dt>
-<dd><p>receive机选择性要求条目。</p>
+<dd><p>Receiver selectivity requirement entry.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.SelectivityEntry.signal_level_offset_db">
 <span class="sig-name descname"><span class="pre">signal_level_offset_db</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.SelectivityEntry.signal_level_offset_db" title="Link to this definition">¶</a></dt>
@@ -1144,13 +1144,13 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.selectivity_freq_offsets">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">selectivity_freq_offsets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bw_khz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#selectivity_freq_offsets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.selectivity_freq_offsets" title="Link to this definition">¶</a></dt>
-<dd><p>返回指定bandwidth的 f1/f2/f3 frequencyoffset (MHz)。</p>
+<dd><p>Return f1/f2/f3 frequency offsets (MHz) for the specified bandwidth.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.OutOfBandEntry">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">OutOfBandEntry</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#OutOfBandEntry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.OutOfBandEntry" title="Link to this definition">¶</a></dt>
-<dd><p>频段外选择性要求条目。</p>
+<dd><p>Out-of-band selectivity requirement entry.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.OutOfBandEntry.freq_range">
 <span class="sig-name descname"><span class="pre">freq_range</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.OutOfBandEntry.freq_range" title="Link to this definition">¶</a></dt>
@@ -1192,7 +1192,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.IntermodEntry">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">IntermodEntry</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#IntermodEntry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.IntermodEntry" title="Link to this definition">¶</a></dt>
-<dd><p>receive机干扰互调要求。</p>
+<dd><p>Receiver intermodulation requirement.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.IntermodEntry.bw_khz">
 <span class="sig-name descname"><span class="pre">bw_khz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.IntermodEntry.bw_khz" title="Link to this definition">¶</a></dt>
@@ -1240,22 +1240,21 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.check_rssi_accuracy">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">check_rssi_accuracy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measured_rssi_dbm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">actual_level_dbm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_sensitivity_dbm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#check_rssi_accuracy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.check_rssi_accuracy" title="Link to this definition">¶</a></dt>
-<dd><p>check RSSI 测量精度 (8.3.4)。</p>
-<p>在参考灵敏度 +6 dB 处, 误差应不大于 ±6 dB。</p>
+<dd><p>Check RSSI measurement accuracy (8.3.4).</p>
+<p>At reference sensitivity +6 dB, the error shall not exceed ±6 dB.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.uwb_channel_center_freq_mhz">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">uwb_channel_center_freq_mhz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#uwb_channel_center_freq_mhz"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.uwb_channel_center_freq_mhz" title="Link to this definition">¶</a></dt>
-<dd><p>compute UWB 物理channel中心frequency (MHz)。</p>
-<p>fc = 499.2 + Nc * 124.8  (Nc in 0..79)
-特殊信道: 125 -&gt; 7542.6, 126 -&gt; 18041.8, 127 -&gt; 8541.0</p>
+<dd><p>Compute UWB physical channel center frequency (MHz).</p>
+<p>fc = 499.2 + Nc * 124.8  (Nc in 0..79) Special channels: 125 -&gt; 7542.6, 126 -&gt; 18041.8, 127 -&gt; 8541.0</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.UWBSpectrumMask">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">UWBSpectrumMask</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#UWBSpectrumMask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.UWBSpectrumMask" title="Link to this definition">¶</a></dt>
-<dd><p>UWB 频谱模板parameter (8.4.3)。</p>
+<dd><p>UWB spectrum maskparameter (8.4.3).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.UWBSpectrumMask.pulse_width_ns">
 <span class="sig-name descname"><span class="pre">pulse_width_ns</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.UWBSpectrumMask.pulse_width_ns" title="Link to this definition">¶</a></dt>
@@ -1265,16 +1264,16 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.UWBSpectrumMask.transition_band_hz">
 <span class="sig-name descname"><span class="pre">transition_band_hz</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#UWBSpectrumMask.transition_band_hz"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.UWBSpectrumMask.transition_band_hz" title="Link to this definition">¶</a></dt>
-<dd><p>过渡带范围 [0.65/Tp, 0.8/Tp] Hz。</p>
+<dd><p>Transition band range [0.65/Tp, 0.8/Tp] Hz.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.UWBSpectrumMask.check_spectrum">
 <span class="sig-name descname"><span class="pre">check_spectrum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq_offset_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">psd_db_relative</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#UWBSpectrumMask.check_spectrum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.UWBSpectrumMask.check_spectrum" title="Link to this definition">¶</a></dt>
-<dd><p>check PSD 是否满足频谱模板要求。</p>
+<dd><p>Check whether PSD meets the spectral mask requirements.</p>
 <ul class="simple">
-<li><p>|f-fc| in [0.65/Tp, 0.8/Tp]: 低于峰值 10 dB</p></li>
-<li><p>|f-fc| &gt; 0.8/Tp: 低于峰值 18 dB</p></li>
+<li><p>|f-fc| in [0.65/Tp, 0.8/Tp]: below peak 10 dB</p></li>
+<li><p>|f-fc| &gt; 0.8/Tp: below peak 18 dB</p></li>
 </ul>
 </dd></dl>
 
@@ -1307,21 +1306,21 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.check_uwb_nrmse">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">check_uwb_nrmse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sync_nrmse_pct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">meas_nrmse_pct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#check_uwb_nrmse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.check_uwb_nrmse" title="Link to this definition">¶</a></dt>
-<dd><p>check UWB standard化均方根误差 (8.4.5)。</p>
-<p>syncsignal和测量signal NRMSE 均不超过 25%, 且两者差值不超过 ±2 dB。</p>
+<dd><p>Check UWB normalized RMS error (8.4.5).</p>
+<p>Sync signal and measurement signal NRMSE shall not exceed 25%, and their difference shall not exceed ±2 dB.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.check_rx_spurious_emission">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">check_rx_spurious_emission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spurious_dbm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_dbm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-57.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#check_rx_spurious_emission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.check_rx_spurious_emission" title="Link to this definition">¶</a></dt>
-<dd><p>checkreceive机杂散发射 (8.3.3)。</p>
-<p>standard要求receive机杂散发射应符合国家频谱法规。 default限值 -57 dBm (30 MHz ~ 1 GHz 频段, GB/T 9254.1 限值)。</p>
+<dd><p>Check receiver spurious emissions (8.3.3).</p>
+<p>The standard requires receiver spurious emissions to comply with national spectrum regulations. Default limit -57 dBm (30 MHz - 1 GHz band, GB/T 9254.1 limit).</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.RFComplianceReport">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">RFComplianceReport</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#RFComplianceReport"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport" title="Link to this definition">¶</a></dt>
-<dd><p>射频合规综合报告。</p>
+<dd><p>RF compliance comprehensive report.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.RFComplianceReport.power_class">
 <span class="sig-name descname"><span class="pre">power_class</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.PowerClass" title="nearlink_sdr.phy.rf_compliance.PowerClass"><span class="pre">nearlink_sdr.phy.rf_compliance.PowerClass</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.power_class" title="Link to this definition">¶</a></dt>
@@ -1403,7 +1402,7 @@
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.RFComplianceReport.passed">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">passed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.RFComplianceReport.passed" title="Link to this definition">¶</a></dt>
-<dd><p>全部已检项均通过时返回 True。</p>
+<dd><p>Return True when all checked items pass.</p>
 </dd></dl>
 
 </dd></dl>

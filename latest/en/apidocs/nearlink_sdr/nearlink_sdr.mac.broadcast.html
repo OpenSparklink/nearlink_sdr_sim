@@ -399,12 +399,12 @@
 <p>Implements frame structure codec required for SLE broadcasting, discovery, and access:</p>
 <ul class="simple">
 <li><p>Generic broadcast frame structure (BroadcastFrame)</p></li>
-<li><p>扩展broadcast frame资源configuration信息 (ExtAdvResourceConfig)</p></li>
-<li><p>发现access资源configuration信息 (DiscoveryAccessResourceConfig)</p></li>
-<li><p>access基本信息 (AccessBasicInfo)</p></li>
-<li><p>accessrequest信息 (AccessRequestInfo)</p></li>
-<li><p>accessresponse信息 (AccessResponseInfo)</p></li>
-<li><p>启动系统管理frame信息 (SystemMgmtFrameInfo)</p></li>
+<li><p>Extended advertising frame resource configuration information (ExtAdvResourceConfig)</p></li>
+<li><p>Discovery access resource configuration information (DiscoveryAccessResourceConfig)</p></li>
+<li><p>Access basic information (AccessBasicInfo)</p></li>
+<li><p>accessrequestinformation (AccessRequestInfo)</p></li>
+<li><p>accessresponseinformation (AccessResponseInfo)</p></li>
+<li><p>startsystem managementframeinformation (SystemMgmtFrameInfo)</p></li>
 </ul>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
@@ -414,70 +414,70 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast.AddrType" title="nearlink_sdr.mac.broadcast.AddrType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddrType</span></code></a></p></td>
-<td><p>媒体access层标识类型 (7.1.4 表25)</p></td>
+<td><p>Media access layer identifier type (7.1.4 Table 25)</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast.BroadcastDataType" title="nearlink_sdr.mac.broadcast.BroadcastDataType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BroadcastDataType</span></code></a></p></td>
-<td><p>broadcast framedata类型 (7.1.4 表26)</p></td>
+<td><p>Broadcast frame data type (7.1.4 Table 26)</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast.RequestType" title="nearlink_sdr.mac.broadcast.RequestType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RequestType</span></code></a></p></td>
-<td><p>request类型标志 (7.1.4.2)</p></td>
+<td><p>Request type flag (7.1.4.2)</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast.GTNegotiation" title="nearlink_sdr.mac.broadcast.GTNegotiation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GTNegotiation</span></code></a></p></td>
-<td><p>GT role negotiation结果 (7.1.4.2)</p></td>
+<td><p>GT role negotiation result (7.1.4.2)</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast.AccessResponseType" title="nearlink_sdr.mac.broadcast.AccessResponseType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AccessResponseType</span></code></a></p></td>
-<td><p>accessresponse类型 (7.1.4.6)</p></td>
+<td><p>Access response type (7.1.4.6)</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast.ExtAdvResourceConfig" title="nearlink_sdr.mac.broadcast.ExtAdvResourceConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExtAdvResourceConfig</span></code></a></p></td>
-<td><p>扩展broadcast frame资源configuration信息 (7.1.4.1, 表27)</p></td>
+<td><p>Extended advertising frame resource configuration information (7.1.4.1, Table 27)</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast.DiscoveryAccessEntry" title="nearlink_sdr.mac.broadcast.DiscoveryAccessEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DiscoveryAccessEntry</span></code></a></p></td>
-<td><p>单个发现access资源条目</p></td>
+<td><p>Single discovery access resource entry</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast.DiscoveryAccessResourceConfig" title="nearlink_sdr.mac.broadcast.DiscoveryAccessResourceConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DiscoveryAccessResourceConfig</span></code></a></p></td>
-<td><p>发现access资源configuration信息 (7.1.4.2, 表28)</p></td>
+<td><p>Discovery access resource configuration information (7.1.4.2, Table 28)</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast.AccessBasicInfo" title="nearlink_sdr.mac.broadcast.AccessBasicInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AccessBasicInfo</span></code></a></p></td>
-<td><p>access基本信息 (7.1.4.4, 表31)</p></td>
+<td><p>Access basic information (7.1.4.4, Table 31)</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast.AccessRequestInfo" title="nearlink_sdr.mac.broadcast.AccessRequestInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AccessRequestInfo</span></code></a></p></td>
-<td><p>accessrequest信息 (7.1.4.5, 表32/33)</p></td>
+<td><p>accessrequestinformation (7.1.4.5, table32/33)</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast.AccessResponseEntry" title="nearlink_sdr.mac.broadcast.AccessResponseEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AccessResponseEntry</span></code></a></p></td>
-<td><p>单个accessresponse条目</p></td>
+<td><p>Single access response entry</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast.AccessResponseInfo" title="nearlink_sdr.mac.broadcast.AccessResponseInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AccessResponseInfo</span></code></a></p></td>
-<td><p>accessresponse信息 (7.1.4.6, 表34)</p></td>
+<td><p>accessresponseinformation (7.1.4.6, table34)</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast.SystemMgmtFrameInfo" title="nearlink_sdr.mac.broadcast.SystemMgmtFrameInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SystemMgmtFrameInfo</span></code></a></p></td>
-<td><p>启动系统管理frame信息 (7.1.4.7, 表35)</p></td>
+<td><p>startsystem managementframeinformation (7.1.4.7, table35)</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast.TransportIndicationInfo" title="nearlink_sdr.mac.broadcast.TransportIndicationInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransportIndicationInfo</span></code></a></p></td>
-<td><p>传输indication信息 (7.1.4.3, 表29)</p></td>
+<td><p>Transport indication information (7.1.4.3, Table 29)</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast.NonLinkedBroadcastLinkInfo" title="nearlink_sdr.mac.broadcast.NonLinkedBroadcastLinkInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NonLinkedBroadcastLinkInfo</span></code></a></p></td>
-<td><p>非connected statebroadcastlink信息 (7.1.4.8, 表36/37)</p></td>
+<td><p>non-connected statebroadcastlinkinformation (7.1.4.8, table36/37)</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast.QueryRequestFilterInfo" title="nearlink_sdr.mac.broadcast.QueryRequestFilterInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QueryRequestFilterInfo</span></code></a></p></td>
-<td><p>query request过滤信息 (7.1.4.9, 表38)</p></td>
+<td><p>Inquiry request filter information (7.1.4.9, Table 38)</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BroadcastFrame</span></code></a></p></td>
-<td><p>broadcast frame通用结构 (7.1.4, 表25)</p></td>
+<td><p>Broadcast frame general structure (7.1.4, Table 25)</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast.FilterOp" title="nearlink_sdr.mac.broadcast.FilterOp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FilterOp</span></code></a></p></td>
-<td><p>过滤条件组合运算符</p></td>
+<td><p>filterconditioncombinationoperator</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast.FilterCondition" title="nearlink_sdr.mac.broadcast.FilterCondition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FilterCondition</span></code></a></p></td>
-<td><p>单个过滤条件</p></td>
+<td><p>singlefiltercondition</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast.BroadcastFilter" title="nearlink_sdr.mac.broadcast.BroadcastFilter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BroadcastFilter</span></code></a></p></td>
-<td><p>broadcast frame过滤器 (7.1.5)</p></td>
+<td><p>Broadcast frame filter (7.1.5)</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast.NarrowbandMeasurementConfig" title="nearlink_sdr.mac.broadcast.NarrowbandMeasurementConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NarrowbandMeasurementConfig</span></code></a></p></td>
-<td><p>非connected state窄带frequency hopping测量信息configuration (7.1.4.10, 表39)</p></td>
+<td><p>Non-connected state narrowband frequency hopping measurement information configuration (7.1.4.10, Table 39)</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast.UWBPulseMeasurementConfig" title="nearlink_sdr.mac.broadcast.UWBPulseMeasurementConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWBPulseMeasurementConfig</span></code></a></p></td>
-<td><p>非connected state超宽带脉冲测量信息configuration (7.1.4.11, 表41)</p></td>
+<td><p>Non-connected state UWB pulse measurement information configuration (7.1.4.11, Table 41)</p></td>
 </tr>
 </tbody>
 </table>
@@ -489,16 +489,16 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast._int_to_bits" title="nearlink_sdr.mac.broadcast._int_to_bits"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_int_to_bits</span></code></a></p></td>
-<td><p>整数转比特列表 (高位在前)</p></td>
+<td><p>Integer to bit list (MSB first)</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast._bits_to_int" title="nearlink_sdr.mac.broadcast._bits_to_int"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_bits_to_int</span></code></a></p></td>
-<td><p>比特列表转整数</p></td>
+<td><p>Bit list to integer</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast._bits_to_bytes" title="nearlink_sdr.mac.broadcast._bits_to_bytes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_bits_to_bytes</span></code></a></p></td>
-<td><p>比特列表转字节sequence</p></td>
+<td><p>Bit list to byte sequence</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.broadcast._bytes_to_bits" title="nearlink_sdr.mac.broadcast._bytes_to_bits"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_bytes_to_bits</span></code></a></p></td>
-<td><p>字节sequence转比特列表</p></td>
+<td><p>Byte sequence to bit list</p></td>
 </tr>
 </tbody>
 </table>
@@ -510,7 +510,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.AddrType">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">AddrType</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#AddrType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.AddrType" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>媒体access层标识类型 (7.1.4 表25)</p>
+<p>Media access layer identifier type (7.1.4 Table 25)</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -555,7 +555,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.BroadcastDataType">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">BroadcastDataType</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#BroadcastDataType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.BroadcastDataType" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>broadcast framedata类型 (7.1.4 表26)</p>
+<p>Broadcast frame data type (7.1.4 Table 26)</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -630,7 +630,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.RequestType">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">RequestType</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#RequestType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.RequestType" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>request类型标志 (7.1.4.2)</p>
+<p>Request type flag (7.1.4.2)</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -657,7 +657,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.GTNegotiation">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">GTNegotiation</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#GTNegotiation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.GTNegotiation" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>GT role negotiation结果 (7.1.4.2)</p>
+<p>GT role negotiation result (7.1.4.2)</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -690,7 +690,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.AccessResponseType">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">AccessResponseType</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#AccessResponseType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.AccessResponseType" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>accessresponse类型 (7.1.4.6)</p>
+<p>Access response type (7.1.4.6)</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -722,16 +722,16 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.ExtAdvResourceConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">ExtAdvResourceConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#ExtAdvResourceConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.ExtAdvResourceConfig" title="Link to this definition">¶</a></dt>
-<dd><p>扩展broadcast frame资源configuration信息 (7.1.4.1, 表27)</p>
-<p>4 字节结构:</p>
+<dd><p>Extended advertising frame resource configuration information (7.1.4.1, Table 27)</p>
+<p>4 bytestructure:</p>
 <ul class="simple">
-<li><p>频点索引:       8 bits</p></li>
-<li><p>offset量:        12 bits</p></li>
-<li><p>无线frame typeindication:  4 bits</p></li>
+<li><p>frequency pointindex:       8 bits</p></li>
+<li><p>Offset:        12 bits</p></li>
+<li><p>Radio frame type indication:  4 bits</p></li>
 <li><p>bandwidthindication:       2 bits</p></li>
-<li><p>pilot密度indication:    2 bits</p></li>
-<li><p>时钟精度:       3 bits</p></li>
-<li><p>offset量单位:     1 bit</p></li>
+<li><p>Pilot density indication:    2 bits</p></li>
+<li><p>clock accuracy:       3 bits</p></li>
+<li><p>Offset unit:     1 bit</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.ExtAdvResourceConfig.channel_index">
@@ -796,7 +796,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.DiscoveryAccessEntry">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">DiscoveryAccessEntry</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#DiscoveryAccessEntry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.DiscoveryAccessEntry" title="Link to this definition">¶</a></dt>
-<dd><p>单个发现access资源条目</p>
+<dd><p>Single discovery access resource entry</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.DiscoveryAccessEntry.request_type">
 <span class="sig-name descname"><span class="pre">request_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.broadcast.DiscoveryAccessEntry.request_type" title="Link to this definition">¶</a></dt>
@@ -832,7 +832,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.DiscoveryAccessResourceConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">DiscoveryAccessResourceConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#DiscoveryAccessResourceConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.DiscoveryAccessResourceConfig" title="Link to this definition">¶</a></dt>
-<dd><p>发现access资源configuration信息 (7.1.4.2, 表28)</p>
+<dd><p>Discovery access resource configuration information (7.1.4.2, Table 28)</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.DiscoveryAccessResourceConfig.request_offset">
 <span class="sig-name descname"><span class="pre">request_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.broadcast.DiscoveryAccessResourceConfig.request_offset" title="Link to this definition">¶</a></dt>
@@ -884,7 +884,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.AccessBasicInfo">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">AccessBasicInfo</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#AccessBasicInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.AccessBasicInfo" title="Link to this definition">¶</a></dt>
-<dd><p>access基本信息 (7.1.4.4, 表31)</p>
+<dd><p>Access basic information (7.1.4.4, Table 31)</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.AccessBasicInfo.smf_baseline_slot">
 <span class="sig-name descname"><span class="pre">smf_baseline_slot</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.broadcast.AccessBasicInfo.smf_baseline_slot" title="Link to this definition">¶</a></dt>
@@ -996,7 +996,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.AccessRequestInfo">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">AccessRequestInfo</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#AccessRequestInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.AccessRequestInfo" title="Link to this definition">¶</a></dt>
-<dd><p>accessrequest信息 (7.1.4.5, 表32/33)</p>
+<dd><p>accessrequestinformation (7.1.4.5, table32/33)</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.AccessRequestInfo.structure_indication">
 <span class="sig-name descname"><span class="pre">structure_indication</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.broadcast.AccessRequestInfo.structure_indication" title="Link to this definition">¶</a></dt>
@@ -1066,7 +1066,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.AccessResponseEntry">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">AccessResponseEntry</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#AccessResponseEntry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.AccessResponseEntry" title="Link to this definition">¶</a></dt>
-<dd><p>单个accessresponse条目</p>
+<dd><p>Single access response entry</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.AccessResponseEntry.peer_addr">
 <span class="sig-name descname"><span class="pre">peer_addr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.broadcast.AccessResponseEntry.peer_addr" title="Link to this definition">¶</a></dt>
@@ -1102,7 +1102,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.AccessResponseInfo">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">AccessResponseInfo</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#AccessResponseInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.AccessResponseInfo" title="Link to this definition">¶</a></dt>
-<dd><p>accessresponse信息 (7.1.4.6, 表34)</p>
+<dd><p>accessresponseinformation (7.1.4.6, table34)</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.AccessResponseInfo.entries">
 <span class="sig-name descname"><span class="pre">entries</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nearlink_sdr.mac.broadcast.AccessResponseEntry" title="nearlink_sdr.mac.broadcast.AccessResponseEntry"><span class="pre">nearlink_sdr.mac.broadcast.AccessResponseEntry</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nearlink_sdr.mac.broadcast.AccessResponseInfo.entries" title="Link to this definition">¶</a></dt>
@@ -1124,7 +1124,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.SystemMgmtFrameInfo">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">SystemMgmtFrameInfo</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#SystemMgmtFrameInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.SystemMgmtFrameInfo" title="Link to this definition">¶</a></dt>
-<dd><p>启动系统管理frame信息 (7.1.4.7, 表35)</p>
+<dd><p>startsystem managementframeinformation (7.1.4.7, table35)</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.SystemMgmtFrameInfo.baseline_slot">
 <span class="sig-name descname"><span class="pre">baseline_slot</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.broadcast.SystemMgmtFrameInfo.baseline_slot" title="Link to this definition">¶</a></dt>
@@ -1194,8 +1194,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.TransportIndicationInfo">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">TransportIndicationInfo</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#TransportIndicationInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.TransportIndicationInfo" title="Link to this definition">¶</a></dt>
-<dd><p>传输indication信息 (7.1.4.3, 表29)</p>
-<p>总length 480 bits (2.4GHz) 或 600 bits (5.xGHz), 取决于hopping maplength (80 或 200 bits)。</p>
+<dd><p>Transport indication information (7.1.4.3, Table 29)</p>
+<p>Total length 480 bits (2.4GHz) or 600 bits (5.xGHz), depending on frequency hopping map length (80 or 200 bits).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.TransportIndicationInfo.system_slot_seq">
 <span class="sig-name descname"><span class="pre">system_slot_seq</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.broadcast.TransportIndicationInfo.system_slot_seq" title="Link to this definition">¶</a></dt>
@@ -1415,13 +1415,13 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.TransportIndicationInfo.pack">
 <span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#TransportIndicationInfo.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.TransportIndicationInfo.pack" title="Link to this definition">¶</a></dt>
-<dd><p>encode为字节sequence</p>
+<dd><p>Encode to byte sequence</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.TransportIndicationInfo.unpack">
 <em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_5g</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.broadcast.TransportIndicationInfo" title="nearlink_sdr.mac.broadcast.TransportIndicationInfo"><span class="pre">nearlink_sdr.mac.broadcast.TransportIndicationInfo</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#TransportIndicationInfo.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.TransportIndicationInfo.unpack" title="Link to this definition">¶</a></dt>
-<dd><p>从字节sequencedecode</p>
+<dd><p>Decode from byte sequence</p>
 </dd></dl>
 
 </dd></dl>
@@ -1429,7 +1429,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.NonLinkedBroadcastLinkInfo">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">NonLinkedBroadcastLinkInfo</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#NonLinkedBroadcastLinkInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.NonLinkedBroadcastLinkInfo" title="Link to this definition">¶</a></dt>
-<dd><p>非connected statebroadcastlink信息 (7.1.4.8, 表36/37)</p>
+<dd><p>non-connected statebroadcastlinkinformation (7.1.4.8, table36/37)</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.NonLinkedBroadcastLinkInfo.transmission_type">
 <span class="sig-name descname"><span class="pre">transmission_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.broadcast.NonLinkedBroadcastLinkInfo.transmission_type" title="Link to this definition">¶</a></dt>
@@ -1595,13 +1595,13 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.NonLinkedBroadcastLinkInfo.pack">
 <span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#NonLinkedBroadcastLinkInfo.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.NonLinkedBroadcastLinkInfo.pack" title="Link to this definition">¶</a></dt>
-<dd><p>encode为字节sequence</p>
+<dd><p>Encode to byte sequence</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.NonLinkedBroadcastLinkInfo.unpack">
 <em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_5g</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.broadcast.NonLinkedBroadcastLinkInfo" title="nearlink_sdr.mac.broadcast.NonLinkedBroadcastLinkInfo"><span class="pre">nearlink_sdr.mac.broadcast.NonLinkedBroadcastLinkInfo</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#NonLinkedBroadcastLinkInfo.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.NonLinkedBroadcastLinkInfo.unpack" title="Link to this definition">¶</a></dt>
-<dd><p>从字节sequencedecode</p>
+<dd><p>Decode from byte sequence</p>
 </dd></dl>
 
 </dd></dl>
@@ -1609,11 +1609,11 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.QueryRequestFilterInfo">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">QueryRequestFilterInfo</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#QueryRequestFilterInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.QueryRequestFilterInfo" title="Link to this definition">¶</a></dt>
-<dd><p>query request过滤信息 (7.1.4.9, 表38)</p>
-<p>变长结构, 包含:</p>
+<dd><p>Inquiry request filter information (7.1.4.9, Table 38)</p>
+<p>variable-lengthstructure, contains:</p>
 <ul class="simple">
-<li><p>16比特standard服务标识列表</p></li>
-<li><p>128比特自定义服务标识列表</p></li>
+<li><p>16-bit standard service identifier list</p></li>
+<li><p>128bitcustom service identifierlist</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.QueryRequestFilterInfo.uuid_16_list">
@@ -1630,13 +1630,13 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.QueryRequestFilterInfo.pack">
 <span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#QueryRequestFilterInfo.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.QueryRequestFilterInfo.pack" title="Link to this definition">¶</a></dt>
-<dd><p>encode为字节sequence</p>
+<dd><p>Encode to byte sequence</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.QueryRequestFilterInfo.unpack">
 <em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.broadcast.QueryRequestFilterInfo" title="nearlink_sdr.mac.broadcast.QueryRequestFilterInfo"><span class="pre">nearlink_sdr.mac.broadcast.QueryRequestFilterInfo</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#QueryRequestFilterInfo.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.QueryRequestFilterInfo.unpack" title="Link to this definition">¶</a></dt>
-<dd><p>从字节sequencedecode</p>
+<dd><p>Decode from byte sequence</p>
 </dd></dl>
 
 </dd></dl>
@@ -1644,14 +1644,14 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.BroadcastFrame">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">BroadcastFrame</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#BroadcastFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.BroadcastFrame" title="Link to this definition">¶</a></dt>
-<dd><p>broadcast frame通用结构 (7.1.4, 表25)</p>
-<p>结构indication (5 bits) 控制optional字段:</p>
+<dd><p>Broadcast frame general structure (7.1.4, Table 25)</p>
+<p>Structure indication (5 bits) controls optional fields:</p>
 <ul class="simple">
-<li><p>bit 0: 本端标识存在</p></li>
-<li><p>bit 1: parsekey标识存在</p></li>
-<li><p>bit 2: 对端标识存在</p></li>
-<li><p>bit 3: 扩展broadcast frame资源configuration存在</p></li>
-<li><p>bit 4: data部分存在</p></li>
+<li><p>bit 0: localidentifierpresent</p></li>
+<li><p>bit 1: resolving key identifier present</p></li>
+<li><p>bit 2: peeridentifierpresent</p></li>
+<li><p>bit 3: extended advertising frame resource configuration present</p></li>
+<li><p>bit 4: data section present</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.BroadcastFrame.structure_indication">
@@ -1717,7 +1717,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.FilterOp">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">FilterOp</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#FilterOp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.FilterOp" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>过滤条件组合运算符</p>
+<p>filterconditioncombinationoperator</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -1743,7 +1743,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.FilterCondition">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">FilterCondition</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#FilterCondition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.FilterCondition" title="Link to this definition">¶</a></dt>
-<dd><p>单个过滤条件</p>
+<dd><p>singlefiltercondition</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.FilterCondition.field_name">
 <span class="sig-name descname"><span class="pre">field_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.broadcast.FilterCondition.field_name" title="Link to this definition">¶</a></dt>
@@ -1767,8 +1767,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.BroadcastFilter">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">BroadcastFilter</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#BroadcastFilter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.BroadcastFilter" title="Link to this definition">¶</a></dt>
-<dd><p>broadcast frame过滤器 (7.1.5)</p>
-<p>支持按device address、device名称、服务UUID、服务data和厂商data等信息 的单个条件或多个条件的与/或/非组合过滤。</p>
+<dd><p>Broadcast frame filter (7.1.5)</p>
+<p>Support filtering by single or multiple conditions (AND/OR/NOT combinations) based on device address, device name, service UUID, service data, manufacturer data, etc.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.BroadcastFilter.conditions">
 <span class="sig-name descname"><span class="pre">conditions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nearlink_sdr.mac.broadcast.FilterCondition" title="nearlink_sdr.mac.broadcast.FilterCondition"><span class="pre">nearlink_sdr.mac.broadcast.FilterCondition</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nearlink_sdr.mac.broadcast.BroadcastFilter.conditions" title="Link to this definition">¶</a></dt>
@@ -1784,7 +1784,7 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.BroadcastFilter.match">
 <span class="sig-name descname"><span class="pre">match</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#BroadcastFilter.match"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.BroadcastFilter.match" title="Link to this definition">¶</a></dt>
-<dd><p>检查broadcast frame是否满足过滤条件</p>
+<dd><p>Check whether the broadcast frame satisfies the filter conditions</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1797,8 +1797,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.NarrowbandMeasurementConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">NarrowbandMeasurementConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#NarrowbandMeasurementConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.NarrowbandMeasurementConfig" title="Link to this definition">¶</a></dt>
-<dd><p>非connected state窄带frequency hopping测量信息configuration (7.1.4.10, 表39)</p>
-<p>包含感知signalconfiguration、事件组parameter、frequency hoppingconfiguration、初始化阶段parameter、 先发linkparameter和frequency hoppingchannel位图等字段。</p>
+<dd><p>Non-connected state narrowband frequency hopping measurement information configuration (7.1.4.10, Table 39)</p>
+<p>Contains fields such as sensing signal configuration, event group parameters, frequency hopping configuration, initialization phase parameters, initiator link parameters, and frequency hopping channel bitmap.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.NarrowbandMeasurementConfig.config_index">
 <span class="sig-name descname"><span class="pre">config_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.broadcast.NarrowbandMeasurementConfig.config_index" title="Link to this definition">¶</a></dt>
@@ -2072,7 +2072,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.UWBPulseMeasurementConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">UWBPulseMeasurementConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#UWBPulseMeasurementConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast.UWBPulseMeasurementConfig" title="Link to this definition">¶</a></dt>
-<dd><p>非connected state超宽带脉冲测量信息configuration (7.1.4.11, 表41)</p>
+<dd><p>Non-connected state UWB pulse measurement information configuration (7.1.4.11, Table 41)</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast.UWBPulseMeasurementConfig.config_index">
 <span class="sig-name descname"><span class="pre">config_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.broadcast.UWBPulseMeasurementConfig.config_index" title="Link to this definition">¶</a></dt>
@@ -2322,25 +2322,25 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast._int_to_bits">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">_int_to_bits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#_int_to_bits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast._int_to_bits" title="Link to this definition">¶</a></dt>
-<dd><p>整数转比特列表 (高位在前)</p>
+<dd><p>Integer to bit list (MSB first)</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast._bits_to_int">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">_bits_to_int</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#_bits_to_int"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast._bits_to_int" title="Link to this definition">¶</a></dt>
-<dd><p>比特列表转整数</p>
+<dd><p>Bit list to integer</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast._bits_to_bytes">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">_bits_to_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#_bits_to_bytes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast._bits_to_bytes" title="Link to this definition">¶</a></dt>
-<dd><p>比特列表转字节sequence</p>
+<dd><p>Bit list to byte sequence</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.broadcast._bytes_to_bits">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.broadcast.</span></span><span class="sig-name descname"><span class="pre">_bytes_to_bits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/broadcast.html#_bytes_to_bits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.broadcast._bytes_to_bits" title="Link to this definition">¶</a></dt>
-<dd><p>字节sequence转比特列表</p>
+<dd><p>Byte sequence to bit list</p>
 </dd></dl>
 
 </section>

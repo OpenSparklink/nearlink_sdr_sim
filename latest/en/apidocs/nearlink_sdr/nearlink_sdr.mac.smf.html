@@ -399,10 +399,10 @@
 <p>Implements complete encoding/decoding of System Management Frames:</p>
 <ul class="simple">
 <li><p>SMFHeader: system management frame packet header (segmentation indication + signaling number)</p></li>
-<li><p>ScheduleSignaling: 系统管理frame调度signaling (6.6.2.1)</p></li>
+<li><p>ScheduleSignaling: System management frame schedule signaling (6.6.2.1)</p></li>
 <li><p>LinkSignaling: linksignaling (6.6.2.2)</p></li>
 <li><p>OffsetSignaling: offsetsignaling (6.6.2.3)</p></li>
-<li><p>SystemManagementFrame: 完整系统管理frame组装与parse</p></li>
+<li><p>SystemManagementFrame: Complete system management frame assembly and parsing</p></li>
 </ul>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
@@ -415,37 +415,37 @@
 <td><p>segmentindication (6.6.2)</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.smf.SMFSignalingType" title="nearlink_sdr.mac.smf.SMFSignalingType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SMFSignalingType</span></code></a></p></td>
-<td><p>signaling类型 (6.6.2)</p></td>
+<td><p>Signaling type (6.6.2)</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.smf.FrameTypeConfig" title="nearlink_sdr.mac.smf.FrameTypeConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FrameTypeConfig</span></code></a></p></td>
-<td><p>无线frame typeconfiguration (6.6.2.1, 表17)</p></td>
+<td><p>Radio frame type configuration (6.6.2.1, Table 17)</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.smf.ScheduleSlotLength" title="nearlink_sdr.mac.smf.ScheduleSlotLength"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ScheduleSlotLength</span></code></a></p></td>
-<td><p>调度time slotlength (6.6.2.2)</p></td>
+<td><p>Schedule time slot length (6.6.2.2)</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.smf.OffsetUnit" title="nearlink_sdr.mac.smf.OffsetUnit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OffsetUnit</span></code></a></p></td>
-<td><p>offset量单位 (6.6.2.3)</p></td>
+<td><p>Offset unit (6.6.2.3)</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.smf.SMFHeader" title="nearlink_sdr.mac.smf.SMFHeader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SMFHeader</span></code></a></p></td>
-<td><p>系统管理framedata包头</p></td>
+<td><p>System management frame packet header</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.smf.ScheduleSignaling" title="nearlink_sdr.mac.smf.ScheduleSignaling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ScheduleSignaling</span></code></a></p></td>
-<td><p>系统管理frame调度signaling (6.6.2.1, 表16)</p></td>
+<td><p>System management frame schedule signaling (6.6.2.1, Table 16)</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.smf.TimeResourceEntry" title="nearlink_sdr.mac.smf.TimeResourceEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimeResourceEntry</span></code></a></p></td>
-<td><p>单个time资源configuration条目 (6.6.2.2)</p></td>
+<td><p>Single time resource configuration entry (6.6.2.2)</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.smf.LinkSignaling" title="nearlink_sdr.mac.smf.LinkSignaling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LinkSignaling</span></code></a></p></td>
-<td><p>linksignaling (6.6.2.2, 表18)</p></td>
+<td><p>linksignaling (6.6.2.2, table18)</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.smf.OffsetSignaling" title="nearlink_sdr.mac.smf.OffsetSignaling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OffsetSignaling</span></code></a></p></td>
-<td><p>offsetsignaling (6.6.2.3, 表19)</p></td>
+<td><p>offsetsignaling (6.6.2.3, table19)</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.smf.SMFSignalingTLV" title="nearlink_sdr.mac.smf.SMFSignalingTLV"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SMFSignalingTLV</span></code></a></p></td>
-<td><p>系统管理frame的signaling TLV 结构 (类型 + length + 内容)</p></td>
+<td><p>System management frame signaling TLV structure (type + length + content)</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.smf.SystemManagementFrame" title="nearlink_sdr.mac.smf.SystemManagementFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SystemManagementFrame</span></code></a></p></td>
-<td><p>系统管理frame完整结构 (6.6.2)</p></td>
+<td><p>System management frame complete structure (6.6.2)</p></td>
 </tr>
 </tbody>
 </table>
@@ -457,7 +457,7 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.smf.reassemble_smf" title="nearlink_sdr.mac.smf.reassemble_smf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reassemble_smf</span></code></a></p></td>
-<td><p>将segment的系统管理framedata重组为完整frame</p></td>
+<td><p>Reassemble segmented system management frame data into a complete frame</p></td>
 </tr>
 </tbody>
 </table>
@@ -502,7 +502,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.SMFSignalingType">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.smf.</span></span><span class="sig-name descname"><span class="pre">SMFSignalingType</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/smf.html#SMFSignalingType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.smf.SMFSignalingType" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>signaling类型 (6.6.2)</p>
+<p>Signaling type (6.6.2)</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -529,7 +529,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.FrameTypeConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.smf.</span></span><span class="sig-name descname"><span class="pre">FrameTypeConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/smf.html#FrameTypeConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.smf.FrameTypeConfig" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>无线frame typeconfiguration (6.6.2.1, 表17)</p>
+<p>Radio frame type configuration (6.6.2.1, Table 17)</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -622,7 +622,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.ScheduleSlotLength">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.smf.</span></span><span class="sig-name descname"><span class="pre">ScheduleSlotLength</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/smf.html#ScheduleSlotLength"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.smf.ScheduleSlotLength" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>调度time slotlength (6.6.2.2)</p>
+<p>Schedule time slot length (6.6.2.2)</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -661,7 +661,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.OffsetUnit">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.smf.</span></span><span class="sig-name descname"><span class="pre">OffsetUnit</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/smf.html#OffsetUnit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.smf.OffsetUnit" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>offset量单位 (6.6.2.3)</p>
+<p>Offset unit (6.6.2.3)</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -681,11 +681,11 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.SMFHeader">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.smf.</span></span><span class="sig-name descname"><span class="pre">SMFHeader</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/smf.html#SMFHeader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.smf.SMFHeader" title="Link to this definition">¶</a></dt>
-<dd><p>系统管理framedata包头</p>
-<p>1 字节:</p>
+<dd><p>System management frame packet header</p>
+<p>1 byte:</p>
 <ul class="simple">
-<li><p>segmentindication: 2 bits (高位)</p></li>
-<li><p>signaling编号: 6 bits (低位)</p></li>
+<li><p>segmentindication: 2 bits (highbit)</p></li>
+<li><p>signalingnumber: 6 bits (lowbit)</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.SMFHeader.segment_indication">
@@ -720,8 +720,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.ScheduleSignaling">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.smf.</span></span><span class="sig-name descname"><span class="pre">ScheduleSignaling</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/smf.html#ScheduleSignaling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.smf.ScheduleSignaling" title="Link to this definition">¶</a></dt>
-<dd><p>系统管理frame调度signaling (6.6.2.1, 表16)</p>
-<p>indication系统管理frame的interval、bandwidth、频点表以及parameter生效时刻。</p>
+<dd><p>System management frame schedule signaling (6.6.2.1, Table 16)</p>
+<p>Indicate the interval, bandwidth, frequency table, and parameter effective time of the system management frame.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.ScheduleSignaling.effective_slot">
 <span class="sig-name descname"><span class="pre">effective_slot</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.smf.ScheduleSignaling.effective_slot" title="Link to this definition">¶</a></dt>
@@ -779,13 +779,13 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.TimeResourceEntry">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.smf.</span></span><span class="sig-name descname"><span class="pre">TimeResourceEntry</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/smf.html#TimeResourceEntry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.smf.TimeResourceEntry" title="Link to this definition">¶</a></dt>
-<dd><p>单个time资源configuration条目 (6.6.2.2)</p>
-<p>描述一个time分片的资源分配:</p>
+<dd><p>Single time resource configuration entry (6.6.2.2)</p>
+<p>Describe the resource allocation of a time slice:</p>
 <ul class="simple">
-<li><p>offset量       (2 字节, 调度time slot单位)</p></li>
-<li><p>持续length     (2 字节, 调度time slot单位)</p></li>
-<li><p>periodinterval     (2 字节, 调度time slot单位)</p></li>
-<li><p>重复次数     (1 字节)</p></li>
+<li><p>Offset        (2 bytes, schedule time slot unit)</p></li>
+<li><p>Duration      (2 bytes, schedule time slot unit)</p></li>
+<li><p>Period         (2 bytes, schedule time slot unit)</p></li>
+<li><p>Repeat count   (1 byte)</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.TimeResourceEntry.offset">
@@ -832,8 +832,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.LinkSignaling">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.smf.</span></span><span class="sig-name descname"><span class="pre">LinkSignaling</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/smf.html#LinkSignaling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.smf.LinkSignaling" title="Link to this definition">¶</a></dt>
-<dd><p>linksignaling (6.6.2.2, 表18)</p>
-<p>描述link的time资源分布情况。</p>
+<dd><p>linksignaling (6.6.2.2, table18)</p>
+<p>Describe the time resource distribution of a link.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.LinkSignaling.llid">
 <span class="sig-name descname"><span class="pre">llid</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.smf.LinkSignaling.llid" title="Link to this definition">¶</a></dt>
@@ -879,8 +879,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.OffsetSignaling">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.smf.</span></span><span class="sig-name descname"><span class="pre">OffsetSignaling</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/smf.html#OffsetSignaling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.smf.OffsetSignaling" title="Link to this definition">¶</a></dt>
-<dd><p>offsetsignaling (6.6.2.3, 表19)</p>
-<p>标识link建立和sync的offset量信息。</p>
+<dd><p>offsetsignaling (6.6.2.3, table19)</p>
+<p>Identify offset information for link establishment and synchronization.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.OffsetSignaling.llid">
 <span class="sig-name descname"><span class="pre">llid</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.smf.OffsetSignaling.llid" title="Link to this definition">¶</a></dt>
@@ -920,7 +920,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.SMFSignalingTLV">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.smf.</span></span><span class="sig-name descname"><span class="pre">SMFSignalingTLV</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/smf.html#SMFSignalingTLV"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.smf.SMFSignalingTLV" title="Link to this definition">¶</a></dt>
-<dd><p>系统管理frame的signaling TLV 结构 (类型 + length + 内容)</p>
+<dd><p>System management frame signaling TLV structure (type + length + content)</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.SMFSignalingTLV.sig_type">
 <span class="sig-name descname"><span class="pre">sig_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.smf.SMFSignalingTLV.sig_type" title="Link to this definition">¶</a></dt>
@@ -941,7 +941,7 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.SMFSignalingTLV.unpack">
 <em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nearlink_sdr.mac.smf.SMFSignalingTLV" title="nearlink_sdr.mac.smf.SMFSignalingTLV"><span class="pre">nearlink_sdr.mac.smf.SMFSignalingTLV</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/smf.html#SMFSignalingTLV.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.smf.SMFSignalingTLV.unpack" title="Link to this definition">¶</a></dt>
-<dd><p>parse一个 TLV, 返回 (对象, 消耗字节数)</p>
+<dd><p>Parse one TLV, return (object, consumed byte count)</p>
 </dd></dl>
 
 </dd></dl>
@@ -949,8 +949,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.SystemManagementFrame">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.smf.</span></span><span class="sig-name descname"><span class="pre">SystemManagementFrame</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/smf.html#SystemManagementFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.smf.SystemManagementFrame" title="Link to this definition">¶</a></dt>
-<dd><p>系统管理frame完整结构 (6.6.2)</p>
-<p>组合 SMFHeader + 多个 SMFSignalingTLV 构成完整系统管理frame载荷。 提供高层便捷方法, 直接操作 ScheduleSignaling / LinkSignaling / OffsetSignaling。</p>
+<dd><p>System management frame complete structure (6.6.2)</p>
+<p>Combine SMFHeader + multiple SMFSignalingTLVs to form a complete system management frame payload. Provide high-level convenience methods to directly manipulate ScheduleSignaling / LinkSignaling / OffsetSignaling.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.SystemManagementFrame.header">
 <span class="sig-name descname"><span class="pre">header</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.mac.smf.SMFHeader" title="nearlink_sdr.mac.smf.SMFHeader"><span class="pre">nearlink_sdr.mac.smf.SMFHeader</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.smf.SystemManagementFrame.header" title="Link to this definition">¶</a></dt>
@@ -976,37 +976,37 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.SystemManagementFrame.add_schedule">
 <span class="sig-name descname"><span class="pre">add_schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.mac.smf.ScheduleSignaling" title="nearlink_sdr.mac.smf.ScheduleSignaling"><span class="pre">nearlink_sdr.mac.smf.ScheduleSignaling</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/smf.html#SystemManagementFrame.add_schedule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.smf.SystemManagementFrame.add_schedule" title="Link to this definition">¶</a></dt>
-<dd><p>添加调度signaling</p>
+<dd><p>Add schedule signaling</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.SystemManagementFrame.add_link">
 <span class="sig-name descname"><span class="pre">add_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.mac.smf.LinkSignaling" title="nearlink_sdr.mac.smf.LinkSignaling"><span class="pre">nearlink_sdr.mac.smf.LinkSignaling</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/smf.html#SystemManagementFrame.add_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.smf.SystemManagementFrame.add_link" title="Link to this definition">¶</a></dt>
-<dd><p>添加linksignaling</p>
+<dd><p>Add link signaling</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.SystemManagementFrame.add_offset">
 <span class="sig-name descname"><span class="pre">add_offset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.mac.smf.OffsetSignaling" title="nearlink_sdr.mac.smf.OffsetSignaling"><span class="pre">nearlink_sdr.mac.smf.OffsetSignaling</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/smf.html#SystemManagementFrame.add_offset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.smf.SystemManagementFrame.add_offset" title="Link to this definition">¶</a></dt>
-<dd><p>添加offsetsignaling</p>
+<dd><p>Add offset signaling</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.SystemManagementFrame.get_schedules">
 <span class="sig-name descname"><span class="pre">get_schedules</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nearlink_sdr.mac.smf.ScheduleSignaling" title="nearlink_sdr.mac.smf.ScheduleSignaling"><span class="pre">nearlink_sdr.mac.smf.ScheduleSignaling</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/smf.html#SystemManagementFrame.get_schedules"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.smf.SystemManagementFrame.get_schedules" title="Link to this definition">¶</a></dt>
-<dd><p>提取所有调度signaling</p>
+<dd><p>Extract all schedule signaling</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.SystemManagementFrame.get_links">
 <span class="sig-name descname"><span class="pre">get_links</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nearlink_sdr.mac.smf.LinkSignaling" title="nearlink_sdr.mac.smf.LinkSignaling"><span class="pre">nearlink_sdr.mac.smf.LinkSignaling</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/smf.html#SystemManagementFrame.get_links"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.smf.SystemManagementFrame.get_links" title="Link to this definition">¶</a></dt>
-<dd><p>提取所有linksignaling</p>
+<dd><p>Extract all link signaling</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.SystemManagementFrame.get_offsets">
 <span class="sig-name descname"><span class="pre">get_offsets</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nearlink_sdr.mac.smf.OffsetSignaling" title="nearlink_sdr.mac.smf.OffsetSignaling"><span class="pre">nearlink_sdr.mac.smf.OffsetSignaling</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/smf.html#SystemManagementFrame.get_offsets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.smf.SystemManagementFrame.get_offsets" title="Link to this definition">¶</a></dt>
-<dd><p>提取所有offsetsignaling</p>
+<dd><p>Extract all offset signaling</p>
 </dd></dl>
 
 </dd></dl>
@@ -1014,13 +1014,13 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf.reassemble_smf">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.smf.</span></span><span class="sig-name descname"><span class="pre">reassemble_smf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fragments</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.smf.SystemManagementFrame" title="nearlink_sdr.mac.smf.SystemManagementFrame"><span class="pre">nearlink_sdr.mac.smf.SystemManagementFrame</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/smf.html#reassemble_smf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.smf.reassemble_smf" title="Link to this definition">¶</a></dt>
-<dd><p>将segment的系统管理framedata重组为完整frame</p>
-<p>每个 fragment 是一个完整的系统管理frame payload (含 SMFHeader)。 按照segmentindication规则:</p>
+<dd><p>Reassemble segmented system management frame data into a complete frame</p>
+<p>Each fragment is a complete system management frame payload (including SMFHeader). Following the segmentation indication rules:</p>
 <ul class="simple">
-<li><p>FIRST(1): 首段, 取其 header 的signaling编号</p></li>
-<li><p>MIDDLE(2): 中间段</p></li>
-<li><p>LAST(3): 尾段</p></li>
-<li><p>COMPLETE(0): 不segment, 直接parse</p></li>
+<li><p>FIRST(1): first segment, use the signaling number from its header</p></li>
+<li><p>MIDDLE(2): middle segment</p></li>
+<li><p>LAST(3): tail segment</p></li>
+<li><p>COMPLETE(0): no segmentation, parse directly</p></li>
 </ul>
 </dd></dl>
 

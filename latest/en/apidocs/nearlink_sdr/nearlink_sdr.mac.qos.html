@@ -399,10 +399,10 @@
 <p>Implements data transmission quality control for asynchronous/synchronous data links:</p>
 <ul class="simple">
 <li><p>ARQ automatic repeat request: sequence number management, ACK/NACK feedback, retransmission decision (6.5.1)</p></li>
-<li><p>HARQ 混合自动重传: 基于 TB 和 CBG 的feedback模式 (6.5.1.1)</p></li>
-<li><p>流控: transmitbuffer管理与流控signaling (控制信息 flow_ctrl 字段)</p></li>
-<li><p>link质量跟踪: MCS feedback、FER 估计、AMC 建议 (控制信息 LQI 字段)</p></li>
-<li><p>transmitqueue: priority分级与 PDU 管理</p></li>
+<li><p>HARQ hybrid automatic repeat request: TB-based and CBG-based feedback modes (6.5.1.1)</p></li>
+<li><p>Flow control: TX buffer management and flow control signaling (control info flow_ctrl field)</p></li>
+<li><p>Link quality tracking: MCS feedback, FER estimation, AMC recommendation (control info LQI field)</p></li>
+<li><p>TX queue: priority classification and PDU management</p></li>
 </ul>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
@@ -412,37 +412,37 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.qos.FeedbackMode" title="nearlink_sdr.mac.qos.FeedbackMode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FeedbackMode</span></code></a></p></td>
-<td><p>HARQ feedback模式。</p></td>
+<td><p>HARQ feedback mode.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.qos.LinkType" title="nearlink_sdr.mac.qos.LinkType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LinkType</span></code></a></p></td>
-<td><p>datalink类型。</p></td>
+<td><p>Data link type.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.qos.TxDecision" title="nearlink_sdr.mac.qos.TxDecision"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TxDecision</span></code></a></p></td>
-<td><p>transmit决策。</p></td>
+<td><p>Transmission decision.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.qos.Priority" title="nearlink_sdr.mac.qos.Priority"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Priority</span></code></a></p></td>
-<td><p>data传输priority (数值越小priority越高)。</p></td>
+<td><p>Data transmission priority (lower value means higher priority).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.qos.ArqState" title="nearlink_sdr.mac.qos.ArqState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ArqState</span></code></a></p></td>
-<td><p>ARQ sequence号与重传state。</p></td>
+<td><p>ARQ sequence number and retransmission state.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.qos.HarqController" title="nearlink_sdr.mac.qos.HarqController"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HarqController</span></code></a></p></td>
-<td><p>混合自动重传requestcontroller。</p></td>
+<td><p>Hybrid automatic repeat request controller.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.qos.FlowController" title="nearlink_sdr.mac.qos.FlowController"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FlowController</span></code></a></p></td>
-<td><p>transmit流控manager。</p></td>
+<td><p>TX flow control manager.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.qos.LinkQualityTracker" title="nearlink_sdr.mac.qos.LinkQualityTracker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LinkQualityTracker</span></code></a></p></td>
-<td><p>link质量跟踪与 AMC 建议。</p></td>
+<td><p>Link quality tracking and AMC recommendation.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.qos.TxQueueItem" title="nearlink_sdr.mac.qos.TxQueueItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TxQueueItem</span></code></a></p></td>
-<td><p>transmitqueue项。</p></td>
+<td><p>TX queue item.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.qos.TxQueue" title="nearlink_sdr.mac.qos.TxQueue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TxQueue</span></code></a></p></td>
 <td><p>prioritytransmitqueue。</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.qos.QosManager" title="nearlink_sdr.mac.qos.QosManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QosManager</span></code></a></p></td>
-<td><p>QoS 服务质量manager。</p></td>
+<td><p>QoS quality of service manager.</p></td>
 </tr>
 </tbody>
 </table>
@@ -499,7 +499,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.FeedbackMode">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.qos.</span></span><span class="sig-name descname"><span class="pre">FeedbackMode</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#FeedbackMode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.FeedbackMode" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>HARQ feedback模式。</p>
+<p>HARQ feedback mode.</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -520,7 +520,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.LinkType">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.qos.</span></span><span class="sig-name descname"><span class="pre">LinkType</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#LinkType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.LinkType" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>datalink类型。</p>
+<p>Data link type.</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -541,7 +541,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.TxDecision">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.qos.</span></span><span class="sig-name descname"><span class="pre">TxDecision</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#TxDecision"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.TxDecision" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>transmit决策。</p>
+<p>Transmission decision.</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -574,7 +574,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.Priority">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.qos.</span></span><span class="sig-name descname"><span class="pre">Priority</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#Priority"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.Priority" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>data传输priority (数值越小priority越高)。</p>
+<p>Data transmission priority (lower value means higher priority).</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -612,14 +612,14 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.ArqState">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.qos.</span></span><span class="sig-name descname"><span class="pre">ArqState</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#ArqState"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.ArqState" title="Link to this definition">¶</a></dt>
-<dd><p>ARQ sequence号与重传state。</p>
-<p>standard 6.5.1.1 描述的异步datalink传输procedure:</p>
+<dd><p>ARQ sequence number and retransmission state.</p>
+<p>Asynchronous data link transmission process described in standard 6.5.1.1:</p>
 <ul class="simple">
-<li><p>tx_sn: 当前transmitsequence号</p></li>
-<li><p>expected_rx_sn: 期望receive的对端sequence号</p></li>
-<li><p>pending_ack: 当前等待 ACK 的data是否未acknowledgment</p></li>
-<li><p>retransmit_count: 当前包的重传次数</p></li>
-<li><p>max_retransmit: 最大重传次数 (0 = 无限, 异步链路默认)</p></li>
+<li><p>tx_sn: whenprevioustransmitsequencenumber</p></li>
+<li><p>expected_rx_sn: Expected sequence number from the remote end</p></li>
+<li><p>pending_ack: whenpreviouswait ACK dataisnonot yetacknowledgment</p></li>
+<li><p>retransmit_count: Retransmission count of the current packet</p></li>
+<li><p>max_retransmit: Maximum retransmission count (0 = unlimited, default for async links)</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.ArqState.frame_type">
@@ -677,39 +677,39 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.ArqState.on_tx_new">
 <span class="sig-name descname"><span class="pre">on_tx_new</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#ArqState.on_tx_new"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.ArqState.on_tx_new" title="Link to this definition">¶</a></dt>
-<dd><p>transmit新data包, 返回使用的 SN。</p>
+<dd><p>Send a new data packet and return the SN used.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.ArqState.on_ack_received">
 <span class="sig-name descname"><span class="pre">on_ack_received</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#ArqState.on_ack_received"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.ArqState.on_ack_received" title="Link to this definition">¶</a></dt>
-<dd><p>收到 ACK: 翻转 SN, 清除重传state。</p>
+<dd><p>ACK received: toggle SN and clear retransmission state.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.ArqState.on_nack_received">
 <span class="sig-name descname"><span class="pre">on_nack_received</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.qos.TxDecision" title="nearlink_sdr.mac.qos.TxDecision"><span class="pre">nearlink_sdr.mac.qos.TxDecision</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#ArqState.on_nack_received"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.ArqState.on_nack_received" title="Link to this definition">¶</a></dt>
-<dd><p>收到 NACK: 决定是否重传。</p>
-<p>异步link: 持续重传直到收到 ACK。 synclink: 超出 max_retransmit 后丢弃。</p>
+<dd><p>NACK received: decide whether to retransmit.</p>
+<p>Async link: keep retransmitting until ACK is received. Sync link: discard after exceeding max_retransmit.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.ArqState.on_no_feedback">
 <span class="sig-name descname"><span class="pre">on_no_feedback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.qos.TxDecision" title="nearlink_sdr.mac.qos.TxDecision"><span class="pre">nearlink_sdr.mac.qos.TxDecision</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#ArqState.on_no_feedback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.ArqState.on_no_feedback" title="Link to this definition">¶</a></dt>
-<dd><p>未收到feedback: 与 NACK 处理相同。</p>
+<dd><p>No feedback received: handled the same as NACK.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.ArqState.on_rx_packet">
 <span class="sig-name descname"><span class="pre">on_rx_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rx_sn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#ArqState.on_rx_packet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.ArqState.on_rx_packet" title="Link to this definition">¶</a></dt>
-<dd><p>receivedata包, 返回是否为新data。</p>
-<p>若 rx_sn == expected_rx_sn: 新data, feedback ACK。 否则: 重复包, 仍feedback ACK。</p>
+<dd><p>Receive a data packet and return whether it is new data.</p>
+<p>If rx_sn == expected_rx_sn: new data, feedback ACK. Otherwise: duplicate packet, still feedback ACK.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.ArqState._discard_pending">
 <span class="sig-name descname"><span class="pre">_discard_pending</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#ArqState._discard_pending"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.ArqState._discard_pending" title="Link to this definition">¶</a></dt>
-<dd><p>丢弃当前待acknowledgmentdata (synclinktimeout)。</p>
+<dd><p>Discard current unacknowledged data (sync link timeout).</p>
 </dd></dl>
 
 </dd></dl>
@@ -717,9 +717,9 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.HarqController">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.qos.</span></span><span class="sig-name descname"><span class="pre">HarqController</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#HarqController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.HarqController" title="Link to this definition">¶</a></dt>
-<dd><p>混合自动重传requestcontroller。</p>
-<p>管理 HARQ feedback字段 (8 bit) 和 CBG 级部分重传逻辑。</p>
-<p>TB 模式: harq_feedback indication期望对端传输的data包 SN。 CBG 模式: harq_feedback 每 bit 对应一个 CBG 的 ACK/NACK。</p>
+<dd><p>Hybrid automatic repeat request controller.</p>
+<p>Manage the HARQ feedback field (8 bit) and CBG-level partial retransmission logic.</p>
+<p>TB mode: harq_feedback indicates the expected SN for the remote end to transmit. CBG mode: each bit of harq_feedback corresponds to the ACK/NACK of one CBG.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.HarqController.feedback_mode">
 <span class="sig-name descname"><span class="pre">feedback_mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.mac.qos.FeedbackMode" title="nearlink_sdr.mac.qos.FeedbackMode"><span class="pre">nearlink_sdr.mac.qos.FeedbackMode</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.qos.HarqController.feedback_mode" title="Link to this definition">¶</a></dt>
@@ -746,16 +746,15 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.HarqController.encode_harq_feedback">
 <span class="sig-name descname"><span class="pre">encode_harq_feedback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ack</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">peer_sn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#HarqController.encode_harq_feedback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.HarqController.encode_harq_feedback" title="Link to this definition">¶</a></dt>
-<dd><p>encode HARQ feedback字段 (8 bit)。</p>
-<p>TB 模式: 返回期望对端传输的 SN。
-CBG 模式: 返回 CBG ACK/NACK bitmap。</p>
+<dd><p>Encode the HARQ feedback field (8 bit).</p>
+<p>TB mode: return the SN expected from the remote end. CBG mode: return CBG ACK/NACK bitmap.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.HarqController.decode_harq_feedback">
 <span class="sig-name descname"><span class="pre">decode_harq_feedback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">harq_field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#HarqController.decode_harq_feedback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.HarqController.decode_harq_feedback" title="Link to this definition">¶</a></dt>
-<dd><p>decode HARQ feedback字段。</p>
-<p>TB 模式: 返回 [全部 ACK] 或 [全部 NACK]。 CBG 模式: 返回每个 CBG 的 ACK state。</p>
+<dd><p>Decode the HARQ feedback field.</p>
+<p>TB mode: return [all ACK] or [all NACK]. CBG mode: return each CBG ACK status.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -767,26 +766,26 @@ CBG 模式: 返回 CBG ACK/NACK bitmap。</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.HarqController.needs_cbg_retransmit">
 <span class="sig-name descname"><span class="pre">needs_cbg_retransmit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#HarqController.needs_cbg_retransmit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.HarqController.needs_cbg_retransmit" title="Link to this definition">¶</a></dt>
-<dd><p>是否需要 CBG 级部分重传。</p>
+<dd><p>Whether CBG-level partial retransmission is needed.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.HarqController.get_retransmit_cbg_mask">
 <span class="sig-name descname"><span class="pre">get_retransmit_cbg_mask</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#HarqController.get_retransmit_cbg_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.HarqController.get_retransmit_cbg_mask" title="Link to this definition">¶</a></dt>
-<dd><p>获取需要重传的 CBG 掩码 (用于 B1 控制信息 data_length 字段)。</p>
-<p>standard 6.5.1.1: MCS=15 时, data_length 低 M bit indication需要传输的 CBG。</p>
+<dd><p>Get the CBG mask for retransmission (for the B1 control info data_length field).</p>
+<p>Standard 6.5.1.1: when MCS=15, the lower M bits of data_length indicate the CBGs to be transmitted.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.HarqController.decide_tx">
 <span class="sig-name descname"><span class="pre">decide_tx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ack_received</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.mac.qos.ArqState" title="nearlink_sdr.mac.qos.ArqState"><span class="pre">nearlink_sdr.mac.qos.ArqState</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.qos.TxDecision" title="nearlink_sdr.mac.qos.TxDecision"><span class="pre">nearlink_sdr.mac.qos.TxDecision</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#HarqController.decide_tx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.HarqController.decide_tx" title="Link to this definition">¶</a></dt>
-<dd><p>综合 HARQ feedback决定transmit行为。</p>
+<dd><p>Determine transmission behavior based on comprehensive HARQ feedback.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.HarqController.reset_cbg">
 <span class="sig-name descname"><span class="pre">reset_cbg</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#HarqController.reset_cbg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.HarqController.reset_cbg" title="Link to this definition">¶</a></dt>
-<dd><p>重置 CBG state (新data传输前)。</p>
+<dd><p>Reset CBG state (before new data transmission).</p>
 </dd></dl>
 
 <dl class="py property">
@@ -799,13 +798,13 @@ CBG 模式: 返回 CBG ACK/NACK bitmap。</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.FlowController">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.qos.</span></span><span class="sig-name descname"><span class="pre">FlowController</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#FlowController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.FlowController" title="Link to this definition">¶</a></dt>
-<dd><p>transmit流控manager。</p>
-<p>根据transmitbufferstategenerate flow_ctrl indication字段:</p>
+<dd><p>TX flow control manager.</p>
+<p>Generate the flow_ctrl indication field based on the TX buffer state:</p>
 <ul class="simple">
-<li><p>0: 没有后续data</p></li>
-<li><p>1: 有后续data待transmit</p></li>
+<li><p>0: No subsequent data</p></li>
+<li><p>1: Subsequent data pending</p></li>
 </ul>
-<p>同时实现简单的背压机制。</p>
+<p>with a simple backpressure mechanism.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.FlowController.buffer_high_watermark">
 <span class="sig-name descname"><span class="pre">buffer_high_watermark</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.qos.FlowController.buffer_high_watermark" title="Link to this definition">¶</a></dt>
@@ -833,25 +832,25 @@ CBG 模式: 返回 CBG ACK/NACK bitmap。</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.FlowController.enqueue">
 <span class="sig-name descname"><span class="pre">enqueue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#FlowController.enqueue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.FlowController.enqueue" title="Link to this definition">¶</a></dt>
-<dd><p>data入队。</p>
+<dd><p>Enqueue data.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.FlowController.dequeue">
 <span class="sig-name descname"><span class="pre">dequeue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#FlowController.dequeue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.FlowController.dequeue" title="Link to this definition">¶</a></dt>
-<dd><p>data出队。</p>
+<dd><p>Dequeue data.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.FlowController.flow_ctrl_bit">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">flow_ctrl_bit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.qos.FlowController.flow_ctrl_bit" title="Link to this definition">¶</a></dt>
-<dd><p>控制信息 flow_ctrl 字段值。</p>
+<dd><p>control information flow_ctrl fieldvalue.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.FlowController.is_paused">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_paused</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.qos.FlowController.is_paused" title="Link to this definition">¶</a></dt>
-<dd><p>是否处于背压暂停state。</p>
+<dd><p>Whether in backpressure pause state.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -864,9 +863,9 @@ CBG 模式: 返回 CBG ACK/NACK bitmap。</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.LinkQualityTracker">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.qos.</span></span><span class="sig-name descname"><span class="pre">LinkQualityTracker</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#LinkQualityTracker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.LinkQualityTracker" title="Link to this definition">¶</a></dt>
-<dd><p>link质量跟踪与 AMC 建议。</p>
-<p>跟踪最近 N frame的 CRC 通过率, compute瞬时 FER, 根据 FER 阈值建议 MCS 调整方向。</p>
-<p>standard: 控制信息 LQI 字段 (前 4 bit 为 MCS indication)。</p>
+<dd><p>Link quality tracking and AMC recommendation.</p>
+<p>Track the CRC pass rate of the last N frames, compute instantaneous FER, and recommend MCS adjustment direction based on FER thresholds.</p>
+<p>Standard: control info LQI field (first 4 bits are MCS indication).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.LinkQualityTracker.window_size">
 <span class="sig-name descname"><span class="pre">window_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.qos.LinkQualityTracker.window_size" title="Link to this definition">¶</a></dt>
@@ -905,44 +904,44 @@ CBG 模式: 返回 CBG ACK/NACK bitmap。</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.LinkQualityTracker.record">
 <span class="sig-name descname"><span class="pre">record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">crc_ok</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#LinkQualityTracker.record"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.LinkQualityTracker.record" title="Link to this definition">¶</a></dt>
-<dd><p>记录一framereceive结果。</p>
+<dd><p>Record one frame reception result.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.LinkQualityTracker.fer">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.qos.LinkQualityTracker.fer" title="Link to this definition">¶</a></dt>
-<dd><p>当前窗口 FER。</p>
+<dd><p>current window FER.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.LinkQualityTracker.success_rate">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">success_rate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.qos.LinkQualityTracker.success_rate" title="Link to this definition">¶</a></dt>
-<dd><p>当前窗口成power。</p>
+<dd><p>Current window success rate.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.LinkQualityTracker.suggest_mcs_adjustment">
 <span class="sig-name descname"><span class="pre">suggest_mcs_adjustment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#LinkQualityTracker.suggest_mcs_adjustment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.LinkQualityTracker.suggest_mcs_adjustment" title="Link to this definition">¶</a></dt>
-<dd><p>建议 MCS 调整方向。</p>
-<p>Returns:     +1: 建议提升 MCS (link质量好)     -1: 建议降低 MCS (link质量差)      0: 保持当前 MCS</p>
+<dd><p>recommended MCS adjustment direction.</p>
+<p>Returns:     +1: Recommend increasing MCS (good link quality)     -1: Recommend decreasing MCS (poor link quality)      0: Keep current MCS</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.LinkQualityTracker.apply_suggestion">
 <span class="sig-name descname"><span class="pre">apply_suggestion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#LinkQualityTracker.apply_suggestion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.LinkQualityTracker.apply_suggestion" title="Link to this definition">¶</a></dt>
-<dd><p>应用 MCS 调整建议并返回新 MCS。</p>
+<dd><p>Apply MCS adjustment recommendation and return the new MCS.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.LinkQualityTracker.encode_lqi">
 <span class="sig-name descname"><span class="pre">encode_lqi</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#LinkQualityTracker.encode_lqi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.LinkQualityTracker.encode_lqi" title="Link to this definition">¶</a></dt>
-<dd><p>encode LQI 字段 (8 bit): 前 4 bit MCS, 后 4 bit 预留。</p>
+<dd><p>Encode the LQI field (8 bit): first 4 bits MCS, last 4 bits reserved.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.LinkQualityTracker.decode_lqi">
 <em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">decode_lqi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lqi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#LinkQualityTracker.decode_lqi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.LinkQualityTracker.decode_lqi" title="Link to this definition">¶</a></dt>
-<dd><p>decode LQI 字段, 提取 MCS indication。</p>
+<dd><p>Decode the LQI field and extract the MCS indication.</p>
 </dd></dl>
 
 </dd></dl>
@@ -950,7 +949,7 @@ CBG 模式: 返回 CBG ACK/NACK bitmap。</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.TxQueueItem">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.qos.</span></span><span class="sig-name descname"><span class="pre">TxQueueItem</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#TxQueueItem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.TxQueueItem" title="Link to this definition">¶</a></dt>
-<dd><p>transmitqueue项。</p>
+<dd><p>TX queue item.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.TxQueueItem.priority">
 <span class="sig-name descname"><span class="pre">priority</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.mac.qos.Priority" title="nearlink_sdr.mac.qos.Priority"><span class="pre">nearlink_sdr.mac.qos.Priority</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.qos.TxQueueItem.priority" title="Link to this definition">¶</a></dt>
@@ -987,24 +986,24 @@ CBG 模式: 返回 CBG ACK/NACK bitmap。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.TxQueue">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.qos.</span></span><span class="sig-name descname"><span class="pre">TxQueue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">64</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#TxQueue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.TxQueue" title="Link to this definition">¶</a></dt>
 <dd><p>prioritytransmitqueue。</p>
-<p>高prioritydata优先出队; 同priority内按FIFO顺序; 重传data优先于同priority新data。</p>
+<p>Higher priority data is dequeued first; FIFO order within the same priority; retransmission data takes precedence over new data at the same priority.</p>
 <p class="rubric">Initialization</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.TxQueue.push">
 <span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.mac.qos.TxQueueItem" title="nearlink_sdr.mac.qos.TxQueueItem"><span class="pre">nearlink_sdr.mac.qos.TxQueueItem</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#TxQueue.push"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.TxQueue.push" title="Link to this definition">¶</a></dt>
-<dd><p>入队, 队满时返回 False。</p>
+<dd><p>Enqueue; return False when the queue is full.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.TxQueue.pop">
 <span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.qos.TxQueueItem" title="nearlink_sdr.mac.qos.TxQueueItem"><span class="pre">nearlink_sdr.mac.qos.TxQueueItem</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#TxQueue.pop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.TxQueue.pop" title="Link to this definition">¶</a></dt>
-<dd><p>出队最高priority项。</p>
+<dd><p>Dequeue the highest priority item.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.TxQueue.peek">
 <span class="sig-name descname"><span class="pre">peek</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.qos.TxQueueItem" title="nearlink_sdr.mac.qos.TxQueueItem"><span class="pre">nearlink_sdr.mac.qos.TxQueueItem</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#TxQueue.peek"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.TxQueue.peek" title="Link to this definition">¶</a></dt>
-<dd><p>查看但不移除最高priority项。</p>
+<dd><p>Peek at but do not remove the highest priority item.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -1025,13 +1024,13 @@ CBG 模式: 返回 CBG ACK/NACK bitmap。</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.TxQueue.count_by_priority">
 <span class="sig-name descname"><span class="pre">count_by_priority</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">priority</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.mac.qos.Priority" title="nearlink_sdr.mac.qos.Priority"><span class="pre">nearlink_sdr.mac.qos.Priority</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#TxQueue.count_by_priority"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.TxQueue.count_by_priority" title="Link to this definition">¶</a></dt>
-<dd><p>指定priority的queue项数量。</p>
+<dd><p>Number of queue items at the specified priority.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.TxQueue.clear">
 <span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#TxQueue.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.TxQueue.clear" title="Link to this definition">¶</a></dt>
-<dd><p>清空所有queue。</p>
+<dd><p>Clear all queues.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1039,8 +1038,8 @@ CBG 模式: 返回 CBG ACK/NACK bitmap。</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.QosManager">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.qos.</span></span><span class="sig-name descname"><span class="pre">QosManager</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#QosManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.QosManager" title="Link to this definition">¶</a></dt>
-<dd><p>QoS 服务质量manager。</p>
-<p>集成 ARQ、HARQ、流控、link质量跟踪和transmitqueue, 为 MAC-PHY interface提供统一的data传输质量管理。</p>
+<dd><p>QoS quality of service manager.</p>
+<p>Integrate ARQ, HARQ, flow control, link quality tracking, and TX queue to provide unified data transmission quality management for the MAC-PHY interface.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.QosManager.arq">
 <span class="sig-name descname"><span class="pre">arq</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.mac.qos.ArqState" title="nearlink_sdr.mac.qos.ArqState"><span class="pre">nearlink_sdr.mac.qos.ArqState</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.qos.QosManager.arq" title="Link to this definition">¶</a></dt>
@@ -1074,26 +1073,26 @@ CBG 模式: 返回 CBG ACK/NACK bitmap。</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.QosManager.prepare_tx">
 <span class="sig-name descname"><span class="pre">prepare_tx</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nearlink_sdr.mac.qos.TxDecision" title="nearlink_sdr.mac.qos.TxDecision"><span class="pre">nearlink_sdr.mac.qos.TxDecision</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.mac.qos.TxQueueItem" title="nearlink_sdr.mac.qos.TxQueueItem"><span class="pre">nearlink_sdr.mac.qos.TxQueueItem</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#QosManager.prepare_tx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.QosManager.prepare_tx" title="Link to this definition">¶</a></dt>
-<dd><p>准备下一frametransmit。</p>
-<p>Returns:     (transmit决策, queue项或 None)</p>
+<dd><p>Prepare the next frame for transmission.</p>
+<p>Returns:     (transmission decision, queue item or None)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.QosManager.on_tx_feedback">
 <span class="sig-name descname"><span class="pre">on_tx_feedback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">crc_ok</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.qos.TxDecision" title="nearlink_sdr.mac.qos.TxDecision"><span class="pre">nearlink_sdr.mac.qos.TxDecision</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#QosManager.on_tx_feedback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.QosManager.on_tx_feedback" title="Link to this definition">¶</a></dt>
-<dd><p>处理来自对端的 ACK/NACK feedback。</p>
+<dd><p>Process ACK/NACK feedback from the remote end.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.QosManager.submit_data">
 <span class="sig-name descname"><span class="pre">submit_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.mac.qos.Priority" title="nearlink_sdr.mac.qos.Priority"><span class="pre">nearlink_sdr.mac.qos.Priority</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Priority.NORMAL</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#QosManager.submit_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.QosManager.submit_data" title="Link to this definition">¶</a></dt>
-<dd><p>提交data到transmitqueue。</p>
+<dd><p>Submit data to the TX queue.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.QosManager.get_ctrl_fields">
 <span class="sig-name descname"><span class="pre">get_ctrl_fields</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#QosManager.get_ctrl_fields"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.QosManager.get_ctrl_fields" title="Link to this definition">¶</a></dt>
-<dd><p>获取当前控制信息字段值。</p>
+<dd><p>getwhenpreviouscontrol informationfieldvalue.</p>
 </dd></dl>
 
 </dd></dl>

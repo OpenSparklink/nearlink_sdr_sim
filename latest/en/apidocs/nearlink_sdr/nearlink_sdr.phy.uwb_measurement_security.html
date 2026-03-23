@@ -399,9 +399,9 @@
 <p>Implements the UWB measurement security framework:</p>
 <ul class="simple">
 <li><p>9.5.2  KDF algorithm (Label + Context assembles 256-bit message)</p></li>
-<li><p>9.5.3  key派生 (SLPKey -&gt; ctsKey / ctsValue / ctsGap)</p></li>
+<li><p>9.5.3  Key derivation (SLPKey -&gt; ctsKey / ctsValue / ctsGap)</p></li>
 <li><p>9.5.4  TGap generate</p></li>
-<li><p>9.5.5  CTS 测量符号索引与加扰 SC sequencegenerate</p></li>
+<li><p>9.5.5  CTS measurement symbol index and scrambling SC sequence generation</p></li>
 </ul>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
@@ -411,16 +411,16 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext" title="nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWBMeasInputContext</span></code></a></p></td>
-<td><p>UWB 测量security的 inputContext (standard表 71)。</p></td>
+<td><p>inputContext for UWB measurement security (standard Table 71).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.uwb_measurement_security.CTSKeys" title="nearlink_sdr.phy.uwb_measurement_security.CTSKeys"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CTSKeys</span></code></a></p></td>
-<td><p>CTS key组 (ctsKey, ctsValue, ctsGap)。</p></td>
+<td><p>CTS key set (ctsKey, ctsValue, ctsGap).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.uwb_measurement_security.EncryptionAlgo" title="nearlink_sdr.phy.uwb_measurement_security.EncryptionAlgo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EncryptionAlgo</span></code></a></p></td>
-<td><p>encrypt算法枚举。</p></td>
+<td><p>Encryption algorithm enumeration.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.uwb_measurement_security.CTSSymbolResult" title="nearlink_sdr.phy.uwb_measurement_security.CTSSymbolResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CTSSymbolResult</span></code></a></p></td>
-<td><p>CTS 测量符号索引和加扰sequence。</p></td>
+<td><p>CTS measurement symbol index and scrambling sequence.</p></td>
 </tr>
 </tbody>
 </table>
@@ -432,31 +432,31 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.uwb_measurement_security._build_kdf_message" title="nearlink_sdr.phy.uwb_measurement_security._build_kdf_message"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_build_kdf_message</span></code></a></p></td>
-<td><p>构建 KDF 的 256-bit Message = 预留(64) || Label(64) || Context(128)。</p></td>
+<td><p>Construct the KDF 256-bit Message = Reserved(64) || Label(64) || Context(128).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.uwb_measurement_security.derive_slp_key" title="nearlink_sdr.phy.uwb_measurement_security.derive_slp_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">derive_slp_key</span></code></a></p></td>
-<td><p>从 Link Key 派生 SLPKey (step 1)。</p></td>
+<td><p>Derive SLPKey from Link Key (step 1).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.uwb_measurement_security.derive_cts_keys" title="nearlink_sdr.phy.uwb_measurement_security.derive_cts_keys"><code class="xref py py-obj docutils literal notranslate"><span class="pre">derive_cts_keys</span></code></a></p></td>
-<td><p>从 SLPKey 和 inputContext 派生 CTS key组 (step 2-11)。</p></td>
+<td><p>Derive the CTS key set from SLPKey and inputContext (steps 2-11).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.uwb_measurement_security.update_cts_keys" title="nearlink_sdr.phy.uwb_measurement_security.update_cts_keys"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_cts_keys</span></code></a></p></td>
-<td><p>递增 ctsContent32Bit 并重新派生 CTS key (step 12)。</p></td>
+<td><p>Increment ctsContent32Bit and re-derive CTS keys (step 12).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.uwb_measurement_security._derive_cts_from_content" title="nearlink_sdr.phy.uwb_measurement_security._derive_cts_from_content"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_derive_cts_from_content</span></code></a></p></td>
-<td><p>从 ctsContent 派生 ctsKey / ctsValue / ctsGap (step 6-11)。</p></td>
+<td><p>Derive ctsKey / ctsValue / ctsGap from ctsContent (steps 6-11).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.uwb_measurement_security.compute_tgap" title="nearlink_sdr.phy.uwb_measurement_security.compute_tgap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_tgap</span></code></a></p></td>
 <td><p>compute TGap (standard 9.5.4)。</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.uwb_measurement_security._encrypt_block" title="nearlink_sdr.phy.uwb_measurement_security._encrypt_block"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_encrypt_block</span></code></a></p></td>
-<td><p>单块encrypt (ECB 模式, 16 字节输入输出)。</p></td>
+<td><p>Single-block encryption (ECB mode, 16-byte input/output).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.uwb_measurement_security.generate_cts_symbols" title="nearlink_sdr.phy.uwb_measurement_security.generate_cts_symbols"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_cts_symbols</span></code></a></p></td>
-<td><p>generate CTS 测量符号索引和加扰 SC sequence (standard 9.5.5)。</p></td>
+<td><p>Generate CTS measurement symbol index and scrambling SC sequence (standard 9.5.5).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.uwb_measurement_security.advance_cts_v_counter" title="nearlink_sdr.phy.uwb_measurement_security.advance_cts_v_counter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">advance_cts_v_counter</span></code></a></p></td>
-<td><p>每frame后推进 ctsVCounter (standard 9.5.5)。</p></td>
+<td><p>Advance ctsVCounter after each frame (standard 9.5.5).</p></td>
 </tr>
 </tbody>
 </table>
@@ -521,13 +521,13 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_measurement_security._build_kdf_message">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.uwb_measurement_security.</span></span><span class="sig-name descname"><span class="pre">_build_kdf_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/uwb_measurement_security.html#_build_kdf_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.uwb_measurement_security._build_kdf_message" title="Link to this definition">¶</a></dt>
-<dd><p>构建 KDF 的 256-bit Message = 预留(64) || Label(64) || Context(128)。</p>
+<dd><p>Construct the KDF 256-bit Message = Reserved(64) || Label(64) || Context(128).</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.uwb_measurement_security.</span></span><span class="sig-name descname"><span class="pre">UWBMeasInputContext</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/uwb_measurement_security.html#UWBMeasInputContext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext" title="Link to this definition">¶</a></dt>
-<dd><p>UWB 测量security的 inputContext (standard表 71)。</p>
+<dd><p>inputContext for UWB measurement security (standard Table 71).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.phy_channel">
 <span class="sig-name descname"><span class="pre">phy_channel</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.phy_channel" title="Link to this definition">¶</a></dt>
@@ -603,7 +603,7 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.pack">
 <span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/uwb_measurement_security.html#UWBMeasInputContext.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.pack" title="Link to this definition">¶</a></dt>
-<dd><p>打包为 16 字节 (128 bit)。</p>
+<dd><p>packis 16 byte (128 bit).</p>
 </dd></dl>
 
 </dd></dl>
@@ -611,7 +611,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_measurement_security.CTSKeys">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.uwb_measurement_security.</span></span><span class="sig-name descname"><span class="pre">CTSKeys</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/uwb_measurement_security.html#CTSKeys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.uwb_measurement_security.CTSKeys" title="Link to this definition">¶</a></dt>
-<dd><p>CTS key组 (ctsKey, ctsValue, ctsGap)。</p>
+<dd><p>CTS key set (ctsKey, ctsValue, ctsGap).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_measurement_security.CTSKeys.cts_key">
 <span class="sig-name descname"><span class="pre">cts_key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.uwb_measurement_security.CTSKeys.cts_key" title="Link to this definition">¶</a></dt>
@@ -647,40 +647,39 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_measurement_security.derive_slp_key">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.uwb_measurement_security.</span></span><span class="sig-name descname"><span class="pre">derive_slp_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">link_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">kdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.crypto.html#nearlink_sdr.mac.crypto.KdfType" title="nearlink_sdr.mac.crypto.KdfType"><span class="pre">nearlink_sdr.mac.crypto.KdfType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">KdfType.AES_CMAC</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/uwb_measurement_security.html#derive_slp_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.uwb_measurement_security.derive_slp_key" title="Link to this definition">¶</a></dt>
-<dd><p>从 Link Key 派生 SLPKey (step 1)。</p>
+<dd><p>Derive SLPKey from Link Key (step 1).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_measurement_security.derive_cts_keys">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.uwb_measurement_security.</span></span><span class="sig-name descname"><span class="pre">derive_cts_keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slp_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">kdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.crypto.html#nearlink_sdr.mac.crypto.KdfType" title="nearlink_sdr.mac.crypto.KdfType"><span class="pre">nearlink_sdr.mac.crypto.KdfType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">KdfType.AES_CMAC</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.phy.uwb_measurement_security.CTSKeys" title="nearlink_sdr.phy.uwb_measurement_security.CTSKeys"><span class="pre">nearlink_sdr.phy.uwb_measurement_security.CTSKeys</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/uwb_measurement_security.html#derive_cts_keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.uwb_measurement_security.derive_cts_keys" title="Link to this definition">¶</a></dt>
-<dd><p>从 SLPKey 和 inputContext 派生 CTS key组 (step 2-11)。</p>
+<dd><p>Derive the CTS key set from SLPKey and inputContext (steps 2-11).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_measurement_security.update_cts_keys">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.uwb_measurement_security.</span></span><span class="sig-name descname"><span class="pre">update_cts_keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slp_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">prev_keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.uwb_measurement_security.CTSKeys" title="nearlink_sdr.phy.uwb_measurement_security.CTSKeys"><span class="pre">nearlink_sdr.phy.uwb_measurement_security.CTSKeys</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">kdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.crypto.html#nearlink_sdr.mac.crypto.KdfType" title="nearlink_sdr.mac.crypto.KdfType"><span class="pre">nearlink_sdr.mac.crypto.KdfType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">KdfType.AES_CMAC</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.phy.uwb_measurement_security.CTSKeys" title="nearlink_sdr.phy.uwb_measurement_security.CTSKeys"><span class="pre">nearlink_sdr.phy.uwb_measurement_security.CTSKeys</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/uwb_measurement_security.html#update_cts_keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.uwb_measurement_security.update_cts_keys" title="Link to this definition">¶</a></dt>
-<dd><p>递增 ctsContent32Bit 并重新派生 CTS key (step 12)。</p>
+<dd><p>Increment ctsContent32Bit and re-derive CTS keys (step 12).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_measurement_security._derive_cts_from_content">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.uwb_measurement_security.</span></span><span class="sig-name descname"><span class="pre">_derive_cts_from_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slp_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cts_content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cts_content_32bit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">kdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.crypto.html#nearlink_sdr.mac.crypto.KdfType" title="nearlink_sdr.mac.crypto.KdfType"><span class="pre">nearlink_sdr.mac.crypto.KdfType</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.phy.uwb_measurement_security.CTSKeys" title="nearlink_sdr.phy.uwb_measurement_security.CTSKeys"><span class="pre">nearlink_sdr.phy.uwb_measurement_security.CTSKeys</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/uwb_measurement_security.html#_derive_cts_from_content"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.uwb_measurement_security._derive_cts_from_content" title="Link to this definition">¶</a></dt>
-<dd><p>从 ctsContent 派生 ctsKey / ctsValue / ctsGap (step 6-11)。</p>
+<dd><p>Derive ctsKey / ctsValue / ctsGap from ctsContent (steps 6-11).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_measurement_security.compute_tgap">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.uwb_measurement_security.</span></span><span class="sig-name descname"><span class="pre">compute_tgap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cts_gap</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cts_gap_shift</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_base</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_len</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_l</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/uwb_measurement_security.html#compute_tgap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.uwb_measurement_security.compute_tgap" title="Link to this definition">¶</a></dt>
 <dd><p>compute TGap (standard 9.5.4)。</p>
-<p>Args:     cts_gap: 128-bit ctsGap key.     cts_gap_shift: 当前frame对应的移位量 (首frame为 0, 后续每frame +1).     t_base: 基准length (Tc 单位).     code_len: code length.     delta_l: deltaL 系数.</p>
-<p>Returns:
-Tgap = Tbase - Toffset (Tc 单位).</p>
+<p>Args:     cts_gap: 128-bit ctsGap key.     cts_gap_shift: Shift amount for the current frame (0 for the first frame, +1 for each subsequent frame).     t_base: Base length (Tc units).     code_len: Code length.     delta_l: deltaL coefficient.</p>
+<p>Returns:     Tgap = Tbase - Toffset (Tc unit).</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_measurement_security.EncryptionAlgo">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.uwb_measurement_security.</span></span><span class="sig-name descname"><span class="pre">EncryptionAlgo</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/uwb_measurement_security.html#EncryptionAlgo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.uwb_measurement_security.EncryptionAlgo" title="Link to this definition">¶</a></dt>
-<dd><p>encrypt算法枚举。</p>
+<dd><p>Encryption algorithm enumeration.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_measurement_security.EncryptionAlgo.NONE">
 <span class="sig-name descname"><span class="pre">NONE</span></span><a class="headerlink" href="#nearlink_sdr.phy.uwb_measurement_security.EncryptionAlgo.NONE" title="Link to this definition">¶</a></dt>
@@ -716,13 +715,13 @@ Tgap = Tbase - Toffset (Tc 单位).</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_measurement_security._encrypt_block">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.uwb_measurement_security.</span></span><span class="sig-name descname"><span class="pre">_encrypt_block</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">plaintext</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/uwb_measurement_security.html#_encrypt_block"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.uwb_measurement_security._encrypt_block" title="Link to this definition">¶</a></dt>
-<dd><p>单块encrypt (ECB 模式, 16 字节输入输出)。</p>
+<dd><p>Single-block encryption (ECB mode, 16-byte input/output).</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_measurement_security.CTSSymbolResult">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.uwb_measurement_security.</span></span><span class="sig-name descname"><span class="pre">CTSSymbolResult</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/uwb_measurement_security.html#CTSSymbolResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.uwb_measurement_security.CTSSymbolResult" title="Link to this definition">¶</a></dt>
-<dd><p>CTS 测量符号索引和加扰sequence。</p>
+<dd><p>CTS measurement symbol index and scrambling sequence.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_measurement_security.CTSSymbolResult.symbol_indices">
 <span class="sig-name descname"><span class="pre">symbol_indices</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nearlink_sdr.phy.uwb_measurement_security.CTSSymbolResult.symbol_indices" title="Link to this definition">¶</a></dt>
@@ -740,15 +739,15 @@ Tgap = Tbase - Toffset (Tc 单位).</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_measurement_security.generate_cts_symbols">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.uwb_measurement_security.</span></span><span class="sig-name descname"><span class="pre">generate_cts_symbols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cts_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cts_v_upper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cts_v_counter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbol_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">32</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encryption_algo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">EncryptionAlgo.AES_128</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.phy.uwb_measurement_security.CTSSymbolResult" title="nearlink_sdr.phy.uwb_measurement_security.CTSSymbolResult"><span class="pre">nearlink_sdr.phy.uwb_measurement_security.CTSSymbolResult</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/uwb_measurement_security.html#generate_cts_symbols"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.uwb_measurement_security.generate_cts_symbols" title="Link to this definition">¶</a></dt>
-<dd><p>generate CTS 测量符号索引和加扰 SC sequence (standard 9.5.5)。</p>
-<p>Args:     cts_key: ctsKey (16 字节).     cts_v_upper: ctsVUpper (高 96 bit = 12 字节).     cts_v_counter: ctsVCounter (32 bit).     n_cts: CTS data部分符号个数.     symbol_count: 符号索引数 (16 或 32).     encryption_algo: encrypt算法 (default AES-128).</p>
-<p>Returns:     CTSSymbolResult 包含符号索引和 SC sequence.</p>
+<dd><p>Generate CTS measurement symbol index and scrambling SC sequence (standard 9.5.5).</p>
+<p>Args:     cts_key: ctsKey (16 bytes).     cts_v_upper: ctsVUpper (upper 96 bits = 12 bytes).     cts_v_counter: ctsVCounter (32 bits).     n_cts: Number of CTS data symbols.     symbol_count: Symbol index count (16 or 32).     encryption_algorithm: Encryption algorithm type.</p>
+<p>Returns:     CTSSymbolResult containing symbol index and SC sequence.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.uwb_measurement_security.advance_cts_v_counter">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.uwb_measurement_security.</span></span><span class="sig-name descname"><span class="pre">advance_cts_v_counter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cts_v_counter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/uwb_measurement_security.html#advance_cts_v_counter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.uwb_measurement_security.advance_cts_v_counter" title="Link to this definition">¶</a></dt>
-<dd><p>每frame后推进 ctsVCounter (standard 9.5.5)。</p>
+<dd><p>Advance ctsVCounter after each frame (standard 9.5.5).</p>
 </dd></dl>
 
 </section>

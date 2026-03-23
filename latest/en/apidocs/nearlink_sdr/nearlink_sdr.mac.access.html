@@ -396,8 +396,8 @@
           <section class="tex2jax_ignore mathjax_ignore" id="module-nearlink_sdr.mac.access">
 <span id="nearlink-sdr-mac-access"></span><h1><a class="reference internal" href="#module-nearlink_sdr.mac.access" title="nearlink_sdr.mac.access"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a><a class="headerlink" href="#module-nearlink_sdr.mac.access" title="Link to this heading">¶</a></h1>
 <p>Access procedure management — TXS-10002-2025 standard section 7.1.3.</p>
-<p>实现 SLE device发现和access的完整六阶段procedure:   a) broadcaster准备并transmit可access扩展broadcast frame   b) accessinitiatortransmitaccessrequestframe   c) broadcasterreceiverequest并transmitresponse   d) access方receiveresponse并进入connected state   e) datalink建立   f) securityprocedure (委托给 security module)</p>
-<p>协调 BroadcastFrame、AccessBasicInfo、TransportIndicationInfo、 AccessRequestInfo、AccessResponseInfo 等data结构完成端到端access。</p>
+<p>Implement the complete six-stage SLE device discovery and access process:   a) Broadcaster prepares and sends an accessible extended advertising frame   b) Access initiator sends an access request frame   c) Broadcaster receives the request and sends a response   d) Accessor receives the response and enters connected state   e) Data link establishment   f) Security process (delegated to the security module)</p>
+<p>Coordinate data structures such as BroadcastFrame, AccessBasicInfo, TransportIndicationInfo, AccessRequestInfo, and AccessResponseInfo to complete end-to-end access.</p>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
 <section id="classes">
@@ -445,13 +445,13 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.negotiate_gt_role" title="nearlink_sdr.mac.access.negotiate_gt_role"><code class="xref py py-obj docutils literal notranslate"><span class="pre">negotiate_gt_role</span></code></a></p></td>
-<td><p>根据standard 7.1.3 执行 GT role negotiation。</p></td>
+<td><p>Perform GT role negotiation according to standard 7.1.3.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.parse_non_connected_broadcast" title="nearlink_sdr.mac.access.parse_non_connected_broadcast"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_non_connected_broadcast</span></code></a></p></td>
-<td><p>parse扩展broadcast frame中的非connected statebroadcast信息 (7.1.7.2)。</p></td>
+<td><p>Parse non-connected state broadcast information in the extended advertising frame (7.1.7.2).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.run_access_procedure" title="nearlink_sdr.mac.access.run_access_procedure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_access_procedure</span></code></a></p></td>
-<td><p>执行完整的端到端access procedure (standard 7.1.3 阶段 a-e)。</p></td>
+<td><p>Execute the complete end-to-end access process (standard 7.1.3, stages a-e).</p></td>
 </tr>
 </tbody>
 </table>
@@ -658,7 +658,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessWhitelist">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">AccessWhitelist</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#AccessWhitelist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.AccessWhitelist" title="Link to this definition">¶</a></dt>
 <dd><p>Access whitelist (7.1.6).</p>
-<p>broadcastdevice设置whitelist后, 只receivewhitelist中device的accessrequest。 accessdevice设置whitelist后, 只向whitelist中device发起access。</p>
+<p>After the broadcasting device sets a whitelist, it only accepts access requests from devices in the whitelist. After the accessing device sets a whitelist, it only initiates access to devices in the whitelist.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessWhitelist._addresses">
 <span class="sig-name descname"><span class="pre">_addresses</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><span class="pre">set</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nearlink_sdr.mac.access.AccessWhitelist._addresses" title="Link to this definition">¶</a></dt>
@@ -692,14 +692,14 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessWhitelist.contains">
 <span class="sig-name descname"><span class="pre">contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#AccessWhitelist.contains"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.AccessWhitelist.contains" title="Link to this definition">¶</a></dt>
-<dd><p>检查地址是否在whitelist中</p>
+<dd><p>Check whether an address is in the whitelist</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessWhitelist.check">
 <span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#AccessWhitelist.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.AccessWhitelist.check" title="Link to this definition">¶</a></dt>
-<dd><p>检查是否允许该地址的access</p>
-<p>whitelist未启用时允许所有地址; 启用后仅允许whitelist内地址。</p>
+<dd><p>Check whether access is allowed for the given address</p>
+<p>All addresses are allowed when the whitelist is not enabled; only whitelisted addresses are allowed when enabled.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -713,7 +713,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.DiscoveryManager">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">DiscoveryManager</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#DiscoveryManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.DiscoveryManager" title="Link to this definition">¶</a></dt>
 <dd><p>Discovery procedure manager (Standard §7.1.2).</p>
-<p>实现发现devicereceivebroadcast frame后的query request/responseprocedure:   a) broadcastdevicetransmit基础broadcast frame和扩展broadcast frame   b) 发现device收到可查询扩展broadcast frame后transmitquery requestframe   c) broadcastdevicereceiverequest并transmitquery responseframe   d) 发现devicereceivequery responseframe, 完成发现</p>
+<p>Implement the inquiry request/response process after a discovering device receives a broadcast frame:   a) Broadcasting device sends basic and extended advertising frames   b) Discovering device sends an inquiry request frame after receiving a queryable extended advertising frame   c) Broadcasting device receives the request and sends an inquiry response frame   d) Discovering device receives the inquiry response frame, completing discovery</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.DiscoveryManager.local_address">
 <span class="sig-name descname"><span class="pre">local_address</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.DiscoveryManager.local_address" title="Link to this definition">¶</a></dt>
@@ -741,47 +741,46 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.DiscoveryManager.on_broadcast_received">
 <span class="sig-name descname"><span class="pre">on_broadcast_received</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#DiscoveryManager.on_broadcast_received"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.DiscoveryManager.on_broadcast_received" title="Link to this definition">¶</a></dt>
-<dd><p>处理收到的broadcast frame。</p>
-<p>若frame中包含发现/access资源configuration且为可查询frame, 返回 True 表示可transmitquery request。 whitelist启用时仅处理whitelist内device。</p>
-<p>Args:     frame: 收到的broadcast frame。</p>
-<p>Returns:     True 表示可查询, 需要后续transmitquery request。</p>
+<dd><p>Process a received broadcast frame.</p>
+<p>If the frame contains discovery/access resource configuration and is a queryable frame, return True indicating an inquiry request can be sent. Only process whitelisted devices when the whitelist is enabled.</p>
+<p>Args:     frame: Received broadcast frame.</p>
+<p>Returns:     True indicates queryable; a subsequent inquiry request should be sent.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.DiscoveryManager.build_query_request">
 <span class="sig-name descname"><span class="pre">build_query_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_addr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.QueryRequestFilterInfo" title="nearlink_sdr.mac.broadcast.QueryRequestFilterInfo"><span class="pre">nearlink_sdr.mac.broadcast.QueryRequestFilterInfo</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper_layer_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">b''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#DiscoveryManager.build_query_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.DiscoveryManager.build_query_request" title="Link to this definition">¶</a></dt>
-<dd><p>constructquery requestframe (阶段 b)。</p>
-<p>Args:     target_addr: 目标broadcastdevice address。     filter_info: 查询过滤信息 (按服务UUID过滤)。     upper_layer_data: 高层broadcastdata。</p>
+<dd><p>Construct an inquiry request frame (stage b).</p>
+<p>Args:     target_addr: Target broadcasting device address.     filter_info: Inquiry filter information (filter by service UUID).     upper_layer_data: Upper layer broadcast data.</p>
 <p>Returns:     query requestbroadcast frame。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.DiscoveryManager.handle_query_response">
 <span class="sig-name descname"><span class="pre">handle_query_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#DiscoveryManager.handle_query_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.DiscoveryManager.handle_query_response" title="Link to this definition">¶</a></dt>
-<dd><p>处理query responseframe (阶段 d)。</p>
-<p>Args:     frame: 收到的query responseframe。</p>
-<p>Returns:
-True 表示发现完成。</p>
+<dd><p>Process an inquiry response frame (stage d).</p>
+<p>Args:     frame: Received inquiry response frame.</p>
+<p>Returns:     True indicatesdiscoverycompleted.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.DiscoveryManager.handle_query_request">
 <span class="sig-name descname"><span class="pre">handle_query_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_services_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">b''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#DiscoveryManager.handle_query_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.DiscoveryManager.handle_query_request" title="Link to this definition">¶</a></dt>
-<dd><p>处理query request并constructquery responseframe (阶段 c)。</p>
-<p>Args:     request_frame: 收到的query requestframe。     all_services_data: 本device支持的所有服务data。</p>
+<dd><p>Process an inquiry request and construct an inquiry response frame (stage c).</p>
+<p>Args:     request_frame: Received inquiry request frame.     all_services_data: All service data supported by this device.</p>
 <p>Returns:     query responsebroadcast frame。</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.DiscoveryManager.discovered_devices">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">discovered_devices</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nearlink_sdr.mac.access.DiscoveryManager.discovered_devices" title="Link to this definition">¶</a></dt>
-<dd><p>返回已发现的device及其broadcast frame/query responseframe。</p>
+<dd><p>Return discovered devices along with their broadcast frames/inquiry response frames.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.DiscoveryManager.clear">
 <span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#DiscoveryManager.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.DiscoveryManager.clear" title="Link to this definition">¶</a></dt>
-<dd><p>清空发现结果。</p>
+<dd><p>Clear discovery results.</p>
 </dd></dl>
 
 </dd></dl>
@@ -789,22 +788,22 @@ True 表示发现完成。</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.negotiate_gt_role">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">negotiate_gt_role</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">broadcaster_pref</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcaster_negotiable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">initiator_pref</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">initiator_negotiable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.access.NegotiatedRole" title="nearlink_sdr.mac.access.NegotiatedRole"><span class="pre">nearlink_sdr.mac.access.NegotiatedRole</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#negotiate_gt_role"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.negotiate_gt_role" title="Link to this definition">¶</a></dt>
-<dd><p>根据standard 7.1.3 执行 GT role negotiation。</p>
-<p>双方各表达role偏好 (0=T节点, 1=G节点) 和可negotiation标志。 冲突时default: initiator→G节点, broadcaster→T节点。</p>
-<p>Args:     broadcaster_pref: broadcasterrole偏好 (0=T, 1=G)。     broadcaster_negotiable: broadcasterrole是否可negotiation。     initiator_pref: initiator (access方) role偏好。     initiator_negotiable: initiatorrole是否可negotiation。</p>
-<p>Returns:     negotiation结果, 从initiator视角: local_role 为initiatorrole。</p>
+<dd><p>Perform GT role negotiation according to standard 7.1.3.</p>
+<p>Both sides express role preferences (0=T node, 1=G node) and negotiability flags. Default on conflict: initiator -&gt; G node, broadcaster -&gt; T node.</p>
+<p>Args:     broadcaster_pref: Broadcaster role preference (0=T, 1=G).     broadcaster_negotiable: Whether the broadcaster role is negotiable.     initiator_pref: Initiator (accessor) role preference.     initiator_negotiable: Whether the initiator role is negotiable.</p>
+<p>Returns:     Negotiation result from the initiator perspective: local_role is the initiator role.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">BroadcasterAccessManager</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#BroadcasterAccessManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager" title="Link to this definition">¶</a></dt>
 <dd><p>Broadcaster access manager (Standard §7.1.3 phases a/c).</p>
-<p>职责:</p>
+<p>responsibilities:</p>
 <ul class="simple">
-<li><p>construct可access扩展broadcast frame</p></li>
-<li><p>处理收到的accessrequest</p></li>
+<li><p>Construct an accessible extended advertising frame</p></li>
+<li><p>Process a received access request</p></li>
 <li><p>generateaccessresponse</p></li>
-<li><p>完成 GT role negotiation</p></li>
+<li><p>Complete GT role negotiation</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.config">
@@ -952,32 +951,32 @@ True 表示发现完成。</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.next_adv_delay_us">
 <span class="sig-name descname"><span class="pre">next_adv_delay_us</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#BroadcasterAccessManager.next_adv_delay_us"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.next_adv_delay_us" title="Link to this definition">¶</a></dt>
-<dd><p>compute下一次broadcast的总interval (§7.1.1)。</p>
-<p>返回固定interval加 [0, 2ms] 随机延迟, 单位 μs。</p>
+<dd><p>Calculate the total interval until the next broadcast (section 7.1.1).</p>
+<p>Return fixed interval plus [0, 2ms] random delay, in microseconds.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.build_ext_adv_frame">
 <span class="sig-name descname"><span class="pre">build_ext_adv_frame</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#BroadcasterAccessManager.build_ext_adv_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.build_ext_adv_frame" title="Link to this definition">¶</a></dt>
-<dd><p>构建可access扩展broadcast frame (阶段 a)。</p>
-<p>包含发现access资源configuration信息 (7.1.4.2)。</p>
-<p>Returns:     padding好的 BroadcastFrame 对象。</p>
+<dd><p>Build an accessible extended advertising frame (stage a).</p>
+<p>Contains discovery access resource configuration information (7.1.4.2).</p>
+<p>Returns:     A populated BroadcastFrame object.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.handle_access_request">
 <span class="sig-name descname"><span class="pre">handle_access_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">peer_address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">b'\x00'</span> <span class="pre">*</span> <span class="pre">6</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#BroadcasterAccessManager.handle_access_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.handle_access_request" title="Link to this definition">¶</a></dt>
-<dd><p>处理accessrequest (阶段 c)。</p>
-<p>Args:     request_data: accessrequestframedata。     peer_address: request方 MAC 地址。</p>
-<p>Returns:     (responseframe, 是否接受)。responseframe包含 AccessResponseInfo,     以及 (若接受且role为 G) AccessBasicInfo 或 TransportIndicationInfo。</p>
+<dd><p>Process an access request (stage c).</p>
+<p>Args:     request_data: Access request frame data.     peer_address: Requester MAC address.</p>
+<p>Returns:     (response frame, accepted). The response frame contains AccessResponseInfo,     and (if accepted and role is G) AccessBasicInfo or TransportIndicationInfo.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.reject_access_request">
 <span class="sig-name descname"><span class="pre">reject_access_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peer_address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">b'\x00'</span> <span class="pre">*</span> <span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reason</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.AccessResponseType" title="nearlink_sdr.mac.broadcast.AccessResponseType"><span class="pre">nearlink_sdr.mac.broadcast.AccessResponseType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">AccessResponseType.USER_REJECT</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#BroadcasterAccessManager.reject_access_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.reject_access_request" title="Link to this definition">¶</a></dt>
-<dd><p>拒绝accessrequest。</p>
-<p>Args:     peer_address: request方 MAC 地址。     reason: 拒绝原因。</p>
-<p>Returns:     包含拒绝response的frame。</p>
+<dd><p>Reject an access request.</p>
+<p>Args:     peer_address: Requester MAC address.     reason: Rejection reason.</p>
+<p>Returns:     A frame containing the rejection response.</p>
 </dd></dl>
 
 </dd></dl>
@@ -986,12 +985,12 @@ True 表示发现完成。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.InitiatorAccessManager">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">InitiatorAccessManager</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#InitiatorAccessManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.InitiatorAccessManager" title="Link to this definition">¶</a></dt>
 <dd><p>Initiator access manager (Standard §7.1.3 phases b/d).</p>
-<p>职责:</p>
+<p>responsibilities:</p>
 <ul class="simple">
-<li><p>parse收到的扩展broadcast frame</p></li>
+<li><p>Parse a received extended advertising frame</p></li>
 <li><p>constructaccessrequest</p></li>
-<li><p>处理accessresponse</p></li>
-<li><p>完成 GT role negotiation</p></li>
+<li><p>Process an access response</p></li>
+<li><p>Complete GT role negotiation</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.InitiatorAccessManager.config">
@@ -1044,32 +1043,32 @@ True 表示发现完成。</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.InitiatorAccessManager.process_ext_adv">
 <span class="sig-name descname"><span class="pre">process_ext_adv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#InitiatorAccessManager.process_ext_adv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.InitiatorAccessManager.process_ext_adv" title="Link to this definition">¶</a></dt>
-<dd><p>处理收到的可access扩展broadcast frame (阶段 b 准备)。</p>
-<p>parse发现access资源configuration, 提取request窗口parameter。 whitelist启用时, 仅处理whitelist中device的broadcast frame (7.1.6)。</p>
-<p>Args:     frame: 收到的broadcast frame。</p>
-<p>Returns:     True 表示frame中包含valid的access资源configuration。</p>
+<dd><p>Process a received accessible extended advertising frame (stage b preparation).</p>
+<p>Parse discovery access resource configuration and extract request window parameters. When the whitelist is enabled, only process broadcast frames from whitelisted devices (7.1.6).</p>
+<p>Args:     frame: Received broadcast frame.</p>
+<p>Returns:     True indicates the frame contains a valid access resource configuration.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.InitiatorAccessManager.build_access_request">
 <span class="sig-name descname"><span class="pre">build_access_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#InitiatorAccessManager.build_access_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.InitiatorAccessManager.build_access_request" title="Link to this definition">¶</a></dt>
-<dd><p>constructaccessrequestframedata (阶段 b)。</p>
-<p>根据本地role偏好构建 AccessRequestInfo。</p>
-<p>Returns:     accessrequestframe的sequence化data。</p>
+<dd><p>Construct access request frame data (stage b).</p>
+<p>Build AccessRequestInfo based on local role preference.</p>
+<p>Returns:     Serialized data of the access request frame.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.InitiatorAccessManager.handle_access_response">
 <span class="sig-name descname"><span class="pre">handle_access_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="nearlink_sdr.mac.link_manager.html#nearlink_sdr.mac.link_manager.Role" title="nearlink_sdr.mac.link_manager.Role"><span class="pre">nearlink_sdr.mac.link_manager.Role</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#InitiatorAccessManager.handle_access_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.InitiatorAccessManager.handle_access_response" title="Link to this definition">¶</a></dt>
-<dd><p>处理accessresponse (阶段 d)。</p>
-<p>Args:     response_data: accessresponseframe完整data (BroadcastFrame.pack() 格式)。</p>
-<p>Returns:     (最终role, linkparameter字典)。role为 None 表示access被拒绝。</p>
+<dd><p>Process an access response (stage d).</p>
+<p>Args:     response_data: Complete access response frame data (BroadcastFrame.pack() format).</p>
+<p>Returns:     (final role, link parameter dict). Role is None if access was rejected.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.InitiatorAccessManager.can_retry">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">can_retry</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.InitiatorAccessManager.can_retry" title="Link to this definition">¶</a></dt>
-<dd><p>是否还能retryaccess。</p>
+<dd><p>Whether access can still be retried.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -1304,7 +1303,7 @@ True 表示发现完成。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastManager">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">NonConnectedBroadcastManager</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#NonConnectedBroadcastManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastManager" title="Link to this definition">¶</a></dt>
 <dd><p>Non-connected broadcast manager (Standard §7.1.7.2).</p>
-<p>通过携带非connected statebroadcast信息和启动系统管理frame信息的扩展broadcast frame 建立非connected statebroadcast传输。</p>
+<p>Establish non-connected state broadcast transmission via extended advertising frames carrying non-connected state broadcast information and start system management frame information.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastManager.config">
 <span class="sig-name descname"><span class="pre">config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig" title="nearlink_sdr.mac.access.NonConnectedBroadcastConfig"><span class="pre">nearlink_sdr.mac.access.NonConnectedBroadcastConfig</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastManager.config" title="Link to this definition">¶</a></dt>
@@ -1320,14 +1319,13 @@ True 表示发现完成。</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastManager.build_non_connected_broadcast_frame">
 <span class="sig-name descname"><span class="pre">build_non_connected_broadcast_frame</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#NonConnectedBroadcastManager.build_non_connected_broadcast_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastManager.build_non_connected_broadcast_frame" title="Link to this definition">¶</a></dt>
-<dd><p>构建携带非connected statebroadcast信息的扩展broadcast frame。</p>
-<p>frame中包含两种data:</p>
+<dd><p>Build an extended advertising frame carrying non-connected state broadcast information.</p>
+<p>The frame contains two types of data:</p>
 <ul class="simple">
 <li><p>UNLINKED_BROADCAST_LINK (0x06): NonLinkedBroadcastLinkInfo</p></li>
 <li><p>SYSTEM_MGMT_FRAME (0x05): SystemMgmtFrameInfo</p></li>
 </ul>
-<p>Returns:
-构建好的 BroadcastFrame。</p>
+<p>Returns:     The constructed BroadcastFrame.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1359,18 +1357,18 @@ True 表示发现完成。</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.parse_non_connected_broadcast">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">parse_non_connected_broadcast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastResult" title="nearlink_sdr.mac.access.NonConnectedBroadcastResult"><span class="pre">nearlink_sdr.mac.access.NonConnectedBroadcastResult</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#parse_non_connected_broadcast"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.parse_non_connected_broadcast" title="Link to this definition">¶</a></dt>
-<dd><p>parse扩展broadcast frame中的非connected statebroadcast信息 (7.1.7.2)。</p>
-<p>Args:     frame: 收到的扩展broadcast frame。</p>
-<p>Returns:     parse结果; 若frame中不包含非connected statebroadcast信息则返回 None。</p>
+<dd><p>Parse non-connected state broadcast information in the extended advertising frame (7.1.7.2).</p>
+<p>Args:     frame: Received extended advertising frame.</p>
+<p>Returns:     Parsing result; returns None if the frame does not contain non-connected state broadcast information.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.access.run_access_procedure">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">run_access_procedure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">broadcaster_addr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">b'\x01\x02\x03\x04\x05\x06'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initiator_addr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">b'\n\x0b\x0c\r\x0e\x0f'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcaster_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.mac.access.AccessConfig" title="nearlink_sdr.mac.access.AccessConfig"><span class="pre">nearlink_sdr.mac.access.AccessConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initiator_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.mac.access.AccessConfig" title="nearlink_sdr.mac.access.AccessConfig"><span class="pre">nearlink_sdr.mac.access.AccessConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcaster_use_smf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager" title="nearlink_sdr.mac.access.BroadcasterAccessManager"><span class="pre">nearlink_sdr.mac.access.BroadcasterAccessManager</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.mac.access.InitiatorAccessManager" title="nearlink_sdr.mac.access.InitiatorAccessManager"><span class="pre">nearlink_sdr.mac.access.InitiatorAccessManager</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#run_access_procedure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.run_access_procedure" title="Link to this definition">¶</a></dt>
-<dd><p>执行完整的端到端access procedure (standard 7.1.3 阶段 a-e)。</p>
-<p>用于simulation和集成test, 不涉及实际射频传输。</p>
-<p>Args:     broadcaster_addr: broadcaster MAC 地址。     initiator_addr: initiator MAC 地址。     broadcaster_config: broadcasterconfiguration。     initiator_config: initiatorconfiguration。     broadcaster_use_smf: 是否使用系统管理frame模式。</p>
-<p>Returns:     (broadcastermanager, initiatormanager) 二元组,     两者的 link_manager 在success时均处于 CONNECTED state。</p>
+<dd><p>Execute the complete end-to-end access process (standard 7.1.3, stages a-e).</p>
+<p>For simulation and integration testing; no actual RF transmission is involved.</p>
+<p>Args:     broadcaster_addr: Broadcaster MAC address.     initiator_addr: Initiator MAC address.     broadcaster_config: Broadcaster configuration.     initiator_config: Initiator configuration.     broadcaster_use_smf: Whether to use system management frame mode.</p>
+<p>Returns:     A (broadcaster manager, initiator manager) tuple;     both link_managers are in CONNECTED state upon success.</p>
 </dd></dl>
 
 </section>

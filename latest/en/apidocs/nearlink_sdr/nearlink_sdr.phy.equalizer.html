@@ -408,16 +408,16 @@
 <td><p>Zero-forcing (ZF) frequency-domain equalizer.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.equalizer.equalize_mmse_freq" title="nearlink_sdr.phy.equalizer.equalize_mmse_freq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">equalize_mmse_freq</span></code></a></p></td>
-<td><p>MMSE 频域均衡。</p></td>
+<td><p>MMSE frequency-domain equalization.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.equalizer.estimate_channel_freq" title="nearlink_sdr.phy.equalizer.estimate_channel_freq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_channel_freq</span></code></a></p></td>
-<td><p>基于已知训练sequence的频域channel估计 (LS)。</p></td>
+<td><p>Frequency-domain channel estimation based on known training sequences (LS).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.equalizer.equalize_mmse_time" title="nearlink_sdr.phy.equalizer.equalize_mmse_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">equalize_mmse_time</span></code></a></p></td>
-<td><p>MMSE 时域均衡器 (FIR Wiener 滤波器)。</p></td>
+<td><p>MMSE time-domain equalizer (FIR Wiener filter).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.equalizer.equalize_1tap" title="nearlink_sdr.phy.equalizer.equalize_1tap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">equalize_1tap</span></code></a></p></td>
-<td><p>逐符号 1-tap 均衡 (平坦衰落channel)。</p></td>
+<td><p>Per-symbol 1-tap equalization (flat fading channel).</p></td>
 </tr>
 </tbody>
 </table>
@@ -429,44 +429,43 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.equalizer.equalize_zf">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.equalizer.</span></span><span class="sig-name descname"><span class="pre">equalize_zf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rx_signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_freq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/equalizer.html#equalize_zf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.equalizer.equalize_zf" title="Link to this definition">¶</a></dt>
 <dd><p>Zero-forcing (ZF) frequency-domain equalizer.</p>
-<p>Args:     rx_signal: receivesignal (时域)。     channel_freq: channelfrequencyresponse H[k], length等于 rx_signal 的 FFT length。</p>
-<p>Returns:     均衡后的时域signal。</p>
+<p>Args:     rx_signal: Received signal (time domain).     channel_freq: Channel frequency response H[k], length equals the FFT length of rx_signal.</p>
+<p>Returns:     Equalized time-domain signal.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.equalizer.equalize_mmse_freq">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.equalizer.</span></span><span class="sig-name descname"><span class="pre">equalize_mmse_freq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rx_signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_freq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/equalizer.html#equalize_mmse_freq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.equalizer.equalize_mmse_freq" title="Link to this definition">¶</a></dt>
-<dd><p>MMSE 频域均衡。</p>
+<dd><p>MMSE frequency-domain equalization.</p>
 <p>H_mmse[k] = conj(H[k]) / (|H[k]|^2 + sigma^2)</p>
-<p>Args:     rx_signal: receivesignal (时域)。     channel_freq: channelfrequencyresponse H[k]。     noise_var: 噪声方差 sigma^2。</p>
-<p>Returns:     均衡后的时域signal。</p>
+<p>Args:     rx_signal: Received signal (time domain).     channel_freq: Channel frequency response H[k].     noise_var: Noise variance sigma^2.</p>
+<p>Returns:     Equalized time-domain signal.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.equalizer.estimate_channel_freq">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.equalizer.</span></span><span class="sig-name descname"><span class="pre">estimate_channel_freq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rx_signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tx_known</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_fft</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/equalizer.html#estimate_channel_freq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.equalizer.estimate_channel_freq" title="Link to this definition">¶</a></dt>
-<dd><p>基于已知训练sequence的频域channel估计 (LS)。</p>
+<dd><p>Frequency-domain channel estimation based on known training sequences (LS).</p>
 <p>H_est[k] = Y[k] / X[k]</p>
-<p>Args:     rx_signal: receive到的训练sequence。     tx_known: 已知的transmit训练sequence。     n_fft: FFT length, default为signallength。</p>
-<p>Returns:     估计的channelfrequencyresponse。</p>
+<p>Args:     rx_signal: Received training sequence.     tx_known: Known transmitted training sequence.     n_fft: FFT length, defaults to the signal length.</p>
+<p>Returns:     Estimated channel frequency response.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.equalizer.equalize_mmse_time">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.equalizer.</span></span><span class="sig-name descname"><span class="pre">equalize_mmse_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rx_signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_taps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_taps_eq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">11</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/equalizer.html#equalize_mmse_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.equalizer.equalize_mmse_time" title="Link to this definition">¶</a></dt>
-<dd><p>MMSE 时域均衡器 (FIR Wiener 滤波器)。</p>
-<p>compute MMSE 最优 FIR 滤波器系数:     w = R^{-1} p 其中 R = h自相关 + 噪声, p = h与期望延迟的互相关。</p>
-<p>Args:     rx_signal: receivesignal。     channel_taps: channel冲激response h[0], h[1], …, h[L-1]。     noise_var: 噪声方差。     n_taps_eq: 均衡器 FIR length。</p>
-<p>Returns:     均衡后的signal。</p>
+<dd><p>MMSE time-domain equalizer (FIR Wiener filter).</p>
+<p>Compute MMSE optimal FIR filter coefficients:     w = R^{-1} p where R = autocorrelation of h + noise, p = cross-correlation of h with the desired delay.</p>
+<p>Args:     rx_signal: Received signal.     channel_taps: Channel impulse response h[0], h[1], …, h[L-1].     noise_var: Noise variance.     n_taps_eq: Equalizer FIR length.</p>
+<p>Returns:     Equalized signal.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.equalizer.equalize_1tap">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.equalizer.</span></span><span class="sig-name descname"><span class="pre">equalize_1tap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rx_symbols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">h_coeffs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'mmse'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/equalizer.html#equalize_1tap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.equalizer.equalize_1tap" title="Link to this definition">¶</a></dt>
-<dd><p>逐符号 1-tap 均衡 (平坦衰落channel)。</p>
-<p>Args:     rx_symbols: receive符号。     h_coeffs: 每个符号的channel系数 (与 rx_symbols 等长)。     noise_var: 噪声方差, 仅 MMSE 使用。     method: “zf” 或 “mmse”。</p>
-<p>Returns:
-均衡后的符号。</p>
+<dd><p>Per-symbol 1-tap equalization (flat fading channel).</p>
+<p>Args:     rx_symbols: Received symbols.     h_coeffs: Channel coefficient for each symbol (same length as rx_symbols).     noise_var: Noise variance, used only for MMSE.     method: “zf” or “mmse”.</p>
+<p>Returns:     equalized symbols.</p>
 </dd></dl>
 
 </section>

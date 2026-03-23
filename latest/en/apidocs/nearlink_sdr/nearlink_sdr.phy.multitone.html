@@ -418,10 +418,10 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.multitone.generate_multitone" title="nearlink_sdr.phy.multitone.generate_multitone"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_multitone</span></code></a></p></td>
-<td><p>generate基带多音signal (复数采样)。</p></td>
+<td><p>Generate baseband multi-tone signal (complex samples).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.multitone.multitone_peak_to_avg_ratio" title="nearlink_sdr.phy.multitone.multitone_peak_to_avg_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">multitone_peak_to_avg_ratio</span></code></a></p></td>
-<td><p>compute多音signal的峰均比 (线性)。</p></td>
+<td><p>Compute the peak-to-average power ratio (PAPR) of a multi-tone signal (linear).</p></td>
 </tr>
 </tbody>
 </table>
@@ -493,19 +493,19 @@
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.multitone.MultitoneConfig.delta_f_hz">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delta_f_hz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.multitone.MultitoneConfig.delta_f_hz" title="Link to this definition">¶</a></dt>
-<dd><p>相邻音frequencyinterval (Hz)。</p>
+<dd><p>Adjacent tone frequency spacing (Hz).</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.multitone.MultitoneConfig.frequencies_hz">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">frequencies_hz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nearlink_sdr.phy.multitone.MultitoneConfig.frequencies_hz" title="Link to this definition">¶</a></dt>
-<dd><p>各音的基带frequency列表 (Hz), 中心对称分布。</p>
+<dd><p>Baseband frequency list of each tone (Hz), center-symmetric distribution.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.multitone.MultitoneConfig.phases_rad">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">phases_rad</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nearlink_sdr.phy.multitone.MultitoneConfig.phases_rad" title="Link to this definition">¶</a></dt>
-<dd><p>各音的初始相位 (rad)。</p>
+<dd><p>Initial phase of each tone (rad).</p>
 </dd></dl>
 
 </dd></dl>
@@ -513,16 +513,16 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.multitone.generate_multitone">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.multitone.</span></span><span class="sig-name descname"><span class="pre">generate_multitone</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.multitone.MultitoneConfig" title="nearlink_sdr.phy.multitone.MultitoneConfig"><span class="pre">nearlink_sdr.phy.multitone.MultitoneConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration_s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/multitone.html#generate_multitone"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.multitone.generate_multitone" title="Link to this definition">¶</a></dt>
-<dd><p>generate基带多音signal (复数采样)。</p>
-<p>Args:     config: 多音signalconfiguration.     duration_s: signal持续time (秒).</p>
-<p>Returns:     复数基带采样sequence, shape=(num_samples,).</p>
+<dd><p>Generate baseband multi-tone signal (complex samples).</p>
+<p>Args:     config: Multi-tone signal configuration.     duration_s: Signal duration (seconds).</p>
+<p>Returns:     Complex baseband sample sequence, shape=(num_samples,).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.multitone.multitone_peak_to_avg_ratio">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.multitone.</span></span><span class="sig-name descname"><span class="pre">multitone_peak_to_avg_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.multitone.MultitoneConfig" title="nearlink_sdr.phy.multitone.MultitoneConfig"><span class="pre">nearlink_sdr.phy.multitone.MultitoneConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/multitone.html#multitone_peak_to_avg_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.multitone.multitone_peak_to_avg_ratio" title="Link to this definition">¶</a></dt>
-<dd><p>compute多音signal的峰均比 (线性)。</p>
-<p>对于等幅多音, 理论maximum PAPR = N (所有音同相叠加时).</p>
+<dd><p>Compute the peak-to-average power ratio (PAPR) of a multi-tone signal (linear).</p>
+<p>For equal-amplitude multi-tone, the theoretical maximum PAPR = N (when all tones add in phase).</p>
 </dd></dl>
 
 </section>

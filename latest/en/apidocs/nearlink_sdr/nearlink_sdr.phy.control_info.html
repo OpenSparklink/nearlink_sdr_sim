@@ -396,7 +396,7 @@
           <section class="tex2jax_ignore mathjax_ignore" id="module-nearlink_sdr.phy.control_info">
 <span id="nearlink-sdr-phy-control-info"></span><h1><a class="reference internal" href="#module-nearlink_sdr.phy.control_info" title="nearlink_sdr.phy.control_info"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a><a class="headerlink" href="#module-nearlink_sdr.phy.control_info" title="Link to this heading">¶</a></h1>
 <p>Physical layer control information — TXS-10002-2025 standard 6.4</p>
-<p>A 组: 无线frame type 1 和 2, CRC12, 种子为syncsequence低 12 位。 B 组: 无线frame type 3 和 4, CRC24B, 种子 0x555555, CRC 与 LLID XOR。</p>
+<p>Group A: radio frame types 1 and 2, CRC12, seed is the lower 12 bits of the sync word. Group B: radio frame types 3 and 4, CRC24B, seed 0x555555, CRC XOR-ed with LLID.</p>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
 <section id="classes">
@@ -456,28 +456,28 @@
 <td><p>Convert an unsigned integer to an LSB-first bit array.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.control_info._bits_to_int" title="nearlink_sdr.phy.control_info._bits_to_int"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_bits_to_int</span></code></a></p></td>
-<td><p>将低位在前 (LSB-first) 的bit array转为无符号整数。</p></td>
+<td><p>Convert an LSB-first bit array to an unsigned integer.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.control_info._a_group_pack" title="nearlink_sdr.phy.control_info._a_group_pack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_a_group_pack</span></code></a></p></td>
-<td><p>A 组通用打包: concatenation LQI(optional) + info_bits + CRC12。</p></td>
+<td><p>Group A generic packing: concatenate LQI (optional) + info_bits + CRC12.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.control_info._a_group_unpack" title="nearlink_sdr.phy.control_info._a_group_unpack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_a_group_unpack</span></code></a></p></td>
-<td><p>A 组通用解包: check CRC12, 返回 (lqi, info_bits)。</p></td>
+<td><p>Group A generic unpacking: verify CRC12, return (lqi, info_bits).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.control_info._llid_mask" title="nearlink_sdr.phy.control_info._llid_mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_llid_mask</span></code></a></p></td>
-<td><p>将 LLID 扩展为 24 位掩码用于 CRC XOR。</p></td>
+<td><p>Expand LLID to a 24-bit mask for CRC XOR.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.control_info._b_group_pack" title="nearlink_sdr.phy.control_info._b_group_pack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_b_group_pack</span></code></a></p></td>
-<td><p>B 组通用打包: info_bits + CRC24B (种子 0x555555, XOR LLID)。</p></td>
+<td><p>Group B generic packing: info_bits + CRC24B (seed 0x555555, XOR with LLID).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.control_info._b_group_check" title="nearlink_sdr.phy.control_info._b_group_check"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_b_group_check</span></code></a></p></td>
-<td><p>B 组通用解包: check CRC24B, 返回 info_bits。</p></td>
+<td><p>Group B generic unpacking: verify CRC24B, return info_bits.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.control_info.polar_encode_control" title="nearlink_sdr.phy.control_info.polar_encode_control"><code class="xref py py-obj docutils literal notranslate"><span class="pre">polar_encode_control</span></code></a></p></td>
-<td><p>对frame type 2 的 A 组控制信息进行 Polar encode。</p></td>
+<td><p>Polar-encode Group A control information for frame type 2.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.control_info.polar_decode_control" title="nearlink_sdr.phy.control_info.polar_decode_control"><code class="xref py py-obj docutils literal notranslate"><span class="pre">polar_decode_control</span></code></a></p></td>
-<td><p>对frame type 2 的 A 组控制信息进行 Polar decode。</p></td>
+<td><p>Polar-decode Group A control information for frame type 2.</p></td>
 </tr>
 </tbody>
 </table>
@@ -506,7 +506,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.control_info._bits_to_int">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.control_info.</span></span><span class="sig-name descname"><span class="pre">_bits_to_int</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int_" title="(in NumPy v2.4)"><span class="pre">numpy.int_</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/control_info.html#_bits_to_int"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.control_info._bits_to_int" title="Link to this definition">¶</a></dt>
-<dd><p>将低位在前 (LSB-first) 的bit array转为无符号整数。</p>
+<dd><p>Convert an LSB-first bit array to an unsigned integer.</p>
 </dd></dl>
 
 <dl class="py class">
@@ -593,13 +593,13 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.control_info._a_group_pack">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.control_info.</span></span><span class="sig-name descname"><span class="pre">_a_group_pack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int_" title="(in NumPy v2.4)"><span class="pre">numpy.int_</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sync_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">lqi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int_" title="(in NumPy v2.4)"><span class="pre">numpy.int_</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/control_info.html#_a_group_pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.control_info._a_group_pack" title="Link to this definition">¶</a></dt>
-<dd><p>A 组通用打包: concatenation LQI(optional) + info_bits + CRC12。</p>
+<dd><p>Group A generic packing: concatenate LQI (optional) + info_bits + CRC12.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.control_info._a_group_unpack">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.control_info.</span></span><span class="sig-name descname"><span class="pre">_a_group_unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int_" title="(in NumPy v2.4)"><span class="pre">numpy.int_</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sync_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_lqi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int_" title="(in NumPy v2.4)"><span class="pre">numpy.int_</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/control_info.html#_a_group_unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.control_info._a_group_unpack" title="Link to this definition">¶</a></dt>
-<dd><p>A 组通用解包: check CRC12, 返回 (lqi, info_bits)。</p>
+<dd><p>Group A generic unpacking: verify CRC12, return (lqi, info_bits).</p>
 </dd></dl>
 
 <dl class="py class">
@@ -998,19 +998,19 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.control_info._llid_mask">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.control_info.</span></span><span class="sig-name descname"><span class="pre">_llid_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">llid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int_" title="(in NumPy v2.4)"><span class="pre">numpy.int_</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/control_info.html#_llid_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.control_info._llid_mask" title="Link to this definition">¶</a></dt>
-<dd><p>将 LLID 扩展为 24 位掩码用于 CRC XOR。</p>
+<dd><p>Expand LLID to a 24-bit mask for CRC XOR.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.control_info._b_group_pack">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.control_info.</span></span><span class="sig-name descname"><span class="pre">_b_group_pack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int_" title="(in NumPy v2.4)"><span class="pre">numpy.int_</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">llid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int_" title="(in NumPy v2.4)"><span class="pre">numpy.int_</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/control_info.html#_b_group_pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.control_info._b_group_pack" title="Link to this definition">¶</a></dt>
-<dd><p>B 组通用打包: info_bits + CRC24B (种子 0x555555, XOR LLID)。</p>
+<dd><p>Group B generic packing: info_bits + CRC24B (seed 0x555555, XOR with LLID).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.control_info._b_group_check">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.control_info.</span></span><span class="sig-name descname"><span class="pre">_b_group_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int_" title="(in NumPy v2.4)"><span class="pre">numpy.int_</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">llid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int_" title="(in NumPy v2.4)"><span class="pre">numpy.int_</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/control_info.html#_b_group_check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.control_info._b_group_check" title="Link to this definition">¶</a></dt>
-<dd><p>B 组通用解包: check CRC24B, 返回 info_bits。</p>
+<dd><p>Group B generic unpacking: verify CRC24B, return info_bits.</p>
 </dd></dl>
 
 <dl class="py class">
@@ -1283,15 +1283,15 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.control_info.polar_encode_control">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.control_info.</span></span><span class="sig-name descname"><span class="pre">polar_encode_control</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int_" title="(in NumPy v2.4)"><span class="pre">numpy.int_</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_coded</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">64</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int_" title="(in NumPy v2.4)"><span class="pre">numpy.int_</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/control_info.html#polar_encode_control"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.control_info.polar_encode_control" title="Link to this definition">¶</a></dt>
-<dd><p>对frame type 2 的 A 组控制信息进行 Polar encode。</p>
-<p>输入 40 或 48 比特 (含 LQI + CRC12), encode到 64 比特。</p>
+<dd><p>Polar-encode Group A control information for frame type 2.</p>
+<p>Input 40 or 48 bits (including LQI + CRC12), encode to 64 bits.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.control_info.polar_decode_control">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.control_info.</span></span><span class="sig-name descname"><span class="pre">polar_decode_control</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coded_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int_" title="(in NumPy v2.4)"><span class="pre">numpy.int_</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_coded</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">64</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int_" title="(in NumPy v2.4)"><span class="pre">numpy.int_</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/control_info.html#polar_decode_control"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.control_info.polar_decode_control" title="Link to this definition">¶</a></dt>
-<dd><p>对frame type 2 的 A 组控制信息进行 Polar decode。</p>
-<p>输入 64 比特, decode到 k_info 比特 (40 或 48)。</p>
+<dd><p>Polar-decode Group A control information for frame type 2.</p>
+<p>Input 64 bits, decode to k_info bits (40 or 48).</p>
 </dd></dl>
 
 </section>

@@ -399,8 +399,8 @@
 <p>Integrates pairing signaling (security.py), cryptographic primitives (crypto.py), and the link manager into an end-to-end security procedure:</p>
 <ul class="simple">
 <li><p>Pairing state machine (PairingManager): drives pairing signaling exchange and key negotiation</p></li>
-<li><p>frameencrypt上下文 (FrameCryptoContext): 管理 payload_count 和 AES-CCM 加decrypt</p></li>
-<li><p>ECDH key交换 (P-256): generatekey对和共享key</p></li>
+<li><p>Frame crypto context (FrameCryptoContext): manage payload_count and AES-CCM encryption/decryption</p></li>
+<li><p>ECDH key exchange (P-256): generate key pairs and shared keys</p></li>
 </ul>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
@@ -413,16 +413,16 @@
 <td><p>pairingprocedurestate。</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security_manager.PairingFailureReason" title="nearlink_sdr.mac.security_manager.PairingFailureReason"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PairingFailureReason</span></code></a></p></td>
-<td><p>pairingfailure原因 (standard 9.2)。</p></td>
+<td><p>Pairing failure reason (standard 9.2).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security_manager.ECDHKeyPair" title="nearlink_sdr.mac.security_manager.ECDHKeyPair"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ECDHKeyPair</span></code></a></p></td>
-<td><p>P-256 椭圆曲线key对。</p></td>
+<td><p>P-256 elliptic curve key pair.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security_manager.PairingManager" title="nearlink_sdr.mac.security_manager.PairingManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PairingManager</span></code></a></p></td>
 <td><p>pairingprocedurestate machine (standard 9.2)。</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security_manager.FrameCryptoContext" title="nearlink_sdr.mac.security_manager.FrameCryptoContext"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FrameCryptoContext</span></code></a></p></td>
-<td><p>frame级 AES-CCM 加decrypt上下文。</p></td>
+<td><p>Frame-level AES-CCM encryption/decryption context.</p></td>
 </tr>
 </tbody>
 </table>
@@ -434,7 +434,7 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security_manager.run_pairing_procedure" title="nearlink_sdr.mac.security_manager.run_pairing_procedure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_pairing_procedure</span></code></a></p></td>
-<td><p>执行完整的端到端pairingprocedure。</p></td>
+<td><p>Execute a complete end-to-end pairing process.</p></td>
 </tr>
 </tbody>
 </table>
@@ -527,7 +527,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.PairingFailureReason">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security_manager.</span></span><span class="sig-name descname"><span class="pre">PairingFailureReason</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security_manager.html#PairingFailureReason"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security_manager.PairingFailureReason" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>pairingfailure原因 (standard 9.2)。</p>
+<p>Pairing failure reason (standard 9.2).</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -607,7 +607,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.ECDHKeyPair">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security_manager.</span></span><span class="sig-name descname"><span class="pre">ECDHKeyPair</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security_manager.html#ECDHKeyPair"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security_manager.ECDHKeyPair" title="Link to this definition">¶</a></dt>
-<dd><p>P-256 椭圆曲线key对。</p>
+<dd><p>P-256 elliptic curve key pair.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.ECDHKeyPair.private_key_bytes">
 <span class="sig-name descname"><span class="pre">private_key_bytes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security_manager.ECDHKeyPair.private_key_bytes" title="Link to this definition">¶</a></dt>
@@ -629,14 +629,14 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.ECDHKeyPair.generate">
 <em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.security_manager.ECDHKeyPair" title="nearlink_sdr.mac.security_manager.ECDHKeyPair"><span class="pre">nearlink_sdr.mac.security_manager.ECDHKeyPair</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security_manager.html#ECDHKeyPair.generate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security_manager.ECDHKeyPair.generate" title="Link to this definition">¶</a></dt>
-<dd><p>generate P-256 key对。</p>
+<dd><p>generate P-256 keypair.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.ECDHKeyPair.compute_shared_secret">
 <span class="sig-name descname"><span class="pre">compute_shared_secret</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peer_pub_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">peer_pub_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security_manager.html#ECDHKeyPair.compute_shared_secret"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security_manager.ECDHKeyPair.compute_shared_secret" title="Link to this definition">¶</a></dt>
-<dd><p>compute ECDH 共享key。</p>
-<p>Returns:     共享key (32 字节)。</p>
+<dd><p>Compute the ECDH shared key.</p>
+<p>Returns:     Shared key (32 bytes).</p>
 </dd></dl>
 
 </dd></dl>
@@ -645,15 +645,15 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.PairingManager">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security_manager.</span></span><span class="sig-name descname"><span class="pre">PairingManager</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security_manager.html#PairingManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security_manager.PairingManager" title="Link to this definition">¶</a></dt>
 <dd><p>pairingprocedurestate machine (standard 9.2)。</p>
-<p>驱动 G 节点与 T 节点之间的pairingsignalinginteraction, 完成:</p>
+<p>Drive the pairing signaling interaction between the G node and T node to complete:</p>
 <ol class="arabic simple">
-<li><p>pairing发起/request/response</p></li>
-<li><p>ECDH 公钥交换</p></li>
-<li><p>acknowledgment码互验</p></li>
-<li><p>linkkey派生</p></li>
-<li><p>会话key派生</p></li>
+<li><p>Pairing initiate/request/response</p></li>
+<li><p>ECDH public key exchange</p></li>
+<li><p>Mutual confirmation code verification</p></li>
+<li><p>Link key derivation</p></li>
+<li><p>Session key derivation</p></li>
 </ol>
-<p>Attributes:     is_g_node: 本端是否为 G 节点。     kdf_type: key派生函数类型。     auth_method: 鉴权方式。     max_key_length: maximumkeylength (字节)。</p>
+<p>Attributes:     is_g_node: Whether the local end is a G node.     kdf_type: Key derivation function type.     auth_method: Authentication method.     max_key_length: Maximum key length (bytes).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.PairingManager.is_g_node">
 <span class="sig-name descname"><span class="pre">is_g_node</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security_manager.PairingManager.is_g_node" title="Link to this definition">¶</a></dt>
@@ -765,14 +765,14 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.PairingManager.start_pairing">
 <span class="sig-name descname"><span class="pre">start_pairing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><span class="pre">object</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security_manager.html#PairingManager.start_pairing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security_manager.PairingManager.start_pairing" title="Link to this definition">¶</a></dt>
-<dd><p>发起pairing, 返回待transmit的signaling列表。</p>
-<p>G 节点transmit: PairingInitiate → PairingRequest T 节点transmit: (等待 G 节点发起)</p>
+<dd><p>Initiate pairing and return a list of signaling messages to send.</p>
+<p>G node sends: PairingInitiate -&gt; PairingRequest T node sends: (waits for G node to initiate)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.PairingManager.process_message">
 <span class="sig-name descname"><span class="pre">process_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><span class="pre">object</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><span class="pre">object</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security_manager.html#PairingManager.process_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security_manager.PairingManager.process_message" title="Link to this definition">¶</a></dt>
-<dd><p>处理收到的pairingsignaling, 返回待transmit的responsesignaling。</p>
+<dd><p>Process received pairing signaling and return response signaling to send.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -823,25 +823,25 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.PairingManager._compute_dh_key">
 <span class="sig-name descname"><span class="pre">_compute_dh_key</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security_manager.html#PairingManager._compute_dh_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security_manager.PairingManager._compute_dh_key" title="Link to this definition">¶</a></dt>
-<dd><p>compute ECDH 共享key。</p>
+<dd><p>Compute the ECDH shared key.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.PairingManager._generate_confirm_code">
 <span class="sig-name descname"><span class="pre">_generate_confirm_code</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security_manager.html#PairingManager._generate_confirm_code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security_manager.PairingManager._generate_confirm_code" title="Link to this definition">¶</a></dt>
-<dd><p>generate本端acknowledgment码。</p>
+<dd><p>Generate local confirmation code.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.PairingManager._generate_peer_confirm_code">
 <span class="sig-name descname"><span class="pre">_generate_peer_confirm_code</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security_manager.html#PairingManager._generate_peer_confirm_code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security_manager.PairingManager._generate_peer_confirm_code" title="Link to this definition">¶</a></dt>
-<dd><p>generate对端acknowledgment码 (用于validate)。</p>
+<dd><p>Generate remote confirmation code (for verification).</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.PairingManager._derive_keys">
 <span class="sig-name descname"><span class="pre">_derive_keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security_manager.html#PairingManager._derive_keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security_manager.PairingManager._derive_keys" title="Link to this definition">¶</a></dt>
-<dd><p>从 DH Key 派生linkkey和会话key。</p>
+<dd><p>Derive link key and session key from DH Key.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -854,9 +854,9 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.FrameCryptoContext">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security_manager.</span></span><span class="sig-name descname"><span class="pre">FrameCryptoContext</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security_manager.html#FrameCryptoContext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security_manager.FrameCryptoContext" title="Link to this definition">¶</a></dt>
-<dd><p>frame级 AES-CCM 加decrypt上下文。</p>
-<p>管理 payload_count 单调递增和 nonce 构建, 为 MAC frame提供加decrypt服务。</p>
-<p>Attributes:     session_key: 会话key (16 字节)。     iv_base: 初始化向量基底 (8 字节)。     direction: 传输方向 (0=G→T, 1=T→G)。     mic_len: MIC length (字节, 4/8/12/16)。     frame_type: frame type (用于 IV compute)。     link_id: link标识 (用于 IV compute)。</p>
+<dd><p>Frame-level AES-CCM encryption/decryption context.</p>
+<p>Manage monotonically increasing payload_count and nonce construction, providing encryption/decryption services for MAC frames.</p>
+<p>Attributes:     session_key: Session key (16 bytes).     iv_base: Initialization vector base (8 bytes).     direction: Transmission direction (0=G-&gt;T, 1=T-&gt;G).     mic_len: MIC length (bytes, 4/8/12/16).     frame_type: Frame type (for IV calculation).     link_id: Link identifier (for IV calculation).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.FrameCryptoContext.session_key">
 <span class="sig-name descname"><span class="pre">session_key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security_manager.FrameCryptoContext.session_key" title="Link to this definition">¶</a></dt>
@@ -918,34 +918,31 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.FrameCryptoContext._build_nonce">
 <span class="sig-name descname"><span class="pre">_build_nonce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security_manager.html#FrameCryptoContext._build_nonce"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security_manager.FrameCryptoContext._build_nonce" title="Link to this definition">¶</a></dt>
-<dd><p>构建 CCM nonce (13 字节)。</p>
-<p>build_ccm_nonce_async 返回 16 字节 B0 块:
-flag(1B) | nonce(13B) | data_length(2B)
-AESCCM 需要 13 字节 nonce 部分。</p>
+<dd><p>build CCM nonce (13 byte).</p>
+<p>build_ccm_nonce_async returns a 16-byte B0 block: flag(1B) | nonce(13B) | data_length(2B) AESCCM requires the 13-byte nonce part.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.FrameCryptoContext.encrypt">
 <span class="sig-name descname"><span class="pre">encrypt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plaintext</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">aad</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">b''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security_manager.html#FrameCryptoContext.encrypt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security_manager.FrameCryptoContext.encrypt" title="Link to this definition">¶</a></dt>
-<dd><p>encrypt一framedata, 自动递增 payload_count。</p>
-<p>Args:     plaintext: 明文data。     aad: 关联data (不encrypt但参与完整性check)。</p>
-<p>Returns:
-(密文, MIC)。</p>
+<dd><p>Encrypt one frame of data, automatically incrementing payload_count.</p>
+<p>Args:     plaintext: Plaintext data.     aad: Associated data (not encrypted but participates in integrity check).</p>
+<p>Returns:     (ciphertext, MIC).</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.FrameCryptoContext.decrypt">
 <span class="sig-name descname"><span class="pre">decrypt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ciphertext</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mic</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">aad</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">b''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security_manager.html#FrameCryptoContext.decrypt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security_manager.FrameCryptoContext.decrypt" title="Link to this definition">¶</a></dt>
-<dd><p>decrypt一framedata, 自动递增 payload_count。</p>
-<p>Args:     ciphertext: 密文data。     mic: message完整性码。     aad: 关联data。</p>
-<p>Returns:     decrypt后的明文。</p>
+<dd><p>Decrypt one frame of data, automatically incrementing payload_count.</p>
+<p>Args:     ciphertext: Ciphertext data.     mic: Message integrity code.     aad: Associated data.</p>
+<p>Returns:     Decrypted plaintext.</p>
 <p>Raises:     cryptography.exceptions.InvalidTag: MIC validatefailure。</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.FrameCryptoContext.reset_counters">
 <span class="sig-name descname"><span class="pre">reset_counters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security_manager.html#FrameCryptoContext.reset_counters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security_manager.FrameCryptoContext.reset_counters" title="Link to this definition">¶</a></dt>
-<dd><p>重置 payload 计数器。</p>
+<dd><p>reset payload counter.</p>
 </dd></dl>
 
 </dd></dl>
@@ -953,9 +950,9 @@ AESCCM 需要 13 字节 nonce 部分。</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.run_pairing_procedure">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security_manager.</span></span><span class="sig-name descname"><span class="pre">run_pairing_procedure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g_address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">b'\x01\x02\x03\x04\x05\x06'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">b'\n\x0b\x0c\r\x0e\x0f'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.crypto.html#nearlink_sdr.mac.crypto.KdfType" title="nearlink_sdr.mac.crypto.KdfType"><span class="pre">nearlink_sdr.mac.crypto.KdfType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">KdfType.AES_CMAC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auth_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.crypto.html#nearlink_sdr.mac.crypto.AuthMethod" title="nearlink_sdr.mac.crypto.AuthMethod"><span class="pre">nearlink_sdr.mac.crypto.AuthMethod</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">AuthMethod.NUMERIC_COMPARISON</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nearlink_sdr.mac.security_manager.PairingManager" title="nearlink_sdr.mac.security_manager.PairingManager"><span class="pre">nearlink_sdr.mac.security_manager.PairingManager</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.mac.security_manager.PairingManager" title="nearlink_sdr.mac.security_manager.PairingManager"><span class="pre">nearlink_sdr.mac.security_manager.PairingManager</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security_manager.html#run_pairing_procedure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security_manager.run_pairing_procedure" title="Link to this definition">¶</a></dt>
-<dd><p>执行完整的端到端pairingprocedure。</p>
-<p>模拟 G 节点和 T 节点之间的pairingsignalinginteraction, 完成key交换和会话key派生。</p>
-<p>Returns:     (G 节点manager, T 节点manager)。</p>
+<dd><p>Execute a complete end-to-end pairing process.</p>
+<p>Simulate pairing signaling interaction between G node and T node, completing key exchange and session key derivation.</p>
+<p>Returns:     (G node manager, T node manager).</p>
 </dd></dl>
 
 </section>

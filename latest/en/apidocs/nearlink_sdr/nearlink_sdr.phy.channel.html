@@ -395,15 +395,15 @@
         <article role="main" id="furo-main-content">
           <section class="tex2jax_ignore mathjax_ignore" id="module-nearlink_sdr.phy.channel">
 <span id="nearlink-sdr-phy-channel"></span><h1><a class="reference internal" href="#module-nearlink_sdr.phy.channel" title="nearlink_sdr.phy.channel"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a><a class="headerlink" href="#module-nearlink_sdr.phy.channel" title="Link to this heading">¶</a></h1>
-<p>TXS-10002-2025 channel模型: AWGN / Rayleigh / Rician / 多径frequency选择性衰落 / Doppler 时变 / 多用户干扰。</p>
-<p>SparkLink SLE 工作于 2.4 GHz ISM 频段,典型场景为室内短距通信。 参考 IEEE 802.15.4 / ITU-R P.1238 室内channelparameter:</p>
+<p>TXS-10002-2025 channel models: AWGN / Rayleigh / Rician / multipath frequency-selective fading / Doppler time-varying / multi-user interference.</p>
+<p>SparkLink SLE operates in the 2.4 GHz ISM band with typical indoor short-range communication scenarios. Reference: IEEE 802.15.4 / ITU-R P.1238 indoor channel parameters:</p>
 <ul class="simple">
 <li><p>RMS delay spread: 10 ~ 50 ns</p></li>
 <li><p>Rician K factor: 3 ~ 10 dB (line-of-sight)</p></li>
 <li><p>Maximum Doppler shift: &lt; 50 Hz (pedestrian speed)</p></li>
 </ul>
-<p>Doppler 时变channel采用 Jakes 求和正弦模型, generate具有经典 U 形power谱密度的 time相关衰落sequence, 自相关函数为 J₀(2π·f_d·Δt)。</p>
-<p>多用户干扰模型支持同channel干扰和邻channel干扰, 基于 TXS-10002-2025 standard 第 8.3.2 条receive机选择性要求。</p>
+<p>Doppler time-varying channel uses the Jakes sum-of-sinusoids model, generating time-correlated fading sequences with the classic U-shaped power spectral density. The autocorrelation function is J₀(2π·f_d·Δt).</p>
+<p>The multi-user interference model supports co-channel and adjacent-channel interference, based on TXS-10002-2025 Section 8.3.2 receiver selectivity requirements.</p>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
 <section id="classes">
@@ -415,10 +415,10 @@
 <td><p>channelconfigurationparameter。</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.channel.ChannelModel" title="nearlink_sdr.phy.channel.ChannelModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChannelModel</span></code></a></p></td>
-<td><p>多模channel模型,支持 AWGN / 平坦衰落 / frequency选择性衰落。</p></td>
+<td><p>Multi-mode channel model supporting AWGN / flat fading / frequency-selective fading.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.channel.InterferenceConfig" title="nearlink_sdr.phy.channel.InterferenceConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InterferenceConfig</span></code></a></p></td>
-<td><p>干扰源configuration。</p></td>
+<td><p>Interference source configuration.</p></td>
 </tr>
 </tbody>
 </table>
@@ -430,7 +430,7 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.channel.add_interference" title="nearlink_sdr.phy.channel.add_interference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_interference</span></code></a></p></td>
-<td><p>向signal叠加多个干扰源。</p></td>
+<td><p>Superimpose multiple interference sources onto the signal.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.channel.compute_sinr" title="nearlink_sdr.phy.channel.compute_sinr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_sinr</span></code></a></p></td>
 <td><p>compute SINR (dB)。</p></td>
@@ -472,7 +472,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.ChannelConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.channel.</span></span><span class="sig-name descname"><span class="pre">ChannelConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#ChannelConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.ChannelConfig" title="Link to this definition">¶</a></dt>
 <dd><p>channelconfigurationparameter。</p>
-<p>Attributes:     snr_db: 信噪比 (dB)。     channel_type: “awgn” | “rayleigh” | “rician” | “multipath”。     rician_k_db: Rician K 因子 (dB), 仅 “rician” 模式使用。     pdp: power时延谱 [(delay_samples, power_dB), …], 仅 “multipath” 使用。     max_doppler_hz: maximum多普勒频移 (Hz)。0 表示准静态。     symbol_rate_hz: 符号速率 (Hz), 用于compute归一化 Doppler 频移。     n_sinusoids: Jakes 模型正弦分量数, 值越大频谱越精确。     seed: 随机种子。</p>
+<p>Attributes:     snr_db: Signal-to-noise ratio (dB).     channel_type: “awgn” | “rayleigh” | “rician” | “multipath”.     rician_k_db: Rician K factor (dB), used only in “rician” mode.     pdp: Power delay profile [(delay_samples, power_dB), …], used only in “multipath” mode.     max_doppler_hz: Maximum Doppler frequency shift (Hz). 0 means quasi-static.     symbol_rate_hz: Symbol rate (Hz), used to compute the normalized Doppler shift.     n_sinusoids: Number of sinusoidal components in the Jakes model; higher values yield a more accurate spectrum.     seed: Random seed.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.ChannelConfig.snr_db">
 <span class="sig-name descname"><span class="pre">snr_db</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.channel.ChannelConfig.snr_db" title="Link to this definition">¶</a></dt>
@@ -526,38 +526,37 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.ChannelModel">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.channel.</span></span><span class="sig-name descname"><span class="pre">ChannelModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">snr_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.channel.ChannelConfig" title="nearlink_sdr.phy.channel.ChannelConfig"><span class="pre">nearlink_sdr.phy.channel.ChannelConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#ChannelModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.ChannelModel" title="Link to this definition">¶</a></dt>
-<dd><p>多模channel模型,支持 AWGN / 平坦衰落 / frequency选择性衰落。</p>
+<dd><p>Multi-mode channel model supporting AWGN / flat fading / frequency-selective fading.</p>
 <p class="rubric">Initialization</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.ChannelModel.apply_awgn">
 <span class="sig-name descname"><span class="pre">apply_awgn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#ChannelModel.apply_awgn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.ChannelModel.apply_awgn" title="Link to this definition">¶</a></dt>
-<dd><p>仅加 AWGN 噪声 (保持向后兼容)。</p>
+<dd><p>Add AWGN noise only (for backward compatibility).</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.ChannelModel.apply_fading">
 <span class="sig-name descname"><span class="pre">apply_fading</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#ChannelModel.apply_fading"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.ChannelModel.apply_fading" title="Link to this definition">¶</a></dt>
-<dd><p>按 config 类型应用衰落 + AWGN, 同时缓存channel系数到 last_taps。</p>
+<dd><p>Apply fading + AWGN according to config type, caching channel coefficients in last_taps.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.ChannelModel.last_taps">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">last_taps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.channel.ChannelModel.last_taps" title="Link to this definition">¶</a></dt>
-<dd><p>上一次 apply_fading 使用的channel系数, 供均衡器使用。</p>
+<dd><p>Channel coefficients from the last apply_fading call, for use by the equalizer.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.ChannelModel.get_channel_taps">
 <span class="sig-name descname"><span class="pre">get_channel_taps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_symbols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#ChannelModel.get_channel_taps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.ChannelModel.get_channel_taps" title="Link to this definition">¶</a></dt>
-<dd><p>返回channeltap系数矩阵 (n_taps × n_symbols), 用于均衡器。</p>
-<p>对于平坦衰落: 返回 (1, n_symbols)。
-对于多径: 返回 (max_delay+1, n_symbols)。</p>
+<dd><p>Return the channel tap coefficient matrix (n_taps × n_symbols) for use by the equalizer.</p>
+<p>For flat fading: returns (1, n_symbols). For multipath: returns (max_delay+1, n_symbols).</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.ChannelModel.noise_variance">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">noise_variance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.channel.ChannelModel.noise_variance" title="Link to this definition">¶</a></dt>
-<dd><p>AWGN 噪声方差 (单边, 假设单位signalpower)。</p>
+<dd><p>AWGN noise variance (one-sided, assuming unit signal power).</p>
 </dd></dl>
 
 <dl class="py method">
@@ -573,43 +572,41 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.ChannelModel._gen_rayleigh_coeffs">
 <span class="sig-name descname"><span class="pre">_gen_rayleigh_coeffs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#ChannelModel._gen_rayleigh_coeffs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.ChannelModel._gen_rayleigh_coeffs" title="Link to this definition">¶</a></dt>
-<dd><p>generate Rayleigh 衰落系数。</p>
-<p>max_doppler_hz &gt; 0 时使用 Jakes 求和正弦模型, 产生具有经典 U 形 power谱密度的time相关衰落; 否则为准静态 (整段同一系数)。</p>
+<dd><p>Generate Rayleigh fading coefficients.</p>
+<p>When max_doppler_hz &gt; 0, use the Jakes sum-of-sinusoids model to produce time-correlated fading with the classic U-shaped power spectral density; otherwise quasi-static (same coefficient for the entire block).</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.ChannelModel._gen_rician_coeffs">
 <span class="sig-name descname"><span class="pre">_gen_rician_coeffs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#ChannelModel._gen_rician_coeffs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.ChannelModel._gen_rician_coeffs" title="Link to this definition">¶</a></dt>
-<dd><p>generate Rician 衰落系数。K = LOSpower / 散射power。</p>
+<dd><p>Generate Rician fading coefficients. K = LOS power / scatter power.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.ChannelModel._jakes_fading">
 <span class="sig-name descname"><span class="pre">_jakes_fading</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#ChannelModel._jakes_fading"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.ChannelModel._jakes_fading" title="Link to this definition">¶</a></dt>
-<dd><p>Jakes 求和正弦法generatetime相关衰落sequence。</p>
-<p>使用 N_osc 个正弦分量叠加, 到达角均匀分布, 初始相位随机。
-输出自相关逼近 J₀(2π·f_d·Δt)。</p>
-<p>参考: W.C. Jakes, “Microwave Mobile Communications”, 1974</p>
+<dd><p>Jakes sum-of-sinusoids method to generate time-correlated fading sequences.</p>
+<p>Superimpose N_osc sinusoidal components with uniformly distributed angles of arrival and random initial phases. The output autocorrelation approximates J₀(2π·f_d·Δt).</p>
+<p>reference: W.C. Jakes, “Microwave Mobile Communications”, 1974</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.ChannelModel._multipath">
 <span class="sig-name descname"><span class="pre">_multipath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#ChannelModel._multipath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.ChannelModel._multipath" title="Link to this definition">¶</a></dt>
-<dd><p>应用多径channel (FIR 卷积模型)。</p>
+<dd><p>Apply multipath channel (FIR convolution model).</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.ChannelModel._apply_multipath_taps">
 <em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_apply_multipath_taps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">taps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#ChannelModel._apply_multipath_taps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.ChannelModel._apply_multipath_taps" title="Link to this definition">¶</a></dt>
-<dd><p>用给定的tap系数对signal做 FIR 多径卷积。</p>
+<dd><p>Perform FIR multipath convolution on the signal with the given tap coefficients.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.ChannelModel._gen_multipath_taps">
 <span class="sig-name descname"><span class="pre">_gen_multipath_taps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#ChannelModel._gen_multipath_taps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.ChannelModel._gen_multipath_taps" title="Link to this definition">¶</a></dt>
-<dd><p>generate多径channeltap系数。</p>
-<p>返回 (n_taps, n) 的复数矩阵,每行对应一个多径分量。
-max_doppler_hz &gt; 0 时每条径独立使用 Jakes 模型产生时变系数。</p>
+<dd><p>Generate multipath channel tap coefficients.</p>
+<p>Return a complex matrix of shape (n_taps, n), where each row corresponds to a multipath component. When max_doppler_hz &gt; 0, each path independently uses the Jakes model to generate time-varying coefficients.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -620,14 +617,14 @@ max_doppler_hz &gt; 0 时每条径独立使用 Jakes 模型产生时变系数。
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.ChannelModel.doppler_autocorrelation">
 <span class="sig-name descname"><span class="pre">doppler_autocorrelation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_lag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">64</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#ChannelModel.doppler_autocorrelation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.ChannelModel.doppler_autocorrelation" title="Link to this definition">¶</a></dt>
-<dd><p>compute Jakes 衰落sequence的归一化自相关函数, 用于validate J₀ 特性。</p>
-<p>返回length为 max_lag 的实数数组, r[k] = Re{E[h(n)·h*(n+k)]} / E[|h|²]。</p>
+<dd><p>Compute the normalized autocorrelation function of a Jakes fading sequence for verifying J₀ characteristics.</p>
+<p>Return a real-valued array of length max_lag, r[k] = Re{E[h(n)·h*(n+k)]} / E[|h|²].</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.ChannelModel.theoretical_autocorrelation">
 <span class="sig-name descname"><span class="pre">theoretical_autocorrelation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_lag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">64</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#ChannelModel.theoretical_autocorrelation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.ChannelModel.theoretical_autocorrelation" title="Link to this definition">¶</a></dt>
-<dd><p>理论自相关函数 J₀(2π·f_d·k/f_s), 供对比validate。</p>
+<dd><p>Theoretical autocorrelation function J₀(2π·f_d·k/f_s) for comparison and verification.</p>
 </dd></dl>
 
 </dd></dl>
@@ -635,8 +632,8 @@ max_doppler_hz &gt; 0 时每条径独立使用 Jakes 模型产生时变系数。
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.InterferenceConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.channel.</span></span><span class="sig-name descname"><span class="pre">InterferenceConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#InterferenceConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.InterferenceConfig" title="Link to this definition">¶</a></dt>
-<dd><p>干扰源configuration。</p>
-<p>Attributes:     sir_db: signal与干扰power比 (dB), 即 S/I。     freq_offset_hz: interference signal中心frequency相对useful signal的offset (Hz)。         0 表示同channel干扰。     interferer_bw_hz: interference signalbandwidth (Hz), 用于频谱成型。         0 表示与useful signal相同bandwidth (不做滤波)。     seed: 随机种子。</p>
+<dd><p>Interference source configuration.</p>
+<p>Attributes:     sir_db: Signal-to-interference power ratio (dB), i.e. S/I.     freq_offset_hz: Frequency offset of the interferer center frequency relative to the useful signal (Hz).         0 means co-channel interference.     interferer_bw_hz: Interferer signal bandwidth (Hz), used for spectral shaping.         0 means same bandwidth as the useful signal (no filtering).     seed: Random seed.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.InterferenceConfig.sir_db">
 <span class="sig-name descname"><span class="pre">sir_db</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.channel.InterferenceConfig.sir_db" title="Link to this definition">¶</a></dt>
@@ -666,17 +663,17 @@ max_doppler_hz &gt; 0 时每条径独立使用 Jakes 模型产生时变系数。
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.add_interference">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.channel.</span></span><span class="sig-name descname"><span class="pre">add_interference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">interferers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nearlink_sdr.phy.channel.InterferenceConfig" title="nearlink_sdr.phy.channel.InterferenceConfig"><span class="pre">nearlink_sdr.phy.channel.InterferenceConfig</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator" title="(in NumPy v2.4)"><span class="pre">numpy.random.Generator</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#add_interference"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.add_interference" title="Link to this definition">¶</a></dt>
-<dd><p>向signal叠加多个干扰源。</p>
-<p>每个干扰源独立generate与useful signal等长的随机 IQ sequence, 按 SIR 缩放后叠加。 支持同channel和邻channel干扰 (通过frequencyoffset实现)。</p>
-<p>Args:     signal: useful signal (复数 IQ)。     interferers: 干扰源configuration列表。     sample_rate_hz: 采样率 (Hz)。     rng: optional随机数generate器。</p>
-<p>Returns:     叠加干扰后的signal。</p>
+<dd><p>Superimpose multiple interference sources onto the signal.</p>
+<p>Each interference source independently generates a random IQ sequence of the same length as the useful signal, scaled by SIR before superposition. Supports co-channel and adjacent-channel interference (via frequency offset).</p>
+<p>Args:     signal: Useful signal (complex IQ).     interferers: List of interference source configurations.     sample_rate_hz: Sample rate (Hz).     rng: Optional random number generator.</p>
+<p>Returns:     Signal after interference superposition.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.compute_sinr">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.channel.</span></span><span class="sig-name descname"><span class="pre">compute_sinr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">interference_signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#compute_sinr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.compute_sinr" title="Link to this definition">¶</a></dt>
 <dd><p>compute SINR (dB)。</p>
-<p>Args:     signal: 纯净useful signal。     noise_signal: 含噪声的receivesignal (signal+噪声, 不含干扰)。     interference_signal: 干扰叠加后的receivesignal (signal+噪声+干扰)。</p>
+<p>Args:     signal: Clean useful signal.     noise_signal: Noisy received signal (signal + noise, without interference).     interference_signal: Received signal after interference superposition (signal + noise + interference).</p>
 <p>Returns:
 SINR (dB)。</p>
 </dd></dl>

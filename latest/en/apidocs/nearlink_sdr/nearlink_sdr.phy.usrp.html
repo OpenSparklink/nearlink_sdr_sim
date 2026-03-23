@@ -396,14 +396,14 @@
           <section class="tex2jax_ignore mathjax_ignore" id="module-nearlink_sdr.phy.usrp">
 <span id="nearlink-sdr-phy-usrp"></span><h1><a class="reference internal" href="#module-nearlink_sdr.phy.usrp" title="nearlink_sdr.phy.usrp"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a><a class="headerlink" href="#module-nearlink_sdr.phy.usrp" title="Link to this heading">¶</a></h1>
 <p>USRP E310 hardware interface layer.</p>
-<p>封装 UHD Python API, 提供针对 SparkLink SLE standard优化的 USRP device管理、 TX/RX 流interface以及与现有 PHY module的集成 Pipeline。</p>
+<p>Wraps the UHD Python API, providing USRP device management optimized for the SparkLink SLE standard, TX/RX streaming interfaces and an integration pipeline with existing PHY modules.</p>
 <p>Hardware parameters (USRP E310 / AD9361):</p>
 <ul class="simple">
 <li><p>Frequency range: 70 MHz - 6 GHz</p></li>
 <li><p>Maximum bandwidth: 56 MHz</p></li>
 <li><p>ADC/DAC: 12-bit</p></li>
-<li><p>RX 增益范围: 0 - 76 dB</p></li>
-<li><p>TX 增益范围: 0 - 89.75 dB</p></li>
+<li><p>RX gain range: 0 - 76 dB.</p></li>
+<li><p>TX gain range: 0 - 89.75 dB.</p></li>
 <li><p>Antenna ports: TX/RX, RX2</p></li>
 </ul>
 <section id="module-contents">
@@ -417,37 +417,37 @@
 <td><p>USRP deviceconfigurationparameter。</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.usrp.MockStreamCmd" title="nearlink_sdr.phy.usrp.MockStreamCmd"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MockStreamCmd</span></code></a></p></td>
-<td><p>模拟 uhd.types.StreamCMD。</p></td>
+<td><p>mock uhd.types.StreamCMD.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.usrp.MockStreamMode" title="nearlink_sdr.phy.usrp.MockStreamMode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MockStreamMode</span></code></a></p></td>
-<td><p>模拟 uhd.types.StreamMode。</p></td>
+<td><p>mock uhd.types.StreamMode.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.usrp.MockRXMetadata" title="nearlink_sdr.phy.usrp.MockRXMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MockRXMetadata</span></code></a></p></td>
-<td><p>模拟 uhd.types.RXMetadata。</p></td>
+<td><p>mock uhd.types.RXMetadata.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.usrp.MockTXMetadata" title="nearlink_sdr.phy.usrp.MockTXMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MockTXMetadata</span></code></a></p></td>
-<td><p>模拟 uhd.types.TXMetadata。</p></td>
+<td><p>mock uhd.types.TXMetadata.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.usrp.LoopbackBuffer" title="nearlink_sdr.phy.usrp.LoopbackBuffer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LoopbackBuffer</span></code></a></p></td>
-<td><p>TX→RX 环回buffer, optionalchannel损伤。</p></td>
+<td><p>TX→RX loopback buffer with optional channel impairment.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.usrp.MockStreamer" title="nearlink_sdr.phy.usrp.MockStreamer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MockStreamer</span></code></a></p></td>
-<td><p>模拟 UHD TX/RX Streamer。</p></td>
+<td><p>mock UHD TX/RX Streamer.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.usrp.MockUSRP" title="nearlink_sdr.phy.usrp.MockUSRP"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MockUSRP</span></code></a></p></td>
-<td><p>模拟 uhd.usrp.MultiUSRP, 用于无硬件test。</p></td>
+<td><p>Simulates uhd.usrp.MultiUSRP for testing without hardware.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.usrp.USRPDevice" title="nearlink_sdr.phy.usrp.USRPDevice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">USRPDevice</span></code></a></p></td>
-<td><p>USRP E310 device管理。</p></td>
+<td><p>USRP E310 device management.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.usrp.TXStream" title="nearlink_sdr.phy.usrp.TXStream"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TXStream</span></code></a></p></td>
-<td><p>USRP 发射流interface。</p></td>
+<td><p>USRP transmit stream interface.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.usrp.RXStream" title="nearlink_sdr.phy.usrp.RXStream"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RXStream</span></code></a></p></td>
-<td><p>USRP receive流interface。</p></td>
+<td><p>USRP receive stream interface.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.usrp.SLETransceiver" title="nearlink_sdr.phy.usrp.SLETransceiver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SLETransceiver</span></code></a></p></td>
-<td><p>SparkLink SLE 实时收发 Pipeline。</p></td>
+<td><p>SparkLink SLE real-time TX/RX pipeline.</p></td>
 </tr>
 </tbody>
 </table>
@@ -459,7 +459,7 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.usrp.uhd_available" title="nearlink_sdr.phy.usrp.uhd_available"><code class="xref py py-obj docutils literal notranslate"><span class="pre">uhd_available</span></code></a></p></td>
-<td><p>检查当前环境是否安装了 UHD 驱动。</p></td>
+<td><p>Check whether the UHD driver is installed in the current environment.</p></td>
 </tr>
 </tbody>
 </table>
@@ -521,7 +521,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.uhd_available">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.usrp.</span></span><span class="sig-name descname"><span class="pre">uhd_available</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#uhd_available"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.uhd_available" title="Link to this definition">¶</a></dt>
-<dd><p>检查当前环境是否安装了 UHD 驱动。</p>
+<dd><p>Check whether the UHD driver is installed in the current environment.</p>
 </dd></dl>
 
 <dl class="py data">
@@ -594,7 +594,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.USRPConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.usrp.</span></span><span class="sig-name descname"><span class="pre">USRPConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#USRPConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.USRPConfig" title="Link to this definition">¶</a></dt>
 <dd><p>USRP deviceconfigurationparameter。</p>
-<p>Attributes:     device_args: UHD device addressparameter, 空字符串表示自动发现。     channel_num: SLE 射频channel号。     band: 频段标识 (“2400” / “5100” / “5800”)。     sample_rate_hz: 采样率 (Hz)。     rx_gain_db: receive增益 (dB)。     tx_gain_db: 发射增益 (dB)。     bandwidth_hz: 前端模拟滤波器bandwidth (Hz), 0 表示不设置。     rx_antenna: receive天线端口名称。     tx_antenna: 发射天线端口名称。     clock_source: 参考时钟源。     time_source: PPS time源。     cpu_format: 主机端样本格式。     wire_format: 线缆端样本格式。     num_recv_frames: receivebufferframe数, 增大可减少溢出。     stream_timeout_s: 流操作timeouttime (秒)。</p>
+<p>Attributes:     device_args: UHD device address arguments, empty string for auto-discovery.     channel_num: SLE RF channel number.     band: Band identifier (“2400” / “5100” / “5800”).     sample_rate_hz: Sample rate (Hz).     rx_gain_db: Receive gain (dB).     tx_gain_db: Transmit gain (dB).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.USRPConfig.device_args">
 <span class="sig-name descname"><span class="pre">device_args</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Multiline-String&gt;</span></em><a class="headerlink" href="#nearlink_sdr.phy.usrp.USRPConfig.device_args" title="Link to this definition">¶</a></dt>
@@ -692,13 +692,13 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.USRPConfig.validate">
 <span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#USRPConfig.validate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.USRPConfig.validate" title="Link to this definition">¶</a></dt>
-<dd><p>checkconfigurationparametervalid性。</p>
+<dd><p>Validate configuration parameter validity.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.USRPConfig.center_freq_hz">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">center_freq_hz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.usrp.USRPConfig.center_freq_hz" title="Link to this definition">¶</a></dt>
-<dd><p>根据channel号和频段compute中心frequency (Hz)。</p>
+<dd><p>Compute the center frequency (Hz) from the channel number and band.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -712,14 +712,14 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.MockStreamCmd">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.usrp.</span></span><span class="sig-name descname"><span class="pre">MockStreamCmd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream_mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#MockStreamCmd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.MockStreamCmd" title="Link to this definition">¶</a></dt>
-<dd><p>模拟 uhd.types.StreamCMD。</p>
+<dd><p>mock uhd.types.StreamCMD.</p>
 <p class="rubric">Initialization</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.MockStreamMode">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.usrp.</span></span><span class="sig-name descname"><span class="pre">MockStreamMode</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#MockStreamMode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.MockStreamMode" title="Link to this definition">¶</a></dt>
-<dd><p>模拟 uhd.types.StreamMode。</p>
+<dd><p>mock uhd.types.StreamMode.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.MockStreamMode.start_cont">
 <span class="sig-name descname"><span class="pre">start_cont</span></span><a class="headerlink" href="#nearlink_sdr.phy.usrp.MockStreamMode.start_cont" title="Link to this definition">¶</a></dt>
@@ -743,33 +743,33 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.MockRXMetadata">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.usrp.</span></span><span class="sig-name descname"><span class="pre">MockRXMetadata</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#MockRXMetadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.MockRXMetadata" title="Link to this definition">¶</a></dt>
-<dd><p>模拟 uhd.types.RXMetadata。</p>
+<dd><p>mock uhd.types.RXMetadata.</p>
 <p class="rubric">Initialization</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.MockTXMetadata">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.usrp.</span></span><span class="sig-name descname"><span class="pre">MockTXMetadata</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#MockTXMetadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.MockTXMetadata" title="Link to this definition">¶</a></dt>
-<dd><p>模拟 uhd.types.TXMetadata。</p>
+<dd><p>mock uhd.types.TXMetadata.</p>
 <p class="rubric">Initialization</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.LoopbackBuffer">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.usrp.</span></span><span class="sig-name descname"><span class="pre">LoopbackBuffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><span class="pre">object</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#LoopbackBuffer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.LoopbackBuffer" title="Link to this definition">¶</a></dt>
-<dd><p>TX→RX 环回buffer, optionalchannel损伤。</p>
-<p>用于 MockUSRP 的 loopback 模式, 将 TX 发射的 IQ 样本经channel模型 送入 RX receiver, 实现无硬件的端到端simulation。</p>
+<dd><p>TX→RX loopback buffer with optional channel impairment.</p>
+<p>Loopback mode for MockUSRP: routes TX-transmitted IQ samples through a channel model into the RX receiver for end-to-end simulation without hardware.</p>
 <p class="rubric">Initialization</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.LoopbackBuffer.push">
 <span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#LoopbackBuffer.push"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.LoopbackBuffer.push" title="Link to this definition">¶</a></dt>
-<dd><p>TX 端写入样本。</p>
+<dd><p>Write samples to TX.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.LoopbackBuffer.pull">
 <span class="sig-name descname"><span class="pre">pull</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#LoopbackBuffer.pull"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.LoopbackBuffer.pull" title="Link to this definition">¶</a></dt>
-<dd><p>RX 端读取最多 n 个样本。</p>
+<dd><p>Read up to n samples from RX.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -787,7 +787,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.MockStreamer">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.usrp.</span></span><span class="sig-name descname"><span class="pre">MockStreamer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'rx'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samps_per_buffer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loopback</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.usrp.LoopbackBuffer" title="nearlink_sdr.phy.usrp.LoopbackBuffer"><span class="pre">nearlink_sdr.phy.usrp.LoopbackBuffer</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#MockStreamer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.MockStreamer" title="Link to this definition">¶</a></dt>
-<dd><p>模拟 UHD TX/RX Streamer。</p>
+<dd><p>mock UHD TX/RX Streamer.</p>
 <p class="rubric">Initialization</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.MockStreamer.get_max_num_samps">
@@ -802,13 +802,13 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.MockStreamer.recv">
 <span class="sig-name descname"><span class="pre">recv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buffer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#MockStreamer.recv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.MockStreamer.recv" title="Link to this definition">¶</a></dt>
-<dd><p>模拟receive: 环回模式返回 TX transmit的data, 否则返回噪声。</p>
+<dd><p>Simulated receive: in loopback mode returns data sent by TX, otherwise returns noise.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.MockStreamer.send">
 <span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buffer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#MockStreamer.send"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.MockStreamer.send" title="Link to this definition">¶</a></dt>
-<dd><p>模拟发射: 环回模式写入buffer, 否则直接消耗。</p>
+<dd><p>Simulated transmit: in loopback mode writes to the buffer, otherwise consumed directly.</p>
 </dd></dl>
 
 </dd></dl>
@@ -816,8 +816,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.MockUSRP">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.usrp.</span></span><span class="sig-name descname"><span class="pre">MockUSRP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loopback</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.usrp.LoopbackBuffer" title="nearlink_sdr.phy.usrp.LoopbackBuffer"><span class="pre">nearlink_sdr.phy.usrp.LoopbackBuffer</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#MockUSRP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.MockUSRP" title="Link to this definition">¶</a></dt>
-<dd><p>模拟 uhd.usrp.MultiUSRP, 用于无硬件test。</p>
-<p>记录所有configuration调用的parameter, 并提供可validate的state。 支持 loopback 模式: TX 发射的data经optionalchannel模型后送入 RX。</p>
+<dd><p>Simulates uhd.usrp.MultiUSRP for testing without hardware.</p>
+<p>Records all configuration call parameters and provides verifiable state. Supports loopback mode: TX-transmitted data is routed through an optional channel model into RX.</p>
 <p class="rubric">Initialization</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.MockUSRP._log">
@@ -959,15 +959,15 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.USRPDevice">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.usrp.</span></span><span class="sig-name descname"><span class="pre">USRPDevice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.usrp.USRPConfig" title="nearlink_sdr.phy.usrp.USRPConfig"><span class="pre">nearlink_sdr.phy.usrp.USRPConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_mock</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loopback</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.usrp.LoopbackBuffer" title="nearlink_sdr.phy.usrp.LoopbackBuffer"><span class="pre">nearlink_sdr.phy.usrp.LoopbackBuffer</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#USRPDevice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.USRPDevice" title="Link to this definition">¶</a></dt>
-<dd><p>USRP E310 device管理。</p>
-<p>封装 UHD MultiUSRP 对象, 提供 SLE standard所需的deviceconfiguration和控制interface。 无硬件时自动使用 MockUSRP。</p>
+<dd><p>USRP E310 device management.</p>
+<p>Wraps the UHD MultiUSRP object, providing device configuration and control interfaces required by the SLE standard. Automatically uses MockUSRP when no hardware is available.</p>
 <p class="rubric">Initialization</p>
-<p>初始化 USRP device。</p>
-<p>Args:     config: deviceconfiguration, None 时使用defaultconfiguration。     use_mock: 强制使用 MockUSRP。     loopback: 环回buffer, 仅 Mock 模式valid。</p>
+<p>initialize USRP device.</p>
+<p>Args:     config: Device configuration, uses default when None.     use_mock: Force MockUSRP usage.     loopback: Loopback buffer, effective only in Mock mode.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.USRPDevice._configure">
 <span class="sig-name descname"><span class="pre">_configure</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#USRPDevice._configure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.USRPDevice._configure" title="Link to this definition">¶</a></dt>
-<dd><p>将 USRPConfig 的parameter应用到device。</p>
+<dd><p>Apply USRPConfig parameters to the device.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -979,26 +979,26 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.USRPDevice.tune_channel">
 <span class="sig-name descname"><span class="pre">tune_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">band</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#USRPDevice.tune_channel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.USRPDevice.tune_channel" title="Link to this definition">¶</a></dt>
-<dd><p>切换到指定 SLE 射频channel。</p>
-<p>Args:     channel_num: 射频channel号。     band: 频段标识, None 沿用当前configuration。</p>
+<dd><p>Switch to the specified SLE RF channel.</p>
+<p>Args:     channel_num: RF channel number.     band: Band identifier, None retains the current configuration.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.USRPDevice.set_rx_gain">
 <span class="sig-name descname"><span class="pre">set_rx_gain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gain_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#USRPDevice.set_rx_gain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.USRPDevice.set_rx_gain" title="Link to this definition">¶</a></dt>
-<dd><p>设置 RX 增益。</p>
+<dd><p>set RX gain.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.USRPDevice.set_tx_gain">
 <span class="sig-name descname"><span class="pre">set_tx_gain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gain_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#USRPDevice.set_tx_gain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.USRPDevice.set_tx_gain" title="Link to this definition">¶</a></dt>
-<dd><p>设置 TX 增益。</p>
+<dd><p>set TX gain.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.USRPDevice.set_sample_rate">
 <span class="sig-name descname"><span class="pre">set_sample_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rate_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#USRPDevice.set_sample_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.USRPDevice.set_sample_rate" title="Link to this definition">¶</a></dt>
-<dd><p>设置收发采样率。</p>
+<dd><p>Set the transceiver sample rate.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -1009,7 +1009,7 @@
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.USRPDevice.usrp">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">usrp</span></span><a class="headerlink" href="#nearlink_sdr.phy.usrp.USRPDevice.usrp" title="Link to this definition">¶</a></dt>
-<dd><p>获取底层 UHD/Mock device对象。</p>
+<dd><p>Get the underlying UHD/Mock device object.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -1020,7 +1020,7 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.USRPDevice.status_string">
 <span class="sig-name descname"><span class="pre">status_string</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#USRPDevice.status_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.USRPDevice.status_string" title="Link to this definition">¶</a></dt>
-<dd><p>返回可读的devicestate摘要。</p>
+<dd><p>Return a human-readable device status summary.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1028,8 +1028,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.TXStream">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.usrp.</span></span><span class="sig-name descname"><span class="pre">TXStream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.usrp.USRPDevice" title="nearlink_sdr.phy.usrp.USRPDevice"><span class="pre">nearlink_sdr.phy.usrp.USRPDevice</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#TXStream"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.TXStream" title="Link to this definition">¶</a></dt>
-<dd><p>USRP 发射流interface。</p>
-<p>管理 TX streamer 的生命period, 提供frame级发射方法。</p>
+<dd><p>USRP transmit stream interface.</p>
+<p>Manage the TX streamer lifecycle, providing frame-level transmit methods.</p>
 <p class="rubric">Initialization</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.TXStream.open">
@@ -1040,26 +1040,23 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.TXStream.send">
 <span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#TXStream.send"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.TXStream.send" title="Link to this definition">¶</a></dt>
-<dd><p>发射一frame IQ 样本。</p>
-<p>Args:
-samples: 复基带样本, dtype=complex64, shape (N,)。</p>
-<p>Returns:
-实际发射的样本数。</p>
+<dd><p>Transmit one frame of IQ samples.</p>
+<p>Args:     samples: Complex baseband samples, dtype=complex64, shape (N,).</p>
+<p>Returns:     Number of samples actually transmitted.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.TXStream.send_continuous">
 <span class="sig-name descname"><span class="pre">send_continuous</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_repeats</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#TXStream.send_continuous"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.TXStream.send_continuous" title="Link to this definition">¶</a></dt>
-<dd><p>连续发射, 重复指定次数。</p>
-<p>Args:     samples: 单frame IQ 样本。     num_repeats: 重复次数。</p>
-<p>Returns:
-总发射样本数。</p>
+<dd><p>Continuous transmission, repeated a specified number of times.</p>
+<p>Args:     samples: Single-frame IQ samples.     num_repeats: Number of repetitions.</p>
+<p>Returns:     Total number of transmitted samples.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.TXStream.close">
 <span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#TXStream.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.TXStream.close" title="Link to this definition">¶</a></dt>
-<dd><p>关闭 TX streamer。</p>
+<dd><p>close TX streamer.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1067,48 +1064,47 @@ samples: 复基带样本, dtype=complex64, shape (N,)。</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.RXStream">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.usrp.</span></span><span class="sig-name descname"><span class="pre">RXStream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.usrp.USRPDevice" title="nearlink_sdr.phy.usrp.USRPDevice"><span class="pre">nearlink_sdr.phy.usrp.USRPDevice</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#RXStream"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.RXStream" title="Link to this definition">¶</a></dt>
-<dd><p>USRP receive流interface。</p>
-<p>管理 RX streamer 的生命period, 提供定量receive和连续receive方法。</p>
+<dd><p>USRP receive stream interface.</p>
+<p>Manage the RX streamer lifecycle, providing fixed-count and continuous receive methods.</p>
 <p class="rubric">Initialization</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.RXStream.open">
 <span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samps_per_buffer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#RXStream.open"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.RXStream.open" title="Link to this definition">¶</a></dt>
-<dd><p>create RX streamer 并分配receivebuffer。</p>
-<p>Args:     samps_per_buffer: 每次 recv 调用的buffer大小。</p>
+<dd><p>Create an RX streamer and allocate the receive buffer.</p>
+<p>Args:     samps_per_buffer: Buffer size per recv call.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.RXStream.recv_num_samps">
 <span class="sig-name descname"><span class="pre">recv_num_samps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_samps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#RXStream.recv_num_samps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.RXStream.recv_num_samps" title="Link to this definition">¶</a></dt>
-<dd><p>receive指定数量的样本。</p>
-<p>Args:     num_samps: 要receive的样本数。</p>
-<p>Returns:
-复基带样本数组, shape (num_samps,), dtype=complex64。</p>
+<dd><p>Receive a specified number of samples.</p>
+<p>Args:     num_samps: Number of samples to receive.</p>
+<p>Returns:     Complex baseband sample array, shape (num_samps,), dtype=complex64.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.RXStream.start_continuous">
 <span class="sig-name descname"><span class="pre">start_continuous</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#RXStream.start_continuous"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.RXStream.start_continuous" title="Link to this definition">¶</a></dt>
-<dd><p>启动连续receive模式。</p>
+<dd><p>Start continuous receive mode.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.RXStream.recv_once">
 <span class="sig-name descname"><span class="pre">recv_once</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#RXStream.recv_once"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.RXStream.recv_once" title="Link to this definition">¶</a></dt>
-<dd><p>在连续模式下receive一个buffer的样本。</p>
-<p>Returns:     receive到的样本, length可能小于buffer大小。</p>
+<dd><p>Receive one buffer of samples in continuous mode.</p>
+<p>Returns:     Received samples, length may be less than the buffer size.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.RXStream.stop_continuous">
 <span class="sig-name descname"><span class="pre">stop_continuous</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#RXStream.stop_continuous"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.RXStream.stop_continuous" title="Link to this definition">¶</a></dt>
-<dd><p>停止连续receive。</p>
+<dd><p>Stop continuous reception.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.RXStream.close">
 <span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#RXStream.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.RXStream.close" title="Link to this definition">¶</a></dt>
-<dd><p>关闭 RX streamer。</p>
+<dd><p>close RX streamer.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1116,70 +1112,67 @@ samples: 复基带样本, dtype=complex64, shape (N,)。</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.SLETransceiver">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.usrp.</span></span><span class="sig-name descname"><span class="pre">SLETransceiver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.usrp.USRPDevice" title="nearlink_sdr.phy.usrp.USRPDevice"><span class="pre">nearlink_sdr.phy.usrp.USRPDevice</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#SLETransceiver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.SLETransceiver" title="Link to this definition">¶</a></dt>
-<dd><p>SparkLink SLE 实时收发 Pipeline。</p>
-<p>将 USRP device与 PHY modulation/demodulationmodule集成, 提供frame级收发功能。 支持frequency hopping操作。</p>
+<dd><p>SparkLink SLE real-time TX/RX pipeline.</p>
+<p>Integrate the USRP device with PHY modulation/demodulation modules, providing frame-level transceiver functionality. Supports frequency hopping.</p>
 <p class="rubric">Initialization</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.SLETransceiver.open">
 <span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rx_buf_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#SLETransceiver.open"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.SLETransceiver.open" title="Link to this definition">¶</a></dt>
-<dd><p>初始化收发流。</p>
+<dd><p>Initialize TX/RX streams.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.SLETransceiver.transmit_iq">
 <span class="sig-name descname"><span class="pre">transmit_iq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iq_samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#SLETransceiver.transmit_iq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.SLETransceiver.transmit_iq" title="Link to this definition">¶</a></dt>
-<dd><p>发射预modulation的 IQ 样本。</p>
-<p>Args:     iq_samples: 复基带signal。</p>
-<p>Returns:
-实际发射的样本数。</p>
+<dd><p>Transmit pre-modulated IQ samples.</p>
+<p>Args:     iq_samples: Complex baseband signal.</p>
+<p>Returns:     Number of samples actually transmitted.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.SLETransceiver.receive_iq">
 <span class="sig-name descname"><span class="pre">receive_iq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_samps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#SLETransceiver.receive_iq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.SLETransceiver.receive_iq" title="Link to this definition">¶</a></dt>
-<dd><p>receive指定数量的 IQ 样本。</p>
-<p>Args:     num_samps: 要receive的样本数。</p>
-<p>Returns:     receive到的复基带signal。</p>
+<dd><p>Receive a specified number of IQ samples.</p>
+<p>Args:     num_samps: Number of samples to receive.</p>
+<p>Returns:     Received complex baseband signal.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.SLETransceiver.transmit_frame">
 <span class="sig-name descname"><span class="pre">transmit_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">modulate_fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.14)"><span class="pre">collections.abc.Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#SLETransceiver.transmit_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.SLETransceiver.transmit_frame" title="Link to this definition">¶</a></dt>
-<dd><p>modulation并发射一frame。</p>
-<p>Args:     frame_bits: frame比特sequence。     modulate_fn: modulation函数, receivebit array, 返回 IQ 样本。</p>
-<p>Returns:
-实际发射的样本数。</p>
+<dd><p>Modulate and transmit one frame.</p>
+<p>Args:     frame_bits: Frame bit sequence.     modulate_fn: Modulation function, takes a bit array and returns IQ samples.</p>
+<p>Returns:     Number of samples actually transmitted.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.SLETransceiver.receive_frame">
 <span class="sig-name descname"><span class="pre">receive_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_samps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">demodulate_fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.14)"><span class="pre">collections.abc.Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#SLETransceiver.receive_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.SLETransceiver.receive_frame" title="Link to this definition">¶</a></dt>
-<dd><p>receive并demodulation一frame。</p>
-<p>Args:     num_samps: receive样本数。     demodulate_fn: demodulation函数, receive IQ 样本, 返回bit array。</p>
-<p>Returns:     demodulation后的比特sequence。</p>
+<dd><p>Receive and demodulate one frame.</p>
+<p>Args:     num_samps: Number of samples to receive.     demodulate_fn: Demodulation function, takes IQ samples and returns a bit array.</p>
+<p>Returns:     Demodulated bit sequence.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.SLETransceiver.hop_and_transmit">
 <span class="sig-name descname"><span class="pre">hop_and_transmit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">iq_samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">band</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#SLETransceiver.hop_and_transmit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.SLETransceiver.hop_and_transmit" title="Link to this definition">¶</a></dt>
-<dd><p>frequency hopping后发射。</p>
-<p>Args:     channel_num: 目标channel号。     iq_samples: 要发射的 IQ 样本。     band: 频段标识, None 沿用当前configuration。</p>
-<p>Returns:
-实际发射的样本数。</p>
+<dd><p>Transmit after frequency hopping.</p>
+<p>Args:     channel_num: Target channel number.     iq_samples: IQ samples to transmit.     band: Band identifier, None retains the current configuration.</p>
+<p>Returns:     Number of samples actually transmitted.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.SLETransceiver.hop_and_receive">
 <span class="sig-name descname"><span class="pre">hop_and_receive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_samps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">band</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#SLETransceiver.hop_and_receive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.SLETransceiver.hop_and_receive" title="Link to this definition">¶</a></dt>
-<dd><p>frequency hopping后receive。</p>
-<p>Args:     channel_num: 目标channel号。     num_samps: receive样本数。     band: 频段标识, None 沿用当前configuration。</p>
-<p>Returns:     receive到的 IQ 样本。</p>
+<dd><p>frequency hoppingnextreceive.</p>
+<p>Args:     channel_num: Target channel number.     num_samps: Number of samples to receive.     band: Band identifier, None retains the current configuration.</p>
+<p>Returns:     Received IQ samples.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.SLETransceiver.close">
 <span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#SLETransceiver.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.SLETransceiver.close" title="Link to this definition">¶</a></dt>
-<dd><p>关闭所有收发流。</p>
+<dd><p>Close all transmit and receive streams.</p>
 </dd></dl>
 
 <dl class="py property">
