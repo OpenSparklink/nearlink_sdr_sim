@@ -1,4 +1,4 @@
-.PHONY: help install lint test coverage docs-html docs-pdf docs-en docs-i18n i18n-update \
+.PHONY: help install lint test coverage docs-html docs-pdf docs-pdf-en docs-en docs-i18n i18n-update \
        install-fonts install-node accel examples clean
 
 # [help-start]
@@ -72,6 +72,13 @@ docs-pdf:  ## 构建 PDF 文档 (需提前运行 make install)
 	uv run sphinx-build -b latex docs docs/_build/latex
 	cd docs/_build/latex && make
 # [docs-pdf-end]
+
+docs-pdf-en:  ## 构建英文版 PDF 文档
+# [docs-pdf-en-start]
+	uv run sphinx-intl build -d docs/locales
+	uv run sphinx-build -b latex -D language=en docs docs/_build/latex_en
+	cd docs/_build/latex_en && make
+# [docs-pdf-en-end]
 
 docs-en:  ## 构建英文版 HTML 文档
 # [docs-en-start]

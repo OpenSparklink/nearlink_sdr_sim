@@ -8,8 +8,8 @@ permissions:
   contents: write
 
 jobs:
-  build-pdf:
-    name: Build PDF
+  build-docs:
+    name: Build Docs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -42,31 +42,64 @@ jobs:
       - name: Install Mermaid CLI
         run: npm install
 
-      - name: Build PDF
+      - name: Build Chinese PDF
         run: make docs-pdf
 
-      - name: Upload PDF artifact
+      - name: Build English PDF
+        run: make docs-pdf-en
+
+      - name: Build Chinese HTML
+        run: uv run sphinx-build -b html docs docs/_build/html
+
+      - name: Build English HTML
+        run: |
+          uv run sphinx-intl build -d docs/locales
+          uv run sphinx-build -b html -D language=en docs docs/_build/html_en
+
+      - name: Package HTML docs
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          cd docs/_build/html && tar czf "../../../nearlink-sdr-docs-zh-${TAG}.tar.gz" .
+          cd ../../..
+          cd docs/_build/html_en && tar czf "../../../nearlink-sdr-docs-en-${TAG}.tar.gz" .
+
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: docs-pdf
-          path: docs/_build/latex/nearlink-sdr.pdf
+          name: release-assets
+          path: |
+            docs/_build/latex/nearlink-sdr.pdf
+            docs/_build/latex_en/nearlink-sdr.pdf
+            nearlink-sdr-docs-zh-*.tar.gz
+            nearlink-sdr-docs-en-*.tar.gz
 
   release:
     name: Create Release
     runs-on: ubuntu-latest
-    needs: build-pdf
+    needs: build-docs
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download PDF
+      - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
-          name: docs-pdf
+          name: release-assets
           path: dist/
+
+      - name: Rename PDF files
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          mv dist/docs/_build/latex/nearlink-sdr.pdf "dist/nearlink-sdr-zh-${TAG}.pdf"
+          mv dist/docs/_build/latex_en/nearlink-sdr.pdf "dist/nearlink-sdr-en-${TAG}.pdf"
+          mv dist/nearlink-sdr-docs-zh-*.tar.gz dist/
+          mv dist/nearlink-sdr-docs-en-*.tar.gz dist/
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           generate_release_notes: true
           files: |
-            dist/nearlink-sdr.pdf
+            dist/nearlink-sdr-zh-*.pdf
+            dist/nearlink-sdr-en-*.pdf
+            dist/nearlink-sdr-docs-zh-*.tar.gz
+            dist/nearlink-sdr-docs-en-*.tar.gz

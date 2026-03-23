@@ -124,6 +124,11 @@ latex_elements = {
 \emergencystretch=3em
 \tolerance=9999
 
+% 代码块强制换行：Sphinx verbatimforcewraps 在 sphinxsetup 中启用
+
+% 内联代码允许断行
+\usepackage[htt]{hyphenat}
+
 % 表格使用更小字号，防止长 API 路径溢出
 \AtBeginEnvironment{longtable}{\footnotesize}
 \AtBeginEnvironment{tabulary}{\footnotesize}
@@ -137,6 +142,8 @@ latex_elements = {
     "sphinxsetup": (
         r"verbatimwithframe=true, "
         r"verbatimwrapslines=true, "
+        r"verbatimforcewraps=true, "
+        r"verbatimmaxoverfull=0, "
         r"verbatimsep=5pt, "
         r"verbatimborder=0.5pt, "
         r"TitleColor={rgb}{0.1,0.1,0.45}"
