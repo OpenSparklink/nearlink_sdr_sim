@@ -112,9 +112,11 @@ jobs:
           mv dist/docs/_build/latex/nearlink-sdr.pdf "dist/nearlink-sdr-zh-${TAG}.pdf"
           mv dist/docs/_build/latex_en/nearlink-sdr.pdf "dist/nearlink-sdr-en-${TAG}.pdf"
 
-      - name: Create GitHub Release
+      - name: Create GitHub Release (draft)
+        id: create_release
         uses: softprops/action-gh-release@v2
         with:
+          draft: true
           generate_release_notes: true
           prerelease: ${{ needs.build-docs.outputs.prerelease == 'true' }}
           files: |
@@ -122,3 +124,8 @@ jobs:
             dist/nearlink-sdr-en-*.pdf
             dist/nearlink-sdr-docs-zh-*.tar.gz
             dist/nearlink-sdr-docs-en-*.tar.gz
+
+      - name: Publish release
+        run: gh release edit "${{ github.ref_name }}" --draft=false
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
