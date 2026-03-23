@@ -530,7 +530,25 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_frame.UWBPulseConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_frame.</span></span><span class="sig-name descname"><span class="pre">UWBPulseConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_frame.html#UWBPulseConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_frame.UWBPulseConfig" title="Link to this definition">¶</a></dt>
 <dd><p>UWB pulse measurement frame configuration.</p>
-<p>Attributes:     K: Codeword length.     L: Duty factor.     Tc: Chip duration (seconds).     N_sync: Number of sync field symbols, 0 means no sync field is transmitted.     symbol_seq: Sync symbol sequence (+1/-1), length is K.     M_seg: Number of measurement sub-segments.     N_seg: Number of CTS symbols per measurement sub-segment.     N_gap: Number of symbols in the gap between measurement sub-segments.     scramble: Scrambling SC sequence (+1/-1), length is N_seg * M_seg.         All 1s in normal mode, determined by the security algorithm in security mode.     L_cp: Cyclic prefix length.     L_zero: Zero-padding suffix length.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>K</strong> – 码字长度。</p></li>
+<li><p><strong>L</strong> – 占空因子。</p></li>
+<li><p><strong>Tc</strong> – 码片时长 (秒)。</p></li>
+<li><p><strong>N_sync</strong> – 同步字段符号个数, 0 表示不发送同步字段。</p></li>
+<li><p><strong>symbol_seq</strong> – 同步符号序列 (+1/-1), 长度为 K。</p></li>
+<li><p><strong>M_seg</strong> – 测量子片段数。</p></li>
+<li><p><strong>N_seg</strong> – 每个测量子片段的 CTS 符号数。</p></li>
+<li><p><strong>N_gap</strong> – 测量子片段间隔的符号数。</p></li>
+<li><p><strong>scramble</strong> – 加扰 SC 序列 (+1/-1), 长度为 N_seg * M_seg。
+普通模式下全 1, 安全模式下由安全算法确定。</p></li>
+<li><p><strong>L_cp</strong> – 循环前缀码片数 (安全模式)。</p></li>
+<li><p><strong>L_zero</strong> – 补零后缀码片数 (安全模式)。</p></li>
+<li><p><strong>N_offset</strong> – 安全模式偏移码片数, 默认 0 (普通模式)。</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_frame.UWBPulseConfig.K">
 <span class="sig-name descname"><span class="pre">K</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.measurement_frame.UWBPulseConfig.K" title="Link to this definition">¶</a></dt>

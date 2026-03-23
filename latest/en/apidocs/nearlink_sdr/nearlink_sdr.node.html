@@ -475,7 +475,31 @@
 <dt class="sig sig-object py" id="nearlink_sdr.node.NodeConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.node.</span></span><span class="sig-name descname"><span class="pre">NodeConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#NodeConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.NodeConfig" title="Link to this definition">¶</a></dt>
 <dd><p>SLE node configuration.</p>
-<p>Attributes:     address: 6-byte device address.     role: Role preference (AUTO/G_NODE/T_NODE).     frame_type: Frame type (1-4).     mcs_index: MCS index (0-12).     bandwidth_mhz: Channel bandwidth (1/2/4 MHz).     pilot_interval: Pilot insertion interval (0/4/8/16).     max_pdu: Maximum PDU length (bytes).     max_retransmit: Maximum retransmission count.     enable_encryption: Whether to enable encryption.     transport: Transport mode.     band: Band identifier.     hop_param2: Frequency-hopping parameter 2 (0 means auto-derived from address).     blocked_channels: Set of blocked channel numbers.     tx_power_dbm: Initial transmit power (dBm).     max_power_dbm: Maximum transmit power.     min_power_dbm: Minimum transmit power.     channel_config: Channel model configuration for simulation mode (None for ideal channel).     usrp_config: USRP hardware configuration (used when transport=USRP).     smf_enabled: Whether to enable system management frame scheduling.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>address</strong> – 6 字节设备地址。</p></li>
+<li><p><strong>role</strong> – 角色偏好 (AUTO/G_NODE/T_NODE)。</p></li>
+<li><p><strong>frame_type</strong> – 帧类型 (1-4)。</p></li>
+<li><p><strong>mcs_index</strong> – MCS 索引 (0-12)。</p></li>
+<li><p><strong>bandwidth_mhz</strong> – 信道带宽 (1/2/4 MHz)。</p></li>
+<li><p><strong>pilot_interval</strong> – 导频插入间隔 (0/4/8/16)。</p></li>
+<li><p><strong>max_pdu</strong> – 最大 PDU 长度 (字节)。</p></li>
+<li><p><strong>max_retransmit</strong> – 最大重传次数。</p></li>
+<li><p><strong>enable_encryption</strong> – 是否启用加密。</p></li>
+<li><p><strong>transport</strong> – Transport mode.</p></li>
+<li><p><strong>band</strong> – 频段标识。</p></li>
+<li><p><strong>hop_param2</strong> – 跳频参数 2 (0 表示自动从地址派生)。</p></li>
+<li><p><strong>blocked_channels</strong> – 被阻塞的信道号集合。</p></li>
+<li><p><strong>tx_power_dbm</strong> – 初始发射功率 (dBm)。</p></li>
+<li><p><strong>max_power_dbm</strong> – 最大发射功率。</p></li>
+<li><p><strong>min_power_dbm</strong> – 最小发射功率。</p></li>
+<li><p><strong>channel_config</strong> – 仿真模式下的信道模型配置 (None 表示理想信道)。</p></li>
+<li><p><strong>usrp_config</strong> – USRP 硬件配置 (transport=USRP 时使用)。</p></li>
+<li><p><strong>smf_enabled</strong> – 是否启用系统管理帧调度。</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.node.NodeConfig.address">
 <span class="sig-name descname"><span class="pre">address</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.node.NodeConfig.address" title="Link to this definition">¶</a></dt>

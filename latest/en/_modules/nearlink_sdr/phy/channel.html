@@ -440,15 +440,14 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">ChannelConfig</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;信道配置参数。</span>
 
-<span class="sd">    Attributes:</span>
-<span class="sd">        snr_db: 信噪比 (dB)。</span>
-<span class="sd">        channel_type: &quot;awgn&quot; | &quot;rayleigh&quot; | &quot;rician&quot; | &quot;multipath&quot;。</span>
-<span class="sd">        rician_k_db: Rician K 因子 (dB), 仅 &quot;rician&quot; 模式使用。</span>
-<span class="sd">        pdp: 功率时延谱 [(delay_samples, power_dB), ...], 仅 &quot;multipath&quot; 使用。</span>
-<span class="sd">        max_doppler_hz: 最大多普勒频移 (Hz)。0 表示准静态。</span>
-<span class="sd">        symbol_rate_hz: 符号速率 (Hz), 用于计算归一化 Doppler 频移。</span>
-<span class="sd">        n_sinusoids: Jakes 模型正弦分量数, 值越大频谱越精确。</span>
-<span class="sd">        seed: 随机种子。</span>
+<span class="sd">    :ivar snr_db: 信噪比 (dB)。</span>
+<span class="sd">    :ivar channel_type: &quot;awgn&quot; | &quot;rayleigh&quot; | &quot;rician&quot; | &quot;multipath&quot;。</span>
+<span class="sd">    :ivar rician_k_db: Rician K 因子 (dB), 仅 &quot;rician&quot; 模式使用。</span>
+<span class="sd">    :ivar pdp: 功率时延谱 [(delay_samples, power_dB), ...], 仅 &quot;multipath&quot; 使用。</span>
+<span class="sd">    :ivar max_doppler_hz: 最大多普勒频移 (Hz)。0 表示准静态。</span>
+<span class="sd">    :ivar symbol_rate_hz: 符号速率 (Hz), 用于计算归一化 Doppler 频移。</span>
+<span class="sd">    :ivar n_sinusoids: Jakes 模型正弦分量数, 值越大频谱越精确。</span>
+<span class="sd">    :ivar seed: 随机种子。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">snr_db</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10.0</span>
     <span class="n">channel_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;awgn&quot;</span>
@@ -712,13 +711,12 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">InterferenceConfig</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;干扰源配置。</span>
 
-<span class="sd">    Attributes:</span>
-<span class="sd">        sir_db: 信号与干扰功率比 (dB), 即 S/I。</span>
-<span class="sd">        freq_offset_hz: 干扰信号中心频率相对有用信号的偏移 (Hz)。</span>
-<span class="sd">            0 表示同信道干扰。</span>
-<span class="sd">        interferer_bw_hz: 干扰信号带宽 (Hz), 用于频谱成型。</span>
-<span class="sd">            0 表示与有用信号相同带宽 (不做滤波)。</span>
-<span class="sd">        seed: 随机种子。</span>
+<span class="sd">    :ivar sir_db: 信号与干扰功率比 (dB), 即 S/I。</span>
+<span class="sd">    :ivar freq_offset_hz: 干扰信号中心频率相对有用信号的偏移 (Hz)。</span>
+<span class="sd">        0 表示同信道干扰。</span>
+<span class="sd">    :ivar interferer_bw_hz: 干扰信号带宽 (Hz), 用于频谱成型。</span>
+<span class="sd">        0 表示与有用信号相同带宽 (不做滤波)。</span>
+<span class="sd">    :ivar seed: 随机种子。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">sir_db</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10.0</span>
     <span class="n">freq_offset_hz</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>

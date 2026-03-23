@@ -471,15 +471,20 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.ChannelConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.channel.</span></span><span class="sig-name descname"><span class="pre">ChannelConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#ChannelConfig"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.ChannelConfig" title="Link to this definition">¶</a></dt>
 <dd><p>信道配置参数。</p>
-<p>Attributes:
-snr_db: 信噪比 (dB)。
-channel_type: &quot;awgn&quot; | &quot;rayleigh&quot; | &quot;rician&quot; | &quot;multipath&quot;。
-rician_k_db: Rician K 因子 (dB), 仅 &quot;rician&quot; 模式使用。
-pdp: 功率时延谱 [(delay_samples, power_dB), ...], 仅 &quot;multipath&quot; 使用。
-max_doppler_hz: 最大多普勒频移 (Hz)。0 表示准静态。
-symbol_rate_hz: 符号速率 (Hz), 用于计算归一化 Doppler 频移。
-n_sinusoids: Jakes 模型正弦分量数, 值越大频谱越精确。
-seed: 随机种子。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">变量<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>snr_db</strong> -- 信噪比 (dB)。</p></li>
+<li><p><strong>channel_type</strong> -- &quot;awgn&quot; | &quot;rayleigh&quot; | &quot;rician&quot; | &quot;multipath&quot;。</p></li>
+<li><p><strong>rician_k_db</strong> -- Rician K 因子 (dB), 仅 &quot;rician&quot; 模式使用。</p></li>
+<li><p><strong>pdp</strong> -- 功率时延谱 [(delay_samples, power_dB), ...], 仅 &quot;multipath&quot; 使用。</p></li>
+<li><p><strong>max_doppler_hz</strong> -- 最大多普勒频移 (Hz)。0 表示准静态。</p></li>
+<li><p><strong>symbol_rate_hz</strong> -- 符号速率 (Hz), 用于计算归一化 Doppler 频移。</p></li>
+<li><p><strong>n_sinusoids</strong> -- Jakes 模型正弦分量数, 值越大频谱越精确。</p></li>
+<li><p><strong>seed</strong> -- 随机种子。</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.ChannelConfig.snr_db">
 <span class="sig-name descname"><span class="pre">snr_db</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.channel.ChannelConfig.snr_db" title="Link to this definition">¶</a></dt>
@@ -586,13 +591,18 @@ seed: 随机种子。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.InterferenceConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.channel.</span></span><span class="sig-name descname"><span class="pre">InterferenceConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#InterferenceConfig"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.InterferenceConfig" title="Link to this definition">¶</a></dt>
 <dd><p>干扰源配置。</p>
-<p>Attributes:
-sir_db: 信号与干扰功率比 (dB), 即 S/I。
-freq_offset_hz: 干扰信号中心频率相对有用信号的偏移 (Hz)。
-0 表示同信道干扰。
-interferer_bw_hz: 干扰信号带宽 (Hz), 用于频谱成型。
-0 表示与有用信号相同带宽 (不做滤波)。
-seed: 随机种子。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">变量<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sir_db</strong> -- 信号与干扰功率比 (dB), 即 S/I。</p></li>
+<li><p><strong>freq_offset_hz</strong> -- 干扰信号中心频率相对有用信号的偏移 (Hz)。
+0 表示同信道干扰。</p></li>
+<li><p><strong>interferer_bw_hz</strong> -- 干扰信号带宽 (Hz), 用于频谱成型。
+0 表示与有用信号相同带宽 (不做滤波)。</p></li>
+<li><p><strong>seed</strong> -- 随机种子。</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.InterferenceConfig.sir_db">
 <span class="sig-name descname"><span class="pre">sir_db</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.channel.InterferenceConfig.sir_db" title="Link to this definition">¶</a></dt>

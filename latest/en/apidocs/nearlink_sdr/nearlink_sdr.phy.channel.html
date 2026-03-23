@@ -468,7 +468,20 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.ChannelConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.channel.</span></span><span class="sig-name descname"><span class="pre">ChannelConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#ChannelConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.ChannelConfig" title="Link to this definition">¶</a></dt>
 <dd><p>Channel configuration parameters.</p>
-<p>Attributes:     snr_db: Signal-to-noise ratio (dB).     channel_type: “awgn” | “rayleigh” | “rician” | “multipath”.     rician_k_db: Rician K factor (dB), used only in “rician” mode.     pdp: Power delay profile [(delay_samples, power_dB), …], used only in “multipath” mode.     max_doppler_hz: Maximum Doppler frequency shift (Hz). 0 means quasi-static.     symbol_rate_hz: Symbol rate (Hz), used to compute the normalized Doppler shift.     n_sinusoids: Number of sinusoidal components in the Jakes model; higher values yield a more accurate spectrum.     seed: Random seed.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>snr_db</strong> – SINR (dB).</p></li>
+<li><p><strong>channel_type</strong> – “awgn” | “rayleigh” | “rician” | “multipath”。</p></li>
+<li><p><strong>rician_k_db</strong> – Rician K 因子 (dB), 仅 “rician” 模式使用。</p></li>
+<li><p><strong>pdp</strong> – 功率时延谱 [(delay_samples, power_dB), …], 仅 “multipath” 使用。</p></li>
+<li><p><strong>max_doppler_hz</strong> – 最大多普勒频移 (Hz)。0 表示准静态。</p></li>
+<li><p><strong>symbol_rate_hz</strong> – 符号速率 (Hz), 用于计算归一化 Doppler 频移。</p></li>
+<li><p><strong>n_sinusoids</strong> – Jakes 模型正弦分量数, 值越大频谱越精确。</p></li>
+<li><p><strong>seed</strong> – 随机种子。</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.ChannelConfig.snr_db">
 <span class="sig-name descname"><span class="pre">snr_db</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.channel.ChannelConfig.snr_db" title="Link to this definition">¶</a></dt>
@@ -574,7 +587,18 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.InterferenceConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.channel.</span></span><span class="sig-name descname"><span class="pre">InterferenceConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#InterferenceConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.InterferenceConfig" title="Link to this definition">¶</a></dt>
 <dd><p>Interference source configuration.</p>
-<p>Attributes:     sir_db: Signal-to-interference power ratio (dB), i.e. S/I.     freq_offset_hz: Frequency offset of the interferer center frequency relative to the useful signal (Hz).         0 means co-channel interference.     interferer_bw_hz: Interferer signal bandwidth (Hz), used for spectral shaping.         0 means same bandwidth as the useful signal (no filtering).     seed: Random seed.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sir_db</strong> – 信号与干扰功率比 (dB), 即 S/I。</p></li>
+<li><p><strong>freq_offset_hz</strong> – 干扰信号中心频率相对有用信号的偏移 (Hz)。
+0 表示同信道干扰。</p></li>
+<li><p><strong>interferer_bw_hz</strong> – 干扰信号带宽 (Hz), 用于频谱成型。
+0 表示与有用信号相同带宽 (不做滤波)。</p></li>
+<li><p><strong>seed</strong> – 随机种子。</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.InterferenceConfig.sir_db">
 <span class="sig-name descname"><span class="pre">sir_db</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.channel.InterferenceConfig.sir_db" title="Link to this definition">¶</a></dt>

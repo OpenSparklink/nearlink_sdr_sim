@@ -517,10 +517,15 @@
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.freq_hopping.</span></span><span class="sig-name descname"><span class="pre">FreqTable</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#FreqTable"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.FreqTable" title="Link to this definition">¶</a></dt>
 <dd><p>信道频率表管理。</p>
 <p>管理完整频点表和可用频点表, 支持 1M/2M/4M 带宽场景。</p>
-<p>Attributes:
-band: 频段标识, &quot;2400&quot; / &quot;5100&quot; / &quot;5800&quot;。
-bandwidth_mhz: 信道带宽, 1 / 2 / 4 MHz。
-blocked_channels: 被阻塞(不可用)的物理信道号集合。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">变量<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>band</strong> -- 频段标识, &quot;2400&quot; / &quot;5100&quot; / &quot;5800&quot;。</p></li>
+<li><p><strong>bandwidth_mhz</strong> -- 信道带宽, 1 / 2 / 4 MHz。</p></li>
+<li><p><strong>blocked_channels</strong> -- 被阻塞(不可用)的物理信道号集合。</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.FreqTable.band">
 <span class="sig-name descname"><span class="pre">band</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.FreqTable.band" title="Link to this definition">¶</a></dt>
@@ -559,11 +564,16 @@ blocked_channels: 被阻塞(不可用)的物理信道号集合。</p>
 <dd><p>测量链路跳频器。</p>
 <p>标准 6.10.3.5: 支持三种跳频方案。
 方案 3 在使用后从可用频点表中删除已用频点, 表空时重置。</p>
-<p>Attributes:
-mode: 跳频模式, 0/1/2。
-freq_table: 频率表对象。
-hop_param2: 跳频参数 2 (方案 3 使用)。
-init_channel: 初始化阶段频点 (可选)。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">变量<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mode</strong> -- 跳频模式, 0/1/2。</p></li>
+<li><p><strong>freq_table</strong> -- 频率表对象。</p></li>
+<li><p><strong>hop_param2</strong> -- 跳频参数 2 (方案 3 使用)。</p></li>
+<li><p><strong>init_channel</strong> -- 初始化阶段频点 (可选)。</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.MeasLinkHopper.mode">
 <span class="sig-name descname"><span class="pre">mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.MeasLinkHopper.mode" title="Link to this definition">¶</a></dt>

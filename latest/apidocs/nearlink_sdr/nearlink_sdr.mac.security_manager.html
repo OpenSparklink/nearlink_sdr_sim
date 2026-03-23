@@ -486,13 +486,18 @@
 <dd><p>帧级 AES-CCM 加解密上下文。</p>
 <p>管理 payload_count 单调递增和 nonce 构建,
 为 MAC 帧提供加解密服务。</p>
-<p>Attributes:
-session_key: 会话密钥 (16 字节)。
-iv_base: 初始化向量基底 (8 字节)。
-direction: 传输方向 (0=G→T, 1=T→G)。
-mic_len: MIC 长度 (字节, 4/8/12/16)。
-frame_type: 帧类型 (用于 IV 计算)。
-link_id: 链路标识 (用于 IV 计算)。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">变量<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>session_key</strong> -- 会话密钥 (16 字节)。</p></li>
+<li><p><strong>iv_base</strong> -- 初始化向量基底 (8 字节)。</p></li>
+<li><p><strong>direction</strong> -- 传输方向 (0=G→T, 1=T→G)。</p></li>
+<li><p><strong>mic_len</strong> -- MIC 长度 (字节, 4/8/12/16)。</p></li>
+<li><p><strong>frame_type</strong> -- 帧类型 (用于 IV 计算)。</p></li>
+<li><p><strong>link_id</strong> -- 链路标识 (用于 IV 计算)。</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.FrameCryptoContext.session_key">
 <span class="sig-name descname"><span class="pre">session_key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="（在 Python v3.14）"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security_manager.FrameCryptoContext.session_key" title="Link to this definition">¶</a></dt>
@@ -675,11 +680,16 @@ link_id: 链路标识 (用于 IV 计算)。</p>
 <li><p>链路密钥派生</p></li>
 <li><p>会话密钥派生</p></li>
 </ol>
-<p>Attributes:
-is_g_node: 本端是否为 G 节点。
-kdf_type: 密钥派生函数类型。
-auth_method: 鉴权方式。
-max_key_length: 最大密钥长度 (字节)。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">变量<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>is_g_node</strong> -- 本端是否为 G 节点。</p></li>
+<li><p><strong>kdf_type</strong> -- 密钥派生函数类型。</p></li>
+<li><p><strong>auth_method</strong> -- 鉴权方式。</p></li>
+<li><p><strong>max_key_length</strong> -- 最大密钥长度 (字节)。</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.PairingManager.is_g_node">
 <span class="sig-name descname"><span class="pre">is_g_node</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="（在 Python v3.14）"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security_manager.PairingManager.is_g_node" title="Link to this definition">¶</a></dt>

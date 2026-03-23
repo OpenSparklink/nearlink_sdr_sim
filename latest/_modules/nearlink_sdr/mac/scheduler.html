@@ -488,8 +488,7 @@
 
 <span class="sd">    以 Tsys = 125 μs 为最小递增单位, 30 bit 可表示约 37.3 小时。</span>
 
-<span class="sd">    Attributes:</span>
-<span class="sd">        value: 当前计数值 (0 ~ 2^30 - 1)。</span>
+<span class="sd">    :ivar value: 当前计数值 (0 ~ 2^30 - 1)。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -590,11 +589,10 @@
 
 <span class="sd">    描述一个链路在超帧内的时间资源分配。</span>
 
-<span class="sd">    Attributes:</span>
-<span class="sd">        offset: 相对 SMF 起始点的偏移 (调度时隙)。</span>
-<span class="sd">        duration: 时间片持续长度 (调度时隙)。</span>
-<span class="sd">        period: 时间片重复周期 (调度时隙)。</span>
-<span class="sd">        repeat_count: 时间片重复次数。</span>
+<span class="sd">    :ivar offset: 相对 SMF 起始点的偏移 (调度时隙)。</span>
+<span class="sd">    :ivar duration: 时间片持续长度 (调度时隙)。</span>
+<span class="sd">    :ivar period: 时间片重复周期 (调度时隙)。</span>
+<span class="sd">    :ivar repeat_count: 时间片重复次数。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">duration</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
@@ -631,14 +629,13 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">SmfScheduleConfig</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;SMF 调度信令参数 (标准 6.6.2.1)。</span>
 
-<span class="sd">    Attributes:</span>
-<span class="sd">        effective_slot: 信令生效时隙 (32 bit, 基础时隙)。</span>
-<span class="sd">        smf_interval: 两个 SMF 之间的间隔 (16 bit, 基础时隙)。</span>
-<span class="sd">        frame_type: 无线帧类型指示 (4 bit)。</span>
-<span class="sd">        bandwidth: 带宽指示 (2 bit, 0=1M/1=2M/2=4M)。</span>
-<span class="sd">        pilot_density: 导频密度指示 (2 bit)。</span>
-<span class="sd">        channel_count: 可用频点个数 (8 bit)。</span>
-<span class="sd">        channel_table: 频点表。</span>
+<span class="sd">    :ivar effective_slot: 信令生效时隙 (32 bit, 基础时隙)。</span>
+<span class="sd">    :ivar smf_interval: 两个 SMF 之间的间隔 (16 bit, 基础时隙)。</span>
+<span class="sd">    :ivar frame_type: 无线帧类型指示 (4 bit)。</span>
+<span class="sd">    :ivar bandwidth: 带宽指示 (2 bit, 0=1M/1=2M/2=4M)。</span>
+<span class="sd">    :ivar pilot_density: 导频密度指示 (2 bit)。</span>
+<span class="sd">    :ivar channel_count: 可用频点个数 (8 bit)。</span>
+<span class="sd">    :ivar channel_table: 频点表。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">effective_slot</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">smf_interval</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">800</span>          <span class="c1"># 800 × 125 μs = 100 ms</span>
@@ -664,12 +661,11 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">LinkScheduleEntry</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;链路信令: 链路在超帧内的时间资源配置 (标准 6.6.2.2)。</span>
 
-<span class="sd">    Attributes:</span>
-<span class="sd">        link_id: 逻辑链路标识 (24 bit)。</span>
-<span class="sd">        effective_slot: 信令生效时隙 (32 bit, 基础时隙)。</span>
-<span class="sd">        period_factor: 链路周期因子 (8 bit)。</span>
-<span class="sd">        schedule_slot_type: 调度时隙长度 (3 bit)。</span>
-<span class="sd">        time_slices: 时间片配置列表。</span>
+<span class="sd">    :ivar link_id: 逻辑链路标识 (24 bit)。</span>
+<span class="sd">    :ivar effective_slot: 信令生效时隙 (32 bit, 基础时隙)。</span>
+<span class="sd">    :ivar period_factor: 链路周期因子 (8 bit)。</span>
+<span class="sd">    :ivar schedule_slot_type: 调度时隙长度 (3 bit)。</span>
+<span class="sd">    :ivar time_slices: 时间片配置列表。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">link_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">effective_slot</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
@@ -690,9 +686,8 @@
 
 <span class="sd">    管理 SMF 周期内的链路调度, 活动区间和低功耗区间的划分。</span>
 
-<span class="sd">    Attributes:</span>
-<span class="sd">        smf_config: SMF 调度参数。</span>
-<span class="sd">        link_entries: 已注册的链路调度条目。</span>
+<span class="sd">    :ivar smf_config: SMF 调度参数。</span>
+<span class="sd">    :ivar link_entries: 已注册的链路调度条目。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">smf_config</span><span class="p">:</span> <span class="n">SmfScheduleConfig</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">SmfScheduleConfig</span><span class="p">)</span>
     <span class="n">link_entries</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">LinkScheduleEntry</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
@@ -805,10 +800,9 @@
 <span class="sd">    管理一个链路上事件组的时间计算, 根据事件组参数</span>
 <span class="sd">    生成事件的调度时间表。</span>
 
-<span class="sd">    Attributes:</span>
-<span class="sd">        timing: 事件计时参数。</span>
-<span class="sd">        anchor_slot: 锚点时隙 (基础时隙顺序号)。</span>
-<span class="sd">        anchor_offset_us: 事件组起始偏移 (μs)。</span>
+<span class="sd">    :ivar timing: 事件计时参数。</span>
+<span class="sd">    :ivar anchor_slot: 锚点时隙 (基础时隙顺序号)。</span>
+<span class="sd">    :ivar anchor_offset_us: 事件组起始偏移 (μs)。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">timing</span><span class="p">:</span> <span class="n">EventTimingParams</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">EventTimingParams</span><span class="p">)</span>
     <span class="n">anchor_slot</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
@@ -974,8 +968,7 @@
 
 <span class="sd">    Polar 编码分段 [00001]~[11111] 各对应一个 8 bit 间隔值 (μs)。</span>
 
-<span class="sd">    Attributes:</span>
-<span class="sd">        levels: 31 个间隔值 (μs), 索引 0-30 对应级别 1-31。</span>
+<span class="sd">    :ivar levels: 31 个间隔值 (μs), 索引 0-30 对应级别 1-31。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">levels</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="mi">125</span><span class="p">]</span> <span class="o">*</span> <span class="mi">31</span><span class="p">)</span>
 
@@ -1027,12 +1020,11 @@
 <span class="sd">    整合超帧管理、事件组调度和收发间隔控制,</span>
 <span class="sd">    提供链路时间资源的统一管理接口。</span>
 
-<span class="sd">    Attributes:</span>
-<span class="sd">        superframe: 超帧结构。</span>
-<span class="sd">        event_schedulers: 按 link_id 索引的事件组调度器。</span>
-<span class="sd">        slot_counter: 全局时隙计数器。</span>
-<span class="sd">        tx_rx_interval: 当前收发间隔类型。</span>
-<span class="sd">        multi_interval: 多级收发间隔配置。</span>
+<span class="sd">    :ivar superframe: 超帧结构。</span>
+<span class="sd">    :ivar event_schedulers: 按 link_id 索引的事件组调度器。</span>
+<span class="sd">    :ivar slot_counter: 全局时隙计数器。</span>
+<span class="sd">    :ivar tx_rx_interval: 当前收发间隔类型。</span>
+<span class="sd">    :ivar multi_interval: 多级收发间隔配置。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">superframe</span><span class="p">:</span> <span class="n">Superframe</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">Superframe</span><span class="p">)</span>
     <span class="n">event_schedulers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">EventGroupScheduler</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>

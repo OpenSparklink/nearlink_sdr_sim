@@ -517,7 +517,15 @@
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.freq_hopping.</span></span><span class="sig-name descname"><span class="pre">FreqTable</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#FreqTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.FreqTable" title="Link to this definition">¶</a></dt>
 <dd><p>Channel frequency table management.</p>
 <p>Manage the full frequency table and available frequency table, supporting 1M/2M/4M bandwidth scenarios.</p>
-<p>Attributes:     band: Band identifier, “2400” / “5100” / “5800”.     bandwidth_mhz: Channel bandwidth, 1 / 2 / 4 MHz.     blocked_channels: Set of blocked (unavailable) physical channel numbers.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>band</strong> – 频段标识, “2400” / “5100” / “5800”。</p></li>
+<li><p><strong>bandwidth_mhz</strong> – 信道带宽, 1 / 2 / 4 MHz。</p></li>
+<li><p><strong>blocked_channels</strong> – 被阻塞(不可用)的物理信道号集合。</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.FreqTable.band">
 <span class="sig-name descname"><span class="pre">band</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.FreqTable.band" title="Link to this definition">¶</a></dt>
@@ -555,7 +563,16 @@
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.freq_hopping.</span></span><span class="sig-name descname"><span class="pre">MeasLinkHopper</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#MeasLinkHopper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.MeasLinkHopper" title="Link to this definition">¶</a></dt>
 <dd><p>Measurement link frequency hopper.</p>
 <p>Standard 6.10.3.5: supports three hopping schemes. Scheme 3 removes used frequency points from the available table after use, resetting when empty.</p>
-<p>Attributes:     mode: Hopping mode, 0/1/2.     freq_table: Frequency table object.     hop_param2: Hopping parameter 2 (used by scheme 3).     init_channel: Initialization phase frequency point (optional).</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mode</strong> – 跳频模式, 0/1/2。</p></li>
+<li><p><strong>freq_table</strong> – Channel frequency table management.</p></li>
+<li><p><strong>hop_param2</strong> – current scheduling slot count (scheme 3 use).</p></li>
+<li><p><strong>init_channel</strong> – 初始化阶段频点 (可选)。</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.MeasLinkHopper.mode">
 <span class="sig-name descname"><span class="pre">mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.MeasLinkHopper.mode" title="Link to this definition">¶</a></dt>

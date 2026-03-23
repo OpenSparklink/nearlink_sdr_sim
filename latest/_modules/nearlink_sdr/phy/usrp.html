@@ -484,22 +484,21 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">USRPConfig</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;USRP 设备配置参数。</span>
 
-<span class="sd">    Attributes:</span>
-<span class="sd">        device_args: UHD 设备地址参数, 空字符串表示自动发现。</span>
-<span class="sd">        channel_num: SLE 射频信道号。</span>
-<span class="sd">        band: 频段标识 (&quot;2400&quot; / &quot;5100&quot; / &quot;5800&quot;)。</span>
-<span class="sd">        sample_rate_hz: 采样率 (Hz)。</span>
-<span class="sd">        rx_gain_db: 接收增益 (dB)。</span>
-<span class="sd">        tx_gain_db: 发射增益 (dB)。</span>
-<span class="sd">        bandwidth_hz: 前端模拟滤波器带宽 (Hz), 0 表示不设置。</span>
-<span class="sd">        rx_antenna: 接收天线端口名称。</span>
-<span class="sd">        tx_antenna: 发射天线端口名称。</span>
-<span class="sd">        clock_source: 参考时钟源。</span>
-<span class="sd">        time_source: PPS 时间源。</span>
-<span class="sd">        cpu_format: 主机端样本格式。</span>
-<span class="sd">        wire_format: 线缆端样本格式。</span>
-<span class="sd">        num_recv_frames: 接收缓冲区帧数, 增大可减少溢出。</span>
-<span class="sd">        stream_timeout_s: 流操作超时时间 (秒)。</span>
+<span class="sd">    :ivar device_args: UHD 设备地址参数, 空字符串表示自动发现。</span>
+<span class="sd">    :ivar channel_num: SLE 射频信道号。</span>
+<span class="sd">    :ivar band: 频段标识 (&quot;2400&quot; / &quot;5100&quot; / &quot;5800&quot;)。</span>
+<span class="sd">    :ivar sample_rate_hz: 采样率 (Hz)。</span>
+<span class="sd">    :ivar rx_gain_db: 接收增益 (dB)。</span>
+<span class="sd">    :ivar tx_gain_db: 发射增益 (dB)。</span>
+<span class="sd">    :ivar bandwidth_hz: 前端模拟滤波器带宽 (Hz), 0 表示不设置。</span>
+<span class="sd">    :ivar rx_antenna: 接收天线端口名称。</span>
+<span class="sd">    :ivar tx_antenna: 发射天线端口名称。</span>
+<span class="sd">    :ivar clock_source: 参考时钟源。</span>
+<span class="sd">    :ivar time_source: PPS 时间源。</span>
+<span class="sd">    :ivar cpu_format: 主机端样本格式。</span>
+<span class="sd">    :ivar wire_format: 线缆端样本格式。</span>
+<span class="sd">    :ivar num_recv_frames: 接收缓冲区帧数, 增大可减少溢出。</span>
+<span class="sd">    :ivar stream_timeout_s: 流操作超时时间 (秒)。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">device_args</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="n">channel_num</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>

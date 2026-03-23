@@ -563,11 +563,10 @@
 <span class="sd">    4. 链路密钥派生</span>
 <span class="sd">    5. 会话密钥派生</span>
 
-<span class="sd">    Attributes:</span>
-<span class="sd">        is_g_node: 本端是否为 G 节点。</span>
-<span class="sd">        kdf_type: 密钥派生函数类型。</span>
-<span class="sd">        auth_method: 鉴权方式。</span>
-<span class="sd">        max_key_length: 最大密钥长度 (字节)。</span>
+<span class="sd">    :ivar is_g_node: 本端是否为 G 节点。</span>
+<span class="sd">    :ivar kdf_type: 密钥派生函数类型。</span>
+<span class="sd">    :ivar auth_method: 鉴权方式。</span>
+<span class="sd">    :ivar max_key_length: 最大密钥长度 (字节)。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">is_g_node</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="n">kdf_type</span><span class="p">:</span> <span class="n">KdfType</span> <span class="o">=</span> <span class="n">KdfType</span><span class="o">.</span><span class="n">AES_CMAC</span>
@@ -849,13 +848,12 @@
 <span class="sd">    管理 payload_count 单调递增和 nonce 构建,</span>
 <span class="sd">    为 MAC 帧提供加解密服务。</span>
 
-<span class="sd">    Attributes:</span>
-<span class="sd">        session_key: 会话密钥 (16 字节)。</span>
-<span class="sd">        iv_base: 初始化向量基底 (8 字节)。</span>
-<span class="sd">        direction: 传输方向 (0=G→T, 1=T→G)。</span>
-<span class="sd">        mic_len: MIC 长度 (字节, 4/8/12/16)。</span>
-<span class="sd">        frame_type: 帧类型 (用于 IV 计算)。</span>
-<span class="sd">        link_id: 链路标识 (用于 IV 计算)。</span>
+<span class="sd">    :ivar session_key: 会话密钥 (16 字节)。</span>
+<span class="sd">    :ivar iv_base: 初始化向量基底 (8 字节)。</span>
+<span class="sd">    :ivar direction: 传输方向 (0=G→T, 1=T→G)。</span>
+<span class="sd">    :ivar mic_len: MIC 长度 (字节, 4/8/12/16)。</span>
+<span class="sd">    :ivar frame_type: 帧类型 (用于 IV 计算)。</span>
+<span class="sd">    :ivar link_id: 链路标识 (用于 IV 计算)。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">session_key</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">16</span>
     <span class="n">iv_base</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">8</span>

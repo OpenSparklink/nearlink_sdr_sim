@@ -470,10 +470,15 @@
 <dd><p>事件组调度器。</p>
 <p>管理一个链路上事件组的时间计算, 根据事件组参数
 生成事件的调度时间表。</p>
-<p>Attributes:
-timing: 事件计时参数。
-anchor_slot: 锚点时隙 (基础时隙顺序号)。
-anchor_offset_us: 事件组起始偏移 (μs)。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">变量<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timing</strong> -- 事件计时参数。</p></li>
+<li><p><strong>anchor_slot</strong> -- 锚点时隙 (基础时隙顺序号)。</p></li>
+<li><p><strong>anchor_offset_us</strong> -- 事件组起始偏移 (μs)。</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.EventGroupScheduler.timing">
 <span class="sig-name descname"><span class="pre">timing</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.mac.scheduler.EventTimingParams" title="nearlink_sdr.mac.scheduler.EventTimingParams"><span class="pre">nearlink_sdr.mac.scheduler.EventTimingParams</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.scheduler.EventGroupScheduler.timing" title="Link to this definition">¶</a></dt>
@@ -690,12 +695,17 @@ anchor_offset_us: 事件组起始偏移 (μs)。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.LinkScheduleEntry">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.scheduler.</span></span><span class="sig-name descname"><span class="pre">LinkScheduleEntry</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#LinkScheduleEntry"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.LinkScheduleEntry" title="Link to this definition">¶</a></dt>
 <dd><p>链路信令: 链路在超帧内的时间资源配置 (标准 6.6.2.2)。</p>
-<p>Attributes:
-link_id: 逻辑链路标识 (24 bit)。
-effective_slot: 信令生效时隙 (32 bit, 基础时隙)。
-period_factor: 链路周期因子 (8 bit)。
-schedule_slot_type: 调度时隙长度 (3 bit)。
-time_slices: 时间片配置列表。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">变量<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>link_id</strong> -- 逻辑链路标识 (24 bit)。</p></li>
+<li><p><strong>effective_slot</strong> -- 信令生效时隙 (32 bit, 基础时隙)。</p></li>
+<li><p><strong>period_factor</strong> -- 链路周期因子 (8 bit)。</p></li>
+<li><p><strong>schedule_slot_type</strong> -- 调度时隙长度 (3 bit)。</p></li>
+<li><p><strong>time_slices</strong> -- 时间片配置列表。</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.LinkScheduleEntry.link_id">
 <span class="sig-name descname"><span class="pre">link_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.scheduler.LinkScheduleEntry.link_id" title="Link to this definition">¶</a></dt>
@@ -733,8 +743,11 @@ time_slices: 时间片配置列表。</p>
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.scheduler.</span></span><span class="sig-name descname"><span class="pre">MultiLevelInterval</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#MultiLevelInterval"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.MultiLevelInterval" title="Link to this definition">¶</a></dt>
 <dd><p>31 级多级收发间隔 (标准 7.2.2)。</p>
 <p>Polar 编码分段 [00001]~[11111] 各对应一个 8 bit 间隔值 (μs)。</p>
-<p>Attributes:
-levels: 31 个间隔值 (μs), 索引 0-30 对应级别 1-31。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">变量<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>levels</strong> -- 31 个间隔值 (μs), 索引 0-30 对应级别 1-31。</p>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.MultiLevelInterval.levels">
 <span class="sig-name descname"><span class="pre">levels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="（在 Python v3.14）"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nearlink_sdr.mac.scheduler.MultiLevelInterval.levels" title="Link to this definition">¶</a></dt>
@@ -773,12 +786,17 @@ levels: 31 个间隔值 (μs), 索引 0-30 对应级别 1-31。</p>
 <dd><p>综合调度管理器。</p>
 <p>整合超帧管理、事件组调度和收发间隔控制,
 提供链路时间资源的统一管理接口。</p>
-<p>Attributes:
-superframe: 超帧结构。
-event_schedulers: 按 link_id 索引的事件组调度器。
-slot_counter: 全局时隙计数器。
-tx_rx_interval: 当前收发间隔类型。
-multi_interval: 多级收发间隔配置。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">变量<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>superframe</strong> -- 超帧结构。</p></li>
+<li><p><strong>event_schedulers</strong> -- 按 link_id 索引的事件组调度器。</p></li>
+<li><p><strong>slot_counter</strong> -- 全局时隙计数器。</p></li>
+<li><p><strong>tx_rx_interval</strong> -- 当前收发间隔类型。</p></li>
+<li><p><strong>multi_interval</strong> -- 多级收发间隔配置。</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.ScheduleManager.superframe">
 <span class="sig-name descname"><span class="pre">superframe</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.mac.scheduler.Superframe" title="nearlink_sdr.mac.scheduler.Superframe"><span class="pre">nearlink_sdr.mac.scheduler.Superframe</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.scheduler.ScheduleManager.superframe" title="Link to this definition">¶</a></dt>
@@ -983,8 +1001,11 @@ multi_interval: 多级收发间隔配置。</p>
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.scheduler.</span></span><span class="sig-name descname"><span class="pre">SlotCounter</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#SlotCounter"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.SlotCounter" title="Link to this definition">¶</a></dt>
 <dd><p>30 bit 系统时隙计数器。</p>
 <p>以 Tsys = 125 μs 为最小递增单位, 30 bit 可表示约 37.3 小时。</p>
-<p>Attributes:
-value: 当前计数值 (0 ~ 2^30 - 1)。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">变量<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> -- 当前计数值 (0 ~ 2^30 - 1)。</p>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.SlotCounter.value">
 <span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.scheduler.SlotCounter.value" title="Link to this definition">¶</a></dt>
@@ -1021,14 +1042,19 @@ value: 当前计数值 (0 ~ 2^30 - 1)。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.SmfScheduleConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.scheduler.</span></span><span class="sig-name descname"><span class="pre">SmfScheduleConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#SmfScheduleConfig"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.SmfScheduleConfig" title="Link to this definition">¶</a></dt>
 <dd><p>SMF 调度信令参数 (标准 6.6.2.1)。</p>
-<p>Attributes:
-effective_slot: 信令生效时隙 (32 bit, 基础时隙)。
-smf_interval: 两个 SMF 之间的间隔 (16 bit, 基础时隙)。
-frame_type: 无线帧类型指示 (4 bit)。
-bandwidth: 带宽指示 (2 bit, 0=1M/1=2M/2=4M)。
-pilot_density: 导频密度指示 (2 bit)。
-channel_count: 可用频点个数 (8 bit)。
-channel_table: 频点表。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">变量<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>effective_slot</strong> -- 信令生效时隙 (32 bit, 基础时隙)。</p></li>
+<li><p><strong>smf_interval</strong> -- 两个 SMF 之间的间隔 (16 bit, 基础时隙)。</p></li>
+<li><p><strong>frame_type</strong> -- 无线帧类型指示 (4 bit)。</p></li>
+<li><p><strong>bandwidth</strong> -- 带宽指示 (2 bit, 0=1M/1=2M/2=4M)。</p></li>
+<li><p><strong>pilot_density</strong> -- 导频密度指示 (2 bit)。</p></li>
+<li><p><strong>channel_count</strong> -- 可用频点个数 (8 bit)。</p></li>
+<li><p><strong>channel_table</strong> -- 频点表。</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.SmfScheduleConfig.effective_slot">
 <span class="sig-name descname"><span class="pre">effective_slot</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.scheduler.SmfScheduleConfig.effective_slot" title="Link to this definition">¶</a></dt>
@@ -1084,9 +1110,14 @@ channel_table: 频点表。</p>
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.scheduler.</span></span><span class="sig-name descname"><span class="pre">Superframe</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#Superframe"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.Superframe" title="Link to this definition">¶</a></dt>
 <dd><p>超帧: 两个相邻 SMF 之间的时间资源。</p>
 <p>管理 SMF 周期内的链路调度, 活动区间和低功耗区间的划分。</p>
-<p>Attributes:
-smf_config: SMF 调度参数。
-link_entries: 已注册的链路调度条目。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">变量<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>smf_config</strong> -- SMF 调度参数。</p></li>
+<li><p><strong>link_entries</strong> -- 已注册的链路调度条目。</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.Superframe.smf_config">
 <span class="sig-name descname"><span class="pre">smf_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.mac.scheduler.SmfScheduleConfig" title="nearlink_sdr.mac.scheduler.SmfScheduleConfig"><span class="pre">nearlink_sdr.mac.scheduler.SmfScheduleConfig</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.scheduler.Superframe.smf_config" title="Link to this definition">¶</a></dt>
@@ -1158,11 +1189,16 @@ link_entries: 已注册的链路调度条目。</p>
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.scheduler.</span></span><span class="sig-name descname"><span class="pre">TimeSlice</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#TimeSlice"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.TimeSlice" title="Link to this definition">¶</a></dt>
 <dd><p>超帧内时间片配置 (标准 6.6.2.2)。</p>
 <p>描述一个链路在超帧内的时间资源分配。</p>
-<p>Attributes:
-offset: 相对 SMF 起始点的偏移 (调度时隙)。
-duration: 时间片持续长度 (调度时隙)。
-period: 时间片重复周期 (调度时隙)。
-repeat_count: 时间片重复次数。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">变量<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>offset</strong> -- 相对 SMF 起始点的偏移 (调度时隙)。</p></li>
+<li><p><strong>duration</strong> -- 时间片持续长度 (调度时隙)。</p></li>
+<li><p><strong>period</strong> -- 时间片重复周期 (调度时隙)。</p></li>
+<li><p><strong>repeat_count</strong> -- 时间片重复次数。</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.TimeSlice.offset">
 <span class="sig-name descname"><span class="pre">offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.scheduler.TimeSlice.offset" title="Link to this definition">¶</a></dt>

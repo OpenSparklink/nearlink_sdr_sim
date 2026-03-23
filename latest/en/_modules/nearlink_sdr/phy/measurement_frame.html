@@ -625,20 +625,19 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">UWBPulseConfig</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;超宽带脉冲测量帧配置。</span>
 
-<span class="sd">    Attributes:</span>
-<span class="sd">        K: 码字长度。</span>
-<span class="sd">        L: 占空因子。</span>
-<span class="sd">        Tc: 码片时长 (秒)。</span>
-<span class="sd">        N_sync: 同步字段符号个数, 0 表示不发送同步字段。</span>
-<span class="sd">        symbol_seq: 同步符号序列 (+1/-1), 长度为 K。</span>
-<span class="sd">        M_seg: 测量子片段数。</span>
-<span class="sd">        N_seg: 每个测量子片段的 CTS 符号数。</span>
-<span class="sd">        N_gap: 测量子片段间隔的符号数。</span>
-<span class="sd">        scramble: 加扰 SC 序列 (+1/-1), 长度为 N_seg * M_seg。</span>
-<span class="sd">            普通模式下全 1, 安全模式下由安全算法确定。</span>
-<span class="sd">        L_cp: 循环前缀码片数 (安全模式)。</span>
-<span class="sd">        L_zero: 补零后缀码片数 (安全模式)。</span>
-<span class="sd">        N_offset: 安全模式偏移码片数, 默认 0 (普通模式)。</span>
+<span class="sd">    :ivar K: 码字长度。</span>
+<span class="sd">    :ivar L: 占空因子。</span>
+<span class="sd">    :ivar Tc: 码片时长 (秒)。</span>
+<span class="sd">    :ivar N_sync: 同步字段符号个数, 0 表示不发送同步字段。</span>
+<span class="sd">    :ivar symbol_seq: 同步符号序列 (+1/-1), 长度为 K。</span>
+<span class="sd">    :ivar M_seg: 测量子片段数。</span>
+<span class="sd">    :ivar N_seg: 每个测量子片段的 CTS 符号数。</span>
+<span class="sd">    :ivar N_gap: 测量子片段间隔的符号数。</span>
+<span class="sd">    :ivar scramble: 加扰 SC 序列 (+1/-1), 长度为 N_seg * M_seg。</span>
+<span class="sd">        普通模式下全 1, 安全模式下由安全算法确定。</span>
+<span class="sd">    :ivar L_cp: 循环前缀码片数 (安全模式)。</span>
+<span class="sd">    :ivar L_zero: 补零后缀码片数 (安全模式)。</span>
+<span class="sd">    :ivar N_offset: 安全模式偏移码片数, 默认 0 (普通模式)。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">K</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">31</span>
     <span class="n">L</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span>
