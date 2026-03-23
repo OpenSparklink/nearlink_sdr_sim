@@ -1,0 +1,1252 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="索引" href="../genindex.html"><link rel="search" title="搜索" href="../search.html"><link rel="next" title="端到端数据流" href="data-flow.html"><link rel="prev" title="MAC 层详解" href="mac-layer.html">
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
+        <title>安全子系统详解 - nearlink-sdr 1.0.3 文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../_static/version-selector.css?v=022f18c6" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  --color-brand-primary: #1a73e8;
+  --color-brand-content: #1a73e8;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #8ab4f8;
+  --color-brand-content: #8ab4f8;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #8ab4f8;
+  --color-brand-content: #8ab4f8;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">nearlink-sdr 1.0.3 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.3 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/getting-started.html">快速入门</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../how-to/index.html">操作指南</a><input aria-label="Toggle navigation of 操作指南" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../how-to/run-simulation.html">运行链路仿真</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../how-to/add-modulation.html">添加新的调制方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../how-to/qos-management.html">QoS 服务质量管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../how-to/node-usage.html">使用 SLE 节点实体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../how-to/rust-acceleration.html">Rust 加速模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../how-to/sdr-deployment.html">SDR E310 部署规划</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../how-to/build-docs.html">构建文档</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../reference/index.html">技术参考</a><input aria-label="Toggle navigation of 技术参考" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.demodulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.demodulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.modulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.modulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.rx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.sim.link_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.link_sim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.sim.usrp_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.usrp_sim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">设计说明</a><input aria-label="Toggle navigation of 设计说明" checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">SparkLink SLE 协议总览</a></li>
+<li class="toctree-l2"><a class="reference internal" href="principles.html">物理层原理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="physical-layer.html">物理层详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mac-layer.html">MAC 层详解</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">安全子系统详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-flow.html">端到端数据流</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">系统架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="standard-mapping.html">标准条款映射</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">更新日志</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../apidocs/index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.demodulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.demodulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.modulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.modulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.rx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.sim.link_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.link_sim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.sim.usrp_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.usrp_sim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/explanation/security.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>安全子系统详解<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<p>本文详细解释 SparkLink SLE 安全子系统的设计与实现, 涵盖配对鉴权、密钥派生、帧加密、隐私保护和 UWB 测量安全, 对标 TXS-10002-2025 标准第 9 章。</p>
+<section id="id2">
+<h2>安全架构<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<p>SLE 安全子系统分为三层:</p>
+<ul class="simple">
+<li><p><strong>配对鉴权层</strong>: 建立信任关系, 交换密钥材料 (§9.2)</p></li>
+<li><p><strong>帧加密层</strong>: 保护数据传输的机密性和完整性 (§9.3)</p></li>
+<li><p><strong>隐私保护层</strong>: 防止设备追踪 (§9.4)</p></li>
+</ul>
+<p>安全的基础是 ECDH P-256 密钥协商, 派生出所有后续密钥。</p>
+</section>
+<section id="id3">
+<h2>配对流程 (§9.2)<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<p>配对是两个设备首次建立安全关联的过程。标准定义了 6 种鉴权方法:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>方法</p></th>
+<th class="head"><p>适用场景</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>数值比较</p></td>
+<td><p>双方有显示和输入能力</p></td>
+</tr>
+<tr class="row-odd"><td><p>密码输入</p></td>
+<td><p>一方有输入能力</p></td>
+</tr>
+<tr class="row-even"><td><p>密码校验</p></td>
+<td><p>预共享密码</p></td>
+</tr>
+<tr class="row-odd"><td><p>带外传输</p></td>
+<td><p>NFC 等侧信道</p></td>
+</tr>
+<tr class="row-even"><td><p>预共享密钥</p></td>
+<td><p>工厂预置密钥</p></td>
+</tr>
+<tr class="row-odd"><td><p>无输入</p></td>
+<td><p>无交互能力 (Just Works)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>鉴权方法的选择由双方 IO 能力 (无输入无输出、仅显示、仅键盘、显示+键盘、显示+是否) 协商决定。</p>
+<section id="id4">
+<h3>配对状态机<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<p>配对流程由 9 个状态组成:</p>
+<pre  class="mermaid">
+        stateDiagram-v2
+    [*] --&gt; IDLE
+    IDLE --&gt; INITIATED
+    INITIATED --&gt; REQUEST_SENT
+    REQUEST_SENT --&gt; RESPONSE_SENT
+    RESPONSE_SENT --&gt; CONFIRM_SENT
+    CONFIRM_SENT --&gt; PUBLIC_KEY_EXCHANGED
+    PUBLIC_KEY_EXCHANGED --&gt; CONFIRM_CODE_SENT
+    CONFIRM_CODE_SENT --&gt; COMPLETED
+    CONFIRM_CODE_SENT --&gt; FAILED
+    COMPLETED --&gt; [*]
+    FAILED --&gt; [*]
+    </pre><p>G 节点视角:</p>
+<ol class="arabic simple">
+<li><p><strong>IDLE → REQUEST_SENT</strong>: 发送 <code class="docutils literal notranslate"><span class="pre">PairingRequest</span></code>, 携带 IO 能力、密钥长度、安全分发信息、加密能力</p></li>
+<li><p><strong>REQUEST_SENT → CONFIRM_SENT</strong>: 收到 <code class="docutils literal notranslate"><span class="pre">PairingResponse</span></code>, 发送 <code class="docutils literal notranslate"><span class="pre">PairingConfirm</span></code> (含 G 节点 P-256 公钥 X/Y 坐标, 各 32 字节)</p></li>
+<li><p><strong>CONFIRM_SENT → PUBLIC_KEY_EXCHANGED</strong>: 收到 <code class="docutils literal notranslate"><span class="pre">PairingInitialInfo</span></code> (T 节点公钥), 计算 ECDH 共享密钥, 发送 Ra 随机数</p></li>
+<li><p><strong>PUBLIC_KEY_EXCHANGED → CONFIRM_CODE_SENT</strong>: 收到 Rb, 发送 <code class="docutils literal notranslate"><span class="pre">GNodeConfirmCode</span></code></p></li>
+<li><p><strong>CONFIRM_CODE_SENT → COMPLETED</strong>: 收到 <code class="docutils literal notranslate"><span class="pre">TNodeConfirmCode</span></code>, 验证确认码, 派生密钥</p></li>
+</ol>
+<p>T 节点视角是上述流程的镜像:</p>
+<ol class="arabic simple">
+<li><p><strong>IDLE → INITIATED</strong>: 收到 <code class="docutils literal notranslate"><span class="pre">PairingInitiate</span></code></p></li>
+<li><p><strong>INITIATED → RESPONSE_SENT</strong>: 收到 <code class="docutils literal notranslate"><span class="pre">PairingRequest</span></code>, 发送 <code class="docutils literal notranslate"><span class="pre">PairingResponse</span></code></p></li>
+<li><p><strong>RESPONSE_SENT → PUBLIC_KEY_EXCHANGED</strong>: 收到 <code class="docutils literal notranslate"><span class="pre">PairingConfirm</span></code>, 保存 G 公钥, 发送自身公钥</p></li>
+<li><p><strong>PUBLIC_KEY_EXCHANGED → CONFIRM_CODE_SENT</strong>: 收到 Ra, 计算 DH Key, 发送 Rb</p></li>
+<li><p><strong>CONFIRM_CODE_SENT → COMPLETED</strong>: 收到 <code class="docutils literal notranslate"><span class="pre">GNodeConfirmCode</span></code>, 验证后发送 <code class="docutils literal notranslate"><span class="pre">TNodeConfirmCode</span></code>, 派生密钥</p></li>
+</ol>
+</section>
+<section id="id5">
+<h3>失败处理<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<p>12 种失败原因:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>代码</p></th>
+<th class="head"><p>原因</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0x01</p></td>
+<td><p>密码输入失败</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x02</p></td>
+<td><p>带外数据不可用</p></td>
+</tr>
+<tr class="row-even"><td><p>0x03</p></td>
+<td><p>鉴权要求不满足</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x04</p></td>
+<td><p>确认值校验失败</p></td>
+</tr>
+<tr class="row-even"><td><p>0x05</p></td>
+<td><p>配对不支持</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x06</p></td>
+<td><p>密钥长度不足</p></td>
+</tr>
+<tr class="row-even"><td><p>0x07</p></td>
+<td><p>命令不支持</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x08</p></td>
+<td><p>未指定原因</p></td>
+</tr>
+<tr class="row-even"><td><p>0x09</p></td>
+<td><p>重复尝试</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x0A</p></td>
+<td><p>参数无效</p></td>
+</tr>
+<tr class="row-even"><td><p>0x0B</p></td>
+<td><p>DH Key 校验失败</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x0C</p></td>
+<td><p>数值比较失败</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>代码实现</strong>: <code class="docutils literal notranslate"><span class="pre">mac.security_manager.PairingManager</span></code> 实现状态机, <code class="docutils literal notranslate"><span class="pre">mac.security</span></code> 模块定义 20 种配对信令消息类, <code class="docutils literal notranslate"><span class="pre">mac.security_manager.ECDHKeyPair</span></code> 封装 P-256 椭圆曲线运算。</p>
+</section>
+</section>
+<section id="id6">
+<h2>密钥派生 (§9.3)<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h2>
+<p>配对完成后, 通过 ECDH 共享密钥逐级派生出各功能密钥:</p>
+<pre  class="mermaid">
+        flowchart TD
+    DH[&quot;ECDH P-256 共享密钥 (32 字节)&quot;]
+    DH --&gt; LK[&quot;Link Key (16 字节)\nKDF(dh_key_low128, 'lk' ‖ Ra ‖ Rb ‖ 地址)&quot;]
+    DH --&gt; DK[&quot;DH Verify Key\nKDF(dh_key_low128, 'dk' ‖ Ra ‖ Rb ‖ 地址)&quot;]
+    DK --&gt; DV[&quot;DH 验证码 (16 字节)&quot;]
+    DH --&gt; SK[&quot;Session Key (16 字节)\nKDF(link_key, G_Diversifier ‖ T_Diversifier)&quot;]
+    SK --&gt; AE[&quot;认证加密: SK 同时用于加密和完整性&quot;]
+    SK --&gt; SEP[&quot;分离算法: EnK (加密) + InK (完整性)&quot;]
+    </pre><section id="kdf">
+<h3>KDF 算法<a class="headerlink" href="#kdf" title="Link to this heading">¶</a></h3>
+<p>标准支持两种 KDF:</p>
+<ul class="simple">
+<li><p><strong>AES-CMAC</strong>: 128 位密钥, 输出 128 位 MAC (§9.3.4)</p></li>
+<li><p><strong>HMAC-SM3</strong>: 256 位摘要取低 128 位 (§9.3.4)</p></li>
+</ul>
+<p>双方在配对阶段协商使用哪种 KDF。</p>
+</section>
+<section id="id7">
+<h3>确认码生成 (§9.3.4.3)<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<p>确认码保证远端设备确实持有 DH Key。生成方式取决于鉴权方法:</p>
+<ul class="simple">
+<li><p><strong>数值比较</strong>: KDF(PKax, PKax ‖ PKbx ‖ Ra ‖ 0)</p></li>
+<li><p><strong>密码输入</strong>: KDF(PKax, PKax ‖ PKbx ‖ Ra ‖ Ri)</p></li>
+<li><p><strong>密码校验</strong>: KDF(PKax, PKax ‖ PKbx ‖ Ra ‖ Pwd)</p></li>
+<li><p><strong>带外/预共享/Just Works</strong>: 类似数值比较</p></li>
+</ul>
+</section>
+<section id="id8">
+<h3>数值比较码 (§9.3.4.6)<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
+<p>从 KDF 输出取 4 字节, 对 <span class="math notranslate nohighlight">\(10^6\)</span> 取模, 得到 6 位十进制数字, 双方显示给用户比对。</p>
+<p><strong>代码实现</strong>: <code class="docutils literal notranslate"><span class="pre">mac.crypto</span></code> 模块实现全部密钥派生函数:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">aes_cmac()</span></code>, <code class="docutils literal notranslate"><span class="pre">hmac_sm3()</span></code>, <code class="docutils literal notranslate"><span class="pre">kdf()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">derive_link_key()</span></code>, <code class="docutils literal notranslate"><span class="pre">derive_session_key()</span></code>, <code class="docutils literal notranslate"><span class="pre">derive_dh_verify_key()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">generate_confirm_code()</span></code>, <code class="docutils literal notranslate"><span class="pre">generate_dh_verify_code()</span></code>, <code class="docutils literal notranslate"><span class="pre">generate_numeric_code()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">obfuscate()</span></code> 混淆算法 (§9.3.4.7)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">secure_random_256()</span></code> 安全随机函数 (§6.10.7)</p></li>
+</ul>
+</section>
+</section>
+<section id="id9">
+<h2>帧加密 (§9.3.1)<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h2>
+<section id="aes-ccm">
+<h3>AES-CCM<a class="headerlink" href="#aes-ccm" title="Link to this heading">¶</a></h3>
+<p>SLE 使用 AES-CCM (Counter with CBC-MAC) 进行帧加密, 同时保证机密性和完整性:</p>
+<ul class="simple">
+<li><p><strong>机密性</strong>: AES-CTR 模式加密载荷</p></li>
+<li><p><strong>完整性</strong>: CBC-MAC 生成 MIC (消息完整性校验码), 长度 4/8/12/16 字节</p></li>
+</ul>
+</section>
+<section id="nonce">
+<h3>Nonce 构建<a class="headerlink" href="#nonce" title="Link to this heading">¶</a></h3>
+<p>Nonce 是 AES-CCM 的关键输入, 保证每个帧使用不同的计数器:</p>
+<p><strong>异步/同步单播和组播链路</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌───────┬──────────────────┬────────────┬─────────────┬──────────┐
+│ Flag  │ payload_count    │ Direction  │     IV      │ data_len │
+│ 1B    │ 5B (bit38:0)     │ 1b         │  8B         │ 2B       │
+└───────┴──────────────────┴────────────┴─────────────┴──────────┘
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">payload_count</span></code>: 单调递增计数器 (39 位), 防止 nonce 重用</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Direction</span></code>: 0 = G→T, 1 = T→G</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IV</span></code>: 由 IV 基值和帧参数计算得出</p></li>
+</ul>
+<p><strong>其他链路</strong> (广播/SMF):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌───────┬──────────────────┬────────────┬─────────────┬──────────┐
+│ Flag  │ slot_seq         │ day_count  │     IV      │ data_len │
+│ 1B    │ 4B (bit29:0)     │ 2B(bit9:0) │  8B         │ 2B       │
+└───────┴──────────────────┴────────────┴─────────────┴──────────┘
+</pre></div>
+</div>
+</section>
+<section id="iv-9-3-1">
+<h3>IV 计算 (§9.3.1)<a class="headerlink" href="#iv-9-3-1" title="Link to this heading">¶</a></h3>
+<p>IV 基值 (8 字节) 与不同参数异或:</p>
+<ul class="simple">
+<li><p><strong>FT1/FT2</strong>: IV = IV_base <span class="math notranslate nohighlight">\(\oplus\)</span> 同步序列号</p></li>
+<li><p><strong>FT3/FT4</strong>: IV = IV_base <span class="math notranslate nohighlight">\(\oplus\)</span> 链路 ID</p></li>
+</ul>
+<p><strong>代码实现</strong>: <code class="docutils literal notranslate"><span class="pre">mac.security_manager.FrameCryptoContext</span></code> 管理加解密上下文, 维护 TX/RX payload_count, 调用 <code class="docutils literal notranslate"><span class="pre">mac.crypto.aes_ccm_encrypt()</span></code>/<code class="docutils literal notranslate"><span class="pre">aes_ccm_decrypt()</span></code>。</p>
+</section>
+</section>
+<section id="id10">
+<h2>组播安全 (§9.3.2)<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h2>
+<p>组播链路使用独立的密钥体系:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>RAND1, RAND2 (各 16 字节随机数)
+    │
+    └─► 组播密钥 GK = KDF(RAND1, RAND2)
+            │
+            └─► 组播会话密钥 GSK (16B)
+                或 GEnK + GInK (各 16B)
+</pre></div>
+</div>
+<p>分发流程:</p>
+<ol class="arabic simple">
+<li><p>G 节点生成 RAND 和 KDF/加密/完整性算法参数, 通过 <code class="docutils literal notranslate"><span class="pre">MulticastAlgorithmConfig</span></code> 发送</p></li>
+<li><p>G 节点计算 <span class="math notranslate nohighlight">\(K_g\)</span> = KDF(link_key, RAND), 发送 <span class="math notranslate nohighlight">\(C\)</span> = <span class="math notranslate nohighlight">\(K_g \oplus GK\)</span> 通过 <code class="docutils literal notranslate"><span class="pre">MulticastKeyConfig</span></code></p></li>
+<li><p>T 节点用自身 link_key 计算 <span class="math notranslate nohighlight">\(K_g\)</span>, 恢复 <span class="math notranslate nohighlight">\(GK\)</span> = <span class="math notranslate nohighlight">\(C \oplus K_g\)</span></p></li>
+</ol>
+<p><strong>代码实现</strong>: <code class="docutils literal notranslate"><span class="pre">mac.crypto.generate_group_key()</span></code>, <code class="docutils literal notranslate"><span class="pre">derive_group_session_key()</span></code>, <code class="docutils literal notranslate"><span class="pre">derive_kg()</span></code>; <code class="docutils literal notranslate"><span class="pre">mac.security</span></code> 模块定义 <code class="docutils literal notranslate"><span class="pre">MulticastAlgorithmConfig</span></code> 和 <code class="docutils literal notranslate"><span class="pre">MulticastKeyConfig</span></code> 信令。</p>
+</section>
+<section id="id11">
+<h2>隐私保护 (§9.4)<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h2>
+<p>SLE 支持可解析随机地址, 防止第三方追踪设备:</p>
+<ol class="arabic simple">
+<li><p>设备生成 IRK (身份解析密钥, 16 字节), 在配对阶段通过 <code class="docutils literal notranslate"><span class="pre">GNodeIRK</span></code>/<code class="docutils literal notranslate"><span class="pre">TNodeIRK</span></code> 交换</p></li>
+<li><p>设备使用 IRK 和随机数生成可解析地址 (48 位): 高 24 位为 hash(IRK, prand), 低 24 位为 prand</p></li>
+<li><p>已知 IRK 的设备可以验证和解析该地址, 未知 IRK 的设备无法关联不同地址</p></li>
+</ol>
+<p>地址分发通过 <code class="docutils literal notranslate"><span class="pre">GNodeAddress</span></code>/<code class="docutils literal notranslate"><span class="pre">TNodeAddress</span></code> 信令完成, 携带地址类型 (联盟分配、第三方本地、联盟预留、私有) 和 6 字节地址。</p>
+<p><strong>代码实现</strong>: <code class="docutils literal notranslate"><span class="pre">mac.crypto.generate_resolvable_address(kdf_type,</span> <span class="pre">irk,</span> <span class="pre">rand_part)</span></code> 和 <code class="docutils literal notranslate"><span class="pre">resolve_address(kdf_type,</span> <span class="pre">irk,</span> <span class="pre">addr)</span></code>。</p>
+</section>
+<section id="uwb-9-5">
+<h2>UWB 测量安全 (§9.5)<a class="headerlink" href="#uwb-9-5" title="Link to this heading">¶</a></h2>
+<p>UWB 脉冲测量信号需要专用的安全机制, 防止距离欺骗攻击。</p>
+<section id="cts">
+<h3>CTS 密钥体系<a class="headerlink" href="#cts" title="Link to this heading">¶</a></h3>
+<p>从 Link Key 出发, 派生 UWB 测量专用密钥:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Link Key (16B)
+    │
+    └─► SLP Key = KDF(link_key, reserved ‖ &quot;SLP&quot; ‖ zeros)
+            │
+            ├─► ctsInitContent = KDF(SLP, &quot;ctsInitC&quot; ‖ inputContext)
+            │       └─► ctsContent32Bit = ctsInitContent 低 32 位
+            │
+            ├─► ctsKey   = KDF(SLP, &quot;ctsK&quot;    ‖ ctsContent)
+            ├─► ctsValue = KDF(SLP, &quot;ctsV&quot;    ‖ ctsContent)
+            └─► ctsGap   = KDF(SLP, &quot;ctsGapK&quot; ‖ ctsContent)
+</pre></div>
+</div>
+</section>
+<section id="inputcontext-9-5-71">
+<h3>inputContext (§9.5, 表 71)<a class="headerlink" href="#inputcontext-9-5-71" title="Link to this heading">¶</a></h3>
+<p>128 位上下文参数, 编码测量会话的物理层配置:</p>
+<ul class="simple">
+<li><p>物理信道号</p></li>
+<li><p>测距方法和模式</p></li>
+<li><p>NMSS 采样数</p></li>
+<li><p>G 节点 L2 ID</p></li>
+<li><p>天线配置</p></li>
+<li><p>其他保留位</p></li>
+</ul>
+</section>
+<section id="id12">
+<h3>密钥更新<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
+<p>每次测量会话结束后, <code class="docutils literal notranslate"><span class="pre">ctsContent32Bit</span></code> 递增, 重新派生三个密钥。这确保每次测量使用不同的加扰序列。</p>
+</section>
+<section id="tgap-9-5-4">
+<h3>TGap 计算 (§9.5.4)<a class="headerlink" href="#tgap-9-5-4" title="Link to this heading">¶</a></h3>
+<p>TGap 控制 CTS 符号间的时间间隔, 从 <code class="docutils literal notranslate"><span class="pre">ctsGap</span></code> 的 128 位值中按偏移截取 10 位:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[T_{gap} = T_{base} - T_{offset}\]</div>
+</div>
+<p>其中 <span class="math notranslate nohighlight">\(T_{offset}\)</span> 由 ctsGap 对应位计算。</p>
+</section>
+<section id="cts-9-5-5">
+<h3>CTS 符号生成 (§9.5.5)<a class="headerlink" href="#cts-9-5-5" title="Link to this heading">¶</a></h3>
+<p>CTS 符号序列用于 UWB 测量帧的时域加扰:</p>
+<ol class="arabic simple">
+<li><p>对每个符号, 用 ctsKey 进行 ECB 加密生成加扰块</p></li>
+<li><p>提取符号索引和 SC 值 (+1 或 -1)</p></li>
+<li><p>ctsVCounter 逐符号递增</p></li>
+</ol>
+<p><strong>代码实现</strong>: <code class="docutils literal notranslate"><span class="pre">phy.uwb_measurement_security</span></code> 模块:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">UWBMeasInputContext</span></code>: 128 位上下文编码</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CTSKeys</span></code>: 密钥组容器</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">derive_slp_key()</span></code>, <code class="docutils literal notranslate"><span class="pre">derive_cts_keys()</span></code>, <code class="docutils literal notranslate"><span class="pre">update_cts_keys()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compute_tgap()</span></code>: TGap 时间间隔计算</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">generate_cts_symbols()</span></code>: CTS 符号序列生成</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="data-flow.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">端到端数据流</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="mac-layer.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">MAC 层详解</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/sanchuanhehe/nearlink_sdr_sim" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82 .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">安全子系统详解</a><ul>
+<li><a class="reference internal" href="#id2">安全架构</a></li>
+<li><a class="reference internal" href="#id3">配对流程 (§9.2)</a><ul>
+<li><a class="reference internal" href="#id4">配对状态机</a></li>
+<li><a class="reference internal" href="#id5">失败处理</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id6">密钥派生 (§9.3)</a><ul>
+<li><a class="reference internal" href="#kdf">KDF 算法</a></li>
+<li><a class="reference internal" href="#id7">确认码生成 (§9.3.4.3)</a></li>
+<li><a class="reference internal" href="#id8">数值比较码 (§9.3.4.6)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id9">帧加密 (§9.3.1)</a><ul>
+<li><a class="reference internal" href="#aes-ccm">AES-CCM</a></li>
+<li><a class="reference internal" href="#nonce">Nonce 构建</a></li>
+<li><a class="reference internal" href="#iv-9-3-1">IV 计算 (§9.3.1)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id10">组播安全 (§9.3.2)</a></li>
+<li><a class="reference internal" href="#id11">隐私保护 (§9.4)</a></li>
+<li><a class="reference internal" href="#uwb-9-5">UWB 测量安全 (§9.5)</a><ul>
+<li><a class="reference internal" href="#cts">CTS 密钥体系</a></li>
+<li><a class="reference internal" href="#inputcontext-9-5-71">inputContext (§9.5, 表 71)</a></li>
+<li><a class="reference internal" href="#id12">密钥更新</a></li>
+<li><a class="reference internal" href="#tgap-9-5-4">TGap 计算 (§9.5.4)</a></li>
+<li><a class="reference internal" href="#cts-9-5-5">CTS 符号生成 (§9.5.5)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=e4a627bb"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../_static/translations.js?v=beaddf03"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.esm.min.mjs";
+
+
+
+
+
+const initStyles = () => {
+    const defaultStyle = document.createElement('style');
+    defaultStyle.textContent = `pre.mermaid {
+    /* Same as .mermaid-container > pre */
+    display: block;
+    width: 100%;
+}
+
+pre.mermaid > svg {
+    /* Same as .mermaid-container > pre > svg */
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}`;
+    document.head.appendChild(defaultStyle);
+
+    const fullscreenStyle = document.createElement('style');
+    fullscreenStyle.textContent = `.mermaid-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.mermaid-container > pre {
+    display: block;
+    width: 100%;
+}
+
+.mermaid-container > pre > svg {
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}
+
+.mermaid-fullscreen-btn {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+    color: #333;
+}
+
+.mermaid-fullscreen-btn:hover {
+    opacity: 100% !important;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-btn.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-btn.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 95vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    z-index: 9999;
+    padding: 20px;
+    overflow: auto;
+}
+
+.mermaid-fullscreen-modal.dark-theme {
+    background: rgba(0, 0, 0, 0.98);
+}
+
+.mermaid-fullscreen-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen {
+    position: relative;
+    width: 95vw;
+    height: 90vh;
+    max-width: 95vw;
+    max-height: 90vh;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen.dark-theme {
+    background: #1a1a1a;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.mermaid-container-fullscreen pre.mermaid {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen .mermaid svg {
+    height: 100% !important;
+    width: 100% !important;
+    cursor: grab;
+}
+
+.mermaid-fullscreen-close {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s;
+    font-size: 24px;
+    line-height: 1;
+    color: #333;
+}
+
+.mermaid-fullscreen-close:hover {
+    background: white;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-close.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-close.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal .mermaid-fullscreen-btn {
+    display: none !important;
+}`;
+    document.head.appendChild(fullscreenStyle);
+}
+
+// Detect if page has dark background
+const isDarkTheme = () => {
+    // We use a set of heuristics:
+    // 1. Check for common dark mode classes or attributes
+    // 2. Check computed background color brightness
+    if (document.documentElement.classList.contains('dark') ||
+        document.documentElement.getAttribute('data-theme') === 'dark' ||
+        document.body.classList.contains('dark') ||
+        document.body.getAttribute('data-theme') === 'dark') {
+        // console.log("Dark theme detected via class/attribute");
+        return true;
+    }
+    if (document.documentElement.classList.contains('light') ||
+        document.documentElement.getAttribute('data-theme') === 'light' ||
+        document.body.classList.contains('light') ||
+        document.body.getAttribute('data-theme') === 'light') {
+        // console.log("Light theme detected via class/attribute");
+        return false;
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // console.log("Dark theme detected via prefers-color-scheme");
+        return true;
+    }
+    const bgColor = window.getComputedStyle(document.body).backgroundColor;
+    const match = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)/);
+    if (match) {
+        const r = parseInt(match[1]);
+        const g = parseInt(match[2]);
+        const b = parseInt(match[3]);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        // console.log("Background color brightness:", brightness);
+        return brightness < 128;
+    }
+    // console.log("No dark or light theme detected, defaulting to light theme");
+    return false;
+};
+
+let darkTheme = isDarkTheme();
+let modal = null;
+let modalContent = null;
+let previousScrollOffset = [window.scrollX, window.scrollY];
+
+const runMermaid = async (rerun) => {
+    console.log("Running mermaid diagrams, rerun =", rerun);
+    // clear all existing mermaid charts
+    let all_mermaids = document.querySelectorAll(".mermaid");
+
+    if (rerun) {
+        all_mermaids.forEach((el) => {
+            if(!el.hasAttribute("data-original-code")) {
+                // store original code
+                // console.log(`Storing original code for first run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+            if(el.getAttribute("data-processed") === "true") {
+                // remove and restore original
+                el.removeAttribute("data-processed");
+                // console.log(`Restoring original code for re-run: `, el.getAttribute('data-original-code'));
+                el.innerHTML = el.getAttribute('data-original-code');
+            } else {
+                // store original code
+                // console.log(`Storing original code for re-run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+        });
+        await mermaid.run();
+    }
+
+    all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+
+    if ("False" === "True") {
+        const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+        if(mermaids_to_add_zoom > 0) {
+            var svgs = d3.selectAll("");
+            if(all_mermaids.length !== mermaids_processed.length) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else if(svgs.size() !== mermaids_to_add_zoom) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else {
+                svgs.each(function() {
+                    var svg = d3.select(this);
+                    svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                    var inner = svg.select("g");
+                    var zoom = d3.zoom().on("zoom", function(event) {
+                        inner.attr("transform", event.transform);
+                    });
+                    svg.call(zoom);
+                });
+            }
+        }
+    } else if(all_mermaids.length !== mermaids_processed.length) {
+        // Wait for mermaid to process all diagrams
+        setTimeout(() => runMermaid(false), 200);
+        return;
+    }
+
+    // Stop here if not adding fullscreen capability
+    if ("True" !== "True") return;
+
+    if (modal !== null ) {
+        // Destroy existing modal
+        modal.remove();
+        modal = null;
+        modalContent = null;
+    }
+
+    modal = document.createElement('div');
+    modal.className = 'mermaid-fullscreen-modal' + (darkTheme ? ' dark-theme' : '');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Fullscreen diagram viewer');
+    modal.innerHTML = `
+        <button class="mermaid-fullscreen-close${darkTheme ? ' dark-theme' : ''}" aria-label="Close fullscreen">✕</button>
+        <div class="mermaid-container-fullscreen${darkTheme ? ' dark-theme' : ''}"></div>
+    `;
+    document.body.appendChild(modal);
+
+    modalContent = modal.querySelector('.mermaid-container-fullscreen');
+    const closeBtn = modal.querySelector('.mermaid-fullscreen-close');
+
+    const closeModal = () => {
+        modal.classList.remove('active');
+        modalContent.innerHTML = '';
+        document.body.style.overflow = ''
+        window.scrollTo({left: previousScrollOffset[0], top: previousScrollOffset[1], behavior: 'instant'});
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    document.querySelectorAll('.mermaid').forEach((mermaidDiv) => {
+        if (mermaidDiv.parentNode.classList.contains('mermaid-container') ||
+            mermaidDiv.closest('.mermaid-fullscreen-modal')) {
+            // Already processed, adjust button class if needed
+            const existingBtn = mermaidDiv.parentNode.querySelector('.mermaid-fullscreen-btn');
+            if (existingBtn) {
+                existingBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+            }
+            return;
+        }
+
+        const container = document.createElement('div');
+        container.className = 'mermaid-container';
+        mermaidDiv.parentNode.insertBefore(container, mermaidDiv);
+        container.appendChild(mermaidDiv);
+
+        const fullscreenBtn = document.createElement('button');
+        fullscreenBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+        fullscreenBtn.setAttribute('aria-label', 'View diagram in fullscreen');
+        fullscreenBtn.textContent = '⛶';
+        fullscreenBtn.style.opacity = '50%';
+
+        // Calculate dynamic position based on diagram's margin and padding
+        const diagramStyle = window.getComputedStyle(mermaidDiv);
+        const marginTop = parseFloat(diagramStyle.marginTop) || 0;
+        const marginRight = parseFloat(diagramStyle.marginRight) || 0;
+        const paddingTop = parseFloat(diagramStyle.paddingTop) || 0;
+        const paddingRight = parseFloat(diagramStyle.paddingRight) || 0;
+        fullscreenBtn.style.top = `${marginTop + paddingTop + 4}px`;
+        fullscreenBtn.style.right = `${marginRight + paddingRight + 4}px`;
+
+        fullscreenBtn.addEventListener('click', () => {
+            previousScrollOffset = [window.scroll, window.scrollY];
+            const clone = mermaidDiv.cloneNode(true);
+            modalContent.innerHTML = '';
+            modalContent.appendChild(clone);
+
+            const svg = clone.querySelector('svg');
+            if (svg) {
+                svg.removeAttribute('width');
+                svg.removeAttribute('height');
+                svg.style.width = '100%';
+                svg.style.height = 'auto';
+                svg.style.maxWidth = '100%';
+                svg.style.sdisplay = 'block';
+
+                if ("False" === "True") {
+                    setTimeout(() => {
+                        const g = svg.querySelector('g');
+                        if (g) {
+                            var svgD3 = d3.select(svg);
+                            svgD3.html("<g class='wrapper'>" + svgD3.html() + "</g>");
+                            var inner = svgD3.select("g");
+                            var zoom = d3.zoom().on("zoom", function(event) {
+                                inner.attr("transform", event.transform);
+                            });
+                            svgD3.call(zoom);
+                        }
+                    }, 100);
+                }
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        container.appendChild(fullscreenBtn);
+    });
+};
+
+const load = async () => {
+    initStyles();
+
+    await runMermaid(true);
+
+    const reRunIfThemeChanges = async () => {
+        const newDarkTheme = isDarkTheme();
+        if (newDarkTheme !== darkTheme) {
+            darkTheme = newDarkTheme;
+            console.log("Theme change detected, re-running mermaid with", darkTheme ? "dark" : "default", "theme");
+            await mermaid.initialize(
+                {...JSON.parse(
+                    `{"startOnLoad": false}`
+                ),
+                ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+                }
+            );
+            await runMermaid(true);
+        }
+    };
+
+    // Update theme classes when theme changes
+    const themeObserver = new MutationObserver(reRunIfThemeChanges);
+    themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+    themeObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+};
+
+
+
+
+
+console.log("Initializing mermaid with", darkTheme ? "dark" : "default", "theme");
+mermaid.initialize(
+    {...JSON.parse(
+        `{"startOnLoad": false}`
+    ),
+    ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+    }
+);
+
+window.addEventListener("load", load);
+window.runMermaid = runMermaid;</script>
+    <script src="../_static/version-selector.js?v=7d36e42c"></script>
+    </body>
+</html>

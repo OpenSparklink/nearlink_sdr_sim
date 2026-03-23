@@ -1,0 +1,293 @@
+# {py:mod}`nearlink_sdr.phy.frame`
+
+```{py:module} nearlink_sdr.phy.frame
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame
+:allowtitles:
+```
+
+## Module Contents
+
+### Classes
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`FrameConfig <nearlink_sdr.phy.frame.FrameConfig>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.frame.FrameConfig
+    :summary:
+    ```
+* - {py:obj}`FrameFields <nearlink_sdr.phy.frame.FrameFields>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.frame.FrameFields
+    :summary:
+    ```
+````
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`_default_mod_type <nearlink_sdr.phy.frame._default_mod_type>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.frame._default_mod_type
+    :summary:
+    ```
+* - {py:obj}`assemble_frame_bits <nearlink_sdr.phy.frame.assemble_frame_bits>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.frame.assemble_frame_bits
+    :summary:
+    ```
+* - {py:obj}`frame_to_symbols <nearlink_sdr.phy.frame.frame_to_symbols>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.frame.frame_to_symbols
+    :summary:
+    ```
+* - {py:obj}`symbols_to_data_bits <nearlink_sdr.phy.frame.symbols_to_data_bits>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.frame.symbols_to_data_bits
+    :summary:
+    ```
+* - {py:obj}`_modulate_bits <nearlink_sdr.phy.frame._modulate_bits>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.frame._modulate_bits
+    :summary:
+    ```
+* - {py:obj}`_demodulate_symbols <nearlink_sdr.phy.frame._demodulate_symbols>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.frame._demodulate_symbols
+    :summary:
+    ```
+* - {py:obj}`_bits_to_symbols_count <nearlink_sdr.phy.frame._bits_to_symbols_count>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.frame._bits_to_symbols_count
+    :summary:
+    ```
+````
+
+### Data
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`_SYNC_CONFIG <nearlink_sdr.phy.frame._SYNC_CONFIG>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.frame._SYNC_CONFIG
+    :summary:
+    ```
+* - {py:obj}`_CTRL_CONFIG <nearlink_sdr.phy.frame._CTRL_CONFIG>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.frame._CTRL_CONFIG
+    :summary:
+    ```
+````
+
+### API
+
+`````{py:class} FrameConfig
+:canonical: nearlink_sdr.phy.frame.FrameConfig
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame.FrameConfig
+```
+
+````{py:attribute} frame_type
+:canonical: nearlink_sdr.phy.frame.FrameConfig.frame_type
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame.FrameConfig.frame_type
+```
+
+````
+
+````{py:attribute} symbol_rate_mhz
+:canonical: nearlink_sdr.phy.frame.FrameConfig.symbol_rate_mhz
+:type: float
+:value: >
+   1.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame.FrameConfig.symbol_rate_mhz
+```
+
+````
+
+````{py:attribute} pilot_interval
+:canonical: nearlink_sdr.phy.frame.FrameConfig.pilot_interval
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame.FrameConfig.pilot_interval
+```
+
+````
+
+````{py:attribute} crc_len
+:canonical: nearlink_sdr.phy.frame.FrameConfig.crc_len
+:type: int
+:value: >
+   24
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame.FrameConfig.crc_len
+```
+
+````
+
+````{py:attribute} mod_type
+:canonical: nearlink_sdr.phy.frame.FrameConfig.mod_type
+:type: str
+:value: <Multiline-String>
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame.FrameConfig.mod_type
+```
+
+````
+
+````{py:attribute} sync_m_index
+:canonical: nearlink_sdr.phy.frame.FrameConfig.sync_m_index
+:type: int | None
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame.FrameConfig.sync_m_index
+```
+
+````
+
+````{py:method} __post_init__()
+:canonical: nearlink_sdr.phy.frame.FrameConfig.__post_init__
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame.FrameConfig.__post_init__
+```
+
+````
+
+`````
+
+````{py:function} _default_mod_type(frame_type: int) -> str
+:canonical: nearlink_sdr.phy.frame._default_mod_type
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame._default_mod_type
+```
+````
+
+````{py:data} _SYNC_CONFIG
+:canonical: nearlink_sdr.phy.frame._SYNC_CONFIG
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame._SYNC_CONFIG
+```
+
+````
+
+````{py:data} _CTRL_CONFIG
+:canonical: nearlink_sdr.phy.frame._CTRL_CONFIG
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame._CTRL_CONFIG
+```
+
+````
+
+`````{py:class} FrameFields
+:canonical: nearlink_sdr.phy.frame.FrameFields
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame.FrameFields
+```
+
+````{py:attribute} preamble_bits
+:canonical: nearlink_sdr.phy.frame.FrameFields.preamble_bits
+:type: numpy.ndarray
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame.FrameFields.preamble_bits
+```
+
+````
+
+````{py:attribute} sync_bits
+:canonical: nearlink_sdr.phy.frame.FrameFields.sync_bits
+:type: numpy.ndarray
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame.FrameFields.sync_bits
+```
+
+````
+
+````{py:attribute} ctrl_bits
+:canonical: nearlink_sdr.phy.frame.FrameFields.ctrl_bits
+:type: numpy.ndarray
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame.FrameFields.ctrl_bits
+```
+
+````
+
+````{py:attribute} data_bits
+:canonical: nearlink_sdr.phy.frame.FrameFields.data_bits
+:type: numpy.ndarray
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame.FrameFields.data_bits
+```
+
+````
+
+````{py:attribute} frame_type
+:canonical: nearlink_sdr.phy.frame.FrameFields.frame_type
+:type: int
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame.FrameFields.frame_type
+```
+
+````
+
+`````
+
+````{py:function} assemble_frame_bits(ctrl_info_bits: numpy.ndarray, data_payload_bits: numpy.ndarray, config: nearlink_sdr.phy.frame.FrameConfig) -> nearlink_sdr.phy.frame.FrameFields
+:canonical: nearlink_sdr.phy.frame.assemble_frame_bits
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame.assemble_frame_bits
+```
+````
+
+````{py:function} frame_to_symbols(fields: nearlink_sdr.phy.frame.FrameFields, config: nearlink_sdr.phy.frame.FrameConfig) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.frame.frame_to_symbols
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame.frame_to_symbols
+```
+````
+
+````{py:function} symbols_to_data_bits(symbols: numpy.ndarray, config: nearlink_sdr.phy.frame.FrameConfig, n_ctrl_coded_bits: int = 0, n_data_bits: int = 0) -> tuple[numpy.ndarray, numpy.ndarray]
+:canonical: nearlink_sdr.phy.frame.symbols_to_data_bits
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame.symbols_to_data_bits
+```
+````
+
+````{py:function} _modulate_bits(bits: numpy.ndarray, mod_type: str) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.frame._modulate_bits
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame._modulate_bits
+```
+````
+
+````{py:function} _demodulate_symbols(symbols: numpy.ndarray, mod_type: str) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.frame._demodulate_symbols
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame._demodulate_symbols
+```
+````
+
+````{py:function} _bits_to_symbols_count(n_bits: int, mod_type: str) -> int
+:canonical: nearlink_sdr.phy.frame._bits_to_symbols_count
+
+```{autodoc2-docstring} nearlink_sdr.phy.frame._bits_to_symbols_count
+```
+````

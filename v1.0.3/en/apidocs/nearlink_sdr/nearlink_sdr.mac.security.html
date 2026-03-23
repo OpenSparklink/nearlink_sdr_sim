@@ -1,0 +1,1715 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="nearlink_sdr.mac.smf_scheduler" href="nearlink_sdr.mac.smf_scheduler.html"><link rel="prev" title="nearlink_sdr.mac.frame" href="nearlink_sdr.mac.frame.html">
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
+        <title>nearlink_sdr.mac.security - nearlink-sdr 1.0.3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/version-selector.css?v=022f18c6" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  --color-brand-primary: #1a73e8;
+  --color-brand-content: #1a73e8;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #8ab4f8;
+  --color-brand-content: #8ab4f8;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #8ab4f8;
+  --color-brand-content: #8ab4f8;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">nearlink-sdr 1.0.3 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.3 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/getting-started.html">Quick Start</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../how-to/index.html">How-To Guides</a><input aria-label="Toggle navigation of How-To Guides" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/run-simulation.html">Running Link Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/add-modulation.html">Adding a New Modulation Scheme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/qos-management.html">QoS Service Quality Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/node-usage.html">Using the SLE Node Entity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/rust-acceleration.html">Rust Acceleration Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/sdr-deployment.html">SDR E310 Deployment Planning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/build-docs.html">Building Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../../reference/index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.demodulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.demodulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.modulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.modulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.rx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.sim.link_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.link_sim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.sim.usrp_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.usrp_sim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 current has-children"><a class="reference internal" href="nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../explanation/index.html">Explanation</a><input aria-label="Toggle navigation of Explanation" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/overview.html">SparkLink SLE Protocol Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/principles.html">Physical Layer Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/physical-layer.html">Physical Layer Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/mac-layer.html">MAC Layer Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/security.html">Security Subsystem Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/data-flow.html">End-to-End Data Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/architecture.html">System Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/standard-mapping.html">Standard Clause Mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.demodulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.demodulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.modulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.modulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.rx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.sim.link_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.link_sim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.sim.usrp_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.usrp_sim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 current has-children"><a class="reference internal" href="nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4 current current-page"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/apidocs/nearlink_sdr/nearlink_sdr.mac.security.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section class="tex2jax_ignore mathjax_ignore" id="module-nearlink_sdr.mac.security">
+<span id="nearlink-sdr-mac-security"></span><h1><a class="reference internal" href="#module-nearlink_sdr.mac.security" title="nearlink_sdr.mac.security"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a><a class="headerlink" href="#module-nearlink_sdr.mac.security" title="Link to this heading">¶</a></h1>
+<p>Security layer pairing and authentication signaling — TXS-10002-2025 standard 9.2</p>
+<p>Implements encoding/decoding for signaling messages required by SLE pairing and authentication management.</p>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-left">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security._BytesMessage" title="nearlink_sdr.mac.security._BytesMessage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_BytesMessage</span></code></a></p></td>
+<td><p>Base class for messages containing a single bytes field.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security._TwoBytesMessage" title="nearlink_sdr.mac.security._TwoBytesMessage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_TwoBytesMessage</span></code></a></p></td>
+<td><p>Base class for messages containing two equal-length bytes fields.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.PairingInitiate" title="nearlink_sdr.mac.security.PairingInitiate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PairingInitiate</span></code></a></p></td>
+<td><p>Pairing initiate (standard 9.2).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.PairingRequest" title="nearlink_sdr.mac.security.PairingRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PairingRequest</span></code></a></p></td>
+<td><p>pairingrequest (standard 9.2)。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.PairingResponse" title="nearlink_sdr.mac.security.PairingResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PairingResponse</span></code></a></p></td>
+<td><p>pairingresponse (standard 9.2)。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.PairingConfirm" title="nearlink_sdr.mac.security.PairingConfirm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PairingConfirm</span></code></a></p></td>
+<td><p>pairingacknowledgment (standard 9.2)。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.PairingInitialInfo" title="nearlink_sdr.mac.security.PairingInitialInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PairingInitialInfo</span></code></a></p></td>
+<td><p>Pairing initial information (standard 9.2): T node public key.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeConfirmCode" title="nearlink_sdr.mac.security.TNodeConfirmCode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TNodeConfirmCode</span></code></a></p></td>
+<td><p>T node confirmation code (standard 9.2).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.RaMessage" title="nearlink_sdr.mac.security.RaMessage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RaMessage</span></code></a></p></td>
+<td><p>Ra random number message (standard 9.2).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.RbMessage" title="nearlink_sdr.mac.security.RbMessage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RbMessage</span></code></a></p></td>
+<td><p>Rb random number message (standard 9.2).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeConfirmCodeWithRandom" title="nearlink_sdr.mac.security.GNodeConfirmCodeWithRandom"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GNodeConfirmCodeWithRandom</span></code></a></p></td>
+<td><p>G node confirmation code and random number (standard 9.2).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeConfirmCodeWithRandom" title="nearlink_sdr.mac.security.TNodeConfirmCodeWithRandom"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TNodeConfirmCodeWithRandom</span></code></a></p></td>
+<td><p>T node confirmation code and random number (standard 9.2).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeConfirmCode" title="nearlink_sdr.mac.security.GNodeConfirmCode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GNodeConfirmCode</span></code></a></p></td>
+<td><p>G node confirmation code (standard 9.2).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeDHKeyVerify" title="nearlink_sdr.mac.security.GNodeDHKeyVerify"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GNodeDHKeyVerify</span></code></a></p></td>
+<td><p>G node DH key check code (standard 9.2).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeDHKeyVerify" title="nearlink_sdr.mac.security.TNodeDHKeyVerify"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TNodeDHKeyVerify</span></code></a></p></td>
+<td><p>T node DH key check code (standard 9.2).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.PairingFailure" title="nearlink_sdr.mac.security.PairingFailure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PairingFailure</span></code></a></p></td>
+<td><p>pairingfailure (standard 9.2, table68).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.RgMessage" title="nearlink_sdr.mac.security.RgMessage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RgMessage</span></code></a></p></td>
+<td><p>Rg random number message (standard 9.2).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.RtMessage" title="nearlink_sdr.mac.security.RtMessage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RtMessage</span></code></a></p></td>
+<td><p>Rt random number message (standard 9.2).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.ResolutionAlgorithm" title="nearlink_sdr.mac.security.ResolutionAlgorithm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResolutionAlgorithm</span></code></a></p></td>
+<td><p>Resolution algorithm enumeration (standard 9.3.3).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.AddrType" title="nearlink_sdr.mac.security.AddrType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddrType</span></code></a></p></td>
+<td><p>Media access layer identifier type (standard 9.3.3).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeIRK" title="nearlink_sdr.mac.security.GNodeIRK"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GNodeIRK</span></code></a></p></td>
+<td><p>G node identity resolving key information (standard 9.3.3).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeIRK" title="nearlink_sdr.mac.security.TNodeIRK"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TNodeIRK</span></code></a></p></td>
+<td><p>T node identity resolving key information (standard 9.3.3).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeAddress" title="nearlink_sdr.mac.security.GNodeAddress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GNodeAddress</span></code></a></p></td>
+<td><p>G node media access layer identifier information (standard 9.3.3).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeAddress" title="nearlink_sdr.mac.security.TNodeAddress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TNodeAddress</span></code></a></p></td>
+<td><p>T node media access layer identifier information (standard 9.3.3).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.MulticastAlgorithmConfig" title="nearlink_sdr.mac.security.MulticastAlgorithmConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MulticastAlgorithmConfig</span></code></a></p></td>
+<td><p>Multicast security algorithm indication message (standard 9.3.2).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security.MulticastKeyConfig" title="nearlink_sdr.mac.security.MulticastKeyConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MulticastKeyConfig</span></code></a></p></td>
+<td><p>Multicast key configuration message (standard 9.3.2).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="api">
+<h3>API<a class="headerlink" href="#api" title="Link to this heading">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security._BytesMessage">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">_BytesMessage</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#_BytesMessage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security._BytesMessage" title="Link to this definition">¶</a></dt>
+<dd><p>Base class for messages containing a single bytes field.</p>
+<p>Subclasses must define DATA_TYPE_INDEX, BYTE_LENGTH, and one bytes field.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security._BytesMessage.pack">
+<span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#_BytesMessage.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security._BytesMessage.pack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security._BytesMessage.unpack">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#_BytesMessage.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security._BytesMessage.unpack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security._TwoBytesMessage">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">_TwoBytesMessage</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#_TwoBytesMessage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security._TwoBytesMessage" title="Link to this definition">¶</a></dt>
+<dd><p>Base class for messages containing two equal-length bytes fields.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security._TwoBytesMessage.pack">
+<span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#_TwoBytesMessage.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security._TwoBytesMessage.pack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security._TwoBytesMessage.unpack">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#_TwoBytesMessage.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security._TwoBytesMessage.unpack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingInitiate">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">PairingInitiate</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#PairingInitiate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.PairingInitiate" title="Link to this definition">¶</a></dt>
+<dd><p>Pairing initiate (standard 9.2).</p>
+<p>auth_request field layout (8 bits):   security attribute(2bit) | MITM protection indication(1bit) | keypress notification(1bit) | reserved(4bit)</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingInitiate.auth_request">
+<span class="sig-name descname"><span class="pre">auth_request</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingInitiate.auth_request" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingInitiate.DATA_TYPE_INDEX">
+<span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingInitiate.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
+<dd><p>307</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingInitiate.BYTE_LENGTH">
+<span class="sig-name descname"><span class="pre">BYTE_LENGTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingInitiate.BYTE_LENGTH" title="Link to this definition">¶</a></dt>
+<dd><p>1</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingInitiate.pack">
+<span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#PairingInitiate.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.PairingInitiate.pack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingInitiate.unpack">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.security.PairingInitiate" title="nearlink_sdr.mac.security.PairingInitiate"><span class="pre">nearlink_sdr.mac.security.PairingInitiate</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#PairingInitiate.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.PairingInitiate.unpack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingRequest">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">PairingRequest</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#PairingRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.PairingRequest" title="Link to this definition">¶</a></dt>
+<dd><p>pairingrequest (standard 9.2)。</p>
+<p>field:</p>
+<ul class="simple">
+<li><p>io_capability:      1 byte, I/O capability</p></li>
+<li><p>oob_data_flag:      1 byte, OOB data flag</p></li>
+<li><p>auth_request:       1 byte, authentication request</p></li>
+<li><p>max_key_length:     1 byte, maximum key length</p></li>
+<li><p>security_dist_info: 1 byte, security distribution information</p></li>
+<li><p>crypto_capability:  4 bytes, cryptographic capability</p></li>
+<li><p>psk_indication:     1 byte, PSK indication</p></li>
+</ul>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingRequest.io_capability">
+<span class="sig-name descname"><span class="pre">io_capability</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingRequest.io_capability" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingRequest.oob_data_flag">
+<span class="sig-name descname"><span class="pre">oob_data_flag</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingRequest.oob_data_flag" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingRequest.auth_request">
+<span class="sig-name descname"><span class="pre">auth_request</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingRequest.auth_request" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingRequest.max_key_length">
+<span class="sig-name descname"><span class="pre">max_key_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingRequest.max_key_length" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingRequest.security_dist_info">
+<span class="sig-name descname"><span class="pre">security_dist_info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingRequest.security_dist_info" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingRequest.crypto_capability">
+<span class="sig-name descname"><span class="pre">crypto_capability</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingRequest.crypto_capability" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingRequest.psk_indication">
+<span class="sig-name descname"><span class="pre">psk_indication</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingRequest.psk_indication" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingRequest.DATA_TYPE_INDEX">
+<span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingRequest.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
+<dd><p>308</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingRequest.BYTE_LENGTH">
+<span class="sig-name descname"><span class="pre">BYTE_LENGTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingRequest.BYTE_LENGTH" title="Link to this definition">¶</a></dt>
+<dd><p>10</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingRequest.pack">
+<span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#PairingRequest.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.PairingRequest.pack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingRequest.unpack">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.security.PairingRequest" title="nearlink_sdr.mac.security.PairingRequest"><span class="pre">nearlink_sdr.mac.security.PairingRequest</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#PairingRequest.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.PairingRequest.unpack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingResponse">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">PairingResponse</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#PairingResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.PairingResponse" title="Link to this definition">¶</a></dt>
+<dd><p>pairingresponse (standard 9.2)。</p>
+<p>Fields are identical to PairingRequest.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingResponse.io_capability">
+<span class="sig-name descname"><span class="pre">io_capability</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingResponse.io_capability" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingResponse.oob_data_flag">
+<span class="sig-name descname"><span class="pre">oob_data_flag</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingResponse.oob_data_flag" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingResponse.auth_request">
+<span class="sig-name descname"><span class="pre">auth_request</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingResponse.auth_request" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingResponse.max_key_length">
+<span class="sig-name descname"><span class="pre">max_key_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingResponse.max_key_length" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingResponse.security_dist_info">
+<span class="sig-name descname"><span class="pre">security_dist_info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingResponse.security_dist_info" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingResponse.crypto_capability">
+<span class="sig-name descname"><span class="pre">crypto_capability</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingResponse.crypto_capability" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingResponse.psk_indication">
+<span class="sig-name descname"><span class="pre">psk_indication</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingResponse.psk_indication" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingResponse.DATA_TYPE_INDEX">
+<span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingResponse.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
+<dd><p>309</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingResponse.BYTE_LENGTH">
+<span class="sig-name descname"><span class="pre">BYTE_LENGTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingResponse.BYTE_LENGTH" title="Link to this definition">¶</a></dt>
+<dd><p>10</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingResponse.pack">
+<span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#PairingResponse.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.PairingResponse.pack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingResponse.unpack">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.security.PairingResponse" title="nearlink_sdr.mac.security.PairingResponse"><span class="pre">nearlink_sdr.mac.security.PairingResponse</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#PairingResponse.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.PairingResponse.unpack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingConfirm">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">PairingConfirm</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#PairingConfirm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.PairingConfirm" title="Link to this definition">¶</a></dt>
+<dd><p>pairingacknowledgment (standard 9.2)。</p>
+<p>field:</p>
+<ul class="simple">
+<li><p>key_length:       1 byte, key length</p></li>
+<li><p>auth_method:      1 byte, authentication method</p></li>
+<li><p>crypto_algorithm: 4 bytes, cryptographic algorithm capability</p></li>
+<li><p>g_public_key_x:  32 bytes, G node public key X component</p></li>
+<li><p>g_public_key_y:  32 bytes, G node public key Y component</p></li>
+</ul>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingConfirm.key_length">
+<span class="sig-name descname"><span class="pre">key_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingConfirm.key_length" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingConfirm.auth_method">
+<span class="sig-name descname"><span class="pre">auth_method</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingConfirm.auth_method" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingConfirm.crypto_algorithm">
+<span class="sig-name descname"><span class="pre">crypto_algorithm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingConfirm.crypto_algorithm" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingConfirm.g_public_key_x">
+<span class="sig-name descname"><span class="pre">g_public_key_x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingConfirm.g_public_key_x" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingConfirm.g_public_key_y">
+<span class="sig-name descname"><span class="pre">g_public_key_y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingConfirm.g_public_key_y" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingConfirm.DATA_TYPE_INDEX">
+<span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingConfirm.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
+<dd><p>310</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingConfirm.BYTE_LENGTH">
+<span class="sig-name descname"><span class="pre">BYTE_LENGTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingConfirm.BYTE_LENGTH" title="Link to this definition">¶</a></dt>
+<dd><p>70</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingConfirm.pack">
+<span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#PairingConfirm.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.PairingConfirm.pack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingConfirm.unpack">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.security.PairingConfirm" title="nearlink_sdr.mac.security.PairingConfirm"><span class="pre">nearlink_sdr.mac.security.PairingConfirm</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#PairingConfirm.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.PairingConfirm.unpack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingInitialInfo">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">PairingInitialInfo</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#PairingInitialInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.PairingInitialInfo" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nearlink_sdr.mac.security._TwoBytesMessage" title="nearlink_sdr.mac.security._TwoBytesMessage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security._TwoBytesMessage</span></code></a></p>
+<p>Pairing initial information (standard 9.2): T node public key.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingInitialInfo.t_public_key_x">
+<span class="sig-name descname"><span class="pre">t_public_key_x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingInitialInfo.t_public_key_x" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingInitialInfo.t_public_key_y">
+<span class="sig-name descname"><span class="pre">t_public_key_y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingInitialInfo.t_public_key_y" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingInitialInfo.DATA_TYPE_INDEX">
+<span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingInitialInfo.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
+<dd><p>311</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingInitialInfo.BYTE_LENGTH">
+<span class="sig-name descname"><span class="pre">BYTE_LENGTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingInitialInfo.BYTE_LENGTH" title="Link to this definition">¶</a></dt>
+<dd><p>64</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeConfirmCode">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">TNodeConfirmCode</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#TNodeConfirmCode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeConfirmCode" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nearlink_sdr.mac.security._BytesMessage" title="nearlink_sdr.mac.security._BytesMessage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security._BytesMessage</span></code></a></p>
+<p>T node confirmation code (standard 9.2).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeConfirmCode.confirm_code">
+<span class="sig-name descname"><span class="pre">confirm_code</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeConfirmCode.confirm_code" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeConfirmCode.DATA_TYPE_INDEX">
+<span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeConfirmCode.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
+<dd><p>312</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeConfirmCode.BYTE_LENGTH">
+<span class="sig-name descname"><span class="pre">BYTE_LENGTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeConfirmCode.BYTE_LENGTH" title="Link to this definition">¶</a></dt>
+<dd><p>16</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.RaMessage">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">RaMessage</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#RaMessage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.RaMessage" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nearlink_sdr.mac.security._BytesMessage" title="nearlink_sdr.mac.security._BytesMessage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security._BytesMessage</span></code></a></p>
+<p>Ra random number message (standard 9.2).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.RaMessage.ra">
+<span class="sig-name descname"><span class="pre">ra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.RaMessage.ra" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.RaMessage.DATA_TYPE_INDEX">
+<span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.RaMessage.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
+<dd><p>313</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.RaMessage.BYTE_LENGTH">
+<span class="sig-name descname"><span class="pre">BYTE_LENGTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.RaMessage.BYTE_LENGTH" title="Link to this definition">¶</a></dt>
+<dd><p>16</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.RbMessage">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">RbMessage</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#RbMessage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.RbMessage" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nearlink_sdr.mac.security._BytesMessage" title="nearlink_sdr.mac.security._BytesMessage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security._BytesMessage</span></code></a></p>
+<p>Rb random number message (standard 9.2).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.RbMessage.rb">
+<span class="sig-name descname"><span class="pre">rb</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.RbMessage.rb" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.RbMessage.DATA_TYPE_INDEX">
+<span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.RbMessage.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
+<dd><p>314</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.RbMessage.BYTE_LENGTH">
+<span class="sig-name descname"><span class="pre">BYTE_LENGTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.RbMessage.BYTE_LENGTH" title="Link to this definition">¶</a></dt>
+<dd><p>16</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeConfirmCodeWithRandom">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">GNodeConfirmCodeWithRandom</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#GNodeConfirmCodeWithRandom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeConfirmCodeWithRandom" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nearlink_sdr.mac.security._TwoBytesMessage" title="nearlink_sdr.mac.security._TwoBytesMessage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security._TwoBytesMessage</span></code></a></p>
+<p>G node confirmation code and random number (standard 9.2).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeConfirmCodeWithRandom.confirm_code">
+<span class="sig-name descname"><span class="pre">confirm_code</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeConfirmCodeWithRandom.confirm_code" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeConfirmCodeWithRandom.ra">
+<span class="sig-name descname"><span class="pre">ra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeConfirmCodeWithRandom.ra" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeConfirmCodeWithRandom.DATA_TYPE_INDEX">
+<span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeConfirmCodeWithRandom.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
+<dd><p>315</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeConfirmCodeWithRandom.BYTE_LENGTH">
+<span class="sig-name descname"><span class="pre">BYTE_LENGTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeConfirmCodeWithRandom.BYTE_LENGTH" title="Link to this definition">¶</a></dt>
+<dd><p>32</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeConfirmCodeWithRandom">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">TNodeConfirmCodeWithRandom</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#TNodeConfirmCodeWithRandom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeConfirmCodeWithRandom" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nearlink_sdr.mac.security._TwoBytesMessage" title="nearlink_sdr.mac.security._TwoBytesMessage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security._TwoBytesMessage</span></code></a></p>
+<p>T node confirmation code and random number (standard 9.2).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeConfirmCodeWithRandom.confirm_code">
+<span class="sig-name descname"><span class="pre">confirm_code</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeConfirmCodeWithRandom.confirm_code" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeConfirmCodeWithRandom.rb">
+<span class="sig-name descname"><span class="pre">rb</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeConfirmCodeWithRandom.rb" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeConfirmCodeWithRandom.DATA_TYPE_INDEX">
+<span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeConfirmCodeWithRandom.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
+<dd><p>316</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeConfirmCodeWithRandom.BYTE_LENGTH">
+<span class="sig-name descname"><span class="pre">BYTE_LENGTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeConfirmCodeWithRandom.BYTE_LENGTH" title="Link to this definition">¶</a></dt>
+<dd><p>32</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeConfirmCode">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">GNodeConfirmCode</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#GNodeConfirmCode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeConfirmCode" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nearlink_sdr.mac.security._BytesMessage" title="nearlink_sdr.mac.security._BytesMessage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security._BytesMessage</span></code></a></p>
+<p>G node confirmation code (standard 9.2).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeConfirmCode.confirm_code">
+<span class="sig-name descname"><span class="pre">confirm_code</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeConfirmCode.confirm_code" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeConfirmCode.DATA_TYPE_INDEX">
+<span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeConfirmCode.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
+<dd><p>319</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeConfirmCode.BYTE_LENGTH">
+<span class="sig-name descname"><span class="pre">BYTE_LENGTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeConfirmCode.BYTE_LENGTH" title="Link to this definition">¶</a></dt>
+<dd><p>16</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeDHKeyVerify">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">GNodeDHKeyVerify</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#GNodeDHKeyVerify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeDHKeyVerify" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nearlink_sdr.mac.security._BytesMessage" title="nearlink_sdr.mac.security._BytesMessage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security._BytesMessage</span></code></a></p>
+<p>G node DH key check code (standard 9.2).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeDHKeyVerify.verify_code">
+<span class="sig-name descname"><span class="pre">verify_code</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeDHKeyVerify.verify_code" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeDHKeyVerify.DATA_TYPE_INDEX">
+<span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeDHKeyVerify.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
+<dd><p>321</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeDHKeyVerify.BYTE_LENGTH">
+<span class="sig-name descname"><span class="pre">BYTE_LENGTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeDHKeyVerify.BYTE_LENGTH" title="Link to this definition">¶</a></dt>
+<dd><p>16</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeDHKeyVerify">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">TNodeDHKeyVerify</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#TNodeDHKeyVerify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeDHKeyVerify" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nearlink_sdr.mac.security._BytesMessage" title="nearlink_sdr.mac.security._BytesMessage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security._BytesMessage</span></code></a></p>
+<p>T node DH key check code (standard 9.2).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeDHKeyVerify.verify_code">
+<span class="sig-name descname"><span class="pre">verify_code</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeDHKeyVerify.verify_code" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeDHKeyVerify.DATA_TYPE_INDEX">
+<span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeDHKeyVerify.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
+<dd><p>322</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeDHKeyVerify.BYTE_LENGTH">
+<span class="sig-name descname"><span class="pre">BYTE_LENGTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeDHKeyVerify.BYTE_LENGTH" title="Link to this definition">¶</a></dt>
+<dd><p>16</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingFailure">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">PairingFailure</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#PairingFailure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.PairingFailure" title="Link to this definition">¶</a></dt>
+<dd><p>pairingfailure (standard 9.2, table68).</p>
+<p>reason values 0x01-0x0C:   0x01 Passkey entry failed    0x02 OOB not available   0x03 Authentication requirements not met    0x04 Confirm value mismatch   0x05 Pairing not supported   0x06 Encryption key size insufficient   0x07 Command not supported       0x08 Unconfirmed pairing   0x09 Repeated pairing attempt     0x0A Invalid parameters   0x0B DHKey check failed     0x0C Numeric comparison failed</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingFailure.reason">
+<span class="sig-name descname"><span class="pre">reason</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingFailure.reason" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingFailure.DATA_TYPE_INDEX">
+<span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingFailure.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
+<dd><p>327</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingFailure.BYTE_LENGTH">
+<span class="sig-name descname"><span class="pre">BYTE_LENGTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.PairingFailure.BYTE_LENGTH" title="Link to this definition">¶</a></dt>
+<dd><p>1</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingFailure.pack">
+<span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#PairingFailure.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.PairingFailure.pack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.PairingFailure.unpack">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.security.PairingFailure" title="nearlink_sdr.mac.security.PairingFailure"><span class="pre">nearlink_sdr.mac.security.PairingFailure</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#PairingFailure.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.PairingFailure.unpack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.RgMessage">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">RgMessage</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#RgMessage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.RgMessage" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nearlink_sdr.mac.security._TwoBytesMessage" title="nearlink_sdr.mac.security._TwoBytesMessage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security._TwoBytesMessage</span></code></a></p>
+<p>Rg random number message (standard 9.2).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.RgMessage.rg_x">
+<span class="sig-name descname"><span class="pre">rg_x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.RgMessage.rg_x" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.RgMessage.rg_y">
+<span class="sig-name descname"><span class="pre">rg_y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.RgMessage.rg_y" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.RgMessage.DATA_TYPE_INDEX">
+<span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.RgMessage.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
+<dd><p>328</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.RgMessage.BYTE_LENGTH">
+<span class="sig-name descname"><span class="pre">BYTE_LENGTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.RgMessage.BYTE_LENGTH" title="Link to this definition">¶</a></dt>
+<dd><p>64</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.RtMessage">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">RtMessage</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#RtMessage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.RtMessage" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nearlink_sdr.mac.security._TwoBytesMessage" title="nearlink_sdr.mac.security._TwoBytesMessage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security._TwoBytesMessage</span></code></a></p>
+<p>Rt random number message (standard 9.2).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.RtMessage.rt_x">
+<span class="sig-name descname"><span class="pre">rt_x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.RtMessage.rt_x" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.RtMessage.rt_y">
+<span class="sig-name descname"><span class="pre">rt_y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.RtMessage.rt_y" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.RtMessage.DATA_TYPE_INDEX">
+<span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.RtMessage.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
+<dd><p>329</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.RtMessage.BYTE_LENGTH">
+<span class="sig-name descname"><span class="pre">BYTE_LENGTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.RtMessage.BYTE_LENGTH" title="Link to this definition">¶</a></dt>
+<dd><p>64</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.ResolutionAlgorithm">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">ResolutionAlgorithm</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#ResolutionAlgorithm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.ResolutionAlgorithm" title="Link to this definition">¶</a></dt>
+<dd><p>Resolution algorithm enumeration (standard 9.3.3).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.ResolutionAlgorithm.HMAC_SM3">
+<span class="sig-name descname"><span class="pre">HMAC_SM3</span></span><a class="headerlink" href="#nearlink_sdr.mac.security.ResolutionAlgorithm.HMAC_SM3" title="Link to this definition">¶</a></dt>
+<dd><p>1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.ResolutionAlgorithm.AES_CMAC_128">
+<span class="sig-name descname"><span class="pre">AES_CMAC_128</span></span><a class="headerlink" href="#nearlink_sdr.mac.security.ResolutionAlgorithm.AES_CMAC_128" title="Link to this definition">¶</a></dt>
+<dd><p>2</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.AddrType">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">AddrType</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#AddrType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.AddrType" title="Link to this definition">¶</a></dt>
+<dd><p>Media access layer identifier type (standard 9.3.3).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.AddrType.UNION_ALLOCATED">
+<span class="sig-name descname"><span class="pre">UNION_ALLOCATED</span></span><a class="headerlink" href="#nearlink_sdr.mac.security.AddrType.UNION_ALLOCATED" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.AddrType.THIRD_PARTY_LOCAL">
+<span class="sig-name descname"><span class="pre">THIRD_PARTY_LOCAL</span></span><a class="headerlink" href="#nearlink_sdr.mac.security.AddrType.THIRD_PARTY_LOCAL" title="Link to this definition">¶</a></dt>
+<dd><p>2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.AddrType.UNION_RESERVED">
+<span class="sig-name descname"><span class="pre">UNION_RESERVED</span></span><a class="headerlink" href="#nearlink_sdr.mac.security.AddrType.UNION_RESERVED" title="Link to this definition">¶</a></dt>
+<dd><p>5</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.AddrType.PRIVATE">
+<span class="sig-name descname"><span class="pre">PRIVATE</span></span><a class="headerlink" href="#nearlink_sdr.mac.security.AddrType.PRIVATE" title="Link to this definition">¶</a></dt>
+<dd><p>6</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeIRK">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">GNodeIRK</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#GNodeIRK"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeIRK" title="Link to this definition">¶</a></dt>
+<dd><p>G node identity resolving key information (standard 9.3.3).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeIRK.resolution_algorithm">
+<span class="sig-name descname"><span class="pre">resolution_algorithm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeIRK.resolution_algorithm" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeIRK.irk">
+<span class="sig-name descname"><span class="pre">irk</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeIRK.irk" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeIRK.irk_id">
+<span class="sig-name descname"><span class="pre">irk_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeIRK.irk_id" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeIRK.DATA_TYPE_INDEX">
+<span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeIRK.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
+<dd><p>323</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeIRK.BYTE_LENGTH">
+<span class="sig-name descname"><span class="pre">BYTE_LENGTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeIRK.BYTE_LENGTH" title="Link to this definition">¶</a></dt>
+<dd><p>18</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeIRK.pack">
+<span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#GNodeIRK.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeIRK.pack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeIRK.unpack">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeIRK" title="nearlink_sdr.mac.security.GNodeIRK"><span class="pre">nearlink_sdr.mac.security.GNodeIRK</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#GNodeIRK.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeIRK.unpack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeIRK">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">TNodeIRK</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#TNodeIRK"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeIRK" title="Link to this definition">¶</a></dt>
+<dd><p>T node identity resolving key information (standard 9.3.3).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeIRK.resolution_algorithm">
+<span class="sig-name descname"><span class="pre">resolution_algorithm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeIRK.resolution_algorithm" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeIRK.irk">
+<span class="sig-name descname"><span class="pre">irk</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeIRK.irk" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeIRK.irk_id">
+<span class="sig-name descname"><span class="pre">irk_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeIRK.irk_id" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeIRK.DATA_TYPE_INDEX">
+<span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeIRK.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
+<dd><p>324</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeIRK.BYTE_LENGTH">
+<span class="sig-name descname"><span class="pre">BYTE_LENGTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeIRK.BYTE_LENGTH" title="Link to this definition">¶</a></dt>
+<dd><p>18</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeIRK.pack">
+<span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#TNodeIRK.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeIRK.pack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeIRK.unpack">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeIRK" title="nearlink_sdr.mac.security.TNodeIRK"><span class="pre">nearlink_sdr.mac.security.TNodeIRK</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#TNodeIRK.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeIRK.unpack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeAddress">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">GNodeAddress</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#GNodeAddress"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeAddress" title="Link to this definition">¶</a></dt>
+<dd><p>G node media access layer identifier information (standard 9.3.3).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeAddress.addr_type">
+<span class="sig-name descname"><span class="pre">addr_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeAddress.addr_type" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeAddress.addr">
+<span class="sig-name descname"><span class="pre">addr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeAddress.addr" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeAddress.DATA_TYPE_INDEX">
+<span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeAddress.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
+<dd><p>325</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeAddress.BYTE_LENGTH">
+<span class="sig-name descname"><span class="pre">BYTE_LENGTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeAddress.BYTE_LENGTH" title="Link to this definition">¶</a></dt>
+<dd><p>7</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeAddress.pack">
+<span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#GNodeAddress.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeAddress.pack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.GNodeAddress.unpack">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeAddress" title="nearlink_sdr.mac.security.GNodeAddress"><span class="pre">nearlink_sdr.mac.security.GNodeAddress</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#GNodeAddress.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.GNodeAddress.unpack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeAddress">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">TNodeAddress</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#TNodeAddress"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeAddress" title="Link to this definition">¶</a></dt>
+<dd><p>T node media access layer identifier information (standard 9.3.3).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeAddress.addr_type">
+<span class="sig-name descname"><span class="pre">addr_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeAddress.addr_type" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeAddress.addr">
+<span class="sig-name descname"><span class="pre">addr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeAddress.addr" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeAddress.DATA_TYPE_INDEX">
+<span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeAddress.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
+<dd><p>326</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeAddress.BYTE_LENGTH">
+<span class="sig-name descname"><span class="pre">BYTE_LENGTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeAddress.BYTE_LENGTH" title="Link to this definition">¶</a></dt>
+<dd><p>7</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeAddress.pack">
+<span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#TNodeAddress.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeAddress.pack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.TNodeAddress.unpack">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeAddress" title="nearlink_sdr.mac.security.TNodeAddress"><span class="pre">nearlink_sdr.mac.security.TNodeAddress</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#TNodeAddress.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.TNodeAddress.unpack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.MulticastAlgorithmConfig">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">MulticastAlgorithmConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#MulticastAlgorithmConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.MulticastAlgorithmConfig" title="Link to this definition">¶</a></dt>
+<dd><p>Multicast security algorithm indication message (standard 9.3.2).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.MulticastAlgorithmConfig.rand">
+<span class="sig-name descname"><span class="pre">rand</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.MulticastAlgorithmConfig.rand" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.MulticastAlgorithmConfig.kdf_type">
+<span class="sig-name descname"><span class="pre">kdf_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.MulticastAlgorithmConfig.kdf_type" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.MulticastAlgorithmConfig.encryption_algo">
+<span class="sig-name descname"><span class="pre">encryption_algo</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.MulticastAlgorithmConfig.encryption_algo" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.MulticastAlgorithmConfig.integrity_algo">
+<span class="sig-name descname"><span class="pre">integrity_algo</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.MulticastAlgorithmConfig.integrity_algo" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.MulticastAlgorithmConfig.DATA_TYPE_INDEX">
+<span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.MulticastAlgorithmConfig.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
+<dd><p>328</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.MulticastAlgorithmConfig.BYTE_LENGTH">
+<span class="sig-name descname"><span class="pre">BYTE_LENGTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.MulticastAlgorithmConfig.BYTE_LENGTH" title="Link to this definition">¶</a></dt>
+<dd><p>19</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.MulticastAlgorithmConfig.pack">
+<span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#MulticastAlgorithmConfig.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.MulticastAlgorithmConfig.pack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.MulticastAlgorithmConfig.unpack">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.security.MulticastAlgorithmConfig" title="nearlink_sdr.mac.security.MulticastAlgorithmConfig"><span class="pre">nearlink_sdr.mac.security.MulticastAlgorithmConfig</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#MulticastAlgorithmConfig.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.MulticastAlgorithmConfig.unpack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.MulticastKeyConfig">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security.</span></span><span class="sig-name descname"><span class="pre">MulticastKeyConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#MulticastKeyConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.MulticastKeyConfig" title="Link to this definition">¶</a></dt>
+<dd><p>Multicast key configuration message (standard 9.3.2).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.MulticastKeyConfig.c">
+<span class="sig-name descname"><span class="pre">c</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.MulticastKeyConfig.c" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.MulticastKeyConfig.DATA_TYPE_INDEX">
+<span class="sig-name descname"><span class="pre">DATA_TYPE_INDEX</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.MulticastKeyConfig.DATA_TYPE_INDEX" title="Link to this definition">¶</a></dt>
+<dd><p>329</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.MulticastKeyConfig.BYTE_LENGTH">
+<span class="sig-name descname"><span class="pre">BYTE_LENGTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.security.MulticastKeyConfig.BYTE_LENGTH" title="Link to this definition">¶</a></dt>
+<dd><p>16</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.MulticastKeyConfig.pack">
+<span class="sig-name descname"><span class="pre">pack</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#MulticastKeyConfig.pack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.MulticastKeyConfig.pack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.security.MulticastKeyConfig.unpack">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unpack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.security.MulticastKeyConfig" title="nearlink_sdr.mac.security.MulticastKeyConfig"><span class="pre">nearlink_sdr.mac.security.MulticastKeyConfig</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security.html#MulticastKeyConfig.unpack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security.MulticastKeyConfig.unpack" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="nearlink_sdr.mac.smf_scheduler.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="nearlink_sdr.mac.frame.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/sanchuanhehe/nearlink_sdr_sim" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82 .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#api">API</a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security._BytesMessage"><code class="docutils literal notranslate"><span class="pre">_BytesMessage</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security._BytesMessage.pack"><code class="docutils literal notranslate"><span class="pre">_BytesMessage.pack()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security._BytesMessage.unpack"><code class="docutils literal notranslate"><span class="pre">_BytesMessage.unpack()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security._TwoBytesMessage"><code class="docutils literal notranslate"><span class="pre">_TwoBytesMessage</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security._TwoBytesMessage.pack"><code class="docutils literal notranslate"><span class="pre">_TwoBytesMessage.pack()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security._TwoBytesMessage.unpack"><code class="docutils literal notranslate"><span class="pre">_TwoBytesMessage.unpack()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingInitiate"><code class="docutils literal notranslate"><span class="pre">PairingInitiate</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingInitiate.auth_request"><code class="docutils literal notranslate"><span class="pre">PairingInitiate.auth_request</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingInitiate.DATA_TYPE_INDEX"><code class="docutils literal notranslate"><span class="pre">PairingInitiate.DATA_TYPE_INDEX</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingInitiate.BYTE_LENGTH"><code class="docutils literal notranslate"><span class="pre">PairingInitiate.BYTE_LENGTH</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingInitiate.pack"><code class="docutils literal notranslate"><span class="pre">PairingInitiate.pack()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingInitiate.unpack"><code class="docutils literal notranslate"><span class="pre">PairingInitiate.unpack()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingRequest"><code class="docutils literal notranslate"><span class="pre">PairingRequest</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingRequest.io_capability"><code class="docutils literal notranslate"><span class="pre">PairingRequest.io_capability</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingRequest.oob_data_flag"><code class="docutils literal notranslate"><span class="pre">PairingRequest.oob_data_flag</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingRequest.auth_request"><code class="docutils literal notranslate"><span class="pre">PairingRequest.auth_request</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingRequest.max_key_length"><code class="docutils literal notranslate"><span class="pre">PairingRequest.max_key_length</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingRequest.security_dist_info"><code class="docutils literal notranslate"><span class="pre">PairingRequest.security_dist_info</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingRequest.crypto_capability"><code class="docutils literal notranslate"><span class="pre">PairingRequest.crypto_capability</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingRequest.psk_indication"><code class="docutils literal notranslate"><span class="pre">PairingRequest.psk_indication</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingRequest.DATA_TYPE_INDEX"><code class="docutils literal notranslate"><span class="pre">PairingRequest.DATA_TYPE_INDEX</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingRequest.BYTE_LENGTH"><code class="docutils literal notranslate"><span class="pre">PairingRequest.BYTE_LENGTH</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingRequest.pack"><code class="docutils literal notranslate"><span class="pre">PairingRequest.pack()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingRequest.unpack"><code class="docutils literal notranslate"><span class="pre">PairingRequest.unpack()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingResponse"><code class="docutils literal notranslate"><span class="pre">PairingResponse</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingResponse.io_capability"><code class="docutils literal notranslate"><span class="pre">PairingResponse.io_capability</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingResponse.oob_data_flag"><code class="docutils literal notranslate"><span class="pre">PairingResponse.oob_data_flag</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingResponse.auth_request"><code class="docutils literal notranslate"><span class="pre">PairingResponse.auth_request</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingResponse.max_key_length"><code class="docutils literal notranslate"><span class="pre">PairingResponse.max_key_length</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingResponse.security_dist_info"><code class="docutils literal notranslate"><span class="pre">PairingResponse.security_dist_info</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingResponse.crypto_capability"><code class="docutils literal notranslate"><span class="pre">PairingResponse.crypto_capability</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingResponse.psk_indication"><code class="docutils literal notranslate"><span class="pre">PairingResponse.psk_indication</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingResponse.DATA_TYPE_INDEX"><code class="docutils literal notranslate"><span class="pre">PairingResponse.DATA_TYPE_INDEX</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingResponse.BYTE_LENGTH"><code class="docutils literal notranslate"><span class="pre">PairingResponse.BYTE_LENGTH</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingResponse.pack"><code class="docutils literal notranslate"><span class="pre">PairingResponse.pack()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingResponse.unpack"><code class="docutils literal notranslate"><span class="pre">PairingResponse.unpack()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingConfirm"><code class="docutils literal notranslate"><span class="pre">PairingConfirm</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingConfirm.key_length"><code class="docutils literal notranslate"><span class="pre">PairingConfirm.key_length</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingConfirm.auth_method"><code class="docutils literal notranslate"><span class="pre">PairingConfirm.auth_method</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingConfirm.crypto_algorithm"><code class="docutils literal notranslate"><span class="pre">PairingConfirm.crypto_algorithm</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingConfirm.g_public_key_x"><code class="docutils literal notranslate"><span class="pre">PairingConfirm.g_public_key_x</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingConfirm.g_public_key_y"><code class="docutils literal notranslate"><span class="pre">PairingConfirm.g_public_key_y</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingConfirm.DATA_TYPE_INDEX"><code class="docutils literal notranslate"><span class="pre">PairingConfirm.DATA_TYPE_INDEX</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingConfirm.BYTE_LENGTH"><code class="docutils literal notranslate"><span class="pre">PairingConfirm.BYTE_LENGTH</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingConfirm.pack"><code class="docutils literal notranslate"><span class="pre">PairingConfirm.pack()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingConfirm.unpack"><code class="docutils literal notranslate"><span class="pre">PairingConfirm.unpack()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingInitialInfo"><code class="docutils literal notranslate"><span class="pre">PairingInitialInfo</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingInitialInfo.t_public_key_x"><code class="docutils literal notranslate"><span class="pre">PairingInitialInfo.t_public_key_x</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingInitialInfo.t_public_key_y"><code class="docutils literal notranslate"><span class="pre">PairingInitialInfo.t_public_key_y</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingInitialInfo.DATA_TYPE_INDEX"><code class="docutils literal notranslate"><span class="pre">PairingInitialInfo.DATA_TYPE_INDEX</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingInitialInfo.BYTE_LENGTH"><code class="docutils literal notranslate"><span class="pre">PairingInitialInfo.BYTE_LENGTH</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeConfirmCode"><code class="docutils literal notranslate"><span class="pre">TNodeConfirmCode</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeConfirmCode.confirm_code"><code class="docutils literal notranslate"><span class="pre">TNodeConfirmCode.confirm_code</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeConfirmCode.DATA_TYPE_INDEX"><code class="docutils literal notranslate"><span class="pre">TNodeConfirmCode.DATA_TYPE_INDEX</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeConfirmCode.BYTE_LENGTH"><code class="docutils literal notranslate"><span class="pre">TNodeConfirmCode.BYTE_LENGTH</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.RaMessage"><code class="docutils literal notranslate"><span class="pre">RaMessage</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.RaMessage.ra"><code class="docutils literal notranslate"><span class="pre">RaMessage.ra</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.RaMessage.DATA_TYPE_INDEX"><code class="docutils literal notranslate"><span class="pre">RaMessage.DATA_TYPE_INDEX</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.RaMessage.BYTE_LENGTH"><code class="docutils literal notranslate"><span class="pre">RaMessage.BYTE_LENGTH</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.RbMessage"><code class="docutils literal notranslate"><span class="pre">RbMessage</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.RbMessage.rb"><code class="docutils literal notranslate"><span class="pre">RbMessage.rb</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.RbMessage.DATA_TYPE_INDEX"><code class="docutils literal notranslate"><span class="pre">RbMessage.DATA_TYPE_INDEX</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.RbMessage.BYTE_LENGTH"><code class="docutils literal notranslate"><span class="pre">RbMessage.BYTE_LENGTH</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeConfirmCodeWithRandom"><code class="docutils literal notranslate"><span class="pre">GNodeConfirmCodeWithRandom</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeConfirmCodeWithRandom.confirm_code"><code class="docutils literal notranslate"><span class="pre">GNodeConfirmCodeWithRandom.confirm_code</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeConfirmCodeWithRandom.ra"><code class="docutils literal notranslate"><span class="pre">GNodeConfirmCodeWithRandom.ra</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeConfirmCodeWithRandom.DATA_TYPE_INDEX"><code class="docutils literal notranslate"><span class="pre">GNodeConfirmCodeWithRandom.DATA_TYPE_INDEX</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeConfirmCodeWithRandom.BYTE_LENGTH"><code class="docutils literal notranslate"><span class="pre">GNodeConfirmCodeWithRandom.BYTE_LENGTH</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeConfirmCodeWithRandom"><code class="docutils literal notranslate"><span class="pre">TNodeConfirmCodeWithRandom</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeConfirmCodeWithRandom.confirm_code"><code class="docutils literal notranslate"><span class="pre">TNodeConfirmCodeWithRandom.confirm_code</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeConfirmCodeWithRandom.rb"><code class="docutils literal notranslate"><span class="pre">TNodeConfirmCodeWithRandom.rb</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeConfirmCodeWithRandom.DATA_TYPE_INDEX"><code class="docutils literal notranslate"><span class="pre">TNodeConfirmCodeWithRandom.DATA_TYPE_INDEX</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeConfirmCodeWithRandom.BYTE_LENGTH"><code class="docutils literal notranslate"><span class="pre">TNodeConfirmCodeWithRandom.BYTE_LENGTH</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeConfirmCode"><code class="docutils literal notranslate"><span class="pre">GNodeConfirmCode</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeConfirmCode.confirm_code"><code class="docutils literal notranslate"><span class="pre">GNodeConfirmCode.confirm_code</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeConfirmCode.DATA_TYPE_INDEX"><code class="docutils literal notranslate"><span class="pre">GNodeConfirmCode.DATA_TYPE_INDEX</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeConfirmCode.BYTE_LENGTH"><code class="docutils literal notranslate"><span class="pre">GNodeConfirmCode.BYTE_LENGTH</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeDHKeyVerify"><code class="docutils literal notranslate"><span class="pre">GNodeDHKeyVerify</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeDHKeyVerify.verify_code"><code class="docutils literal notranslate"><span class="pre">GNodeDHKeyVerify.verify_code</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeDHKeyVerify.DATA_TYPE_INDEX"><code class="docutils literal notranslate"><span class="pre">GNodeDHKeyVerify.DATA_TYPE_INDEX</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeDHKeyVerify.BYTE_LENGTH"><code class="docutils literal notranslate"><span class="pre">GNodeDHKeyVerify.BYTE_LENGTH</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeDHKeyVerify"><code class="docutils literal notranslate"><span class="pre">TNodeDHKeyVerify</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeDHKeyVerify.verify_code"><code class="docutils literal notranslate"><span class="pre">TNodeDHKeyVerify.verify_code</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeDHKeyVerify.DATA_TYPE_INDEX"><code class="docutils literal notranslate"><span class="pre">TNodeDHKeyVerify.DATA_TYPE_INDEX</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeDHKeyVerify.BYTE_LENGTH"><code class="docutils literal notranslate"><span class="pre">TNodeDHKeyVerify.BYTE_LENGTH</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingFailure"><code class="docutils literal notranslate"><span class="pre">PairingFailure</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingFailure.reason"><code class="docutils literal notranslate"><span class="pre">PairingFailure.reason</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingFailure.DATA_TYPE_INDEX"><code class="docutils literal notranslate"><span class="pre">PairingFailure.DATA_TYPE_INDEX</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingFailure.BYTE_LENGTH"><code class="docutils literal notranslate"><span class="pre">PairingFailure.BYTE_LENGTH</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingFailure.pack"><code class="docutils literal notranslate"><span class="pre">PairingFailure.pack()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.PairingFailure.unpack"><code class="docutils literal notranslate"><span class="pre">PairingFailure.unpack()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.RgMessage"><code class="docutils literal notranslate"><span class="pre">RgMessage</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.RgMessage.rg_x"><code class="docutils literal notranslate"><span class="pre">RgMessage.rg_x</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.RgMessage.rg_y"><code class="docutils literal notranslate"><span class="pre">RgMessage.rg_y</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.RgMessage.DATA_TYPE_INDEX"><code class="docutils literal notranslate"><span class="pre">RgMessage.DATA_TYPE_INDEX</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.RgMessage.BYTE_LENGTH"><code class="docutils literal notranslate"><span class="pre">RgMessage.BYTE_LENGTH</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.RtMessage"><code class="docutils literal notranslate"><span class="pre">RtMessage</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.RtMessage.rt_x"><code class="docutils literal notranslate"><span class="pre">RtMessage.rt_x</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.RtMessage.rt_y"><code class="docutils literal notranslate"><span class="pre">RtMessage.rt_y</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.RtMessage.DATA_TYPE_INDEX"><code class="docutils literal notranslate"><span class="pre">RtMessage.DATA_TYPE_INDEX</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.RtMessage.BYTE_LENGTH"><code class="docutils literal notranslate"><span class="pre">RtMessage.BYTE_LENGTH</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.ResolutionAlgorithm"><code class="docutils literal notranslate"><span class="pre">ResolutionAlgorithm</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.ResolutionAlgorithm.HMAC_SM3"><code class="docutils literal notranslate"><span class="pre">ResolutionAlgorithm.HMAC_SM3</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.ResolutionAlgorithm.AES_CMAC_128"><code class="docutils literal notranslate"><span class="pre">ResolutionAlgorithm.AES_CMAC_128</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.AddrType"><code class="docutils literal notranslate"><span class="pre">AddrType</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.AddrType.UNION_ALLOCATED"><code class="docutils literal notranslate"><span class="pre">AddrType.UNION_ALLOCATED</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.AddrType.THIRD_PARTY_LOCAL"><code class="docutils literal notranslate"><span class="pre">AddrType.THIRD_PARTY_LOCAL</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.AddrType.UNION_RESERVED"><code class="docutils literal notranslate"><span class="pre">AddrType.UNION_RESERVED</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.AddrType.PRIVATE"><code class="docutils literal notranslate"><span class="pre">AddrType.PRIVATE</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeIRK"><code class="docutils literal notranslate"><span class="pre">GNodeIRK</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeIRK.resolution_algorithm"><code class="docutils literal notranslate"><span class="pre">GNodeIRK.resolution_algorithm</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeIRK.irk"><code class="docutils literal notranslate"><span class="pre">GNodeIRK.irk</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeIRK.irk_id"><code class="docutils literal notranslate"><span class="pre">GNodeIRK.irk_id</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeIRK.DATA_TYPE_INDEX"><code class="docutils literal notranslate"><span class="pre">GNodeIRK.DATA_TYPE_INDEX</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeIRK.BYTE_LENGTH"><code class="docutils literal notranslate"><span class="pre">GNodeIRK.BYTE_LENGTH</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeIRK.pack"><code class="docutils literal notranslate"><span class="pre">GNodeIRK.pack()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeIRK.unpack"><code class="docutils literal notranslate"><span class="pre">GNodeIRK.unpack()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeIRK"><code class="docutils literal notranslate"><span class="pre">TNodeIRK</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeIRK.resolution_algorithm"><code class="docutils literal notranslate"><span class="pre">TNodeIRK.resolution_algorithm</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeIRK.irk"><code class="docutils literal notranslate"><span class="pre">TNodeIRK.irk</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeIRK.irk_id"><code class="docutils literal notranslate"><span class="pre">TNodeIRK.irk_id</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeIRK.DATA_TYPE_INDEX"><code class="docutils literal notranslate"><span class="pre">TNodeIRK.DATA_TYPE_INDEX</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeIRK.BYTE_LENGTH"><code class="docutils literal notranslate"><span class="pre">TNodeIRK.BYTE_LENGTH</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeIRK.pack"><code class="docutils literal notranslate"><span class="pre">TNodeIRK.pack()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeIRK.unpack"><code class="docutils literal notranslate"><span class="pre">TNodeIRK.unpack()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeAddress"><code class="docutils literal notranslate"><span class="pre">GNodeAddress</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeAddress.addr_type"><code class="docutils literal notranslate"><span class="pre">GNodeAddress.addr_type</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeAddress.addr"><code class="docutils literal notranslate"><span class="pre">GNodeAddress.addr</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeAddress.DATA_TYPE_INDEX"><code class="docutils literal notranslate"><span class="pre">GNodeAddress.DATA_TYPE_INDEX</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeAddress.BYTE_LENGTH"><code class="docutils literal notranslate"><span class="pre">GNodeAddress.BYTE_LENGTH</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeAddress.pack"><code class="docutils literal notranslate"><span class="pre">GNodeAddress.pack()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.GNodeAddress.unpack"><code class="docutils literal notranslate"><span class="pre">GNodeAddress.unpack()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeAddress"><code class="docutils literal notranslate"><span class="pre">TNodeAddress</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeAddress.addr_type"><code class="docutils literal notranslate"><span class="pre">TNodeAddress.addr_type</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeAddress.addr"><code class="docutils literal notranslate"><span class="pre">TNodeAddress.addr</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeAddress.DATA_TYPE_INDEX"><code class="docutils literal notranslate"><span class="pre">TNodeAddress.DATA_TYPE_INDEX</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeAddress.BYTE_LENGTH"><code class="docutils literal notranslate"><span class="pre">TNodeAddress.BYTE_LENGTH</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeAddress.pack"><code class="docutils literal notranslate"><span class="pre">TNodeAddress.pack()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.TNodeAddress.unpack"><code class="docutils literal notranslate"><span class="pre">TNodeAddress.unpack()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.MulticastAlgorithmConfig"><code class="docutils literal notranslate"><span class="pre">MulticastAlgorithmConfig</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.MulticastAlgorithmConfig.rand"><code class="docutils literal notranslate"><span class="pre">MulticastAlgorithmConfig.rand</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.MulticastAlgorithmConfig.kdf_type"><code class="docutils literal notranslate"><span class="pre">MulticastAlgorithmConfig.kdf_type</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.MulticastAlgorithmConfig.encryption_algo"><code class="docutils literal notranslate"><span class="pre">MulticastAlgorithmConfig.encryption_algo</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.MulticastAlgorithmConfig.integrity_algo"><code class="docutils literal notranslate"><span class="pre">MulticastAlgorithmConfig.integrity_algo</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.MulticastAlgorithmConfig.DATA_TYPE_INDEX"><code class="docutils literal notranslate"><span class="pre">MulticastAlgorithmConfig.DATA_TYPE_INDEX</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.MulticastAlgorithmConfig.BYTE_LENGTH"><code class="docutils literal notranslate"><span class="pre">MulticastAlgorithmConfig.BYTE_LENGTH</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.MulticastAlgorithmConfig.pack"><code class="docutils literal notranslate"><span class="pre">MulticastAlgorithmConfig.pack()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.MulticastAlgorithmConfig.unpack"><code class="docutils literal notranslate"><span class="pre">MulticastAlgorithmConfig.unpack()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.MulticastKeyConfig"><code class="docutils literal notranslate"><span class="pre">MulticastKeyConfig</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.MulticastKeyConfig.c"><code class="docutils literal notranslate"><span class="pre">MulticastKeyConfig.c</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.MulticastKeyConfig.DATA_TYPE_INDEX"><code class="docutils literal notranslate"><span class="pre">MulticastKeyConfig.DATA_TYPE_INDEX</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.MulticastKeyConfig.BYTE_LENGTH"><code class="docutils literal notranslate"><span class="pre">MulticastKeyConfig.BYTE_LENGTH</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.MulticastKeyConfig.pack"><code class="docutils literal notranslate"><span class="pre">MulticastKeyConfig.pack()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.security.MulticastKeyConfig.unpack"><code class="docutils literal notranslate"><span class="pre">MulticastKeyConfig.unpack()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=6e0e1bcd"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../_static/version-selector.js?v=7d36e42c"></script>
+    </body>
+</html>
