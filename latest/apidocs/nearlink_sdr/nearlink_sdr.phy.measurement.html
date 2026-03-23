@@ -6,7 +6,7 @@
 <link rel="index" title="索引" href="../../genindex.html"><link rel="search" title="搜索" href="../../search.html"><link rel="next" title="nearlink_sdr.sim" href="nearlink_sdr.sim.html"><link rel="prev" title="nearlink_sdr.phy.rf_compliance" href="nearlink_sdr.phy.rf_compliance.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>nearlink_sdr.phy.measurement - nearlink-sdr 1.0.0 文档</title>
+        <title>nearlink_sdr.phy.measurement - nearlink-sdr 1.0.2 文档</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -168,7 +168,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">nearlink-sdr 1.0.0 文档</div></a>
+      <a href="../../index.html"><div class="brand">nearlink-sdr 1.0.2 文档</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -189,7 +189,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
-  <span class="sidebar-brand-text">nearlink-sdr 1.0.0 文档</span>
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.2 文档</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
@@ -527,7 +527,7 @@
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement.</span></span><span class="sig-name descname"><span class="pre">measurement_signal_1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_measur</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">security_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.measurement.SecurityType" title="nearlink_sdr.phy.measurement.SecurityType"><span class="pre">nearlink_sdr.phy.measurement.SecurityType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="（在 Python v3.14）"><span class="pre">bytes</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">b'\x00'</span> <span class="pre">*</span> <span class="pre">16</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slot_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_tx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="（在 Python v3.14）"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_disturb_max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">11</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement.html#measurement_signal_1"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement.measurement_signal_1" title="Link to this definition">¶</a></dt>
 <dd><p>生成测量信号 1 的比特序列 (6.2.4.1)。</p>
 <p>无相位旋转 BPSK 调制, 返回比特序列。</p>
-<p>参数:
+<p>Args:
 n_measur: 测量序列长度 [16, 32, 64, 128, 256, 512, 1024, 2048]
 security_type: 安全类型 (1~4)
 seed: 安全随机种子 (16 字节)
@@ -535,7 +535,7 @@ slot_number: 起始调度时隙号
 is_tx: True=先发节点, False=后发节点
 n_disturb_max: 最大扰动符号数配置 [0-11]
 kdf_type: 0=AES-CMAC, 1=HMAC-SM3</p>
-<p>返回:
+<p>Returns:
 np.ndarray, dtype=int, 长度 n_measur</p>
 </dd></dl>
 
@@ -550,13 +550,13 @@ np.ndarray, dtype=int, 长度 n_measur</p>
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement.</span></span><span class="sig-name descname"><span class="pre">measurement_signal_2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_tones</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandwidth_mhz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase_set</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement.html#measurement_signal_2"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement.measurement_signal_2" title="Link to this definition">¶</a></dt>
 <dd><p>生成测量信号 2 的复数基带波形 (6.2.4.2)。</p>
 <p>多音信号, 频率对称分布。</p>
-<p>参数:
+<p>Args:
 n_tones: 音的个数 [1, 2, 4, 8]
 bandwidth_mhz: SLE 带宽 [1, 2, 4] MHz
 duration_us: 信号时长 (微秒)
 sample_rate: 采样率 (Hz)
 phase_set: 相位集合 [1, 2], N≥4 时有效</p>
-<p>返回:
+<p>Returns:
 np.ndarray, dtype=complex128, 复数基带波形</p>
 </dd></dl>
 
@@ -564,10 +564,10 @@ np.ndarray, dtype=complex128, 复数基带波形</p>
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement.antenna_pair_order_sequential">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement.</span></span><span class="sig-name descname"><span class="pre">antenna_pair_order_sequential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="（在 Python v3.14）"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="（在 Python v3.14）"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement.html#antenna_pair_order_sequential"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement.antenna_pair_order_sequential" title="Link to this definition">¶</a></dt>
 <dd><p>顺序天线对集合: 优先变更后发节点天线 (6.2.4.3)。</p>
-<p>参数:
+<p>Args:
 m: 发送天线数
 n: 接收天线数</p>
-<p>返回:
+<p>Returns:
 天线对列表 [(tx_ant, rx_ant), ...]</p>
 <p>示例:
 m=3, n=2: [(0,0), (0,1), (1,0), (1,1), (2,0), (2,1)]</p>
@@ -577,14 +577,14 @@ m=3, n=2: [(0,0), (0,1), (1,0), (1,1), (2,0), (2,1)]</p>
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement.antenna_pair_order_random">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement.</span></span><span class="sig-name descname"><span class="pre">antenna_pair_order_random</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="（在 Python v3.14）"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">slot_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">kdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="（在 Python v3.14）"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="（在 Python v3.14）"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement.html#antenna_pair_order_random"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement.antenna_pair_order_random" title="Link to this definition">¶</a></dt>
 <dd><p>随机天线对集合 (使用第三安全序列置乱) (6.2.4.3)。</p>
-<p>参数:
+<p>Args:
 m: 发送天线数
 n: 接收天线数
 seed: 安全随机种子 (16 字节)
 slot_number: 起始调度时隙号
 k: 随机数位宽
 kdf_type: 0=AES-CMAC, 1=HMAC-SM3</p>
-<p>返回:
+<p>Returns:
 随机排列的天线对列表 [(tx_ant, rx_ant), ...]</p>
 </dd></dl>
 
@@ -687,7 +687,7 @@ kdf_type: 0=AES-CMAC, 1=HMAC-SM3</p>
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=76d9f950"></script>
+</div><script src="../../_static/documentation_options.js?v=95736de2"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>

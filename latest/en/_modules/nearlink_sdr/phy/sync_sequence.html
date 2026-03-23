@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html"><link rel="search" title="Search" href="../../../search.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>nearlink_sdr.phy.sync_sequence - nearlink-sdr 1.0.0 documentation</title>
+        <title>nearlink_sdr.phy.sync_sequence - nearlink-sdr 1.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">nearlink-sdr 1.0.0 documentation</div></a>
+      <a href="../../../index.html"><div class="brand">nearlink-sdr 1.0.2 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -188,7 +188,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
   
-  <span class="sidebar-brand-text">nearlink-sdr 1.0.0 documentation</span>
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.2 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -537,10 +537,10 @@
 <span class="sd">    - 广播帧: 固定序列0x5A2BDA62</span>
 <span class="sd">    - 其他帧: 24位逻辑链路标识 → 补&quot;10&quot; → BCH(31,26) → m31异或 → 补&quot;0&quot;</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        link_id_24: 24位逻辑链路标识，None表示广播帧</span>
 
-<span class="sd">    返回:</span>
+<span class="sd">    Returns:</span>
 <span class="sd">        32比特同步序列</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">link_id_24</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -580,10 +580,10 @@
 <span class="sd">    - 广播帧: 固定序列0x7DE7585C6D226540</span>
 <span class="sd">    - 其他帧: 24位逻辑链路标识 → BCH(63,24) → m63异或 → 补&quot;0&quot;</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        link_id_24: 24位逻辑链路标识，None表示广播帧</span>
 
-<span class="sd">    返回:</span>
+<span class="sd">    Returns:</span>
 <span class="sd">        64比特同步序列</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">link_id_24</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -616,10 +616,10 @@
 <span class="sd">    标准6.2.3.3: 两个相同的31长m序列串联。</span>
 <span class="sd">    经BPSK调制后产生62个符号。</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        m_seq_index: m31序列编号 0~5，基础广播信道为0</span>
 
-<span class="sd">    返回:</span>
+<span class="sd">    Returns:</span>
 <span class="sd">        62比特序列</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">m31</span> <span class="o">=</span> <span class="n">m31_sequence</span><span class="p">(</span><span class="n">m_seq_index</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
@@ -635,10 +635,10 @@
 <span class="sd">    标准6.2.3.4: 两个相同的63长m序列串联。</span>
 <span class="sd">    经BPSK调制后产生126个符号。</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        m_seq_index: m63序列编号 0~5，基础广播信道为0</span>
 
-<span class="sd">    返回:</span>
+<span class="sd">    Returns:</span>
 <span class="sd">        126比特序列</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">m63</span> <span class="o">=</span> <span class="n">m63_sequence</span><span class="p">(</span><span class="n">m_seq_index</span><span class="p">,</span> <span class="mi">63</span><span class="p">)</span>
@@ -692,12 +692,12 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;安全随机函数 (6.10.7), 生成256比特安全序列。</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        seed: 128比特安全随机种子 (16字节)</span>
 <span class="sd">        time_param: 32比特时间参数 (如调度时隙号×2)</span>
 <span class="sd">        kdf_type: 0=AES-CMAC, 1=HMAC-SM3</span>
 
-<span class="sd">    返回:</span>
+<span class="sd">    Returns:</span>
 <span class="sd">        256比特数组</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.mac.crypto</span><span class="w"> </span><span class="kn">import</span> <span class="n">KdfType</span><span class="p">,</span> <span class="n">secure_random_256</span>
@@ -725,7 +725,7 @@
 <span class="sd">    先发节点: 偶数索引比特的前 n_sync 个</span>
 <span class="sd">    后发节点: 奇数索引比特的前 n_sync 个</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        security_seq: 256比特安全序列</span>
 <span class="sd">        n_sync: 同步序列长度 (32, 64, 128)</span>
 <span class="sd">        is_tx: True=先发节点, False=后发节点</span>
@@ -755,7 +755,7 @@
 <span class="sd">    标准6.2.3.5: 使用安全随机函数生成256比特安全序列,</span>
 <span class="sd">    先发/后发节点分别取偶数/奇数索引比特。</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        seed: 安全随机种子 (16字节)</span>
 <span class="sd">        slot_number: 起始调度时隙号</span>
 <span class="sd">        n_sync: 同步序列长度 [32, 64, 128]</span>
@@ -787,7 +787,7 @@
 <span class="sd">    标准6.2.3.6: 与同步信号5生成方式相同,</span>
 <span class="sd">    区别仅在调制方式 (BPSK vs GFSK)。</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        seed: 安全随机种子 (16字节)</span>
 <span class="sd">        slot_number: 起始调度时隙号</span>
 <span class="sd">        n_sync: 同步序列长度 [32, 64, 128]</span>
@@ -833,7 +833,7 @@
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=4ebf8126"></script>
+</div><script src="../../../_static/documentation_options.js?v=c74e6fab"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>

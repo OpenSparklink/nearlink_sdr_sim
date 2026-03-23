@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="nearlink_sdr.phy.rx_pipeline" href="nearlink_sdr.phy.rx_pipeline.html"><link rel="prev" title="nearlink_sdr.phy.frame" href="nearlink_sdr.phy.frame.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>nearlink_sdr.phy.preamble - nearlink-sdr 1.0.0 documentation</title>
+        <title>nearlink_sdr.phy.preamble - nearlink-sdr 1.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -168,7 +168,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">nearlink-sdr 1.0.0 documentation</div></a>
+      <a href="../../index.html"><div class="brand">nearlink-sdr 1.0.2 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -189,7 +189,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
-  <span class="sidebar-brand-text">nearlink-sdr 1.0.0 documentation</span>
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.2 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -446,8 +446,11 @@
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.preamble.</span></span><span class="sig-name descname"><span class="pre">gfsk_preamble_bits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_rate_mhz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/preamble.html#gfsk_preamble_bits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.preamble.gfsk_preamble_bits" title="Link to this definition">¶</a></dt>
 <dd><p>Generate GFSK preamble bit sequence.</p>
 <p>frame type1使用 [0,1] 交替sequence，第一个码元为0。</p>
-<p>parameter:     symbol_rate_mhz: 符号速率 (MHz)     duration_us: preamble持续time (μs)</p>
-<p>返回:     preamble比特sequence, valued 0/1</p>
+<p>Args:
+symbol_rate_mhz: 符号速率 (MHz)
+duration_us: 前导码持续时间 (μs)</p>
+<p>Returns:
+前导码比特序列, 值为 0/1</p>
 </dd></dl>
 
 <dl class="py function">
@@ -455,16 +458,22 @@
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.preamble.</span></span><span class="sig-name descname"><span class="pre">psk_preamble_phases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_rate_mhz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/preamble.html#psk_preamble_phases"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.preamble.psk_preamble_phases" title="Link to this definition">¶</a></dt>
 <dd><p>Generate PSK preamble phase sequence.</p>
 <p>frame type2/3/4使用 [π/4, 0] 交替相位。</p>
-<p>parameter:     symbol_rate_mhz: 符号速率 (MHz)     duration_us: preamble持续time (μs)，frame type2=10，frame type3=12，frame type4=16</p>
-<p>返回:     preamble相位sequence (弧度)</p>
+<p>Args:
+symbol_rate_mhz: 符号速率 (MHz)
+duration_us: 前导码持续时间 (μs)，帧类型2=10，帧类型3=12，帧类型4=16</p>
+<p>Returns:
+前导码相位序列 (弧度)</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.preamble.psk_preamble_symbols">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.preamble.</span></span><span class="sig-name descname"><span class="pre">psk_preamble_symbols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_rate_mhz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/preamble.html#psk_preamble_symbols"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.preamble.psk_preamble_symbols" title="Link to this definition">¶</a></dt>
 <dd><p>Generate PSK preamble complex symbol sequence.</p>
-<p>parameter:     symbol_rate_mhz: 符号速率 (MHz)     duration_us: preamble持续time (μs)</p>
-<p>返回:     preamble复数符号, shape (N,)</p>
+<p>Args:
+symbol_rate_mhz: 符号速率 (MHz)
+duration_us: 前导码持续时间 (μs)</p>
+<p>Returns:
+前导码复数符号, shape (N,)</p>
 </dd></dl>
 
 <dl class="py data">
@@ -477,8 +486,12 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.preamble.generate_preamble">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.preamble.</span></span><span class="sig-name descname"><span class="pre">generate_preamble</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbol_rate_mhz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/preamble.html#generate_preamble"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.preamble.generate_preamble" title="Link to this definition">¶</a></dt>
 <dd><p>generate指定frame type的preamble。</p>
-<p>parameter:     frame_type: frame type 1~4     symbol_rate_mhz: 符号速率 (MHz)</p>
-<p>返回:     frame type1: bit array (int ndarray)     frame type2/3/4: 复数符号数组 (complex ndarray)</p>
+<p>Args:
+frame_type: 帧类型 1~4
+symbol_rate_mhz: 符号速率 (MHz)</p>
+<p>Returns:
+帧类型1: 比特数组 (int ndarray)
+帧类型2/3/4: 复数符号数组 (complex ndarray)</p>
 </dd></dl>
 
 </section>
@@ -569,7 +582,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=4ebf8126"></script>
+</div><script src="../../_static/documentation_options.js?v=c74e6fab"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>

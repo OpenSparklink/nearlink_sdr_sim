@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="索引" href="../../../genindex.html"><link rel="search" title="搜索" href="../../../search.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>nearlink_sdr.phy.frame - nearlink-sdr 1.0.0 文档</title>
+        <title>nearlink_sdr.phy.frame - nearlink-sdr 1.0.2 文档</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">nearlink-sdr 1.0.0 文档</div></a>
+      <a href="../../../index.html"><div class="brand">nearlink-sdr 1.0.2 文档</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -188,7 +188,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
   
-  <span class="sidebar-brand-text">nearlink-sdr 1.0.0 文档</span>
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.2 文档</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
   <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
@@ -480,12 +480,12 @@
 
 <span class="sd">    生成调制前的比特级帧结构。</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        ctrl_info_bits: 物理层控制信息比特。</span>
 <span class="sd">        data_payload_bits: 数据 + 完整性保护 + CRC 比特。</span>
 <span class="sd">        config: 帧配置参数。</span>
 
-<span class="sd">    返回:</span>
+<span class="sd">    Returns:</span>
 <span class="sd">        包含所有帧字段的 FrameFields 对象。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">fields</span> <span class="o">=</span> <span class="n">FrameFields</span><span class="p">(</span><span class="n">frame_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">frame_type</span><span class="p">)</span>
@@ -523,11 +523,11 @@
 <span class="sd">    帧类型 1（GFSK）返回拼接后的比特序列（非复数符号）。</span>
 <span class="sd">    帧类型 2-4（PSK）返回含导频的复数符号流。</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        fields: 已组装的帧字段。</span>
 <span class="sd">        config: 帧配置参数。</span>
 
-<span class="sd">    返回:</span>
+<span class="sd">    Returns:</span>
 <span class="sd">        类型 1：比特数组（送入 GFSK 调制器）。</span>
 <span class="sd">        类型 2-4：基带复数符号数组。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -612,13 +612,13 @@
 
 <span class="sd">    简化解析器，假定已知帧参数。</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        symbols: 接收到的复数符号流。</span>
 <span class="sd">        config: 帧配置参数。</span>
 <span class="sd">        n_ctrl_coded_bits: 编码控制位的数量。</span>
 <span class="sd">        n_data_bits: 数据位数量（调制前）。</span>
 
-<span class="sd">    返回:</span>
+<span class="sd">    Returns:</span>
 <span class="sd">        (ctrl_bits, data_bits) — 解调后的比特数组。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">frame_type</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -804,7 +804,7 @@
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=76d9f950"></script>
+</div><script src="../../../_static/documentation_options.js?v=95736de2"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>

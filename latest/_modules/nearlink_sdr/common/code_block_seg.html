@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="索引" href="../../../genindex.html"><link rel="search" title="搜索" href="../../../search.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>nearlink_sdr.common.code_block_seg - nearlink-sdr 1.0.0 文档</title>
+        <title>nearlink_sdr.common.code_block_seg - nearlink-sdr 1.0.2 文档</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">nearlink-sdr 1.0.0 文档</div></a>
+      <a href="../../../index.html"><div class="brand">nearlink-sdr 1.0.2 文档</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -188,7 +188,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
   
-  <span class="sidebar-brand-text">nearlink-sdr 1.0.0 文档</span>
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.2 文档</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
   <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
@@ -467,12 +467,12 @@
 
 <span class="sd">    适用于帧类型 2。</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        bits: 输入比特序列 b_0..b_{B-1}, 其中 B = K + L (信息位 + CRC)。</span>
 <span class="sd">        rate_str: 目标码率字符串。</span>
 <span class="sd">        crc_len: L, 已追加到 bits 末尾的 CRC 长度。</span>
 
-<span class="sd">    返回:</span>
+<span class="sd">    Returns:</span>
 <span class="sd">        每个分段的 (码长 N, 信息比特) 元组列表。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">B</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bits</span><span class="p">)</span>
@@ -555,11 +555,11 @@
 
 <span class="sd">    适用于帧类型 3 和 4。</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        bits: 输入比特序列 b_0..b_{B-1}。</span>
 <span class="sd">        rate_str: 目标码率字符串。</span>
 
-<span class="sd">    返回:</span>
+<span class="sd">    Returns:</span>
 <span class="sd">        每个分段的 (码长 N, 含 CRC 的信息比特) 元组列表。</span>
 <span class="sd">        最后一个分段可能进一步做子分割。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -676,7 +676,7 @@
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=76d9f950"></script>
+</div><script src="../../../_static/documentation_options.js?v=95736de2"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>

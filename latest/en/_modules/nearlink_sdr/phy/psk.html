@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html"><link rel="search" title="Search" href="../../../search.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>nearlink_sdr.phy.psk - nearlink-sdr 1.0.0 documentation</title>
+        <title>nearlink_sdr.phy.psk - nearlink-sdr 1.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">nearlink-sdr 1.0.0 documentation</div></a>
+      <a href="../../../index.html"><div class="brand">nearlink-sdr 1.0.2 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -188,7 +188,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
   
-  <span class="sidebar-brand-text">nearlink-sdr 1.0.0 documentation</span>
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.2 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -403,12 +403,12 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">rrc_filter</span><span class="p">(</span><span class="n">beta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">sps</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">span</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;生成平方根升余弦脉冲成型滤波器。</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        beta: 滚降系数</span>
 <span class="sd">        sps: 每符号采样数</span>
 <span class="sd">        span: 单侧符号跨度</span>
 
-<span class="sd">    返回:</span>
+<span class="sd">    Returns:</span>
 <span class="sd">        滤波器系数, 归一化使得匹配滤波后采样点增益为1</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">N</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">span</span> <span class="o">*</span> <span class="n">sps</span> <span class="o">+</span> <span class="mi">1</span>
@@ -541,7 +541,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">modulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bits</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;PSK调制并进行RRC脉冲成型。</span>
 
-<span class="sd">        返回:</span>
+<span class="sd">        Returns:</span>
 <span class="sd">            复基带IQ信号</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">symbols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_symbols</span><span class="p">(</span><span class="n">bits</span><span class="p">)</span>
@@ -596,10 +596,10 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">demodulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">signal</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;PSK解调。</span>
 
-<span class="sd">        参数:</span>
+<span class="sd">        Args:</span>
 <span class="sd">            signal: 复基带IQ信号</span>
 
-<span class="sd">        返回:</span>
+<span class="sd">        Returns:</span>
 <span class="sd">            解调后的比特序列</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># 匹配滤波</span>
@@ -662,7 +662,7 @@
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=4ebf8126"></script>
+</div><script src="../../../_static/documentation_options.js?v=c74e6fab"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>

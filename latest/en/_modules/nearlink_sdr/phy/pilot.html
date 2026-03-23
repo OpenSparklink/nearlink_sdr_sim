@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html"><link rel="search" title="Search" href="../../../search.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>nearlink_sdr.phy.pilot - nearlink-sdr 1.0.0 documentation</title>
+        <title>nearlink_sdr.phy.pilot - nearlink-sdr 1.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">nearlink-sdr 1.0.0 documentation</div></a>
+      <a href="../../../index.html"><div class="brand">nearlink-sdr 1.0.2 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -188,7 +188,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
   
-  <span class="sidebar-brand-text">nearlink-sdr 1.0.0 documentation</span>
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.2 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -412,12 +412,12 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">pilot_symbol</span><span class="p">(</span><span class="n">mod_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">symbol_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">complex</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;生成带适当相位旋转的单个导频符号。</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        mod_type: 调制方式，取 &quot;BPSK&quot;、&quot;QPSK&quot; 或 &quot;8PSK&quot;。</span>
 <span class="sd">        symbol_index: 帧内以 0 为基的符号索引（决定奇偶位置）。</span>
 <span class="sd">                     标准规定第一个符号处于奇数位置。</span>
 
-<span class="sd">    返回:</span>
+<span class="sd">    Returns:</span>
 <span class="sd">        复数导频符号。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">phase_deg</span> <span class="o">=</span> <span class="n">PILOT_PHASE_DEG</span><span class="p">[</span><span class="n">mod_type</span><span class="p">]</span>
@@ -443,14 +443,14 @@
 <span class="sd">    每隔 `pilot_interval` 个数据符号后插入一个导频符号。</span>
 <span class="sd">    按标准规定，帧中最后一个导频应省略。</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        data_symbols: 复数数据符号数组。</span>
 <span class="sd">        pilot_interval: 标准中的 N 值（4、8 或 16）。</span>
 <span class="sd">        mod_type: 导频相位所用的调制方式。</span>
 <span class="sd">        start_symbol_index: 帧内第一个数据符号的绝对符号索引。</span>
 <span class="sd">        omit_last_pilot: 是否省略最后一个导频符号。</span>
 
-<span class="sd">    返回:</span>
+<span class="sd">    Returns:</span>
 <span class="sd">        (output_symbols, total_symbol_count) — 插入导频后的符号数组及总符号数。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">pilot_interval</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
@@ -503,12 +503,12 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;从接收符号流中移除导频符号。</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        symbols: 含导频的接收符号。</span>
 <span class="sd">        pilot_interval: N 值（4、8 或 16）。</span>
 <span class="sd">        last_pilot_omitted: 发送侧是否已省略最后一个导频。</span>
 
-<span class="sd">    返回:</span>
+<span class="sd">    Returns:</span>
 <span class="sd">        移除导频后的数据符号。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">pilot_interval</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
@@ -566,7 +566,7 @@
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=4ebf8126"></script>
+</div><script src="../../../_static/documentation_options.js?v=c74e6fab"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>

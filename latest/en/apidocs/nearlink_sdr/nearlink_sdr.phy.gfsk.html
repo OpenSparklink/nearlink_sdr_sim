@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="nearlink_sdr.phy.tx_pipeline" href="nearlink_sdr.phy.tx_pipeline.html"><link rel="prev" title="nearlink_sdr.phy.psk" href="nearlink_sdr.phy.psk.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>nearlink_sdr.phy.gfsk - nearlink-sdr 1.0.0 documentation</title>
+        <title>nearlink_sdr.phy.gfsk - nearlink-sdr 1.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -168,7 +168,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">nearlink-sdr 1.0.0 documentation</div></a>
+      <a href="../../index.html"><div class="brand">nearlink-sdr 1.0.2 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -189,7 +189,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
-  <span class="sidebar-brand-text">nearlink-sdr 1.0.0 documentation</span>
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.2 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -460,8 +460,10 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.gfsk.GFSKModulator.modulate">
 <span class="sig-name descname"><span class="pre">modulate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/gfsk.html#GFSKModulator.modulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.gfsk.GFSKModulator.modulate" title="Link to this definition">¶</a></dt>
 <dd><p>GFSKmodulation。</p>
-<p>parameter:     bits: input bit sequence, shape (N,), valued 0/1</p>
-<p>返回:     复基带IQsignal, shape (N*sps,)</p>
+<p>Args:
+bits: 输入比特序列, shape (N,), 值为 0/1</p>
+<p>Returns:
+复基带IQ信号, shape (N*sps,)</p>
 </dd></dl>
 
 </dd></dl>
@@ -475,8 +477,10 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.gfsk.GFSKDemodulator.demodulate">
 <span class="sig-name descname"><span class="pre">demodulate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/gfsk.html#GFSKDemodulator.demodulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.gfsk.GFSKDemodulator.demodulate" title="Link to this definition">¶</a></dt>
 <dd><p>GFSKdemodulation。</p>
-<p>parameter:     signal: 复基带IQsignal</p>
-<p>返回:     demodulation后的比特sequence, valued 0/1</p>
+<p>Args:
+signal: 复基带IQ信号</p>
+<p>Returns:
+解调后的比特序列, 值为 0/1</p>
 </dd></dl>
 
 </dd></dl>
@@ -574,7 +578,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=4ebf8126"></script>
+</div><script src="../../_static/documentation_options.js?v=c74e6fab"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>

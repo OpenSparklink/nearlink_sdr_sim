@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="nearlink_sdr.phy.control_info" href="nearlink_sdr.phy.control_info.html"><link rel="prev" title="nearlink_sdr.phy.demodulator" href="nearlink_sdr.phy.demodulator.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>nearlink_sdr.phy.sync_sequence - nearlink-sdr 1.0.0 documentation</title>
+        <title>nearlink_sdr.phy.sync_sequence - nearlink-sdr 1.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -168,7 +168,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">nearlink-sdr 1.0.0 documentation</div></a>
+      <a href="../../index.html"><div class="brand">nearlink-sdr 1.0.2 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -189,7 +189,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
-  <span class="sidebar-brand-text">nearlink-sdr 1.0.0 documentation</span>
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.2 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -516,8 +516,10 @@
 <li><p>broadcast frame: 固定sequence0x5A2BDA62</p></li>
 <li><p>其他frame: 24位逻辑link标识 → 补”10” → BCH(31,26) → m31XOR → 补”0”</p></li>
 </ul>
-<p>parameter:     link_id_24: 24位逻辑link标识，None表示broadcast frame</p>
-<p>返回:     32比特syncsequence</p>
+<p>Args:
+link_id_24: 24位逻辑链路标识，None表示广播帧</p>
+<p>Returns:
+32比特同步序列</p>
 </dd></dl>
 
 <dl class="py function">
@@ -529,8 +531,10 @@
 <li><p>broadcast frame: 固定sequence0x7DE7585C6D226540</p></li>
 <li><p>其他frame: 24位逻辑link标识 → BCH(63,24) → m63XOR → 补”0”</p></li>
 </ul>
-<p>parameter:     link_id_24: 24位逻辑link标识，None表示broadcast frame</p>
-<p>返回:     64比特syncsequence</p>
+<p>Args:
+link_id_24: 24位逻辑链路标识，None表示广播帧</p>
+<p>Returns:
+64比特同步序列</p>
 </dd></dl>
 
 <dl class="py function">
@@ -538,8 +542,10 @@
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.sync_sequence.</span></span><span class="sig-name descname"><span class="pre">sync_signal_3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m_seq_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sync_sequence.html#sync_signal_3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sync_sequence.sync_signal_3" title="Link to this definition">¶</a></dt>
 <dd><p>Generate the 62-bit sequence for sync signal 3.</p>
 <p>standard6.2.3.3: 两个相同的31长msequence串联。 经BPSKmodulation后产生62个符号。</p>
-<p>parameter:     m_seq_index: m31sequence编号 0~5，基础broadcastchannel为0</p>
-<p>返回:     62比特sequence</p>
+<p>Args:
+m_seq_index: m31序列编号 0~5，基础广播信道为0</p>
+<p>Returns:
+62比特序列</p>
 </dd></dl>
 
 <dl class="py function">
@@ -547,8 +553,10 @@
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.sync_sequence.</span></span><span class="sig-name descname"><span class="pre">sync_signal_4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m_seq_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sync_sequence.html#sync_signal_4"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sync_sequence.sync_signal_4" title="Link to this definition">¶</a></dt>
 <dd><p>Generate the 126-bit sequence for sync signal 4.</p>
 <p>standard6.2.3.4: 两个相同的63长msequence串联。 经BPSKmodulation后产生126个符号。</p>
-<p>parameter:     m_seq_index: m63sequence编号 0~5，基础broadcastchannel为0</p>
-<p>返回:     126比特sequence</p>
+<p>Args:
+m_seq_index: m63序列编号 0~5，基础广播信道为0</p>
+<p>Returns:
+126比特序列</p>
 </dd></dl>
 
 <dl class="py function">
@@ -567,8 +575,12 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sync_sequence._secure_random_sequence">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.sync_sequence.</span></span><span class="sig-name descname"><span class="pre">_secure_random_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_param</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">kdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sync_sequence.html#_secure_random_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sync_sequence._secure_random_sequence" title="Link to this definition">¶</a></dt>
 <dd><p>security随机函数 (6.10.7), generate256比特securitysequence。</p>
-<p>parameter:     seed: 128比特security随机种子 (16字节)     time_param: 32比特timeparameter (如调度time slot号×2)     kdf_type: 0=AES-CMAC, 1=HMAC-SM3</p>
-<p>返回:     256bit array</p>
+<p>Args:
+seed: 128比特安全随机种子 (16字节)
+time_param: 32比特时间参数 (如调度时隙号×2)
+kdf_type: 0=AES-CMAC, 1=HMAC-SM3</p>
+<p>Returns:
+256比特数组</p>
 </dd></dl>
 
 <dl class="py function">
@@ -577,7 +589,10 @@
 <dd><p>从securitysequence中提取随机syncsequence。</p>
 <p>先发节点: 偶数索引比特的前 n_sync 个
 后发节点: 奇数索引比特的前 n_sync 个</p>
-<p>parameter:     security_seq: 256比特securitysequence     n_sync: syncsequencelength (32, 64, 128)     is_tx: True=先发节点, False=后发节点</p>
+<p>Args:
+security_seq: 256比特安全序列
+n_sync: 同步序列长度 (32, 64, 128)
+is_tx: True=先发节点, False=后发节点</p>
 </dd></dl>
 
 <dl class="py function">
@@ -585,7 +600,12 @@
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.sync_sequence.</span></span><span class="sig-name descname"><span class="pre">sync_signal_5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">slot_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sync</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">32</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_tx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sync_sequence.html#sync_signal_5"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sync_sequence.sync_signal_5" title="Link to this definition">¶</a></dt>
 <dd><p>generatesyncsignal5的随机syncsequence (GFSKmodulation)。</p>
 <p>standard6.2.3.5: 使用security随机函数generate256比特securitysequence, 先发/后发节点分别取偶数/奇数索引比特。</p>
-<p>parameter:     seed: security随机种子 (16字节)     slot_number: 起始调度time slot号     n_sync: syncsequencelength [32, 64, 128]     is_tx: True=先发节点, False=后发节点     kdf_type: 0=AES-CMAC, 1=HMAC-SM3</p>
+<p>Args:
+seed: 安全随机种子 (16字节)
+slot_number: 起始调度时隙号
+n_sync: 同步序列长度 [32, 64, 128]
+is_tx: True=先发节点, False=后发节点
+kdf_type: 0=AES-CMAC, 1=HMAC-SM3</p>
 </dd></dl>
 
 <dl class="py function">
@@ -593,7 +613,12 @@
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.sync_sequence.</span></span><span class="sig-name descname"><span class="pre">sync_signal_6</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">slot_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sync</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">32</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_tx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sync_sequence.html#sync_signal_6"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sync_sequence.sync_signal_6" title="Link to this definition">¶</a></dt>
 <dd><p>generatesyncsignal6的随机syncsequence (无相位旋转BPSKmodulation)。</p>
 <p>standard6.2.3.6: 与syncsignal5generate方式相同, 区别仅在modulation方式 (BPSK vs GFSK)。</p>
-<p>parameter:     seed: security随机种子 (16字节)     slot_number: 起始调度time slot号     n_sync: syncsequencelength [32, 64, 128]     is_tx: True=先发节点, False=后发节点     kdf_type: 0=AES-CMAC, 1=HMAC-SM3</p>
+<p>Args:
+seed: 安全随机种子 (16字节)
+slot_number: 起始调度时隙号
+n_sync: 同步序列长度 [32, 64, 128]
+is_tx: True=先发节点, False=后发节点
+kdf_type: 0=AES-CMAC, 1=HMAC-SM3</p>
 </dd></dl>
 
 </section>
@@ -694,7 +719,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=4ebf8126"></script>
+</div><script src="../../_static/documentation_options.js?v=c74e6fab"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>

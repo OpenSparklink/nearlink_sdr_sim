@@ -6,7 +6,7 @@
 <link rel="index" title="索引" href="../../genindex.html"><link rel="search" title="搜索" href="../../search.html"><link rel="next" title="nearlink_sdr.phy.data_link" href="nearlink_sdr.phy.data_link.html"><link rel="prev" title="nearlink_sdr.phy.control_info" href="nearlink_sdr.phy.control_info.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>nearlink_sdr.phy.pilot - nearlink-sdr 1.0.0 文档</title>
+        <title>nearlink_sdr.phy.pilot - nearlink-sdr 1.0.2 文档</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -168,7 +168,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">nearlink-sdr 1.0.0 文档</div></a>
+      <a href="../../index.html"><div class="brand">nearlink-sdr 1.0.2 文档</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -189,7 +189,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
-  <span class="sidebar-brand-text">nearlink-sdr 1.0.0 文档</span>
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.2 文档</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
@@ -449,11 +449,11 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.pilot.pilot_symbol">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.pilot.</span></span><span class="sig-name descname"><span class="pre">pilot_symbol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mod_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbol_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="（在 Python v3.14）"><span class="pre">complex</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/pilot.html#pilot_symbol"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.pilot.pilot_symbol" title="Link to this definition">¶</a></dt>
 <dd><p>生成带适当相位旋转的单个导频符号。</p>
-<p>参数:
+<p>Args:
 mod_type: 调制方式，取 &quot;BPSK&quot;、&quot;QPSK&quot; 或 &quot;8PSK&quot;。
 symbol_index: 帧内以 0 为基的符号索引（决定奇偶位置）。
 标准规定第一个符号处于奇数位置。</p>
-<p>返回:
+<p>Returns:
 复数导频符号。</p>
 </dd></dl>
 
@@ -463,13 +463,13 @@ symbol_index: 帧内以 0 为基的符号索引（决定奇偶位置）。
 <dd><p>向数据符号流中插入导频符号。</p>
 <p>每隔 <code class="docutils literal notranslate"><span class="pre">pilot_interval</span></code> 个数据符号后插入一个导频符号。
 按标准规定，帧中最后一个导频应省略。</p>
-<p>参数:
+<p>Args:
 data_symbols: 复数数据符号数组。
 pilot_interval: 标准中的 N 值（4、8 或 16）。
 mod_type: 导频相位所用的调制方式。
 start_symbol_index: 帧内第一个数据符号的绝对符号索引。
 omit_last_pilot: 是否省略最后一个导频符号。</p>
-<p>返回:
+<p>Returns:
 (output_symbols, total_symbol_count) — 插入导频后的符号数组及总符号数。</p>
 </dd></dl>
 
@@ -477,11 +477,11 @@ omit_last_pilot: 是否省略最后一个导频符号。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.phy.pilot.remove_pilots">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.pilot.</span></span><span class="sig-name descname"><span class="pre">remove_pilots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pilot_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_pilot_omitted</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="（在 Python v3.14）"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/pilot.html#remove_pilots"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.pilot.remove_pilots" title="Link to this definition">¶</a></dt>
 <dd><p>从接收符号流中移除导频符号。</p>
-<p>参数:
+<p>Args:
 symbols: 含导频的接收符号。
 pilot_interval: N 值（4、8 或 16）。
 last_pilot_omitted: 发送侧是否已省略最后一个导频。</p>
-<p>返回:
+<p>Returns:
 移除导频后的数据符号。</p>
 </dd></dl>
 
@@ -572,7 +572,7 @@ last_pilot_omitted: 发送侧是否已省略最后一个导频。</p>
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=76d9f950"></script>
+</div><script src="../../_static/documentation_options.js?v=95736de2"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>

@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Security Subsystem Details" href="security.html"><link rel="prev" title="Physical Layer Details" href="physical-layer.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>MAC Layer Details - nearlink-sdr 1.0.0 documentation</title>
+        <title>MAC Layer Details - nearlink-sdr 1.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -168,7 +168,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">nearlink-sdr 1.0.0 documentation</div></a>
+      <a href="../index.html"><div class="brand">nearlink-sdr 1.0.2 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -189,7 +189,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
-  <span class="sidebar-brand-text">nearlink-sdr 1.0.0 documentation</span>
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.2 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -593,7 +593,7 @@
 <h3>Link Parameters<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">LinkParams</span></code> stores the current link operating parameters:</p>
 <ul class="simple">
-<li><p>TX/RX interval (interval_us)</p></li>
+<li><p>transceive interval (interval_us)</p></li>
 <li><p>Maximum data length (max_data_length)</p></li>
 <li><p>Hopping table (hop_table)</p></li>
 <li><p>Frame type (frame_type)</p></li>
@@ -610,8 +610,8 @@
 <section id="id14">
 <h3>Link Parameter Update (§7.2.1-7.2.2)<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p><strong>TX/RX interval update</strong>: request → accept/reject or direct update</p></li>
-<li><p><strong>Multi-level TX/RX interval</strong>: supports switching interval parameters between different priorities</p></li>
+<li><p><strong>transceive interval update</strong>: request → accept/reject or direct update</p></li>
+<li><p><strong>Multi-level transceive interval</strong>: supports switching interval parameters between different priorities</p></li>
 </ul>
 </section>
 <section id="id15">
@@ -799,7 +799,7 @@
 <section id="d">
 <h3>Event Groups (§Appendix D)<a class="headerlink" href="#d" title="Link to this heading">¶</a></h3>
 <p>Event groups combine multiple transmission events into a group for synchronous scheduling in isochronous scenarios.</p>
-<p><strong>Implementation</strong>: <code class="docutils literal notranslate"><span class="pre">mac.scheduler.ScheduleManager</span></code> manages superframes, event groups, and multi-level TX/RX intervals; <code class="docutils literal notranslate"><span class="pre">mac.smf</span></code> handles SMF frame encoding/decoding; <code class="docutils literal notranslate"><span class="pre">mac.smf_scheduler</span></code> manages transmission scheduling.</p>
+<p><strong>Implementation</strong>: <code class="docutils literal notranslate"><span class="pre">mac.scheduler.ScheduleManager</span></code> manages superframes, event groups, and multi-level transceive intervals; <code class="docutils literal notranslate"><span class="pre">mac.smf</span></code> handles SMF frame encoding/decoding; <code class="docutils literal notranslate"><span class="pre">mac.smf_scheduler</span></code> manages transmission scheduling.</p>
 </section>
 </section>
 <section id="id30">
@@ -927,7 +927,7 @@
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=4ebf8126"></script>
+</div><script src="../_static/documentation_options.js?v=c74e6fab"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>

@@ -6,7 +6,7 @@
 <link rel="index" title="索引" href="../../genindex.html"><link rel="search" title="搜索" href="../../search.html"><link rel="next" title="nearlink_sdr.phy.preamble" href="nearlink_sdr.phy.preamble.html"><link rel="prev" title="nearlink_sdr.phy.multitone" href="nearlink_sdr.phy.multitone.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>nearlink_sdr.phy.frame - nearlink-sdr 1.0.0 文档</title>
+        <title>nearlink_sdr.phy.frame - nearlink-sdr 1.0.2 文档</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -168,7 +168,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">nearlink-sdr 1.0.0 文档</div></a>
+      <a href="../../index.html"><div class="brand">nearlink-sdr 1.0.2 文档</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -189,7 +189,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
-  <span class="sidebar-brand-text">nearlink-sdr 1.0.0 文档</span>
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.2 文档</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
@@ -566,11 +566,11 @@
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.frame.</span></span><span class="sig-name descname"><span class="pre">assemble_frame_bits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctrl_info_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_payload_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.frame.FrameConfig" title="nearlink_sdr.phy.frame.FrameConfig"><span class="pre">nearlink_sdr.phy.frame.FrameConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.phy.frame.FrameFields" title="nearlink_sdr.phy.frame.FrameFields"><span class="pre">nearlink_sdr.phy.frame.FrameFields</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/frame.html#assemble_frame_bits"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.frame.assemble_frame_bits" title="Link to this definition">¶</a></dt>
 <dd><p>在比特级别组装完整帧结构。</p>
 <p>生成调制前的比特级帧结构。</p>
-<p>参数:
+<p>Args:
 ctrl_info_bits: 物理层控制信息比特。
 data_payload_bits: 数据 + 完整性保护 + CRC 比特。
 config: 帧配置参数。</p>
-<p>返回:
+<p>Returns:
 包含所有帧字段的 FrameFields 对象。</p>
 </dd></dl>
 
@@ -580,10 +580,10 @@ config: 帧配置参数。</p>
 <dd><p>将帧字段转换为含导频插入的调制符号流。</p>
 <p>帧类型 1（GFSK）返回拼接后的比特序列（非复数符号）。
 帧类型 2-4（PSK）返回含导频的复数符号流。</p>
-<p>参数:
+<p>Args:
 fields: 已组装的帧字段。
 config: 帧配置参数。</p>
-<p>返回:
+<p>Returns:
 类型 1：比特数组（送入 GFSK 调制器）。
 类型 2-4：基带复数符号数组。</p>
 </dd></dl>
@@ -593,12 +593,12 @@ config: 帧配置参数。</p>
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.frame.</span></span><span class="sig-name descname"><span class="pre">symbols_to_data_bits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.frame.FrameConfig" title="nearlink_sdr.phy.frame.FrameConfig"><span class="pre">nearlink_sdr.phy.frame.FrameConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_ctrl_coded_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_data_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="（在 Python v3.14）"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/frame.html#symbols_to_data_bits"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.frame.symbols_to_data_bits" title="Link to this definition">¶</a></dt>
 <dd><p>将接收符号流解析还原为控制位和数据位。</p>
 <p>简化解析器，假定已知帧参数。</p>
-<p>参数:
+<p>Args:
 symbols: 接收到的复数符号流。
 config: 帧配置参数。
 n_ctrl_coded_bits: 编码控制位的数量。
 n_data_bits: 数据位数量（调制前）。</p>
-<p>返回:
+<p>Returns:
 (ctrl_bits, data_bits) — 解调后的比特数组。</p>
 </dd></dl>
 
@@ -730,7 +730,7 @@ n_data_bits: 数据位数量（调制前）。</p>
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=76d9f950"></script>
+</div><script src="../../_static/documentation_options.js?v=95736de2"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>

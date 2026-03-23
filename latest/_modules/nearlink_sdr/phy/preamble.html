@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="索引" href="../../../genindex.html"><link rel="search" title="搜索" href="../../../search.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>nearlink_sdr.phy.preamble - nearlink-sdr 1.0.0 文档</title>
+        <title>nearlink_sdr.phy.preamble - nearlink-sdr 1.0.2 文档</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">nearlink-sdr 1.0.0 文档</div></a>
+      <a href="../../../index.html"><div class="brand">nearlink-sdr 1.0.2 文档</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -188,7 +188,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
   
-  <span class="sidebar-brand-text">nearlink-sdr 1.0.0 文档</span>
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.2 文档</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
   <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
@@ -411,11 +411,11 @@
 
 <span class="sd">    帧类型1使用 [0,1] 交替序列，第一个码元为0。</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        symbol_rate_mhz: 符号速率 (MHz)</span>
 <span class="sd">        duration_us: 前导码持续时间 (μs)</span>
 
-<span class="sd">    返回:</span>
+<span class="sd">    Returns:</span>
 <span class="sd">        前导码比特序列, 值为 0/1</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">n_symbols</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">symbol_rate_mhz</span> <span class="o">*</span> <span class="n">duration_us</span><span class="p">)</span>
@@ -433,11 +433,11 @@
 
 <span class="sd">    帧类型2/3/4使用 [π/4, 0] 交替相位。</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        symbol_rate_mhz: 符号速率 (MHz)</span>
 <span class="sd">        duration_us: 前导码持续时间 (μs)，帧类型2=10，帧类型3=12，帧类型4=16</span>
 
-<span class="sd">    返回:</span>
+<span class="sd">    Returns:</span>
 <span class="sd">        前导码相位序列 (弧度)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">n_symbols</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">symbol_rate_mhz</span> <span class="o">*</span> <span class="n">duration_us</span><span class="p">)</span>
@@ -453,11 +453,11 @@
                          <span class="n">duration_us</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;生成PSK前导码复数符号序列。</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        symbol_rate_mhz: 符号速率 (MHz)</span>
 <span class="sd">        duration_us: 前导码持续时间 (μs)</span>
 
-<span class="sd">    返回:</span>
+<span class="sd">    Returns:</span>
 <span class="sd">        前导码复数符号, shape (N,)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">phases</span> <span class="o">=</span> <span class="n">psk_preamble_phases</span><span class="p">(</span><span class="n">symbol_rate_mhz</span><span class="p">,</span> <span class="n">duration_us</span><span class="p">)</span>
@@ -480,11 +480,11 @@
                       <span class="n">symbol_rate_mhz</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;生成指定帧类型的前导码。</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        frame_type: 帧类型 1~4</span>
 <span class="sd">        symbol_rate_mhz: 符号速率 (MHz)</span>
 
-<span class="sd">    返回:</span>
+<span class="sd">    Returns:</span>
 <span class="sd">        帧类型1: 比特数组 (int ndarray)</span>
 <span class="sd">        帧类型2/3/4: 复数符号数组 (complex ndarray)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -529,7 +529,7 @@
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=76d9f950"></script>
+</div><script src="../../../_static/documentation_options.js?v=95736de2"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>

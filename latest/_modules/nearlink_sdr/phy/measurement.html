@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="索引" href="../../../genindex.html"><link rel="search" title="搜索" href="../../../search.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>nearlink_sdr.phy.measurement - nearlink-sdr 1.0.0 文档</title>
+        <title>nearlink_sdr.phy.measurement - nearlink-sdr 1.0.2 文档</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">nearlink-sdr 1.0.0 文档</div></a>
+      <a href="../../../index.html"><div class="brand">nearlink-sdr 1.0.2 文档</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -188,7 +188,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
   
-  <span class="sidebar-brand-text">nearlink-sdr 1.0.0 文档</span>
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.2 文档</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
   <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
@@ -528,7 +528,7 @@
 
 <span class="sd">    无相位旋转 BPSK 调制, 返回比特序列。</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        n_measur: 测量序列长度 [16, 32, 64, 128, 256, 512, 1024, 2048]</span>
 <span class="sd">        security_type: 安全类型 (1~4)</span>
 <span class="sd">        seed: 安全随机种子 (16 字节)</span>
@@ -537,7 +537,7 @@
 <span class="sd">        n_disturb_max: 最大扰动符号数配置 [0-11]</span>
 <span class="sd">        kdf_type: 0=AES-CMAC, 1=HMAC-SM3</span>
 
-<span class="sd">    返回:</span>
+<span class="sd">    Returns:</span>
 <span class="sd">        np.ndarray, dtype=int, 长度 n_measur</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">n_measur</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_VALID_N_MEASUR</span><span class="p">:</span>
@@ -599,14 +599,14 @@
 
 <span class="sd">    多音信号, 频率对称分布。</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        n_tones: 音的个数 [1, 2, 4, 8]</span>
 <span class="sd">        bandwidth_mhz: SLE 带宽 [1, 2, 4] MHz</span>
 <span class="sd">        duration_us: 信号时长 (微秒)</span>
 <span class="sd">        sample_rate: 采样率 (Hz)</span>
 <span class="sd">        phase_set: 相位集合 [1, 2], N≥4 时有效</span>
 
-<span class="sd">    返回:</span>
+<span class="sd">    Returns:</span>
 <span class="sd">        np.ndarray, dtype=complex128, 复数基带波形</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">n_tones</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">}:</span>
@@ -663,11 +663,11 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;顺序天线对集合: 优先变更后发节点天线 (6.2.4.3)。</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        m: 发送天线数</span>
 <span class="sd">        n: 接收天线数</span>
 
-<span class="sd">    返回:</span>
+<span class="sd">    Returns:</span>
 <span class="sd">        天线对列表 [(tx_ant, rx_ant), ...]</span>
 
 <span class="sd">    示例:</span>
@@ -689,7 +689,7 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;随机天线对集合 (使用第三安全序列置乱) (6.2.4.3)。</span>
 
-<span class="sd">    参数:</span>
+<span class="sd">    Args:</span>
 <span class="sd">        m: 发送天线数</span>
 <span class="sd">        n: 接收天线数</span>
 <span class="sd">        seed: 安全随机种子 (16 字节)</span>
@@ -697,7 +697,7 @@
 <span class="sd">        k: 随机数位宽</span>
 <span class="sd">        kdf_type: 0=AES-CMAC, 1=HMAC-SM3</span>
 
-<span class="sd">    返回:</span>
+<span class="sd">    Returns:</span>
 <span class="sd">        随机排列的天线对列表 [(tx_ant, rx_ant), ...]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># 生成顺序天线对集合作为候选</span>
@@ -762,7 +762,7 @@
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=76d9f950"></script>
+</div><script src="../../../_static/documentation_options.js?v=95736de2"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>
