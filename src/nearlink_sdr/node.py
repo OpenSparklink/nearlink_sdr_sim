@@ -84,6 +84,7 @@ from nearlink_sdr.phy.mac_interface import (
     mac_to_iq,
 )
 from nearlink_sdr.phy.measurement import measurement_signal_1
+from nearlink_sdr.phy.sdr_backend import SDRConfig, SDRDevice, create_device
 from nearlink_sdr.phy.tx_pipeline import TxConfig
 from nearlink_sdr.phy.usrp import SLETransceiver, USRPConfig, USRPDevice
 
@@ -130,7 +131,8 @@ class NodeConfig:
     :ivar max_power_dbm: 最大发射功率。
     :ivar min_power_dbm: 最小发射功率。
     :ivar channel_config: 仿真模式下的信道模型配置 (None 表示理想信道)。
-    :ivar usrp_config: USRP 硬件配置 (transport=USRP 时使用)。
+    :ivar sdr_config: SDR 硬件配置 (transport=USRP 时使用, 支持 mock/uhd/pluto 后端)。
+    :ivar usrp_config: (已废弃) USRP 配置, 保留向后兼容; 优先使用 sdr_config。
     :ivar smf_enabled: 是否启用系统管理帧调度。
     """
     address: bytes = b"\x00" * 6
@@ -150,6 +152,7 @@ class NodeConfig:
     max_power_dbm: float = 20.0
     min_power_dbm: float = -127.0
     channel_config: ChannelConfig | None = None
+    sdr_config: SDRConfig | None = None
     usrp_config: USRPConfig | None = None
     smf_enabled: bool = False
 
@@ -283,7 +286,10 @@ class SleNode:
     # 信道模型 (仿真模式)
     _channel: ChannelModel | None = field(init=False, default=None, repr=False)
 
-    # USRP 硬件 (USRP 模式)
+    # SDR 硬件设备
+    _sdr_device: SDRDevice | None = field(init=False, default=None, repr=False)
+
+    # 旧版 USRP 收发器 (向后兼容)
     _transceiver: SLETransceiver | None = field(
         init=False, default=None, repr=False,
     )
@@ -356,10 +362,14 @@ class SleNode:
         if cfg.transport == TransportMode.SIMULATION and cfg.channel_config is not None:
             self._channel = ChannelModel(config=cfg.channel_config)
 
-        # USRP 硬件
-        if cfg.transport == TransportMode.USRP and cfg.usrp_config is not None:
-            device = USRPDevice(config=cfg.usrp_config, use_mock=True)
-            self._transceiver = SLETransceiver(device)
+        # SDR 硬件
+        if cfg.transport == TransportMode.USRP:
+            if cfg.sdr_config is not None:
+                self._sdr_device = create_device(cfg.sdr_config)
+            elif cfg.usrp_config is not None:
+                # 向后兼容: 旧版 USRPConfig -> SLETransceiver
+                device = USRPDevice(config=cfg.usrp_config, use_mock=True)
+                self._transceiver = SLETransceiver(device)
 
     def _ctrl_bits_len(self) -> int:
         ft = self.config.frame_type
@@ -567,8 +577,13 @@ class SleNode:
         slot = self._scheduler.slot_counter.value
         channel = data_link_hop(slot, self._hop_param2, self._freq_table)
 
-        # USRP 模式: 通过硬件发送
-        if self._transceiver is not None:
+        # SDR/USRP 模式: 通过硬件发送
+        if self._sdr_device is not None:
+            try:
+                self._sdr_device.transmit(iq)
+            except (OSError, RuntimeError):
+                log.warning("SDR 发送失败")
+        elif self._transceiver is not None:
             try:
                 self._transceiver.transmit_iq(iq)
             except (OSError, RuntimeError):
@@ -741,24 +756,32 @@ class SleNode:
         """清除信道模型 (恢复理想信道)。"""
         self._channel = None
 
-    # ── USRP 硬件 ──
+    # ── SDR 硬件 ──
+
+    @property
+    def sdr_device(self) -> SDRDevice | None:
+        return self._sdr_device
 
     @property
     def transceiver(self) -> SLETransceiver | None:
         return self._transceiver
 
     def open_transceiver(self, rx_buf_size: int = 4096) -> None:
-        """打开 USRP 硬件收发器。"""
+        """打开 SDR/USRP 硬件收发器。"""
         if self._transceiver is not None:
             self._transceiver.open(rx_buf_size)
 
     def close_transceiver(self) -> None:
-        """关闭 USRP 硬件收发器。"""
+        """关闭 SDR/USRP 硬件收发器。"""
+        if self._sdr_device is not None:
+            self._sdr_device.close()
         if self._transceiver is not None:
             self._transceiver.close()
 
     def receive_iq(self, num_samps: int) -> np.ndarray | None:
-        """从 USRP 接收 IQ 采样。"""
+        """从 SDR/USRP 接收 IQ 采样。"""
+        if self._sdr_device is not None:
+            return self._sdr_device.receive(num_samps)
         if self._transceiver is None:
             return None
         return self._transceiver.receive_iq(num_samps)

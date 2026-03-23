@@ -568,7 +568,7 @@ wheels = [
 
 [[package]]
 name = "nearlink-sdr"
-version = "1.0.8"
+version = "1.0.9"
 source = { editable = "." }
 dependencies = [
     { name = "attrs" },
@@ -599,6 +599,10 @@ docs = [
     { name = "sphinx-autodoc2" },
     { name = "sphinx-intl" },
     { name = "sphinxcontrib-mermaid" },
+]
+pluto = [
+    { name = "pyadi-iio" },
+    { name = "pylibiio" },
 ]
 
 [package.metadata]
@@ -633,6 +637,10 @@ docs = [
     { name = "sphinx-autodoc2", specifier = ">=0.5" },
     { name = "sphinx-intl", specifier = ">=2.0" },
     { name = "sphinxcontrib-mermaid", specifier = ">=1.0" },
+]
+pluto = [
+    { name = "pyadi-iio", specifier = ">=0.0.19" },
+    { name = "pylibiio", specifier = ">=0.25" },
 ]
 
 [[package]]
@@ -716,6 +724,19 @@ wheels = [
 ]
 
 [[package]]
+name = "pyadi-iio"
+version = "0.0.20"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy" },
+    { name = "pylibiio" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c3/a0/bedb2abc8c4b5fd862bf6aaa485939ac640bb3bad13c07493cb1b5b50a57/pyadi_iio-0.0.20.tar.gz", hash = "sha256:0ebf0706d3e1a89886698509e71f42178bc58a5f03a47f7f9088f8d86900e7a7", size = 125469, upload-time = "2025-11-19T15:22:43.805Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/83/71/b769d758ffba8a8a35324138c42ac6ac5ede30121d7022ada9ba7f8f3548/pyadi_iio-0.0.20-py3-none-any.whl", hash = "sha256:9ff2235bf0bac8310a00028348343a8bd6ab59647f7525270ba329b1a51101d0", size = 204209, upload-time = "2025-11-19T15:22:42.73Z" },
+]
+
+[[package]]
 name = "pycparser"
 version = "3.0"
 source = { registry = "https://pypi.org/simple" }
@@ -731,6 +752,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/b0/77/a5b8c569bf593b0140bde72ea885a803b82086995367bf2037de0159d924/pygments-2.19.2.tar.gz", hash = "sha256:636cb2477cec7f8952536970bc533bc43743542f70392ae026374600add5b887", size = 4968631, upload-time = "2025-06-21T13:39:12.283Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/c7/21/705964c7812476f378728bdf590ca4b771ec72385c533964653c68e86bdc/pygments-2.19.2-py3-none-any.whl", hash = "sha256:86540386c03d588bb81d44bc3928634ff26449851e99741617ecb9037ee5ec0b", size = 1225217, upload-time = "2025-06-21T13:39:07.939Z" },
+]
+
+[[package]]
+name = "pylibiio"
+version = "0.25"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/43/27/ac30c489e86bd297111b09242b19aa05e470dfef8725a233346e9d67c642/pylibiio-0.25.tar.gz", hash = "sha256:f2615ab20093ec8ca87417f1e38dfdca1baa21a719328f4b27d28c99b1d23eb5", size = 14143, upload-time = "2023-08-10T14:03:16.994Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/68/a1/34bea2ef5bc4561e3c16506ff09ef157625771e7cb567e88711075c0b9a4/pylibiio-0.25-py3-none-any.whl", hash = "sha256:e49a0b317c9d4df100f4a2540e5aa6201222c3bd5495b296237e6598466afad1", size = 11490, upload-time = "2023-08-10T14:03:15.927Z" },
 ]
 
 [[package]]

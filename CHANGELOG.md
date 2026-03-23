@@ -5,6 +5,19 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/),
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [Unreleased]
+
+### Added
+
+- SDR 硬件后端抽象层: `SDRDevice` 基类 + `SDRConfig` 配置 + `create_device()` 工厂函数
+- Mock 后端 (`mock_backend.py`): 带环回的无硬件仿真, 从 `usrp.py` 提取独立
+- PlutoSDR 后端 (`pluto_backend.py`): 基于 pyadi-iio, 支持 ANTSDR E310 / ADALM-Pluto
+- UHD 后端 (`uhd_backend.py`): 封装 Ettus USRP Python API
+- `SleNode` 双路径支持: `sdr_config` (新) 优先于 `usrp_config` (旧, 兼容)
+- `pyadi-iio` / `pylibiio` 可选依赖组 (`pluto`)
+- `scripts/test_pluto_connection.py` 连通性验证脚本
+- SDR 后端单元测试 23 项 (`tests/test_sdr_backend.py`)
+
 ## [1.0.9] - 2026-03-25
 
 ### Added
