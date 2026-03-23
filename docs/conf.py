@@ -9,7 +9,7 @@ with open(_PYPROJECT_PATH, "rb") as _f:
     _PYPROJECT = tomllib.load(_f)
 
 project = "nearlink-sdr"
-author = "nearlink-sdr contributors"
+author = "sanchuanhehe"
 release = _PYPROJECT["project"]["version"]
 version = release
 
