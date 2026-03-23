@@ -108,8 +108,9 @@ latex_elements = {
 % etoolbox 必须最先加载（后续 \AtBeginEnvironment 依赖它）
 \usepackage{etoolbox}
 
-% 字体配置 (xeCJK 已由 Sphinx 自动加载，此处仅设置字体)
+% 字体配置 (显式加载 xeCJK 以支持英文 PDF 构建)
 \usepackage{fontspec}
+\usepackage{xeCJK}
 \setCJKmainfont{HarmonyOS Sans SC}
 \setCJKsansfont{HarmonyOS Sans SC}
 \setCJKmonofont{HarmonyOS Sans SC}
@@ -130,12 +131,12 @@ latex_elements = {
 \usepackage[htt]{hyphenat}
 
 % 表格使用更小字号，防止长 API 路径溢出
-\AtBeginEnvironment{longtable}{\footnotesize}
+\AtBeginEnvironment{longtable}{\scriptsize}
 \AtBeginEnvironment{tabulary}{\footnotesize}
 \setlength{\tabcolsep}{4pt}
 
 % 页面布局：加宽文本区域
-\geometry{a4paper, left=2cm, right=2cm, top=2.5cm, bottom=2.5cm}
+\geometry{a4paper, left=1.5cm, right=1.5cm, top=2.5cm, bottom=2.5cm}
 """,
     "figure_align": "htbp",
     # 允许 Sphinx 自动处理 API 签名的换行
