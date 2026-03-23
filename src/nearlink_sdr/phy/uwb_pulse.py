@@ -5,6 +5,15 @@
 
 from __future__ import annotations
 
+__all__ = [
+    "UWBPulseConfig",
+    "chip_modulate",
+    "kaiser_pulse",
+    "normalized_cross_correlation",
+    "validate_pulse",
+]
+
+
 import math
 from dataclasses import dataclass
 

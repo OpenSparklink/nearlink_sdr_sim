@@ -4,6 +4,16 @@
 信道均衡来对抗多径衰落引起的符号间干扰 (ISI)。
 """
 
+
+__all__ = [
+    "equalize_1tap",
+    "equalize_mmse_freq",
+    "equalize_mmse_time",
+    "equalize_zf",
+    "estimate_channel_freq",
+]
+
+
 import numpy as np
 
 

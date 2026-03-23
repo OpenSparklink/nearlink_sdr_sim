@@ -13,6 +13,18 @@ Doppler 时变信道采用 Jakes 求和正弦模型, 生成具有经典 U 形功
 第 8.3.2 条接收机选择性要求。
 """
 
+
+__all__ = [
+    "PDP_2TAP",
+    "PDP_INDOOR_OFFICE",
+    "ChannelConfig",
+    "ChannelModel",
+    "InterferenceConfig",
+    "add_interference",
+    "compute_sinr",
+]
+
+
 from dataclasses import dataclass, field
 
 import numpy as np

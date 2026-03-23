@@ -14,6 +14,29 @@ AccessRequestInfo、AccessResponseInfo 等数据结构完成端到端接入。
 
 from __future__ import annotations
 
+__all__ = [
+    "MAX_ADV_INTERVAL_US",
+    "MAX_ADV_RANDOM_DELAY_US",
+    "MIN_ADV_INTERVAL_US",
+    "MIN_ADV_TO_EXT_ADV_GAP",
+    "MIN_EXT_ADV_TO_REQUEST_GAP",
+    "MIN_REQUEST_TO_RESPONSE_GAP",
+    "AccessConfig",
+    "AccessPhase",
+    "AccessWhitelist",
+    "BroadcasterAccessManager",
+    "DiscoveryManager",
+    "InitiatorAccessManager",
+    "NegotiatedRole",
+    "NonConnectedBroadcastConfig",
+    "NonConnectedBroadcastManager",
+    "NonConnectedBroadcastResult",
+    "negotiate_gt_role",
+    "parse_non_connected_broadcast",
+    "run_access_procedure",
+]
+
+
 import logging
 import random
 from dataclasses import dataclass, field
@@ -88,7 +111,6 @@ class NegotiatedRole:
     local_role: Role
     peer_role: Role
     negotiated: bool = False           # 是否经过协商 (vs 默认分配)
-
 
 
 # ---------------------------------------------------------------------------

@@ -6,6 +6,12 @@ PRBS17: x^17 + x^3 + 1, 周期 131071, 用于测试干扰信号数据。
 
 from __future__ import annotations
 
+__all__ = [
+    "prbs11",
+    "prbs17",
+]
+
+
 import numpy as np
 from numpy.typing import NDArray
 

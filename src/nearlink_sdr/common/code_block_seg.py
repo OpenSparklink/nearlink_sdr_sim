@@ -1,5 +1,13 @@
 """码块分割 -- TXS-10002-2025 标准 6.9.1.2 / 6.9.1.3 节。"""
 
+
+__all__ = [
+    "RATE_TABLE_2",
+    "segment_with_crc",
+    "segment_without_crc",
+]
+
+
 import math
 
 import numpy as np

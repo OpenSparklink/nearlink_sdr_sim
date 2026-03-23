@@ -1,3 +1,13 @@
+
+__all__ = [
+    "M31_CONFIGS",
+    "M63_CONFIGS",
+    "generate_m_sequence",
+    "m31_sequence",
+    "m63_sequence",
+]
+
+
 import numpy as np
 
 try:

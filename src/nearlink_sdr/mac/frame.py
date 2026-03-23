@@ -6,6 +6,15 @@
 
 from __future__ import annotations
 
+__all__ = [
+    "AsyncDataFrame",
+    "ControlFrame",
+    "MuxFrame",
+    "SegmentType",
+    "SyncDataFrame",
+]
+
+
 from dataclasses import dataclass
 from enum import IntEnum
 

@@ -3,6 +3,16 @@
 支持帧类型 1-4，包含前导码、同步序列、控制信息、数据载荷和导频插入。
 """
 
+
+__all__ = [
+    "FrameConfig",
+    "FrameFields",
+    "assemble_frame_bits",
+    "frame_to_symbols",
+    "symbols_to_data_bits",
+]
+
+
 from dataclasses import dataclass, field
 
 import numpy as np

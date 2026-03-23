@@ -5,6 +5,15 @@
 
 from __future__ import annotations
 
+__all__ = [
+    "decode_signaling",
+    "encode_signaling",
+    "get_signaling_name",
+    "list_registered",
+    "register_signaling",
+]
+
+
 from typing import Any
 
 from nearlink_sdr.mac.frame import ControlFrame

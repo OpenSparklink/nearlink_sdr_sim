@@ -10,6 +10,25 @@
 
 from __future__ import annotations
 
+__all__ = [
+    "BAND_2400",
+    "BAND_5100",
+    "BAND_5800",
+    "MEAS_HOP_ASCENDING",
+    "MEAS_HOP_DESCENDING",
+    "MEAS_HOP_RANDOM",
+    "FreqTable",
+    "MeasLinkHopper",
+    "channel_to_freq",
+    "data_link_hop",
+    "derive_hop_param2",
+    "freq_to_channel",
+    "generate_hopping_sequence",
+    "hopping_prng",
+    "mgmt_frame_hop",
+]
+
+
 from dataclasses import dataclass, field
 
 # ---------------------------------------------------------------------------

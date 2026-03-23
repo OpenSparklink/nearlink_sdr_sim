@@ -9,6 +9,16 @@
 
 from __future__ import annotations
 
+__all__ = [
+    "ECDHKeyPair",
+    "FrameCryptoContext",
+    "PairingFailureReason",
+    "PairingManager",
+    "PairingState",
+    "run_pairing_procedure",
+]
+
+
 import logging
 import os
 from dataclasses import dataclass, field

@@ -1,5 +1,15 @@
 """导频符号插入与提取 -- TXS-10002-2025 标准 6.2.1.2 节。"""
 
+
+__all__ = [
+    "EVEN_ROTATION_DEG",
+    "PILOT_PHASE_DEG",
+    "insert_pilots",
+    "pilot_symbol",
+    "remove_pilots",
+]
+
+
 import numpy as np
 
 # 各调制方式的导频参考相位（单位：度）

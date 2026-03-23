@@ -8,6 +8,20 @@ QoS 集成: QosLink 类封装了带 ARQ/HARQ/流控的端到端数据链路。
 
 from __future__ import annotations
 
+__all__ = [
+    "MacRxResult",
+    "QosLink",
+    "bits_to_bytes",
+    "bytes_to_bits",
+    "iq_to_mac",
+    "iq_to_signaling",
+    "mac_to_iq",
+    "roundtrip_data",
+    "roundtrip_signaling",
+    "signaling_to_iq",
+]
+
+
 from dataclasses import dataclass
 
 import numpy as np

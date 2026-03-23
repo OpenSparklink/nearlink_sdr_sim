@@ -11,8 +11,16 @@
 
 - autodoc2 参数/返回值解析: 32 个源文件从 Google 风格 docstring 转为 field list 格式
 - 英文翻译同步: 867 个 .po 条目翻译/修复, 0 fuzzy / 0 empty
+- 英文 PDF 文档标题从中文切换为英文
 
 ### Changed
+
+- Release CI: 中英文文档并行构建, TeX Live/npm/字体缓存, 预估缩短 40%+ 耗时
+
+### Added
+
+- API 公开接口控制: 52 个模块添加 `__all__`, 664 个公开符号, 排除废弃模块和内部实现
+- autodoc2 配置: `module_all_regexes` 按 `__all__` 过滤文档, `hidden_objects` 隐藏私有符号
 
 - Release CI: 中英文文档并行构建, TeX Live/npm/字体缓存, 预估缩短 40%+ 耗时
 

@@ -1,3 +1,15 @@
+
+__all__ = [
+    "CRC12_POLY",
+    "CRC24A_POLY",
+    "CRC24B_POLY",
+    "CRC32_POLY",
+    "crc_attach",
+    "crc_calculate",
+    "crc_check",
+]
+
+
 import numpy as np
 
 try:

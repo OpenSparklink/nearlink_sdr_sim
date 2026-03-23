@@ -41,6 +41,12 @@ autodoc2_packages = [
     },
 ]
 autodoc2_render_plugin = "myst"
+autodoc2_module_all_regexes = [r"nearlink_sdr\..*"]
+autodoc2_skip_module_regexes = [
+    r"nearlink_sdr\.phy\.modulator",
+    r"nearlink_sdr\.phy\.demodulator",
+]
+autodoc2_hidden_objects = {"dunder", "private", "inherited"}
 
 # -- 通用配置 ------------------------------------------------------------------
 
