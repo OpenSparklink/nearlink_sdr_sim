@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-23 22:54+0800\n"
+"POT-Creation-Date: 2026-03-24 06:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: en <LL@li.org>\n"
 "Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:1
@@ -31,9 +31,9 @@ msgstr "Physical layer transmit pipeline — TXS-10002-2025 standard 6.10"
 #: ../../../src/nearlink_sdr/phy/tx_pipeline.py:9
 msgid "将 MAC 层载荷经过 CRC → 码块分割 → Polar 编码 → 加扰 → 帧组装 → 调制, 输出可用于发射的基带 IQ 信号。"
 msgstr ""
-"Processes MAC layer payload through CRC → code block segmentation → Polar "
-"encoding → scrambling → frame assembly → modulation, outputting a baseband "
-"IQ signal ready for transmission."
+"Processes MAC layer payload through CRC → code block segmentation → Polar"
+" encoding → scrambling → frame assembly → modulation, outputting a "
+"baseband IQ signal ready for transmission."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:10
 msgid "Module Contents"
@@ -49,7 +49,7 @@ msgid "{py:obj}`TxConfig <nearlink_sdr.phy.tx_pipeline.TxConfig>`"
 msgstr "{py:obj}`TxConfig <nearlink_sdr.phy.tx_pipeline.TxConfig>`"
 
 #: ../../../src/nearlink_sdr/phy/tx_pipeline.py:20
-#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:102
+#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:51
 msgid "发射参数配置。"
 msgstr "Transmit parameter configuration."
 
@@ -59,229 +59,223 @@ msgstr "Functions"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:30
 #, python-brace-format
-msgid "{py:obj}`_head_len <nearlink_sdr.phy.tx_pipeline._head_len>`"
-msgstr "{py:obj}`_head_len <nearlink_sdr.phy.tx_pipeline._head_len>`"
+msgid "{py:obj}`encode_head <nearlink_sdr.phy.tx_pipeline.encode_head>`"
+msgstr "{py:obj}`encode_head <nearlink_sdr.phy.tx_pipeline.encode_head>`"
 
 #: ../../../src/nearlink_sdr/phy/tx_pipeline.py:32
-#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:84
-msgid "返回头部编码后的码长。"
-msgstr "Return the code length after header encoding."
+#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:222
+msgid "控制信息头部编码: [Polar(64, K)] → 加扰。"
+msgstr "Control information header encoding: [Polar(64, K)] → scrambling."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:34
 #, python-brace-format
 msgid "{py:obj}`encode_payload <nearlink_sdr.phy.tx_pipeline.encode_payload>`"
-msgstr ""
-"{py:obj}`encode_payload <nearlink_sdr.phy.tx_pipeline.encode_payload>`"
+msgstr "{py:obj}`encode_payload <nearlink_sdr.phy.tx_pipeline.encode_payload>`"
 
 #: ../../../src/nearlink_sdr/phy/tx_pipeline.py:36
-#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:292
+#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:229
 msgid "载荷编码: CRC → [分段 → Polar] → 加扰。"
 msgstr "Payload encoding: CRC → [segmentation → Polar] → scrambling."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:38
 #, python-brace-format
-msgid "{py:obj}`encode_head <nearlink_sdr.phy.tx_pipeline.encode_head>`"
-msgstr "{py:obj}`encode_head <nearlink_sdr.phy.tx_pipeline.encode_head>`"
-
-#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:40
-#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:299
-msgid "控制信息头部编码: [Polar(64, K)] → 加扰。"
-msgstr "Control information header encoding: [Polar(64, K)] → scrambling."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:42
-#, python-brace-format
 msgid "{py:obj}`tx_chain <nearlink_sdr.phy.tx_pipeline.tx_chain>`"
 msgstr "{py:obj}`tx_chain <nearlink_sdr.phy.tx_pipeline.tx_chain>`"
 
-#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:44
-#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:306
+#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:40
+#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:236
 msgid "完整发射链路: 头部编码 + 载荷编码 → 帧组装 → 调制。"
 msgstr ""
-"Complete transmit chain: header encoding + payload encoding → frame assembly"
-" → modulation."
+"Complete transmit chain: header encoding + payload encoding → frame "
+"assembly → modulation."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:46
-#, python-brace-format
-msgid ""
-"{py:obj}`_pulse_shape_symbols "
-"<nearlink_sdr.phy.tx_pipeline._pulse_shape_symbols>`"
-msgstr ""
-"{py:obj}`_pulse_shape_symbols "
-"<nearlink_sdr.phy.tx_pipeline._pulse_shape_symbols>`"
-
-#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:48
-#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:313
-msgid "对已包含导频的复数符号序列进行上采样和 RRC 脉冲成型。"
-msgstr ""
-"Perform upsampling and RRC pulse shaping on the complex symbol sequence that"
-" already includes pilots."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:52
-msgid "Data"
-msgstr "Data"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:58
-#, python-brace-format
-msgid ""
-"{py:obj}`_HEAD_CODED_LEN <nearlink_sdr.phy.tx_pipeline._HEAD_CODED_LEN>`"
-msgstr ""
-"{py:obj}`_HEAD_CODED_LEN <nearlink_sdr.phy.tx_pipeline._HEAD_CODED_LEN>`"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:62
-#, python-brace-format
-msgid "{py:obj}`_MOD_STR <nearlink_sdr.phy.tx_pipeline._MOD_STR>`"
-msgstr "{py:obj}`_MOD_STR <nearlink_sdr.phy.tx_pipeline._MOD_STR>`"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:68
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:44
 msgid "API"
 msgstr "API"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:74
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:91
-msgid "None"
-msgstr "None"
-
-#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:104
+#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:53
 msgid ""
-"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:104:"
+"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:53:"
 " (INFO/1) Duplicate implicit target name: \"parameters\"."
 msgstr ""
-"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:104:"
+"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:308:"
 " (INFO/1) Duplicate implicit target name: \"parameters\"."
 
-#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:106
+#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:55
 msgid ""
-"frame_type : 帧类型 (1-4) mcs_index : 编码调制索引 (0-12) pid : 24-bit PID, 用于生成同步字 "
-"whitening_seed : 7-bit 加扰种子 crc_seed : CRC 初始值 crc_len : CRC 比特长度 (24 或 32) "
-"ctrl_bits_len : 控制信息有效比特数 (不含 CRC12) pilot_interval : 导频间隔 (4/8/16), 0 表示无导频"
-" sps : 每符号采样数 (脉冲成型用) symbol_rate_mhz : 符号速率 (MHz)"
+"frame_type : 帧类型 (1-4) mcs_index : 编码调制索引 (0-12) pid : 24-bit PID, "
+"用于生成同步字 whitening_seed : 7-bit 加扰种子 crc_seed : CRC 初始值 crc_len : CRC 比特长度"
+" (24 或 32) ctrl_bits_len : 控制信息有效比特数 (不含 CRC12) pilot_interval : 导频间隔 "
+"(4/8/16), 0 表示无导频 sps : 每符号采样数 (脉冲成型用) symbol_rate_mhz : 符号速率 (MHz)"
 msgstr ""
-"frame_type : Frame type (1-4). mcs_index : MCS index (0-12). pid : 24-bit "
-"PID, used to generate the sync word. whitening_seed : 7-bit scrambling seed."
-" crc_seed : CRC initial value. crc_len : CRC bit length (24 or 32). "
-"ctrl_bits_len : Control information effective bit count (excluding CRC12). "
-"pilot_interval : Pilot interval."
+"frame_type : Frame type (1-4). mcs_index : MCS index (0-12). pid : 24-bit"
+" PID, used to generate the sync word. whitening_seed : 7-bit scrambling "
+"seed. crc_seed : CRC initial value. crc_len : CRC bit length (24 or 32). "
+"ctrl_bits_len : Control information effective bit count (excluding "
+"CRC12). pilot_interval : Pilot interval."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:109
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:58
 msgid "2"
 msgstr "2"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:120
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:69
 msgid "7"
 msgstr "7"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:131
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:142
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:153
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:80
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:91
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:102
 msgid "0"
 msgstr "0"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:164
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:113
 msgid "24"
 msgstr "24"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:175
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:124
 msgid "28"
 msgstr "28"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:186
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:135
 msgid "8"
 msgstr "8"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:197
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:146
 msgid "4"
 msgstr "4"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:208
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:157
 msgid "1.0"
 msgstr "1.0"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.md:219
-msgid "'field(...)'"
-msgstr "'field(...)'"
-
-#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:294
+#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:224
 msgid ""
-"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:294:"
+"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:224:"
 " (INFO/1) Duplicate implicit target name: \"parameters\"."
 msgstr ""
 "Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:294:"
 " (INFO/1) Duplicate implicit target name: \"parameters\"."
 
-#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:296
+#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:226
+msgid "ctrl_info_bits : 控制信息 + CRC12 比特 (已 pack 好的) cfg : 发射配置"
+msgstr ""
+"ctrl_info_bits : Control information + CRC12 bits (already packed). cfg :"
+" Transmit configuration."
+
+#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:229
+msgid ""
+"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:229:"
+" (INFO/1) Duplicate implicit target name: \"returns\"."
+msgstr ""
+"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:299:"
+" (INFO/1) Duplicate implicit target name: \"returns\"."
+
+#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:231
+msgid "txHeadW : 加扰后的头部比特"
+msgstr "txHeadW : Scrambled header bits."
+
+#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:231
+msgid ""
+"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:231:"
+" (INFO/1) Duplicate implicit target name: \"parameters\"."
+msgstr ""
+"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:301:"
+" (INFO/1) Duplicate implicit target name: \"parameters\"."
+
+#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:233
 msgid "data_bits : 原始载荷比特 (不含 CRC) cfg : 发射配置"
 msgstr ""
 "data_bits : Original payload bits (excluding CRC). cfg : Transmit "
 "configuration."
 
-#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:299
+#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:236
 msgid ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:299:"
+"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:236:"
 " (INFO/1) Duplicate implicit target name: \"returns\"."
 msgstr ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:299:"
+"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:306:"
 " (INFO/1) Duplicate implicit target name: \"returns\"."
 
-#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:301
+#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:238
 msgid "txPyLdW : 加扰后的载荷比特"
 msgstr "txPyLdW : scrambled payload bits"
 
-#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:301
+#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:238
 msgid ""
-"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:301:"
-" (INFO/1) Duplicate implicit target name: \"parameters\"."
-msgstr ""
-"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:301:"
-" (INFO/1) Duplicate implicit target name: \"parameters\"."
-
-#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:303
-msgid "ctrl_info_bits : 控制信息 + CRC12 比特 (已 pack 好的) cfg : 发射配置"
-msgstr ""
-"ctrl_info_bits : Control information + CRC12 bits (already packed). cfg : "
-"Transmit configuration."
-
-#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:306
-msgid ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:306:"
-" (INFO/1) Duplicate implicit target name: \"returns\"."
-msgstr ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:306:"
-" (INFO/1) Duplicate implicit target name: \"returns\"."
-
-#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:308
-msgid "txHeadW : 加扰后的头部比特"
-msgstr "txHeadW : Scrambled header bits."
-
-#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:308
-msgid ""
-"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:308:"
+"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:238:"
 " (INFO/1) Duplicate implicit target name: \"parameters\"."
 msgstr ""
 "Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:308:"
 " (INFO/1) Duplicate implicit target name: \"parameters\"."
 
-#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:310
-msgid ""
-"ctrl_info_bits : 控制信息 + CRC12 比特 data_bits : 原始数据比特 (不含 CRC) cfg : 发射配置"
+#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:240
+msgid "ctrl_info_bits : 控制信息 + CRC12 比特 data_bits : 原始数据比特 (不含 CRC) cfg : 发射配置"
 msgstr ""
-"ctrl_info_bits : Control information + CRC12 bits. data_bits : Original data"
-" bits (excluding CRC). cfg : Transmit configuration."
+"ctrl_info_bits : Control information + CRC12 bits. data_bits : Original "
+"data bits (excluding CRC). cfg : Transmit configuration."
 
-#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:314
+#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:244
 msgid ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:314:"
+"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:244:"
 " (INFO/1) Duplicate implicit target name: \"returns\"."
 msgstr ""
 "Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:314:"
 " (INFO/1) Duplicate implicit target name: \"returns\"."
 
-#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:316
+#: ../../../src/nearlink_sdr/phy/tx_pipeline.py:246
 msgid "iq : 基带 IQ 信号 (complex128), 长度 = 帧符号数 × sps"
-msgstr ""
-"iq : Baseband IQ signal (complex128), length = frame symbol count × sps."
+msgstr "iq : Baseband IQ signal (complex128), length = frame symbol count × sps."
 
 #~ msgid "Parameters"
 #~ msgstr "Parameters"
 
 #~ msgid "Returns"
 #~ msgstr "Returns"
+
+#~ msgid "{py:obj}`_head_len <nearlink_sdr.phy.tx_pipeline._head_len>`"
+#~ msgstr "{py:obj}`_head_len <nearlink_sdr.phy.tx_pipeline._head_len>`"
+
+#~ msgid "返回头部编码后的码长。"
+#~ msgstr "Return the code length after header encoding."
+
+#~ msgid ""
+#~ "{py:obj}`_pulse_shape_symbols "
+#~ "<nearlink_sdr.phy.tx_pipeline._pulse_shape_symbols>`"
+#~ msgstr ""
+#~ "{py:obj}`_pulse_shape_symbols "
+#~ "<nearlink_sdr.phy.tx_pipeline._pulse_shape_symbols>`"
+
+#~ msgid "对已包含导频的复数符号序列进行上采样和 RRC 脉冲成型。"
+#~ msgstr ""
+#~ "Perform upsampling and RRC pulse shaping"
+#~ " on the complex symbol sequence that"
+#~ " already includes pilots."
+
+#~ msgid "Data"
+#~ msgstr "Data"
+
+#~ msgid ""
+#~ "{py:obj}`_HEAD_CODED_LEN "
+#~ "<nearlink_sdr.phy.tx_pipeline._HEAD_CODED_LEN>`"
+#~ msgstr ""
+#~ "{py:obj}`_HEAD_CODED_LEN "
+#~ "<nearlink_sdr.phy.tx_pipeline._HEAD_CODED_LEN>`"
+
+#~ msgid "{py:obj}`_MOD_STR <nearlink_sdr.phy.tx_pipeline._MOD_STR>`"
+#~ msgstr "{py:obj}`_MOD_STR <nearlink_sdr.phy.tx_pipeline._MOD_STR>`"
+
+#~ msgid "None"
+#~ msgstr "None"
+
+#~ msgid ""
+#~ "Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:104:"
+#~ " (INFO/1) Duplicate implicit target name:"
+#~ " \"parameters\"."
+#~ msgstr ""
+#~ "Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/tx_pipeline.py:104:"
+#~ " (INFO/1) Duplicate implicit target name:"
+#~ " \"parameters\"."
+
+#~ msgid "'field(...)'"
+#~ msgstr "'field(...)'"
+

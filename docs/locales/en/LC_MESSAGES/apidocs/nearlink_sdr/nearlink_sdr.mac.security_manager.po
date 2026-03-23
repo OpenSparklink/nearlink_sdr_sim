@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 04:07+0800\n"
+"POT-Creation-Date: 2026-03-24 06:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -62,15 +62,29 @@ msgstr "Classes"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:18
 #, python-brace-format
-msgid "{py:obj}`PairingState <nearlink_sdr.mac.security_manager.PairingState>`"
-msgstr "{py:obj}`PairingState <nearlink_sdr.mac.security_manager.PairingState>`"
+msgid "{py:obj}`ECDHKeyPair <nearlink_sdr.mac.security_manager.ECDHKeyPair>`"
+msgstr "{py:obj}`ECDHKeyPair <nearlink_sdr.mac.security_manager.ECDHKeyPair>`"
 
 #: ../../../src/nearlink_sdr/mac/security_manager.py:20
-#: ../../../src/nearlink_sdr/mac/security_manager.py:83
-msgid "配对流程状态。"
-msgstr "Pairing procedure state."
+#: ../../../src/nearlink_sdr/mac/security_manager.py:59
+msgid "P-256 椭圆曲线密钥对。"
+msgstr "P-256 elliptic curve key pair."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:22
+#, python-brace-format
+msgid ""
+"{py:obj}`FrameCryptoContext "
+"<nearlink_sdr.mac.security_manager.FrameCryptoContext>`"
+msgstr ""
+"{py:obj}`FrameCryptoContext "
+"<nearlink_sdr.mac.security_manager.FrameCryptoContext>`"
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:24
+#: ../../../src/nearlink_sdr/mac/security_manager.py:117
+msgid "帧级 AES-CCM 加解密上下文。"
+msgstr "Frame-level AES-CCM encryption/decryption context."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:26
 #, python-brace-format
 msgid ""
 "{py:obj}`PairingFailureReason "
@@ -79,20 +93,10 @@ msgstr ""
 "{py:obj}`PairingFailureReason "
 "<nearlink_sdr.mac.security_manager.PairingFailureReason>`"
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:24
-#: ../../../src/nearlink_sdr/mac/security_manager.py:189
+#: ../../../src/nearlink_sdr/mac/security_manager.py:28
+#: ../../../src/nearlink_sdr/mac/security_manager.py:235
 msgid "配对失败原因 (标准 9.2)。"
 msgstr "Pairing failure reason (standard 9.2)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:26
-#, python-brace-format
-msgid "{py:obj}`ECDHKeyPair <nearlink_sdr.mac.security_manager.ECDHKeyPair>`"
-msgstr "{py:obj}`ECDHKeyPair <nearlink_sdr.mac.security_manager.ECDHKeyPair>`"
-
-#: ../../../src/nearlink_sdr/mac/security_manager.py:28
-#: ../../../src/nearlink_sdr/mac/security_manager.py:323
-msgid "P-256 椭圆曲线密钥对。"
-msgstr "P-256 elliptic curve key pair."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:30
 #, python-brace-format
@@ -104,23 +108,19 @@ msgstr ""
 "<nearlink_sdr.mac.security_manager.PairingManager>`"
 
 #: ../../../src/nearlink_sdr/mac/security_manager.py:32
-#: ../../../src/nearlink_sdr/mac/security_manager.py:381
+#: ../../../src/nearlink_sdr/mac/security_manager.py:369
 msgid "配对流程状态机 (标准 9.2)。"
 msgstr "Pairing procedure state machine (standard 9.2)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:34
 #, python-brace-format
-msgid ""
-"{py:obj}`FrameCryptoContext "
-"<nearlink_sdr.mac.security_manager.FrameCryptoContext>`"
-msgstr ""
-"{py:obj}`FrameCryptoContext "
-"<nearlink_sdr.mac.security_manager.FrameCryptoContext>`"
+msgid "{py:obj}`PairingState <nearlink_sdr.mac.security_manager.PairingState>`"
+msgstr "{py:obj}`PairingState <nearlink_sdr.mac.security_manager.PairingState>`"
 
 #: ../../../src/nearlink_sdr/mac/security_manager.py:36
-#: ../../../src/nearlink_sdr/mac/security_manager.py:716
-msgid "帧级 AES-CCM 加解密上下文。"
-msgstr "Frame-level AES-CCM encryption/decryption context."
+#: ../../../src/nearlink_sdr/mac/security_manager.py:591
+msgid "配对流程状态。"
+msgstr "Pairing procedure state."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:40
 msgid "Functions"
@@ -136,131 +136,32 @@ msgstr ""
 "<nearlink_sdr.mac.security_manager.run_pairing_procedure>`"
 
 #: ../../../src/nearlink_sdr/mac/security_manager.py:48
-#: ../../../src/nearlink_sdr/mac/security_manager.py:861
+#: ../../../src/nearlink_sdr/mac/security_manager.py:694
 msgid "执行完整的端到端配对流程。"
 msgstr "Execute a complete end-to-end pairing process."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:52
-msgid "Data"
-msgstr "Data"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:58
-#, python-brace-format
-msgid "{py:obj}`log <nearlink_sdr.mac.security_manager.log>`"
-msgstr "{py:obj}`log <nearlink_sdr.mac.security_manager.log>`"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:64
 msgid "API"
 msgstr "API"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:70
-msgid "'getLogger(...)'"
-msgstr "'getLogger(...)'"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:80
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:186
-#, python-brace-format
-msgid "Bases: {py:obj}`enum.IntEnum`"
-msgstr "Bases: {py:obj}`enum.IntEnum`"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:85
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:191
-msgid "Initialization"
-msgstr "Initialization"
-
-#: ../../../src/nearlink_sdr/mac/security_manager.py:89
-#: ../../../src/nearlink_sdr/mac/security_manager.py:195
-msgid "Initialize self.  See help(type(self)) for accurate signature."
-msgstr "Initialize self. See help(type(self)) for accurate signature."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:95
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:745
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:778
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:789
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:800
-msgid "0"
-msgstr "0"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:105
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:115
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:125
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:135
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:145
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:155
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:165
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:175
-msgid "'auto(...)'"
-msgstr "'auto(...)'"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:201
-msgid "1"
-msgstr "1"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:211
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:767
-msgid "2"
-msgstr "2"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:221
-msgid "3"
-msgstr "3"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:231
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:756
-msgid "4"
-msgstr "4"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:241
-msgid "5"
-msgstr "5"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:251
-msgid "6"
-msgstr "6"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:261
-msgid "7"
-msgstr "7"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:271
-msgid "8"
-msgstr "8"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:281
-msgid "9"
-msgstr "9"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:291
-msgid "10"
-msgstr "10"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:301
-msgid "11"
-msgstr "11"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:311
-msgid "12"
-msgstr "12"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:330
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:341
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:352
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:487
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:498
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:509
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:520
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:531
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:542
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:553
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:66
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:77
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:88
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:475
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:486
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:497
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:508
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:519
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:530
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:541
 msgid "b''"
 msgstr "b''"
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:364
+#: ../../../src/nearlink_sdr/mac/security_manager.py:100
 msgid "生成 P-256 密钥对。"
 msgstr "generate P-256 keypair."
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:372
-#: ../../../src/nearlink_sdr/mac/security_manager.py:674
+#: ../../../src/nearlink_sdr/mac/security_manager.py:108
 msgid "计算 ECDH 共享密钥。"
 msgstr "Compute the ECDH shared key."
 
@@ -268,103 +169,17 @@ msgstr "Compute the ECDH shared key."
 msgid "返回"
 msgstr "Returns"
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:374
+#: ../../../src/nearlink_sdr/mac/security_manager.py:110
 msgid "共享密钥 (32 字节)。"
 msgstr "Shared key (32 bytes)."
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:383
-msgid "驱动 G 节点与 T 节点之间的配对信令交互, 完成:"
-msgstr ""
-"Drive the pairing signaling interaction between the G node and T node to "
-"complete:"
-
-#: ../../../src/nearlink_sdr/mac/security_manager.py:384
-msgid "配对发起/请求/响应"
-msgstr "Pairing initiate/request/response"
-
-#: ../../../src/nearlink_sdr/mac/security_manager.py:385
-msgid "ECDH 公钥交换"
-msgstr "ECDH public key exchange"
-
-#: ../../../src/nearlink_sdr/mac/security_manager.py:386
-msgid "确认码互验"
-msgstr "Mutual confirmation code verification"
-
-#: ../../../src/nearlink_sdr/mac/security_manager.py:387
-msgid "链路密钥派生"
-msgstr "Link key derivation"
-
-#: ../../../src/nearlink_sdr/mac/security_manager.py:388
-msgid "会话密钥派生"
-msgstr "Session key derivation"
-
-#: ../../../src/nearlink_sdr/mac/security_manager.py:390
-msgid ""
-"Attributes:     is_g_node: 本端是否为 G 节点。     kdf_type: 密钥派生函数类型。     "
-"auth_method: 鉴权方式。     max_key_length: 最大密钥长度 (字节)。"
-msgstr ""
-"Attributes:     is_g_node: Whether the local end is a G node.     "
-"kdf_type: Key derivation function type.     auth_method: Authentication "
-"method.     max_key_length: Maximum key length (bytes)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:388
-msgid "True"
-msgstr "True"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:399
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:410
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:432
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:443
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:454
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:465
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:564
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:723
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:734
-msgid "None"
-msgstr "None"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:421
-msgid "16"
-msgstr "16"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:476
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:575
-msgid "'field(...)'"
-msgstr "'field(...)'"
-
-#: ../../../src/nearlink_sdr/mac/security_manager.py:586
-msgid "发起配对, 返回待发送的信令列表。"
-msgstr "Initiate pairing and return a list of signaling messages to send."
-
-#: ../../../src/nearlink_sdr/mac/security_manager.py:588
-msgid "G 节点发送: PairingInitiate → PairingRequest T 节点发送: (等待 G 节点发起)"
-msgstr ""
-"G node sends: PairingInitiate -> PairingRequest T node sends: (waits for "
-"G node to initiate)"
-
-#: ../../../src/nearlink_sdr/mac/security_manager.py:594
-msgid "处理收到的配对信令, 返回待发送的响应信令。"
-msgstr "Process received pairing signaling and return response signaling to send."
-
-#: ../../../src/nearlink_sdr/mac/security_manager.py:682
-msgid "生成本端确认码。"
-msgstr "Generate local confirmation code."
-
-#: ../../../src/nearlink_sdr/mac/security_manager.py:690
-msgid "生成对端确认码 (用于验证)。"
-msgstr "Generate remote confirmation code (for verification)."
-
-#: ../../../src/nearlink_sdr/mac/security_manager.py:698
-msgid "从 DH Key 派生链路密钥和会话密钥。"
-msgstr "Derive link key and session key from DH Key."
-
-#: ../../../src/nearlink_sdr/mac/security_manager.py:718
+#: ../../../src/nearlink_sdr/mac/security_manager.py:119
 msgid "管理 payload_count 单调递增和 nonce 构建, 为 MAC 帧提供加解密服务。"
 msgstr ""
 "Manage monotonically increasing payload_count and nonce construction, "
 "providing encryption/decryption services for MAC frames."
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:721
+#: ../../../src/nearlink_sdr/mac/security_manager.py:122
 msgid ""
 "Attributes:     session_key: 会话密钥 (16 字节)。     iv_base: 初始化向量基底 (8 字节)。"
 "     direction: 传输方向 (0=G→T, 1=T→G)。     mic_len: MIC 长度 (字节, 4/8/12/16)。"
@@ -376,19 +191,35 @@ msgstr ""
 "     frame_type: Frame type (for IV calculation).     link_id: Link "
 "identifier (for IV calculation)."
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:829
-msgid "构建 CCM nonce (13 字节)。"
-msgstr "build CCM nonce (13 byte)."
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:124
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:135
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:387
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:398
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:420
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:431
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:442
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:453
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:552
+msgid "None"
+msgstr "None"
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:831
-msgid ""
-"build_ccm_nonce_async 返回 16 字节 B0 块: flag(1B) | nonce(13B) | "
-"data_length(2B) AESCCM 需要 13 字节 nonce 部分。"
-msgstr ""
-"build_ccm_nonce_async returns a 16-byte B0 block: flag(1B) | nonce(13B) |"
-" data_length(2B) AESCCM requires the 13-byte nonce part."
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:146
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:179
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:603
+msgid "0"
+msgstr "0"
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:837
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:157
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:277
+msgid "4"
+msgstr "4"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:168
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:257
+msgid "2"
+msgstr "2"
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:208
 msgid "加密一帧数据, 自动递增 payload_count。"
 msgstr "Encrypt one frame of data, automatically incrementing payload_count."
 
@@ -396,50 +227,177 @@ msgstr "Encrypt one frame of data, automatically incrementing payload_count."
 msgid "参数"
 msgstr "Parameters"
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:839
+#: ../../../src/nearlink_sdr/mac/security_manager.py:210
 msgid "明文数据。"
 msgstr "Plaintext data."
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:840
+#: ../../../src/nearlink_sdr/mac/security_manager.py:211
 msgid "关联数据 (不加密但参与完整性校验)。"
-msgstr ""
-"Associated data (not encrypted but participates in integrity check)."
+msgstr "Associated data (not encrypted but participates in integrity check)."
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:842
+#: ../../../src/nearlink_sdr/mac/security_manager.py:213
 msgid "(密文, MIC)。"
 msgstr "(ciphertext, MIC)."
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:845
+#: ../../../src/nearlink_sdr/mac/security_manager.py:216
 msgid "解密一帧数据, 自动递增 payload_count。"
 msgstr "Decrypt one frame of data, automatically incrementing payload_count."
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:847
+#: ../../../src/nearlink_sdr/mac/security_manager.py:218
 msgid "密文数据。"
 msgstr "Ciphertext data."
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:848
+#: ../../../src/nearlink_sdr/mac/security_manager.py:219
 msgid "消息完整性码。"
 msgstr "Message integrity code."
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:849
+#: ../../../src/nearlink_sdr/mac/security_manager.py:220
 msgid "关联数据。"
 msgstr "Associated data."
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:851
+#: ../../../src/nearlink_sdr/mac/security_manager.py:222
 msgid "解密后的明文。"
 msgstr "Decrypted plaintext."
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:853
+#: ../../../src/nearlink_sdr/mac/security_manager.py:224
 msgid "重置 payload 计数器。"
 msgstr "reset payload counter."
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:863
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:232
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:588
+#, python-brace-format
+msgid "Bases: {py:obj}`enum.IntEnum`"
+msgstr "Bases: {py:obj}`enum.IntEnum`"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:237
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:593
+msgid "Initialization"
+msgstr "Initialization"
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:241
+#: ../../../src/nearlink_sdr/mac/security_manager.py:597
+msgid "Initialize self.  See help(type(self)) for accurate signature."
+msgstr "Initialize self. See help(type(self)) for accurate signature."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:247
+msgid "1"
+msgstr "1"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:267
+msgid "3"
+msgstr "3"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:287
+msgid "5"
+msgstr "5"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:297
+msgid "6"
+msgstr "6"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:307
+msgid "7"
+msgstr "7"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:317
+msgid "8"
+msgstr "8"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:327
+msgid "9"
+msgstr "9"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:337
+msgid "10"
+msgstr "10"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:347
+msgid "11"
+msgstr "11"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:357
+msgid "12"
+msgstr "12"
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:371
+msgid "驱动 G 节点与 T 节点之间的配对信令交互, 完成:"
+msgstr ""
+"Drive the pairing signaling interaction between the G node and T node to "
+"complete:"
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:372
+msgid "配对发起/请求/响应"
+msgstr "Pairing initiate/request/response"
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:373
+msgid "ECDH 公钥交换"
+msgstr "ECDH public key exchange"
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:374
+msgid "确认码互验"
+msgstr "Mutual confirmation code verification"
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:375
+msgid "链路密钥派生"
+msgstr "Link key derivation"
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:376
+msgid "会话密钥派生"
+msgstr "Session key derivation"
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:378
+msgid ""
+"Attributes:     is_g_node: 本端是否为 G 节点。     kdf_type: 密钥派生函数类型。     "
+"auth_method: 鉴权方式。     max_key_length: 最大密钥长度 (字节)。"
+msgstr ""
+"Attributes:     is_g_node: Whether the local end is a G node.     "
+"kdf_type: Key derivation function type.     auth_method: Authentication "
+"method.     max_key_length: Maximum key length (bytes)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:376
+msgid "True"
+msgstr "True"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:409
+msgid "16"
+msgstr "16"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:464
+msgid "'field(...)'"
+msgstr "'field(...)'"
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:563
+msgid "发起配对, 返回待发送的信令列表。"
+msgstr "Initiate pairing and return a list of signaling messages to send."
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:565
+msgid "G 节点发送: PairingInitiate → PairingRequest T 节点发送: (等待 G 节点发起)"
+msgstr ""
+"G node sends: PairingInitiate -> PairingRequest T node sends: (waits for "
+"G node to initiate)"
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:571
+msgid "处理收到的配对信令, 返回待发送的响应信令。"
+msgstr "Process received pairing signaling and return response signaling to send."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:613
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:623
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:633
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:643
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:653
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:663
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:673
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:683
+msgid "'auto(...)'"
+msgstr "'auto(...)'"
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:696
 msgid "模拟 G 节点和 T 节点之间的配对信令交互, 完成密钥交换和会话密钥派生。"
 msgstr ""
 "Simulate pairing signaling interaction between G node and T node, "
 "completing key exchange and session key derivation."
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:866
+#: ../../../src/nearlink_sdr/mac/security_manager.py:699
 msgid "(G 节点管理器, T 节点管理器)。"
 msgstr "(G node manager, T node manager)."
 
@@ -460,4 +418,35 @@ msgstr "(G node manager, T node manager)."
 
 #~ msgid "Raises:     cryptography.exceptions.InvalidTag: MIC 验证失败。"
 #~ msgstr "Raises:     cryptography.exceptions.InvalidTag: MIC validatefailure。"
+
+#~ msgid "Data"
+#~ msgstr "Data"
+
+#~ msgid "{py:obj}`log <nearlink_sdr.mac.security_manager.log>`"
+#~ msgstr "{py:obj}`log <nearlink_sdr.mac.security_manager.log>`"
+
+#~ msgid "'getLogger(...)'"
+#~ msgstr "'getLogger(...)'"
+
+#~ msgid "生成本端确认码。"
+#~ msgstr "Generate local confirmation code."
+
+#~ msgid "生成对端确认码 (用于验证)。"
+#~ msgstr "Generate remote confirmation code (for verification)."
+
+#~ msgid "从 DH Key 派生链路密钥和会话密钥。"
+#~ msgstr "Derive link key and session key from DH Key."
+
+#~ msgid "构建 CCM nonce (13 字节)。"
+#~ msgstr "build CCM nonce (13 byte)."
+
+#~ msgid ""
+#~ "build_ccm_nonce_async 返回 16 字节 B0 块: "
+#~ "flag(1B) | nonce(13B) | data_length(2B) "
+#~ "AESCCM 需要 13 字节 nonce 部分。"
+#~ msgstr ""
+#~ "build_ccm_nonce_async returns a 16-byte B0 "
+#~ "block: flag(1B) | nonce(13B) | "
+#~ "data_length(2B) AESCCM requires the 13-byte"
+#~ " nonce part."
 

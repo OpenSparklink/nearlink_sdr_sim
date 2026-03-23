@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-23 22:54+0800\n"
+"POT-Creation-Date: 2026-03-24 06:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: en <LL@li.org>\n"
 "Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:1
@@ -31,8 +31,8 @@ msgstr "MAC-PHY integration adapter layer."
 #: ../../../src/nearlink_sdr/phy/mac_interface.py:9
 msgid "将 MAC 层帧对象与 PHY 层发射/接收流水线打通， 提供字节级到比特级的转换和完整的发收链路。"
 msgstr ""
-"Bridges MAC layer frame objects with PHY layer TX/RX pipelines, providing "
-"byte-to-bit conversion and a complete link."
+"Bridges MAC layer frame objects with PHY layer TX/RX pipelines, providing"
+" byte-to-bit conversion and a complete link."
 
 #: ../../../src/nearlink_sdr/phy/mac_interface.py:12
 msgid "QoS 集成: QosLink 类封装了带 ARQ/HARQ/流控的端到端数据链路。"
@@ -54,7 +54,7 @@ msgid "{py:obj}`MacRxResult <nearlink_sdr.phy.mac_interface.MacRxResult>`"
 msgstr "{py:obj}`MacRxResult <nearlink_sdr.phy.mac_interface.MacRxResult>`"
 
 #: ../../../src/nearlink_sdr/phy/mac_interface.py:20
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:103
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:75
 msgid "MAC 层接收结果。"
 msgstr "MAC layer reception result."
 
@@ -64,7 +64,7 @@ msgid "{py:obj}`QosLink <nearlink_sdr.phy.mac_interface.QosLink>`"
 msgstr "{py:obj}`QosLink <nearlink_sdr.phy.mac_interface.QosLink>`"
 
 #: ../../../src/nearlink_sdr/phy/mac_interface.py:24
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:183
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:127
 msgid "带 QoS 管理的端到端数据链路。"
 msgstr "End-to-end data link with QoS management."
 
@@ -74,69 +74,63 @@ msgstr "Functions"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:34
 #, python-brace-format
-msgid "{py:obj}`bytes_to_bits <nearlink_sdr.phy.mac_interface.bytes_to_bits>`"
-msgstr ""
-"{py:obj}`bytes_to_bits <nearlink_sdr.phy.mac_interface.bytes_to_bits>`"
+msgid "{py:obj}`bits_to_bytes <nearlink_sdr.phy.mac_interface.bits_to_bytes>`"
+msgstr "{py:obj}`bits_to_bytes <nearlink_sdr.phy.mac_interface.bits_to_bytes>`"
 
 #: ../../../src/nearlink_sdr/phy/mac_interface.py:36
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:74
-msgid "字节序列 → 比特数组 (MSB first)。"
-msgstr "Byte sequence → bit array (MSB first)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:38
-#, python-brace-format
-msgid "{py:obj}`bits_to_bytes <nearlink_sdr.phy.mac_interface.bits_to_bytes>`"
-msgstr ""
-"{py:obj}`bits_to_bytes <nearlink_sdr.phy.mac_interface.bits_to_bytes>`"
-
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:40
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:81
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:199
 msgid "比特数组 → 字节序列 (长度向上对齐到 8 的倍数)。"
 msgstr "Bit array → byte sequence (length padded up to a multiple of 8)."
 
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:38
+#, python-brace-format
+msgid "{py:obj}`bytes_to_bits <nearlink_sdr.phy.mac_interface.bytes_to_bits>`"
+msgstr "{py:obj}`bytes_to_bits <nearlink_sdr.phy.mac_interface.bytes_to_bits>`"
+
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:40
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:206
+msgid "字节序列 → 比特数组 (MSB first)。"
+msgstr "Byte sequence → bit array (MSB first)."
+
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:42
-#, python-brace-format
-msgid "{py:obj}`mac_to_iq <nearlink_sdr.phy.mac_interface.mac_to_iq>`"
-msgstr "{py:obj}`mac_to_iq <nearlink_sdr.phy.mac_interface.mac_to_iq>`"
-
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:44
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:88
-msgid "MAC 层载荷 → 基带 IQ 信号。"
-msgstr "MAC layer payload → baseband IQ signal."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:46
-#, python-brace-format
-msgid ""
-"{py:obj}`signaling_to_iq <nearlink_sdr.phy.mac_interface.signaling_to_iq>`"
-msgstr ""
-"{py:obj}`signaling_to_iq <nearlink_sdr.phy.mac_interface.signaling_to_iq>`"
-
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:48
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:95
-msgid "信令对象 → 基带 IQ 信号。"
-msgstr "Signaling object → baseband IQ signal."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:50
 #, python-brace-format
 msgid "{py:obj}`iq_to_mac <nearlink_sdr.phy.mac_interface.iq_to_mac>`"
 msgstr "{py:obj}`iq_to_mac <nearlink_sdr.phy.mac_interface.iq_to_mac>`"
 
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:52
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:154
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:44
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:213
 msgid "基带 IQ 信号 → MAC 层载荷字节。"
 msgstr "Baseband IQ signal → MAC layer payload bytes."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:54
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:46
 #, python-brace-format
-msgid ""
-"{py:obj}`iq_to_signaling <nearlink_sdr.phy.mac_interface.iq_to_signaling>`"
-msgstr ""
-"{py:obj}`iq_to_signaling <nearlink_sdr.phy.mac_interface.iq_to_signaling>`"
+msgid "{py:obj}`iq_to_signaling <nearlink_sdr.phy.mac_interface.iq_to_signaling>`"
+msgstr "{py:obj}`iq_to_signaling <nearlink_sdr.phy.mac_interface.iq_to_signaling>`"
 
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:56
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:161
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:48
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:220
 msgid "基带 IQ 信号 → 信令对象。"
 msgstr "Baseband IQ signal → signaling object."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:50
+#, python-brace-format
+msgid "{py:obj}`mac_to_iq <nearlink_sdr.phy.mac_interface.mac_to_iq>`"
+msgstr "{py:obj}`mac_to_iq <nearlink_sdr.phy.mac_interface.mac_to_iq>`"
+
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:52
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:227
+msgid "MAC 层载荷 → 基带 IQ 信号。"
+msgstr "MAC layer payload → baseband IQ signal."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:54
+#, python-brace-format
+msgid "{py:obj}`roundtrip_data <nearlink_sdr.phy.mac_interface.roundtrip_data>`"
+msgstr "{py:obj}`roundtrip_data <nearlink_sdr.phy.mac_interface.roundtrip_data>`"
+
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:56
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:234
+msgid "异步数据帧编码 → IQ → 解码全链路测试。"
+msgstr "Asynchronous data frame encode → IQ → decode full-link test."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:58
 #, python-brace-format
@@ -148,216 +142,259 @@ msgstr ""
 "<nearlink_sdr.phy.mac_interface.roundtrip_signaling>`"
 
 #: ../../../src/nearlink_sdr/phy/mac_interface.py:60
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:168
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:241
 msgid "信令编码 → IQ → 解码全链路测试。"
 msgstr "Signaling encode → IQ → decode full-link test."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:62
 #, python-brace-format
-msgid ""
-"{py:obj}`roundtrip_data <nearlink_sdr.phy.mac_interface.roundtrip_data>`"
-msgstr ""
-"{py:obj}`roundtrip_data <nearlink_sdr.phy.mac_interface.roundtrip_data>`"
+msgid "{py:obj}`signaling_to_iq <nearlink_sdr.phy.mac_interface.signaling_to_iq>`"
+msgstr "{py:obj}`signaling_to_iq <nearlink_sdr.phy.mac_interface.signaling_to_iq>`"
 
 #: ../../../src/nearlink_sdr/phy/mac_interface.py:64
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:175
-msgid "异步数据帧编码 → IQ → 解码全链路测试。"
-msgstr "Asynchronous data frame encode → IQ → decode full-link test."
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:248
+msgid "信令对象 → 基带 IQ 信号。"
+msgstr "Signaling object → baseband IQ signal."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:68
 msgid "API"
 msgstr "API"
 
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:90
-msgid ""
-"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:90:"
-" (INFO/1) Duplicate implicit target name: \"parameters\"."
-msgstr ""
-"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:90:"
-" (INFO/1) Duplicate implicit target name: \"parameters\"."
-
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:92
-msgid ""
-"mac_payload : MAC 帧 pack() 产生的字节流 cfg : 发射参数配置 ctrl_info : 物理层控制信息。若为 None "
-"则使用默认 A2 配置。"
-msgstr ""
-"mac_payload : Byte stream produced by MAC frame pack(). cfg : Transmit "
-"parameter configuration. ctrl_info : Physical layer control information. If "
-"None, the default A2 configuration is used."
-
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:96
-msgid ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:96:"
-" (INFO/1) Duplicate implicit target name: \"returns\"."
-msgstr ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:96:"
-" (INFO/1) Duplicate implicit target name: \"returns\"."
-
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:98
-msgid "IQ 采样数组 (complex128)"
-msgstr "IQ sample array (complex128)."
-
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:97
-msgid "将一条 MAC 信令消息编码为 ControlFrame -> bytes -> bits -> tx_chain。"
-msgstr ""
-"Encode a MAC signaling message as ControlFrame -> bytes -> bits -> tx_chain."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:110
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:121
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:132
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:143
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:82
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:93
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:104
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:115
 msgid "None"
 msgstr "None"
 
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:156
-msgid ""
-"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:156:"
-" (INFO/1) Duplicate implicit target name: \"parameters\"."
-msgstr ""
-"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:156:"
-" (INFO/1) Duplicate implicit target name: \"parameters\"."
-
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:158
-msgid "iq_signal : IQ 采样数组 cfg : 与发射端相同的配置 n_mac_bytes : MAC 层载荷字节数（需要预先知道）"
-msgstr ""
-"iq_signal : IQ sample array. cfg : Same configuration as the transmitter. "
-"n_mac_bytes : MAC layer payload byte count (must be known in advance)."
-
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:162
-msgid ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:162:"
-" (INFO/1) Duplicate implicit target name: \"returns\"."
-msgstr ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:162:"
-" (INFO/1) Duplicate implicit target name: \"returns\"."
-
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:164
-msgid "MacRxResult"
-msgstr "MacRxResult"
-
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:163
-msgid ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:163:"
-" (INFO/1) Duplicate implicit target name: \"returns\"."
-msgstr ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:163:"
-" (INFO/1) Duplicate implicit target name: \"returns\"."
-
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:165
-msgid "(信令对象, CRC是否通过)"
-msgstr "(Signaling object, whether CRC passed)."
-
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:170
-msgid "无信道（直连），验证 MAC → PHY → MAC 数据完整性。"
-msgstr ""
-"No channel (direct connection), verify MAC → PHY → MAC data integrity."
-
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:172
-msgid ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:172:"
-" (INFO/1) Duplicate implicit target name: \"returns\"."
-msgstr ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:172:"
-" (INFO/1) Duplicate implicit target name: \"returns\"."
-
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:174
-msgid "(恢复的信令对象, CRC是否通过)"
-msgstr "(Recovered signaling object, whether CRC passed)."
-
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:177
-msgid ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:177:"
-" (INFO/1) Duplicate implicit target name: \"returns\"."
-msgstr ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:177:"
-" (INFO/1) Duplicate implicit target name: \"returns\"."
-
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:179
-msgid "(恢复的数据, CRC是否通过)"
-msgstr "(Recovered data, whether CRC passed)."
-
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:185
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:129
 msgid ""
 "封装 ARQ 序列号管理、HARQ 反馈、流控和链路质量跟踪。 调用方通过 submit / transmit / receive "
 "方法实现自动重传驱动。"
 msgstr ""
-"Encapsulate ARQ sequence number management, HARQ feedback, flow control and "
-"link quality tracking. Callers drive automatic retransmission via submit / "
-"transmit / receive methods."
+"Encapsulate ARQ sequence number management, HARQ feedback, flow control "
+"and link quality tracking. Callers drive automatic retransmission via "
+"submit / transmit / receive methods."
 
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:188
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:132
 msgid ""
-"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:188:"
+"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:132:"
 " (INFO/1) Duplicate implicit target name: \"parameters\"."
 msgstr ""
 "Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:188:"
 " (INFO/1) Duplicate implicit target name: \"parameters\"."
 
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:190
-msgid ""
-"cfg : 发射参数配置 frame_type : 帧类型 (1-4), 决定 ARQ SN 位宽 max_pdu : 单 PDU 最大字节数"
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:134
+msgid "cfg : 发射参数配置 frame_type : 帧类型 (1-4), 决定 ARQ SN 位宽 max_pdu : 单 PDU 最大字节数"
 msgstr ""
 "cfg : Transmit parameter configuration. frame_type : Frame type (1-4), "
 "determines ARQ SN bit width. max_pdu : Maximum byte count per PDU."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:185
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.md:129
 msgid "Initialization"
 msgstr "Initialization"
 
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:196
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:140
 msgid "提交数据到发送队列。"
 msgstr "Submit data to the transmit queue."
 
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:204
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:148
 msgid "从队列取数据并生成 IQ 信号。"
 msgstr "Fetch data from the queue and generate an IQ signal."
 
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:206
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:150
 msgid ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:206:"
+"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:150:"
 " (INFO/1) Duplicate implicit target name: \"returns\"."
 msgstr ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:206:"
+"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:214:"
 " (INFO/1) Duplicate implicit target name: \"returns\"."
 
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:208
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:152
 msgid "(IQ 信号或 None, 发送决策)"
 msgstr "(IQ signal or None, transmit decision)."
 
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:212
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:156
 msgid "接收 IQ 信号并处理 ARQ 反馈。"
 msgstr "Receive IQ signal and process ARQ feedback."
 
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:214
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:158
 msgid ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:214:"
+"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:158:"
 " (INFO/1) Duplicate implicit target name: \"returns\"."
 msgstr ""
 "Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:214:"
 " (INFO/1) Duplicate implicit target name: \"returns\"."
 
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:216
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:160
 msgid "(恢复的数据, CRC 是否通过)"
 msgstr "(Recovered data, whether CRC passed)."
 
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:220
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:164
 msgid "外部反馈处理 (对端发来 CRC 结果)。"
 msgstr "External feedback handling (CRC result from the remote peer)."
 
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:229
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:173
 msgid "当前是否有待重传数据。"
 msgstr "Whether there is data pending retransmission."
 
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:238
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:182
 msgid "基于链路质量建议的 MCS。"
 msgstr "Suggested MCS based on link quality."
 
-#: ../../../src/nearlink_sdr/phy/mac_interface.py:247
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:191
 msgid "链路统计信息。"
 msgstr "Link statistics."
+
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:215
+msgid ""
+"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:215:"
+" (INFO/1) Duplicate implicit target name: \"parameters\"."
+msgstr ""
+"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:156:"
+" (INFO/1) Duplicate implicit target name: \"parameters\"."
+
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:217
+msgid "iq_signal : IQ 采样数组 cfg : 与发射端相同的配置 n_mac_bytes : MAC 层载荷字节数（需要预先知道）"
+msgstr ""
+"iq_signal : IQ sample array. cfg : Same configuration as the transmitter."
+" n_mac_bytes : MAC layer payload byte count (must be known in advance)."
+
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:221
+msgid ""
+"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:221:"
+" (INFO/1) Duplicate implicit target name: \"returns\"."
+msgstr ""
+"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:214:"
+" (INFO/1) Duplicate implicit target name: \"returns\"."
+
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:223
+msgid "MacRxResult"
+msgstr "MacRxResult"
+
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:222
+msgid ""
+"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:222:"
+" (INFO/1) Duplicate implicit target name: \"returns\"."
+msgstr ""
+"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:214:"
+" (INFO/1) Duplicate implicit target name: \"returns\"."
+
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:224
+msgid "(信令对象, CRC是否通过)"
+msgstr "(Signaling object, whether CRC passed)."
+
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:229
+msgid ""
+"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:229:"
+" (INFO/1) Duplicate implicit target name: \"parameters\"."
+msgstr ""
+"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:90:"
+" (INFO/1) Duplicate implicit target name: \"parameters\"."
+
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:231
+msgid ""
+"mac_payload : MAC 帧 pack() 产生的字节流 cfg : 发射参数配置 ctrl_info : 物理层控制信息。若为 "
+"None 则使用默认 A2 配置。"
+msgstr ""
+"mac_payload : Byte stream produced by MAC frame pack(). cfg : Transmit "
+"parameter configuration. ctrl_info : Physical layer control information. "
+"If None, the default A2 configuration is used."
+
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:235
+msgid ""
+"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:235:"
+" (INFO/1) Duplicate implicit target name: \"returns\"."
+msgstr ""
+"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:214:"
+" (INFO/1) Duplicate implicit target name: \"returns\"."
+
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:237
+msgid "IQ 采样数组 (complex128)"
+msgstr "IQ sample array (complex128)."
+
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:236
+msgid ""
+"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:236:"
+" (INFO/1) Duplicate implicit target name: \"returns\"."
+msgstr ""
+"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:206:"
+" (INFO/1) Duplicate implicit target name: \"returns\"."
+
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:238
+msgid "(恢复的数据, CRC是否通过)"
+msgstr "(Recovered data, whether CRC passed)."
+
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:243
+msgid "无信道（直连），验证 MAC → PHY → MAC 数据完整性。"
+msgstr "No channel (direct connection), verify MAC → PHY → MAC data integrity."
+
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:245
+msgid ""
+"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:245:"
+" (INFO/1) Duplicate implicit target name: \"returns\"."
+msgstr ""
+"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:214:"
+" (INFO/1) Duplicate implicit target name: \"returns\"."
+
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:247
+msgid "(恢复的信令对象, CRC是否通过)"
+msgstr "(Recovered signaling object, whether CRC passed)."
+
+#: ../../../src/nearlink_sdr/phy/mac_interface.py:250
+msgid "将一条 MAC 信令消息编码为 ControlFrame -> bytes -> bits -> tx_chain。"
+msgstr ""
+"Encode a MAC signaling message as ControlFrame -> bytes -> bits -> "
+"tx_chain."
 
 #~ msgid "Parameters"
 #~ msgstr "Parameters"
 
 #~ msgid "Returns"
 #~ msgstr "Returns"
+
+#~ msgid ""
+#~ "Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:96:"
+#~ " (INFO/1) Duplicate implicit target name:"
+#~ " \"returns\"."
+#~ msgstr ""
+#~ "Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:96:"
+#~ " (INFO/1) Duplicate implicit target name:"
+#~ " \"returns\"."
+
+#~ msgid ""
+#~ "Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:162:"
+#~ " (INFO/1) Duplicate implicit target name:"
+#~ " \"returns\"."
+#~ msgstr ""
+#~ "Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:162:"
+#~ " (INFO/1) Duplicate implicit target name:"
+#~ " \"returns\"."
+
+#~ msgid ""
+#~ "Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:163:"
+#~ " (INFO/1) Duplicate implicit target name:"
+#~ " \"returns\"."
+#~ msgstr ""
+#~ "Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:163:"
+#~ " (INFO/1) Duplicate implicit target name:"
+#~ " \"returns\"."
+
+#~ msgid ""
+#~ "Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:172:"
+#~ " (INFO/1) Duplicate implicit target name:"
+#~ " \"returns\"."
+#~ msgstr ""
+#~ "Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:172:"
+#~ " (INFO/1) Duplicate implicit target name:"
+#~ " \"returns\"."
+
+#~ msgid ""
+#~ "Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:177:"
+#~ " (INFO/1) Duplicate implicit target name:"
+#~ " \"returns\"."
+#~ msgstr ""
+#~ "Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/phy/mac_interface.py:177:"
+#~ " (INFO/1) Duplicate implicit target name:"
+#~ " \"returns\"."
+

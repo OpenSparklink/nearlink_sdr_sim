@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 04:07+0800\n"
+"POT-Creation-Date: 2026-03-24 06:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -58,7 +58,7 @@ msgid "{py:obj}`SecurityType <nearlink_sdr.phy.measurement.SecurityType>`"
 msgstr "{py:obj}`SecurityType <nearlink_sdr.phy.measurement.SecurityType>`"
 
 #: ../../../src/nearlink_sdr/phy/measurement.py:20
-#: ../../../src/nearlink_sdr/phy/measurement.py:95
+#: ../../../src/nearlink_sdr/phy/measurement.py:57
 msgid "测量信号 1 的安全类型配置。"
 msgstr "Security type configuration for measurement signal 1."
 
@@ -69,199 +69,126 @@ msgstr "Functions"
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:30
 #, python-brace-format
 msgid ""
-"{py:obj}`_extract_security_subseq "
-"<nearlink_sdr.phy.measurement._extract_security_subseq>`"
+"{py:obj}`antenna_pair_order_random "
+"<nearlink_sdr.phy.measurement.antenna_pair_order_random>`"
 msgstr ""
-"{py:obj}`_extract_security_subseq "
-"<nearlink_sdr.phy.measurement._extract_security_subseq>`"
+"{py:obj}`antenna_pair_order_random "
+"<nearlink_sdr.phy.measurement.antenna_pair_order_random>`"
 
 #: ../../../src/nearlink_sdr/phy/measurement.py:32
-#: ../../../src/nearlink_sdr/phy/measurement.py:148
-msgid "从 256 比特安全序列中提取 128 比特子序列。"
-msgstr "Extract a 128-bit subsequence from a 256-bit security sequence."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:34
-#, python-brace-format
-msgid ""
-"{py:obj}`_gen_signal1_type1 "
-"<nearlink_sdr.phy.measurement._gen_signal1_type1>`"
-msgstr ""
-"{py:obj}`_gen_signal1_type1 "
-"<nearlink_sdr.phy.measurement._gen_signal1_type1>`"
-
-#: ../../../src/nearlink_sdr/phy/measurement.py:36
-#: ../../../src/nearlink_sdr/phy/measurement.py:155
-msgid "安全类型 1: 扰动符号取反。"
-msgstr "Security type 1: negate disturbed symbols."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:38
-#, python-brace-format
-msgid ""
-"{py:obj}`_gen_signal1_type2 "
-"<nearlink_sdr.phy.measurement._gen_signal1_type2>`"
-msgstr ""
-"{py:obj}`_gen_signal1_type2 "
-"<nearlink_sdr.phy.measurement._gen_signal1_type2>`"
-
-#: ../../../src/nearlink_sdr/phy/measurement.py:40
-#: ../../../src/nearlink_sdr/phy/measurement.py:162
-msgid "安全类型 2: 扰动符号置 1, 其他置 0。"
-msgstr "Security type 2: set disturbed symbols to 1, others to 0."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:42
-#, python-brace-format
-msgid ""
-"{py:obj}`measurement_signal_1 "
-"<nearlink_sdr.phy.measurement.measurement_signal_1>`"
-msgstr ""
-"{py:obj}`measurement_signal_1 "
-"<nearlink_sdr.phy.measurement.measurement_signal_1>`"
-
-#: ../../../src/nearlink_sdr/phy/measurement.py:44
-#: ../../../src/nearlink_sdr/phy/measurement.py:169
-msgid "生成测量信号 1 的比特序列 (6.2.4.1)。"
-msgstr "Generate the bit sequence for measurement signal 1 (6.2.4.1)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:46
-#, python-brace-format
-msgid ""
-"{py:obj}`measurement_signal_2 "
-"<nearlink_sdr.phy.measurement.measurement_signal_2>`"
-msgstr ""
-"{py:obj}`measurement_signal_2 "
-"<nearlink_sdr.phy.measurement.measurement_signal_2>`"
-
-#: ../../../src/nearlink_sdr/phy/measurement.py:48
-#: ../../../src/nearlink_sdr/phy/measurement.py:187
-msgid "生成测量信号 2 的复数基带波形 (6.2.4.2)。"
-msgstr "Generate the complex baseband waveform for measurement signal 2 (6.2.4.2)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:50
-#, python-brace-format
-msgid ""
-"{py:obj}`antenna_pair_order_sequential "
-"<nearlink_sdr.phy.measurement.antenna_pair_order_sequential>`"
-msgstr ""
-"{py:obj}`antenna_pair_order_sequential "
-"<nearlink_sdr.phy.measurement.antenna_pair_order_sequential>`"
-
-#: ../../../src/nearlink_sdr/phy/measurement.py:52
-#: ../../../src/nearlink_sdr/phy/measurement.py:194
-msgid "顺序天线对集合: 优先变更后发节点天线 (6.2.4.3)。"
-msgstr ""
-"Sequential antenna pair set: prioritize changing the responder antenna "
-"(6.2.4.3)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:54
-#, python-brace-format
-msgid ""
-"{py:obj}`antenna_pair_order_random "
-"<nearlink_sdr.phy.measurement.antenna_pair_order_random>`"
-msgstr ""
-"{py:obj}`antenna_pair_order_random "
-"<nearlink_sdr.phy.measurement.antenna_pair_order_random>`"
-
-#: ../../../src/nearlink_sdr/phy/measurement.py:56
-#: ../../../src/nearlink_sdr/phy/measurement.py:201
+#: ../../../src/nearlink_sdr/phy/measurement.py:110
 msgid "随机天线对集合 (使用第三安全序列置乱) (6.2.4.3)。"
 msgstr ""
 "Random antenna pair set (scrambled using the third security sequence) "
 "(6.2.4.3)."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:60
-msgid "Data"
-msgstr "Data"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:66
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:34
 #, python-brace-format
-msgid "{py:obj}`_VALID_N_MEASUR <nearlink_sdr.phy.measurement._VALID_N_MEASUR>`"
-msgstr "{py:obj}`_VALID_N_MEASUR <nearlink_sdr.phy.measurement._VALID_N_MEASUR>`"
+msgid ""
+"{py:obj}`antenna_pair_order_sequential "
+"<nearlink_sdr.phy.measurement.antenna_pair_order_sequential>`"
+msgstr ""
+"{py:obj}`antenna_pair_order_sequential "
+"<nearlink_sdr.phy.measurement.antenna_pair_order_sequential>`"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:70
+#: ../../../src/nearlink_sdr/phy/measurement.py:36
+#: ../../../src/nearlink_sdr/phy/measurement.py:117
+msgid "顺序天线对集合: 优先变更后发节点天线 (6.2.4.3)。"
+msgstr ""
+"Sequential antenna pair set: prioritize changing the responder antenna "
+"(6.2.4.3)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:38
 #, python-brace-format
-msgid "{py:obj}`MULTITONE_PHASES <nearlink_sdr.phy.measurement.MULTITONE_PHASES>`"
-msgstr "{py:obj}`MULTITONE_PHASES <nearlink_sdr.phy.measurement.MULTITONE_PHASES>`"
+msgid ""
+"{py:obj}`measurement_signal_1 "
+"<nearlink_sdr.phy.measurement.measurement_signal_1>`"
+msgstr ""
+"{py:obj}`measurement_signal_1 "
+"<nearlink_sdr.phy.measurement.measurement_signal_1>`"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:76
+#: ../../../src/nearlink_sdr/phy/measurement.py:40
+#: ../../../src/nearlink_sdr/phy/measurement.py:124
+msgid "生成测量信号 1 的比特序列 (6.2.4.1)。"
+msgstr "Generate the bit sequence for measurement signal 1 (6.2.4.1)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:42
+#, python-brace-format
+msgid ""
+"{py:obj}`measurement_signal_2 "
+"<nearlink_sdr.phy.measurement.measurement_signal_2>`"
+msgstr ""
+"{py:obj}`measurement_signal_2 "
+"<nearlink_sdr.phy.measurement.measurement_signal_2>`"
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:44
+#: ../../../src/nearlink_sdr/phy/measurement.py:131
+msgid "生成测量信号 2 的复数基带波形 (6.2.4.2)。"
+msgstr "Generate the complex baseband waveform for measurement signal 2 (6.2.4.2)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:48
 msgid "API"
 msgstr "API"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:82
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:177
-msgid "None"
-msgstr "None"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:92
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:54
 #, python-brace-format
 msgid "Bases: {py:obj}`enum.IntEnum`"
 msgstr "Bases: {py:obj}`enum.IntEnum`"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:97
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:59
 msgid "Initialization"
 msgstr "Initialization"
 
-#: ../../../src/nearlink_sdr/phy/measurement.py:101
+#: ../../../src/nearlink_sdr/phy/measurement.py:63
 msgid "Initialize self.  See help(type(self)) for accurate signature."
 msgstr "Initialize self. See help(type(self)) for accurate signature."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:107
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:69
 msgid "1"
 msgstr "1"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:117
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:79
 msgid "2"
 msgstr "2"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:127
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:89
 msgid "3"
 msgstr "3"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:137
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:99
 msgid "4"
 msgstr "4"
-
-#: ../../../src/nearlink_sdr/phy/measurement.py:150
-msgid "先发节点: 偶数索引比特 (128-bit) 后发节点: 奇数索引比特 (128-bit)"
-msgstr ""
-"Initiator node: even-indexed bits (128-bit). Responder node: odd-indexed "
-"bits (128-bit)."
-
-#: ../../../src/nearlink_sdr/phy/measurement.py:171
-msgid "无相位旋转 BPSK 调制, 返回比特序列。"
-msgstr "Non-rotated BPSK modulation, returns bit sequence."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md
 msgid "参数"
 msgstr "Parameters"
 
-#: ../../../src/nearlink_sdr/phy/measurement.py:173
-msgid "测量序列长度 [16, 32, 64, 128, 256, 512, 1024, 2048]"
-msgstr "Measurement sequence length [16, 32, 64, 128, 256, 512, 1024, 2048]"
+#: ../../../src/nearlink_sdr/phy/measurement.py:112
+#: ../../../src/nearlink_sdr/phy/measurement.py:119
+msgid "发送天线数"
+msgstr "Number of transmit antennas"
 
-#: ../../../src/nearlink_sdr/phy/measurement.py:174
-msgid "安全类型 (1~4)"
-msgstr "Security type (1~4)"
+#: ../../../src/nearlink_sdr/phy/measurement.py:113
+#: ../../../src/nearlink_sdr/phy/measurement.py:120
+msgid "接收天线数"
+msgstr "Number of receive antennas"
 
-#: ../../../src/nearlink_sdr/phy/measurement.py:175
-#: ../../../src/nearlink_sdr/phy/measurement.py:205
+#: ../../../src/nearlink_sdr/phy/measurement.py:114
+#: ../../../src/nearlink_sdr/phy/measurement.py:130
 msgid "安全随机种子 (16 字节)"
 msgstr "secure random seed (16 byte)"
 
-#: ../../../src/nearlink_sdr/phy/measurement.py:176
-#: ../../../src/nearlink_sdr/phy/measurement.py:206
+#: ../../../src/nearlink_sdr/phy/measurement.py:115
+#: ../../../src/nearlink_sdr/phy/measurement.py:131
 msgid "起始调度时隙号"
 msgstr "start scheduling slot number"
 
-#: ../../../src/nearlink_sdr/phy/measurement.py:177
-msgid "True=先发节点, False=后发节点"
-msgstr "True= initiator node, False= responder node"
+#: ../../../src/nearlink_sdr/phy/measurement.py:116
+msgid "随机数位宽"
+msgstr "Random number bit width"
 
-#: ../../../src/nearlink_sdr/phy/measurement.py:178
-msgid "最大扰动符号数配置 [0-11]"
-msgstr "Maximum perturbation symbol count configuration [0-11]"
-
-#: ../../../src/nearlink_sdr/phy/measurement.py:179
-#: ../../../src/nearlink_sdr/phy/measurement.py:208
+#: ../../../src/nearlink_sdr/phy/measurement.py:117
+#: ../../../src/nearlink_sdr/phy/measurement.py:134
 msgid "0=AES-CMAC, 1=HMAC-SM3"
 msgstr "0=AES-CMAC, 1=HMAC-SM3"
 
@@ -269,63 +196,69 @@ msgstr "0=AES-CMAC, 1=HMAC-SM3"
 msgid "返回"
 msgstr "Returns"
 
-#: ../../../src/nearlink_sdr/phy/measurement.py:181
-msgid "np.ndarray, dtype=int, 长度 n_measur"
-msgstr "np.ndarray, dtype=int, length n_measur."
+#: ../../../src/nearlink_sdr/phy/measurement.py:119
+msgid "随机排列的天线对列表 [(tx_ant, rx_ant), ...]"
+msgstr "Randomly permuted antenna pair list [(tx_ant, rx_ant), ...]."
 
-#: ../../../src/nearlink_sdr/phy/measurement.py:189
-msgid "多音信号, 频率对称分布。"
-msgstr "Multi-tone signal with symmetric frequency distribution."
-
-#: ../../../src/nearlink_sdr/phy/measurement.py:191
-msgid "音的个数 [1, 2, 4, 8]"
-msgstr "Number of tones [1, 2, 4, 8]"
-
-#: ../../../src/nearlink_sdr/phy/measurement.py:192
-msgid "SLE 带宽 [1, 2, 4] MHz"
-msgstr "SLE bandwidth [1, 2, 4] MHz"
-
-#: ../../../src/nearlink_sdr/phy/measurement.py:193
-msgid "信号时长 (微秒)"
-msgstr "Signal duration (microseconds)"
-
-#: ../../../src/nearlink_sdr/phy/measurement.py:194
-msgid "采样率 (Hz)"
-msgstr "sample rate (Hz)"
-
-#: ../../../src/nearlink_sdr/phy/measurement.py:195
-msgid "相位集合 [1, 2], N≥4 时有效"
-msgstr "Phase set [1, 2], valid when N >= 4"
-
-#: ../../../src/nearlink_sdr/phy/measurement.py:197
-msgid "np.ndarray, dtype=complex128, 复数基带波形"
-msgstr "np.ndarray, dtype=complex128, complex baseband waveform."
-
-#: ../../../src/nearlink_sdr/phy/measurement.py:196
-#: ../../../src/nearlink_sdr/phy/measurement.py:203
-msgid "发送天线数"
-msgstr "Number of transmit antennas"
-
-#: ../../../src/nearlink_sdr/phy/measurement.py:197
-#: ../../../src/nearlink_sdr/phy/measurement.py:204
-msgid "接收天线数"
-msgstr "Number of receive antennas"
-
-#: ../../../src/nearlink_sdr/phy/measurement.py:199
+#: ../../../src/nearlink_sdr/phy/measurement.py:122
 msgid "天线对列表 [(tx_ant, rx_ant), ...]"
 msgstr "returns: antennapairlist [(tx_ant, rx_ant), ...]"
 
-#: ../../../src/nearlink_sdr/phy/measurement.py:201
+#: ../../../src/nearlink_sdr/phy/measurement.py:124
 msgid "示例:     m=3, n=2: [(0,0), (0,1), (1,0), (1,1), (2,0), (2,1)]"
 msgstr "example:     m=3, n=2: [(0,0), (0,1), (1,0), (1,1), (2,0), (2,1)]"
 
-#: ../../../src/nearlink_sdr/phy/measurement.py:207
-msgid "随机数位宽"
-msgstr "Random number bit width"
+#: ../../../src/nearlink_sdr/phy/measurement.py:126
+msgid "无相位旋转 BPSK 调制, 返回比特序列。"
+msgstr "Non-rotated BPSK modulation, returns bit sequence."
 
-#: ../../../src/nearlink_sdr/phy/measurement.py:210
-msgid "随机排列的天线对列表 [(tx_ant, rx_ant), ...]"
-msgstr "Randomly permuted antenna pair list [(tx_ant, rx_ant), ...]."
+#: ../../../src/nearlink_sdr/phy/measurement.py:128
+msgid "测量序列长度 [16, 32, 64, 128, 256, 512, 1024, 2048]"
+msgstr "Measurement sequence length [16, 32, 64, 128, 256, 512, 1024, 2048]"
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:129
+msgid "安全类型 (1~4)"
+msgstr "Security type (1~4)"
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:132
+msgid "True=先发节点, False=后发节点"
+msgstr "True= initiator node, False= responder node"
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:133
+msgid "最大扰动符号数配置 [0-11]"
+msgstr "Maximum perturbation symbol count configuration [0-11]"
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:136
+msgid "np.ndarray, dtype=int, 长度 n_measur"
+msgstr "np.ndarray, dtype=int, length n_measur."
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:133
+msgid "多音信号, 频率对称分布。"
+msgstr "Multi-tone signal with symmetric frequency distribution."
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:135
+msgid "音的个数 [1, 2, 4, 8]"
+msgstr "Number of tones [1, 2, 4, 8]"
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:136
+msgid "SLE 带宽 [1, 2, 4] MHz"
+msgstr "SLE bandwidth [1, 2, 4] MHz"
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:137
+msgid "信号时长 (微秒)"
+msgstr "Signal duration (microseconds)"
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:138
+msgid "采样率 (Hz)"
+msgstr "sample rate (Hz)"
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:139
+msgid "相位集合 [1, 2], N≥4 时有效"
+msgstr "Phase set [1, 2], valid when N >= 4"
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:141
+msgid "np.ndarray, dtype=complex128, 复数基带波形"
+msgstr "np.ndarray, dtype=complex128, complex baseband waveform."
 
 #~ msgid ""
 #~ "Args:     n_measur: 测量序列长度 [16, 32, 64,"
@@ -379,4 +312,60 @@ msgstr "Randomly permuted antenna pair list [(tx_ant, rx_ant), ...]."
 #~ "scheduling slot number.     k: Random "
 #~ "number bit width.     kdf_type: 0=AES-"
 #~ "CMAC, 1=HMAC-SM3."
+
+#~ msgid ""
+#~ "{py:obj}`_extract_security_subseq "
+#~ "<nearlink_sdr.phy.measurement._extract_security_subseq>`"
+#~ msgstr ""
+#~ "{py:obj}`_extract_security_subseq "
+#~ "<nearlink_sdr.phy.measurement._extract_security_subseq>`"
+
+#~ msgid "从 256 比特安全序列中提取 128 比特子序列。"
+#~ msgstr "Extract a 128-bit subsequence from a 256-bit security sequence."
+
+#~ msgid ""
+#~ "{py:obj}`_gen_signal1_type1 "
+#~ "<nearlink_sdr.phy.measurement._gen_signal1_type1>`"
+#~ msgstr ""
+#~ "{py:obj}`_gen_signal1_type1 "
+#~ "<nearlink_sdr.phy.measurement._gen_signal1_type1>`"
+
+#~ msgid "安全类型 1: 扰动符号取反。"
+#~ msgstr "Security type 1: negate disturbed symbols."
+
+#~ msgid ""
+#~ "{py:obj}`_gen_signal1_type2 "
+#~ "<nearlink_sdr.phy.measurement._gen_signal1_type2>`"
+#~ msgstr ""
+#~ "{py:obj}`_gen_signal1_type2 "
+#~ "<nearlink_sdr.phy.measurement._gen_signal1_type2>`"
+
+#~ msgid "安全类型 2: 扰动符号置 1, 其他置 0。"
+#~ msgstr "Security type 2: set disturbed symbols to 1, others to 0."
+
+#~ msgid "Data"
+#~ msgstr "Data"
+
+#~ msgid ""
+#~ "{py:obj}`_VALID_N_MEASUR "
+#~ "<nearlink_sdr.phy.measurement._VALID_N_MEASUR>`"
+#~ msgstr ""
+#~ "{py:obj}`_VALID_N_MEASUR "
+#~ "<nearlink_sdr.phy.measurement._VALID_N_MEASUR>`"
+
+#~ msgid ""
+#~ "{py:obj}`MULTITONE_PHASES "
+#~ "<nearlink_sdr.phy.measurement.MULTITONE_PHASES>`"
+#~ msgstr ""
+#~ "{py:obj}`MULTITONE_PHASES "
+#~ "<nearlink_sdr.phy.measurement.MULTITONE_PHASES>`"
+
+#~ msgid "None"
+#~ msgstr "None"
+
+#~ msgid "先发节点: 偶数索引比特 (128-bit) 后发节点: 奇数索引比特 (128-bit)"
+#~ msgstr ""
+#~ "Initiator node: even-indexed bits "
+#~ "(128-bit). Responder node: odd-indexed "
+#~ "bits (128-bit)."
 

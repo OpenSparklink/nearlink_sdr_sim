@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 04:07+0800\n"
+"POT-Creation-Date: 2026-03-24 06:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -34,23 +34,23 @@ msgstr "Classes"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:18
 #, python-brace-format
-msgid "{py:obj}`PSKModulator <nearlink_sdr.phy.psk.PSKModulator>`"
-msgstr "{py:obj}`PSKModulator <nearlink_sdr.phy.psk.PSKModulator>`"
-
-#: ../../../src/nearlink_sdr/phy/psk.py:20
-#: ../../../src/nearlink_sdr/phy/psk.py:174
-msgid "TXS-10002-2025 6.2.1.2 PSK调制器。"
-msgstr "TXS-10002-2025 6.2.1.2 PSK modulator."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:22
-#, python-brace-format
 msgid "{py:obj}`PSKDemodulator <nearlink_sdr.phy.psk.PSKDemodulator>`"
 msgstr "{py:obj}`PSKDemodulator <nearlink_sdr.phy.psk.PSKDemodulator>`"
 
-#: ../../../src/nearlink_sdr/phy/psk.py:24
-#: ../../../src/nearlink_sdr/phy/psk.py:213
+#: ../../../src/nearlink_sdr/phy/psk.py:20
+#: ../../../src/nearlink_sdr/phy/psk.py:139
 msgid "PSK解调器（匹配滤波+最近邻判决）。"
 msgstr "PSK demodulator (matched filter + nearest-neighbor decision)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:22
+#, python-brace-format
+msgid "{py:obj}`PSKModulator <nearlink_sdr.phy.psk.PSKModulator>`"
+msgstr "{py:obj}`PSKModulator <nearlink_sdr.phy.psk.PSKModulator>`"
+
+#: ../../../src/nearlink_sdr/phy/psk.py:24
+#: ../../../src/nearlink_sdr/phy/psk.py:161
+msgid "TXS-10002-2025 6.2.1.2 PSK调制器。"
+msgstr "TXS-10002-2025 6.2.1.2 PSK modulator."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:28
 msgid "Functions"
@@ -62,7 +62,7 @@ msgid "{py:obj}`rrc_filter <nearlink_sdr.phy.psk.rrc_filter>`"
 msgstr "{py:obj}`rrc_filter <nearlink_sdr.phy.psk.rrc_filter>`"
 
 #: ../../../src/nearlink_sdr/phy/psk.py:36
-#: ../../../src/nearlink_sdr/phy/psk.py:96
+#: ../../../src/nearlink_sdr/phy/psk.py:199
 msgid "生成平方根升余弦脉冲成型滤波器。"
 msgstr "Generate root raised-cosine pulse shaping filter."
 
@@ -72,13 +72,13 @@ msgstr "Data"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:46
 #, python-brace-format
-msgid "{py:obj}`SLE_RRC_BETA <nearlink_sdr.phy.psk.SLE_RRC_BETA>`"
-msgstr "{py:obj}`SLE_RRC_BETA <nearlink_sdr.phy.psk.SLE_RRC_BETA>`"
+msgid "{py:obj}`BPSK_MAP <nearlink_sdr.phy.psk.BPSK_MAP>`"
+msgstr "{py:obj}`BPSK_MAP <nearlink_sdr.phy.psk.BPSK_MAP>`"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:50
 #, python-brace-format
-msgid "{py:obj}`BPSK_MAP <nearlink_sdr.phy.psk.BPSK_MAP>`"
-msgstr "{py:obj}`BPSK_MAP <nearlink_sdr.phy.psk.BPSK_MAP>`"
+msgid "{py:obj}`BPSK_NOROT_MAP <nearlink_sdr.phy.psk.BPSK_NOROT_MAP>`"
+msgstr "{py:obj}`BPSK_NOROT_MAP <nearlink_sdr.phy.psk.BPSK_NOROT_MAP>`"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:54
 #, python-brace-format
@@ -97,95 +97,83 @@ msgstr "{py:obj}`QPSK_ROTATION <nearlink_sdr.phy.psk.QPSK_ROTATION>`"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:66
 #, python-brace-format
-msgid "{py:obj}`_8PSK_MAP <nearlink_sdr.phy.psk._8PSK_MAP>`"
-msgstr "{py:obj}`_8PSK_MAP <nearlink_sdr.phy.psk._8PSK_MAP>`"
+msgid "{py:obj}`SLE_RRC_BETA <nearlink_sdr.phy.psk.SLE_RRC_BETA>`"
+msgstr "{py:obj}`SLE_RRC_BETA <nearlink_sdr.phy.psk.SLE_RRC_BETA>`"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:70
-#, python-brace-format
-msgid "{py:obj}`_8PSK_ROTATION <nearlink_sdr.phy.psk._8PSK_ROTATION>`"
-msgstr "{py:obj}`_8PSK_ROTATION <nearlink_sdr.phy.psk._8PSK_ROTATION>`"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:74
-#, python-brace-format
-msgid "{py:obj}`BPSK_NOROT_MAP <nearlink_sdr.phy.psk.BPSK_NOROT_MAP>`"
-msgstr "{py:obj}`BPSK_NOROT_MAP <nearlink_sdr.phy.psk.BPSK_NOROT_MAP>`"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:80
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:72
 msgid "API"
 msgstr "API"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:86
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:78
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:88
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:108
+msgid "None"
+msgstr "None"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:98
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:118
+msgid "'exp(...)'"
+msgstr "'exp(...)'"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:128
 msgid "0.4"
 msgstr "0.4"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:141
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:163
+msgid "Initialization"
+msgstr "Initialization"
+
+#: ../../../src/nearlink_sdr/phy/psk.py:152
+msgid "PSK解调。"
+msgstr "PSK demodulation."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md
 msgid "参数"
 msgstr "Parameters"
 
-#: ../../../src/nearlink_sdr/phy/psk.py:98
-msgid "滚降系数"
-msgstr "Roll-off factor"
-
-#: ../../../src/nearlink_sdr/phy/psk.py:99
-msgid "每符号采样数"
-msgstr "samples per symbol"
-
-#: ../../../src/nearlink_sdr/phy/psk.py:100
-msgid "单侧符号跨度"
-msgstr "Single-sided symbol span"
+#: ../../../src/nearlink_sdr/phy/psk.py:154
+#: ../../../src/nearlink_sdr/phy/psk.py:193
+msgid "复基带IQ信号"
+msgstr "complex baseband IQ signal"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md
 msgid "返回"
 msgstr "Returns"
 
-#: ../../../src/nearlink_sdr/phy/psk.py:102
-msgid "滤波器系数, 归一化使得匹配滤波后采样点增益为1"
-msgstr ""
-"Filter coefficients, normalized so that the matched filter sampling gain is "
-"1."
+#: ../../../src/nearlink_sdr/phy/psk.py:156
+msgid "解调后的比特序列"
+msgstr "Demodulated bit sequence"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:103
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:123
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:143
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:163
-msgid "None"
-msgstr "None"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:113
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:133
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:153
-msgid "'exp(...)'"
-msgstr "'exp(...)'"
-
-#: ../../../src/nearlink_sdr/phy/psk.py:176
+#: ../../../src/nearlink_sdr/phy/psk.py:163
 msgid "支持 BPSK, QPSK, 8PSK 及无相位旋转BPSK。"
 msgstr "Supports BPSK, QPSK, 8PSK and non-rotated BPSK."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:176
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:215
-msgid "Initialization"
-msgstr "Initialization"
-
-#: ../../../src/nearlink_sdr/phy/psk.py:196
+#: ../../../src/nearlink_sdr/phy/psk.py:183
 msgid "比特到星座符号的映射（含相位旋转）。"
 msgstr "Bit-to-constellation symbol mapping (with phase rotation)."
 
-#: ../../../src/nearlink_sdr/phy/psk.py:204
+#: ../../../src/nearlink_sdr/phy/psk.py:191
 msgid "PSK调制并进行RRC脉冲成型。"
 msgstr "PSK modulation with RRC pulse shaping."
 
-#: ../../../src/nearlink_sdr/phy/psk.py:206
-#: ../../../src/nearlink_sdr/phy/psk.py:228
-msgid "复基带IQ信号"
-msgstr "complex baseband IQ signal"
+#: ../../../src/nearlink_sdr/phy/psk.py:201
+msgid "滚降系数"
+msgstr "Roll-off factor"
 
-#: ../../../src/nearlink_sdr/phy/psk.py:226
-msgid "PSK解调。"
-msgstr "PSK demodulation."
+#: ../../../src/nearlink_sdr/phy/psk.py:202
+msgid "每符号采样数"
+msgstr "samples per symbol"
 
-#: ../../../src/nearlink_sdr/phy/psk.py:230
-msgid "解调后的比特序列"
-msgstr "Demodulated bit sequence"
+#: ../../../src/nearlink_sdr/phy/psk.py:203
+msgid "单侧符号跨度"
+msgstr "Single-sided symbol span"
+
+#: ../../../src/nearlink_sdr/phy/psk.py:205
+msgid "滤波器系数, 归一化使得匹配滤波后采样点增益为1"
+msgstr ""
+"Filter coefficients, normalized so that the matched filter sampling gain "
+"is 1."
 
 #~ msgid "Args:     beta: 滚降系数     sps: 每符号采样数     span: 单侧符号跨度"
 #~ msgstr ""
@@ -201,4 +189,10 @@ msgstr "Demodulated bit sequence"
 
 #~ msgid "Returns:     解调后的比特序列"
 #~ msgstr "Returns:     Demodulated bit sequence."
+
+#~ msgid "{py:obj}`_8PSK_MAP <nearlink_sdr.phy.psk._8PSK_MAP>`"
+#~ msgstr "{py:obj}`_8PSK_MAP <nearlink_sdr.phy.psk._8PSK_MAP>`"
+
+#~ msgid "{py:obj}`_8PSK_ROTATION <nearlink_sdr.phy.psk._8PSK_ROTATION>`"
+#~ msgstr "{py:obj}`_8PSK_ROTATION <nearlink_sdr.phy.psk._8PSK_ROTATION>`"
 

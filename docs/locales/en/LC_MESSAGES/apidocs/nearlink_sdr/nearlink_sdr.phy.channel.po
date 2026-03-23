@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 04:07+0800\n"
+"POT-Creation-Date: 2026-03-24 06:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -106,7 +106,7 @@ msgid "{py:obj}`InterferenceConfig <nearlink_sdr.phy.channel.InterferenceConfig>
 msgstr "{py:obj}`InterferenceConfig <nearlink_sdr.phy.channel.InterferenceConfig>`"
 
 #: ../../../src/nearlink_sdr/phy/channel.py:28
-#: ../../../src/nearlink_sdr/phy/channel.py:332
+#: ../../../src/nearlink_sdr/phy/channel.py:259
 msgid "干扰源配置。"
 msgstr "Interference source configuration."
 
@@ -120,7 +120,7 @@ msgid "{py:obj}`add_interference <nearlink_sdr.phy.channel.add_interference>`"
 msgstr "{py:obj}`add_interference <nearlink_sdr.phy.channel.add_interference>`"
 
 #: ../../../src/nearlink_sdr/phy/channel.py:40
-#: ../../../src/nearlink_sdr/phy/channel.py:383
+#: ../../../src/nearlink_sdr/phy/channel.py:310
 msgid "向信号叠加多个干扰源。"
 msgstr "Superimpose multiple interference sources onto the signal."
 
@@ -130,7 +130,7 @@ msgid "{py:obj}`compute_sinr <nearlink_sdr.phy.channel.compute_sinr>`"
 msgstr "{py:obj}`compute_sinr <nearlink_sdr.phy.channel.compute_sinr>`"
 
 #: ../../../src/nearlink_sdr/phy/channel.py:44
-#: ../../../src/nearlink_sdr/phy/channel.py:390
+#: ../../../src/nearlink_sdr/phy/channel.py:317
 msgid "计算 SINR (dB)。"
 msgstr "Calculate SINR (dB)."
 
@@ -180,7 +180,7 @@ msgstr ""
 "spectrum.     seed: Random seed."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.md:98
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.md:339
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.md:266
 msgid "10.0"
 msgstr "10.0"
 
@@ -197,8 +197,8 @@ msgid "'field(...)'"
 msgstr "'field(...)'"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.md:142
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.md:350
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.md:361
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.md:277
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.md:288
 msgid "0.0"
 msgstr "0.0"
 
@@ -211,7 +211,7 @@ msgid "16"
 msgstr "16"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.md:175
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.md:372
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.md:299
 msgid "None"
 msgstr "None"
 
@@ -251,83 +251,26 @@ msgstr ""
 msgid "AWGN 噪声方差 (单边, 假设单位信号功率)。"
 msgstr "AWGN noise variance (one-sided, assuming unit signal power)."
 
-#: ../../../src/nearlink_sdr/phy/channel.py:258
-msgid "生成 Rayleigh 衰落系数。"
-msgstr "Generate Rayleigh fading coefficients."
-
-#: ../../../src/nearlink_sdr/phy/channel.py:260
-msgid ""
-"max_doppler_hz > 0 时使用 Jakes 求和正弦模型, 产生具有经典 U 形 功率谱密度的时间相关衰落; 否则为准静态 "
-"(整段同一系数)。"
-msgstr ""
-"When max_doppler_hz > 0, use the Jakes sum-of-sinusoids model to produce "
-"time-correlated fading with the classic U-shaped power spectral density; "
-"otherwise quasi-static (same coefficient for the entire block)."
-
-#: ../../../src/nearlink_sdr/phy/channel.py:266
-msgid "生成 Rician 衰落系数。K = LOS功率 / 散射功率。"
-msgstr "Generate Rician fading coefficients. K = LOS power / scatter power."
-
-#: ../../../src/nearlink_sdr/phy/channel.py:274
-msgid "Jakes 求和正弦法生成时间相关衰落序列。"
-msgstr ""
-"Jakes sum-of-sinusoids method to generate time-correlated fading "
-"sequences."
-
-#: ../../../src/nearlink_sdr/phy/channel.py:276
-msgid "使用 N_osc 个正弦分量叠加, 到达角均匀分布, 初始相位随机。 输出自相关逼近 J₀(2π·f_d·Δt)。"
-msgstr ""
-"Superimpose N_osc sinusoidal components with uniformly distributed angles"
-" of arrival and random initial phases. The output autocorrelation "
-"approximates J₀(2π·f_d·Δt)."
-
-#: ../../../src/nearlink_sdr/phy/channel.py:279
-msgid "参考: W.C. Jakes, \"Microwave Mobile Communications\", 1974"
-msgstr "reference: W.C. Jakes, \"Microwave Mobile Communications\", 1974"
-
-#: ../../../src/nearlink_sdr/phy/channel.py:282
-msgid "应用多径信道 (FIR 卷积模型)。"
-msgstr "Apply multipath channel (FIR convolution model)."
-
-#: ../../../src/nearlink_sdr/phy/channel.py:291
-msgid "用给定的抽头系数对信号做 FIR 多径卷积。"
-msgstr ""
-"Perform FIR multipath convolution on the signal with the given tap "
-"coefficients."
-
-#: ../../../src/nearlink_sdr/phy/channel.py:299
-msgid "生成多径信道抽头系数。"
-msgstr "Generate multipath channel tap coefficients."
-
-#: ../../../src/nearlink_sdr/phy/channel.py:301
-msgid ""
-"返回 (n_taps, n) 的复数矩阵,每行对应一个多径分量。 max_doppler_hz > 0 时每条径独立使用 Jakes "
-"模型产生时变系数。"
-msgstr ""
-"Return a complex matrix of shape (n_taps, n), where each row corresponds "
-"to a multipath component. When max_doppler_hz > 0, each path "
-"independently uses the Jakes model to generate time-varying coefficients."
-
-#: ../../../src/nearlink_sdr/phy/channel.py:315
+#: ../../../src/nearlink_sdr/phy/channel.py:242
 msgid "计算 Jakes 衰落序列的归一化自相关函数, 用于验证 J₀ 特性。"
 msgstr ""
 "Compute the normalized autocorrelation function of a Jakes fading "
 "sequence for verifying J₀ characteristics."
 
-#: ../../../src/nearlink_sdr/phy/channel.py:317
+#: ../../../src/nearlink_sdr/phy/channel.py:244
 #, python-brace-format
 msgid "返回长度为 max_lag 的实数数组, r[k] = Re{E[h(n)·h*(n+k)]} / E[|h|²]。"
 msgstr ""
 "Return a real-valued array of length max_lag, r[k] = Re{E[h(n)·h*(n+k)]} "
 "/ E[|h|²]."
 
-#: ../../../src/nearlink_sdr/phy/channel.py:323
+#: ../../../src/nearlink_sdr/phy/channel.py:250
 msgid "理论自相关函数 J₀(2π·f_d·k/f_s), 供对比验证。"
 msgstr ""
 "Theoretical autocorrelation function J₀(2π·f_d·k/f_s) for comparison and "
 "verification."
 
-#: ../../../src/nearlink_sdr/phy/channel.py:334
+#: ../../../src/nearlink_sdr/phy/channel.py:261
 msgid ""
 "Attributes:     sir_db: 信号与干扰功率比 (dB), 即 S/I。     freq_offset_hz: "
 "干扰信号中心频率相对有用信号的偏移 (Hz)。         0 表示同信道干扰。     interferer_bw_hz: 干扰信号带宽 "
@@ -340,7 +283,7 @@ msgstr ""
 "used for spectral shaping.         0 means same bandwidth as the useful "
 "signal (no filtering).     seed: Random seed."
 
-#: ../../../src/nearlink_sdr/phy/channel.py:385
+#: ../../../src/nearlink_sdr/phy/channel.py:312
 msgid "每个干扰源独立生成与有用信号等长的随机 IQ 序列, 按 SIR 缩放后叠加。 支持同信道和邻信道干扰 (通过频率偏移实现)。"
 msgstr ""
 "Each interference source independently generates a random IQ sequence of "
@@ -352,19 +295,19 @@ msgstr ""
 msgid "参数"
 msgstr "Parameters"
 
-#: ../../../src/nearlink_sdr/phy/channel.py:388
+#: ../../../src/nearlink_sdr/phy/channel.py:315
 msgid "有用信号 (复数 IQ)。"
 msgstr "Useful signal (complex IQ)."
 
-#: ../../../src/nearlink_sdr/phy/channel.py:389
+#: ../../../src/nearlink_sdr/phy/channel.py:316
 msgid "干扰源配置列表。"
 msgstr "Interference source configuration."
 
-#: ../../../src/nearlink_sdr/phy/channel.py:390
+#: ../../../src/nearlink_sdr/phy/channel.py:317
 msgid "采样率 (Hz)。"
 msgstr "sample rate (Hz)."
 
-#: ../../../src/nearlink_sdr/phy/channel.py:391
+#: ../../../src/nearlink_sdr/phy/channel.py:318
 msgid "可选随机数生成器。"
 msgstr "Optional random number generator."
 
@@ -372,25 +315,25 @@ msgstr "Optional random number generator."
 msgid "返回"
 msgstr "Returns"
 
-#: ../../../src/nearlink_sdr/phy/channel.py:393
+#: ../../../src/nearlink_sdr/phy/channel.py:320
 msgid "叠加干扰后的信号。"
 msgstr "Signal after interference superposition."
 
-#: ../../../src/nearlink_sdr/phy/channel.py:392
+#: ../../../src/nearlink_sdr/phy/channel.py:319
 msgid "纯净有用信号。"
 msgstr "Clean useful signal."
 
-#: ../../../src/nearlink_sdr/phy/channel.py:393
+#: ../../../src/nearlink_sdr/phy/channel.py:320
 msgid "含噪声的接收信号 (信号+噪声, 不含干扰)。"
 msgstr "Noisy received signal (signal + noise, without interference)."
 
-#: ../../../src/nearlink_sdr/phy/channel.py:394
+#: ../../../src/nearlink_sdr/phy/channel.py:321
 msgid "干扰叠加后的接收信号 (信号+噪声+干扰)。"
 msgstr ""
 "Received signal after interference superposition (signal + noise + "
 "interference)."
 
-#: ../../../src/nearlink_sdr/phy/channel.py:396
+#: ../../../src/nearlink_sdr/phy/channel.py:323
 msgid "SINR (dB)。"
 msgstr "SINR (dB)."
 
@@ -422,4 +365,61 @@ msgstr "SINR (dB)."
 
 #~ msgid "Returns:     SINR (dB)。"
 #~ msgstr "Returns:     SINR (dB)。"
+
+#~ msgid "生成 Rayleigh 衰落系数。"
+#~ msgstr "Generate Rayleigh fading coefficients."
+
+#~ msgid ""
+#~ "max_doppler_hz > 0 时使用 Jakes 求和正弦模型, "
+#~ "产生具有经典 U 形 功率谱密度的时间相关衰落; 否则为准静态 "
+#~ "(整段同一系数)。"
+#~ msgstr ""
+#~ "When max_doppler_hz > 0, use the "
+#~ "Jakes sum-of-sinusoids model to "
+#~ "produce time-correlated fading with the"
+#~ " classic U-shaped power spectral density;"
+#~ " otherwise quasi-static (same coefficient"
+#~ " for the entire block)."
+
+#~ msgid "生成 Rician 衰落系数。K = LOS功率 / 散射功率。"
+#~ msgstr "Generate Rician fading coefficients. K = LOS power / scatter power."
+
+#~ msgid "Jakes 求和正弦法生成时间相关衰落序列。"
+#~ msgstr ""
+#~ "Jakes sum-of-sinusoids method to "
+#~ "generate time-correlated fading sequences."
+
+#~ msgid "使用 N_osc 个正弦分量叠加, 到达角均匀分布, 初始相位随机。 输出自相关逼近 J₀(2π·f_d·Δt)。"
+#~ msgstr ""
+#~ "Superimpose N_osc sinusoidal components with"
+#~ " uniformly distributed angles of arrival"
+#~ " and random initial phases. The "
+#~ "output autocorrelation approximates J₀(2π·f_d·Δt)."
+
+#~ msgid "参考: W.C. Jakes, \"Microwave Mobile Communications\", 1974"
+#~ msgstr "reference: W.C. Jakes, \"Microwave Mobile Communications\", 1974"
+
+#~ msgid "应用多径信道 (FIR 卷积模型)。"
+#~ msgstr "Apply multipath channel (FIR convolution model)."
+
+#~ msgid "用给定的抽头系数对信号做 FIR 多径卷积。"
+#~ msgstr ""
+#~ "Perform FIR multipath convolution on the"
+#~ " signal with the given tap "
+#~ "coefficients."
+
+#~ msgid "生成多径信道抽头系数。"
+#~ msgstr "Generate multipath channel tap coefficients."
+
+#~ msgid ""
+#~ "返回 (n_taps, n) 的复数矩阵,每行对应一个多径分量。 "
+#~ "max_doppler_hz > 0 时每条径独立使用 Jakes "
+#~ "模型产生时变系数。"
+#~ msgstr ""
+#~ "Return a complex matrix of shape "
+#~ "(n_taps, n), where each row corresponds"
+#~ " to a multipath component. When "
+#~ "max_doppler_hz > 0, each path "
+#~ "independently uses the Jakes model to"
+#~ " generate time-varying coefficients."
 

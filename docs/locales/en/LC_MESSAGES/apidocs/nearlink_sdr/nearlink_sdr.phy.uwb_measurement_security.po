@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 04:07+0800\n"
+"POT-Creation-Date: 2026-03-24 06:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -58,27 +58,27 @@ msgstr "Classes"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:18
 #, python-brace-format
-msgid ""
-"{py:obj}`UWBMeasInputContext "
-"<nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext>`"
-msgstr ""
-"{py:obj}`UWBMeasInputContext "
-"<nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext>`"
-
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:20
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:172
-msgid "UWB 测量安全的 inputContext (标准表 71)。"
-msgstr "inputContext for UWB measurement security (standard Table 71)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:22
-#, python-brace-format
 msgid "{py:obj}`CTSKeys <nearlink_sdr.phy.uwb_measurement_security.CTSKeys>`"
 msgstr "{py:obj}`CTSKeys <nearlink_sdr.phy.uwb_measurement_security.CTSKeys>`"
 
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:24
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:320
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:20
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:153
 msgid "CTS 密钥组 (ctsKey, ctsValue, ctsGap)。"
 msgstr "CTS key set (ctsKey, ctsValue, ctsGap)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:22
+#, python-brace-format
+msgid ""
+"{py:obj}`CTSSymbolResult "
+"<nearlink_sdr.phy.uwb_measurement_security.CTSSymbolResult>`"
+msgstr ""
+"{py:obj}`CTSSymbolResult "
+"<nearlink_sdr.phy.uwb_measurement_security.CTSSymbolResult>`"
+
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:24
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:216
+msgid "CTS 测量符号索引和加扰序列。"
+msgstr "CTS measurement symbol index and scrambling sequence."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:26
 #, python-brace-format
@@ -90,23 +90,23 @@ msgstr ""
 "<nearlink_sdr.phy.uwb_measurement_security.EncryptionAlgo>`"
 
 #: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:28
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:418
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:246
 msgid "加密算法枚举。"
 msgstr "Encryption algorithm enumeration."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:30
 #, python-brace-format
 msgid ""
-"{py:obj}`CTSSymbolResult "
-"<nearlink_sdr.phy.uwb_measurement_security.CTSSymbolResult>`"
+"{py:obj}`UWBMeasInputContext "
+"<nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext>`"
 msgstr ""
-"{py:obj}`CTSSymbolResult "
-"<nearlink_sdr.phy.uwb_measurement_security.CTSSymbolResult>`"
+"{py:obj}`UWBMeasInputContext "
+"<nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext>`"
 
 #: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:32
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:483
-msgid "CTS 测量符号索引和加扰序列。"
-msgstr "CTS measurement symbol index and scrambling sequence."
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:304
+msgid "UWB 测量安全的 inputContext (标准表 71)。"
+msgstr "inputContext for UWB measurement security (standard Table 71)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:36
 msgid "Functions"
@@ -115,32 +115,30 @@ msgstr "Functions"
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:42
 #, python-brace-format
 msgid ""
-"{py:obj}`_build_kdf_message "
-"<nearlink_sdr.phy.uwb_measurement_security._build_kdf_message>`"
+"{py:obj}`advance_cts_v_counter "
+"<nearlink_sdr.phy.uwb_measurement_security.advance_cts_v_counter>`"
 msgstr ""
-"{py:obj}`_build_kdf_message "
-"<nearlink_sdr.phy.uwb_measurement_security._build_kdf_message>`"
+"{py:obj}`advance_cts_v_counter "
+"<nearlink_sdr.phy.uwb_measurement_security.advance_cts_v_counter>`"
 
 #: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:44
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:164
-msgid "构建 KDF 的 256-bit Message = 预留(64) || Label(64) || Context(128)。"
-msgstr ""
-"Construct the KDF 256-bit Message = Reserved(64) || Label(64) || "
-"Context(128)."
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:451
+msgid "每帧后推进 ctsVCounter (标准 9.5.5)。"
+msgstr "Advance ctsVCounter after each frame (standard 9.5.5)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:46
 #, python-brace-format
 msgid ""
-"{py:obj}`derive_slp_key "
-"<nearlink_sdr.phy.uwb_measurement_security.derive_slp_key>`"
+"{py:obj}`compute_tgap "
+"<nearlink_sdr.phy.uwb_measurement_security.compute_tgap>`"
 msgstr ""
-"{py:obj}`derive_slp_key "
-"<nearlink_sdr.phy.uwb_measurement_security.derive_slp_key>`"
+"{py:obj}`compute_tgap "
+"<nearlink_sdr.phy.uwb_measurement_security.compute_tgap>`"
 
 #: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:48
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:382
-msgid "从 Link Key 派生 SLPKey (步骤 1)。"
-msgstr "Derive SLPKey from Link Key (step 1)."
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:458
+msgid "计算 TGap (标准 9.5.4)。"
+msgstr "Calculate TGap (standard 9.5.4)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:50
 #, python-brace-format
@@ -152,211 +150,186 @@ msgstr ""
 "<nearlink_sdr.phy.uwb_measurement_security.derive_cts_keys>`"
 
 #: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:52
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:389
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:465
 msgid "从 SLPKey 和 inputContext 派生 CTS 密钥组 (步骤 2-11)。"
 msgstr "Derive the CTS key set from SLPKey and inputContext (steps 2-11)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:54
 #, python-brace-format
 msgid ""
-"{py:obj}`update_cts_keys "
-"<nearlink_sdr.phy.uwb_measurement_security.update_cts_keys>`"
+"{py:obj}`derive_slp_key "
+"<nearlink_sdr.phy.uwb_measurement_security.derive_slp_key>`"
 msgstr ""
-"{py:obj}`update_cts_keys "
-"<nearlink_sdr.phy.uwb_measurement_security.update_cts_keys>`"
+"{py:obj}`derive_slp_key "
+"<nearlink_sdr.phy.uwb_measurement_security.derive_slp_key>`"
 
 #: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:56
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:396
-msgid "递增 ctsContent32Bit 并重新派生 CTS 密钥 (步骤 12)。"
-msgstr "Increment ctsContent32Bit and re-derive CTS keys (step 12)."
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:472
+msgid "从 Link Key 派生 SLPKey (步骤 1)。"
+msgstr "Derive SLPKey from Link Key (step 1)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:58
 #, python-brace-format
 msgid ""
-"{py:obj}`_derive_cts_from_content "
-"<nearlink_sdr.phy.uwb_measurement_security._derive_cts_from_content>`"
+"{py:obj}`generate_cts_symbols "
+"<nearlink_sdr.phy.uwb_measurement_security.generate_cts_symbols>`"
 msgstr ""
-"{py:obj}`_derive_cts_from_content "
-"<nearlink_sdr.phy.uwb_measurement_security._derive_cts_from_content>`"
+"{py:obj}`generate_cts_symbols "
+"<nearlink_sdr.phy.uwb_measurement_security.generate_cts_symbols>`"
 
 #: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:60
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:403
-msgid "从 ctsContent 派生 ctsKey / ctsValue / ctsGap (步骤 6-11)。"
-msgstr "Derive ctsKey / ctsValue / ctsGap from ctsContent (steps 6-11)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:62
-#, python-brace-format
-msgid ""
-"{py:obj}`compute_tgap "
-"<nearlink_sdr.phy.uwb_measurement_security.compute_tgap>`"
-msgstr ""
-"{py:obj}`compute_tgap "
-"<nearlink_sdr.phy.uwb_measurement_security.compute_tgap>`"
-
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:64
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:410
-msgid "计算 TGap (标准 9.5.4)。"
-msgstr "Calculate TGap (standard 9.5.4)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:66
-#, python-brace-format
-msgid ""
-"{py:obj}`_encrypt_block "
-"<nearlink_sdr.phy.uwb_measurement_security._encrypt_block>`"
-msgstr ""
-"{py:obj}`_encrypt_block "
-"<nearlink_sdr.phy.uwb_measurement_security._encrypt_block>`"
-
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:68
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:475
-msgid "单块加密 (ECB 模式, 16 字节输入输出)。"
-msgstr "Single-block encryption (ECB mode, 16-byte input/output)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:70
-#, python-brace-format
-msgid ""
-"{py:obj}`generate_cts_symbols "
-"<nearlink_sdr.phy.uwb_measurement_security.generate_cts_symbols>`"
-msgstr ""
-"{py:obj}`generate_cts_symbols "
-"<nearlink_sdr.phy.uwb_measurement_security.generate_cts_symbols>`"
-
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:72
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:512
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:479
 msgid "生成 CTS 测量符号索引和加扰 SC 序列 (标准 9.5.5)。"
 msgstr ""
 "Generate CTS measurement symbol index and scrambling SC sequence "
 "(standard 9.5.5)."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:74
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:62
 #, python-brace-format
 msgid ""
-"{py:obj}`advance_cts_v_counter "
-"<nearlink_sdr.phy.uwb_measurement_security.advance_cts_v_counter>`"
+"{py:obj}`update_cts_keys "
+"<nearlink_sdr.phy.uwb_measurement_security.update_cts_keys>`"
 msgstr ""
-"{py:obj}`advance_cts_v_counter "
-"<nearlink_sdr.phy.uwb_measurement_security.advance_cts_v_counter>`"
+"{py:obj}`update_cts_keys "
+"<nearlink_sdr.phy.uwb_measurement_security.update_cts_keys>`"
 
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:76
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:519
-msgid "每帧后推进 ctsVCounter (标准 9.5.5)。"
-msgstr "Advance ctsVCounter after each frame (standard 9.5.5)."
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:64
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:486
+msgid "递增 ctsContent32Bit 并重新派生 CTS 密钥 (步骤 12)。"
+msgstr "Increment ctsContent32Bit and re-derive CTS keys (step 12)."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:80
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:68
 msgid "Data"
 msgstr "Data"
 
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:74
+#, python-brace-format
+msgid ""
+"{py:obj}`LABEL_CTS_GAP_K "
+"<nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_GAP_K>`"
+msgstr ""
+"{py:obj}`LABEL_CTS_GAP_K "
+"<nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_GAP_K>`"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:78
+#, python-brace-format
+msgid ""
+"{py:obj}`LABEL_CTS_INIT_C "
+"<nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_INIT_C>`"
+msgstr ""
+"{py:obj}`LABEL_CTS_INIT_C "
+"<nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_INIT_C>`"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:82
+#, python-brace-format
+msgid ""
+"{py:obj}`LABEL_CTS_K "
+"<nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_K>`"
+msgstr ""
+"{py:obj}`LABEL_CTS_K "
+"<nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_K>`"
+
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:86
+#, python-brace-format
+msgid ""
+"{py:obj}`LABEL_CTS_V "
+"<nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_V>`"
+msgstr ""
+"{py:obj}`LABEL_CTS_V "
+"<nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_V>`"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:90
 #, python-brace-format
 msgid "{py:obj}`LABEL_SLP <nearlink_sdr.phy.uwb_measurement_security.LABEL_SLP>`"
 msgstr "{py:obj}`LABEL_SLP <nearlink_sdr.phy.uwb_measurement_security.LABEL_SLP>`"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:90
-#, python-brace-format
-msgid ""
-"{py:obj}`LABEL_CTS_INIT_C "
-"<nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_INIT_C>`"
-msgstr ""
-"{py:obj}`LABEL_CTS_INIT_C "
-"<nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_INIT_C>`"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:94
-#, python-brace-format
-msgid ""
-"{py:obj}`LABEL_CTS_K "
-"<nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_K>`"
-msgstr ""
-"{py:obj}`LABEL_CTS_K "
-"<nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_K>`"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:98
-#, python-brace-format
-msgid ""
-"{py:obj}`LABEL_CTS_GAP_K "
-"<nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_GAP_K>`"
-msgstr ""
-"{py:obj}`LABEL_CTS_GAP_K "
-"<nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_GAP_K>`"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:102
-#, python-brace-format
-msgid ""
-"{py:obj}`LABEL_CTS_V "
-"<nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_V>`"
-msgstr ""
-"{py:obj}`LABEL_CTS_V "
-"<nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_V>`"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:108
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:96
 msgid "API"
 msgstr "API"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:114
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:124
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:134
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:144
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:154
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:102
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:112
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:122
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:132
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:142
 msgid "'fromhex(...)'"
 msgstr "'fromhex(...)'"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:179
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:201
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:212
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:223
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:234
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:256
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:267
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:278
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:289
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:300
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:371
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:424
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:160
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:171
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:182
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:193
+msgid "b''"
+msgstr "b''"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:204
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:252
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:311
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:333
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:344
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:355
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:366
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:388
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:399
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:410
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:421
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:432
 msgid "0"
 msgstr "0"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:190
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:434
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:223
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:234
+msgid "'field(...)'"
+msgstr "'field(...)'"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:262
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:322
 msgid "1"
 msgstr "1"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:245
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:272
+msgid "2"
+msgstr "2"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:282
+msgid "3"
+msgstr "3"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:292
+msgid "4"
+msgstr "4"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:377
 msgid "None"
 msgstr "None"
 
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:311
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:443
 msgid "打包为 16 字节 (128 bit)。"
 msgstr "packis 16 byte (128 bit)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:327
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:338
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:349
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:360
-msgid "b''"
-msgstr "b''"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md
 msgid "参数"
 msgstr "Parameters"
 
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:412
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:460
 msgid "128-bit ctsGap 密钥."
 msgstr "128-bit ctsGap key."
 
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:413
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:461
 msgid "当前帧对应的移位量 (首帧为 0, 后续每帧 +1)."
 msgstr ""
-"Shift amount corresponding to the current frame (0 for the first frame, +1 "
-"for each subsequent frame)."
+"Shift amount corresponding to the current frame (0 for the first frame, "
+"+1 for each subsequent frame)."
 
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:414
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:462
 msgid "基准长度 (Tc 单位)."
 msgstr "Reference length (Tc units)."
 
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:415
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:463
 msgid "码长."
 msgstr "Code length."
 
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:416
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:464
 msgid "deltaL 系数."
 msgstr "deltaL coefficient."
 
@@ -364,52 +337,35 @@ msgstr "deltaL coefficient."
 msgid "返回"
 msgstr "Returns"
 
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:418
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:466
 msgid "Tgap = Tbase - Toffset (Tc 单位)."
 msgstr "Tgap = Tbase - Toffset (Tc unit)."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:444
-msgid "2"
-msgstr "2"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:454
-msgid "3"
-msgstr "3"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:464
-msgid "4"
-msgstr "4"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:490
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:501
-msgid "'field(...)'"
-msgstr "'field(...)'"
-
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:514
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:481
 msgid "ctsKey (16 字节)."
 msgstr "ctsKey (16 bytes)."
 
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:515
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:482
 msgid "ctsVUpper (高 96 bit = 12 字节)."
 msgstr "ctsVUpper (upper 96 bits = 12 bytes)."
 
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:516
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:483
 msgid "ctsVCounter (32 bit)."
 msgstr "Advance ctsVCounter after each frame (standard 9.5.5)."
 
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:517
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:484
 msgid "CTS 数据部分符号个数."
 msgstr "CTS data section symbol count."
 
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:518
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:485
 msgid "符号索引数 (16 或 32)."
 msgstr "Number of symbol indices (16 or 32)."
 
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:519
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:486
 msgid "加密算法 (默认 AES-128)."
 msgstr "Encryption algorithm (default AES-128)."
 
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:521
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:488
 msgid "CTSSymbolResult 包含符号索引和 SC 序列."
 msgstr "CTSSymbolResult containing symbol index and SC sequence."
 
@@ -442,4 +398,36 @@ msgstr "CTSSymbolResult containing symbol index and SC sequence."
 #~ "data symbols.     symbol_count: Symbol index"
 #~ " count (16 or 32).     "
 #~ "encryption_algorithm: Encryption algorithm type."
+
+#~ msgid ""
+#~ "{py:obj}`_build_kdf_message "
+#~ "<nearlink_sdr.phy.uwb_measurement_security._build_kdf_message>`"
+#~ msgstr ""
+#~ "{py:obj}`_build_kdf_message "
+#~ "<nearlink_sdr.phy.uwb_measurement_security._build_kdf_message>`"
+
+#~ msgid "构建 KDF 的 256-bit Message = 预留(64) || Label(64) || Context(128)。"
+#~ msgstr ""
+#~ "Construct the KDF 256-bit Message = "
+#~ "Reserved(64) || Label(64) || Context(128)."
+
+#~ msgid ""
+#~ "{py:obj}`_derive_cts_from_content "
+#~ "<nearlink_sdr.phy.uwb_measurement_security._derive_cts_from_content>`"
+#~ msgstr ""
+#~ "{py:obj}`_derive_cts_from_content "
+#~ "<nearlink_sdr.phy.uwb_measurement_security._derive_cts_from_content>`"
+
+#~ msgid "从 ctsContent 派生 ctsKey / ctsValue / ctsGap (步骤 6-11)。"
+#~ msgstr "Derive ctsKey / ctsValue / ctsGap from ctsContent (steps 6-11)."
+
+#~ msgid ""
+#~ "{py:obj}`_encrypt_block "
+#~ "<nearlink_sdr.phy.uwb_measurement_security._encrypt_block>`"
+#~ msgstr ""
+#~ "{py:obj}`_encrypt_block "
+#~ "<nearlink_sdr.phy.uwb_measurement_security._encrypt_block>`"
+
+#~ msgid "单块加密 (ECB 模式, 16 字节输入输出)。"
+#~ msgstr "Single-block encryption (ECB mode, 16-byte input/output)."
 

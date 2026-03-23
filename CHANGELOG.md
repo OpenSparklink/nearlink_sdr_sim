@@ -5,6 +5,24 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/),
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.0.9-rc.1] - 2026-03-24
+
+### Added
+
+- API 公开接口控制: 52 个模块添加 `__all__`, 664 个公开符号
+- autodoc2 配置: `module_all_regexes` 按 `__all__` 过滤文档, `hidden_objects` 隐藏私有符号
+- 英文 PDF 文档标题自动切换
+
+### Removed
+
+- 废弃的 `phy/modulator.py`, `phy/demodulator.py` 占位模块及测试
+
+### Changed
+
+- 7 处 blind except 替换为具体异常类型
+- 循环 append 改为列表推导式/extend (9 处)
+- 不必要的集合生成器、单元素 in 测试等代码质量优化
+
 ## [1.0.8] - 2026-03-24
 
 ### Fixed

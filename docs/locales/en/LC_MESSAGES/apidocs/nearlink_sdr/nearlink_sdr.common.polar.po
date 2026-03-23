@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 04:07+0800\n"
+"POT-Creation-Date: 2026-03-24 06:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -40,23 +40,23 @@ msgstr "Classes"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:18
 #, python-brace-format
-msgid "{py:obj}`PolarEncoder <nearlink_sdr.common.polar.PolarEncoder>`"
-msgstr "{py:obj}`PolarEncoder <nearlink_sdr.common.polar.PolarEncoder>`"
-
-#: ../../../src/nearlink_sdr/common/polar.py:20
-#: ../../../src/nearlink_sdr/common/polar.py:134
-msgid "使用 GF(2) 上蝶形（递归）算法的 Polar 编码器。"
-msgstr "Polar code encoder using butterfly (recursive) algorithm over GF(2)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:22
-#, python-brace-format
 msgid "{py:obj}`PolarDecoder <nearlink_sdr.common.polar.PolarDecoder>`"
 msgstr "{py:obj}`PolarDecoder <nearlink_sdr.common.polar.PolarDecoder>`"
 
-#: ../../../src/nearlink_sdr/common/polar.py:24
-#: ../../../src/nearlink_sdr/common/polar.py:156
+#: ../../../src/nearlink_sdr/common/polar.py:20
+#: ../../../src/nearlink_sdr/common/polar.py:101
 msgid "Successive Cancellation (SC) decoder in LLR domain。"
 msgstr "Successive Cancellation (SC) decoder in LLR domain."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:22
+#, python-brace-format
+msgid "{py:obj}`PolarEncoder <nearlink_sdr.common.polar.PolarEncoder>`"
+msgstr "{py:obj}`PolarEncoder <nearlink_sdr.common.polar.PolarEncoder>`"
+
+#: ../../../src/nearlink_sdr/common/polar.py:24
+#: ../../../src/nearlink_sdr/common/polar.py:123
+msgid "使用 GF(2) 上蝶形（递归）算法的 Polar 编码器。"
+msgstr "Polar code encoder using butterfly (recursive) algorithm over GF(2)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:28
 msgid "Functions"
@@ -72,7 +72,7 @@ msgstr ""
 "<nearlink_sdr.common.polar.get_info_bit_count>`"
 
 #: ../../../src/nearlink_sdr/common/polar.py:36
-#: ../../../src/nearlink_sdr/common/polar.py:112
+#: ../../../src/nearlink_sdr/common/polar.py:144
 msgid "从速率匹配表中查询给定码率和码长对应的信息位数 K。"
 msgstr ""
 "Look up the number of information bits K from the rate matching table for"
@@ -80,63 +80,33 @@ msgstr ""
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:38
 #, python-brace-format
-msgid ""
-"{py:obj}`_get_reliability_sequence "
-"<nearlink_sdr.common.polar._get_reliability_sequence>`"
-msgstr ""
-"{py:obj}`_get_reliability_sequence "
-"<nearlink_sdr.common.polar._get_reliability_sequence>`"
-
-#: ../../../src/nearlink_sdr/common/polar.py:40
-#: ../../../src/nearlink_sdr/common/polar.py:119
-msgid "从 N_max=1024 可靠性序列中提取码长 N 的可靠性序列。"
-msgstr ""
-"Extract the reliability sequence for code length N from the N_max=1024 "
-"sequence."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:42
-#, python-brace-format
-msgid ""
-"{py:obj}`_get_frozen_and_info_sets "
-"<nearlink_sdr.common.polar._get_frozen_and_info_sets>`"
-msgstr ""
-"{py:obj}`_get_frozen_and_info_sets "
-"<nearlink_sdr.common.polar._get_frozen_and_info_sets>`"
-
-#: ../../../src/nearlink_sdr/common/polar.py:44
-#: ../../../src/nearlink_sdr/common/polar.py:126
-msgid "确定冻结位和信息位的位置集合。"
-msgstr "Determine the sets of frozen and information bit positions."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:46
-#, python-brace-format
 msgid "{py:obj}`get_polar_decoder <nearlink_sdr.common.polar.get_polar_decoder>`"
 msgstr "{py:obj}`get_polar_decoder <nearlink_sdr.common.polar.get_polar_decoder>`"
 
-#: ../../../src/nearlink_sdr/common/polar.py:48
-#: ../../../src/nearlink_sdr/common/polar.py:204
+#: ../../../src/nearlink_sdr/common/polar.py:40
+#: ../../../src/nearlink_sdr/common/polar.py:151
 msgid "获取 PolarDecoder 实例, 相同 (N, K) 复用已创建的对象。"
 msgstr "Get a PolarDecoder instance, reusing an existing one for the same (N, K)."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:52
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:44
 msgid "Data"
 msgstr "Data"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:58
-#, python-brace-format
-msgid ""
-"{py:obj}`RELIABILITY_SEQ_1024 "
-"<nearlink_sdr.common.polar.RELIABILITY_SEQ_1024>`"
-msgstr ""
-"{py:obj}`RELIABILITY_SEQ_1024 "
-"<nearlink_sdr.common.polar.RELIABILITY_SEQ_1024>`"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:62
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:50
 #, python-brace-format
 msgid "{py:obj}`RATE_TABLE <nearlink_sdr.common.polar.RATE_TABLE>`"
 msgstr "{py:obj}`RATE_TABLE <nearlink_sdr.common.polar.RATE_TABLE>`"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:66
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:54
+#, python-brace-format
+msgid ""
+"{py:obj}`RELIABILITY_SEQ_1024 "
+"<nearlink_sdr.common.polar.RELIABILITY_SEQ_1024>`"
+msgstr ""
+"{py:obj}`RELIABILITY_SEQ_1024 "
+"<nearlink_sdr.common.polar.RELIABILITY_SEQ_1024>`"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:58
 #, python-brace-format
 msgid ""
 "{py:obj}`VALID_CODE_LENGTHS "
@@ -145,16 +115,16 @@ msgstr ""
 "{py:obj}`VALID_CODE_LENGTHS "
 "<nearlink_sdr.common.polar.VALID_CODE_LENGTHS>`"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:70
-#, python-brace-format
-msgid "{py:obj}`_decoder_cache <nearlink_sdr.common.polar._decoder_cache>`"
-msgstr "{py:obj}`_decoder_cache <nearlink_sdr.common.polar._decoder_cache>`"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:76
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:64
 msgid "API"
 msgstr "API"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:82
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:70
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:90
+msgid "None"
+msgstr "None"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:80
 msgid ""
 "[0, 1, 2, 4, 8, 16, 32, 3, 5, 64, 9, 6, 17, 10, 18, 128, 12, 33, 65, 20, "
 "256, 34, 24, 36, 7, 129, 66..."
@@ -162,29 +132,26 @@ msgstr ""
 "[0, 1, 2, 4, 8, 16, 32, 3, 5, 64, 9, 6, 17, 10, 18, 128, 12, 33, 65, 20, "
 "256, 34, 24, 36, 7, 129, 66..."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:92
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:102
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:194
-msgid "None"
-msgstr "None"
-
-#: ../../../src/nearlink_sdr/common/polar.py:121
-msgid "过滤比特索引 < N 的条目，保持可靠性顺序不变。"
-msgstr "Filter entries with bit index < N, preserving the reliability order."
-
-#: ../../../src/nearlink_sdr/common/polar.py:128
-msgid "可靠性序列中最后 K 个（最可靠）为信息位， 前 N-K 个（最不可靠）为冻结位。"
+#: ../../../src/nearlink_sdr/common/polar.py:103
+msgid "使用预分配的二维数组存储中间 LLR 和 partial sums, 避免递归中频繁分配内存。"
 msgstr ""
-"The last K positions in the reliability sequence (most reliable) are "
-"information bits; the first N-K positions (least reliable) are frozen "
-"bits."
+"Uses pre-allocated 2D arrays to store intermediate LLRs and partial sums,"
+" avoiding frequent memory allocation in recursion."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:136
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:158
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:103
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.md:125
 msgid "Initialization"
 msgstr "Initialization"
 
-#: ../../../src/nearlink_sdr/common/polar.py:147
+#: ../../../src/nearlink_sdr/common/polar.py:114
+msgid "使用 SC 算法将 N 个信道 LLR 解码为 K 个信息位。"
+msgstr "Decode N channel LLRs to K information bits using the SC algorithm."
+
+#: ../../../src/nearlink_sdr/common/polar.py:116
+msgid "约定：正 LLR 表示比特 0 的可能性更高。"
+msgstr "Convention: positive LLR means bit 0 is more likely."
+
+#: ../../../src/nearlink_sdr/common/polar.py:136
 msgid "将 K 个信息位编码为 N 个编码位。"
 msgstr "Encode K information bits into N coded bits."
 
@@ -192,7 +159,7 @@ msgstr "Encode K information bits into N coded bits."
 msgid "参数"
 msgstr "Parameters"
 
-#: ../../../src/nearlink_sdr/common/polar.py:149
+#: ../../../src/nearlink_sdr/common/polar.py:138
 msgid "长度为 K 的比特数组（取值 0 或 1）。"
 msgstr "parameter: info_bits: lengthis K bit array(range 0 or 1)."
 
@@ -200,47 +167,9 @@ msgstr "parameter: info_bits: lengthis K bit array(range 0 or 1)."
 msgid "返回"
 msgstr "Returns"
 
-#: ../../../src/nearlink_sdr/common/polar.py:151
+#: ../../../src/nearlink_sdr/common/polar.py:140
 msgid "长度为 N 的码字（取值 0 或 1）。"
 msgstr "Codeword of length N (values 0 or 1)."
-
-#: ../../../src/nearlink_sdr/common/polar.py:158
-msgid "使用预分配的二维数组存储中间 LLR 和 partial sums, 避免递归中频繁分配内存。"
-msgstr ""
-"Uses pre-allocated 2D arrays to store intermediate LLRs and partial sums,"
-" avoiding frequent memory allocation in recursion."
-
-#: ../../../src/nearlink_sdr/common/polar.py:169
-msgid "预计算所有子树的类型: 0=rate-0, 1=rate-1, 2=partial。"
-msgstr "Pre-computes the type of all subtrees: 0=rate-0, 1=rate-1, 2=partial."
-
-#: ../../../src/nearlink_sdr/common/polar.py:171
-msgid "使用前缀和做 O(1) 范围查询, 迭代遍历避免递归开销。 rate-0/rate-1 子树不再向下遍历, 与 SSC 剪枝对齐。"
-msgstr ""
-"Uses prefix sums for O(1) range queries; iterative traversal avoids "
-"recursion overhead. rate-0/rate-1 subtrees are not traversed further, "
-"aligned with SSC pruning."
-
-#: ../../../src/nearlink_sdr/common/polar.py:177
-msgid "使用 SC 算法将 N 个信道 LLR 解码为 K 个信息位。"
-msgstr "Decode N channel LLRs to K information bits using the SC algorithm."
-
-#: ../../../src/nearlink_sdr/common/polar.py:179
-msgid "约定：正 LLR 表示比特 0 的可能性更高。"
-msgstr "Convention: positive LLR means bit 0 is more likely."
-
-#: ../../../src/nearlink_sdr/common/polar.py:185
-msgid "SSC 优化的 SC 解码。"
-msgstr "SSC-optimized SC decoding."
-
-#: ../../../src/nearlink_sdr/common/polar.py:187
-msgid ""
-"rate-0 子树: 所有位为冻结位, 直接置零。 rate-1 子树: 硬判决 LLR 得到编码位, 极性变换得到信息位。 partial "
-"子树: 标准 f/g 递归。"
-msgstr ""
-"rate-0 subtree: all bits are frozen, set to zero directly. rate-1 "
-"subtree: hard-decide LLR to obtain coded bits, then polar transform to "
-"recover information bits. partial subtree: standard f/g recursion."
 
 #~ msgid ""
 #~ "Polar code encoder and SC (Successive"
@@ -287,4 +216,67 @@ msgstr ""
 
 #~ msgid "Convention: positive LLR means bit 0 is more likely."
 #~ msgstr "Convention: positive LLR means bit 0 is more likely."
+
+#~ msgid ""
+#~ "{py:obj}`_get_reliability_sequence "
+#~ "<nearlink_sdr.common.polar._get_reliability_sequence>`"
+#~ msgstr ""
+#~ "{py:obj}`_get_reliability_sequence "
+#~ "<nearlink_sdr.common.polar._get_reliability_sequence>`"
+
+#~ msgid "从 N_max=1024 可靠性序列中提取码长 N 的可靠性序列。"
+#~ msgstr ""
+#~ "Extract the reliability sequence for "
+#~ "code length N from the N_max=1024 "
+#~ "sequence."
+
+#~ msgid ""
+#~ "{py:obj}`_get_frozen_and_info_sets "
+#~ "<nearlink_sdr.common.polar._get_frozen_and_info_sets>`"
+#~ msgstr ""
+#~ "{py:obj}`_get_frozen_and_info_sets "
+#~ "<nearlink_sdr.common.polar._get_frozen_and_info_sets>`"
+
+#~ msgid "确定冻结位和信息位的位置集合。"
+#~ msgstr "Determine the sets of frozen and information bit positions."
+
+#~ msgid "{py:obj}`_decoder_cache <nearlink_sdr.common.polar._decoder_cache>`"
+#~ msgstr "{py:obj}`_decoder_cache <nearlink_sdr.common.polar._decoder_cache>`"
+
+#~ msgid "过滤比特索引 < N 的条目，保持可靠性顺序不变。"
+#~ msgstr "Filter entries with bit index < N, preserving the reliability order."
+
+#~ msgid "可靠性序列中最后 K 个（最可靠）为信息位， 前 N-K 个（最不可靠）为冻结位。"
+#~ msgstr ""
+#~ "The last K positions in the "
+#~ "reliability sequence (most reliable) are "
+#~ "information bits; the first N-K "
+#~ "positions (least reliable) are frozen "
+#~ "bits."
+
+#~ msgid "预计算所有子树的类型: 0=rate-0, 1=rate-1, 2=partial。"
+#~ msgstr "Pre-computes the type of all subtrees: 0=rate-0, 1=rate-1, 2=partial."
+
+#~ msgid "使用前缀和做 O(1) 范围查询, 迭代遍历避免递归开销。 rate-0/rate-1 子树不再向下遍历, 与 SSC 剪枝对齐。"
+#~ msgstr ""
+#~ "Uses prefix sums for O(1) range "
+#~ "queries; iterative traversal avoids recursion"
+#~ " overhead. rate-0/rate-1 subtrees are not"
+#~ " traversed further, aligned with SSC "
+#~ "pruning."
+
+#~ msgid "SSC 优化的 SC 解码。"
+#~ msgstr "SSC-optimized SC decoding."
+
+#~ msgid ""
+#~ "rate-0 子树: 所有位为冻结位, 直接置零。 rate-1 子树: "
+#~ "硬判决 LLR 得到编码位, 极性变换得到信息位。 partial 子树:"
+#~ " 标准 f/g 递归。"
+#~ msgstr ""
+#~ "rate-0 subtree: all bits are frozen, "
+#~ "set to zero directly. rate-1 subtree:"
+#~ " hard-decide LLR to obtain coded "
+#~ "bits, then polar transform to recover"
+#~ " information bits. partial subtree: "
+#~ "standard f/g recursion."
 

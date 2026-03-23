@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 04:07+0800\n"
+"POT-Creation-Date: 2026-03-24 06:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -47,32 +47,32 @@ msgstr "Classes"
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:18
 #, python-brace-format
 msgid ""
-"{py:obj}`RadioFrameType "
-"<nearlink_sdr.phy.measurement_frame.RadioFrameType>`"
+"{py:obj}`MeasFrameConfig "
+"<nearlink_sdr.phy.measurement_frame.MeasFrameConfig>`"
 msgstr ""
-"{py:obj}`RadioFrameType "
-"<nearlink_sdr.phy.measurement_frame.RadioFrameType>`"
+"{py:obj}`MeasFrameConfig "
+"<nearlink_sdr.phy.measurement_frame.MeasFrameConfig>`"
 
 #: ../../../src/nearlink_sdr/phy/measurement_frame.py:20
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:97
-msgid "无线帧类型, 用于确定半可靠组播反馈的 m 序列长度。"
-msgstr ""
-"Radio frame type, used to determine the m-sequence length for semi-"
-"reliable multicast feedback."
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:83
+msgid "测量帧配置参数。"
+msgstr "Measurement frame configuration parameters."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:22
 #, python-brace-format
 msgid ""
-"{py:obj}`MeasFrameConfig "
-"<nearlink_sdr.phy.measurement_frame.MeasFrameConfig>`"
+"{py:obj}`RadioFrameType "
+"<nearlink_sdr.phy.measurement_frame.RadioFrameType>`"
 msgstr ""
-"{py:obj}`MeasFrameConfig "
-"<nearlink_sdr.phy.measurement_frame.MeasFrameConfig>`"
+"{py:obj}`RadioFrameType "
+"<nearlink_sdr.phy.measurement_frame.RadioFrameType>`"
 
 #: ../../../src/nearlink_sdr/phy/measurement_frame.py:24
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:172
-msgid "测量帧配置参数。"
-msgstr "Measurement frame configuration parameters."
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:159
+msgid "无线帧类型, 用于确定半可靠组播反馈的 m 序列长度。"
+msgstr ""
+"Radio frame type, used to determine the m-sequence length for semi-"
+"reliable multicast feedback."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:26
 #, python-brace-format
@@ -84,7 +84,7 @@ msgstr ""
 "<nearlink_sdr.phy.measurement_frame.UWBPulseConfig>`"
 
 #: ../../../src/nearlink_sdr/phy/measurement_frame.py:28
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:274
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:213
 msgid "超宽带脉冲测量帧配置。"
 msgstr "UWB pulse measurement frame configuration."
 
@@ -95,162 +95,90 @@ msgstr "Functions"
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:38
 #, python-brace-format
 msgid ""
-"{py:obj}`_nack_m_sequence "
-"<nearlink_sdr.phy.measurement_frame._nack_m_sequence>`"
+"{py:obj}`build_measurement_frame_1 "
+"<nearlink_sdr.phy.measurement_frame.build_measurement_frame_1>`"
 msgstr ""
-"{py:obj}`_nack_m_sequence "
-"<nearlink_sdr.phy.measurement_frame._nack_m_sequence>`"
+"{py:obj}`build_measurement_frame_1 "
+"<nearlink_sdr.phy.measurement_frame.build_measurement_frame_1>`"
 
 #: ../../../src/nearlink_sdr/phy/measurement_frame.py:40
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:150
-msgid "为指定无线帧类型生成 NACK 反馈 m 序列。"
-msgstr "Generate a NACK feedback m-sequence for the specified radio frame type."
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:352
+msgid "组装测量帧类型 1 (标准 6.3.7)。"
+msgstr "Assemble measurement frame type 1 (standard 6.3.7)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:42
 #, python-brace-format
 msgid ""
-"{py:obj}`build_nack_feedback "
-"<nearlink_sdr.phy.measurement_frame.build_nack_feedback>`"
+"{py:obj}`build_measurement_frame_2 "
+"<nearlink_sdr.phy.measurement_frame.build_measurement_frame_2>`"
 msgstr ""
-"{py:obj}`build_nack_feedback "
-"<nearlink_sdr.phy.measurement_frame.build_nack_feedback>`"
+"{py:obj}`build_measurement_frame_2 "
+"<nearlink_sdr.phy.measurement_frame.build_measurement_frame_2>`"
 
 #: ../../../src/nearlink_sdr/phy/measurement_frame.py:44
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:157
-msgid "构建半可靠组播 NACK 反馈帧 (标准 6.3.6)。"
-msgstr "Build a semi-reliable multicast NACK feedback frame (standard 6.3.6)."
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:359
+msgid "组装测量帧类型 2 (标准 6.3.8)。"
+msgstr "Assemble measurement frame type 2 (standard 6.3.8)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:46
 #, python-brace-format
 msgid ""
-"{py:obj}`equalization_guard "
-"<nearlink_sdr.phy.measurement_frame.equalization_guard>`"
+"{py:obj}`build_measurement_frame_3 "
+"<nearlink_sdr.phy.measurement_frame.build_measurement_frame_3>`"
 msgstr ""
-"{py:obj}`equalization_guard "
-"<nearlink_sdr.phy.measurement_frame.equalization_guard>`"
+"{py:obj}`build_measurement_frame_3 "
+"<nearlink_sdr.phy.measurement_frame.build_measurement_frame_3>`"
 
 #: ../../../src/nearlink_sdr/phy/measurement_frame.py:48
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:164
-msgid "生成均衡保护序列 (标准 6.3.7)。"
-msgstr "Generate equalization guard sequence (standard 6.3.7)."
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:366
+msgid "组装测量帧类型 3 (标准 6.3.9)。"
+msgstr "Assemble measurement frame type 3 (standard 6.3.9)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:50
 #, python-brace-format
 msgid ""
-"{py:obj}`build_measurement_frame_1 "
-"<nearlink_sdr.phy.measurement_frame.build_measurement_frame_1>`"
+"{py:obj}`build_measurement_frame_4 "
+"<nearlink_sdr.phy.measurement_frame.build_measurement_frame_4>`"
 msgstr ""
-"{py:obj}`build_measurement_frame_1 "
-"<nearlink_sdr.phy.measurement_frame.build_measurement_frame_1>`"
+"{py:obj}`build_measurement_frame_4 "
+"<nearlink_sdr.phy.measurement_frame.build_measurement_frame_4>`"
 
 #: ../../../src/nearlink_sdr/phy/measurement_frame.py:52
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:245
-msgid "组装测量帧类型 1 (标准 6.3.7)。"
-msgstr "Assemble measurement frame type 1 (standard 6.3.7)."
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:373
+msgid "组装测量帧类型 4 (标准 6.3.10)。"
+msgstr "Assemble measurement frame type 4 (standard 6.3.10)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:54
 #, python-brace-format
 msgid ""
-"{py:obj}`build_measurement_frame_2 "
-"<nearlink_sdr.phy.measurement_frame.build_measurement_frame_2>`"
+"{py:obj}`build_nack_feedback "
+"<nearlink_sdr.phy.measurement_frame.build_nack_feedback>`"
 msgstr ""
-"{py:obj}`build_measurement_frame_2 "
-"<nearlink_sdr.phy.measurement_frame.build_measurement_frame_2>`"
+"{py:obj}`build_nack_feedback "
+"<nearlink_sdr.phy.measurement_frame.build_nack_feedback>`"
 
 #: ../../../src/nearlink_sdr/phy/measurement_frame.py:56
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:252
-msgid "组装测量帧类型 2 (标准 6.3.8)。"
-msgstr "Assemble measurement frame type 2 (standard 6.3.8)."
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:380
+msgid "构建半可靠组播 NACK 反馈帧 (标准 6.3.6)。"
+msgstr "Build a semi-reliable multicast NACK feedback frame (standard 6.3.6)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:58
 #, python-brace-format
 msgid ""
-"{py:obj}`build_measurement_frame_3 "
-"<nearlink_sdr.phy.measurement_frame.build_measurement_frame_3>`"
+"{py:obj}`build_uwb_measurement_field "
+"<nearlink_sdr.phy.measurement_frame.build_uwb_measurement_field>`"
 msgstr ""
-"{py:obj}`build_measurement_frame_3 "
-"<nearlink_sdr.phy.measurement_frame.build_measurement_frame_3>`"
+"{py:obj}`build_uwb_measurement_field "
+"<nearlink_sdr.phy.measurement_frame.build_uwb_measurement_field>`"
 
 #: ../../../src/nearlink_sdr/phy/measurement_frame.py:60
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:259
-msgid "组装测量帧类型 3 (标准 6.3.9)。"
-msgstr "Assemble measurement frame type 3 (standard 6.3.9)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:62
-#, python-brace-format
-msgid ""
-"{py:obj}`build_measurement_frame_4 "
-"<nearlink_sdr.phy.measurement_frame.build_measurement_frame_4>`"
-msgstr ""
-"{py:obj}`build_measurement_frame_4 "
-"<nearlink_sdr.phy.measurement_frame.build_measurement_frame_4>`"
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:64
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:266
-msgid "组装测量帧类型 4 (标准 6.3.10)。"
-msgstr "Assemble measurement frame type 4 (standard 6.3.10)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:66
-#, python-brace-format
-msgid ""
-"{py:obj}`_apply_duty_cycle "
-"<nearlink_sdr.phy.measurement_frame._apply_duty_cycle>`"
-msgstr ""
-"{py:obj}`_apply_duty_cycle "
-"<nearlink_sdr.phy.measurement_frame._apply_duty_cycle>`"
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:68
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:413
-msgid "对码字序列进行占空比为 1/L 的插零时域扩展。"
-msgstr ""
-"Apply zero-insertion time-domain spreading with a duty cycle of 1/L to "
-"the codeword sequence."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:70
-#, python-brace-format
-msgid ""
-"{py:obj}`build_uwb_sync_field "
-"<nearlink_sdr.phy.measurement_frame.build_uwb_sync_field>`"
-msgstr ""
-"{py:obj}`build_uwb_sync_field "
-"<nearlink_sdr.phy.measurement_frame.build_uwb_sync_field>`"
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:72
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:420
-msgid "构建超宽带脉冲测量帧同步字段 (标准 6.3.11.1)。"
-msgstr "Build the UWB pulse measurement frame sync field (standard 6.3.11.1)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:74
-#, python-brace-format
-msgid ""
-"{py:obj}`_build_cts_symbol "
-"<nearlink_sdr.phy.measurement_frame._build_cts_symbol>`"
-msgstr ""
-"{py:obj}`_build_cts_symbol "
-"<nearlink_sdr.phy.measurement_frame._build_cts_symbol>`"
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:76
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:427
-msgid "构建单个 CTS 测量符号。"
-msgstr "Build a single CTS measurement symbol."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:78
-#, python-brace-format
-msgid ""
-"{py:obj}`build_uwb_measurement_field "
-"<nearlink_sdr.phy.measurement_frame.build_uwb_measurement_field>`"
-msgstr ""
-"{py:obj}`build_uwb_measurement_field "
-"<nearlink_sdr.phy.measurement_frame.build_uwb_measurement_field>`"
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:80
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:434
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:387
 msgid "构建超宽带脉冲测量帧测量字段 (标准 6.3.11.2)。"
 msgstr ""
 "Build the UWB pulse measurement frame measurement field (standard "
 "6.3.11.2)."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:82
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:62
 #, python-brace-format
 msgid ""
 "{py:obj}`build_uwb_pulse_measurement_frame "
@@ -259,193 +187,99 @@ msgstr ""
 "{py:obj}`build_uwb_pulse_measurement_frame "
 "<nearlink_sdr.phy.measurement_frame.build_uwb_pulse_measurement_frame>`"
 
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:84
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:441
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:64
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:394
 msgid "构建完整的超宽带脉冲测量帧 (标准 6.3.11)。"
 msgstr "Build a complete UWB pulse measurement frame (standard 6.3.11)."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:88
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:66
+#, python-brace-format
+msgid ""
+"{py:obj}`build_uwb_sync_field "
+"<nearlink_sdr.phy.measurement_frame.build_uwb_sync_field>`"
+msgstr ""
+"{py:obj}`build_uwb_sync_field "
+"<nearlink_sdr.phy.measurement_frame.build_uwb_sync_field>`"
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:68
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:401
+msgid "构建超宽带脉冲测量帧同步字段 (标准 6.3.11.1)。"
+msgstr "Build the UWB pulse measurement frame sync field (standard 6.3.11.1)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:70
+#, python-brace-format
+msgid ""
+"{py:obj}`equalization_guard "
+"<nearlink_sdr.phy.measurement_frame.equalization_guard>`"
+msgstr ""
+"{py:obj}`equalization_guard "
+"<nearlink_sdr.phy.measurement_frame.equalization_guard>`"
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:72
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:408
+msgid "生成均衡保护序列 (标准 6.3.7)。"
+msgstr "Generate equalization guard sequence (standard 6.3.7)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:76
 msgid "API"
 msgstr "API"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:94
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:90
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:101
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:264
+msgid "'field(...)'"
+msgstr "'field(...)'"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:112
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:319
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:330
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:341
+msgid "0"
+msgstr "0"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:123
+msgid "1.0"
+msgstr "1.0"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:134
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:181
+msgid "2"
+msgstr "2"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:145
+msgid "True"
+msgstr "True"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:156
 #, python-brace-format
 msgid "Bases: {py:obj}`enum.IntEnum`"
 msgstr "Bases: {py:obj}`enum.IntEnum`"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:99
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:161
 msgid "Initialization"
 msgstr "Initialization"
 
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:103
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:165
 msgid "Initialize self.  See help(type(self)) for accurate signature."
 msgstr "Initialize self. See help(type(self)) for accurate signature."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:109
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:336
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:347
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:171
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:275
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:286
 msgid "1"
 msgstr "1"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:119
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:223
-msgid "2"
-msgstr "2"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:129
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:191
 msgid "3"
 msgstr "3"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:139
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:292
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:358
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:201
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:231
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:297
 msgid "4"
 msgstr "4"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md
-msgid "参数"
-msgstr "Parameters"
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:152
-msgid "无线帧类型 (1-4)。"
-msgstr "Wireless frame type (1-4)."
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:153
-msgid "m 序列索引。"
-msgstr "m-sequence index."
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:154
-msgid "循环移位量。"
-msgstr "Cyclic shift amount."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md
-msgid "返回"
-msgstr "Returns"
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:156
-msgid "NACK 反馈序列比特数组。"
-msgstr "NACK feedback sequence bit array."
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:159
-msgid "帧结构: 前导信号 | 同步信号 | NACK 反馈序列"
-msgstr "Frame structure: preamble | sync signal | NACK feedback sequence."
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:161
-msgid "无线帧类型 (1-4), 决定 m 序列长度。"
-msgstr ""
-"Radio frame type, used to determine the m-sequence length for semi-reliable "
-"multicast feedback."
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:162
-msgid "m 序列索引, 由高层信令配置。"
-msgstr "m-sequence index, configured by higher layer signaling."
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:163
-msgid "m 序列循环移位量, 由高层信令配置。"
-msgstr ""
-"m-sequence cyclic shift amount, configured by higher layer signaling."
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:164
-msgid "符号速率, 用于前导码生成。"
-msgstr "Symbol rate, used for preamble generation."
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:166
-msgid "NACK 反馈序列比特数组 (不含前导和同步, 由调用者拼接)。"
-msgstr ""
-"NACK feedback sequence bit array (excluding preamble and sync, to be "
-"concatenated by the caller)."
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:166
-msgid "同步信号最后 1 比特为 1 时: 0101 (MSB 优先) 同步信号最后 1 比特为 0 时: 1010 (MSB 优先)"
-msgstr ""
-"When the last bit of the sync signal is 1: 0101 (MSB first). When the "
-"last bit of the sync signal is 0: 1010 (MSB first)."
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:169
-msgid "同步信号的最后一个比特值 (0 或 1)。"
-msgstr "sync_last_bit: Last bit value of the sync signal (0 or 1)."
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:171
-msgid "4 比特均衡保护序列。"
-msgstr "4-bit equalization guard sequence."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:179
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:190
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:325
-msgid "'field(...)'"
-msgstr "'field(...)'"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:201
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:380
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:391
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:402
-msgid "0"
-msgstr "0"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:212
-msgid "1.0"
-msgstr "1.0"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:234
-msgid "True"
-msgstr "True"
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:247
-msgid ""
-"先发节点: 前导信号 | 同步信号 | 均衡保护 | 切换间隔 | 测量信号 后发节点: 测量信号 | 切换间隔 | 前导信号 | 同步信号 | "
-"均衡保护"
-msgstr ""
-"Initiator node: preamble | sync signal | equalization guard | switch gap "
-"| measurement signal. Responder node: measurement signal | switch gap | "
-"preamble | sync signal | equalization guard."
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:250
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:256
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:266
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:273
-msgid "测量帧配置。"
-msgstr "Measurement frame configuration parameters."
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:252
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:268
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:275
-msgid "组装后的帧比特/符号序列。"
-msgstr "Assembled frame bit/symbol sequence."
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:254
-msgid "仅包含测量信号。"
-msgstr "Contains only the measurement signal."
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:258
-msgid "测量信号序列。"
-msgstr "Contains only the measurement signal."
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:261
-msgid "先发节点: 前导信号 | 同步信号 | 均衡保护 后发节点: 前导信号 | 同步信号 | 均衡保护 | 切换间隔 | 测量信号"
-msgstr ""
-"Initiator node: preamble | sync signal | equalization guard. Responder "
-"node: preamble | sync signal | equalization guard | switch gap | "
-"measurement signal."
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:264
-msgid "用于位置测量事件组的初始化阶段。"
-msgstr "Used for the initialization phase of position measurement event groups."
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:268
-msgid "先发/后发节点结构相同: 前导信号 | 同步信号 | 均衡保护 | 切换间隔 | 测量信号"
-msgstr ""
-"Initiator/responder node frames share the same structure: preamble | sync"
-" signal | equalization guard | switch gap | measurement signal."
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:270
-msgid "用于超宽带脉冲测量的初始化同步阶段, 测量信号应为窄带波形测量信号 1 或 N=1 的窄带波形测量信号 2。"
-msgstr ""
-"Used for the initialization synchronization phase of UWB pulse "
-"measurement. The measurement signal should be narrowband waveform "
-"measurement signal 1 or narrowband waveform measurement signal 2 with "
-"N=1."
-
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:276
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:215
 msgid ""
 "Attributes:     K: 码字长度。     L: 占空因子。     Tc: 码片时长 (秒)。     N_sync: "
 "同步字段符号个数, 0 表示不发送同步字段。     symbol_seq: 同步符号序列 (+1/-1), 长度为 K。     M_seg: "
@@ -464,74 +298,172 @@ msgstr ""
 "in normal mode, determined by the security algorithm in security mode."
 "     L_cp: Cyclic prefix length.     L_zero: Zero-padding suffix length."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:281
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:220
 msgid "31"
 msgstr "31"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:303
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:242
 msgid "1e-09"
 msgstr "1e-09"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:314
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:253
 msgid "8"
 msgstr "8"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:369
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:308
 msgid "None"
 msgstr "None"
 
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:422
-msgid "同步字段由 N_sync 个相同符号重复组成, 每个符号经过插零时域扩展。 总长度: N_sync * K * L 个码片。"
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:354
+msgid ""
+"先发节点: 前导信号 | 同步信号 | 均衡保护 | 切换间隔 | 测量信号 后发节点: 测量信号 | 切换间隔 | 前导信号 | 同步信号 | "
+"均衡保护"
 msgstr ""
-"The sync field consists of N_sync identical repeated symbols, each "
-"undergoing zero-insertion time-domain spreading. Total length: N_sync * K"
-" * L chips."
+"Initiator node: preamble | sync signal | equalization guard | switch gap "
+"| measurement signal. Responder node: measurement signal | switch gap | "
+"preamble | sync signal | equalization guard."
 
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:425
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:439
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:445
-msgid "UWB 脉冲配置。"
-msgstr "UWB pulse configuration."
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md
+msgid "参数"
+msgstr "Parameters"
 
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:427
-msgid "同步字段码片序列。"
-msgstr "Synchronization field chip sequence."
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:357
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:363
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:373
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:380
+msgid "测量帧配置。"
+msgstr "Measurement frame configuration parameters."
 
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:429
-msgid "普通模式: 直接插零扩展。 安全模式 (L_cp>0 或 L_zero>0): 插零扩展后乘以加扰, 增加循环前缀和补零后缀。"
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md
+msgid "返回"
+msgstr "Returns"
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:359
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:375
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:382
+msgid "组装后的帧比特/符号序列。"
+msgstr "Assembled frame bit/symbol sequence."
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:361
+msgid "仅包含测量信号。"
+msgstr "Contains only the measurement signal."
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:365
+msgid "测量信号序列。"
+msgstr "Contains only the measurement signal."
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:368
+msgid "先发节点: 前导信号 | 同步信号 | 均衡保护 后发节点: 前导信号 | 同步信号 | 均衡保护 | 切换间隔 | 测量信号"
 msgstr ""
-"Normal mode: direct zero-insertion spreading. Security mode (L_cp>0 or "
-"L_zero>0): after zero-insertion spreading, multiply by scrambling, then "
-"add cyclic prefix and zero-padding suffix."
+"Initiator node: preamble | sync signal | equalization guard. Responder "
+"node: preamble | sync signal | equalization guard | switch gap | "
+"measurement signal."
 
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:436
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:371
+msgid "用于位置测量事件组的初始化阶段。"
+msgstr "Used for the initialization phase of position measurement event groups."
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:375
+msgid "先发/后发节点结构相同: 前导信号 | 同步信号 | 均衡保护 | 切换间隔 | 测量信号"
+msgstr ""
+"Initiator/responder node frames share the same structure: preamble | sync"
+" signal | equalization guard | switch gap | measurement signal."
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:377
+msgid "用于超宽带脉冲测量的初始化同步阶段, 测量信号应为窄带波形测量信号 1 或 N=1 的窄带波形测量信号 2。"
+msgstr ""
+"Used for the initialization synchronization phase of UWB pulse "
+"measurement. The measurement signal should be narrowband waveform "
+"measurement signal 1 or narrowband waveform measurement signal 2 with "
+"N=1."
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:382
+msgid "帧结构: 前导信号 | 同步信号 | NACK 反馈序列"
+msgstr "Frame structure: preamble | sync signal | NACK feedback sequence."
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:384
+msgid "无线帧类型 (1-4), 决定 m 序列长度。"
+msgstr ""
+"Radio frame type, used to determine the m-sequence length for semi-"
+"reliable multicast feedback."
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:385
+msgid "m 序列索引, 由高层信令配置。"
+msgstr "m-sequence index, configured by higher layer signaling."
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:386
+msgid "m 序列循环移位量, 由高层信令配置。"
+msgstr "m-sequence cyclic shift amount, configured by higher layer signaling."
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:387
+msgid "符号速率, 用于前导码生成。"
+msgstr "Symbol rate, used for preamble generation."
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:389
+msgid "NACK 反馈序列比特数组 (不含前导和同步, 由调用者拼接)。"
+msgstr ""
+"NACK feedback sequence bit array (excluding preamble and sync, to be "
+"concatenated by the caller)."
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:389
 msgid "测量字段由 M_seg 个测量子片段组成, 每个子片段包含 N_seg 个 CTS 符号, 相邻子片段之间有时间间隔。"
 msgstr ""
 "The measurement field consists of M_seg measurement sub-segments, each "
 "containing N_seg CTS symbols, with time gaps between adjacent sub-"
 "segments."
 
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:440
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:392
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:398
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:406
+msgid "UWB 脉冲配置。"
+msgstr "UWB pulse configuration."
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:393
 msgid "CTS 测量符号序列, 默认使用 config.symbol_seq。"
 msgstr "CTS measurement symbol sequence, defaults to config.symbol_seq."
 
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:442
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:395
 msgid "测量字段码片序列。"
 msgstr "Measurement field chip sequence."
 
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:443
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:396
 msgid "帧结构: 同步字段 | 测量字段"
 msgstr "Frame structure: sync field | measurement field."
 
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:446
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:399
 msgid "CTS 测量符号序列, 默认使用同步符号序列。"
 msgstr ""
 "CTS measurement symbol sequence, defaults to the synchronization symbol "
 "sequence."
 
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:448
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:401
 msgid "完整帧码片序列。"
 msgstr "Full frame chip sequence."
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:403
+msgid "同步字段由 N_sync 个相同符号重复组成, 每个符号经过插零时域扩展。 总长度: N_sync * K * L 个码片。"
+msgstr ""
+"The sync field consists of N_sync identical repeated symbols, each "
+"undergoing zero-insertion time-domain spreading. Total length: N_sync * K"
+" * L chips."
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:408
+msgid "同步字段码片序列。"
+msgstr "Synchronization field chip sequence."
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:410
+msgid "同步信号最后 1 比特为 1 时: 0101 (MSB 优先) 同步信号最后 1 比特为 0 时: 1010 (MSB 优先)"
+msgstr ""
+"When the last bit of the sync signal is 1: 0101 (MSB first). When the "
+"last bit of the sync signal is 0: 1010 (MSB first)."
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:413
+msgid "同步信号的最后一个比特值 (0 或 1)。"
+msgstr "sync_last_bit: Last bit value of the sync signal (0 or 1)."
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:415
+msgid "4 比特均衡保护序列。"
+msgstr "4-bit equalization guard sequence."
 
 #~ msgid ""
 #~ "Args:     radio_ft: 无线帧类型 (1-4)。     m_index:"
@@ -589,4 +521,57 @@ msgstr "Full frame chip sequence."
 
 #~ msgid "Returns:     完整帧码片序列。"
 #~ msgstr "Returns:     Complete frame chip sequence."
+
+#~ msgid ""
+#~ "{py:obj}`_nack_m_sequence "
+#~ "<nearlink_sdr.phy.measurement_frame._nack_m_sequence>`"
+#~ msgstr ""
+#~ "{py:obj}`_nack_m_sequence "
+#~ "<nearlink_sdr.phy.measurement_frame._nack_m_sequence>`"
+
+#~ msgid "为指定无线帧类型生成 NACK 反馈 m 序列。"
+#~ msgstr "Generate a NACK feedback m-sequence for the specified radio frame type."
+
+#~ msgid ""
+#~ "{py:obj}`_apply_duty_cycle "
+#~ "<nearlink_sdr.phy.measurement_frame._apply_duty_cycle>`"
+#~ msgstr ""
+#~ "{py:obj}`_apply_duty_cycle "
+#~ "<nearlink_sdr.phy.measurement_frame._apply_duty_cycle>`"
+
+#~ msgid "对码字序列进行占空比为 1/L 的插零时域扩展。"
+#~ msgstr ""
+#~ "Apply zero-insertion time-domain "
+#~ "spreading with a duty cycle of 1/L"
+#~ " to the codeword sequence."
+
+#~ msgid ""
+#~ "{py:obj}`_build_cts_symbol "
+#~ "<nearlink_sdr.phy.measurement_frame._build_cts_symbol>`"
+#~ msgstr ""
+#~ "{py:obj}`_build_cts_symbol "
+#~ "<nearlink_sdr.phy.measurement_frame._build_cts_symbol>`"
+
+#~ msgid "构建单个 CTS 测量符号。"
+#~ msgstr "Build a single CTS measurement symbol."
+
+#~ msgid "无线帧类型 (1-4)。"
+#~ msgstr "Wireless frame type (1-4)."
+
+#~ msgid "m 序列索引。"
+#~ msgstr "m-sequence index."
+
+#~ msgid "循环移位量。"
+#~ msgstr "Cyclic shift amount."
+
+#~ msgid "NACK 反馈序列比特数组。"
+#~ msgstr "NACK feedback sequence bit array."
+
+#~ msgid "普通模式: 直接插零扩展。 安全模式 (L_cp>0 或 L_zero>0): 插零扩展后乘以加扰, 增加循环前缀和补零后缀。"
+#~ msgstr ""
+#~ "Normal mode: direct zero-insertion "
+#~ "spreading. Security mode (L_cp>0 or "
+#~ "L_zero>0): after zero-insertion spreading, "
+#~ "multiply by scrambling, then add cyclic"
+#~ " prefix and zero-padding suffix."
 

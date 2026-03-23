@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 04:07+0800\n"
+"POT-Creation-Date: 2026-03-24 06:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -48,7 +48,7 @@ msgid "{py:obj}`UWBPulseConfig <nearlink_sdr.phy.uwb_pulse.UWBPulseConfig>`"
 msgstr "{py:obj}`UWBPulseConfig <nearlink_sdr.phy.uwb_pulse.UWBPulseConfig>`"
 
 #: ../../../src/nearlink_sdr/phy/uwb_pulse.py:20
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:66
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:55
 msgid "UWB 脉冲配置参数。"
 msgstr "UWB pulse configuration parameters."
 
@@ -58,13 +58,13 @@ msgstr "Functions"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.md:30
 #, python-brace-format
-msgid "{py:obj}`_i0 <nearlink_sdr.phy.uwb_pulse._i0>`"
-msgstr "{py:obj}`_i0 <nearlink_sdr.phy.uwb_pulse._i0>`"
+msgid "{py:obj}`chip_modulate <nearlink_sdr.phy.uwb_pulse.chip_modulate>`"
+msgstr "{py:obj}`chip_modulate <nearlink_sdr.phy.uwb_pulse.chip_modulate>`"
 
 #: ../../../src/nearlink_sdr/phy/uwb_pulse.py:32
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:58
-msgid "第一类零阶修正贝塞尔函数。"
-msgstr "Modified Bessel function of the first kind, order zero."
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:162
+msgid "码片载波调制。"
+msgstr "Chip carrier modulation."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.md:34
 #, python-brace-format
@@ -72,21 +72,11 @@ msgid "{py:obj}`kaiser_pulse <nearlink_sdr.phy.uwb_pulse.kaiser_pulse>`"
 msgstr "{py:obj}`kaiser_pulse <nearlink_sdr.phy.uwb_pulse.kaiser_pulse>`"
 
 #: ../../../src/nearlink_sdr/phy/uwb_pulse.py:36
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:173
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:169
 msgid "生成 Kaiser 参考脉冲波形 r(t)。"
 msgstr "Generate the Kaiser reference pulse waveform r(t)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.md:38
-#, python-brace-format
-msgid "{py:obj}`chip_modulate <nearlink_sdr.phy.uwb_pulse.chip_modulate>`"
-msgstr "{py:obj}`chip_modulate <nearlink_sdr.phy.uwb_pulse.chip_modulate>`"
-
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:40
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:180
-msgid "码片载波调制。"
-msgstr "Chip carrier modulation."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.md:42
 #, python-brace-format
 msgid ""
 "{py:obj}`normalized_cross_correlation "
@@ -95,28 +85,28 @@ msgstr ""
 "{py:obj}`normalized_cross_correlation "
 "<nearlink_sdr.phy.uwb_pulse.normalized_cross_correlation>`"
 
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:44
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:187
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:40
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:176
 msgid "计算归一化互相关函数 |φ(τ)|。"
 msgstr "Compute the normalized cross-correlation function |φ(τ)|."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.md:46
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.md:42
 #, python-brace-format
 msgid "{py:obj}`validate_pulse <nearlink_sdr.phy.uwb_pulse.validate_pulse>`"
 msgstr "{py:obj}`validate_pulse <nearlink_sdr.phy.uwb_pulse.validate_pulse>`"
 
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:48
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:194
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:44
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:183
 msgid "验证发射脉冲波形是否满足标准要求。"
 msgstr ""
 "Verify whether the transmit pulse waveform meets the standard "
 "requirements."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.md:52
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.md:48
 msgid "API"
 msgstr "API"
 
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:68
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:57
 msgid ""
 "Attributes:     tp_ns: 带宽参数 Tp (ns)     tw_ns: 归一化互相关函数参数 Tw (ns)     "
 "beta: Kaiser 波形形状参数     max_prf_mhz: 最大脉冲重复频率 (MHz)     sample_rate_ghz: "
@@ -127,71 +117,47 @@ msgstr ""
 "shape parameter.     max_prf_mhz: Maximum pulse repetition frequency "
 "(MHz).     sample_rate_ghz: Sample rate (GHz)."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.md:73
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.md:62
 msgid "2.0"
 msgstr "2.0"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.md:84
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.md:73
 msgid "0.5"
 msgstr "0.5"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.md:95
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.md:84
 msgid "10.0"
 msgstr "10.0"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.md:106
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.md:95
 msgid "499.2"
 msgstr "499.2"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.md:117
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.md:106
 msgid "4.0"
 msgstr "4.0"
 
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:129
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:118
 msgid "创建 -10dB 带宽 >= 500MHz 的配置。"
 msgstr "create -10dB bandwidth >= 500MHz configuration."
 
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:138
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:127
 msgid "创建 -10dB 带宽 > 1300MHz 的配置。"
 msgstr "create -10dB bandwidth > 1300MHz configuration."
 
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:147
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:136
 msgid "脉冲持续时间 L = 3 * Tp (ns)。"
 msgstr "Pulse duration L = 3 * Tp (ns)."
 
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:156
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:145
 msgid "码片持续时间 Tc = 1 / max_prf (ns)。"
 msgstr "Chip duration Tc = 1 / max_prf (ns)."
 
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:165
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:154
 msgid "每个码片的采样点数。"
 msgstr "Number of samples per chip."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.md
-msgid "参数"
-msgstr "Parameters"
-
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:175
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:186
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:197
-msgid "UWB 脉冲配置"
-msgstr "UWB pulse configuration parameters."
-
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:176
-msgid "采样点数, 默认根据脉冲持续时间和采样率计算"
-msgstr ""
-"Number of sample points, defaults to calculation based on pulse duration "
-"and sample rate"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.md
-msgid "返回"
-msgstr "Returns"
-
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:178
-msgid "归一化的 Kaiser 脉冲波形采样值"
-msgstr "Normalized Kaiser pulse waveform samples."
-
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:182
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:164
 #, python-brace-format
 msgid ""
 "每个码片 c(n) ∈ {-1, 0, +1} 的调制信号为:     c(n) · r(t - n·Tc) · cos[2π·fc·(t - "
@@ -200,43 +166,66 @@ msgstr ""
 "The modulated signal for each chip c(n) ∈ {-1, 0, +1} is:     c(n) · r(t "
 "- n·Tc) · cos[2π·fc·(t - n·Tc)]."
 
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:185
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.md
+msgid "参数"
+msgstr "Parameters"
+
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:167
 msgid "码片序列, 值为 -1, 0 或 +1"
 msgstr "Chip sequence, values are -1, 0, or +1"
 
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:187
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:168
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:171
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:186
+msgid "UWB 脉冲配置"
+msgstr "UWB pulse configuration parameters."
+
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:169
 msgid "载波中心频率 (GHz)"
 msgstr "Carrier center frequency (GHz)"
 
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:189
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.md
+msgid "返回"
+msgstr "Returns"
+
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:171
 msgid "调制后的时域信号"
 msgstr "Modulated time-domain signal"
 
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:189
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:172
+msgid "采样点数, 默认根据脉冲持续时间和采样率计算"
+msgstr ""
+"Number of sample points, defaults to calculation based on pulse duration "
+"and sample rate"
+
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:174
+msgid "归一化的 Kaiser 脉冲波形采样值"
+msgstr "Normalized Kaiser pulse waveform samples."
+
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:178
 msgid "参考脉冲波形"
 msgstr "Reference pulse waveform"
 
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:190
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:196
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:179
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:185
 msgid "发射脉冲波形"
 msgstr "Transmit pulse waveform"
 
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:192
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:181
 msgid "归一化互相关函数的幅度"
 msgstr "Amplitude of normalized cross-correlation function"
 
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:198
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:187
 msgid "主瓣最低强度阈值 (默认 0.92)"
 msgstr "Main lobe minimum intensity threshold (default 0.92)"
 
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:199
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:188
 msgid "旁瓣最高强度阈值 (默认 0.1)"
 msgstr "Side lobe maximum intensity threshold (default 0.1)"
 
-#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:201
+#: ../../../src/nearlink_sdr/phy/uwb_pulse.py:190
 msgid "(是否通过, 主瓣最小强度, 旁瓣最大强度)"
-msgstr ""
-"(pass/fail, minimum main-lobe intensity, maximum side-lobe intensity)."
+msgstr "(pass/fail, minimum main-lobe intensity, maximum side-lobe intensity)."
 
 #~ msgid "Args:     cfg: UWB 脉冲配置     num_samples: 采样点数, 默认根据脉冲持续时间和采样率计算"
 #~ msgstr ""
@@ -272,4 +261,10 @@ msgstr ""
 #~ "intensity threshold (default 0.92).     "
 #~ "side_lobe_threshold: Maximum side-lobe "
 #~ "intensity threshold (default 0.1)."
+
+#~ msgid "{py:obj}`_i0 <nearlink_sdr.phy.uwb_pulse._i0>`"
+#~ msgstr "{py:obj}`_i0 <nearlink_sdr.phy.uwb_pulse._i0>`"
+
+#~ msgid "第一类零阶修正贝塞尔函数。"
+#~ msgstr "Modified Bessel function of the first kind, order zero."
 

@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"POT-Creation-Date: 2026-03-24 06:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: en <LL@li.org>\n"
 "Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1
@@ -33,8 +33,8 @@ msgstr ""
 #: ../../../src/nearlink_sdr/mac/security.py:9
 msgid "实现 SLE 配对和鉴权管理所需的信令消息编解码。"
 msgstr ""
-"Implements encoding/decoding for signaling messages required by SLE pairing "
-"and authentication management."
+"Implements encoding/decoding for signaling messages required by SLE "
+"pairing and authentication management."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:10
 msgid "Module Contents"
@@ -46,600 +46,588 @@ msgstr "Classes"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:18
 #, python-brace-format
-msgid "{py:obj}`_BytesMessage <nearlink_sdr.mac.security._BytesMessage>`"
-msgstr "{py:obj}`_BytesMessage <nearlink_sdr.mac.security._BytesMessage>`"
-
-#: ../../../src/nearlink_sdr/mac/security.py:20
-#: ../../../src/nearlink_sdr/mac/security.py:131
-msgid "仅包含单个 bytes 字段的消息基类。"
-msgstr "Base class for messages containing a single bytes field."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:22
-#, python-brace-format
-msgid ""
-"{py:obj}`_TwoBytesMessage <nearlink_sdr.mac.security._TwoBytesMessage>`"
-msgstr ""
-"{py:obj}`_TwoBytesMessage <nearlink_sdr.mac.security._TwoBytesMessage>`"
-
-#: ../../../src/nearlink_sdr/mac/security.py:24
-#: ../../../src/nearlink_sdr/mac/security.py:156
-msgid "包含两个等长 bytes 字段的消息基类。"
-msgstr "Base class for messages containing two equal-length bytes fields."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:26
-#, python-brace-format
-msgid "{py:obj}`PairingInitiate <nearlink_sdr.mac.security.PairingInitiate>`"
-msgstr "{py:obj}`PairingInitiate <nearlink_sdr.mac.security.PairingInitiate>`"
-
-#: ../../../src/nearlink_sdr/mac/security.py:28
-#: ../../../src/nearlink_sdr/mac/security.py:181
-msgid "配对发起 (标准 9.2)。"
-msgstr "Pairing initiate (standard 9.2)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:30
-#, python-brace-format
-msgid "{py:obj}`PairingRequest <nearlink_sdr.mac.security.PairingRequest>`"
-msgstr "{py:obj}`PairingRequest <nearlink_sdr.mac.security.PairingRequest>`"
-
-#: ../../../src/nearlink_sdr/mac/security.py:32
-#: ../../../src/nearlink_sdr/mac/security.py:239
-msgid "配对请求 (标准 9.2)。"
-msgstr "Pairing request (standard 9.2)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:34
-#, python-brace-format
-msgid "{py:obj}`PairingResponse <nearlink_sdr.mac.security.PairingResponse>`"
-msgstr "{py:obj}`PairingResponse <nearlink_sdr.mac.security.PairingResponse>`"
-
-#: ../../../src/nearlink_sdr/mac/security.py:36
-#: ../../../src/nearlink_sdr/mac/security.py:363
-msgid "配对响应 (标准 9.2)。"
-msgstr "Pairing response (standard 9.2)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:38
-#, python-brace-format
-msgid "{py:obj}`PairingConfirm <nearlink_sdr.mac.security.PairingConfirm>`"
-msgstr "{py:obj}`PairingConfirm <nearlink_sdr.mac.security.PairingConfirm>`"
-
-#: ../../../src/nearlink_sdr/mac/security.py:40
-#: ../../../src/nearlink_sdr/mac/security.py:487
-msgid "配对确认 (标准 9.2)。"
-msgstr "Pairing confirmation (standard 9.2)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:42
-#, python-brace-format
-msgid ""
-"{py:obj}`PairingInitialInfo <nearlink_sdr.mac.security.PairingInitialInfo>`"
-msgstr ""
-"{py:obj}`PairingInitialInfo <nearlink_sdr.mac.security.PairingInitialInfo>`"
-
-#: ../../../src/nearlink_sdr/mac/security.py:44
-#: ../../../src/nearlink_sdr/mac/security.py:591
-msgid "配对初始信息 (标准 9.2): T 节点公钥。"
-msgstr "Pairing initial information (standard 9.2): T node public key."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:46
-#, python-brace-format
-msgid ""
-"{py:obj}`TNodeConfirmCode <nearlink_sdr.mac.security.TNodeConfirmCode>`"
-msgstr ""
-"{py:obj}`TNodeConfirmCode <nearlink_sdr.mac.security.TNodeConfirmCode>`"
-
-#: ../../../src/nearlink_sdr/mac/security.py:48
-#: ../../../src/nearlink_sdr/mac/security.py:645
-msgid "T 节点确认码 (标准 9.2)。"
-msgstr "T node confirmation code (standard 9.2)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:50
-#, python-brace-format
-msgid "{py:obj}`RaMessage <nearlink_sdr.mac.security.RaMessage>`"
-msgstr "{py:obj}`RaMessage <nearlink_sdr.mac.security.RaMessage>`"
-
-#: ../../../src/nearlink_sdr/mac/security.py:52
-#: ../../../src/nearlink_sdr/mac/security.py:688
-msgid "Ra 随机数消息 (标准 9.2)。"
-msgstr "Ra random number message (standard 9.2)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:54
-#, python-brace-format
-msgid "{py:obj}`RbMessage <nearlink_sdr.mac.security.RbMessage>`"
-msgstr "{py:obj}`RbMessage <nearlink_sdr.mac.security.RbMessage>`"
-
-#: ../../../src/nearlink_sdr/mac/security.py:56
-#: ../../../src/nearlink_sdr/mac/security.py:731
-msgid "Rb 随机数消息 (标准 9.2)。"
-msgstr "Rb random number message (standard 9.2)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:58
-#, python-brace-format
-msgid ""
-"{py:obj}`GNodeConfirmCodeWithRandom "
-"<nearlink_sdr.mac.security.GNodeConfirmCodeWithRandom>`"
-msgstr ""
-"{py:obj}`GNodeConfirmCodeWithRandom "
-"<nearlink_sdr.mac.security.GNodeConfirmCodeWithRandom>`"
-
-#: ../../../src/nearlink_sdr/mac/security.py:60
-#: ../../../src/nearlink_sdr/mac/security.py:774
-msgid "G 节点确认码与随机数 (标准 9.2)。"
-msgstr "G node confirmation code and random number (standard 9.2)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:62
-#, python-brace-format
-msgid ""
-"{py:obj}`TNodeConfirmCodeWithRandom "
-"<nearlink_sdr.mac.security.TNodeConfirmCodeWithRandom>`"
-msgstr ""
-"{py:obj}`TNodeConfirmCodeWithRandom "
-"<nearlink_sdr.mac.security.TNodeConfirmCodeWithRandom>`"
-
-#: ../../../src/nearlink_sdr/mac/security.py:64
-#: ../../../src/nearlink_sdr/mac/security.py:828
-msgid "T 节点确认码与随机数 (标准 9.2)。"
-msgstr "T node confirmation code and random number (standard 9.2)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:66
-#, python-brace-format
-msgid ""
-"{py:obj}`GNodeConfirmCode <nearlink_sdr.mac.security.GNodeConfirmCode>`"
-msgstr ""
-"{py:obj}`GNodeConfirmCode <nearlink_sdr.mac.security.GNodeConfirmCode>`"
-
-#: ../../../src/nearlink_sdr/mac/security.py:68
-#: ../../../src/nearlink_sdr/mac/security.py:882
-msgid "G 节点确认码 (标准 9.2)。"
-msgstr "G node confirmation code (standard 9.2)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:70
-#, python-brace-format
-msgid ""
-"{py:obj}`GNodeDHKeyVerify <nearlink_sdr.mac.security.GNodeDHKeyVerify>`"
-msgstr ""
-"{py:obj}`GNodeDHKeyVerify <nearlink_sdr.mac.security.GNodeDHKeyVerify>`"
-
-#: ../../../src/nearlink_sdr/mac/security.py:72
-#: ../../../src/nearlink_sdr/mac/security.py:925
-msgid "G 节点 DH 密钥校验码 (标准 9.2)。"
-msgstr "G node DH key check code (standard 9.2)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:74
-#, python-brace-format
-msgid ""
-"{py:obj}`TNodeDHKeyVerify <nearlink_sdr.mac.security.TNodeDHKeyVerify>`"
-msgstr ""
-"{py:obj}`TNodeDHKeyVerify <nearlink_sdr.mac.security.TNodeDHKeyVerify>`"
-
-#: ../../../src/nearlink_sdr/mac/security.py:76
-#: ../../../src/nearlink_sdr/mac/security.py:968
-msgid "T 节点 DH 密钥校验码 (标准 9.2)。"
-msgstr "T node DH key check code (standard 9.2)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:78
-#, python-brace-format
-msgid "{py:obj}`PairingFailure <nearlink_sdr.mac.security.PairingFailure>`"
-msgstr "{py:obj}`PairingFailure <nearlink_sdr.mac.security.PairingFailure>`"
-
-#: ../../../src/nearlink_sdr/mac/security.py:80
-#: ../../../src/nearlink_sdr/mac/security.py:1009
-msgid "配对失败 (标准 9.2, 表68)。"
-msgstr "pairingfailure (standard 9.2, table68)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:82
-#, python-brace-format
-msgid "{py:obj}`RgMessage <nearlink_sdr.mac.security.RgMessage>`"
-msgstr "{py:obj}`RgMessage <nearlink_sdr.mac.security.RgMessage>`"
-
-#: ../../../src/nearlink_sdr/mac/security.py:84
-#: ../../../src/nearlink_sdr/mac/security.py:1069
-msgid "Rg 随机数消息 (标准 9.2)。"
-msgstr "Rg random number message (standard 9.2)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:86
-#, python-brace-format
-msgid "{py:obj}`RtMessage <nearlink_sdr.mac.security.RtMessage>`"
-msgstr "{py:obj}`RtMessage <nearlink_sdr.mac.security.RtMessage>`"
-
-#: ../../../src/nearlink_sdr/mac/security.py:88
-#: ../../../src/nearlink_sdr/mac/security.py:1123
-msgid "Rt 随机数消息 (标准 9.2)。"
-msgstr "Rt random number message (standard 9.2)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:90
-#, python-brace-format
-msgid ""
-"{py:obj}`ResolutionAlgorithm "
-"<nearlink_sdr.mac.security.ResolutionAlgorithm>`"
-msgstr ""
-"{py:obj}`ResolutionAlgorithm "
-"<nearlink_sdr.mac.security.ResolutionAlgorithm>`"
-
-#: ../../../src/nearlink_sdr/mac/security.py:92
-#: ../../../src/nearlink_sdr/mac/security.py:1175
-msgid "解析算法枚举 (标准 9.3.3)。"
-msgstr "Resolution algorithm enumeration (standard 9.3.3)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:94
-#, python-brace-format
 msgid "{py:obj}`AddrType <nearlink_sdr.mac.security.AddrType>`"
 msgstr "{py:obj}`AddrType <nearlink_sdr.mac.security.AddrType>`"
 
-#: ../../../src/nearlink_sdr/mac/security.py:96
-#: ../../../src/nearlink_sdr/mac/security.py:1203
+#: ../../../src/nearlink_sdr/mac/security.py:20
+#: ../../../src/nearlink_sdr/mac/security.py:123
 msgid "媒体接入层标识类型 (标准 9.3.3)。"
 msgstr "Media access layer identifier type (standard 9.3.3)."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:98
-#, python-brace-format
-msgid "{py:obj}`GNodeIRK <nearlink_sdr.mac.security.GNodeIRK>`"
-msgstr "{py:obj}`GNodeIRK <nearlink_sdr.mac.security.GNodeIRK>`"
-
-#: ../../../src/nearlink_sdr/mac/security.py:100
-#: ../../../src/nearlink_sdr/mac/security.py:1251
-msgid "G 节点身份解析密钥信息 (标准 9.3.3)。"
-msgstr "G node identity resolving key information (standard 9.3.3)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:102
-#, python-brace-format
-msgid "{py:obj}`TNodeIRK <nearlink_sdr.mac.security.TNodeIRK>`"
-msgstr "{py:obj}`TNodeIRK <nearlink_sdr.mac.security.TNodeIRK>`"
-
-#: ../../../src/nearlink_sdr/mac/security.py:104
-#: ../../../src/nearlink_sdr/mac/security.py:1331
-msgid "T 节点身份解析密钥信息 (标准 9.3.3)。"
-msgstr "T node identity resolving key information (standard 9.3.3)."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:106
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:22
 #, python-brace-format
 msgid "{py:obj}`GNodeAddress <nearlink_sdr.mac.security.GNodeAddress>`"
 msgstr "{py:obj}`GNodeAddress <nearlink_sdr.mac.security.GNodeAddress>`"
 
-#: ../../../src/nearlink_sdr/mac/security.py:108
-#: ../../../src/nearlink_sdr/mac/security.py:1411
+#: ../../../src/nearlink_sdr/mac/security.py:24
+#: ../../../src/nearlink_sdr/mac/security.py:171
 msgid "G 节点媒体接入层标识信息 (标准 9.3.3)。"
 msgstr "G node media access layer identifier information (standard 9.3.3)."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:110
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:26
+#, python-brace-format
+msgid "{py:obj}`GNodeConfirmCode <nearlink_sdr.mac.security.GNodeConfirmCode>`"
+msgstr "{py:obj}`GNodeConfirmCode <nearlink_sdr.mac.security.GNodeConfirmCode>`"
+
+#: ../../../src/nearlink_sdr/mac/security.py:28
+#: ../../../src/nearlink_sdr/mac/security.py:242
+msgid "G 节点确认码 (标准 9.2)。"
+msgstr "G node confirmation code (standard 9.2)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:30
+#, python-brace-format
+msgid ""
+"{py:obj}`GNodeConfirmCodeWithRandom "
+"<nearlink_sdr.mac.security.GNodeConfirmCodeWithRandom>`"
+msgstr ""
+"{py:obj}`GNodeConfirmCodeWithRandom "
+"<nearlink_sdr.mac.security.GNodeConfirmCodeWithRandom>`"
+
+#: ../../../src/nearlink_sdr/mac/security.py:32
+#: ../../../src/nearlink_sdr/mac/security.py:285
+msgid "G 节点确认码与随机数 (标准 9.2)。"
+msgstr "G node confirmation code and random number (standard 9.2)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:34
+#, python-brace-format
+msgid "{py:obj}`GNodeDHKeyVerify <nearlink_sdr.mac.security.GNodeDHKeyVerify>`"
+msgstr "{py:obj}`GNodeDHKeyVerify <nearlink_sdr.mac.security.GNodeDHKeyVerify>`"
+
+#: ../../../src/nearlink_sdr/mac/security.py:36
+#: ../../../src/nearlink_sdr/mac/security.py:339
+msgid "G 节点 DH 密钥校验码 (标准 9.2)。"
+msgstr "G node DH key check code (standard 9.2)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:38
+#, python-brace-format
+msgid "{py:obj}`GNodeIRK <nearlink_sdr.mac.security.GNodeIRK>`"
+msgstr "{py:obj}`GNodeIRK <nearlink_sdr.mac.security.GNodeIRK>`"
+
+#: ../../../src/nearlink_sdr/mac/security.py:40
+#: ../../../src/nearlink_sdr/mac/security.py:380
+msgid "G 节点身份解析密钥信息 (标准 9.3.3)。"
+msgstr "G node identity resolving key information (standard 9.3.3)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:42
+#, python-brace-format
+msgid ""
+"{py:obj}`MulticastAlgorithmConfig "
+"<nearlink_sdr.mac.security.MulticastAlgorithmConfig>`"
+msgstr ""
+"{py:obj}`MulticastAlgorithmConfig "
+"<nearlink_sdr.mac.security.MulticastAlgorithmConfig>`"
+
+#: ../../../src/nearlink_sdr/mac/security.py:44
+#: ../../../src/nearlink_sdr/mac/security.py:460
+msgid "组播安全算法指示消息 (标准 9.3.2)。"
+msgstr "Multicast security algorithm indication message (standard 9.3.2)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:46
+#, python-brace-format
+msgid ""
+"{py:obj}`MulticastKeyConfig "
+"<nearlink_sdr.mac.security.MulticastKeyConfig>`"
+msgstr ""
+"{py:obj}`MulticastKeyConfig "
+"<nearlink_sdr.mac.security.MulticastKeyConfig>`"
+
+#: ../../../src/nearlink_sdr/mac/security.py:48
+#: ../../../src/nearlink_sdr/mac/security.py:551
+msgid "组播密钥配置消息 (标准 9.3.2)。"
+msgstr "Multicast key configuration message (standard 9.3.2)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:50
+#, python-brace-format
+msgid "{py:obj}`PairingConfirm <nearlink_sdr.mac.security.PairingConfirm>`"
+msgstr "{py:obj}`PairingConfirm <nearlink_sdr.mac.security.PairingConfirm>`"
+
+#: ../../../src/nearlink_sdr/mac/security.py:52
+#: ../../../src/nearlink_sdr/mac/security.py:609
+msgid "配对确认 (标准 9.2)。"
+msgstr "Pairing confirmation (standard 9.2)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:54
+#, python-brace-format
+msgid "{py:obj}`PairingFailure <nearlink_sdr.mac.security.PairingFailure>`"
+msgstr "{py:obj}`PairingFailure <nearlink_sdr.mac.security.PairingFailure>`"
+
+#: ../../../src/nearlink_sdr/mac/security.py:56
+#: ../../../src/nearlink_sdr/mac/security.py:711
+msgid "配对失败 (标准 9.2, 表68)。"
+msgstr "pairingfailure (standard 9.2, table68)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:58
+#, python-brace-format
+msgid ""
+"{py:obj}`PairingInitialInfo "
+"<nearlink_sdr.mac.security.PairingInitialInfo>`"
+msgstr ""
+"{py:obj}`PairingInitialInfo "
+"<nearlink_sdr.mac.security.PairingInitialInfo>`"
+
+#: ../../../src/nearlink_sdr/mac/security.py:60
+#: ../../../src/nearlink_sdr/mac/security.py:771
+msgid "配对初始信息 (标准 9.2): T 节点公钥。"
+msgstr "Pairing initial information (standard 9.2): T node public key."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:62
+#, python-brace-format
+msgid "{py:obj}`PairingInitiate <nearlink_sdr.mac.security.PairingInitiate>`"
+msgstr "{py:obj}`PairingInitiate <nearlink_sdr.mac.security.PairingInitiate>`"
+
+#: ../../../src/nearlink_sdr/mac/security.py:64
+#: ../../../src/nearlink_sdr/mac/security.py:823
+msgid "配对发起 (标准 9.2)。"
+msgstr "Pairing initiate (standard 9.2)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:66
+#, python-brace-format
+msgid "{py:obj}`PairingRequest <nearlink_sdr.mac.security.PairingRequest>`"
+msgstr "{py:obj}`PairingRequest <nearlink_sdr.mac.security.PairingRequest>`"
+
+#: ../../../src/nearlink_sdr/mac/security.py:68
+#: ../../../src/nearlink_sdr/mac/security.py:881
+msgid "配对请求 (标准 9.2)。"
+msgstr "Pairing request (standard 9.2)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:70
+#, python-brace-format
+msgid "{py:obj}`PairingResponse <nearlink_sdr.mac.security.PairingResponse>`"
+msgstr "{py:obj}`PairingResponse <nearlink_sdr.mac.security.PairingResponse>`"
+
+#: ../../../src/nearlink_sdr/mac/security.py:72
+#: ../../../src/nearlink_sdr/mac/security.py:1005
+msgid "配对响应 (标准 9.2)。"
+msgstr "Pairing response (standard 9.2)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:74
+#, python-brace-format
+msgid "{py:obj}`RaMessage <nearlink_sdr.mac.security.RaMessage>`"
+msgstr "{py:obj}`RaMessage <nearlink_sdr.mac.security.RaMessage>`"
+
+#: ../../../src/nearlink_sdr/mac/security.py:76
+#: ../../../src/nearlink_sdr/mac/security.py:1131
+msgid "Ra 随机数消息 (标准 9.2)。"
+msgstr "Ra random number message (standard 9.2)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:78
+#, python-brace-format
+msgid "{py:obj}`RbMessage <nearlink_sdr.mac.security.RbMessage>`"
+msgstr "{py:obj}`RbMessage <nearlink_sdr.mac.security.RbMessage>`"
+
+#: ../../../src/nearlink_sdr/mac/security.py:80
+#: ../../../src/nearlink_sdr/mac/security.py:1174
+msgid "Rb 随机数消息 (标准 9.2)。"
+msgstr "Rb random number message (standard 9.2)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:82
+#, python-brace-format
+msgid ""
+"{py:obj}`ResolutionAlgorithm "
+"<nearlink_sdr.mac.security.ResolutionAlgorithm>`"
+msgstr ""
+"{py:obj}`ResolutionAlgorithm "
+"<nearlink_sdr.mac.security.ResolutionAlgorithm>`"
+
+#: ../../../src/nearlink_sdr/mac/security.py:84
+#: ../../../src/nearlink_sdr/mac/security.py:1215
+msgid "解析算法枚举 (标准 9.3.3)。"
+msgstr "Resolution algorithm enumeration (standard 9.3.3)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:86
+#, python-brace-format
+msgid "{py:obj}`RgMessage <nearlink_sdr.mac.security.RgMessage>`"
+msgstr "{py:obj}`RgMessage <nearlink_sdr.mac.security.RgMessage>`"
+
+#: ../../../src/nearlink_sdr/mac/security.py:88
+#: ../../../src/nearlink_sdr/mac/security.py:1245
+msgid "Rg 随机数消息 (标准 9.2)。"
+msgstr "Rg random number message (standard 9.2)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:90
+#, python-brace-format
+msgid "{py:obj}`RtMessage <nearlink_sdr.mac.security.RtMessage>`"
+msgstr "{py:obj}`RtMessage <nearlink_sdr.mac.security.RtMessage>`"
+
+#: ../../../src/nearlink_sdr/mac/security.py:92
+#: ../../../src/nearlink_sdr/mac/security.py:1299
+msgid "Rt 随机数消息 (标准 9.2)。"
+msgstr "Rt random number message (standard 9.2)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:94
 #, python-brace-format
 msgid "{py:obj}`TNodeAddress <nearlink_sdr.mac.security.TNodeAddress>`"
 msgstr "{py:obj}`TNodeAddress <nearlink_sdr.mac.security.TNodeAddress>`"
 
-#: ../../../src/nearlink_sdr/mac/security.py:112
-#: ../../../src/nearlink_sdr/mac/security.py:1480
+#: ../../../src/nearlink_sdr/mac/security.py:96
+#: ../../../src/nearlink_sdr/mac/security.py:1351
 msgid "T 节点媒体接入层标识信息 (标准 9.3.3)。"
 msgstr "T node media access layer identifier information (standard 9.3.3)."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:114
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:98
+#, python-brace-format
+msgid "{py:obj}`TNodeConfirmCode <nearlink_sdr.mac.security.TNodeConfirmCode>`"
+msgstr "{py:obj}`TNodeConfirmCode <nearlink_sdr.mac.security.TNodeConfirmCode>`"
+
+#: ../../../src/nearlink_sdr/mac/security.py:100
+#: ../../../src/nearlink_sdr/mac/security.py:1422
+msgid "T 节点确认码 (标准 9.2)。"
+msgstr "T node confirmation code (standard 9.2)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:102
 #, python-brace-format
 msgid ""
-"{py:obj}`MulticastAlgorithmConfig "
-"<nearlink_sdr.mac.security.MulticastAlgorithmConfig>`"
+"{py:obj}`TNodeConfirmCodeWithRandom "
+"<nearlink_sdr.mac.security.TNodeConfirmCodeWithRandom>`"
 msgstr ""
-"{py:obj}`MulticastAlgorithmConfig "
-"<nearlink_sdr.mac.security.MulticastAlgorithmConfig>`"
+"{py:obj}`TNodeConfirmCodeWithRandom "
+"<nearlink_sdr.mac.security.TNodeConfirmCodeWithRandom>`"
 
-#: ../../../src/nearlink_sdr/mac/security.py:116
-#: ../../../src/nearlink_sdr/mac/security.py:1549
-msgid "组播安全算法指示消息 (标准 9.3.2)。"
-msgstr "Multicast security algorithm indication message (standard 9.3.2)."
+#: ../../../src/nearlink_sdr/mac/security.py:104
+#: ../../../src/nearlink_sdr/mac/security.py:1465
+msgid "T 节点确认码与随机数 (标准 9.2)。"
+msgstr "T node confirmation code and random number (standard 9.2)."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:118
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:106
 #, python-brace-format
-msgid ""
-"{py:obj}`MulticastKeyConfig <nearlink_sdr.mac.security.MulticastKeyConfig>`"
-msgstr ""
-"{py:obj}`MulticastKeyConfig <nearlink_sdr.mac.security.MulticastKeyConfig>`"
+msgid "{py:obj}`TNodeDHKeyVerify <nearlink_sdr.mac.security.TNodeDHKeyVerify>`"
+msgstr "{py:obj}`TNodeDHKeyVerify <nearlink_sdr.mac.security.TNodeDHKeyVerify>`"
 
-#: ../../../src/nearlink_sdr/mac/security.py:120
-#: ../../../src/nearlink_sdr/mac/security.py:1640
-msgid "组播密钥配置消息 (标准 9.3.2)。"
-msgstr "Multicast key configuration message (standard 9.3.2)."
+#: ../../../src/nearlink_sdr/mac/security.py:108
+#: ../../../src/nearlink_sdr/mac/security.py:1519
+msgid "T 节点 DH 密钥校验码 (标准 9.2)。"
+msgstr "T node DH key check code (standard 9.2)."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:124
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:110
+#, python-brace-format
+msgid "{py:obj}`TNodeIRK <nearlink_sdr.mac.security.TNodeIRK>`"
+msgstr "{py:obj}`TNodeIRK <nearlink_sdr.mac.security.TNodeIRK>`"
+
+#: ../../../src/nearlink_sdr/mac/security.py:112
+#: ../../../src/nearlink_sdr/mac/security.py:1560
+msgid "T 节点身份解析密钥信息 (标准 9.3.3)。"
+msgstr "T node identity resolving key information (standard 9.3.3)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:116
 msgid "API"
 msgstr "API"
 
-#: ../../../src/nearlink_sdr/mac/security.py:133
-msgid "子类需定义 DATA_TYPE_INDEX、BYTE_LENGTH 和一个 bytes 字段。"
-msgstr ""
-"Subclasses must define DATA_TYPE_INDEX, BYTE_LENGTH, and one bytes field."
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:129
+msgid "0"
+msgstr "0"
 
-#: ../../../src/nearlink_sdr/mac/security.py:183
-msgid ""
-"auth_request 字段布局 (8 bits):   安全属性(2bit) | 防中间人攻击指示位(1bit) | 按键提示(1bit) | "
-"保留(4bit)"
-msgstr ""
-"auth_request field layout (8 bits):   security attribute(2bit) | MITM "
-"protection indication(1bit) | keypress notification(1bit) | reserved(4bit)"
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:139
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1231
+msgid "2"
+msgstr "2"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:188
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:246
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:257
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:268
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:279
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:290
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:301
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:312
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:370
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:381
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:392
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:403
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:414
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:425
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:436
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:494
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:505
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:516
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:527
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:538
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:598
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:609
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:652
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:695
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:738
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:781
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:792
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:835
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:846
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:889
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:149
+msgid "5"
+msgstr "5"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:159
+msgid "6"
+msgstr "6"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:178
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:189
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:249
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:292
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:303
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:346
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:387
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:398
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:409
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:467
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:478
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:489
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:500
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:558
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:616
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:627
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:638
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:649
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:660
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:718
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:778
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:789
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:830
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:888
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:899
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:910
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:921
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:932
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:975
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1016
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1076
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1087
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1130
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1141
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1258
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1269
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1280
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1338
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1349
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1360
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1418
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:943
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:954
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1012
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1023
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1034
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1045
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1056
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1067
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1078
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1138
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1181
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1252
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1263
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1306
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1317
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1358
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1369
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1429
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1487
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1498
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1556
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1472
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1483
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1526
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1567
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1578
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1589
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1647
 msgid "None"
 msgstr "None"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:199
-msgid "307"
-msgstr "307"
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:200
+msgid "325"
+msgstr "325"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:210
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1038
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1181
-msgid "1"
-msgstr "1"
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:211
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1391
+msgid "7"
+msgstr "7"
 
-#: ../../../src/nearlink_sdr/mac/security.py:241
-#: ../../../src/nearlink_sdr/mac/security.py:489
-msgid "字段:"
-msgstr "field:"
-
-#: ../../../src/nearlink_sdr/mac/security.py:242
-msgid "io_capability:      1 字节, I/O 能力"
-msgstr "io_capability:      1 byte, I/O capability"
-
-#: ../../../src/nearlink_sdr/mac/security.py:243
-msgid "oob_data_flag:      1 字节, OOB 数据标志"
-msgstr "oob_data_flag:      1 byte, OOB data flag"
-
-#: ../../../src/nearlink_sdr/mac/security.py:244
-msgid "auth_request:       1 字节, 鉴权请求"
-msgstr "auth_request:       1 byte, authentication request"
-
-#: ../../../src/nearlink_sdr/mac/security.py:245
-msgid "max_key_length:     1 字节, 最大密钥长度"
-msgstr "max_key_length:     1 byte, maximum key length"
-
-#: ../../../src/nearlink_sdr/mac/security.py:246
-msgid "security_dist_info: 1 字节, 安全分发信息"
-msgstr "security_dist_info: 1 byte, security distribution information"
-
-#: ../../../src/nearlink_sdr/mac/security.py:247
-msgid "crypto_capability:  4 字节, 加密能力"
-msgstr "crypto_capability:  4 bytes, cryptographic capability"
-
-#: ../../../src/nearlink_sdr/mac/security.py:248
-msgid "psk_indication:     1 字节, PSK 指示"
-msgstr "psk_indication:     1 byte, PSK indication"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:323
-msgid "308"
-msgstr "308"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:334
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:458
-msgid "10"
-msgstr "10"
-
-#: ../../../src/nearlink_sdr/mac/security.py:365
-msgid "字段与 PairingRequest 完全相同。"
-msgstr "Fields are identical to PairingRequest."
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:447
-msgid "309"
-msgstr "309"
-
-#: ../../../src/nearlink_sdr/mac/security.py:490
-msgid "key_length:       1 字节, 密钥长度"
-msgstr "key_length:       1 byte, key length"
-
-#: ../../../src/nearlink_sdr/mac/security.py:491
-msgid "auth_method:      1 字节, 鉴权方法"
-msgstr "auth_method:      1 byte, authentication method"
-
-#: ../../../src/nearlink_sdr/mac/security.py:492
-msgid "crypto_algorithm: 4 字节, 加密算法能力"
-msgstr "crypto_algorithm: 4 bytes, cryptographic algorithm capability"
-
-#: ../../../src/nearlink_sdr/mac/security.py:493
-msgid "g_public_key_x:  32 字节, G 节点公钥 X 分量"
-msgstr "g_public_key_x:  32 bytes, G node public key X component"
-
-#: ../../../src/nearlink_sdr/mac/security.py:494
-msgid "g_public_key_y:  32 字节, G 节点公钥 Y 分量"
-msgstr "g_public_key_y:  32 bytes, G node public key Y component"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:549
-msgid "310"
-msgstr "310"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:560
-msgid "70"
-msgstr "70"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:588
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:771
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:825
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1066
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1120
-#, python-brace-format
-msgid "Bases: {py:obj}`nearlink_sdr.mac.security._TwoBytesMessage`"
-msgstr "Bases: {py:obj}`nearlink_sdr.mac.security._TwoBytesMessage`"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:620
-msgid "311"
-msgstr "311"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:631
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1109
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1163
-msgid "64"
-msgstr "64"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:642
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:685
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:728
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:879
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:922
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:965
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:239
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:336
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1128
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1171
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1419
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1516
 #, python-brace-format
 msgid "Bases: {py:obj}`nearlink_sdr.mac.security._BytesMessage`"
 msgstr "Bases: {py:obj}`nearlink_sdr.mac.security._BytesMessage`"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:663
-msgid "312"
-msgstr "312"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:674
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:717
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:760
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:911
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:954
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:997
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1669
-msgid "16"
-msgstr "16"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:706
-msgid "313"
-msgstr "313"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:749
-msgid "314"
-msgstr "314"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:803
-msgid "315"
-msgstr "315"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:814
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:868
-msgid "32"
-msgstr "32"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:857
-msgid "316"
-msgstr "316"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:900
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:260
 msgid "319"
 msgstr "319"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:943
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:271
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:368
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:580
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1160
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1203
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1451
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1548
+msgid "16"
+msgstr "16"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:282
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:768
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1242
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1296
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1462
+#, python-brace-format
+msgid "Bases: {py:obj}`nearlink_sdr.mac.security._TwoBytesMessage`"
+msgstr "Bases: {py:obj}`nearlink_sdr.mac.security._TwoBytesMessage`"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:314
+msgid "315"
+msgstr "315"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:325
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1505
+msgid "32"
+msgstr "32"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:357
 msgid "321"
 msgstr "321"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:986
-msgid "322"
-msgstr "322"
-
-#: ../../../src/nearlink_sdr/mac/security.py:1011
-msgid ""
-"reason 取值 0x01-0x0C:   0x01 通行码输入失败    0x02 OOB 不可用   0x03 鉴权请求不匹配    0x04 "
-"确认值不匹配   0x05 不支持的配对方式   0x06 加密密钥长度不足   0x07 不支持的命令       0x08 未确认的配对   "
-"0x09 重复的配对尝试     0x0A 无效参数   0x0B DHKey 校验失败     0x0C 数字比较失败"
-msgstr ""
-"reason values 0x01-0x0C:   0x01 Passkey entry failed    0x02 OOB not "
-"available   0x03 Authentication requirements not met    0x04 Confirm value "
-"mismatch   0x05 Pairing not supported   0x06 Encryption key size "
-"insufficient   0x07 Command not supported       0x08 Unconfirmed pairing   "
-"0x09 Repeated pairing attempt     0x0A Invalid parameters   0x0B DHKey check"
-" failed     0x0C Numeric comparison failed"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1027
-msgid "327"
-msgstr "327"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1098
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1600
-msgid "328"
-msgstr "328"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1152
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1658
-msgid "329"
-msgstr "329"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1191
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1219
-msgid "2"
-msgstr "2"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1209
-msgid "0"
-msgstr "0"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1229
-msgid "5"
-msgstr "5"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1239
-msgid "6"
-msgstr "6"
-
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1291
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:420
 msgid "323"
 msgstr "323"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1302
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1382
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:431
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1611
 msgid "18"
 msgstr "18"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1371
-msgid "324"
-msgstr "324"
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:511
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1274
+msgid "328"
+msgstr "328"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1440
-msgid "325"
-msgstr "325"
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:522
+msgid "19"
+msgstr "19"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1451
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1520
-msgid "7"
-msgstr "7"
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:569
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1328
+msgid "329"
+msgstr "329"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1509
+#: ../../../src/nearlink_sdr/mac/security.py:611
+#: ../../../src/nearlink_sdr/mac/security.py:883
+msgid "字段:"
+msgstr "field:"
+
+#: ../../../src/nearlink_sdr/mac/security.py:612
+msgid "key_length:       1 字节, 密钥长度"
+msgstr "key_length:       1 byte, key length"
+
+#: ../../../src/nearlink_sdr/mac/security.py:613
+msgid "auth_method:      1 字节, 鉴权方法"
+msgstr "auth_method:      1 byte, authentication method"
+
+#: ../../../src/nearlink_sdr/mac/security.py:614
+msgid "crypto_algorithm: 4 字节, 加密算法能力"
+msgstr "crypto_algorithm: 4 bytes, cryptographic algorithm capability"
+
+#: ../../../src/nearlink_sdr/mac/security.py:615
+msgid "g_public_key_x:  32 字节, G 节点公钥 X 分量"
+msgstr "g_public_key_x:  32 bytes, G node public key X component"
+
+#: ../../../src/nearlink_sdr/mac/security.py:616
+msgid "g_public_key_y:  32 字节, G 节点公钥 Y 分量"
+msgstr "g_public_key_y:  32 bytes, G node public key Y component"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:671
+msgid "310"
+msgstr "310"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:682
+msgid "70"
+msgstr "70"
+
+#: ../../../src/nearlink_sdr/mac/security.py:713
+msgid ""
+"reason 取值 0x01-0x0C:   0x01 通行码输入失败    0x02 OOB 不可用   0x03 鉴权请求不匹配    "
+"0x04 确认值不匹配   0x05 不支持的配对方式   0x06 加密密钥长度不足   0x07 不支持的命令       0x08 "
+"未确认的配对   0x09 重复的配对尝试     0x0A 无效参数   0x0B DHKey 校验失败     0x0C 数字比较失败"
+msgstr ""
+"reason values 0x01-0x0C:   0x01 Passkey entry failed    0x02 OOB not "
+"available   0x03 Authentication requirements not met    0x04 Confirm "
+"value mismatch   0x05 Pairing not supported   0x06 Encryption key size "
+"insufficient   0x07 Command not supported       0x08 Unconfirmed pairing"
+"   0x09 Repeated pairing attempt     0x0A Invalid parameters   0x0B DHKey"
+" check failed     0x0C Numeric comparison failed"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:729
+msgid "327"
+msgstr "327"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:740
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:852
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1221
+msgid "1"
+msgstr "1"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:800
+msgid "311"
+msgstr "311"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:811
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1285
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1339
+msgid "64"
+msgstr "64"
+
+#: ../../../src/nearlink_sdr/mac/security.py:825
+msgid ""
+"auth_request 字段布局 (8 bits):   安全属性(2bit) | 防中间人攻击指示位(1bit) | 按键提示(1bit) |"
+" 保留(4bit)"
+msgstr ""
+"auth_request field layout (8 bits):   security attribute(2bit) | MITM "
+"protection indication(1bit) | keypress notification(1bit) | "
+"reserved(4bit)"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:841
+msgid "307"
+msgstr "307"
+
+#: ../../../src/nearlink_sdr/mac/security.py:884
+msgid "io_capability:      1 字节, I/O 能力"
+msgstr "io_capability:      1 byte, I/O capability"
+
+#: ../../../src/nearlink_sdr/mac/security.py:885
+msgid "oob_data_flag:      1 字节, OOB 数据标志"
+msgstr "oob_data_flag:      1 byte, OOB data flag"
+
+#: ../../../src/nearlink_sdr/mac/security.py:886
+msgid "auth_request:       1 字节, 鉴权请求"
+msgstr "auth_request:       1 byte, authentication request"
+
+#: ../../../src/nearlink_sdr/mac/security.py:887
+msgid "max_key_length:     1 字节, 最大密钥长度"
+msgstr "max_key_length:     1 byte, maximum key length"
+
+#: ../../../src/nearlink_sdr/mac/security.py:888
+msgid "security_dist_info: 1 字节, 安全分发信息"
+msgstr "security_dist_info: 1 byte, security distribution information"
+
+#: ../../../src/nearlink_sdr/mac/security.py:889
+msgid "crypto_capability:  4 字节, 加密能力"
+msgstr "crypto_capability:  4 bytes, cryptographic capability"
+
+#: ../../../src/nearlink_sdr/mac/security.py:890
+msgid "psk_indication:     1 字节, PSK 指示"
+msgstr "psk_indication:     1 byte, PSK indication"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:965
+msgid "308"
+msgstr "308"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:976
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1100
+msgid "10"
+msgstr "10"
+
+#: ../../../src/nearlink_sdr/mac/security.py:1007
+msgid "字段与 PairingRequest 完全相同。"
+msgstr "Fields are identical to PairingRequest."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1089
+msgid "309"
+msgstr "309"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1149
+msgid "313"
+msgstr "313"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1192
+msgid "314"
+msgstr "314"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1380
 msgid "326"
 msgstr "326"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1611
-msgid "19"
-msgstr "19"
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1440
+msgid "312"
+msgstr "312"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1494
+msgid "316"
+msgstr "316"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1537
+msgid "322"
+msgstr "322"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.md:1600
+msgid "324"
+msgstr "324"
+
+#~ msgid "{py:obj}`_BytesMessage <nearlink_sdr.mac.security._BytesMessage>`"
+#~ msgstr "{py:obj}`_BytesMessage <nearlink_sdr.mac.security._BytesMessage>`"
+
+#~ msgid "仅包含单个 bytes 字段的消息基类。"
+#~ msgstr "Base class for messages containing a single bytes field."
+
+#~ msgid "{py:obj}`_TwoBytesMessage <nearlink_sdr.mac.security._TwoBytesMessage>`"
+#~ msgstr "{py:obj}`_TwoBytesMessage <nearlink_sdr.mac.security._TwoBytesMessage>`"
+
+#~ msgid "包含两个等长 bytes 字段的消息基类。"
+#~ msgstr "Base class for messages containing two equal-length bytes fields."
+
+#~ msgid "子类需定义 DATA_TYPE_INDEX、BYTE_LENGTH 和一个 bytes 字段。"
+#~ msgstr ""
+#~ "Subclasses must define DATA_TYPE_INDEX, "
+#~ "BYTE_LENGTH, and one bytes field."
+
