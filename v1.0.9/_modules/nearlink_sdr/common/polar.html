@@ -1,0 +1,2202 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN" data-content_root="../../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><link rel="index" title="索引" href="../../../genindex.html"><link rel="search" title="搜索" href="../../../search.html">
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
+        <title>nearlink_sdr.common.polar - nearlink-sdr 1.0.9 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/version-selector.css?v=022f18c6" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  --color-brand-primary: #1a73e8;
+  --color-brand-content: #1a73e8;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #8ab4f8;
+  --color-brand-content: #8ab4f8;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #8ab4f8;
+  --color-brand-content: #8ab4f8;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">nearlink-sdr 1.0.9 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.9 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/getting-started.html">快速入门</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../how-to/index.html">操作指南</a><input aria-label="Toggle navigation of 操作指南" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/run-simulation.html">运行链路仿真</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/add-modulation.html">添加新的调制方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/qos-management.html">QoS 服务质量管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/node-usage.html">使用 SLE 节点实体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/rust-acceleration.html">Rust 加速模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/sdr-deployment.html">SDR E310 部署规划</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../how-to/build-docs.html">构建文档</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../reference/index.html">技术参考</a><input aria-label="Toggle navigation of 技术参考" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.rx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.link_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.link_sim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.usrp_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.usrp_sim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../explanation/index.html">设计说明</a><input aria-label="Toggle navigation of 设计说明" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/overview.html">SparkLink SLE 协议总览</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/principles.html">物理层原理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/physical-layer.html">物理层详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/mac-layer.html">MAC 层详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/security.html">安全子系统详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/data-flow.html">端到端数据流</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/architecture.html">系统架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../explanation/standard-mapping.html">标准条款映射</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">更新日志</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../apidocs/index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.rx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.link_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.link_sim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.sim.usrp_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.usrp_sim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../apidocs/nearlink_sdr/nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <h1>nearlink_sdr.common.polar 源代码</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Polar 编码器与 SC（逐次消去）解码器 -- TXS-10002-2025 标准 6.9.1.4 节。&quot;&quot;&quot;</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;RATE_TABLE&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;RELIABILITY_SEQ_1024&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VALID_CODE_LENGTHS&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PolarDecoder&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PolarEncoder&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;get_info_bit_count&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;get_polar_decoder&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">lru_cache</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr_accel</span><span class="w"> </span><span class="kn">import</span> <span class="n">RustPolarDecoder</span> <span class="k">as</span> <span class="n">_RustPolarDecoder</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr_accel</span><span class="w"> </span><span class="kn">import</span> <span class="n">RustPolarEncoder</span> <span class="k">as</span> <span class="n">_RustPolarEncoder</span>
+    <span class="n">_HAS_RUST_ACCEL</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">_HAS_RUST_ACCEL</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># N_max=1024 的可靠性序列 Q_0^{N_max-1}</span>
+<span class="c1"># 按可靠性升序排列，索引 i 对应比特索引 Q_i。</span>
+<span class="n">RELIABILITY_SEQ_1024</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">1</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">,</span>
+    <span class="mi">4</span><span class="p">,</span>
+    <span class="mi">8</span><span class="p">,</span>
+    <span class="mi">16</span><span class="p">,</span>
+    <span class="mi">32</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">,</span>
+    <span class="mi">5</span><span class="p">,</span>
+    <span class="mi">64</span><span class="p">,</span>
+    <span class="mi">9</span><span class="p">,</span>
+    <span class="mi">6</span><span class="p">,</span>
+    <span class="mi">17</span><span class="p">,</span>
+    <span class="mi">10</span><span class="p">,</span>
+    <span class="mi">18</span><span class="p">,</span>
+    <span class="mi">128</span><span class="p">,</span>
+    <span class="mi">12</span><span class="p">,</span>
+    <span class="mi">33</span><span class="p">,</span>
+    <span class="mi">65</span><span class="p">,</span>
+    <span class="mi">20</span><span class="p">,</span>
+    <span class="mi">256</span><span class="p">,</span>
+    <span class="mi">34</span><span class="p">,</span>
+    <span class="mi">24</span><span class="p">,</span>
+    <span class="mi">36</span><span class="p">,</span>
+    <span class="mi">7</span><span class="p">,</span>
+    <span class="mi">129</span><span class="p">,</span>
+    <span class="mi">66</span><span class="p">,</span>
+    <span class="mi">512</span><span class="p">,</span>
+    <span class="mi">11</span><span class="p">,</span>
+    <span class="mi">40</span><span class="p">,</span>
+    <span class="mi">68</span><span class="p">,</span>
+    <span class="mi">130</span><span class="p">,</span>
+    <span class="mi">19</span><span class="p">,</span>
+    <span class="mi">13</span><span class="p">,</span>
+    <span class="mi">48</span><span class="p">,</span>
+    <span class="mi">14</span><span class="p">,</span>
+    <span class="mi">72</span><span class="p">,</span>
+    <span class="mi">257</span><span class="p">,</span>
+    <span class="mi">21</span><span class="p">,</span>
+    <span class="mi">132</span><span class="p">,</span>
+    <span class="mi">35</span><span class="p">,</span>
+    <span class="mi">258</span><span class="p">,</span>
+    <span class="mi">26</span><span class="p">,</span>
+    <span class="mi">513</span><span class="p">,</span>
+    <span class="mi">80</span><span class="p">,</span>
+    <span class="mi">37</span><span class="p">,</span>
+    <span class="mi">25</span><span class="p">,</span>
+    <span class="mi">22</span><span class="p">,</span>
+    <span class="mi">136</span><span class="p">,</span>
+    <span class="mi">260</span><span class="p">,</span>
+    <span class="mi">264</span><span class="p">,</span>
+    <span class="mi">38</span><span class="p">,</span>
+    <span class="mi">514</span><span class="p">,</span>
+    <span class="mi">96</span><span class="p">,</span>
+    <span class="mi">67</span><span class="p">,</span>
+    <span class="mi">41</span><span class="p">,</span>
+    <span class="mi">144</span><span class="p">,</span>
+    <span class="mi">28</span><span class="p">,</span>
+    <span class="mi">69</span><span class="p">,</span>
+    <span class="mi">42</span><span class="p">,</span>
+    <span class="mi">516</span><span class="p">,</span>
+    <span class="mi">49</span><span class="p">,</span>
+    <span class="mi">74</span><span class="p">,</span>
+    <span class="mi">272</span><span class="p">,</span>
+    <span class="mi">160</span><span class="p">,</span>
+    <span class="mi">520</span><span class="p">,</span>
+    <span class="mi">288</span><span class="p">,</span>
+    <span class="mi">528</span><span class="p">,</span>
+    <span class="mi">192</span><span class="p">,</span>
+    <span class="mi">544</span><span class="p">,</span>
+    <span class="mi">70</span><span class="p">,</span>
+    <span class="mi">44</span><span class="p">,</span>
+    <span class="mi">131</span><span class="p">,</span>
+    <span class="mi">81</span><span class="p">,</span>
+    <span class="mi">50</span><span class="p">,</span>
+    <span class="mi">73</span><span class="p">,</span>
+    <span class="mi">15</span><span class="p">,</span>
+    <span class="mi">320</span><span class="p">,</span>
+    <span class="mi">133</span><span class="p">,</span>
+    <span class="mi">52</span><span class="p">,</span>
+    <span class="mi">23</span><span class="p">,</span>
+    <span class="mi">134</span><span class="p">,</span>
+    <span class="mi">384</span><span class="p">,</span>
+    <span class="mi">76</span><span class="p">,</span>
+    <span class="mi">137</span><span class="p">,</span>
+    <span class="mi">82</span><span class="p">,</span>
+    <span class="mi">56</span><span class="p">,</span>
+    <span class="mi">27</span><span class="p">,</span>
+    <span class="mi">97</span><span class="p">,</span>
+    <span class="mi">39</span><span class="p">,</span>
+    <span class="mi">259</span><span class="p">,</span>
+    <span class="mi">84</span><span class="p">,</span>
+    <span class="mi">138</span><span class="p">,</span>
+    <span class="mi">145</span><span class="p">,</span>
+    <span class="mi">261</span><span class="p">,</span>
+    <span class="mi">29</span><span class="p">,</span>
+    <span class="mi">43</span><span class="p">,</span>
+    <span class="mi">98</span><span class="p">,</span>
+    <span class="mi">515</span><span class="p">,</span>
+    <span class="mi">88</span><span class="p">,</span>
+    <span class="mi">140</span><span class="p">,</span>
+    <span class="mi">30</span><span class="p">,</span>
+    <span class="mi">146</span><span class="p">,</span>
+    <span class="mi">71</span><span class="p">,</span>
+    <span class="mi">262</span><span class="p">,</span>
+    <span class="mi">265</span><span class="p">,</span>
+    <span class="mi">161</span><span class="p">,</span>
+    <span class="mi">576</span><span class="p">,</span>
+    <span class="mi">45</span><span class="p">,</span>
+    <span class="mi">100</span><span class="p">,</span>
+    <span class="mi">640</span><span class="p">,</span>
+    <span class="mi">51</span><span class="p">,</span>
+    <span class="mi">148</span><span class="p">,</span>
+    <span class="mi">46</span><span class="p">,</span>
+    <span class="mi">75</span><span class="p">,</span>
+    <span class="mi">266</span><span class="p">,</span>
+    <span class="mi">273</span><span class="p">,</span>
+    <span class="mi">517</span><span class="p">,</span>
+    <span class="mi">104</span><span class="p">,</span>
+    <span class="mi">162</span><span class="p">,</span>
+    <span class="mi">53</span><span class="p">,</span>
+    <span class="mi">193</span><span class="p">,</span>
+    <span class="mi">152</span><span class="p">,</span>
+    <span class="mi">77</span><span class="p">,</span>
+    <span class="mi">164</span><span class="p">,</span>
+    <span class="mi">768</span><span class="p">,</span>
+    <span class="mi">268</span><span class="p">,</span>
+    <span class="mi">274</span><span class="p">,</span>
+    <span class="mi">518</span><span class="p">,</span>
+    <span class="mi">54</span><span class="p">,</span>
+    <span class="mi">83</span><span class="p">,</span>
+    <span class="mi">57</span><span class="p">,</span>
+    <span class="mi">521</span><span class="p">,</span>
+    <span class="mi">112</span><span class="p">,</span>
+    <span class="mi">135</span><span class="p">,</span>
+    <span class="mi">78</span><span class="p">,</span>
+    <span class="mi">289</span><span class="p">,</span>
+    <span class="mi">194</span><span class="p">,</span>
+    <span class="mi">85</span><span class="p">,</span>
+    <span class="mi">276</span><span class="p">,</span>
+    <span class="mi">522</span><span class="p">,</span>
+    <span class="mi">58</span><span class="p">,</span>
+    <span class="mi">168</span><span class="p">,</span>
+    <span class="mi">139</span><span class="p">,</span>
+    <span class="mi">99</span><span class="p">,</span>
+    <span class="mi">86</span><span class="p">,</span>
+    <span class="mi">60</span><span class="p">,</span>
+    <span class="mi">280</span><span class="p">,</span>
+    <span class="mi">89</span><span class="p">,</span>
+    <span class="mi">290</span><span class="p">,</span>
+    <span class="mi">529</span><span class="p">,</span>
+    <span class="mi">524</span><span class="p">,</span>
+    <span class="mi">196</span><span class="p">,</span>
+    <span class="mi">141</span><span class="p">,</span>
+    <span class="mi">101</span><span class="p">,</span>
+    <span class="mi">147</span><span class="p">,</span>
+    <span class="mi">176</span><span class="p">,</span>
+    <span class="mi">142</span><span class="p">,</span>
+    <span class="mi">530</span><span class="p">,</span>
+    <span class="mi">321</span><span class="p">,</span>
+    <span class="mi">31</span><span class="p">,</span>
+    <span class="mi">200</span><span class="p">,</span>
+    <span class="mi">90</span><span class="p">,</span>
+    <span class="mi">545</span><span class="p">,</span>
+    <span class="mi">292</span><span class="p">,</span>
+    <span class="mi">322</span><span class="p">,</span>
+    <span class="mi">532</span><span class="p">,</span>
+    <span class="mi">263</span><span class="p">,</span>
+    <span class="mi">149</span><span class="p">,</span>
+    <span class="mi">102</span><span class="p">,</span>
+    <span class="mi">105</span><span class="p">,</span>
+    <span class="mi">304</span><span class="p">,</span>
+    <span class="mi">296</span><span class="p">,</span>
+    <span class="mi">163</span><span class="p">,</span>
+    <span class="mi">92</span><span class="p">,</span>
+    <span class="mi">47</span><span class="p">,</span>
+    <span class="mi">267</span><span class="p">,</span>
+    <span class="mi">385</span><span class="p">,</span>
+    <span class="mi">546</span><span class="p">,</span>
+    <span class="mi">324</span><span class="p">,</span>
+    <span class="mi">208</span><span class="p">,</span>
+    <span class="mi">386</span><span class="p">,</span>
+    <span class="mi">150</span><span class="p">,</span>
+    <span class="mi">153</span><span class="p">,</span>
+    <span class="mi">165</span><span class="p">,</span>
+    <span class="mi">106</span><span class="p">,</span>
+    <span class="mi">55</span><span class="p">,</span>
+    <span class="mi">328</span><span class="p">,</span>
+    <span class="mi">536</span><span class="p">,</span>
+    <span class="mi">577</span><span class="p">,</span>
+    <span class="mi">548</span><span class="p">,</span>
+    <span class="mi">113</span><span class="p">,</span>
+    <span class="mi">154</span><span class="p">,</span>
+    <span class="mi">79</span><span class="p">,</span>
+    <span class="mi">269</span><span class="p">,</span>
+    <span class="mi">108</span><span class="p">,</span>
+    <span class="mi">578</span><span class="p">,</span>
+    <span class="mi">224</span><span class="p">,</span>
+    <span class="mi">166</span><span class="p">,</span>
+    <span class="mi">519</span><span class="p">,</span>
+    <span class="mi">552</span><span class="p">,</span>
+    <span class="mi">195</span><span class="p">,</span>
+    <span class="mi">270</span><span class="p">,</span>
+    <span class="mi">641</span><span class="p">,</span>
+    <span class="mi">523</span><span class="p">,</span>
+    <span class="mi">275</span><span class="p">,</span>
+    <span class="mi">580</span><span class="p">,</span>
+    <span class="mi">291</span><span class="p">,</span>
+    <span class="mi">59</span><span class="p">,</span>
+    <span class="mi">169</span><span class="p">,</span>
+    <span class="mi">560</span><span class="p">,</span>
+    <span class="mi">114</span><span class="p">,</span>
+    <span class="mi">277</span><span class="p">,</span>
+    <span class="mi">156</span><span class="p">,</span>
+    <span class="mi">87</span><span class="p">,</span>
+    <span class="mi">197</span><span class="p">,</span>
+    <span class="mi">116</span><span class="p">,</span>
+    <span class="mi">170</span><span class="p">,</span>
+    <span class="mi">61</span><span class="p">,</span>
+    <span class="mi">531</span><span class="p">,</span>
+    <span class="mi">525</span><span class="p">,</span>
+    <span class="mi">642</span><span class="p">,</span>
+    <span class="mi">281</span><span class="p">,</span>
+    <span class="mi">278</span><span class="p">,</span>
+    <span class="mi">526</span><span class="p">,</span>
+    <span class="mi">177</span><span class="p">,</span>
+    <span class="mi">293</span><span class="p">,</span>
+    <span class="mi">388</span><span class="p">,</span>
+    <span class="mi">91</span><span class="p">,</span>
+    <span class="mi">584</span><span class="p">,</span>
+    <span class="mi">769</span><span class="p">,</span>
+    <span class="mi">198</span><span class="p">,</span>
+    <span class="mi">172</span><span class="p">,</span>
+    <span class="mi">120</span><span class="p">,</span>
+    <span class="mi">201</span><span class="p">,</span>
+    <span class="mi">336</span><span class="p">,</span>
+    <span class="mi">62</span><span class="p">,</span>
+    <span class="mi">282</span><span class="p">,</span>
+    <span class="mi">143</span><span class="p">,</span>
+    <span class="mi">103</span><span class="p">,</span>
+    <span class="mi">178</span><span class="p">,</span>
+    <span class="mi">294</span><span class="p">,</span>
+    <span class="mi">93</span><span class="p">,</span>
+    <span class="mi">644</span><span class="p">,</span>
+    <span class="mi">202</span><span class="p">,</span>
+    <span class="mi">592</span><span class="p">,</span>
+    <span class="mi">323</span><span class="p">,</span>
+    <span class="mi">392</span><span class="p">,</span>
+    <span class="mi">297</span><span class="p">,</span>
+    <span class="mi">770</span><span class="p">,</span>
+    <span class="mi">107</span><span class="p">,</span>
+    <span class="mi">180</span><span class="p">,</span>
+    <span class="mi">151</span><span class="p">,</span>
+    <span class="mi">209</span><span class="p">,</span>
+    <span class="mi">284</span><span class="p">,</span>
+    <span class="mi">648</span><span class="p">,</span>
+    <span class="mi">94</span><span class="p">,</span>
+    <span class="mi">204</span><span class="p">,</span>
+    <span class="mi">298</span><span class="p">,</span>
+    <span class="mi">400</span><span class="p">,</span>
+    <span class="mi">608</span><span class="p">,</span>
+    <span class="mi">352</span><span class="p">,</span>
+    <span class="mi">325</span><span class="p">,</span>
+    <span class="mi">533</span><span class="p">,</span>
+    <span class="mi">155</span><span class="p">,</span>
+    <span class="mi">210</span><span class="p">,</span>
+    <span class="mi">305</span><span class="p">,</span>
+    <span class="mi">547</span><span class="p">,</span>
+    <span class="mi">300</span><span class="p">,</span>
+    <span class="mi">109</span><span class="p">,</span>
+    <span class="mi">184</span><span class="p">,</span>
+    <span class="mi">534</span><span class="p">,</span>
+    <span class="mi">537</span><span class="p">,</span>
+    <span class="mi">115</span><span class="p">,</span>
+    <span class="mi">167</span><span class="p">,</span>
+    <span class="mi">225</span><span class="p">,</span>
+    <span class="mi">326</span><span class="p">,</span>
+    <span class="mi">306</span><span class="p">,</span>
+    <span class="mi">772</span><span class="p">,</span>
+    <span class="mi">157</span><span class="p">,</span>
+    <span class="mi">656</span><span class="p">,</span>
+    <span class="mi">329</span><span class="p">,</span>
+    <span class="mi">110</span><span class="p">,</span>
+    <span class="mi">117</span><span class="p">,</span>
+    <span class="mi">212</span><span class="p">,</span>
+    <span class="mi">171</span><span class="p">,</span>
+    <span class="mi">776</span><span class="p">,</span>
+    <span class="mi">330</span><span class="p">,</span>
+    <span class="mi">226</span><span class="p">,</span>
+    <span class="mi">549</span><span class="p">,</span>
+    <span class="mi">538</span><span class="p">,</span>
+    <span class="mi">387</span><span class="p">,</span>
+    <span class="mi">308</span><span class="p">,</span>
+    <span class="mi">216</span><span class="p">,</span>
+    <span class="mi">416</span><span class="p">,</span>
+    <span class="mi">271</span><span class="p">,</span>
+    <span class="mi">279</span><span class="p">,</span>
+    <span class="mi">158</span><span class="p">,</span>
+    <span class="mi">337</span><span class="p">,</span>
+    <span class="mi">550</span><span class="p">,</span>
+    <span class="mi">672</span><span class="p">,</span>
+    <span class="mi">118</span><span class="p">,</span>
+    <span class="mi">332</span><span class="p">,</span>
+    <span class="mi">579</span><span class="p">,</span>
+    <span class="mi">540</span><span class="p">,</span>
+    <span class="mi">389</span><span class="p">,</span>
+    <span class="mi">173</span><span class="p">,</span>
+    <span class="mi">121</span><span class="p">,</span>
+    <span class="mi">553</span><span class="p">,</span>
+    <span class="mi">199</span><span class="p">,</span>
+    <span class="mi">784</span><span class="p">,</span>
+    <span class="mi">179</span><span class="p">,</span>
+    <span class="mi">228</span><span class="p">,</span>
+    <span class="mi">338</span><span class="p">,</span>
+    <span class="mi">312</span><span class="p">,</span>
+    <span class="mi">704</span><span class="p">,</span>
+    <span class="mi">390</span><span class="p">,</span>
+    <span class="mi">174</span><span class="p">,</span>
+    <span class="mi">554</span><span class="p">,</span>
+    <span class="mi">581</span><span class="p">,</span>
+    <span class="mi">393</span><span class="p">,</span>
+    <span class="mi">283</span><span class="p">,</span>
+    <span class="mi">122</span><span class="p">,</span>
+    <span class="mi">448</span><span class="p">,</span>
+    <span class="mi">353</span><span class="p">,</span>
+    <span class="mi">561</span><span class="p">,</span>
+    <span class="mi">203</span><span class="p">,</span>
+    <span class="mi">63</span><span class="p">,</span>
+    <span class="mi">340</span><span class="p">,</span>
+    <span class="mi">394</span><span class="p">,</span>
+    <span class="mi">527</span><span class="p">,</span>
+    <span class="mi">582</span><span class="p">,</span>
+    <span class="mi">556</span><span class="p">,</span>
+    <span class="mi">181</span><span class="p">,</span>
+    <span class="mi">295</span><span class="p">,</span>
+    <span class="mi">285</span><span class="p">,</span>
+    <span class="mi">232</span><span class="p">,</span>
+    <span class="mi">124</span><span class="p">,</span>
+    <span class="mi">205</span><span class="p">,</span>
+    <span class="mi">182</span><span class="p">,</span>
+    <span class="mi">643</span><span class="p">,</span>
+    <span class="mi">562</span><span class="p">,</span>
+    <span class="mi">286</span><span class="p">,</span>
+    <span class="mi">585</span><span class="p">,</span>
+    <span class="mi">299</span><span class="p">,</span>
+    <span class="mi">354</span><span class="p">,</span>
+    <span class="mi">211</span><span class="p">,</span>
+    <span class="mi">401</span><span class="p">,</span>
+    <span class="mi">185</span><span class="p">,</span>
+    <span class="mi">396</span><span class="p">,</span>
+    <span class="mi">344</span><span class="p">,</span>
+    <span class="mi">586</span><span class="p">,</span>
+    <span class="mi">645</span><span class="p">,</span>
+    <span class="mi">593</span><span class="p">,</span>
+    <span class="mi">535</span><span class="p">,</span>
+    <span class="mi">240</span><span class="p">,</span>
+    <span class="mi">206</span><span class="p">,</span>
+    <span class="mi">95</span><span class="p">,</span>
+    <span class="mi">327</span><span class="p">,</span>
+    <span class="mi">564</span><span class="p">,</span>
+    <span class="mi">800</span><span class="p">,</span>
+    <span class="mi">402</span><span class="p">,</span>
+    <span class="mi">356</span><span class="p">,</span>
+    <span class="mi">307</span><span class="p">,</span>
+    <span class="mi">301</span><span class="p">,</span>
+    <span class="mi">417</span><span class="p">,</span>
+    <span class="mi">213</span><span class="p">,</span>
+    <span class="mi">568</span><span class="p">,</span>
+    <span class="mi">832</span><span class="p">,</span>
+    <span class="mi">588</span><span class="p">,</span>
+    <span class="mi">186</span><span class="p">,</span>
+    <span class="mi">646</span><span class="p">,</span>
+    <span class="mi">404</span><span class="p">,</span>
+    <span class="mi">227</span><span class="p">,</span>
+    <span class="mi">896</span><span class="p">,</span>
+    <span class="mi">594</span><span class="p">,</span>
+    <span class="mi">418</span><span class="p">,</span>
+    <span class="mi">302</span><span class="p">,</span>
+    <span class="mi">649</span><span class="p">,</span>
+    <span class="mi">771</span><span class="p">,</span>
+    <span class="mi">360</span><span class="p">,</span>
+    <span class="mi">539</span><span class="p">,</span>
+    <span class="mi">111</span><span class="p">,</span>
+    <span class="mi">331</span><span class="p">,</span>
+    <span class="mi">214</span><span class="p">,</span>
+    <span class="mi">309</span><span class="p">,</span>
+    <span class="mi">188</span><span class="p">,</span>
+    <span class="mi">449</span><span class="p">,</span>
+    <span class="mi">217</span><span class="p">,</span>
+    <span class="mi">408</span><span class="p">,</span>
+    <span class="mi">609</span><span class="p">,</span>
+    <span class="mi">596</span><span class="p">,</span>
+    <span class="mi">551</span><span class="p">,</span>
+    <span class="mi">650</span><span class="p">,</span>
+    <span class="mi">229</span><span class="p">,</span>
+    <span class="mi">159</span><span class="p">,</span>
+    <span class="mi">420</span><span class="p">,</span>
+    <span class="mi">310</span><span class="p">,</span>
+    <span class="mi">541</span><span class="p">,</span>
+    <span class="mi">773</span><span class="p">,</span>
+    <span class="mi">610</span><span class="p">,</span>
+    <span class="mi">657</span><span class="p">,</span>
+    <span class="mi">333</span><span class="p">,</span>
+    <span class="mi">119</span><span class="p">,</span>
+    <span class="mi">600</span><span class="p">,</span>
+    <span class="mi">339</span><span class="p">,</span>
+    <span class="mi">218</span><span class="p">,</span>
+    <span class="mi">368</span><span class="p">,</span>
+    <span class="mi">652</span><span class="p">,</span>
+    <span class="mi">230</span><span class="p">,</span>
+    <span class="mi">391</span><span class="p">,</span>
+    <span class="mi">313</span><span class="p">,</span>
+    <span class="mi">450</span><span class="p">,</span>
+    <span class="mi">542</span><span class="p">,</span>
+    <span class="mi">334</span><span class="p">,</span>
+    <span class="mi">233</span><span class="p">,</span>
+    <span class="mi">555</span><span class="p">,</span>
+    <span class="mi">774</span><span class="p">,</span>
+    <span class="mi">175</span><span class="p">,</span>
+    <span class="mi">123</span><span class="p">,</span>
+    <span class="mi">658</span><span class="p">,</span>
+    <span class="mi">612</span><span class="p">,</span>
+    <span class="mi">341</span><span class="p">,</span>
+    <span class="mi">777</span><span class="p">,</span>
+    <span class="mi">220</span><span class="p">,</span>
+    <span class="mi">314</span><span class="p">,</span>
+    <span class="mi">424</span><span class="p">,</span>
+    <span class="mi">395</span><span class="p">,</span>
+    <span class="mi">673</span><span class="p">,</span>
+    <span class="mi">583</span><span class="p">,</span>
+    <span class="mi">355</span><span class="p">,</span>
+    <span class="mi">287</span><span class="p">,</span>
+    <span class="mi">183</span><span class="p">,</span>
+    <span class="mi">234</span><span class="p">,</span>
+    <span class="mi">125</span><span class="p">,</span>
+    <span class="mi">557</span><span class="p">,</span>
+    <span class="mi">660</span><span class="p">,</span>
+    <span class="mi">616</span><span class="p">,</span>
+    <span class="mi">342</span><span class="p">,</span>
+    <span class="mi">316</span><span class="p">,</span>
+    <span class="mi">241</span><span class="p">,</span>
+    <span class="mi">778</span><span class="p">,</span>
+    <span class="mi">563</span><span class="p">,</span>
+    <span class="mi">345</span><span class="p">,</span>
+    <span class="mi">452</span><span class="p">,</span>
+    <span class="mi">397</span><span class="p">,</span>
+    <span class="mi">403</span><span class="p">,</span>
+    <span class="mi">207</span><span class="p">,</span>
+    <span class="mi">674</span><span class="p">,</span>
+    <span class="mi">558</span><span class="p">,</span>
+    <span class="mi">785</span><span class="p">,</span>
+    <span class="mi">432</span><span class="p">,</span>
+    <span class="mi">357</span><span class="p">,</span>
+    <span class="mi">187</span><span class="p">,</span>
+    <span class="mi">236</span><span class="p">,</span>
+    <span class="mi">664</span><span class="p">,</span>
+    <span class="mi">624</span><span class="p">,</span>
+    <span class="mi">587</span><span class="p">,</span>
+    <span class="mi">780</span><span class="p">,</span>
+    <span class="mi">705</span><span class="p">,</span>
+    <span class="mi">126</span><span class="p">,</span>
+    <span class="mi">242</span><span class="p">,</span>
+    <span class="mi">565</span><span class="p">,</span>
+    <span class="mi">398</span><span class="p">,</span>
+    <span class="mi">346</span><span class="p">,</span>
+    <span class="mi">456</span><span class="p">,</span>
+    <span class="mi">358</span><span class="p">,</span>
+    <span class="mi">405</span><span class="p">,</span>
+    <span class="mi">303</span><span class="p">,</span>
+    <span class="mi">569</span><span class="p">,</span>
+    <span class="mi">244</span><span class="p">,</span>
+    <span class="mi">595</span><span class="p">,</span>
+    <span class="mi">189</span><span class="p">,</span>
+    <span class="mi">566</span><span class="p">,</span>
+    <span class="mi">676</span><span class="p">,</span>
+    <span class="mi">361</span><span class="p">,</span>
+    <span class="mi">706</span><span class="p">,</span>
+    <span class="mi">589</span><span class="p">,</span>
+    <span class="mi">215</span><span class="p">,</span>
+    <span class="mi">786</span><span class="p">,</span>
+    <span class="mi">647</span><span class="p">,</span>
+    <span class="mi">348</span><span class="p">,</span>
+    <span class="mi">419</span><span class="p">,</span>
+    <span class="mi">406</span><span class="p">,</span>
+    <span class="mi">464</span><span class="p">,</span>
+    <span class="mi">680</span><span class="p">,</span>
+    <span class="mi">801</span><span class="p">,</span>
+    <span class="mi">362</span><span class="p">,</span>
+    <span class="mi">590</span><span class="p">,</span>
+    <span class="mi">409</span><span class="p">,</span>
+    <span class="mi">570</span><span class="p">,</span>
+    <span class="mi">788</span><span class="p">,</span>
+    <span class="mi">597</span><span class="p">,</span>
+    <span class="mi">572</span><span class="p">,</span>
+    <span class="mi">219</span><span class="p">,</span>
+    <span class="mi">311</span><span class="p">,</span>
+    <span class="mi">708</span><span class="p">,</span>
+    <span class="mi">598</span><span class="p">,</span>
+    <span class="mi">601</span><span class="p">,</span>
+    <span class="mi">651</span><span class="p">,</span>
+    <span class="mi">421</span><span class="p">,</span>
+    <span class="mi">792</span><span class="p">,</span>
+    <span class="mi">802</span><span class="p">,</span>
+    <span class="mi">611</span><span class="p">,</span>
+    <span class="mi">602</span><span class="p">,</span>
+    <span class="mi">410</span><span class="p">,</span>
+    <span class="mi">231</span><span class="p">,</span>
+    <span class="mi">688</span><span class="p">,</span>
+    <span class="mi">653</span><span class="p">,</span>
+    <span class="mi">248</span><span class="p">,</span>
+    <span class="mi">369</span><span class="p">,</span>
+    <span class="mi">190</span><span class="p">,</span>
+    <span class="mi">364</span><span class="p">,</span>
+    <span class="mi">654</span><span class="p">,</span>
+    <span class="mi">659</span><span class="p">,</span>
+    <span class="mi">335</span><span class="p">,</span>
+    <span class="mi">480</span><span class="p">,</span>
+    <span class="mi">315</span><span class="p">,</span>
+    <span class="mi">221</span><span class="p">,</span>
+    <span class="mi">370</span><span class="p">,</span>
+    <span class="mi">613</span><span class="p">,</span>
+    <span class="mi">422</span><span class="p">,</span>
+    <span class="mi">425</span><span class="p">,</span>
+    <span class="mi">451</span><span class="p">,</span>
+    <span class="mi">614</span><span class="p">,</span>
+    <span class="mi">543</span><span class="p">,</span>
+    <span class="mi">235</span><span class="p">,</span>
+    <span class="mi">412</span><span class="p">,</span>
+    <span class="mi">343</span><span class="p">,</span>
+    <span class="mi">372</span><span class="p">,</span>
+    <span class="mi">775</span><span class="p">,</span>
+    <span class="mi">317</span><span class="p">,</span>
+    <span class="mi">222</span><span class="p">,</span>
+    <span class="mi">426</span><span class="p">,</span>
+    <span class="mi">453</span><span class="p">,</span>
+    <span class="mi">237</span><span class="p">,</span>
+    <span class="mi">559</span><span class="p">,</span>
+    <span class="mi">833</span><span class="p">,</span>
+    <span class="mi">804</span><span class="p">,</span>
+    <span class="mi">712</span><span class="p">,</span>
+    <span class="mi">834</span><span class="p">,</span>
+    <span class="mi">661</span><span class="p">,</span>
+    <span class="mi">808</span><span class="p">,</span>
+    <span class="mi">779</span><span class="p">,</span>
+    <span class="mi">617</span><span class="p">,</span>
+    <span class="mi">604</span><span class="p">,</span>
+    <span class="mi">433</span><span class="p">,</span>
+    <span class="mi">720</span><span class="p">,</span>
+    <span class="mi">816</span><span class="p">,</span>
+    <span class="mi">836</span><span class="p">,</span>
+    <span class="mi">347</span><span class="p">,</span>
+    <span class="mi">897</span><span class="p">,</span>
+    <span class="mi">243</span><span class="p">,</span>
+    <span class="mi">662</span><span class="p">,</span>
+    <span class="mi">454</span><span class="p">,</span>
+    <span class="mi">318</span><span class="p">,</span>
+    <span class="mi">675</span><span class="p">,</span>
+    <span class="mi">618</span><span class="p">,</span>
+    <span class="mi">898</span><span class="p">,</span>
+    <span class="mi">781</span><span class="p">,</span>
+    <span class="mi">376</span><span class="p">,</span>
+    <span class="mi">428</span><span class="p">,</span>
+    <span class="mi">665</span><span class="p">,</span>
+    <span class="mi">736</span><span class="p">,</span>
+    <span class="mi">567</span><span class="p">,</span>
+    <span class="mi">840</span><span class="p">,</span>
+    <span class="mi">625</span><span class="p">,</span>
+    <span class="mi">238</span><span class="p">,</span>
+    <span class="mi">359</span><span class="p">,</span>
+    <span class="mi">457</span><span class="p">,</span>
+    <span class="mi">399</span><span class="p">,</span>
+    <span class="mi">787</span><span class="p">,</span>
+    <span class="mi">591</span><span class="p">,</span>
+    <span class="mi">678</span><span class="p">,</span>
+    <span class="mi">434</span><span class="p">,</span>
+    <span class="mi">677</span><span class="p">,</span>
+    <span class="mi">349</span><span class="p">,</span>
+    <span class="mi">245</span><span class="p">,</span>
+    <span class="mi">458</span><span class="p">,</span>
+    <span class="mi">666</span><span class="p">,</span>
+    <span class="mi">620</span><span class="p">,</span>
+    <span class="mi">363</span><span class="p">,</span>
+    <span class="mi">127</span><span class="p">,</span>
+    <span class="mi">191</span><span class="p">,</span>
+    <span class="mi">782</span><span class="p">,</span>
+    <span class="mi">407</span><span class="p">,</span>
+    <span class="mi">436</span><span class="p">,</span>
+    <span class="mi">626</span><span class="p">,</span>
+    <span class="mi">571</span><span class="p">,</span>
+    <span class="mi">465</span><span class="p">,</span>
+    <span class="mi">681</span><span class="p">,</span>
+    <span class="mi">246</span><span class="p">,</span>
+    <span class="mi">707</span><span class="p">,</span>
+    <span class="mi">350</span><span class="p">,</span>
+    <span class="mi">599</span><span class="p">,</span>
+    <span class="mi">668</span><span class="p">,</span>
+    <span class="mi">790</span><span class="p">,</span>
+    <span class="mi">460</span><span class="p">,</span>
+    <span class="mi">249</span><span class="p">,</span>
+    <span class="mi">682</span><span class="p">,</span>
+    <span class="mi">573</span><span class="p">,</span>
+    <span class="mi">411</span><span class="p">,</span>
+    <span class="mi">803</span><span class="p">,</span>
+    <span class="mi">789</span><span class="p">,</span>
+    <span class="mi">709</span><span class="p">,</span>
+    <span class="mi">365</span><span class="p">,</span>
+    <span class="mi">440</span><span class="p">,</span>
+    <span class="mi">628</span><span class="p">,</span>
+    <span class="mi">689</span><span class="p">,</span>
+    <span class="mi">374</span><span class="p">,</span>
+    <span class="mi">423</span><span class="p">,</span>
+    <span class="mi">466</span><span class="p">,</span>
+    <span class="mi">793</span><span class="p">,</span>
+    <span class="mi">250</span><span class="p">,</span>
+    <span class="mi">371</span><span class="p">,</span>
+    <span class="mi">481</span><span class="p">,</span>
+    <span class="mi">574</span><span class="p">,</span>
+    <span class="mi">413</span><span class="p">,</span>
+    <span class="mi">603</span><span class="p">,</span>
+    <span class="mi">366</span><span class="p">,</span>
+    <span class="mi">468</span><span class="p">,</span>
+    <span class="mi">655</span><span class="p">,</span>
+    <span class="mi">900</span><span class="p">,</span>
+    <span class="mi">805</span><span class="p">,</span>
+    <span class="mi">615</span><span class="p">,</span>
+    <span class="mi">684</span><span class="p">,</span>
+    <span class="mi">710</span><span class="p">,</span>
+    <span class="mi">429</span><span class="p">,</span>
+    <span class="mi">794</span><span class="p">,</span>
+    <span class="mi">252</span><span class="p">,</span>
+    <span class="mi">373</span><span class="p">,</span>
+    <span class="mi">605</span><span class="p">,</span>
+    <span class="mi">848</span><span class="p">,</span>
+    <span class="mi">690</span><span class="p">,</span>
+    <span class="mi">713</span><span class="p">,</span>
+    <span class="mi">632</span><span class="p">,</span>
+    <span class="mi">482</span><span class="p">,</span>
+    <span class="mi">806</span><span class="p">,</span>
+    <span class="mi">427</span><span class="p">,</span>
+    <span class="mi">904</span><span class="p">,</span>
+    <span class="mi">414</span><span class="p">,</span>
+    <span class="mi">223</span><span class="p">,</span>
+    <span class="mi">663</span><span class="p">,</span>
+    <span class="mi">692</span><span class="p">,</span>
+    <span class="mi">835</span><span class="p">,</span>
+    <span class="mi">619</span><span class="p">,</span>
+    <span class="mi">472</span><span class="p">,</span>
+    <span class="mi">455</span><span class="p">,</span>
+    <span class="mi">796</span><span class="p">,</span>
+    <span class="mi">809</span><span class="p">,</span>
+    <span class="mi">714</span><span class="p">,</span>
+    <span class="mi">721</span><span class="p">,</span>
+    <span class="mi">837</span><span class="p">,</span>
+    <span class="mi">716</span><span class="p">,</span>
+    <span class="mi">864</span><span class="p">,</span>
+    <span class="mi">810</span><span class="p">,</span>
+    <span class="mi">606</span><span class="p">,</span>
+    <span class="mi">912</span><span class="p">,</span>
+    <span class="mi">722</span><span class="p">,</span>
+    <span class="mi">696</span><span class="p">,</span>
+    <span class="mi">377</span><span class="p">,</span>
+    <span class="mi">435</span><span class="p">,</span>
+    <span class="mi">817</span><span class="p">,</span>
+    <span class="mi">319</span><span class="p">,</span>
+    <span class="mi">621</span><span class="p">,</span>
+    <span class="mi">812</span><span class="p">,</span>
+    <span class="mi">484</span><span class="p">,</span>
+    <span class="mi">430</span><span class="p">,</span>
+    <span class="mi">838</span><span class="p">,</span>
+    <span class="mi">667</span><span class="p">,</span>
+    <span class="mi">488</span><span class="p">,</span>
+    <span class="mi">239</span><span class="p">,</span>
+    <span class="mi">378</span><span class="p">,</span>
+    <span class="mi">459</span><span class="p">,</span>
+    <span class="mi">622</span><span class="p">,</span>
+    <span class="mi">627</span><span class="p">,</span>
+    <span class="mi">437</span><span class="p">,</span>
+    <span class="mi">380</span><span class="p">,</span>
+    <span class="mi">818</span><span class="p">,</span>
+    <span class="mi">461</span><span class="p">,</span>
+    <span class="mi">496</span><span class="p">,</span>
+    <span class="mi">669</span><span class="p">,</span>
+    <span class="mi">679</span><span class="p">,</span>
+    <span class="mi">724</span><span class="p">,</span>
+    <span class="mi">841</span><span class="p">,</span>
+    <span class="mi">629</span><span class="p">,</span>
+    <span class="mi">351</span><span class="p">,</span>
+    <span class="mi">467</span><span class="p">,</span>
+    <span class="mi">438</span><span class="p">,</span>
+    <span class="mi">737</span><span class="p">,</span>
+    <span class="mi">251</span><span class="p">,</span>
+    <span class="mi">462</span><span class="p">,</span>
+    <span class="mi">442</span><span class="p">,</span>
+    <span class="mi">441</span><span class="p">,</span>
+    <span class="mi">469</span><span class="p">,</span>
+    <span class="mi">247</span><span class="p">,</span>
+    <span class="mi">683</span><span class="p">,</span>
+    <span class="mi">842</span><span class="p">,</span>
+    <span class="mi">738</span><span class="p">,</span>
+    <span class="mi">899</span><span class="p">,</span>
+    <span class="mi">670</span><span class="p">,</span>
+    <span class="mi">783</span><span class="p">,</span>
+    <span class="mi">849</span><span class="p">,</span>
+    <span class="mi">820</span><span class="p">,</span>
+    <span class="mi">728</span><span class="p">,</span>
+    <span class="mi">928</span><span class="p">,</span>
+    <span class="mi">791</span><span class="p">,</span>
+    <span class="mi">367</span><span class="p">,</span>
+    <span class="mi">901</span><span class="p">,</span>
+    <span class="mi">630</span><span class="p">,</span>
+    <span class="mi">685</span><span class="p">,</span>
+    <span class="mi">844</span><span class="p">,</span>
+    <span class="mi">633</span><span class="p">,</span>
+    <span class="mi">711</span><span class="p">,</span>
+    <span class="mi">253</span><span class="p">,</span>
+    <span class="mi">691</span><span class="p">,</span>
+    <span class="mi">824</span><span class="p">,</span>
+    <span class="mi">902</span><span class="p">,</span>
+    <span class="mi">686</span><span class="p">,</span>
+    <span class="mi">740</span><span class="p">,</span>
+    <span class="mi">850</span><span class="p">,</span>
+    <span class="mi">375</span><span class="p">,</span>
+    <span class="mi">444</span><span class="p">,</span>
+    <span class="mi">470</span><span class="p">,</span>
+    <span class="mi">483</span><span class="p">,</span>
+    <span class="mi">415</span><span class="p">,</span>
+    <span class="mi">485</span><span class="p">,</span>
+    <span class="mi">905</span><span class="p">,</span>
+    <span class="mi">795</span><span class="p">,</span>
+    <span class="mi">473</span><span class="p">,</span>
+    <span class="mi">634</span><span class="p">,</span>
+    <span class="mi">744</span><span class="p">,</span>
+    <span class="mi">852</span><span class="p">,</span>
+    <span class="mi">960</span><span class="p">,</span>
+    <span class="mi">865</span><span class="p">,</span>
+    <span class="mi">693</span><span class="p">,</span>
+    <span class="mi">797</span><span class="p">,</span>
+    <span class="mi">906</span><span class="p">,</span>
+    <span class="mi">715</span><span class="p">,</span>
+    <span class="mi">807</span><span class="p">,</span>
+    <span class="mi">474</span><span class="p">,</span>
+    <span class="mi">636</span><span class="p">,</span>
+    <span class="mi">694</span><span class="p">,</span>
+    <span class="mi">254</span><span class="p">,</span>
+    <span class="mi">717</span><span class="p">,</span>
+    <span class="mi">575</span><span class="p">,</span>
+    <span class="mi">913</span><span class="p">,</span>
+    <span class="mi">798</span><span class="p">,</span>
+    <span class="mi">811</span><span class="p">,</span>
+    <span class="mi">379</span><span class="p">,</span>
+    <span class="mi">697</span><span class="p">,</span>
+    <span class="mi">431</span><span class="p">,</span>
+    <span class="mi">607</span><span class="p">,</span>
+    <span class="mi">489</span><span class="p">,</span>
+    <span class="mi">866</span><span class="p">,</span>
+    <span class="mi">723</span><span class="p">,</span>
+    <span class="mi">486</span><span class="p">,</span>
+    <span class="mi">908</span><span class="p">,</span>
+    <span class="mi">718</span><span class="p">,</span>
+    <span class="mi">813</span><span class="p">,</span>
+    <span class="mi">476</span><span class="p">,</span>
+    <span class="mi">856</span><span class="p">,</span>
+    <span class="mi">839</span><span class="p">,</span>
+    <span class="mi">725</span><span class="p">,</span>
+    <span class="mi">698</span><span class="p">,</span>
+    <span class="mi">914</span><span class="p">,</span>
+    <span class="mi">752</span><span class="p">,</span>
+    <span class="mi">868</span><span class="p">,</span>
+    <span class="mi">819</span><span class="p">,</span>
+    <span class="mi">814</span><span class="p">,</span>
+    <span class="mi">439</span><span class="p">,</span>
+    <span class="mi">929</span><span class="p">,</span>
+    <span class="mi">490</span><span class="p">,</span>
+    <span class="mi">623</span><span class="p">,</span>
+    <span class="mi">671</span><span class="p">,</span>
+    <span class="mi">739</span><span class="p">,</span>
+    <span class="mi">916</span><span class="p">,</span>
+    <span class="mi">463</span><span class="p">,</span>
+    <span class="mi">843</span><span class="p">,</span>
+    <span class="mi">381</span><span class="p">,</span>
+    <span class="mi">497</span><span class="p">,</span>
+    <span class="mi">930</span><span class="p">,</span>
+    <span class="mi">821</span><span class="p">,</span>
+    <span class="mi">726</span><span class="p">,</span>
+    <span class="mi">961</span><span class="p">,</span>
+    <span class="mi">872</span><span class="p">,</span>
+    <span class="mi">492</span><span class="p">,</span>
+    <span class="mi">631</span><span class="p">,</span>
+    <span class="mi">729</span><span class="p">,</span>
+    <span class="mi">700</span><span class="p">,</span>
+    <span class="mi">443</span><span class="p">,</span>
+    <span class="mi">741</span><span class="p">,</span>
+    <span class="mi">845</span><span class="p">,</span>
+    <span class="mi">920</span><span class="p">,</span>
+    <span class="mi">382</span><span class="p">,</span>
+    <span class="mi">822</span><span class="p">,</span>
+    <span class="mi">851</span><span class="p">,</span>
+    <span class="mi">730</span><span class="p">,</span>
+    <span class="mi">498</span><span class="p">,</span>
+    <span class="mi">880</span><span class="p">,</span>
+    <span class="mi">742</span><span class="p">,</span>
+    <span class="mi">445</span><span class="p">,</span>
+    <span class="mi">471</span><span class="p">,</span>
+    <span class="mi">635</span><span class="p">,</span>
+    <span class="mi">932</span><span class="p">,</span>
+    <span class="mi">687</span><span class="p">,</span>
+    <span class="mi">903</span><span class="p">,</span>
+    <span class="mi">825</span><span class="p">,</span>
+    <span class="mi">500</span><span class="p">,</span>
+    <span class="mi">846</span><span class="p">,</span>
+    <span class="mi">745</span><span class="p">,</span>
+    <span class="mi">826</span><span class="p">,</span>
+    <span class="mi">732</span><span class="p">,</span>
+    <span class="mi">446</span><span class="p">,</span>
+    <span class="mi">962</span><span class="p">,</span>
+    <span class="mi">936</span><span class="p">,</span>
+    <span class="mi">475</span><span class="p">,</span>
+    <span class="mi">853</span><span class="p">,</span>
+    <span class="mi">867</span><span class="p">,</span>
+    <span class="mi">637</span><span class="p">,</span>
+    <span class="mi">907</span><span class="p">,</span>
+    <span class="mi">487</span><span class="p">,</span>
+    <span class="mi">695</span><span class="p">,</span>
+    <span class="mi">746</span><span class="p">,</span>
+    <span class="mi">828</span><span class="p">,</span>
+    <span class="mi">753</span><span class="p">,</span>
+    <span class="mi">854</span><span class="p">,</span>
+    <span class="mi">857</span><span class="p">,</span>
+    <span class="mi">504</span><span class="p">,</span>
+    <span class="mi">799</span><span class="p">,</span>
+    <span class="mi">255</span><span class="p">,</span>
+    <span class="mi">964</span><span class="p">,</span>
+    <span class="mi">909</span><span class="p">,</span>
+    <span class="mi">719</span><span class="p">,</span>
+    <span class="mi">477</span><span class="p">,</span>
+    <span class="mi">915</span><span class="p">,</span>
+    <span class="mi">638</span><span class="p">,</span>
+    <span class="mi">748</span><span class="p">,</span>
+    <span class="mi">944</span><span class="p">,</span>
+    <span class="mi">869</span><span class="p">,</span>
+    <span class="mi">491</span><span class="p">,</span>
+    <span class="mi">699</span><span class="p">,</span>
+    <span class="mi">754</span><span class="p">,</span>
+    <span class="mi">858</span><span class="p">,</span>
+    <span class="mi">478</span><span class="p">,</span>
+    <span class="mi">968</span><span class="p">,</span>
+    <span class="mi">383</span><span class="p">,</span>
+    <span class="mi">910</span><span class="p">,</span>
+    <span class="mi">815</span><span class="p">,</span>
+    <span class="mi">976</span><span class="p">,</span>
+    <span class="mi">870</span><span class="p">,</span>
+    <span class="mi">917</span><span class="p">,</span>
+    <span class="mi">727</span><span class="p">,</span>
+    <span class="mi">493</span><span class="p">,</span>
+    <span class="mi">873</span><span class="p">,</span>
+    <span class="mi">701</span><span class="p">,</span>
+    <span class="mi">931</span><span class="p">,</span>
+    <span class="mi">756</span><span class="p">,</span>
+    <span class="mi">860</span><span class="p">,</span>
+    <span class="mi">499</span><span class="p">,</span>
+    <span class="mi">731</span><span class="p">,</span>
+    <span class="mi">823</span><span class="p">,</span>
+    <span class="mi">922</span><span class="p">,</span>
+    <span class="mi">874</span><span class="p">,</span>
+    <span class="mi">918</span><span class="p">,</span>
+    <span class="mi">502</span><span class="p">,</span>
+    <span class="mi">933</span><span class="p">,</span>
+    <span class="mi">743</span><span class="p">,</span>
+    <span class="mi">760</span><span class="p">,</span>
+    <span class="mi">881</span><span class="p">,</span>
+    <span class="mi">494</span><span class="p">,</span>
+    <span class="mi">702</span><span class="p">,</span>
+    <span class="mi">921</span><span class="p">,</span>
+    <span class="mi">501</span><span class="p">,</span>
+    <span class="mi">876</span><span class="p">,</span>
+    <span class="mi">847</span><span class="p">,</span>
+    <span class="mi">992</span><span class="p">,</span>
+    <span class="mi">447</span><span class="p">,</span>
+    <span class="mi">733</span><span class="p">,</span>
+    <span class="mi">827</span><span class="p">,</span>
+    <span class="mi">934</span><span class="p">,</span>
+    <span class="mi">882</span><span class="p">,</span>
+    <span class="mi">937</span><span class="p">,</span>
+    <span class="mi">963</span><span class="p">,</span>
+    <span class="mi">747</span><span class="p">,</span>
+    <span class="mi">505</span><span class="p">,</span>
+    <span class="mi">855</span><span class="p">,</span>
+    <span class="mi">924</span><span class="p">,</span>
+    <span class="mi">734</span><span class="p">,</span>
+    <span class="mi">829</span><span class="p">,</span>
+    <span class="mi">965</span><span class="p">,</span>
+    <span class="mi">938</span><span class="p">,</span>
+    <span class="mi">884</span><span class="p">,</span>
+    <span class="mi">506</span><span class="p">,</span>
+    <span class="mi">749</span><span class="p">,</span>
+    <span class="mi">945</span><span class="p">,</span>
+    <span class="mi">966</span><span class="p">,</span>
+    <span class="mi">755</span><span class="p">,</span>
+    <span class="mi">859</span><span class="p">,</span>
+    <span class="mi">940</span><span class="p">,</span>
+    <span class="mi">830</span><span class="p">,</span>
+    <span class="mi">911</span><span class="p">,</span>
+    <span class="mi">871</span><span class="p">,</span>
+    <span class="mi">639</span><span class="p">,</span>
+    <span class="mi">888</span><span class="p">,</span>
+    <span class="mi">479</span><span class="p">,</span>
+    <span class="mi">946</span><span class="p">,</span>
+    <span class="mi">750</span><span class="p">,</span>
+    <span class="mi">969</span><span class="p">,</span>
+    <span class="mi">508</span><span class="p">,</span>
+    <span class="mi">861</span><span class="p">,</span>
+    <span class="mi">757</span><span class="p">,</span>
+    <span class="mi">970</span><span class="p">,</span>
+    <span class="mi">919</span><span class="p">,</span>
+    <span class="mi">875</span><span class="p">,</span>
+    <span class="mi">862</span><span class="p">,</span>
+    <span class="mi">758</span><span class="p">,</span>
+    <span class="mi">948</span><span class="p">,</span>
+    <span class="mi">977</span><span class="p">,</span>
+    <span class="mi">923</span><span class="p">,</span>
+    <span class="mi">972</span><span class="p">,</span>
+    <span class="mi">761</span><span class="p">,</span>
+    <span class="mi">877</span><span class="p">,</span>
+    <span class="mi">952</span><span class="p">,</span>
+    <span class="mi">495</span><span class="p">,</span>
+    <span class="mi">703</span><span class="p">,</span>
+    <span class="mi">935</span><span class="p">,</span>
+    <span class="mi">978</span><span class="p">,</span>
+    <span class="mi">883</span><span class="p">,</span>
+    <span class="mi">762</span><span class="p">,</span>
+    <span class="mi">503</span><span class="p">,</span>
+    <span class="mi">925</span><span class="p">,</span>
+    <span class="mi">878</span><span class="p">,</span>
+    <span class="mi">735</span><span class="p">,</span>
+    <span class="mi">993</span><span class="p">,</span>
+    <span class="mi">885</span><span class="p">,</span>
+    <span class="mi">939</span><span class="p">,</span>
+    <span class="mi">994</span><span class="p">,</span>
+    <span class="mi">980</span><span class="p">,</span>
+    <span class="mi">926</span><span class="p">,</span>
+    <span class="mi">764</span><span class="p">,</span>
+    <span class="mi">941</span><span class="p">,</span>
+    <span class="mi">967</span><span class="p">,</span>
+    <span class="mi">886</span><span class="p">,</span>
+    <span class="mi">831</span><span class="p">,</span>
+    <span class="mi">947</span><span class="p">,</span>
+    <span class="mi">507</span><span class="p">,</span>
+    <span class="mi">889</span><span class="p">,</span>
+    <span class="mi">984</span><span class="p">,</span>
+    <span class="mi">751</span><span class="p">,</span>
+    <span class="mi">942</span><span class="p">,</span>
+    <span class="mi">996</span><span class="p">,</span>
+    <span class="mi">971</span><span class="p">,</span>
+    <span class="mi">890</span><span class="p">,</span>
+    <span class="mi">509</span><span class="p">,</span>
+    <span class="mi">949</span><span class="p">,</span>
+    <span class="mi">973</span><span class="p">,</span>
+    <span class="mi">1000</span><span class="p">,</span>
+    <span class="mi">892</span><span class="p">,</span>
+    <span class="mi">950</span><span class="p">,</span>
+    <span class="mi">863</span><span class="p">,</span>
+    <span class="mi">759</span><span class="p">,</span>
+    <span class="mi">1008</span><span class="p">,</span>
+    <span class="mi">510</span><span class="p">,</span>
+    <span class="mi">979</span><span class="p">,</span>
+    <span class="mi">953</span><span class="p">,</span>
+    <span class="mi">763</span><span class="p">,</span>
+    <span class="mi">974</span><span class="p">,</span>
+    <span class="mi">954</span><span class="p">,</span>
+    <span class="mi">879</span><span class="p">,</span>
+    <span class="mi">981</span><span class="p">,</span>
+    <span class="mi">982</span><span class="p">,</span>
+    <span class="mi">927</span><span class="p">,</span>
+    <span class="mi">995</span><span class="p">,</span>
+    <span class="mi">765</span><span class="p">,</span>
+    <span class="mi">956</span><span class="p">,</span>
+    <span class="mi">887</span><span class="p">,</span>
+    <span class="mi">985</span><span class="p">,</span>
+    <span class="mi">997</span><span class="p">,</span>
+    <span class="mi">986</span><span class="p">,</span>
+    <span class="mi">943</span><span class="p">,</span>
+    <span class="mi">891</span><span class="p">,</span>
+    <span class="mi">998</span><span class="p">,</span>
+    <span class="mi">766</span><span class="p">,</span>
+    <span class="mi">511</span><span class="p">,</span>
+    <span class="mi">988</span><span class="p">,</span>
+    <span class="mi">1001</span><span class="p">,</span>
+    <span class="mi">951</span><span class="p">,</span>
+    <span class="mi">1002</span><span class="p">,</span>
+    <span class="mi">893</span><span class="p">,</span>
+    <span class="mi">975</span><span class="p">,</span>
+    <span class="mi">894</span><span class="p">,</span>
+    <span class="mi">1009</span><span class="p">,</span>
+    <span class="mi">955</span><span class="p">,</span>
+    <span class="mi">1004</span><span class="p">,</span>
+    <span class="mi">1010</span><span class="p">,</span>
+    <span class="mi">957</span><span class="p">,</span>
+    <span class="mi">983</span><span class="p">,</span>
+    <span class="mi">958</span><span class="p">,</span>
+    <span class="mi">987</span><span class="p">,</span>
+    <span class="mi">1012</span><span class="p">,</span>
+    <span class="mi">999</span><span class="p">,</span>
+    <span class="mi">1016</span><span class="p">,</span>
+    <span class="mi">767</span><span class="p">,</span>
+    <span class="mi">989</span><span class="p">,</span>
+    <span class="mi">1003</span><span class="p">,</span>
+    <span class="mi">990</span><span class="p">,</span>
+    <span class="mi">1005</span><span class="p">,</span>
+    <span class="mi">959</span><span class="p">,</span>
+    <span class="mi">1011</span><span class="p">,</span>
+    <span class="mi">1013</span><span class="p">,</span>
+    <span class="mi">895</span><span class="p">,</span>
+    <span class="mi">1006</span><span class="p">,</span>
+    <span class="mi">1014</span><span class="p">,</span>
+    <span class="mi">1017</span><span class="p">,</span>
+    <span class="mi">1018</span><span class="p">,</span>
+    <span class="mi">991</span><span class="p">,</span>
+    <span class="mi">1020</span><span class="p">,</span>
+    <span class="mi">1007</span><span class="p">,</span>
+    <span class="mi">1015</span><span class="p">,</span>
+    <span class="mi">1019</span><span class="p">,</span>
+    <span class="mi">1021</span><span class="p">,</span>
+    <span class="mi">1022</span><span class="p">,</span>
+    <span class="mi">1023</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="c1"># Rate matching table (table 23): rate_str -&gt; {N: K}</span>
+<span class="n">RATE_TABLE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;1/4&quot;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1024</span><span class="p">:</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">512</span><span class="p">:</span> <span class="mi">96</span><span class="p">,</span> <span class="mi">256</span><span class="p">:</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">128</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">64</span><span class="p">:</span> <span class="mi">12</span><span class="p">},</span>
+    <span class="s2">&quot;3/8&quot;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1024</span><span class="p">:</span> <span class="mi">384</span><span class="p">,</span> <span class="mi">512</span><span class="p">:</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">256</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">128</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">64</span><span class="p">:</span> <span class="mi">20</span><span class="p">},</span>
+    <span class="s2">&quot;1/2&quot;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1024</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">:</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">256</span><span class="p">:</span> <span class="mi">112</span><span class="p">,</span> <span class="mi">128</span><span class="p">:</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">64</span><span class="p">:</span> <span class="mi">28</span><span class="p">},</span>
+    <span class="s2">&quot;5/8&quot;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1024</span><span class="p">:</span> <span class="mi">640</span><span class="p">,</span> <span class="mi">512</span><span class="p">:</span> <span class="mi">288</span><span class="p">,</span> <span class="mi">256</span><span class="p">:</span> <span class="mi">144</span><span class="p">,</span> <span class="mi">128</span><span class="p">:</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">64</span><span class="p">:</span> <span class="mi">36</span><span class="p">},</span>
+    <span class="s2">&quot;3/4&quot;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1024</span><span class="p">:</span> <span class="mi">768</span><span class="p">,</span> <span class="mi">512</span><span class="p">:</span> <span class="mi">352</span><span class="p">,</span> <span class="mi">256</span><span class="p">:</span> <span class="mi">176</span><span class="p">,</span> <span class="mi">128</span><span class="p">:</span> <span class="mi">88</span><span class="p">,</span> <span class="mi">64</span><span class="p">:</span> <span class="mi">44</span><span class="p">},</span>
+    <span class="s2">&quot;7/8&quot;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1024</span><span class="p">:</span> <span class="mi">896</span><span class="p">,</span> <span class="mi">512</span><span class="p">:</span> <span class="mi">416</span><span class="p">,</span> <span class="mi">256</span><span class="p">:</span> <span class="mi">208</span><span class="p">,</span> <span class="mi">128</span><span class="p">:</span> <span class="mi">104</span><span class="p">,</span> <span class="mi">64</span><span class="p">:</span> <span class="mi">52</span><span class="p">},</span>
+<span class="p">}</span>
+
+<span class="n">VALID_CODE_LENGTHS</span> <span class="o">=</span> <span class="p">{</span><span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">1024</span><span class="p">}</span>
+
+
+<div class="viewcode-block" id="get_info_bit_count">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.html#nearlink_sdr.common.polar.get_info_bit_count">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_info_bit_count</span><span class="p">(</span><span class="n">rate_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">N</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;从速率匹配表中查询给定码率和码长对应的信息位数 K。&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">rate_str</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">RATE_TABLE</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported rate &#39;</span><span class="si">{</span><span class="n">rate_str</span><span class="si">}</span><span class="s2">&#39;. Valid: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">RATE_TABLE</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">N</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">RATE_TABLE</span><span class="p">[</span><span class="n">rate_str</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported code length </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2"> for rate &#39;</span><span class="si">{</span><span class="n">rate_str</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">RATE_TABLE</span><span class="p">[</span><span class="n">rate_str</span><span class="p">][</span><span class="n">N</span><span class="p">]</span></div>
+
+
+
+<span class="nd">@lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_reliability_sequence</span><span class="p">(</span><span class="n">N</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;从 N_max=1024 可靠性序列中提取码长 N 的可靠性序列。</span>
+
+<span class="sd">    过滤比特索引 &lt; N 的条目，保持可靠性顺序不变。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">q</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">RELIABILITY_SEQ_1024</span> <span class="k">if</span> <span class="n">q</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_frozen_and_info_sets</span><span class="p">(</span><span class="n">N</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">K</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">set</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="nb">set</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;确定冻结位和信息位的位置集合。</span>
+
+<span class="sd">    可靠性序列中最后 K 个（最可靠）为信息位，</span>
+<span class="sd">    前 N-K 个（最不可靠）为冻结位。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">seq</span> <span class="o">=</span> <span class="n">_get_reliability_sequence</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">frozen_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">seq</span><span class="p">[:</span> <span class="n">N</span> <span class="o">-</span> <span class="n">K</span><span class="p">])</span>
+    <span class="n">info_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="n">N</span> <span class="o">-</span> <span class="n">K</span> <span class="p">:])</span>
+    <span class="k">return</span> <span class="n">frozen_set</span><span class="p">,</span> <span class="n">info_set</span>
+
+
+<div class="viewcode-block" id="PolarEncoder">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.html#nearlink_sdr.common.polar.PolarEncoder">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PolarEncoder</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;使用 GF(2) 上蝶形（递归）算法的 Polar 编码器。&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">K</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">N</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">VALID_CODE_LENGTHS</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;N must be in </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="n">VALID_CODE_LENGTHS</span><span class="p">)</span><span class="si">}</span><span class="s2">, got </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">K</span> <span class="o">&gt;=</span> <span class="n">N</span> <span class="ow">or</span> <span class="n">K</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;K must satisfy 1 &lt;= K &lt; N, got K=</span><span class="si">{</span><span class="n">K</span><span class="si">}</span><span class="s2">, N=</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">N</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">K</span> <span class="o">=</span> <span class="n">K</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frozen_set</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">info_set</span> <span class="o">=</span> <span class="n">_get_frozen_and_info_sets</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+        <span class="n">seq</span> <span class="o">=</span> <span class="n">_get_reliability_sequence</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">info_positions</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="n">N</span> <span class="o">-</span> <span class="n">K</span> <span class="p">:])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_info_pos_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">info_positions</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">intp</span><span class="p">)</span>
+        <span class="c1"># Rust 加速</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rust_encoder</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">_HAS_RUST_ACCEL</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_rust_encoder</span> <span class="o">=</span> <span class="n">_RustPolarEncoder</span><span class="p">(</span>
+                <span class="n">N</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">info_positions</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span>
+            <span class="p">)</span>
+
+<div class="viewcode-block" id="PolarEncoder.encode">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.html#nearlink_sdr.common.polar.PolarEncoder.encode">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">info_bits</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;将 K 个信息位编码为 N 个编码位。</span>
+
+<span class="sd">        :param info_bits: 长度为 K 的比特数组（取值 0 或 1）。</span>
+
+<span class="sd">        :returns: 长度为 N 的码字（取值 0 或 1）。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">info_bits</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">info_bits</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">info_bits</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">,):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="si">}</span><span class="s2"> info bits, got shape </span><span class="si">{</span><span class="n">info_bits</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rust_encoder</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rust_encoder</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">info_bits</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+
+        <span class="c1"># Build encoder input u — vectorized insert</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+        <span class="n">u</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_info_pos_arr</span><span class="p">]</span> <span class="o">=</span> <span class="n">info_bits</span>
+
+        <span class="c1"># Butterfly encoding: vectorized GF(2) transform</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">stage</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">stage</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">stage</span><span class="p">):</span>
+                <span class="n">d</span><span class="p">[</span><span class="n">j</span><span class="p">:</span><span class="n">j</span> <span class="o">+</span> <span class="n">stage</span><span class="p">]</span> <span class="o">^=</span> <span class="n">d</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">stage</span><span class="p">:</span><span class="n">j</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">stage</span><span class="p">]</span>
+            <span class="n">stage</span> <span class="o">&lt;&lt;=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">d</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="PolarDecoder">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.html#nearlink_sdr.common.polar.PolarDecoder">[文档]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PolarDecoder</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Successive Cancellation (SC) decoder in LLR domain。</span>
+
+<span class="sd">    使用预分配的二维数组存储中间 LLR 和 partial sums, 避免递归中频繁分配内存。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">K</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">N</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">VALID_CODE_LENGTHS</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;N must be in </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="n">VALID_CODE_LENGTHS</span><span class="p">)</span><span class="si">}</span><span class="s2">, got </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">K</span> <span class="o">&gt;=</span> <span class="n">N</span> <span class="ow">or</span> <span class="n">K</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;K must satisfy 1 &lt;= K &lt; N, got K=</span><span class="si">{</span><span class="n">K</span><span class="si">}</span><span class="s2">, N=</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">N</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">K</span> <span class="o">=</span> <span class="n">K</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frozen_set</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">info_set</span> <span class="o">=</span> <span class="n">_get_frozen_and_info_sets</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+        <span class="n">seq</span> <span class="o">=</span> <span class="n">_get_reliability_sequence</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">info_positions</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="n">N</span> <span class="o">-</span> <span class="n">K</span> <span class="p">:])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_info_pos_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">info_positions</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">intp</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_frozen</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">info_positions</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_is_frozen</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="c1"># 预分配 (n+1) 层, 每层 N 元素</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+        <span class="c1"># SSC: 预计算每个子树的类型 (rate-0 / rate-1 / partial)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_node_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_node_types</span><span class="p">()</span>
+        <span class="c1"># Rust 加速: 可用时创建 Rust 解码器实例</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rust_decoder</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">_HAS_RUST_ACCEL</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_rust_decoder</span> <span class="o">=</span> <span class="n">_RustPolarDecoder</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_is_frozen</span><span class="p">,</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">info_positions</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_build_node_types</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;预计算所有子树的类型: 0=rate-0, 1=rate-1, 2=partial。</span>
+
+<span class="sd">        使用前缀和做 O(1) 范围查询, 迭代遍历避免递归开销。</span>
+<span class="sd">        rate-0/rate-1 子树不再向下遍历, 与 SSC 剪枝对齐。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+        <span class="n">frozen</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_frozen</span>
+        <span class="c1"># 前缀和: prefix[i] = sum(frozen[0:i])</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+        <span class="n">prefix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">frozen</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">prefix</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+
+        <span class="n">node_type</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">stack</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">)]</span>
+        <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+            <span class="n">start</span><span class="p">,</span> <span class="n">length</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="n">cnt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">prefix</span><span class="p">[</span><span class="n">start</span> <span class="o">+</span> <span class="n">length</span><span class="p">]</span> <span class="o">-</span> <span class="n">prefix</span><span class="p">[</span><span class="n">start</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">cnt</span> <span class="o">==</span> <span class="n">length</span><span class="p">:</span>
+                <span class="n">node_type</span><span class="p">[(</span><span class="n">start</span><span class="p">,</span> <span class="n">length</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">elif</span> <span class="n">cnt</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">node_type</span><span class="p">[(</span><span class="n">start</span><span class="p">,</span> <span class="n">length</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">node_type</span><span class="p">[(</span><span class="n">start</span><span class="p">,</span> <span class="n">length</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">2</span>
+                <span class="k">if</span> <span class="n">length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">half</span> <span class="o">=</span> <span class="n">length</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span>
+                    <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">start</span><span class="p">,</span> <span class="n">half</span><span class="p">))</span>
+                    <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">start</span> <span class="o">+</span> <span class="n">half</span><span class="p">,</span> <span class="n">half</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">node_type</span>
+
+<div class="viewcode-block" id="PolarDecoder.decode">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.html#nearlink_sdr.common.polar.PolarDecoder.decode">[文档]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">llr</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;使用 SC 算法将 N 个信道 LLR 解码为 K 个信息位。</span>
+
+<span class="sd">        约定：正 LLR 表示比特 0 的可能性更高。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">llr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">llr</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">llr</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="si">}</span><span class="s2"> LLRs, got shape </span><span class="si">{</span><span class="n">llr</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rust_decoder</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rust_decoder</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">llr</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_L</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">llr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sc</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_B</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">_info_pos_arr</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_sc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">depth</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;SSC 优化的 SC 解码。</span>
+
+<span class="sd">        rate-0 子树: 所有位为冻结位, 直接置零。</span>
+<span class="sd">        rate-1 子树: 硬判决 LLR 得到编码位, 极性变换得到信息位。</span>
+<span class="sd">        partial 子树: 标准 f/g 递归。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">L</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_L</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_B</span>
+
+        <span class="n">node_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_type</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">start</span><span class="p">,</span> <span class="n">length</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">node_t</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># rate-0: 全冻结 → 解码位和部分和均为零</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">length</span>
+            <span class="n">B</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">B</span><span class="p">[</span><span class="n">depth</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="n">node_t</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># rate-1: 全信息位</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">length</span>
+            <span class="c1"># 硬判决得到该层的编码位 x</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">L</span><span class="p">[</span><span class="n">depth</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+            <span class="c1"># 部分和 = 编码位 (供父节点 g 操作和合并使用)</span>
+            <span class="n">B</span><span class="p">[</span><span class="n">depth</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
+            <span class="k">if</span> <span class="n">length</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">B</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># 极性变换 x → u (F^⊗n 自逆)</span>
+                <span class="n">u</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">step</span> <span class="o">=</span> <span class="n">length</span>
+                <span class="k">while</span> <span class="n">step</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="n">half_s</span> <span class="o">=</span> <span class="n">step</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span>
+                    <span class="n">u_view</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+                    <span class="n">u_view</span><span class="p">[:,</span> <span class="p">:</span><span class="n">half_s</span><span class="p">]</span> <span class="o">^=</span> <span class="n">u_view</span><span class="p">[:,</span> <span class="n">half_s</span><span class="p">:]</span>
+                    <span class="n">step</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span>
+                <span class="n">B</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span>
+            <span class="k">return</span>
+
+        <span class="c1"># partial: 标准 SC 递归</span>
+        <span class="k">if</span> <span class="n">length</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_frozen</span><span class="p">[</span><span class="n">start</span><span class="p">]:</span>
+                <span class="n">B</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">B</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">L</span><span class="p">[</span><span class="n">depth</span><span class="p">,</span> <span class="n">start</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.0</span> <span class="k">else</span> <span class="mi">1</span>
+            <span class="k">return</span>
+
+        <span class="n">half</span> <span class="o">=</span> <span class="n">length</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">half</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">length</span>
+        <span class="n">d1</span> <span class="o">=</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="c1"># f 操作</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">depth</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span><span class="n">mid</span><span class="p">]</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">depth</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+        <span class="n">dst</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">d1</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span><span class="n">mid</span><span class="p">]</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">out</span><span class="o">=</span><span class="n">dst</span><span class="p">)</span>
+        <span class="n">dst</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sc</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">half</span><span class="p">,</span> <span class="n">d1</span><span class="p">)</span>
+
+        <span class="c1"># g 操作</span>
+        <span class="n">left_bits</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="n">d1</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span><span class="n">mid</span><span class="p">]</span>
+        <span class="n">dst</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">d1</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">left_bits</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">dst</span><span class="p">)</span>
+        <span class="n">dst</span> <span class="o">*=</span> <span class="n">a</span>
+        <span class="n">dst</span> <span class="o">+=</span> <span class="n">b</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sc</span><span class="p">(</span><span class="n">mid</span><span class="p">,</span> <span class="n">half</span><span class="p">,</span> <span class="n">d1</span><span class="p">)</span>
+
+        <span class="c1"># 合并 partial sums</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="n">d1</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span><span class="n">mid</span><span class="p">]</span>
+        <span class="n">right</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="n">d1</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+        <span class="n">B</span><span class="p">[</span><span class="n">depth</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="n">left</span> <span class="o">^</span> <span class="n">right</span>
+        <span class="n">B</span><span class="p">[</span><span class="n">depth</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span><span class="n">end</span><span class="p">]</span> <span class="o">=</span> <span class="n">right</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># PolarDecoder 实例缓存 (避免重复初始化 + SSC 构建开销)</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="n">_decoder_cache</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="n">PolarDecoder</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+
+<div class="viewcode-block" id="get_polar_decoder">
+<a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.common.polar.html#nearlink_sdr.common.polar.get_polar_decoder">[文档]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_polar_decoder</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PolarDecoder</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;获取 PolarDecoder 实例, 相同 (N, K) 复用已创建的对象。&quot;&quot;&quot;</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+    <span class="n">dec</span> <span class="o">=</span> <span class="n">_decoder_cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">dec</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">dec</span> <span class="o">=</span> <span class="n">PolarDecoder</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+        <span class="n">_decoder_cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">dec</span>
+    <span class="k">return</span> <span class="n">dec</span></div>
+
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/sanchuanhehe/nearlink_sdr_sim" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82 .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="../../../_static/documentation_options.js?v=3f44ed43"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.esm.min.mjs";
+
+
+
+
+
+const initStyles = () => {
+    const defaultStyle = document.createElement('style');
+    defaultStyle.textContent = `pre.mermaid {
+    /* Same as .mermaid-container > pre */
+    display: block;
+    width: 100%;
+}
+
+pre.mermaid > svg {
+    /* Same as .mermaid-container > pre > svg */
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}`;
+    document.head.appendChild(defaultStyle);
+
+    const fullscreenStyle = document.createElement('style');
+    fullscreenStyle.textContent = `.mermaid-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.mermaid-container > pre {
+    display: block;
+    width: 100%;
+}
+
+.mermaid-container > pre > svg {
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}
+
+.mermaid-fullscreen-btn {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+    color: #333;
+}
+
+.mermaid-fullscreen-btn:hover {
+    opacity: 100% !important;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-btn.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-btn.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 95vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    z-index: 9999;
+    padding: 20px;
+    overflow: auto;
+}
+
+.mermaid-fullscreen-modal.dark-theme {
+    background: rgba(0, 0, 0, 0.98);
+}
+
+.mermaid-fullscreen-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen {
+    position: relative;
+    width: 95vw;
+    height: 90vh;
+    max-width: 95vw;
+    max-height: 90vh;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen.dark-theme {
+    background: #1a1a1a;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.mermaid-container-fullscreen pre.mermaid {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen .mermaid svg {
+    height: 100% !important;
+    width: 100% !important;
+    cursor: grab;
+}
+
+.mermaid-fullscreen-close {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s;
+    font-size: 24px;
+    line-height: 1;
+    color: #333;
+}
+
+.mermaid-fullscreen-close:hover {
+    background: white;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-close.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-close.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal .mermaid-fullscreen-btn {
+    display: none !important;
+}`;
+    document.head.appendChild(fullscreenStyle);
+}
+
+// Detect if page has dark background
+const isDarkTheme = () => {
+    // We use a set of heuristics:
+    // 1. Check for common dark mode classes or attributes
+    // 2. Check computed background color brightness
+    if (document.documentElement.classList.contains('dark') ||
+        document.documentElement.getAttribute('data-theme') === 'dark' ||
+        document.body.classList.contains('dark') ||
+        document.body.getAttribute('data-theme') === 'dark') {
+        // console.log("Dark theme detected via class/attribute");
+        return true;
+    }
+    if (document.documentElement.classList.contains('light') ||
+        document.documentElement.getAttribute('data-theme') === 'light' ||
+        document.body.classList.contains('light') ||
+        document.body.getAttribute('data-theme') === 'light') {
+        // console.log("Light theme detected via class/attribute");
+        return false;
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // console.log("Dark theme detected via prefers-color-scheme");
+        return true;
+    }
+    const bgColor = window.getComputedStyle(document.body).backgroundColor;
+    const match = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)/);
+    if (match) {
+        const r = parseInt(match[1]);
+        const g = parseInt(match[2]);
+        const b = parseInt(match[3]);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        // console.log("Background color brightness:", brightness);
+        return brightness < 128;
+    }
+    // console.log("No dark or light theme detected, defaulting to light theme");
+    return false;
+};
+
+let darkTheme = isDarkTheme();
+let modal = null;
+let modalContent = null;
+let previousScrollOffset = [window.scrollX, window.scrollY];
+
+const runMermaid = async (rerun) => {
+    console.log("Running mermaid diagrams, rerun =", rerun);
+    // clear all existing mermaid charts
+    let all_mermaids = document.querySelectorAll(".mermaid");
+
+    if (rerun) {
+        all_mermaids.forEach((el) => {
+            if(!el.hasAttribute("data-original-code")) {
+                // store original code
+                // console.log(`Storing original code for first run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+            if(el.getAttribute("data-processed") === "true") {
+                // remove and restore original
+                el.removeAttribute("data-processed");
+                // console.log(`Restoring original code for re-run: `, el.getAttribute('data-original-code'));
+                el.innerHTML = el.getAttribute('data-original-code');
+            } else {
+                // store original code
+                // console.log(`Storing original code for re-run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+        });
+        await mermaid.run();
+    }
+
+    all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+
+    if ("False" === "True") {
+        const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+        if(mermaids_to_add_zoom > 0) {
+            var svgs = d3.selectAll("");
+            if(all_mermaids.length !== mermaids_processed.length) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else if(svgs.size() !== mermaids_to_add_zoom) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else {
+                svgs.each(function() {
+                    var svg = d3.select(this);
+                    svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                    var inner = svg.select("g");
+                    var zoom = d3.zoom().on("zoom", function(event) {
+                        inner.attr("transform", event.transform);
+                    });
+                    svg.call(zoom);
+                });
+            }
+        }
+    } else if(all_mermaids.length !== mermaids_processed.length) {
+        // Wait for mermaid to process all diagrams
+        setTimeout(() => runMermaid(false), 200);
+        return;
+    }
+
+    // Stop here if not adding fullscreen capability
+    if ("True" !== "True") return;
+
+    if (modal !== null ) {
+        // Destroy existing modal
+        modal.remove();
+        modal = null;
+        modalContent = null;
+    }
+
+    modal = document.createElement('div');
+    modal.className = 'mermaid-fullscreen-modal' + (darkTheme ? ' dark-theme' : '');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Fullscreen diagram viewer');
+    modal.innerHTML = `
+        <button class="mermaid-fullscreen-close${darkTheme ? ' dark-theme' : ''}" aria-label="Close fullscreen">✕</button>
+        <div class="mermaid-container-fullscreen${darkTheme ? ' dark-theme' : ''}"></div>
+    `;
+    document.body.appendChild(modal);
+
+    modalContent = modal.querySelector('.mermaid-container-fullscreen');
+    const closeBtn = modal.querySelector('.mermaid-fullscreen-close');
+
+    const closeModal = () => {
+        modal.classList.remove('active');
+        modalContent.innerHTML = '';
+        document.body.style.overflow = ''
+        window.scrollTo({left: previousScrollOffset[0], top: previousScrollOffset[1], behavior: 'instant'});
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    document.querySelectorAll('.mermaid').forEach((mermaidDiv) => {
+        if (mermaidDiv.parentNode.classList.contains('mermaid-container') ||
+            mermaidDiv.closest('.mermaid-fullscreen-modal')) {
+            // Already processed, adjust button class if needed
+            const existingBtn = mermaidDiv.parentNode.querySelector('.mermaid-fullscreen-btn');
+            if (existingBtn) {
+                existingBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+            }
+            return;
+        }
+
+        const container = document.createElement('div');
+        container.className = 'mermaid-container';
+        mermaidDiv.parentNode.insertBefore(container, mermaidDiv);
+        container.appendChild(mermaidDiv);
+
+        const fullscreenBtn = document.createElement('button');
+        fullscreenBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+        fullscreenBtn.setAttribute('aria-label', 'View diagram in fullscreen');
+        fullscreenBtn.textContent = '⛶';
+        fullscreenBtn.style.opacity = '50%';
+
+        // Calculate dynamic position based on diagram's margin and padding
+        const diagramStyle = window.getComputedStyle(mermaidDiv);
+        const marginTop = parseFloat(diagramStyle.marginTop) || 0;
+        const marginRight = parseFloat(diagramStyle.marginRight) || 0;
+        const paddingTop = parseFloat(diagramStyle.paddingTop) || 0;
+        const paddingRight = parseFloat(diagramStyle.paddingRight) || 0;
+        fullscreenBtn.style.top = `${marginTop + paddingTop + 4}px`;
+        fullscreenBtn.style.right = `${marginRight + paddingRight + 4}px`;
+
+        fullscreenBtn.addEventListener('click', () => {
+            previousScrollOffset = [window.scroll, window.scrollY];
+            const clone = mermaidDiv.cloneNode(true);
+            modalContent.innerHTML = '';
+            modalContent.appendChild(clone);
+
+            const svg = clone.querySelector('svg');
+            if (svg) {
+                svg.removeAttribute('width');
+                svg.removeAttribute('height');
+                svg.style.width = '100%';
+                svg.style.height = 'auto';
+                svg.style.maxWidth = '100%';
+                svg.style.sdisplay = 'block';
+
+                if ("False" === "True") {
+                    setTimeout(() => {
+                        const g = svg.querySelector('g');
+                        if (g) {
+                            var svgD3 = d3.select(svg);
+                            svgD3.html("<g class='wrapper'>" + svgD3.html() + "</g>");
+                            var inner = svgD3.select("g");
+                            var zoom = d3.zoom().on("zoom", function(event) {
+                                inner.attr("transform", event.transform);
+                            });
+                            svgD3.call(zoom);
+                        }
+                    }, 100);
+                }
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        container.appendChild(fullscreenBtn);
+    });
+};
+
+const load = async () => {
+    initStyles();
+
+    await runMermaid(true);
+
+    const reRunIfThemeChanges = async () => {
+        const newDarkTheme = isDarkTheme();
+        if (newDarkTheme !== darkTheme) {
+            darkTheme = newDarkTheme;
+            console.log("Theme change detected, re-running mermaid with", darkTheme ? "dark" : "default", "theme");
+            await mermaid.initialize(
+                {...JSON.parse(
+                    `{"startOnLoad": false}`
+                ),
+                ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+                }
+            );
+            await runMermaid(true);
+        }
+    };
+
+    // Update theme classes when theme changes
+    const themeObserver = new MutationObserver(reRunIfThemeChanges);
+    themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+    themeObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+};
+
+
+
+
+
+console.log("Initializing mermaid with", darkTheme ? "dark" : "default", "theme");
+mermaid.initialize(
+    {...JSON.parse(
+        `{"startOnLoad": false}`
+    ),
+    ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+    }
+);
+
+window.addEventListener("load", load);
+window.runMermaid = runMermaid;</script>
+    <script src="../../../_static/version-selector.js?v=7d36e42c"></script>
+    </body>
+</html>

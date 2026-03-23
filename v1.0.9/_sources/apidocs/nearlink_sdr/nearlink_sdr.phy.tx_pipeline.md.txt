@@ -1,0 +1,237 @@
+# {py:mod}`nearlink_sdr.phy.tx_pipeline`
+
+```{py:module} nearlink_sdr.phy.tx_pipeline
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline
+:allowtitles:
+```
+
+## Module Contents
+
+### Classes
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`TxConfig <nearlink_sdr.phy.tx_pipeline.TxConfig>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.TxConfig
+    :summary:
+    ```
+````
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`encode_head <nearlink_sdr.phy.tx_pipeline.encode_head>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.encode_head
+    :summary:
+    ```
+* - {py:obj}`encode_payload <nearlink_sdr.phy.tx_pipeline.encode_payload>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.encode_payload
+    :summary:
+    ```
+* - {py:obj}`tx_chain <nearlink_sdr.phy.tx_pipeline.tx_chain>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.tx_chain
+    :summary:
+    ```
+````
+
+### API
+
+`````{py:class} TxConfig
+:canonical: nearlink_sdr.phy.tx_pipeline.TxConfig
+
+```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.TxConfig
+```
+
+````{py:attribute} frame_type
+:canonical: nearlink_sdr.phy.tx_pipeline.TxConfig.frame_type
+:type: int
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.TxConfig.frame_type
+```
+
+````
+
+````{py:attribute} mcs_index
+:canonical: nearlink_sdr.phy.tx_pipeline.TxConfig.mcs_index
+:type: int
+:value: >
+   7
+
+```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.TxConfig.mcs_index
+```
+
+````
+
+````{py:attribute} pid
+:canonical: nearlink_sdr.phy.tx_pipeline.TxConfig.pid
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.TxConfig.pid
+```
+
+````
+
+````{py:attribute} whitening_seed
+:canonical: nearlink_sdr.phy.tx_pipeline.TxConfig.whitening_seed
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.TxConfig.whitening_seed
+```
+
+````
+
+````{py:attribute} crc_seed
+:canonical: nearlink_sdr.phy.tx_pipeline.TxConfig.crc_seed
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.TxConfig.crc_seed
+```
+
+````
+
+````{py:attribute} crc_len
+:canonical: nearlink_sdr.phy.tx_pipeline.TxConfig.crc_len
+:type: int
+:value: >
+   24
+
+```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.TxConfig.crc_len
+```
+
+````
+
+````{py:attribute} ctrl_bits_len
+:canonical: nearlink_sdr.phy.tx_pipeline.TxConfig.ctrl_bits_len
+:type: int
+:value: >
+   28
+
+```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.TxConfig.ctrl_bits_len
+```
+
+````
+
+````{py:attribute} pilot_interval
+:canonical: nearlink_sdr.phy.tx_pipeline.TxConfig.pilot_interval
+:type: int
+:value: >
+   8
+
+```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.TxConfig.pilot_interval
+```
+
+````
+
+````{py:attribute} sps
+:canonical: nearlink_sdr.phy.tx_pipeline.TxConfig.sps
+:type: int
+:value: >
+   4
+
+```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.TxConfig.sps
+```
+
+````
+
+````{py:attribute} symbol_rate_mhz
+:canonical: nearlink_sdr.phy.tx_pipeline.TxConfig.symbol_rate_mhz
+:type: float
+:value: >
+   1.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.TxConfig.symbol_rate_mhz
+```
+
+````
+
+````{py:property} code_rate
+:canonical: nearlink_sdr.phy.tx_pipeline.TxConfig.code_rate
+:type: fractions.Fraction
+
+```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.TxConfig.code_rate
+```
+
+````
+
+````{py:property} rate_str
+:canonical: nearlink_sdr.phy.tx_pipeline.TxConfig.rate_str
+:type: str
+
+```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.TxConfig.rate_str
+```
+
+````
+
+````{py:property} modulation
+:canonical: nearlink_sdr.phy.tx_pipeline.TxConfig.modulation
+:type: nearlink_sdr.common.mcs.Modulation
+
+```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.TxConfig.modulation
+```
+
+````
+
+````{py:property} mod_str
+:canonical: nearlink_sdr.phy.tx_pipeline.TxConfig.mod_str
+:type: str
+
+```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.TxConfig.mod_str
+```
+
+````
+
+````{py:property} is_uncoded
+:canonical: nearlink_sdr.phy.tx_pipeline.TxConfig.is_uncoded
+:type: bool
+
+```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.TxConfig.is_uncoded
+```
+
+````
+
+````{py:property} crc_poly
+:canonical: nearlink_sdr.phy.tx_pipeline.TxConfig.crc_poly
+:type: int
+
+```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.TxConfig.crc_poly
+```
+
+````
+
+`````
+
+````{py:function} encode_head(ctrl_info_bits: numpy.ndarray, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.tx_pipeline.encode_head
+
+```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.encode_head
+```
+````
+
+````{py:function} encode_payload(data_bits: numpy.ndarray, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.tx_pipeline.encode_payload
+
+```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.encode_payload
+```
+````
+
+````{py:function} tx_chain(ctrl_info_bits: numpy.ndarray, data_bits: numpy.ndarray, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.tx_pipeline.tx_chain
+
+```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.tx_chain
+```
+````

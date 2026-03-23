@@ -1,0 +1,1358 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Standard Clause Mapping" href="standard-mapping.html"><link rel="prev" title="End-to-End Data Flow" href="data-flow.html">
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
+        <title>System Architecture - nearlink-sdr 1.0.9 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../_static/version-selector.css?v=022f18c6" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  --color-brand-primary: #1a73e8;
+  --color-brand-content: #1a73e8;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #8ab4f8;
+  --color-brand-content: #8ab4f8;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #8ab4f8;
+  --color-brand-content: #8ab4f8;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">nearlink-sdr 1.0.9 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.9 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/getting-started.html">Quick Start</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../how-to/index.html">How-To Guides</a><input aria-label="Toggle navigation of How-To Guides" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../how-to/run-simulation.html">Running Link Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../how-to/add-modulation.html">Adding a New Modulation Scheme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../how-to/qos-management.html">QoS Service Quality Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../how-to/node-usage.html">Using the SLE Node Entity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../how-to/rust-acceleration.html">Rust Acceleration Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../how-to/sdr-deployment.html">SDR E310 Deployment Planning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../how-to/build-docs.html">Building Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../reference/index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.rx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.sim.link_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.link_sim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.sim.usrp_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.usrp_sim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Explanation</a><input aria-label="Toggle navigation of Explanation" checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">SparkLink SLE Protocol Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="principles.html">Physical Layer Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="physical-layer.html">Physical Layer Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mac-layer.html">MAC Layer Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security Subsystem Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-flow.html">End-to-End Data Flow</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">System Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="standard-mapping.html">Standard Clause Mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../apidocs/index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.rx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.sim.link_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.link_sim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.sim.usrp_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.usrp_sim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../apidocs/nearlink_sdr/nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/explanation/architecture.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>System Architecture<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<p>nearlink-sdr is a link-level simulation system that implements the physical-layer processing pipeline defined by the TXS-10002-2025 SparkLink SLE standard. This article describes the overall architecture and design philosophy.</p>
+<section id="id2">
+<h2>Module Organization<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<p>The system is divided into four sub-packages:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nearlink_sdr/
+├── common/      信道编码与底层算法
+├── phy/         物理层信号处理
+├── mac/         MAC 层协议
+└── sim/         链路仿真入口
+</pre></div>
+</div>
+<section id="common">
+<h3>common – Channel Coding<a class="headerlink" href="#common" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Module</p></th>
+<th class="head"><p>Function</p></th>
+<th class="head"><p>Standard Clause</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">crc</span></code></p></td>
+<td><p>CRC12/24A/24B/32 verification</p></td>
+<td><p>6.9 (6.10.1)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bch</span></code></p></td>
+<td><p>BCH(31,26) / BCH(63,24) coding</p></td>
+<td><p>6.11</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">polar</span></code></p></td>
+<td><p>Polar encoding, SC decoding</p></td>
+<td><p>6.10.1</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">code_block_seg</span></code></p></td>
+<td><p>Code block segmentation</p></td>
+<td><p>6.9.1.2 / 6.9.1.3</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">m_sequence</span></code></p></td>
+<td><p>m31/m63 sequence generation</p></td>
+<td><p>6.11</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">scrambler</span></code></p></td>
+<td><p>Channel bit scrambling (Galois LFSR)</p></td>
+<td><p>6.10.4</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mcs</span></code></p></td>
+<td><p>MCS table and rate matching</p></td>
+<td><p>6.10.5 / 6.10.6</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">prbs</span></code></p></td>
+<td><p>PRBS11/PRBS17 pseudo-random sequences</p></td>
+<td><p>8.3.5</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="phy">
+<h3>phy – Physical Layer<a class="headerlink" href="#phy" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Module</p></th>
+<th class="head"><p>Function</p></th>
+<th class="head"><p>Standard Clause</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gfsk</span></code></p></td>
+<td><p>GFSK modulation/demodulation</p></td>
+<td><p>6.2.1.1</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">psk</span></code></p></td>
+<td><p>BPSK/QPSK/8PSK, RRC pulse shaping</p></td>
+<td><p>6.2.1.2</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">preamble</span></code></p></td>
+<td><p>Preamble generation</p></td>
+<td><p>6.4</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sync_sequence</span></code></p></td>
+<td><p>Sync signals 1-6</p></td>
+<td><p>6.5/6.6/6.2.3</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pilot</span></code></p></td>
+<td><p>Pilot symbol insertion and removal</p></td>
+<td><p>6.7</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">frame</span></code></p></td>
+<td><p>Frame structure assembly/parsing (types 1-4)</p></td>
+<td><p>6.3</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">control_info</span></code></p></td>
+<td><p>A1-A7/B1-B5 physical layer control information</p></td>
+<td><p>6.4</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tx_pipeline</span></code></p></td>
+<td><p>TX transmit pipeline</p></td>
+<td><p>6.10</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rx_pipeline</span></code></p></td>
+<td><p>RX receive pipeline</p></td>
+<td><p>6.10</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">channel</span></code></p></td>
+<td><p>AWGN/Rayleigh/Rician/multipath channel, Jakes Doppler fading, multi-user interference</p></td>
+<td><p>–</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">equalizer</span></code></p></td>
+<td><p>ZF/MMSE equalization, LS channel estimation</p></td>
+<td><p>–</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">freq_hopping</span></code></p></td>
+<td><p>Frequency hopping sequences and frequency management</p></td>
+<td><p>6.10.3/8.1.2</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mac_interface</span></code></p></td>
+<td><p>MAC-PHY adaptation layer</p></td>
+<td><p>–</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">measurement</span></code></p></td>
+<td><p>Location measurement signals</p></td>
+<td><p>6.2.4</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">measurement_frame</span></code></p></td>
+<td><p>Measurement frame types 1-4 and UWB pulse frames</p></td>
+<td><p>6.3.6-6.3.11</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">measurement_tx</span></code></p></td>
+<td><p>Narrowband/UWB measurement link parameters and scheduling</p></td>
+<td><p>6.7/6.8</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uwb_pulse</span></code></p></td>
+<td><p>UWB pulse waveform and chip modulation</p></td>
+<td><p>6.2.1.4</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">multitone</span></code></p></td>
+<td><p>Multitone signal generation</p></td>
+<td><p>6.2.1.3</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rf_compliance</span></code></p></td>
+<td><p>RF compliance parameter verification</p></td>
+<td><p>8.2-8.4</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">data_link</span></code></p></td>
+<td><p>Asynchronous/synchronous data link transmission procedures</p></td>
+<td><p>6.5.1-6.5.3</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">usrp</span></code></p></td>
+<td><p>USRP E310 hardware interface</p></td>
+<td><p>–</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="mac-mac">
+<h3>mac – MAC Layer<a class="headerlink" href="#mac-mac" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Module</p></th>
+<th class="head"><p>Function</p></th>
+<th class="head"><p>Standard Clause</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">frame</span></code></p></td>
+<td><p>Control/data/multiplex frame structure</p></td>
+<td><p>7.3.2-7.3.4</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">broadcast</span></code></p></td>
+<td><p>Broadcast frame structure and sub-info</p></td>
+<td><p>7.1.4</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">signaling</span></code></p></td>
+<td><p>Signaling registration and encode/decode (112 types)</p></td>
+<td><p>7.3</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">link_control</span></code></p></td>
+<td><p>All link control signaling</p></td>
+<td><p>7.3.2</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">power_control</span></code></p></td>
+<td><p>Power control procedures and signaling</p></td>
+<td><p>7.2.13</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">link_manager</span></code></p></td>
+<td><p>Link management state machine</p></td>
+<td><p>7.1/7.2</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">access</span></code></p></td>
+<td><p>Access procedure management</p></td>
+<td><p>7.1.3</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">scheduler</span></code></p></td>
+<td><p>Timing scheduler</p></td>
+<td><p>6.3/6.6/7.2</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">security</span></code></p></td>
+<td><p>Pairing signaling (16 message types)</p></td>
+<td><p>9.2</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">crypto</span></code></p></td>
+<td><p>AES-CCM encryption and key derivation</p></td>
+<td><p>9.3/9.4</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">security_manager</span></code></p></td>
+<td><p>Security procedure integration (pairing + encryption)</p></td>
+<td><p>9.2-9.4</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">qos</span></code></p></td>
+<td><p>QoS service quality management (ARQ/HARQ/flow control/LQI)</p></td>
+<td><p>6.5</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">smf</span></code></p></td>
+<td><p>System Management Frame encoding/decoding</p></td>
+<td><p>6.6</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">smf_scheduler</span></code></p></td>
+<td><p>SMF transmission scheduling</p></td>
+<td><p>6.6.3</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uwb_measurement_security</span></code></p></td>
+<td><p>UWB pulse measurement security</p></td>
+<td><p>9.5</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="sim">
+<h3>sim – Simulation<a class="headerlink" href="#sim" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">link_sim</span></code> module encapsulates the end-to-end simulation process in <strong>sixteen</strong> phases:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Phase</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Phase 1</p></td>
+<td><p>Uncoded GFSK/PSK BER</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sim_gfsk_link</span></code>, <code class="docutils literal notranslate"><span class="pre">sim_psk_link</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Phase 2</p></td>
+<td><p>Polar-Coded BER/FER</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sim_polar_coded_psk_link</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Phase 3</p></td>
+<td><p>Frame-level simulation</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sim_frame_link</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Phase 4</p></td>
+<td><p>Multipath channel + equalizer</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sim_channel_eq_link</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Phase 5</p></td>
+<td><p>Frequency hopping simulation</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sim_hopping_link</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Phase 6</p></td>
+<td><p>Full-chain pipeline simulation</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sim_pipeline_link</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Phase 7</p></td>
+<td><p>Multipath + frequency offset pipeline</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sim_pipeline_channel_link</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Phase 8</p></td>
+<td><p>Equalizer integrated pipeline</p></td>
+<td><p>(run_phase8_simulation)</p></td>
+</tr>
+<tr class="row-even"><td><p>Phase 9</p></td>
+<td><p>MAC frame-level end-to-end simulation</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sim_mac_signaling_link</span></code>, <code class="docutils literal notranslate"><span class="pre">sim_mac_data_link</span></code>, <code class="docutils literal notranslate"><span class="pre">sim_mac_mux_link</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Phase 10</p></td>
+<td><p>Multi-link scheduling simulation</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sim_multi_link</span></code>, <code class="docutils literal notranslate"><span class="pre">sim_access_scheduled_link</span></code>, <code class="docutils literal notranslate"><span class="pre">sim_event_group_timing</span></code>, <code class="docutils literal notranslate"><span class="pre">sim_superframe_capacity</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Phase 11</p></td>
+<td><p>Secure communication end-to-end simulation</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sim_secure_link</span></code>, <code class="docutils literal notranslate"><span class="pre">sim_encrypted_vs_plain</span></code>, <code class="docutils literal notranslate"><span class="pre">sim_pairing_signaling_phy</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Phase 12</p></td>
+<td><p>AMC / HARQ / frequency hopping multipath</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sim_amc_throughput</span></code>, <code class="docutils literal notranslate"><span class="pre">sim_harq_link</span></code>, <code class="docutils literal notranslate"><span class="pre">sim_hopping_multipath_link</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Phase 13</p></td>
+<td><p>QoS ARQ / AMC adaptive / flow control</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sim_qos_arq_link</span></code>, <code class="docutils literal notranslate"><span class="pre">sim_qos_amc_adaptive</span></code>, <code class="docutils literal notranslate"><span class="pre">sim_qos_flow_control</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Phase 14</p></td>
+<td><p>Dual-node end-to-end simulation</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sim_dual_node_link</span></code>, <code class="docutils literal notranslate"><span class="pre">sim_dual_node_secure_link</span></code>, <code class="docutils literal notranslate"><span class="pre">sim_dual_node_mcs_adapt</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Phase 15</p></td>
+<td><p>SleNode integration simulation</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sim_node_hopping_link</span></code>, <code class="docutils literal notranslate"><span class="pre">sim_node_access_flow</span></code>, <code class="docutils literal notranslate"><span class="pre">sim_node_channel_sweep</span></code>, <code class="docutils literal notranslate"><span class="pre">sim_node_power_adapt</span></code>, <code class="docutils literal notranslate"><span class="pre">sim_node_measurement</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Phase 16</p></td>
+<td><p>Multi-user interference + Doppler time-varying channel</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sim_doppler_link</span></code>, <code class="docutils literal notranslate"><span class="pre">sim_multi_user_interference</span></code>, <code class="docutils literal notranslate"><span class="pre">sim_sir_sweep</span></code>, <code class="docutils literal notranslate"><span class="pre">sim_doppler_multipath_link</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Each phase’s simulation functions can be called independently or executed in batch via <code class="docutils literal notranslate"><span class="pre">run_phaseN_simulation()</span></code>.</p>
+</section>
+<section id="node">
+<h3>node – Node Entity<a class="headerlink" href="#node" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">node</span></code> module provides the top-level <code class="docutils literal notranslate"><span class="pre">SleNode</span></code> class, integrating all MAC/PHY components into a unified transmit/receive interface:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Class</p></th>
+<th class="head"><p>Responsibility</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NodeConfig</span></code></p></td>
+<td><p>Node parameter configuration (address, role, frame type, MCS, bandwidth, encryption, etc.)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SleNode</span></code></p></td>
+<td><p>Node entity, manages complete link lifecycle</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NodeCallback</span></code></p></td>
+<td><p>Event callback interface (state transitions, connection, disconnection)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TxResult</span></code> / <code class="docutils literal notranslate"><span class="pre">RxResult</span></code></p></td>
+<td><p>Transmit/receive result data</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Internal component relationships of <code class="docutils literal notranslate"><span class="pre">SleNode</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>SleNode
+├── LinkManager      链路状态机 (IDLE → BROADCASTING/SCANNING → CONNECTED → DISCONNECTED)
+├── QosManager       QoS 管理 (ARQ + HARQ + 流控 + 质量跟踪 + 发送队列)
+├── PairingManager   配对流程驱动 (ECDH 密钥交换)
+├── FrameCryptoContext  帧级加密上下文 (AES-CCM)
+├── FreqHopping      跳频序列管理
+├── PowerController  功率控制
+├── ScheduleManager  时序调度
+├── ChannelModel     信道模型 (仿真模式)
+├── AccessManager    接入流程管理
+├── SMFScheduler     系统管理帧调度 (可选)
+└── TxConfig         发射参数 (帧类型 + MCS + 导频 + 加扰)
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id3">
+<h2>Signal Processing Chain<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<p>SparkLink SLE transmit processing chain (<code class="docutils literal notranslate"><span class="pre">tx_chain</span></code>):</p>
+<pre  class="mermaid">
+        flowchart TD
+    A[&quot;信息比特&quot;] --&gt; B[&quot;CRC 附加&quot;]
+    B --&gt; C[&quot;码块分割&quot;]
+    C --&gt; D[&quot;Polar 编码 (FT2/3/4) 或直通 (FT1)&quot;]
+    D --&gt; E[&quot;比特加扰&quot;]
+    E --&gt; F[&quot;调制 (GFSK / BPSK / QPSK / 8PSK)&quot;]
+    F --&gt; G[&quot;导频插入 (FT2/3/4)&quot;]
+    G --&gt; H[&quot;帧组装 (前导 + 同步 + 控制信息 + 数据)&quot;]
+    H --&gt; I[&quot;脉冲成型 (RRC)&quot;]
+    I --&gt; J[&quot;上变频 / 发射&quot;]
+    </pre><p>The receive chain (<code class="docutils literal notranslate"><span class="pre">rx_chain</span></code>) is the reverse of the above process:</p>
+<pre  class="mermaid">
+        flowchart TD
+    A[&quot;接收 IQ&quot;] --&gt; B[&quot;帧同步 (前导检测 + 同步序列相关)&quot;]
+    B --&gt; C[&quot;头部解码 (解加扰 → Polar 解码 → CRC 校验)&quot;]
+    C --&gt; D[&quot;导频移除&quot;]
+    D --&gt; E[&quot;解调 (软 LLR / 硬判决)&quot;]
+    E --&gt; F[&quot;Polar 解码 (FT2/3/4) 或直通 (FT1)&quot;]
+    F --&gt; G[&quot;解加扰&quot;]
+    G --&gt; H[&quot;CRC 校验&quot;]
+    H --&gt; I[&quot;数据比特输出&quot;]
+    </pre></section>
+<section id="id4">
+<h2>Frame Types<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
+<p>The standard defines four frame types:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Frame Types</p></th>
+<th class="head"><p>Modulation</p></th>
+<th class="head"><p>Coding</p></th>
+<th class="head"><p>Control Info</p></th>
+<th class="head"><p>Sync Signal</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>GFSK</p></td>
+<td><p>None (BCH)</p></td>
+<td><p>Group A (20 bit + CRC12)</p></td>
+<td><p>sync_signal_1</p></td>
+<td><p>Broadcast/Discovery</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>PSK</p></td>
+<td><p>Polar(64,K)</p></td>
+<td><p>Group A (28 bit + CRC12)</p></td>
+<td><p>sync_signal_2</p></td>
+<td><p>Data (connected)</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>PSK</p></td>
+<td><p>Polar(256,K)</p></td>
+<td><p>Group B (27 bit + CRC24B)</p></td>
+<td><p>sync_signal_3</p></td>
+<td><p>Data (connected)</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>PSK</p></td>
+<td><p>Polar(256,K)</p></td>
+<td><p>Group B (27 bit + CRC24B)</p></td>
+<td><p>sync_signal_4</p></td>
+<td><p>Data (connected)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Key Differences:</p>
+<ul class="simple">
+<li><p><strong>FT1</strong> uses GFSK modulation, bypasses Polar coding, and protects the header with BCH coding. <code class="docutils literal notranslate"><span class="pre">mcs_index=8</span></code> indicates uncoded passthrough.</p></li>
+<li><p><strong>FT2</strong> uses PSK modulation, Polar(64,K) header coding, and <code class="docutils literal notranslate"><span class="pre">segment_without_crc</span></code> code block segmentation.</p></li>
+<li><p><strong>FT3/FT4</strong> use PSK modulation with Polar(256,K) header coding and <code class="docutils literal notranslate"><span class="pre">segment_with_crc</span></code> code-block segmentation (each segment appends an additional CRC). The Group B control information CRC seed is <code class="docutils literal notranslate"><span class="pre">0x555555</span> <span class="pre">^</span> <span class="pre">LLID</span></code>.</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2>Hardware Integration<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">phy.usrp</span></code> module wraps the USRP E310 (Xilinx Zynq-7020 + AD9361) transceiver interface. In environments without hardware, <code class="docutils literal notranslate"><span class="pre">MockUSRP</span></code> provides a full UHD API simulation, enabling offline debugging of the transceiver pipeline.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="standard-mapping.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Standard Clause Mapping</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="data-flow.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">End-to-End Data Flow</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/sanchuanhehe/nearlink_sdr_sim" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82 .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">System Architecture</a><ul>
+<li><a class="reference internal" href="#id2">Module Organization</a><ul>
+<li><a class="reference internal" href="#common">common – Channel Coding</a></li>
+<li><a class="reference internal" href="#phy">phy – Physical Layer</a></li>
+<li><a class="reference internal" href="#mac-mac">mac – MAC Layer</a></li>
+<li><a class="reference internal" href="#sim">sim – Simulation</a></li>
+<li><a class="reference internal" href="#node">node – Node Entity</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3">Signal Processing Chain</a></li>
+<li><a class="reference internal" href="#id4">Frame Types</a></li>
+<li><a class="reference internal" href="#id5">Hardware Integration</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=adab45b7"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.esm.min.mjs";
+
+
+
+
+
+const initStyles = () => {
+    const defaultStyle = document.createElement('style');
+    defaultStyle.textContent = `pre.mermaid {
+    /* Same as .mermaid-container > pre */
+    display: block;
+    width: 100%;
+}
+
+pre.mermaid > svg {
+    /* Same as .mermaid-container > pre > svg */
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}`;
+    document.head.appendChild(defaultStyle);
+
+    const fullscreenStyle = document.createElement('style');
+    fullscreenStyle.textContent = `.mermaid-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.mermaid-container > pre {
+    display: block;
+    width: 100%;
+}
+
+.mermaid-container > pre > svg {
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}
+
+.mermaid-fullscreen-btn {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+    color: #333;
+}
+
+.mermaid-fullscreen-btn:hover {
+    opacity: 100% !important;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-btn.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-btn.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 95vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    z-index: 9999;
+    padding: 20px;
+    overflow: auto;
+}
+
+.mermaid-fullscreen-modal.dark-theme {
+    background: rgba(0, 0, 0, 0.98);
+}
+
+.mermaid-fullscreen-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen {
+    position: relative;
+    width: 95vw;
+    height: 90vh;
+    max-width: 95vw;
+    max-height: 90vh;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen.dark-theme {
+    background: #1a1a1a;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.mermaid-container-fullscreen pre.mermaid {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen .mermaid svg {
+    height: 100% !important;
+    width: 100% !important;
+    cursor: grab;
+}
+
+.mermaid-fullscreen-close {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s;
+    font-size: 24px;
+    line-height: 1;
+    color: #333;
+}
+
+.mermaid-fullscreen-close:hover {
+    background: white;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-close.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-close.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal .mermaid-fullscreen-btn {
+    display: none !important;
+}`;
+    document.head.appendChild(fullscreenStyle);
+}
+
+// Detect if page has dark background
+const isDarkTheme = () => {
+    // We use a set of heuristics:
+    // 1. Check for common dark mode classes or attributes
+    // 2. Check computed background color brightness
+    if (document.documentElement.classList.contains('dark') ||
+        document.documentElement.getAttribute('data-theme') === 'dark' ||
+        document.body.classList.contains('dark') ||
+        document.body.getAttribute('data-theme') === 'dark') {
+        // console.log("Dark theme detected via class/attribute");
+        return true;
+    }
+    if (document.documentElement.classList.contains('light') ||
+        document.documentElement.getAttribute('data-theme') === 'light' ||
+        document.body.classList.contains('light') ||
+        document.body.getAttribute('data-theme') === 'light') {
+        // console.log("Light theme detected via class/attribute");
+        return false;
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // console.log("Dark theme detected via prefers-color-scheme");
+        return true;
+    }
+    const bgColor = window.getComputedStyle(document.body).backgroundColor;
+    const match = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)/);
+    if (match) {
+        const r = parseInt(match[1]);
+        const g = parseInt(match[2]);
+        const b = parseInt(match[3]);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        // console.log("Background color brightness:", brightness);
+        return brightness < 128;
+    }
+    // console.log("No dark or light theme detected, defaulting to light theme");
+    return false;
+};
+
+let darkTheme = isDarkTheme();
+let modal = null;
+let modalContent = null;
+let previousScrollOffset = [window.scrollX, window.scrollY];
+
+const runMermaid = async (rerun) => {
+    console.log("Running mermaid diagrams, rerun =", rerun);
+    // clear all existing mermaid charts
+    let all_mermaids = document.querySelectorAll(".mermaid");
+
+    if (rerun) {
+        all_mermaids.forEach((el) => {
+            if(!el.hasAttribute("data-original-code")) {
+                // store original code
+                // console.log(`Storing original code for first run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+            if(el.getAttribute("data-processed") === "true") {
+                // remove and restore original
+                el.removeAttribute("data-processed");
+                // console.log(`Restoring original code for re-run: `, el.getAttribute('data-original-code'));
+                el.innerHTML = el.getAttribute('data-original-code');
+            } else {
+                // store original code
+                // console.log(`Storing original code for re-run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+        });
+        await mermaid.run();
+    }
+
+    all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+
+    if ("False" === "True") {
+        const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+        if(mermaids_to_add_zoom > 0) {
+            var svgs = d3.selectAll("");
+            if(all_mermaids.length !== mermaids_processed.length) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else if(svgs.size() !== mermaids_to_add_zoom) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else {
+                svgs.each(function() {
+                    var svg = d3.select(this);
+                    svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                    var inner = svg.select("g");
+                    var zoom = d3.zoom().on("zoom", function(event) {
+                        inner.attr("transform", event.transform);
+                    });
+                    svg.call(zoom);
+                });
+            }
+        }
+    } else if(all_mermaids.length !== mermaids_processed.length) {
+        // Wait for mermaid to process all diagrams
+        setTimeout(() => runMermaid(false), 200);
+        return;
+    }
+
+    // Stop here if not adding fullscreen capability
+    if ("True" !== "True") return;
+
+    if (modal !== null ) {
+        // Destroy existing modal
+        modal.remove();
+        modal = null;
+        modalContent = null;
+    }
+
+    modal = document.createElement('div');
+    modal.className = 'mermaid-fullscreen-modal' + (darkTheme ? ' dark-theme' : '');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Fullscreen diagram viewer');
+    modal.innerHTML = `
+        <button class="mermaid-fullscreen-close${darkTheme ? ' dark-theme' : ''}" aria-label="Close fullscreen">✕</button>
+        <div class="mermaid-container-fullscreen${darkTheme ? ' dark-theme' : ''}"></div>
+    `;
+    document.body.appendChild(modal);
+
+    modalContent = modal.querySelector('.mermaid-container-fullscreen');
+    const closeBtn = modal.querySelector('.mermaid-fullscreen-close');
+
+    const closeModal = () => {
+        modal.classList.remove('active');
+        modalContent.innerHTML = '';
+        document.body.style.overflow = ''
+        window.scrollTo({left: previousScrollOffset[0], top: previousScrollOffset[1], behavior: 'instant'});
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    document.querySelectorAll('.mermaid').forEach((mermaidDiv) => {
+        if (mermaidDiv.parentNode.classList.contains('mermaid-container') ||
+            mermaidDiv.closest('.mermaid-fullscreen-modal')) {
+            // Already processed, adjust button class if needed
+            const existingBtn = mermaidDiv.parentNode.querySelector('.mermaid-fullscreen-btn');
+            if (existingBtn) {
+                existingBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+            }
+            return;
+        }
+
+        const container = document.createElement('div');
+        container.className = 'mermaid-container';
+        mermaidDiv.parentNode.insertBefore(container, mermaidDiv);
+        container.appendChild(mermaidDiv);
+
+        const fullscreenBtn = document.createElement('button');
+        fullscreenBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+        fullscreenBtn.setAttribute('aria-label', 'View diagram in fullscreen');
+        fullscreenBtn.textContent = '⛶';
+        fullscreenBtn.style.opacity = '50%';
+
+        // Calculate dynamic position based on diagram's margin and padding
+        const diagramStyle = window.getComputedStyle(mermaidDiv);
+        const marginTop = parseFloat(diagramStyle.marginTop) || 0;
+        const marginRight = parseFloat(diagramStyle.marginRight) || 0;
+        const paddingTop = parseFloat(diagramStyle.paddingTop) || 0;
+        const paddingRight = parseFloat(diagramStyle.paddingRight) || 0;
+        fullscreenBtn.style.top = `${marginTop + paddingTop + 4}px`;
+        fullscreenBtn.style.right = `${marginRight + paddingRight + 4}px`;
+
+        fullscreenBtn.addEventListener('click', () => {
+            previousScrollOffset = [window.scroll, window.scrollY];
+            const clone = mermaidDiv.cloneNode(true);
+            modalContent.innerHTML = '';
+            modalContent.appendChild(clone);
+
+            const svg = clone.querySelector('svg');
+            if (svg) {
+                svg.removeAttribute('width');
+                svg.removeAttribute('height');
+                svg.style.width = '100%';
+                svg.style.height = 'auto';
+                svg.style.maxWidth = '100%';
+                svg.style.sdisplay = 'block';
+
+                if ("False" === "True") {
+                    setTimeout(() => {
+                        const g = svg.querySelector('g');
+                        if (g) {
+                            var svgD3 = d3.select(svg);
+                            svgD3.html("<g class='wrapper'>" + svgD3.html() + "</g>");
+                            var inner = svgD3.select("g");
+                            var zoom = d3.zoom().on("zoom", function(event) {
+                                inner.attr("transform", event.transform);
+                            });
+                            svgD3.call(zoom);
+                        }
+                    }, 100);
+                }
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        container.appendChild(fullscreenBtn);
+    });
+};
+
+const load = async () => {
+    initStyles();
+
+    await runMermaid(true);
+
+    const reRunIfThemeChanges = async () => {
+        const newDarkTheme = isDarkTheme();
+        if (newDarkTheme !== darkTheme) {
+            darkTheme = newDarkTheme;
+            console.log("Theme change detected, re-running mermaid with", darkTheme ? "dark" : "default", "theme");
+            await mermaid.initialize(
+                {...JSON.parse(
+                    `{"startOnLoad": false}`
+                ),
+                ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+                }
+            );
+            await runMermaid(true);
+        }
+    };
+
+    // Update theme classes when theme changes
+    const themeObserver = new MutationObserver(reRunIfThemeChanges);
+    themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+    themeObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+};
+
+
+
+
+
+console.log("Initializing mermaid with", darkTheme ? "dark" : "default", "theme");
+mermaid.initialize(
+    {...JSON.parse(
+        `{"startOnLoad": false}`
+    ),
+    ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+    }
+);
+
+window.addEventListener("load", load);
+window.runMermaid = runMermaid;</script>
+    <script src="../_static/version-selector.js?v=7d36e42c"></script>
+    </body>
+</html>

@@ -1,0 +1,1640 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="nearlink_sdr.mac.broadcast" href="nearlink_sdr.mac.broadcast.html"><link rel="prev" title="nearlink_sdr.mac" href="nearlink_sdr.mac.html">
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
+        <title>nearlink_sdr.mac.access - nearlink-sdr 1.0.9 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/version-selector.css?v=022f18c6" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  --color-brand-primary: #1a73e8;
+  --color-brand-content: #1a73e8;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #8ab4f8;
+  --color-brand-content: #8ab4f8;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #8ab4f8;
+  --color-brand-content: #8ab4f8;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">nearlink-sdr 1.0.9 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.9 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/getting-started.html">Quick Start</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../how-to/index.html">How-To Guides</a><input aria-label="Toggle navigation of How-To Guides" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/run-simulation.html">Running Link Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/add-modulation.html">Adding a New Modulation Scheme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/qos-management.html">QoS Service Quality Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/node-usage.html">Using the SLE Node Entity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/rust-acceleration.html">Rust Acceleration Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/sdr-deployment.html">SDR E310 Deployment Planning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-to/build-docs.html">Building Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../../reference/index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.rx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.sim.link_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.link_sim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.sim.usrp_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.usrp_sim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 current has-children"><a class="reference internal" href="nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../explanation/index.html">Explanation</a><input aria-label="Toggle navigation of Explanation" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/overview.html">SparkLink SLE Protocol Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/principles.html">Physical Layer Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/physical-layer.html">Physical Layer Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/mac-layer.html">MAC Layer Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/security.html">Security Subsystem Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/data-flow.html">End-to-End Data Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/architecture.html">System Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/standard-mapping.html">Standard Clause Mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.rx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.sim.link_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.link_sim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.sim.usrp_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.usrp_sim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 current has-children"><a class="reference internal" href="nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l4 current current-page"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/apidocs/nearlink_sdr/nearlink_sdr.mac.access.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section class="tex2jax_ignore mathjax_ignore" id="module-nearlink_sdr.mac.access">
+<span id="nearlink-sdr-mac-access"></span><h1><a class="reference internal" href="#module-nearlink_sdr.mac.access" title="nearlink_sdr.mac.access"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a><a class="headerlink" href="#module-nearlink_sdr.mac.access" title="Link to this heading">¶</a></h1>
+<p>Access procedure management — TXS-10002-2025 standard section 7.1.3.</p>
+<p>Implement the complete six-stage SLE device discovery and access process:   a) Broadcaster prepares and sends an accessible extended advertising frame   b) Access initiator sends an access request frame   c) Broadcaster receives the request and sends a response   d) Accessor receives the response and enters connected state   e) Data link establishment   f) Security process (delegated to the security module)</p>
+<p>Coordinate data structures such as BroadcastFrame, AccessBasicInfo, TransportIndicationInfo, AccessRequestInfo, and AccessResponseInfo to complete end-to-end access.</p>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-left">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.AccessConfig" title="nearlink_sdr.mac.access.AccessConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AccessConfig</span></code></a></p></td>
+<td><p>Access procedure configuration parameters.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.AccessPhase" title="nearlink_sdr.mac.access.AccessPhase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AccessPhase</span></code></a></p></td>
+<td><p>Access procedure phase identifier.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.AccessWhitelist" title="nearlink_sdr.mac.access.AccessWhitelist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AccessWhitelist</span></code></a></p></td>
+<td><p>Access whitelist (7.1.6).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager" title="nearlink_sdr.mac.access.BroadcasterAccessManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BroadcasterAccessManager</span></code></a></p></td>
+<td><p>Broadcaster access manager (Standard §7.1.3 phases a/c).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.DiscoveryManager" title="nearlink_sdr.mac.access.DiscoveryManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DiscoveryManager</span></code></a></p></td>
+<td><p>Discovery procedure manager (Standard §7.1.2).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.InitiatorAccessManager" title="nearlink_sdr.mac.access.InitiatorAccessManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InitiatorAccessManager</span></code></a></p></td>
+<td><p>Initiator access manager (Standard §7.1.3 phases b/d).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.NegotiatedRole" title="nearlink_sdr.mac.access.NegotiatedRole"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NegotiatedRole</span></code></a></p></td>
+<td><p>GT role negotiation result.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig" title="nearlink_sdr.mac.access.NonConnectedBroadcastConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig</span></code></a></p></td>
+<td><p>Non-connected broadcast transmission configuration.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastManager" title="nearlink_sdr.mac.access.NonConnectedBroadcastManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NonConnectedBroadcastManager</span></code></a></p></td>
+<td><p>Non-connected broadcast manager (Standard §7.1.7.2).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastResult" title="nearlink_sdr.mac.access.NonConnectedBroadcastResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NonConnectedBroadcastResult</span></code></a></p></td>
+<td><p>Parsing result for non-connected broadcast frames.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-left">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.negotiate_gt_role" title="nearlink_sdr.mac.access.negotiate_gt_role"><code class="xref py py-obj docutils literal notranslate"><span class="pre">negotiate_gt_role</span></code></a></p></td>
+<td><p>Perform GT role negotiation according to standard 7.1.3.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.parse_non_connected_broadcast" title="nearlink_sdr.mac.access.parse_non_connected_broadcast"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_non_connected_broadcast</span></code></a></p></td>
+<td><p>Parse non-connected state broadcast information in the extended advertising frame (7.1.7.2).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.run_access_procedure" title="nearlink_sdr.mac.access.run_access_procedure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_access_procedure</span></code></a></p></td>
+<td><p>Execute the complete end-to-end access process (standard 7.1.3, stages a-e).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="data">
+<h3>Data<a class="headerlink" href="#data" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-left">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.MAX_ADV_INTERVAL_US" title="nearlink_sdr.mac.access.MAX_ADV_INTERVAL_US"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MAX_ADV_INTERVAL_US</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.MAX_ADV_RANDOM_DELAY_US" title="nearlink_sdr.mac.access.MAX_ADV_RANDOM_DELAY_US"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MAX_ADV_RANDOM_DELAY_US</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.MIN_ADV_INTERVAL_US" title="nearlink_sdr.mac.access.MIN_ADV_INTERVAL_US"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MIN_ADV_INTERVAL_US</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.MIN_ADV_TO_EXT_ADV_GAP" title="nearlink_sdr.mac.access.MIN_ADV_TO_EXT_ADV_GAP"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MIN_ADV_TO_EXT_ADV_GAP</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.MIN_EXT_ADV_TO_REQUEST_GAP" title="nearlink_sdr.mac.access.MIN_EXT_ADV_TO_REQUEST_GAP"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MIN_EXT_ADV_TO_REQUEST_GAP</span></code></a></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.access.MIN_REQUEST_TO_RESPONSE_GAP" title="nearlink_sdr.mac.access.MIN_REQUEST_TO_RESPONSE_GAP"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MIN_REQUEST_TO_RESPONSE_GAP</span></code></a></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="api">
+<h3>API<a class="headerlink" href="#api" title="Link to this heading">¶</a></h3>
+<dl class="py data">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.MAX_ADV_INTERVAL_US">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">MAX_ADV_INTERVAL_US</span></span><a class="headerlink" href="#nearlink_sdr.mac.access.MAX_ADV_INTERVAL_US" title="Link to this definition">¶</a></dt>
+<dd><p>2097151875</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.MAX_ADV_RANDOM_DELAY_US">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">MAX_ADV_RANDOM_DELAY_US</span></span><a class="headerlink" href="#nearlink_sdr.mac.access.MAX_ADV_RANDOM_DELAY_US" title="Link to this definition">¶</a></dt>
+<dd><p>2000</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.MIN_ADV_INTERVAL_US">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">MIN_ADV_INTERVAL_US</span></span><a class="headerlink" href="#nearlink_sdr.mac.access.MIN_ADV_INTERVAL_US" title="Link to this definition">¶</a></dt>
+<dd><p>4000</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.MIN_ADV_TO_EXT_ADV_GAP">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">MIN_ADV_TO_EXT_ADV_GAP</span></span><a class="headerlink" href="#nearlink_sdr.mac.access.MIN_ADV_TO_EXT_ADV_GAP" title="Link to this definition">¶</a></dt>
+<dd><p>300</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.MIN_EXT_ADV_TO_REQUEST_GAP">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">MIN_EXT_ADV_TO_REQUEST_GAP</span></span><a class="headerlink" href="#nearlink_sdr.mac.access.MIN_EXT_ADV_TO_REQUEST_GAP" title="Link to this definition">¶</a></dt>
+<dd><p>300</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.MIN_REQUEST_TO_RESPONSE_GAP">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">MIN_REQUEST_TO_RESPONSE_GAP</span></span><a class="headerlink" href="#nearlink_sdr.mac.access.MIN_REQUEST_TO_RESPONSE_GAP" title="Link to this definition">¶</a></dt>
+<dd><p>300</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessConfig">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">AccessConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#AccessConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.AccessConfig" title="Link to this definition">¶</a></dt>
+<dd><p>Access procedure configuration parameters.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessConfig.request_offset_us">
+<span class="sig-name descname"><span class="pre">request_offset_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.AccessConfig.request_offset_us" title="Link to this definition">¶</a></dt>
+<dd><p>600</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessConfig.request_max_length">
+<span class="sig-name descname"><span class="pre">request_max_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.AccessConfig.request_max_length" title="Link to this definition">¶</a></dt>
+<dd><p>64</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessConfig.response_offset_us">
+<span class="sig-name descname"><span class="pre">response_offset_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.AccessConfig.response_offset_us" title="Link to this definition">¶</a></dt>
+<dd><p>1200</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessConfig.window_count">
+<span class="sig-name descname"><span class="pre">window_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.AccessConfig.window_count" title="Link to this definition">¶</a></dt>
+<dd><p>1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessConfig.gt_preference">
+<span class="sig-name descname"><span class="pre">gt_preference</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.AccessConfig.gt_preference" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessConfig.gt_negotiable">
+<span class="sig-name descname"><span class="pre">gt_negotiable</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.AccessConfig.gt_negotiable" title="Link to this definition">¶</a></dt>
+<dd><p>True</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessConfig.access_timeout_ms">
+<span class="sig-name descname"><span class="pre">access_timeout_ms</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.AccessConfig.access_timeout_ms" title="Link to this definition">¶</a></dt>
+<dd><p>5000</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessConfig.max_retries">
+<span class="sig-name descname"><span class="pre">max_retries</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.AccessConfig.max_retries" title="Link to this definition">¶</a></dt>
+<dd><p>3</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessPhase">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">AccessPhase</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#AccessPhase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.AccessPhase" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
+<p>Access procedure phase identifier.</p>
+<p class="rubric">Initialization</p>
+<p>Initialize self. See help(type(self)) for accurate signature.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessPhase.IDLE">
+<span class="sig-name descname"><span class="pre">IDLE</span></span><a class="headerlink" href="#nearlink_sdr.mac.access.AccessPhase.IDLE" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessPhase.ADV_SENDING">
+<span class="sig-name descname"><span class="pre">ADV_SENDING</span></span><a class="headerlink" href="#nearlink_sdr.mac.access.AccessPhase.ADV_SENDING" title="Link to this definition">¶</a></dt>
+<dd><p>1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessPhase.REQ_WINDOW">
+<span class="sig-name descname"><span class="pre">REQ_WINDOW</span></span><a class="headerlink" href="#nearlink_sdr.mac.access.AccessPhase.REQ_WINDOW" title="Link to this definition">¶</a></dt>
+<dd><p>2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessPhase.RSP_WINDOW">
+<span class="sig-name descname"><span class="pre">RSP_WINDOW</span></span><a class="headerlink" href="#nearlink_sdr.mac.access.AccessPhase.RSP_WINDOW" title="Link to this definition">¶</a></dt>
+<dd><p>3</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessPhase.LINK_SETUP">
+<span class="sig-name descname"><span class="pre">LINK_SETUP</span></span><a class="headerlink" href="#nearlink_sdr.mac.access.AccessPhase.LINK_SETUP" title="Link to this definition">¶</a></dt>
+<dd><p>4</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessPhase.COMPLETED">
+<span class="sig-name descname"><span class="pre">COMPLETED</span></span><a class="headerlink" href="#nearlink_sdr.mac.access.AccessPhase.COMPLETED" title="Link to this definition">¶</a></dt>
+<dd><p>5</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessWhitelist">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">AccessWhitelist</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#AccessWhitelist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.AccessWhitelist" title="Link to this definition">¶</a></dt>
+<dd><p>Access whitelist (7.1.6).</p>
+<p>After the broadcasting device sets a whitelist, it only accepts access requests from devices in the whitelist. After the accessing device sets a whitelist, it only initiates access to devices in the whitelist.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessWhitelist.enabled">
+<span class="sig-name descname"><span class="pre">enabled</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.AccessWhitelist.enabled" title="Link to this definition">¶</a></dt>
+<dd><p>False</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessWhitelist.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#AccessWhitelist.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.AccessWhitelist.add" title="Link to this definition">¶</a></dt>
+<dd><p>Add a device address (6 bytes).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessWhitelist.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#AccessWhitelist.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.AccessWhitelist.remove" title="Link to this definition">¶</a></dt>
+<dd><p>Remove a device address.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessWhitelist.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#AccessWhitelist.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.AccessWhitelist.clear" title="Link to this definition">¶</a></dt>
+<dd><p>Clear the whitelist.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessWhitelist.contains">
+<span class="sig-name descname"><span class="pre">contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#AccessWhitelist.contains"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.AccessWhitelist.contains" title="Link to this definition">¶</a></dt>
+<dd><p>Check whether an address is in the whitelist</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessWhitelist.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#AccessWhitelist.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.AccessWhitelist.check" title="Link to this definition">¶</a></dt>
+<dd><p>Check whether access is allowed for the given address</p>
+<p>All addresses are allowed when the whitelist is not enabled; only whitelisted addresses are allowed when enabled.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.AccessWhitelist.addresses">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">addresses</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nearlink_sdr.mac.access.AccessWhitelist.addresses" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">BroadcasterAccessManager</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#BroadcasterAccessManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager" title="Link to this definition">¶</a></dt>
+<dd><p>Broadcaster access manager (Standard §7.1.3 phases a/c).</p>
+<p>responsibilities:</p>
+<ul class="simple">
+<li><p>Construct an accessible extended advertising frame</p></li>
+<li><p>Process a received access request</p></li>
+<li><p>Generate access response</p></li>
+<li><p>Complete GT role negotiation</p></li>
+</ul>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.config">
+<span class="sig-name descname"><span class="pre">config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.mac.access.AccessConfig" title="nearlink_sdr.mac.access.AccessConfig"><span class="pre">nearlink_sdr.mac.access.AccessConfig</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.config" title="Link to this definition">¶</a></dt>
+<dd><p>‘field(…)’</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.link_manager">
+<span class="sig-name descname"><span class="pre">link_manager</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="nearlink_sdr.mac.link_manager.html#nearlink_sdr.mac.link_manager.LinkManager" title="nearlink_sdr.mac.link_manager.LinkManager"><span class="pre">nearlink_sdr.mac.link_manager.LinkManager</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.link_manager" title="Link to this definition">¶</a></dt>
+<dd><p>‘field(…)’</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.local_address">
+<span class="sig-name descname"><span class="pre">local_address</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.local_address" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.use_smf">
+<span class="sig-name descname"><span class="pre">use_smf</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.use_smf" title="Link to this definition">¶</a></dt>
+<dd><p>True</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.smf_baseline_slot">
+<span class="sig-name descname"><span class="pre">smf_baseline_slot</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.smf_baseline_slot" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.smf_offset">
+<span class="sig-name descname"><span class="pre">smf_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.smf_offset" title="Link to this definition">¶</a></dt>
+<dd><p>300</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.smf_link_id">
+<span class="sig-name descname"><span class="pre">smf_link_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.smf_link_id" title="Link to this definition">¶</a></dt>
+<dd><p>1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.smf_period">
+<span class="sig-name descname"><span class="pre">smf_period</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.smf_period" title="Link to this definition">¶</a></dt>
+<dd><p>800</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.smf_frame_type">
+<span class="sig-name descname"><span class="pre">smf_frame_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.smf_frame_type" title="Link to this definition">¶</a></dt>
+<dd><p>2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.smf_bandwidth">
+<span class="sig-name descname"><span class="pre">smf_bandwidth</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.smf_bandwidth" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.smf_pilot_density">
+<span class="sig-name descname"><span class="pre">smf_pilot_density</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.smf_pilot_density" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.access_link_id">
+<span class="sig-name descname"><span class="pre">access_link_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.access_link_id" title="Link to this definition">¶</a></dt>
+<dd><p>1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.access_period">
+<span class="sig-name descname"><span class="pre">access_period</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.access_period" title="Link to this definition">¶</a></dt>
+<dd><p>40</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.access_timeout">
+<span class="sig-name descname"><span class="pre">access_timeout</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.access_timeout" title="Link to this definition">¶</a></dt>
+<dd><p>50</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.sleep_clock_accuracy">
+<span class="sig-name descname"><span class="pre">sleep_clock_accuracy</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.sleep_clock_accuracy" title="Link to this definition">¶</a></dt>
+<dd><p>7</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.access_crc_type">
+<span class="sig-name descname"><span class="pre">access_crc_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.access_crc_type" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.access_crc_init">
+<span class="sig-name descname"><span class="pre">access_crc_init</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.access_crc_init" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.hop_map">
+<span class="sig-name descname"><span class="pre">hop_map</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.hop_map" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.smf_channel_table">
+<span class="sig-name descname"><span class="pre">smf_channel_table</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.smf_channel_table" title="Link to this definition">¶</a></dt>
+<dd><p>b’\x00\x01\x02’</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.whitelist">
+<span class="sig-name descname"><span class="pre">whitelist</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.mac.access.AccessWhitelist" title="nearlink_sdr.mac.access.AccessWhitelist"><span class="pre">nearlink_sdr.mac.access.AccessWhitelist</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.whitelist" title="Link to this definition">¶</a></dt>
+<dd><p>‘field(…)’</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.adv_interval_us">
+<span class="sig-name descname"><span class="pre">adv_interval_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.adv_interval_us" title="Link to this definition">¶</a></dt>
+<dd><p>100000</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.next_adv_delay_us">
+<span class="sig-name descname"><span class="pre">next_adv_delay_us</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#BroadcasterAccessManager.next_adv_delay_us"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.next_adv_delay_us" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the total interval until the next broadcast (section 7.1.1).</p>
+<p>Return fixed interval plus [0, 2ms] random delay, in microseconds.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.build_ext_adv_frame">
+<span class="sig-name descname"><span class="pre">build_ext_adv_frame</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#BroadcasterAccessManager.build_ext_adv_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.build_ext_adv_frame" title="Link to this definition">¶</a></dt>
+<dd><p>Build an accessible extended advertising frame (stage a).</p>
+<p>Contains discovery access resource configuration information (7.1.4.2).</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A populated BroadcastFrame object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.handle_access_request">
+<span class="sig-name descname"><span class="pre">handle_access_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">peer_address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">b'\x00'</span> <span class="pre">*</span> <span class="pre">6</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#BroadcasterAccessManager.handle_access_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.handle_access_request" title="Link to this definition">¶</a></dt>
+<dd><p>Process an access request (stage c).</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request_data</strong> – Reject an access request.</p></li>
+<li><p><strong>peer_address</strong> – Requester MAC address.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(response frame, accepted). The response frame contains AccessResponseInfo,     and (if accepted and role is G) AccessBasicInfo or TransportIndicationInfo.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.BroadcasterAccessManager.reject_access_request">
+<span class="sig-name descname"><span class="pre">reject_access_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peer_address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">b'\x00'</span> <span class="pre">*</span> <span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reason</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.AccessResponseType" title="nearlink_sdr.mac.broadcast.AccessResponseType"><span class="pre">nearlink_sdr.mac.broadcast.AccessResponseType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">AccessResponseType.USER_REJECT</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#BroadcasterAccessManager.reject_access_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.reject_access_request" title="Link to this definition">¶</a></dt>
+<dd><p>Reject an access request.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>peer_address</strong> – Requester MAC address.</p></li>
+<li><p><strong>reason</strong> – Rejection reason.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Frame containing rejection response.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.DiscoveryManager">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">DiscoveryManager</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#DiscoveryManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.DiscoveryManager" title="Link to this definition">¶</a></dt>
+<dd><p>Discovery procedure manager (Standard §7.1.2).</p>
+<p>Implement the inquiry request/response process after a discovering device receives a broadcast frame:   a) Broadcasting device sends basic and extended advertising frames   b) Discovering device sends an inquiry request frame after receiving a queryable extended advertising frame   c) Broadcasting device receives the request and sends an inquiry response frame   d) Discovering device receives the inquiry response frame, completing discovery</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.DiscoveryManager.local_address">
+<span class="sig-name descname"><span class="pre">local_address</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.DiscoveryManager.local_address" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.DiscoveryManager.whitelist">
+<span class="sig-name descname"><span class="pre">whitelist</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.mac.access.AccessWhitelist" title="nearlink_sdr.mac.access.AccessWhitelist"><span class="pre">nearlink_sdr.mac.access.AccessWhitelist</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.DiscoveryManager.whitelist" title="Link to this definition">¶</a></dt>
+<dd><p>‘field(…)’</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.DiscoveryManager.on_broadcast_received">
+<span class="sig-name descname"><span class="pre">on_broadcast_received</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#DiscoveryManager.on_broadcast_received"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.DiscoveryManager.on_broadcast_received" title="Link to this definition">¶</a></dt>
+<dd><p>Process a received broadcast frame.</p>
+<p>If the frame contains discovery/access resource configuration and is a queryable frame, return True indicating an inquiry request can be sent. Only process whitelisted devices when the whitelist is enabled.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frame</strong> – Process a received broadcast frame.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True indicates queryable; a subsequent inquiry request should be sent.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.DiscoveryManager.build_query_request">
+<span class="sig-name descname"><span class="pre">build_query_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_addr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.QueryRequestFilterInfo" title="nearlink_sdr.mac.broadcast.QueryRequestFilterInfo"><span class="pre">nearlink_sdr.mac.broadcast.QueryRequestFilterInfo</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper_layer_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">b''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#DiscoveryManager.build_query_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.DiscoveryManager.build_query_request" title="Link to this definition">¶</a></dt>
+<dd><p>Construct an inquiry request frame (stage b).</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target_addr</strong> – Target broadcast device address.</p></li>
+<li><p><strong>filter_info</strong> – Inquiry filter information (filtered by service UUID).</p></li>
+<li><p><strong>upper_layer_data</strong> – Higher layer broadcast data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Inquiry request broadcast frame.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.DiscoveryManager.handle_query_response">
+<span class="sig-name descname"><span class="pre">handle_query_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#DiscoveryManager.handle_query_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.DiscoveryManager.handle_query_response" title="Link to this definition">¶</a></dt>
+<dd><p>Process an inquiry response frame (stage d).</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frame</strong> – Received inquiry response frame.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True indicates discovery completed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.DiscoveryManager.handle_query_request">
+<span class="sig-name descname"><span class="pre">handle_query_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_services_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">b''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#DiscoveryManager.handle_query_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.DiscoveryManager.handle_query_request" title="Link to this definition">¶</a></dt>
+<dd><p>Process an inquiry request and construct an inquiry response frame (stage c).</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request_frame</strong> – Received inquiry request frame.</p></li>
+<li><p><strong>all_services_data</strong> – All service data supported by this device.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Inquiry response broadcast frame.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.DiscoveryManager.discovered_devices">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">discovered_devices</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nearlink_sdr.mac.access.DiscoveryManager.discovered_devices" title="Link to this definition">¶</a></dt>
+<dd><p>Return discovered devices along with their broadcast frames/inquiry response frames.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.DiscoveryManager.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#DiscoveryManager.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.DiscoveryManager.clear" title="Link to this definition">¶</a></dt>
+<dd><p>Clear discovery results.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.InitiatorAccessManager">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">InitiatorAccessManager</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#InitiatorAccessManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.InitiatorAccessManager" title="Link to this definition">¶</a></dt>
+<dd><p>Initiator access manager (Standard §7.1.3 phases b/d).</p>
+<p>responsibilities:</p>
+<ul class="simple">
+<li><p>Parse a received extended advertising frame</p></li>
+<li><p>Construct access request</p></li>
+<li><p>Process an access response</p></li>
+<li><p>Complete GT role negotiation</p></li>
+</ul>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.InitiatorAccessManager.config">
+<span class="sig-name descname"><span class="pre">config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.mac.access.AccessConfig" title="nearlink_sdr.mac.access.AccessConfig"><span class="pre">nearlink_sdr.mac.access.AccessConfig</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.InitiatorAccessManager.config" title="Link to this definition">¶</a></dt>
+<dd><p>‘field(…)’</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.InitiatorAccessManager.link_manager">
+<span class="sig-name descname"><span class="pre">link_manager</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="nearlink_sdr.mac.link_manager.html#nearlink_sdr.mac.link_manager.LinkManager" title="nearlink_sdr.mac.link_manager.LinkManager"><span class="pre">nearlink_sdr.mac.link_manager.LinkManager</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.InitiatorAccessManager.link_manager" title="Link to this definition">¶</a></dt>
+<dd><p>‘field(…)’</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.InitiatorAccessManager.local_address">
+<span class="sig-name descname"><span class="pre">local_address</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.InitiatorAccessManager.local_address" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.InitiatorAccessManager.whitelist">
+<span class="sig-name descname"><span class="pre">whitelist</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.mac.access.AccessWhitelist" title="nearlink_sdr.mac.access.AccessWhitelist"><span class="pre">nearlink_sdr.mac.access.AccessWhitelist</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.InitiatorAccessManager.whitelist" title="Link to this definition">¶</a></dt>
+<dd><p>‘field(…)’</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.InitiatorAccessManager.process_ext_adv">
+<span class="sig-name descname"><span class="pre">process_ext_adv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#InitiatorAccessManager.process_ext_adv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.InitiatorAccessManager.process_ext_adv" title="Link to this definition">¶</a></dt>
+<dd><p>Process a received accessible extended advertising frame (stage b preparation).</p>
+<p>Parse discovery access resource configuration and extract request window parameters. When the whitelist is enabled, only process broadcast frames from whitelisted devices (7.1.6).</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frame</strong> – Process a received broadcast frame.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True indicates the frame contains a valid access resource configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.InitiatorAccessManager.build_access_request">
+<span class="sig-name descname"><span class="pre">build_access_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#InitiatorAccessManager.build_access_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.InitiatorAccessManager.build_access_request" title="Link to this definition">¶</a></dt>
+<dd><p>Construct access request frame data (stage b).</p>
+<p>Build AccessRequestInfo based on local role preference.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Serialized data of the access request frame.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.InitiatorAccessManager.handle_access_response">
+<span class="sig-name descname"><span class="pre">handle_access_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="nearlink_sdr.mac.link_manager.html#nearlink_sdr.mac.link_manager.Role" title="nearlink_sdr.mac.link_manager.Role"><span class="pre">nearlink_sdr.mac.link_manager.Role</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#InitiatorAccessManager.handle_access_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.InitiatorAccessManager.handle_access_response" title="Link to this definition">¶</a></dt>
+<dd><p>Process an access response (stage d).</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>response_data</strong> – response_data: Complete access response frame data (BroadcastFrame.pack() format).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(final role, link parameter dict). Role is None if access was rejected.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.InitiatorAccessManager.can_retry">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">can_retry</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.InitiatorAccessManager.can_retry" title="Link to this definition">¶</a></dt>
+<dd><p>Whether access can still be retried.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.InitiatorAccessManager.discovery_config">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">discovery_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.DiscoveryAccessResourceConfig" title="nearlink_sdr.mac.broadcast.DiscoveryAccessResourceConfig"><span class="pre">nearlink_sdr.mac.broadcast.DiscoveryAccessResourceConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.InitiatorAccessManager.discovery_config" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.InitiatorAccessManager.phase">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">phase</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.mac.access.AccessPhase" title="nearlink_sdr.mac.access.AccessPhase"><span class="pre">nearlink_sdr.mac.access.AccessPhase</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.InitiatorAccessManager.phase" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NegotiatedRole">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">NegotiatedRole</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#NegotiatedRole"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.NegotiatedRole" title="Link to this definition">¶</a></dt>
+<dd><p>GT role negotiation result.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NegotiatedRole.local_role">
+<span class="sig-name descname"><span class="pre">local_role</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="nearlink_sdr.mac.link_manager.html#nearlink_sdr.mac.link_manager.Role" title="nearlink_sdr.mac.link_manager.Role"><span class="pre">nearlink_sdr.mac.link_manager.Role</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NegotiatedRole.local_role" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NegotiatedRole.peer_role">
+<span class="sig-name descname"><span class="pre">peer_role</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="nearlink_sdr.mac.link_manager.html#nearlink_sdr.mac.link_manager.Role" title="nearlink_sdr.mac.link_manager.Role"><span class="pre">nearlink_sdr.mac.link_manager.Role</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NegotiatedRole.peer_role" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NegotiatedRole.negotiated">
+<span class="sig-name descname"><span class="pre">negotiated</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NegotiatedRole.negotiated" title="Link to this definition">¶</a></dt>
+<dd><p>False</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">NonConnectedBroadcastConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#NonConnectedBroadcastConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig" title="Link to this definition">¶</a></dt>
+<dd><p>Non-connected broadcast transmission configuration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.transmission_type">
+<span class="sig-name descname"><span class="pre">transmission_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.transmission_type" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.service_adapt_mode">
+<span class="sig-name descname"><span class="pre">service_adapt_mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.service_adapt_mode" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.system_slot_seq">
+<span class="sig-name descname"><span class="pre">system_slot_seq</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.system_slot_seq" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.event_group_offset">
+<span class="sig-name descname"><span class="pre">event_group_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.event_group_offset" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.event_group_set_id">
+<span class="sig-name descname"><span class="pre">event_group_set_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.event_group_set_id" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.event_group_count">
+<span class="sig-name descname"><span class="pre">event_group_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.event_group_count" title="Link to this definition">¶</a></dt>
+<dd><p>1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.event_group_interval">
+<span class="sig-name descname"><span class="pre">event_group_interval</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.event_group_interval" title="Link to this definition">¶</a></dt>
+<dd><p>10</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.event_group_period">
+<span class="sig-name descname"><span class="pre">event_group_period</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.event_group_period" title="Link to this definition">¶</a></dt>
+<dd><p>160</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.event_period">
+<span class="sig-name descname"><span class="pre">event_period</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.event_period" title="Link to this definition">¶</a></dt>
+<dd><p>40</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.event_count">
+<span class="sig-name descname"><span class="pre">event_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.event_count" title="Link to this definition">¶</a></dt>
+<dd><p>1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.sync_anchor_delay">
+<span class="sig-name descname"><span class="pre">sync_anchor_delay</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.sync_anchor_delay" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.sync_ref_delay">
+<span class="sig-name descname"><span class="pre">sync_ref_delay</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.sync_ref_delay" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.base_link_id">
+<span class="sig-name descname"><span class="pre">base_link_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.base_link_id" title="Link to this definition">¶</a></dt>
+<dd><p>1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.frame_type">
+<span class="sig-name descname"><span class="pre">frame_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.frame_type" title="Link to this definition">¶</a></dt>
+<dd><p>2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.bandwidth">
+<span class="sig-name descname"><span class="pre">bandwidth</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.bandwidth" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.pilot_density">
+<span class="sig-name descname"><span class="pre">pilot_density</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.pilot_density" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.sdu_max">
+<span class="sig-name descname"><span class="pre">sdu_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.sdu_max" title="Link to this definition">¶</a></dt>
+<dd><p>128</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.sdu_period">
+<span class="sig-name descname"><span class="pre">sdu_period</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.sdu_period" title="Link to this definition">¶</a></dt>
+<dd><p>1000</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.pdu_max">
+<span class="sig-name descname"><span class="pre">pdu_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.pdu_max" title="Link to this definition">¶</a></dt>
+<dd><p>256</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.new_packet_count">
+<span class="sig-name descname"><span class="pre">new_packet_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.new_packet_count" title="Link to this definition">¶</a></dt>
+<dd><p>1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.crc_type">
+<span class="sig-name descname"><span class="pre">crc_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.crc_type" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.crc_base_init">
+<span class="sig-name descname"><span class="pre">crc_base_init</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.crc_base_init" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.hop_map">
+<span class="sig-name descname"><span class="pre">hop_map</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.hop_map" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.is_5g">
+<span class="sig-name descname"><span class="pre">is_5g</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.is_5g" title="Link to this definition">¶</a></dt>
+<dd><p>False</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_baseline_slot">
+<span class="sig-name descname"><span class="pre">smf_baseline_slot</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_baseline_slot" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_offset">
+<span class="sig-name descname"><span class="pre">smf_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_offset" title="Link to this definition">¶</a></dt>
+<dd><p>300</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_access_addr">
+<span class="sig-name descname"><span class="pre">smf_access_addr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_access_addr" title="Link to this definition">¶</a></dt>
+<dd><p>1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_period">
+<span class="sig-name descname"><span class="pre">smf_period</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_period" title="Link to this definition">¶</a></dt>
+<dd><p>800</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_frame_type">
+<span class="sig-name descname"><span class="pre">smf_frame_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_frame_type" title="Link to this definition">¶</a></dt>
+<dd><p>2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_bandwidth">
+<span class="sig-name descname"><span class="pre">smf_bandwidth</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_bandwidth" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_pilot_density">
+<span class="sig-name descname"><span class="pre">smf_pilot_density</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_pilot_density" title="Link to this definition">¶</a></dt>
+<dd><p>0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_channel_table">
+<span class="sig-name descname"><span class="pre">smf_channel_table</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_channel_table" title="Link to this definition">¶</a></dt>
+<dd><p>b’\x00\x01\x02’</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.encrypted">
+<span class="sig-name descname"><span class="pre">encrypted</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.encrypted" title="Link to this definition">¶</a></dt>
+<dd><p>False</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.giv">
+<span class="sig-name descname"><span class="pre">giv</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.giv" title="Link to this definition">¶</a></dt>
+<dd><p>b’’</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastConfig.gskd">
+<span class="sig-name descname"><span class="pre">gskd</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.gskd" title="Link to this definition">¶</a></dt>
+<dd><p>b’’</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastManager">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">NonConnectedBroadcastManager</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#NonConnectedBroadcastManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastManager" title="Link to this definition">¶</a></dt>
+<dd><p>Non-connected broadcast manager (Standard §7.1.7.2).</p>
+<p>Establish non-connected state broadcast transmission via extended advertising frames carrying non-connected state broadcast information and start system management frame information.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastManager.config">
+<span class="sig-name descname"><span class="pre">config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig" title="nearlink_sdr.mac.access.NonConnectedBroadcastConfig"><span class="pre">nearlink_sdr.mac.access.NonConnectedBroadcastConfig</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastManager.config" title="Link to this definition">¶</a></dt>
+<dd><p>‘field(…)’</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastManager.local_address">
+<span class="sig-name descname"><span class="pre">local_address</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastManager.local_address" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastManager.build_non_connected_broadcast_frame">
+<span class="sig-name descname"><span class="pre">build_non_connected_broadcast_frame</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#NonConnectedBroadcastManager.build_non_connected_broadcast_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastManager.build_non_connected_broadcast_frame" title="Link to this definition">¶</a></dt>
+<dd><p>Build an extended advertising frame carrying non-connected state broadcast information.</p>
+<p>The frame contains two types of data:</p>
+<ul class="simple">
+<li><p>UNLINKED_BROADCAST_LINK (0x06): NonLinkedBroadcastLinkInfo</p></li>
+<li><p>SYSTEM_MGMT_FRAME (0x05): SystemMgmtFrameInfo</p></li>
+</ul>
+<dl class="myst field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The constructed BroadcastFrame.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastResult">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">NonConnectedBroadcastResult</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#NonConnectedBroadcastResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastResult" title="Link to this definition">¶</a></dt>
+<dd><p>Parsing result for non-connected broadcast frames.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastResult.link_info">
+<span class="sig-name descname"><span class="pre">link_info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.NonLinkedBroadcastLinkInfo" title="nearlink_sdr.mac.broadcast.NonLinkedBroadcastLinkInfo"><span class="pre">nearlink_sdr.mac.broadcast.NonLinkedBroadcastLinkInfo</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastResult.link_info" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastResult.smf_info">
+<span class="sig-name descname"><span class="pre">smf_info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.SystemMgmtFrameInfo" title="nearlink_sdr.mac.broadcast.SystemMgmtFrameInfo"><span class="pre">nearlink_sdr.mac.broadcast.SystemMgmtFrameInfo</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastResult.smf_info" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.NonConnectedBroadcastResult.broadcaster_addr">
+<span class="sig-name descname"><span class="pre">broadcaster_addr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.access.NonConnectedBroadcastResult.broadcaster_addr" title="Link to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.negotiate_gt_role">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">negotiate_gt_role</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">broadcaster_pref</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcaster_negotiable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">initiator_pref</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">initiator_negotiable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.access.NegotiatedRole" title="nearlink_sdr.mac.access.NegotiatedRole"><span class="pre">nearlink_sdr.mac.access.NegotiatedRole</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#negotiate_gt_role"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.negotiate_gt_role" title="Link to this definition">¶</a></dt>
+<dd><p>Perform GT role negotiation according to standard 7.1.3.</p>
+<p>Both sides express role preferences (0=T node, 1=G node) and negotiability flags. Default on conflict: initiator -&gt; G node, broadcaster -&gt; T node.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>broadcaster_pref</strong> – Broadcaster role preference (0=T, 1=G).</p></li>
+<li><p><strong>broadcaster_negotiable</strong> – Whether the broadcaster role is negotiable.</p></li>
+<li><p><strong>initiator_pref</strong> – Initiator (access party) role preference.</p></li>
+<li><p><strong>initiator_negotiable</strong> – Whether the initiator role is negotiable.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Negotiation result from the initiator perspective: local_role is the initiator role.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.parse_non_connected_broadcast">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">parse_non_connected_broadcast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastResult" title="nearlink_sdr.mac.access.NonConnectedBroadcastResult"><span class="pre">nearlink_sdr.mac.access.NonConnectedBroadcastResult</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#parse_non_connected_broadcast"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.parse_non_connected_broadcast" title="Link to this definition">¶</a></dt>
+<dd><p>Parse non-connected state broadcast information in the extended advertising frame (7.1.7.2).</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frame</strong> – Parse a received extended advertising frame</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Parsing result; returns None if the frame does not contain non-connected state broadcast information.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nearlink_sdr.mac.access.run_access_procedure">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.access.</span></span><span class="sig-name descname"><span class="pre">run_access_procedure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">broadcaster_addr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">b'\x01\x02\x03\x04\x05\x06'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initiator_addr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">b'\n\x0b\x0c\r\x0e\x0f'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcaster_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.mac.access.AccessConfig" title="nearlink_sdr.mac.access.AccessConfig"><span class="pre">nearlink_sdr.mac.access.AccessConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initiator_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.mac.access.AccessConfig" title="nearlink_sdr.mac.access.AccessConfig"><span class="pre">nearlink_sdr.mac.access.AccessConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcaster_use_smf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager" title="nearlink_sdr.mac.access.BroadcasterAccessManager"><span class="pre">nearlink_sdr.mac.access.BroadcasterAccessManager</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.mac.access.InitiatorAccessManager" title="nearlink_sdr.mac.access.InitiatorAccessManager"><span class="pre">nearlink_sdr.mac.access.InitiatorAccessManager</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/access.html#run_access_procedure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.access.run_access_procedure" title="Link to this definition">¶</a></dt>
+<dd><p>Execute the complete end-to-end access process (standard 7.1.3, stages a-e).</p>
+<p>For simulation and integration testing; no actual RF transmission is involved.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>broadcaster_addr</strong> – Broadcaster MAC address.</p></li>
+<li><p><strong>initiator_addr</strong> – Initiator MAC address.</p></li>
+<li><p><strong>broadcaster_config</strong> – Broadcaster configuration.</p></li>
+<li><p><strong>initiator_config</strong> – Initiator configuration.</p></li>
+<li><p><strong>broadcaster_use_smf</strong> – Whether to use system management frame mode.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A (broadcaster manager, initiator manager) tuple;     both link_managers are in CONNECTED state upon success.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="nearlink_sdr.mac.broadcast.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="nearlink_sdr.mac.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/sanchuanhehe/nearlink_sdr_sim" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82 .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#data">Data</a></li>
+<li><a class="reference internal" href="#api">API</a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.MAX_ADV_INTERVAL_US"><code class="docutils literal notranslate"><span class="pre">MAX_ADV_INTERVAL_US</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.MAX_ADV_RANDOM_DELAY_US"><code class="docutils literal notranslate"><span class="pre">MAX_ADV_RANDOM_DELAY_US</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.MIN_ADV_INTERVAL_US"><code class="docutils literal notranslate"><span class="pre">MIN_ADV_INTERVAL_US</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.MIN_ADV_TO_EXT_ADV_GAP"><code class="docutils literal notranslate"><span class="pre">MIN_ADV_TO_EXT_ADV_GAP</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.MIN_EXT_ADV_TO_REQUEST_GAP"><code class="docutils literal notranslate"><span class="pre">MIN_EXT_ADV_TO_REQUEST_GAP</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.MIN_REQUEST_TO_RESPONSE_GAP"><code class="docutils literal notranslate"><span class="pre">MIN_REQUEST_TO_RESPONSE_GAP</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessConfig"><code class="docutils literal notranslate"><span class="pre">AccessConfig</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessConfig.request_offset_us"><code class="docutils literal notranslate"><span class="pre">AccessConfig.request_offset_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessConfig.request_max_length"><code class="docutils literal notranslate"><span class="pre">AccessConfig.request_max_length</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessConfig.response_offset_us"><code class="docutils literal notranslate"><span class="pre">AccessConfig.response_offset_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessConfig.window_count"><code class="docutils literal notranslate"><span class="pre">AccessConfig.window_count</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessConfig.gt_preference"><code class="docutils literal notranslate"><span class="pre">AccessConfig.gt_preference</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessConfig.gt_negotiable"><code class="docutils literal notranslate"><span class="pre">AccessConfig.gt_negotiable</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessConfig.access_timeout_ms"><code class="docutils literal notranslate"><span class="pre">AccessConfig.access_timeout_ms</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessConfig.max_retries"><code class="docutils literal notranslate"><span class="pre">AccessConfig.max_retries</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessPhase"><code class="docutils literal notranslate"><span class="pre">AccessPhase</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessPhase.IDLE"><code class="docutils literal notranslate"><span class="pre">AccessPhase.IDLE</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessPhase.ADV_SENDING"><code class="docutils literal notranslate"><span class="pre">AccessPhase.ADV_SENDING</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessPhase.REQ_WINDOW"><code class="docutils literal notranslate"><span class="pre">AccessPhase.REQ_WINDOW</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessPhase.RSP_WINDOW"><code class="docutils literal notranslate"><span class="pre">AccessPhase.RSP_WINDOW</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessPhase.LINK_SETUP"><code class="docutils literal notranslate"><span class="pre">AccessPhase.LINK_SETUP</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessPhase.COMPLETED"><code class="docutils literal notranslate"><span class="pre">AccessPhase.COMPLETED</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessWhitelist"><code class="docutils literal notranslate"><span class="pre">AccessWhitelist</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessWhitelist.enabled"><code class="docutils literal notranslate"><span class="pre">AccessWhitelist.enabled</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessWhitelist.add"><code class="docutils literal notranslate"><span class="pre">AccessWhitelist.add()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessWhitelist.remove"><code class="docutils literal notranslate"><span class="pre">AccessWhitelist.remove()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessWhitelist.clear"><code class="docutils literal notranslate"><span class="pre">AccessWhitelist.clear()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessWhitelist.contains"><code class="docutils literal notranslate"><span class="pre">AccessWhitelist.contains()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessWhitelist.check"><code class="docutils literal notranslate"><span class="pre">AccessWhitelist.check()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.AccessWhitelist.addresses"><code class="docutils literal notranslate"><span class="pre">AccessWhitelist.addresses</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.config"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.config</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.link_manager"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.link_manager</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.local_address"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.local_address</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.use_smf"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.use_smf</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.smf_baseline_slot"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.smf_baseline_slot</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.smf_offset"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.smf_offset</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.smf_link_id"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.smf_link_id</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.smf_period"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.smf_period</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.smf_frame_type"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.smf_frame_type</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.smf_bandwidth"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.smf_bandwidth</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.smf_pilot_density"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.smf_pilot_density</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.access_link_id"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.access_link_id</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.access_period"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.access_period</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.access_timeout"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.access_timeout</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.sleep_clock_accuracy"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.sleep_clock_accuracy</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.access_crc_type"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.access_crc_type</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.access_crc_init"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.access_crc_init</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.hop_map"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.hop_map</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.smf_channel_table"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.smf_channel_table</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.whitelist"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.whitelist</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.adv_interval_us"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.adv_interval_us</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.next_adv_delay_us"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.next_adv_delay_us()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.build_ext_adv_frame"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.build_ext_adv_frame()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.handle_access_request"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.handle_access_request()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.BroadcasterAccessManager.reject_access_request"><code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager.reject_access_request()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.DiscoveryManager"><code class="docutils literal notranslate"><span class="pre">DiscoveryManager</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.DiscoveryManager.local_address"><code class="docutils literal notranslate"><span class="pre">DiscoveryManager.local_address</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.DiscoveryManager.whitelist"><code class="docutils literal notranslate"><span class="pre">DiscoveryManager.whitelist</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.DiscoveryManager.on_broadcast_received"><code class="docutils literal notranslate"><span class="pre">DiscoveryManager.on_broadcast_received()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.DiscoveryManager.build_query_request"><code class="docutils literal notranslate"><span class="pre">DiscoveryManager.build_query_request()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.DiscoveryManager.handle_query_response"><code class="docutils literal notranslate"><span class="pre">DiscoveryManager.handle_query_response()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.DiscoveryManager.handle_query_request"><code class="docutils literal notranslate"><span class="pre">DiscoveryManager.handle_query_request()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.DiscoveryManager.discovered_devices"><code class="docutils literal notranslate"><span class="pre">DiscoveryManager.discovered_devices</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.DiscoveryManager.clear"><code class="docutils literal notranslate"><span class="pre">DiscoveryManager.clear()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.InitiatorAccessManager"><code class="docutils literal notranslate"><span class="pre">InitiatorAccessManager</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.InitiatorAccessManager.config"><code class="docutils literal notranslate"><span class="pre">InitiatorAccessManager.config</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.InitiatorAccessManager.link_manager"><code class="docutils literal notranslate"><span class="pre">InitiatorAccessManager.link_manager</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.InitiatorAccessManager.local_address"><code class="docutils literal notranslate"><span class="pre">InitiatorAccessManager.local_address</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.InitiatorAccessManager.whitelist"><code class="docutils literal notranslate"><span class="pre">InitiatorAccessManager.whitelist</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.InitiatorAccessManager.process_ext_adv"><code class="docutils literal notranslate"><span class="pre">InitiatorAccessManager.process_ext_adv()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.InitiatorAccessManager.build_access_request"><code class="docutils literal notranslate"><span class="pre">InitiatorAccessManager.build_access_request()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.InitiatorAccessManager.handle_access_response"><code class="docutils literal notranslate"><span class="pre">InitiatorAccessManager.handle_access_response()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.InitiatorAccessManager.can_retry"><code class="docutils literal notranslate"><span class="pre">InitiatorAccessManager.can_retry</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.InitiatorAccessManager.discovery_config"><code class="docutils literal notranslate"><span class="pre">InitiatorAccessManager.discovery_config</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.InitiatorAccessManager.phase"><code class="docutils literal notranslate"><span class="pre">InitiatorAccessManager.phase</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NegotiatedRole"><code class="docutils literal notranslate"><span class="pre">NegotiatedRole</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NegotiatedRole.local_role"><code class="docutils literal notranslate"><span class="pre">NegotiatedRole.local_role</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NegotiatedRole.peer_role"><code class="docutils literal notranslate"><span class="pre">NegotiatedRole.peer_role</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NegotiatedRole.negotiated"><code class="docutils literal notranslate"><span class="pre">NegotiatedRole.negotiated</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.transmission_type"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.transmission_type</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.service_adapt_mode"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.service_adapt_mode</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.system_slot_seq"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.system_slot_seq</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.event_group_offset"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.event_group_offset</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.event_group_set_id"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.event_group_set_id</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.event_group_count"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.event_group_count</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.event_group_interval"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.event_group_interval</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.event_group_period"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.event_group_period</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.event_period"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.event_period</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.event_count"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.event_count</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.sync_anchor_delay"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.sync_anchor_delay</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.sync_ref_delay"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.sync_ref_delay</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.base_link_id"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.base_link_id</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.frame_type"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.frame_type</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.bandwidth"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.bandwidth</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.pilot_density"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.pilot_density</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.sdu_max"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.sdu_max</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.sdu_period"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.sdu_period</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.pdu_max"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.pdu_max</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.new_packet_count"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.new_packet_count</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.crc_type"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.crc_type</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.crc_base_init"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.crc_base_init</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.hop_map"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.hop_map</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.is_5g"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.is_5g</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_baseline_slot"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.smf_baseline_slot</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_offset"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.smf_offset</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_access_addr"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.smf_access_addr</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_period"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.smf_period</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_frame_type"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.smf_frame_type</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_bandwidth"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.smf_bandwidth</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_pilot_density"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.smf_pilot_density</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.smf_channel_table"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.smf_channel_table</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.encrypted"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.encrypted</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.giv"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.giv</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastConfig.gskd"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastConfig.gskd</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastManager"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastManager</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastManager.config"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastManager.config</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastManager.local_address"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastManager.local_address</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastManager.build_non_connected_broadcast_frame"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastManager.build_non_connected_broadcast_frame()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastResult"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastResult</span></code></a><ul>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastResult.link_info"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastResult.link_info</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastResult.smf_info"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastResult.smf_info</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.NonConnectedBroadcastResult.broadcaster_addr"><code class="docutils literal notranslate"><span class="pre">NonConnectedBroadcastResult.broadcaster_addr</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.negotiate_gt_role"><code class="docutils literal notranslate"><span class="pre">negotiate_gt_role()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.parse_non_connected_broadcast"><code class="docutils literal notranslate"><span class="pre">parse_non_connected_broadcast()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.mac.access.run_access_procedure"><code class="docutils literal notranslate"><span class="pre">run_access_procedure()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=adab45b7"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../_static/version-selector.js?v=7d36e42c"></script>
+    </body>
+</html>

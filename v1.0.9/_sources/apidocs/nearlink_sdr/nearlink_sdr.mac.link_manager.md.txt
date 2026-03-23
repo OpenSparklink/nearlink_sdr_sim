@@ -1,0 +1,1459 @@
+# {py:mod}`nearlink_sdr.mac.link_manager`
+
+```{py:module} nearlink_sdr.mac.link_manager
+```
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager
+:allowtitles:
+```
+
+## Module Contents
+
+### Classes
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`DisconnectReason <nearlink_sdr.mac.link_manager.DisconnectReason>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager.DisconnectReason
+    :summary:
+    ```
+* - {py:obj}`Event <nearlink_sdr.mac.link_manager.Event>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Event
+    :summary:
+    ```
+* - {py:obj}`EventType <nearlink_sdr.mac.link_manager.EventType>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager.EventType
+    :summary:
+    ```
+* - {py:obj}`LinkManager <nearlink_sdr.mac.link_manager.LinkManager>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager
+    :summary:
+    ```
+* - {py:obj}`LinkManagerCallback <nearlink_sdr.mac.link_manager.LinkManagerCallback>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback
+    :summary:
+    ```
+* - {py:obj}`LinkParams <nearlink_sdr.mac.link_manager.LinkParams>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams
+    :summary:
+    ```
+* - {py:obj}`LinkState <nearlink_sdr.mac.link_manager.LinkState>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState
+    :summary:
+    ```
+* - {py:obj}`Role <nearlink_sdr.mac.link_manager.Role>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Role
+    :summary:
+    ```
+````
+
+### API
+
+`````{py:class} DisconnectReason
+:canonical: nearlink_sdr.mac.link_manager.DisconnectReason
+
+Bases: {py:obj}`enum.Enum`
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.DisconnectReason
+```
+
+````{py:attribute} LOCAL_REQUEST
+:canonical: nearlink_sdr.mac.link_manager.DisconnectReason.LOCAL_REQUEST
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.DisconnectReason.LOCAL_REQUEST
+```
+
+````
+
+````{py:attribute} REMOTE_REQUEST
+:canonical: nearlink_sdr.mac.link_manager.DisconnectReason.REMOTE_REQUEST
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.DisconnectReason.REMOTE_REQUEST
+```
+
+````
+
+````{py:attribute} TIMEOUT
+:canonical: nearlink_sdr.mac.link_manager.DisconnectReason.TIMEOUT
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.DisconnectReason.TIMEOUT
+```
+
+````
+
+````{py:attribute} ACCESS_REJECTED
+:canonical: nearlink_sdr.mac.link_manager.DisconnectReason.ACCESS_REJECTED
+:value: >
+   3
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.DisconnectReason.ACCESS_REJECTED
+```
+
+````
+
+`````
+
+`````{py:class} Event
+:canonical: nearlink_sdr.mac.link_manager.Event
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Event
+```
+
+````{py:attribute} type
+:canonical: nearlink_sdr.mac.link_manager.Event.type
+:type: nearlink_sdr.mac.link_manager.EventType
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Event.type
+```
+
+````
+
+````{py:attribute} data
+:canonical: nearlink_sdr.mac.link_manager.Event.data
+:type: typing.Any
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Event.data
+```
+
+````
+
+`````
+
+`````{py:class} EventType
+:canonical: nearlink_sdr.mac.link_manager.EventType
+
+Bases: {py:obj}`enum.Enum`
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.EventType
+```
+
+````{py:attribute} START_BROADCAST
+:canonical: nearlink_sdr.mac.link_manager.EventType.START_BROADCAST
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.EventType.START_BROADCAST
+```
+
+````
+
+````{py:attribute} STOP_BROADCAST
+:canonical: nearlink_sdr.mac.link_manager.EventType.STOP_BROADCAST
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.EventType.STOP_BROADCAST
+```
+
+````
+
+````{py:attribute} START_SCAN
+:canonical: nearlink_sdr.mac.link_manager.EventType.START_SCAN
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.EventType.START_SCAN
+```
+
+````
+
+````{py:attribute} STOP_SCAN
+:canonical: nearlink_sdr.mac.link_manager.EventType.STOP_SCAN
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.EventType.STOP_SCAN
+```
+
+````
+
+````{py:attribute} BROADCAST_RECEIVED
+:canonical: nearlink_sdr.mac.link_manager.EventType.BROADCAST_RECEIVED
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.EventType.BROADCAST_RECEIVED
+```
+
+````
+
+````{py:attribute} SEND_ACCESS_REQUEST
+:canonical: nearlink_sdr.mac.link_manager.EventType.SEND_ACCESS_REQUEST
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.EventType.SEND_ACCESS_REQUEST
+```
+
+````
+
+````{py:attribute} ACCESS_RESPONSE_RECEIVED
+:canonical: nearlink_sdr.mac.link_manager.EventType.ACCESS_RESPONSE_RECEIVED
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.EventType.ACCESS_RESPONSE_RECEIVED
+```
+
+````
+
+````{py:attribute} ACCESS_REQUEST_RECEIVED
+:canonical: nearlink_sdr.mac.link_manager.EventType.ACCESS_REQUEST_RECEIVED
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.EventType.ACCESS_REQUEST_RECEIVED
+```
+
+````
+
+````{py:attribute} SIGNALING_RECEIVED
+:canonical: nearlink_sdr.mac.link_manager.EventType.SIGNALING_RECEIVED
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.EventType.SIGNALING_RECEIVED
+```
+
+````
+
+````{py:attribute} SIGNALING_SEND
+:canonical: nearlink_sdr.mac.link_manager.EventType.SIGNALING_SEND
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.EventType.SIGNALING_SEND
+```
+
+````
+
+````{py:attribute} START_PAIRING
+:canonical: nearlink_sdr.mac.link_manager.EventType.START_PAIRING
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.EventType.START_PAIRING
+```
+
+````
+
+````{py:attribute} PAIRING_COMPLETE
+:canonical: nearlink_sdr.mac.link_manager.EventType.PAIRING_COMPLETE
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.EventType.PAIRING_COMPLETE
+```
+
+````
+
+````{py:attribute} PAIRING_FAILED
+:canonical: nearlink_sdr.mac.link_manager.EventType.PAIRING_FAILED
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.EventType.PAIRING_FAILED
+```
+
+````
+
+````{py:attribute} DISCONNECT_REQUEST
+:canonical: nearlink_sdr.mac.link_manager.EventType.DISCONNECT_REQUEST
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.EventType.DISCONNECT_REQUEST
+```
+
+````
+
+````{py:attribute} DISCONNECT_RECEIVED
+:canonical: nearlink_sdr.mac.link_manager.EventType.DISCONNECT_RECEIVED
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.EventType.DISCONNECT_RECEIVED
+```
+
+````
+
+````{py:attribute} SUPERVISION_TIMEOUT
+:canonical: nearlink_sdr.mac.link_manager.EventType.SUPERVISION_TIMEOUT
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.EventType.SUPERVISION_TIMEOUT
+```
+
+````
+
+````{py:attribute} SLEEP_REQUEST
+:canonical: nearlink_sdr.mac.link_manager.EventType.SLEEP_REQUEST
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.EventType.SLEEP_REQUEST
+```
+
+````
+
+````{py:attribute} WAKE_REQUEST
+:canonical: nearlink_sdr.mac.link_manager.EventType.WAKE_REQUEST
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.EventType.WAKE_REQUEST
+```
+
+````
+
+````{py:attribute} WAKE_RECEIVED
+:canonical: nearlink_sdr.mac.link_manager.EventType.WAKE_RECEIVED
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.EventType.WAKE_RECEIVED
+```
+
+````
+
+`````
+
+````{py:exception} InvalidState()
+:canonical: nearlink_sdr.mac.link_manager.InvalidState
+
+Bases: {py:obj}`Exception`
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.InvalidState
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.InvalidState.__init__
+```
+
+````
+
+````{py:exception} InvalidTransition()
+:canonical: nearlink_sdr.mac.link_manager.InvalidTransition
+
+Bases: {py:obj}`Exception`
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.InvalidTransition
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.InvalidTransition.__init__
+```
+
+````
+
+`````{py:class} LinkManager
+:canonical: nearlink_sdr.mac.link_manager.LinkManager
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager
+```
+
+````{py:attribute} state
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.state
+:type: nearlink_sdr.mac.link_manager.LinkState
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.state
+```
+
+````
+
+````{py:attribute} role
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.role
+:type: nearlink_sdr.mac.link_manager.Role
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.role
+```
+
+````
+
+````{py:attribute} params
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.params
+:type: nearlink_sdr.mac.link_manager.LinkParams
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.params
+```
+
+````
+
+````{py:attribute} callback
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.callback
+:type: nearlink_sdr.mac.link_manager.LinkManagerCallback
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.callback
+```
+
+````
+
+````{py:attribute} peer_address
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.peer_address
+:type: bytes
+:value: >
+   b''
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.peer_address
+```
+
+````
+
+````{py:attribute} local_address
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.local_address
+:type: bytes
+:value: >
+   b''
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.local_address
+```
+
+````
+
+````{py:method} process_event(event: nearlink_sdr.mac.link_manager.Event) -> None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.process_event
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.process_event
+```
+
+````
+
+````{py:method} reset() -> None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.reset
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.reset
+```
+
+````
+
+````{py:property} is_connected
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.is_connected
+:type: bool
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.is_connected
+```
+
+````
+
+````{py:property} is_dormant
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.is_dormant
+:type: bool
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.is_dormant
+```
+
+````
+
+````{py:property} event_log
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.event_log
+:type: list[tuple[float, nearlink_sdr.mac.link_manager.EventType, nearlink_sdr.mac.link_manager.LinkState, nearlink_sdr.mac.link_manager.LinkState]]
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.event_log
+```
+
+````
+
+````{py:method} send_signaling(msg: typing.Any) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.send_signaling
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.send_signaling
+```
+
+````
+
+````{py:method} update_params(**kwargs: typing.Any) -> None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.update_params
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.update_params
+```
+
+````
+
+````{py:method} switch_role() -> None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.switch_role
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.switch_role
+```
+
+````
+
+````{py:method} check_supervision_timeout() -> bool
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.check_supervision_timeout
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.check_supervision_timeout
+```
+
+````
+
+````{py:method} request_feature_exchange(feature_set: int) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_feature_exchange
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_feature_exchange
+```
+
+````
+
+````{py:method} respond_feature_exchange(feature_set: int) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.respond_feature_exchange
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.respond_feature_exchange
+```
+
+````
+
+````{py:method} request_version_exchange(spec_version: int = 0, company_id: int = 0, sub_version: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_version_exchange
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_version_exchange
+```
+
+````
+
+````{py:method} request_data_length_update(max_rx_bytes: int = 251, max_rx_time: int = 2120, max_tx_bytes: int = 251, max_tx_time: int = 2120) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_data_length_update
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_data_length_update
+```
+
+````
+
+````{py:method} respond_data_length_update(max_rx_bytes: int = 251, max_rx_time: int = 2120, max_tx_bytes: int = 251, max_tx_time: int = 2120) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.respond_data_length_update
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.respond_data_length_update
+```
+
+````
+
+````{py:method} configure_channel_report(enable: int = 1, min_interval: int = 5, max_delay: int = 5) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.configure_channel_report
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.configure_channel_report
+```
+
+````
+
+````{py:method} update_hop_table(effective_slot: int = 0, channel_count: int = 0, channel_table: bytes = b'') -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.update_hop_table
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.update_hop_table
+```
+
+````
+
+````{py:method} update_hop_map(effective_slot: int = 0, hop_map: bytes = b'') -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.update_hop_map
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.update_hop_map
+```
+
+````
+
+````{py:method} request_min_channels(frame_type: int = 0, bandwidth: int = 0, pilot_density: int = 0, min_channels: int = 2) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_min_channels
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_min_channels
+```
+
+````
+
+````{py:method} request_crc_switch(link_id: int = 0, tx_crc_type: int = 0, rx_crc_type: int = 0, tx_crc_init: int = 0, rx_crc_init: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_crc_switch
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_crc_switch
+```
+
+````
+
+````{py:method} indicate_crc_switch(link_id: int = 0, tx_crc_type: int = 0, rx_crc_type: int = 0, tx_crc_init: int = 0, rx_crc_init: int = 0, effective_slot: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.indicate_crc_switch
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.indicate_crc_switch
+```
+
+````
+
+````{py:method} request_phy_update(tx_frame_type: int = 0, rx_frame_type: int = 0, tx_bandwidth: int = 0, rx_bandwidth: int = 0, tx_pilot_density: int = 0, rx_pilot_density: int = 0, tx_feedback_type: int = 0, rx_feedback_type: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_phy_update
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_phy_update
+```
+
+````
+
+````{py:method} indicate_phy_update(tx_frame_type: int = 0, rx_frame_type: int = 0, tx_bandwidth: int = 0, rx_bandwidth: int = 0, tx_pilot_density: int = 0, rx_pilot_density: int = 0, tx_feedback_type: int = 0, rx_feedback_type: int = 0, effective_slot: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.indicate_phy_update
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.indicate_phy_update
+```
+
+````
+
+````{py:method} request_role_switch(effective_slot: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_role_switch
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_role_switch
+```
+
+````
+
+````{py:method} execute_role_switch(effective_slot: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.execute_role_switch
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.execute_role_switch
+```
+
+````
+
+````{py:method} send_ping() -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.send_ping
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.send_ping
+```
+
+````
+
+````{py:method} respond_ping() -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.respond_ping
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.respond_ping
+```
+
+````
+
+````{py:method} request_disconnect() -> None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_disconnect
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_disconnect
+```
+
+````
+
+````{py:method} request_async_param_update(event_group_period_min: int = 0, event_group_period_max: int = 0, delay_period: int = 0, timeout: int = 0, expected_period_unit: int = 0, effective_ref_slot: int = 0, offsets: tuple[int, ...] = (), time_slot_length: int = 0, time_slot_count: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_async_param_update
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_async_param_update
+```
+
+````
+
+````{py:method} respond_async_param_update(event_group_period_min: int = 0, event_group_period_max: int = 0, delay_period: int = 0, timeout: int = 0, expected_period_unit: int = 0, effective_ref_slot: int = 0, offsets: tuple[int, ...] = (), time_slot_length: int = 0, time_slot_count: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.respond_async_param_update
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.respond_async_param_update
+```
+
+````
+
+````{py:method} request_isochronous_link_setup(event_group_set_id: int = 0, event_group_id: int = 0, effective_slot: int = 0, event_group_period: int = 0, event_period: int = 0, intra_event_interval: int = 0, inter_event_interval: int = 0, event_count: int = 1, sync_anchor_delay: int = 0, sync_ref_delay: int = 0, scheduling_slot: int = 0, tx_rx_indication: int = 0, tx_adapt_mode: int = 0, rx_adapt_mode: int = 0, tx_link_id: int = 0, rx_link_id: int = 0, tx_frame_type: int = 0, rx_frame_type: int = 0, tx_bandwidth: int = 0, rx_bandwidth: int = 0, tx_pilot_density: int = 0, rx_pilot_density: int = 0, tx_sdu_max: int = 0, rx_sdu_max: int = 0, tx_sdu_period: int = 0, rx_sdu_period: int = 0, tx_pdu_max: int = 0, rx_pdu_max: int = 0, tx_max_time_offset: int = 0, rx_max_time_offset: int = 0, tx_new_pkt_count: int = 1, rx_new_pkt_count: int = 1, tx_crc_init: int = 0, rx_crc_init: int = 0, tx_discard_period: int = 3, rx_discard_period: int = 3, tx_crc_type: int = 0, rx_crc_type: int = 0, tx_feedback_type: int = 0, rx_feedback_type: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_isochronous_link_setup
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_isochronous_link_setup
+```
+
+````
+
+````{py:method} request_isochronous_param_exchange(event_group_set_id: int = 0, event_group_id: int = 0, event_group_period: int = 0, event_period: int = 0, intra_event_interval: int = 0, inter_event_interval: int = 0, event_count: int = 1, sync_anchor_delay: int = 0, sync_ref_delay: int = 0, param_tag_id: int = 0, tx_rx_indication: int = 0, tx_adapt_mode: int = 0, rx_adapt_mode: int = 0, tx_link_id: int = 0, rx_link_id: int = 0, tx_frame_type: int = 0, rx_frame_type: int = 0, tx_bandwidth: int = 0, rx_bandwidth: int = 0, tx_pilot_density: int = 0, rx_pilot_density: int = 0, tx_sdu_max: int = 0, rx_sdu_max: int = 0, tx_sdu_period: int = 0, rx_sdu_period: int = 0, tx_pdu_max: int = 0, rx_pdu_max: int = 0, tx_max_time_offset: int = 0, rx_max_time_offset: int = 0, tx_new_pkt_count: int = 1, rx_new_pkt_count: int = 1, tx_crc_init: int = 0, rx_crc_init: int = 0, tx_discard_period: int = 3, rx_discard_period: int = 3, tx_crc_type: int = 0, rx_crc_type: int = 0, tx_feedback_type: int = 0, rx_feedback_type: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_isochronous_param_exchange
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_isochronous_param_exchange
+```
+
+````
+
+````{py:method} respond_isochronous_param_exchange(**kwargs: int) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.respond_isochronous_param_exchange
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.respond_isochronous_param_exchange
+```
+
+````
+
+````{py:method} request_isochronous_param_update(param_tag_id: int = 0, event_group_set_id: int = 0, event_group_id: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_isochronous_param_update
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_isochronous_param_update
+```
+
+````
+
+````{py:method} indicate_isochronous_param_update(param_tag_id: int = 0, event_group_set_id: int = 0, event_group_id: int = 0, effective_ref_slot: int = 0, event_group_offset: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.indicate_isochronous_param_update
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.indicate_isochronous_param_update
+```
+
+````
+
+````{py:method} indicate_broadcast_link_setup(**kwargs) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.indicate_broadcast_link_setup
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.indicate_broadcast_link_setup
+```
+
+````
+
+````{py:method} indicate_broadcast_link_param_update(**kwargs) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.indicate_broadcast_link_param_update
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.indicate_broadcast_link_param_update
+```
+
+````
+
+````{py:method} update_broadcast_hop_map(hop_map: bytes = b'\xff' * 10, effective_slot: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.update_broadcast_hop_map
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.update_broadcast_hop_map
+```
+
+````
+
+````{py:method} indicate_broadcast_link_disconnect(link_id: int = 0, error_reason: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.indicate_broadcast_link_disconnect
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.indicate_broadcast_link_disconnect
+```
+
+````
+
+````{py:method} request_smf_param_update(smf_period: int = 100, smf_start_offset: int = 0, link_id: int = 0, frame_type: int = 0, bandwidth: int = 0, pilot_density: int = 0, crc_type: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_smf_param_update
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_smf_param_update
+```
+
+````
+
+````{py:method} indicate_smf_param_update(smf_period: int = 100, smf_start_offset: int = 0, link_id: int = 0, frame_type: int = 0, bandwidth: int = 0, pilot_density: int = 0, crc_type: int = 0, crc_init: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.indicate_smf_param_update
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.indicate_smf_param_update
+```
+
+````
+
+````{py:method} request_smf_timeslot_update(link_id: int = 0, current_offset: int = 0, offsets: tuple[int, ...] = (0, 0, 0, 0)) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_smf_timeslot_update
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_smf_timeslot_update
+```
+
+````
+
+````{py:method} respond_smf_timeslot_update(link_id: int = 0, offset: int = 0, effective_slot: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.respond_smf_timeslot_update
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.respond_smf_timeslot_update
+```
+
+````
+
+````{py:method} terminate_smf_signaling(terminate_type: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.terminate_smf_signaling
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.terminate_smf_signaling
+```
+
+````
+
+````{py:method} indicate_async_multicast_link_setup(**kwargs) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.indicate_async_multicast_link_setup
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.indicate_async_multicast_link_setup
+```
+
+````
+
+````{py:method} request_async_multicast_param_exchange(payload: bytes = b'\x00' * 41) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_async_multicast_param_exchange
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_async_multicast_param_exchange
+```
+
+````
+
+````{py:method} respond_async_multicast_param_exchange(payload: bytes = b'\x00' * 41) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.respond_async_multicast_param_exchange
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.respond_async_multicast_param_exchange
+```
+
+````
+
+````{py:method} request_async_multicast_param_update(param_tag_id: int = 0, event_group_set_id: int = 0, event_group_id: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_async_multicast_param_update
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_async_multicast_param_update
+```
+
+````
+
+````{py:method} indicate_async_multicast_param_update(param_tag_id: int = 0, event_group_set_id: int = 0, event_group_id: int = 0, effective_ref_slot: int = 0, event_group_offset: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.indicate_async_multicast_param_update
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.indicate_async_multicast_param_update
+```
+
+````
+
+````{py:method} indicate_async_multicast_reconfig(**kwargs) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.indicate_async_multicast_reconfig
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.indicate_async_multicast_reconfig
+```
+
+````
+
+````{py:method} disconnect_multicast(link_id: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.disconnect_multicast
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.disconnect_multicast
+```
+
+````
+
+````{py:method} request_narrowband_meas_cap() -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_narrowband_meas_cap
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_narrowband_meas_cap
+```
+
+````
+
+````{py:method} respond_narrowband_meas_cap(payload: bytes = b'\x00' * 32) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.respond_narrowband_meas_cap
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.respond_narrowband_meas_cap
+```
+
+````
+
+````{py:method} config_narrowband_meas(payload: bytes = b'') -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.config_narrowband_meas
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.config_narrowband_meas
+```
+
+````
+
+````{py:method} report_narrowband_meas(payload: bytes = b'') -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.report_narrowband_meas
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.report_narrowband_meas
+```
+
+````
+
+````{py:method} action_narrowband_meas(config_index: int = 0, start_slot: int = 0, action_config: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.action_narrowband_meas
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.action_narrowband_meas
+```
+
+````
+
+````{py:method} request_coordinate() -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_coordinate
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_coordinate
+```
+
+````
+
+````{py:method} report_coordinate(rel_x: int = 0, rel_y: int = 0, rel_z: int = 0, abs_lon: int = 0, abs_lat: int = 0, abs_alt: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.report_coordinate
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.report_coordinate
+```
+
+````
+
+````{py:method} config_coordinate(rel_x: int = 0, rel_y: int = 0, rel_z: int = 0, abs_lon: int = 0, abs_lat: int = 0, abs_alt: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.config_coordinate
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.config_coordinate
+```
+
+````
+
+````{py:method} request_narrowband_delay() -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_narrowband_delay
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_narrowband_delay
+```
+
+````
+
+````{py:method} respond_narrowband_delay(payload: bytes = b'') -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.respond_narrowband_delay
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.respond_narrowband_delay
+```
+
+````
+
+````{py:method} request_uwb_meas_cap() -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_uwb_meas_cap
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_uwb_meas_cap
+```
+
+````
+
+````{py:method} respond_uwb_meas_cap(payload: bytes = b'\x00' * 50) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.respond_uwb_meas_cap
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.respond_uwb_meas_cap
+```
+
+````
+
+````{py:method} config_uwb_meas(payload: bytes = b'') -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.config_uwb_meas
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.config_uwb_meas
+```
+
+````
+
+````{py:method} feedback_uwb_meas_config(config_index: int = 0, status: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.feedback_uwb_meas_config
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.feedback_uwb_meas_config
+```
+
+````
+
+````{py:method} report_uwb_meas(payload: bytes = b'') -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.report_uwb_meas
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.report_uwb_meas
+```
+
+````
+
+````{py:method} action_uwb_meas(config_index: int = 0, start_slot: int = 0, action_config: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.action_uwb_meas
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.action_uwb_meas
+```
+
+````
+
+````{py:method} request_uwb_sensing_cap() -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_uwb_sensing_cap
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_uwb_sensing_cap
+```
+
+````
+
+````{py:method} respond_uwb_sensing_cap(payload: bytes = b'\x00' * 51) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.respond_uwb_sensing_cap
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.respond_uwb_sensing_cap
+```
+
+````
+
+````{py:method} config_uwb_sensing(payload: bytes = b'') -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.config_uwb_sensing
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.config_uwb_sensing
+```
+
+````
+
+````{py:method} feedback_uwb_sensing_config(config_index: int = 0, status: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.feedback_uwb_sensing_config
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.feedback_uwb_sensing_config
+```
+
+````
+
+````{py:method} report_uwb_sensing(payload: bytes = b'') -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.report_uwb_sensing
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.report_uwb_sensing
+```
+
+````
+
+````{py:method} action_uwb_sensing(config_index: int = 0, start_slot: int = 0, action_config: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.action_uwb_sensing
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.action_uwb_sensing
+```
+
+````
+
+````{py:method} request_uwb_sensing_process(payload: bytes = b'\x00' * 16) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_uwb_sensing_process
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_uwb_sensing_process
+```
+
+````
+
+````{py:method} feedback_uwb_sensing_process(process_index: int = 0, status: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.feedback_uwb_sensing_process
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.feedback_uwb_sensing_process
+```
+
+````
+
+````{py:method} request_uwb_proxy_sensing(proxy_index: int = 0, sensing_index: int = 0, meas_quantity: int = 0, report_period: int = 0, bandwidth: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_uwb_proxy_sensing
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_uwb_proxy_sensing
+```
+
+````
+
+````{py:method} feedback_uwb_proxy_sensing(proxy_index: int = 0, sensing_index: int = 0, status: int = 0, meas_quantity1: int = 0, meas_quantity2: int = 0, bandwidth1: int = 0, bandwidth2: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.feedback_uwb_proxy_sensing
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.feedback_uwb_proxy_sensing
+```
+
+````
+
+````{py:method} request_narrowband_sensing(payload: bytes = b'\x00' * 16) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_narrowband_sensing
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_narrowband_sensing
+```
+
+````
+
+````{py:method} feedback_narrowband_sensing(process_index: int = 0, status: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.feedback_narrowband_sensing
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.feedback_narrowband_sensing
+```
+
+````
+
+````{py:method} request_narrowband_sensing_cap() -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_narrowband_sensing_cap
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_narrowband_sensing_cap
+```
+
+````
+
+````{py:method} respond_narrowband_sensing_cap(payload: bytes = b'\x00' * 50) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.respond_narrowband_sensing_cap
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.respond_narrowband_sensing_cap
+```
+
+````
+
+````{py:method} config_narrowband_sensing(payload: bytes = b'') -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.config_narrowband_sensing
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.config_narrowband_sensing
+```
+
+````
+
+````{py:method} feedback_narrowband_sensing_config(config_index: int = 0, status: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.feedback_narrowband_sensing_config
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.feedback_narrowband_sensing_config
+```
+
+````
+
+````{py:method} report_narrowband_sensing(payload: bytes = b'') -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.report_narrowband_sensing
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.report_narrowband_sensing
+```
+
+````
+
+````{py:method} action_narrowband_sensing(config_index: int = 0, start_slot: int = 0, action_config: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.action_narrowband_sensing
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.action_narrowband_sensing
+```
+
+````
+
+````{py:method} request_narrowband_proxy_sensing(proxy_index: int = 0, sensing_index: int = 0, meas_quantity: int = 0, report_period: int = 0, bandwidth: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_narrowband_proxy_sensing
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_narrowband_proxy_sensing
+```
+
+````
+
+````{py:method} feedback_narrowband_proxy_sensing(proxy_index: int = 0, sensing_index: int = 0, status: int = 0, meas_quantity1: int = 0, meas_quantity2: int = 0, bandwidth1: int = 0, bandwidth2: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.feedback_narrowband_proxy_sensing
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.feedback_narrowband_proxy_sensing
+```
+
+````
+
+````{py:method} request_narrowband_meas_config_update(payload: bytes = b'\x00' * 32) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.request_narrowband_meas_config_update
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.request_narrowband_meas_config_update
+```
+
+````
+
+````{py:method} indicate_narrowband_meas_config_update(payload: bytes = b'\x00' * 32) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.indicate_narrowband_meas_config_update
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.indicate_narrowband_meas_config_update
+```
+
+````
+
+````{py:method} reserve_resource(config_index: int = 0, effective_slot: int = 0, event_group_period: int = 100, event_period: int = 10, event_length: int = 1, event_count: int = 1, scheduling_slot: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.reserve_resource
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.reserve_resource
+```
+
+````
+
+````{py:method} terminate_resource_reservation(config_index: int = 0, reason: int = 0) -> nearlink_sdr.mac.frame.ControlFrame | None
+:canonical: nearlink_sdr.mac.link_manager.LinkManager.terminate_resource_reservation
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.terminate_resource_reservation
+```
+
+````
+
+`````
+
+`````{py:class} LinkManagerCallback
+:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback
+```
+
+````{py:method} on_state_changed(old: nearlink_sdr.mac.link_manager.LinkState, new: nearlink_sdr.mac.link_manager.LinkState) -> None
+:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_state_changed
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_state_changed
+```
+
+````
+
+````{py:method} on_broadcast_frame(frame: nearlink_sdr.mac.broadcast.BroadcastFrame) -> None
+:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_broadcast_frame
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_broadcast_frame
+```
+
+````
+
+````{py:method} on_access_accepted(role: nearlink_sdr.mac.link_manager.Role) -> None
+:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_access_accepted
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_access_accepted
+```
+
+````
+
+````{py:method} on_access_rejected() -> None
+:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_access_rejected
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_access_rejected
+```
+
+````
+
+````{py:method} on_signaling(msg: typing.Any) -> None
+:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_signaling
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_signaling
+```
+
+````
+
+````{py:method} on_disconnected(reason: nearlink_sdr.mac.link_manager.DisconnectReason) -> None
+:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_disconnected
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_disconnected
+```
+
+````
+
+````{py:method} on_dormant() -> None
+:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_dormant
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_dormant
+```
+
+````
+
+````{py:method} on_wakeup() -> None
+:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_wakeup
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_wakeup
+```
+
+````
+
+`````
+
+`````{py:class} LinkParams
+:canonical: nearlink_sdr.mac.link_manager.LinkParams
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams
+```
+
+````{py:attribute} tx_rx_interval
+:canonical: nearlink_sdr.mac.link_manager.LinkParams.tx_rx_interval
+:type: int
+:value: >
+   20
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.tx_rx_interval
+```
+
+````
+
+````{py:attribute} tx_max_octets
+:canonical: nearlink_sdr.mac.link_manager.LinkParams.tx_max_octets
+:type: int
+:value: >
+   27
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.tx_max_octets
+```
+
+````
+
+````{py:attribute} rx_max_octets
+:canonical: nearlink_sdr.mac.link_manager.LinkParams.rx_max_octets
+:type: int
+:value: >
+   27
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.rx_max_octets
+```
+
+````
+
+````{py:attribute} channel_table
+:canonical: nearlink_sdr.mac.link_manager.LinkParams.channel_table
+:type: bytes
+:value: >
+   b''
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.channel_table
+```
+
+````
+
+````{py:attribute} frame_type
+:canonical: nearlink_sdr.mac.link_manager.LinkParams.frame_type
+:type: int
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.frame_type
+```
+
+````
+
+````{py:attribute} bandwidth
+:canonical: nearlink_sdr.mac.link_manager.LinkParams.bandwidth
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.bandwidth
+```
+
+````
+
+````{py:attribute} crc_type
+:canonical: nearlink_sdr.mac.link_manager.LinkParams.crc_type
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.crc_type
+```
+
+````
+
+````{py:attribute} supervision_timeout
+:canonical: nearlink_sdr.mac.link_manager.LinkParams.supervision_timeout
+:type: int
+:value: >
+   5000
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.supervision_timeout
+```
+
+````
+
+`````
+
+`````{py:class} LinkState
+:canonical: nearlink_sdr.mac.link_manager.LinkState
+
+Bases: {py:obj}`enum.Enum`
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState
+```
+
+````{py:attribute} IDLE
+:canonical: nearlink_sdr.mac.link_manager.LinkState.IDLE
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.IDLE
+```
+
+````
+
+````{py:attribute} BROADCASTING
+:canonical: nearlink_sdr.mac.link_manager.LinkState.BROADCASTING
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.BROADCASTING
+```
+
+````
+
+````{py:attribute} SCANNING
+:canonical: nearlink_sdr.mac.link_manager.LinkState.SCANNING
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.SCANNING
+```
+
+````
+
+````{py:attribute} ACCESSING
+:canonical: nearlink_sdr.mac.link_manager.LinkState.ACCESSING
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.ACCESSING
+```
+
+````
+
+````{py:attribute} CONNECTED
+:canonical: nearlink_sdr.mac.link_manager.LinkState.CONNECTED
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.CONNECTED
+```
+
+````
+
+````{py:attribute} PAIRING
+:canonical: nearlink_sdr.mac.link_manager.LinkState.PAIRING
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.PAIRING
+```
+
+````
+
+````{py:attribute} DORMANT
+:canonical: nearlink_sdr.mac.link_manager.LinkState.DORMANT
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.DORMANT
+```
+
+````
+
+````{py:attribute} DISCONNECTED
+:canonical: nearlink_sdr.mac.link_manager.LinkState.DISCONNECTED
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.DISCONNECTED
+```
+
+````
+
+`````
+
+`````{py:class} Role
+:canonical: nearlink_sdr.mac.link_manager.Role
+
+Bases: {py:obj}`enum.Enum`
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Role
+```
+
+````{py:attribute} NONE
+:canonical: nearlink_sdr.mac.link_manager.Role.NONE
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Role.NONE
+```
+
+````
+
+````{py:attribute} G_NODE
+:canonical: nearlink_sdr.mac.link_manager.Role.G_NODE
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Role.G_NODE
+```
+
+````
+
+````{py:attribute} T_NODE
+:canonical: nearlink_sdr.mac.link_manager.Role.T_NODE
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Role.T_NODE
+```
+
+````
+
+`````

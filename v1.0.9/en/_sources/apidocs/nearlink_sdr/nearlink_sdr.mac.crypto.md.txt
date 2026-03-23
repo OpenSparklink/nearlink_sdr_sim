@@ -1,0 +1,379 @@
+# {py:mod}`nearlink_sdr.mac.crypto`
+
+```{py:module} nearlink_sdr.mac.crypto
+```
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto
+:allowtitles:
+```
+
+## Module Contents
+
+### Classes
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`AuthMethod <nearlink_sdr.mac.crypto.AuthMethod>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.crypto.AuthMethod
+    :summary:
+    ```
+* - {py:obj}`KdfType <nearlink_sdr.mac.crypto.KdfType>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.crypto.KdfType
+    :summary:
+    ```
+````
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`aes_ccm_decrypt <nearlink_sdr.mac.crypto.aes_ccm_decrypt>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.crypto.aes_ccm_decrypt
+    :summary:
+    ```
+* - {py:obj}`aes_ccm_encrypt <nearlink_sdr.mac.crypto.aes_ccm_encrypt>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.crypto.aes_ccm_encrypt
+    :summary:
+    ```
+* - {py:obj}`aes_cmac <nearlink_sdr.mac.crypto.aes_cmac>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.crypto.aes_cmac
+    :summary:
+    ```
+* - {py:obj}`build_ccm_nonce_async <nearlink_sdr.mac.crypto.build_ccm_nonce_async>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.crypto.build_ccm_nonce_async
+    :summary:
+    ```
+* - {py:obj}`build_ccm_nonce_other <nearlink_sdr.mac.crypto.build_ccm_nonce_other>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.crypto.build_ccm_nonce_other
+    :summary:
+    ```
+* - {py:obj}`compute_iv <nearlink_sdr.mac.crypto.compute_iv>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.crypto.compute_iv
+    :summary:
+    ```
+* - {py:obj}`derive_dh_verify_key <nearlink_sdr.mac.crypto.derive_dh_verify_key>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.crypto.derive_dh_verify_key
+    :summary:
+    ```
+* - {py:obj}`derive_group_session_key <nearlink_sdr.mac.crypto.derive_group_session_key>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.crypto.derive_group_session_key
+    :summary:
+    ```
+* - {py:obj}`derive_kg <nearlink_sdr.mac.crypto.derive_kg>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.crypto.derive_kg
+    :summary:
+    ```
+* - {py:obj}`derive_link_key <nearlink_sdr.mac.crypto.derive_link_key>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.crypto.derive_link_key
+    :summary:
+    ```
+* - {py:obj}`derive_session_key <nearlink_sdr.mac.crypto.derive_session_key>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.crypto.derive_session_key
+    :summary:
+    ```
+* - {py:obj}`generate_confirm_code <nearlink_sdr.mac.crypto.generate_confirm_code>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.crypto.generate_confirm_code
+    :summary:
+    ```
+* - {py:obj}`generate_dh_verify_code <nearlink_sdr.mac.crypto.generate_dh_verify_code>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.crypto.generate_dh_verify_code
+    :summary:
+    ```
+* - {py:obj}`generate_group_key <nearlink_sdr.mac.crypto.generate_group_key>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.crypto.generate_group_key
+    :summary:
+    ```
+* - {py:obj}`generate_numeric_code <nearlink_sdr.mac.crypto.generate_numeric_code>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.crypto.generate_numeric_code
+    :summary:
+    ```
+* - {py:obj}`generate_resolvable_address <nearlink_sdr.mac.crypto.generate_resolvable_address>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.crypto.generate_resolvable_address
+    :summary:
+    ```
+* - {py:obj}`hmac_sm3 <nearlink_sdr.mac.crypto.hmac_sm3>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.crypto.hmac_sm3
+    :summary:
+    ```
+* - {py:obj}`kdf <nearlink_sdr.mac.crypto.kdf>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.crypto.kdf
+    :summary:
+    ```
+* - {py:obj}`obfuscate <nearlink_sdr.mac.crypto.obfuscate>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.crypto.obfuscate
+    :summary:
+    ```
+* - {py:obj}`resolve_address <nearlink_sdr.mac.crypto.resolve_address>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.crypto.resolve_address
+    :summary:
+    ```
+* - {py:obj}`secure_random_256 <nearlink_sdr.mac.crypto.secure_random_256>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.crypto.secure_random_256
+    :summary:
+    ```
+````
+
+### API
+
+`````{py:class} AuthMethod()
+:canonical: nearlink_sdr.mac.crypto.AuthMethod
+
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.AuthMethod
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.AuthMethod.__init__
+```
+
+````{py:attribute} NUMERIC_COMPARISON
+:canonical: nearlink_sdr.mac.crypto.AuthMethod.NUMERIC_COMPARISON
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.AuthMethod.NUMERIC_COMPARISON
+```
+
+````
+
+````{py:attribute} PASSKEY_ENTRY
+:canonical: nearlink_sdr.mac.crypto.AuthMethod.PASSKEY_ENTRY
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.AuthMethod.PASSKEY_ENTRY
+```
+
+````
+
+````{py:attribute} PASSWORD_VERIFY
+:canonical: nearlink_sdr.mac.crypto.AuthMethod.PASSWORD_VERIFY
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.AuthMethod.PASSWORD_VERIFY
+```
+
+````
+
+````{py:attribute} OOB
+:canonical: nearlink_sdr.mac.crypto.AuthMethod.OOB
+:value: >
+   3
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.AuthMethod.OOB
+```
+
+````
+
+````{py:attribute} PSK
+:canonical: nearlink_sdr.mac.crypto.AuthMethod.PSK
+:value: >
+   4
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.AuthMethod.PSK
+```
+
+````
+
+````{py:attribute} NO_INPUT
+:canonical: nearlink_sdr.mac.crypto.AuthMethod.NO_INPUT
+:value: >
+   5
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.AuthMethod.NO_INPUT
+```
+
+````
+
+`````
+
+`````{py:class} KdfType()
+:canonical: nearlink_sdr.mac.crypto.KdfType
+
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.KdfType
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.KdfType.__init__
+```
+
+````{py:attribute} AES_CMAC
+:canonical: nearlink_sdr.mac.crypto.KdfType.AES_CMAC
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.KdfType.AES_CMAC
+```
+
+````
+
+````{py:attribute} HMAC_SM3
+:canonical: nearlink_sdr.mac.crypto.KdfType.HMAC_SM3
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.KdfType.HMAC_SM3
+```
+
+````
+
+`````
+
+````{py:function} aes_ccm_decrypt(key: bytes, nonce: bytes, ciphertext: bytes, mic: bytes, associated_data: bytes = b'', mic_len: int = 4) -> bytes
+:canonical: nearlink_sdr.mac.crypto.aes_ccm_decrypt
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.aes_ccm_decrypt
+```
+````
+
+````{py:function} aes_ccm_encrypt(key: bytes, nonce: bytes, plaintext: bytes, associated_data: bytes = b'', mic_len: int = 4) -> tuple[bytes, bytes]
+:canonical: nearlink_sdr.mac.crypto.aes_ccm_encrypt
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.aes_ccm_encrypt
+```
+````
+
+````{py:function} aes_cmac(key: bytes, msg: bytes) -> bytes
+:canonical: nearlink_sdr.mac.crypto.aes_cmac
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.aes_cmac
+```
+````
+
+````{py:function} build_ccm_nonce_async(payload_count: int, direction: int, iv_base: bytes, data_length: int, flag: int = 73) -> bytes
+:canonical: nearlink_sdr.mac.crypto.build_ccm_nonce_async
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.build_ccm_nonce_async
+```
+````
+
+````{py:function} build_ccm_nonce_other(system_slot_seq: int, day_count: int, iv_base: bytes, data_length: int, flag: int = 73) -> bytes
+:canonical: nearlink_sdr.mac.crypto.build_ccm_nonce_other
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.build_ccm_nonce_other
+```
+````
+
+````{py:function} compute_iv(iv_base: bytes, sync_or_link_id: int, frame_type: int) -> bytes
+:canonical: nearlink_sdr.mac.crypto.compute_iv
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.compute_iv
+```
+````
+
+````{py:function} derive_dh_verify_key(kdf_type: nearlink_sdr.mac.crypto.KdfType, dh_key: bytes, ra: bytes, rb: bytes, g_addr: bytes, t_addr: bytes) -> bytes
+:canonical: nearlink_sdr.mac.crypto.derive_dh_verify_key
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.derive_dh_verify_key
+```
+````
+
+````{py:function} derive_group_session_key(kdf_type: nearlink_sdr.mac.crypto.KdfType, gk: bytes, use_authenticated: bool = True) -> tuple[bytes, bytes | None]
+:canonical: nearlink_sdr.mac.crypto.derive_group_session_key
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.derive_group_session_key
+```
+````
+
+````{py:function} derive_kg(kdf_type: nearlink_sdr.mac.crypto.KdfType, link_key: bytes, rand: bytes) -> bytes
+:canonical: nearlink_sdr.mac.crypto.derive_kg
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.derive_kg
+```
+````
+
+````{py:function} derive_link_key(kdf_type: nearlink_sdr.mac.crypto.KdfType, dh_key: bytes, ra: bytes, rb: bytes, g_addr: bytes, t_addr: bytes) -> bytes
+:canonical: nearlink_sdr.mac.crypto.derive_link_key
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.derive_link_key
+```
+````
+
+````{py:function} derive_session_key(kdf_type: nearlink_sdr.mac.crypto.KdfType, link_key: bytes, g_diversifier: bytes, t_diversifier: bytes, use_authenticated: bool = True) -> tuple[bytes, bytes | None]
+:canonical: nearlink_sdr.mac.crypto.derive_session_key
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.derive_session_key
+```
+````
+
+````{py:function} generate_confirm_code(kdf_type: nearlink_sdr.mac.crypto.KdfType, auth_method: nearlink_sdr.mac.crypto.AuthMethod, random_value: bytes, g_pubkey: bytes, t_pubkey: bytes, obfuscated: bytes = b'', is_g_node: bool = True) -> bytes
+:canonical: nearlink_sdr.mac.crypto.generate_confirm_code
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.generate_confirm_code
+```
+````
+
+````{py:function} generate_dh_verify_code(kdf_type: nearlink_sdr.mac.crypto.KdfType, verify_key: bytes, random_value: bytes, salt: bytes, g_io_cap: int, t_io_cap: int, auth_method: int, crypto_alg: int, g_psk_ind: int, t_psk_ind: int, g_addr: bytes, t_addr: bytes) -> bytes
+:canonical: nearlink_sdr.mac.crypto.generate_dh_verify_code
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.generate_dh_verify_code
+```
+````
+
+````{py:function} generate_group_key(kdf_type: nearlink_sdr.mac.crypto.KdfType, rand1: bytes, rand2: bytes) -> bytes
+:canonical: nearlink_sdr.mac.crypto.generate_group_key
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.generate_group_key
+```
+````
+
+````{py:function} generate_numeric_code(kdf_type: nearlink_sdr.mac.crypto.KdfType, g_pubkey_x: bytes, t_pubkey: bytes, ra: bytes, rb: bytes) -> int
+:canonical: nearlink_sdr.mac.crypto.generate_numeric_code
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.generate_numeric_code
+```
+````
+
+````{py:function} generate_resolvable_address(kdf_type: nearlink_sdr.mac.crypto.KdfType, irk: bytes, rand_part: int) -> int
+:canonical: nearlink_sdr.mac.crypto.generate_resolvable_address
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.generate_resolvable_address
+```
+````
+
+````{py:function} hmac_sm3(key: bytes, msg: bytes) -> bytes
+:canonical: nearlink_sdr.mac.crypto.hmac_sm3
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.hmac_sm3
+```
+````
+
+````{py:function} kdf(kdf_type: nearlink_sdr.mac.crypto.KdfType, key: bytes, msg: bytes) -> bytes
+:canonical: nearlink_sdr.mac.crypto.kdf
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.kdf
+```
+````
+
+````{py:function} obfuscate(kdf_type: nearlink_sdr.mac.crypto.KdfType, g_pubkey_x: bytes, value: bytes) -> bytes
+:canonical: nearlink_sdr.mac.crypto.obfuscate
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.obfuscate
+```
+````
+
+````{py:function} resolve_address(kdf_type: nearlink_sdr.mac.crypto.KdfType, irk: bytes, resolvable_addr: int) -> bool
+:canonical: nearlink_sdr.mac.crypto.resolve_address
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.resolve_address
+```
+````
+
+````{py:function} secure_random_256(seed: bytes, time_param: int, kdf_type: nearlink_sdr.mac.crypto.KdfType = KdfType.AES_CMAC) -> bytes
+:canonical: nearlink_sdr.mac.crypto.secure_random_256
+
+```{autodoc2-docstring} nearlink_sdr.mac.crypto.secure_random_256
+```
+````

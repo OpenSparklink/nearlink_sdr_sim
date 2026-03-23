@@ -1,0 +1,64 @@
+# {py:mod}`nearlink_sdr.common.code_block_seg`
+
+```{py:module} nearlink_sdr.common.code_block_seg
+```
+
+```{autodoc2-docstring} nearlink_sdr.common.code_block_seg
+:allowtitles:
+```
+
+## Module Contents
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`segment_with_crc <nearlink_sdr.common.code_block_seg.segment_with_crc>`
+  - ```{autodoc2-docstring} nearlink_sdr.common.code_block_seg.segment_with_crc
+    :summary:
+    ```
+* - {py:obj}`segment_without_crc <nearlink_sdr.common.code_block_seg.segment_without_crc>`
+  - ```{autodoc2-docstring} nearlink_sdr.common.code_block_seg.segment_without_crc
+    :summary:
+    ```
+````
+
+### Data
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`RATE_TABLE_2 <nearlink_sdr.common.code_block_seg.RATE_TABLE_2>`
+  - ```{autodoc2-docstring} nearlink_sdr.common.code_block_seg.RATE_TABLE_2
+    :summary:
+    ```
+````
+
+### API
+
+````{py:data} RATE_TABLE_2
+:canonical: nearlink_sdr.common.code_block_seg.RATE_TABLE_2
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.common.code_block_seg.RATE_TABLE_2
+```
+
+````
+
+````{py:function} segment_with_crc(bits: numpy.ndarray, rate_str: str) -> list[tuple[int, numpy.ndarray]]
+:canonical: nearlink_sdr.common.code_block_seg.segment_with_crc
+
+```{autodoc2-docstring} nearlink_sdr.common.code_block_seg.segment_with_crc
+```
+````
+
+````{py:function} segment_without_crc(bits: numpy.ndarray, rate_str: str, crc_len: int = 0) -> list[tuple[int, numpy.ndarray]]
+:canonical: nearlink_sdr.common.code_block_seg.segment_without_crc
+
+```{autodoc2-docstring} nearlink_sdr.common.code_block_seg.segment_without_crc
+```
+````
