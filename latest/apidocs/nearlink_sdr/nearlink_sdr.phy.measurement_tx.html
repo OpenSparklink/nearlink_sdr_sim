@@ -889,57 +889,85 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.event_schedule">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">event_schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.MeasLinkParams" title="nearlink_sdr.phy.measurement_tx.MeasLinkParams"><span class="pre">nearlink_sdr.phy.measurement_tx.MeasLinkParams</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="（在 Python v3.14）"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="（在 Python v3.14）"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.EventFrameType" title="nearlink_sdr.phy.measurement_tx.EventFrameType"><span class="pre">nearlink_sdr.phy.measurement_tx.EventFrameType</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#event_schedule"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.event_schedule" title="Link to this definition">¶</a></dt>
 <dd><p>生成一个事件组内的事件调度序列。</p>
-<p>Args:
-params: 测量链路参数。</p>
-<p>Returns:
-列表, 每个元素为 (事件索引, 帧类型)。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>params</strong> -- 测量链路参数。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>列表, 每个元素为 (事件索引, 帧类型)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.event_start_times">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">event_start_times</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.MeasLinkParams" title="nearlink_sdr.phy.measurement_tx.MeasLinkParams"><span class="pre">nearlink_sdr.phy.measurement_tx.MeasLinkParams</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="（在 Python v3.14）"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#event_start_times"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.event_start_times" title="Link to this definition">¶</a></dt>
 <dd><p>计算一个事件组内各事件的起始时刻 (us)。</p>
-<p>Args:
-params: 测量链路参数。
-group_index: 事件组序号。</p>
-<p>Returns:
-各事件的起始时刻列表 (us)。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>params</strong> -- 测量链路参数。</p></li>
+<li><p><strong>group_index</strong> -- 事件组序号。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>各事件的起始时刻列表 (us)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.ds_twr_2msg">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">ds_twr_2msg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#ds_twr_2msg"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.ds_twr_2msg" title="Link to this definition">¶</a></dt>
 <dd><p>双边两消息飞行时间估计 (6.8.5.1)。</p>
-<p>Args:
-ra: 先发节点测量的往返时间差 Ra = Ra2 - Ra1。
-db: 后发节点测量的处理时间差 Db = Db2 - Db1。</p>
-<p>Returns:
-单向飞行时间估计 T_prop (与 ra/db 相同时间单位)。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ra</strong> -- 先发节点测量的往返时间差 Ra = Ra2 - Ra1。</p></li>
+<li><p><strong>db</strong> -- 后发节点测量的处理时间差 Db = Db2 - Db1。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>单向飞行时间估计 T_prop (与 ra/db 相同时间单位)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.ds_twr_3msg">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">ds_twr_3msg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rb</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">da</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#ds_twr_3msg"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.ds_twr_3msg" title="Link to this definition">¶</a></dt>
 <dd><p>双边三消息飞行时间估计 (6.8.5.2)。</p>
-<p>Args:
-ra: 先发节点 Ra = Ra2 - Ra1。
-rb: 后发节点 Rb = Rb2 - Rb1。
-da: 先发节点 Da = Da2 - Da1。
-db: 后发节点 Db = Db2 - Db1。</p>
-<p>Returns:
-单向飞行时间估计 T_prop。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ra</strong> -- 先发节点 Ra = Ra2 - Ra1。</p></li>
+<li><p><strong>rb</strong> -- 后发节点 Rb = Rb2 - Rb1。</p></li>
+<li><p><strong>da</strong> -- 先发节点 Da = Da2 - Da1。</p></li>
+<li><p><strong>db</strong> -- 后发节点 Db = Db2 - Db1。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>单向飞行时间估计 T_prop。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.angle_estimate">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">angle_estimate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta_phi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelength</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">antenna_spacing</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#angle_estimate"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.angle_estimate" title="Link to this definition">¶</a></dt>
 <dd><p>根据相位差估计到达角/出发角 (6.8.5.3)。</p>
-<p>Args:
-delta_phi: 两天线接收/发送信号的载波相位差 (rad)。
-wavelength: 信号波长 (m)。
-antenna_spacing: 天线间距 (m)。</p>
-<p>Returns:
-角度估计值 (rad), 范围 [0, pi]。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>delta_phi</strong> -- 两天线接收/发送信号的载波相位差 (rad)。</p></li>
+<li><p><strong>wavelength</strong> -- 信号波长 (m)。</p></li>
+<li><p><strong>antenna_spacing</strong> -- 天线间距 (m)。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>角度估计值 (rad), 范围 [0, pi]。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py class">
@@ -976,12 +1004,18 @@ antenna_spacing: 天线间距 (m)。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.extract_cir">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">extract_cir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rx_signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.complex128</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.CIRConfig" title="nearlink_sdr.phy.measurement_tx.CIRConfig"><span class="pre">nearlink_sdr.phy.measurement_tx.CIRConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_sample</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.complex128</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#extract_cir"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.extract_cir" title="Link to this definition">¶</a></dt>
 <dd><p>从接收信号中提取信道冲击响应测量量 (6.8.5.4)。</p>
-<p>Args:
-rx_signal: 接收到的时域 IQ 信号。
-config: CIR 测量配置。
-ref_sample: 参考时间点对应的采样索引。</p>
-<p>Returns:
-截取的 CIR (I+jQ 复数数组)。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rx_signal</strong> -- 接收到的时域 IQ 信号。</p></li>
+<li><p><strong>config</strong> -- CIR 测量配置。</p></li>
+<li><p><strong>ref_sample</strong> -- 参考时间点对应的采样索引。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>截取的 CIR (I+jQ 复数数组)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -989,10 +1023,14 @@ ref_sample: 参考时间点对应的采样索引。</p>
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">range_doppler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cir_frames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.complex128</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.complex128</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#range_doppler"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.range_doppler" title="Link to this definition">¶</a></dt>
 <dd><p>距离多普勒测量量计算 (6.8.5.5)。</p>
 <p>对多帧 CIR 数据在慢时间维度做 FFT 获取距离-多普勒图。</p>
-<p>Args:
-cir_frames: 形状 (n_frames, n_delay_bins) 的多帧 CIR 数据。</p>
-<p>Returns:
-形状 (n_frames, n_delay_bins) 的距离-多普勒矩阵。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cir_frames</strong> -- 形状 (n_frames, n_delay_bins) 的多帧 CIR 数据。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>形状 (n_frames, n_delay_bins) 的距离-多普勒矩阵。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py class">
@@ -1018,21 +1056,31 @@ cir_frames: 形状 (n_frames, n_delay_bins) 的多帧 CIR 数据。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.compute_csi_feedback">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">compute_csi_feedback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rx_power_dbm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_iq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="（在 Python v3.14）"><span class="pre">complex</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.CSIFeedback" title="nearlink_sdr.phy.measurement_tx.CSIFeedback"><span class="pre">nearlink_sdr.phy.measurement_tx.CSIFeedback</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#compute_csi_feedback"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.compute_csi_feedback" title="Link to this definition">¶</a></dt>
 <dd><p>从接收功率和信道 IQ 估计值生成 CSI 反馈。</p>
-<p>Args:
-rx_power_dbm: 接收信号功率 (dBm)。
-channel_iq: 信道估计的复数 IQ 值。</p>
-<p>Returns:
-CSIFeedback 实例。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rx_power_dbm</strong> -- 接收信号功率 (dBm)。</p></li>
+<li><p><strong>channel_iq</strong> -- 信道估计的复数 IQ 值。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>CSIFeedback 实例。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.csi_to_rx_power">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">csi_to_rx_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feedback</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.CSIFeedback" title="nearlink_sdr.phy.measurement_tx.CSIFeedback"><span class="pre">nearlink_sdr.phy.measurement_tx.CSIFeedback</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#csi_to_rx_power"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.csi_to_rx_power" title="Link to this definition">¶</a></dt>
 <dd><p>从 CSI 反馈恢复接收信号功率。</p>
-<p>Args:
-feedback: CSI 反馈数据。</p>
-<p>Returns:
-接收信号功率 (dBm)。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>feedback</strong> -- CSI 反馈数据。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>接收信号功率 (dBm)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py class">
@@ -1224,11 +1272,17 @@ feedback: CSI 反馈数据。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.uwb_event_sender">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">uwb_event_sender</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams" title="nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams"><span class="pre">nearlink_sdr.phy.measurement_tx.UWBMeasLinkParams</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#uwb_event_sender"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.uwb_event_sender" title="Link to this definition">¶</a></dt>
 <dd><p>确定指定事件中谁先发。</p>
-<p>Args:
-params: UWB 测量参数。
-event_index: 事件索引。</p>
-<p>Returns:
-0=配置方先发, 1=对端先发。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>params</strong> -- UWB 测量参数。</p></li>
+<li><p><strong>event_index</strong> -- 事件索引。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>0=配置方先发, 1=对端先发。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">

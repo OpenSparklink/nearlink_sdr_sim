@@ -411,12 +411,10 @@
 
 <span class="sd">    帧类型1使用 [0,1] 交替序列，第一个码元为0。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        symbol_rate_mhz: 符号速率 (MHz)</span>
-<span class="sd">        duration_us: 前导码持续时间 (μs)</span>
+<span class="sd">    :param symbol_rate_mhz: 符号速率 (MHz)</span>
+<span class="sd">    :param duration_us: 前导码持续时间 (μs)</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        前导码比特序列, 值为 0/1</span>
+<span class="sd">    :returns: 前导码比特序列, 值为 0/1</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">n_symbols</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">symbol_rate_mhz</span> <span class="o">*</span> <span class="n">duration_us</span><span class="p">)</span>
     <span class="n">bits</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_symbols</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
@@ -433,12 +431,10 @@
 
 <span class="sd">    帧类型2/3/4使用 [π/4, 0] 交替相位。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        symbol_rate_mhz: 符号速率 (MHz)</span>
-<span class="sd">        duration_us: 前导码持续时间 (μs)，帧类型2=10，帧类型3=12，帧类型4=16</span>
+<span class="sd">    :param symbol_rate_mhz: 符号速率 (MHz)</span>
+<span class="sd">    :param duration_us: 前导码持续时间 (μs)，帧类型2=10，帧类型3=12，帧类型4=16</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        前导码相位序列 (弧度)</span>
+<span class="sd">    :returns: 前导码相位序列 (弧度)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">n_symbols</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">symbol_rate_mhz</span> <span class="o">*</span> <span class="n">duration_us</span><span class="p">)</span>
     <span class="n">phases</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_symbols</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
@@ -453,12 +449,10 @@
                          <span class="n">duration_us</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;生成PSK前导码复数符号序列。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        symbol_rate_mhz: 符号速率 (MHz)</span>
-<span class="sd">        duration_us: 前导码持续时间 (μs)</span>
+<span class="sd">    :param symbol_rate_mhz: 符号速率 (MHz)</span>
+<span class="sd">    :param duration_us: 前导码持续时间 (μs)</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        前导码复数符号, shape (N,)</span>
+<span class="sd">    :returns: 前导码复数符号, shape (N,)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">phases</span> <span class="o">=</span> <span class="n">psk_preamble_phases</span><span class="p">(</span><span class="n">symbol_rate_mhz</span><span class="p">,</span> <span class="n">duration_us</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">phases</span><span class="p">)</span></div>
@@ -480,12 +474,10 @@
                       <span class="n">symbol_rate_mhz</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;生成指定帧类型的前导码。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        frame_type: 帧类型 1~4</span>
-<span class="sd">        symbol_rate_mhz: 符号速率 (MHz)</span>
+<span class="sd">    :param frame_type: 帧类型 1~4</span>
+<span class="sd">    :param symbol_rate_mhz: 符号速率 (MHz)</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        帧类型1: 比特数组 (int ndarray)</span>
+<span class="sd">    :returns: 帧类型1: 比特数组 (int ndarray)</span>
 <span class="sd">        帧类型2/3/4: 复数符号数组 (complex ndarray)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">mod_type</span><span class="p">,</span> <span class="n">duration</span> <span class="o">=</span> <span class="n">PREAMBLE_CONFIG</span><span class="p">[</span><span class="n">frame_type</span><span class="p">]</span>

@@ -478,12 +478,18 @@
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.common.code_block_seg.</span></span><span class="sig-name descname"><span class="pre">segment_without_crc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">crc_len</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="（在 Python v3.14）"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="（在 Python v3.14）"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/common/code_block_seg.html#segment_without_crc"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.common.code_block_seg.segment_without_crc" title="Link to this definition">¶</a></dt>
 <dd><p>无逐码块 CRC 的码块分割 (标准 6.9.1.2 节)。</p>
 <p>适用于帧类型 2。</p>
-<p>Args:
-bits: 输入比特序列 b_0..b_{B-1}, 其中 B = K + L (信息位 + CRC)。
-rate_str: 目标码率字符串。
-crc_len: L, 已追加到 bits 末尾的 CRC 长度。</p>
-<p>Returns:
-每个分段的 (码长 N, 信息比特) 元组列表。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bits</strong> -- 输入比特序列 b_0..b_{B-1}, 其中 B = K + L (信息位 + CRC)。</p></li>
+<li><p><strong>rate_str</strong> -- 目标码率字符串。</p></li>
+<li><p><strong>crc_len</strong> -- L, 已追加到 bits 末尾的 CRC 长度。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>每个分段的 (码长 N, 信息比特) 元组列表。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -491,12 +497,18 @@ crc_len: L, 已追加到 bits 末尾的 CRC 长度。</p>
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.common.code_block_seg.</span></span><span class="sig-name descname"><span class="pre">segment_with_crc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="（在 Python v3.14）"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="（在 Python v3.14）"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/common/code_block_seg.html#segment_with_crc"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.common.code_block_seg.segment_with_crc" title="Link to this definition">¶</a></dt>
 <dd><p>含逐码块 CRC24B 的码块分割 (标准 6.9.1.3 节)。</p>
 <p>适用于帧类型 3 和 4。</p>
-<p>Args:
-bits: 输入比特序列 b_0..b_{B-1}。
-rate_str: 目标码率字符串。</p>
-<p>Returns:
-每个分段的 (码长 N, 含 CRC 的信息比特) 元组列表。
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bits</strong> -- 输入比特序列 b_0..b_{B-1}。</p></li>
+<li><p><strong>rate_str</strong> -- 目标码率字符串。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>每个分段的 (码长 N, 含 CRC 的信息比特) 元组列表。
 最后一个分段可能进一步做子分割。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">

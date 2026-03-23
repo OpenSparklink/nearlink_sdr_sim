@@ -448,31 +448,47 @@
 <dt class="sig sig-object py" id="nearlink_sdr.common.m_sequence.generate_m_sequence">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.common.m_sequence.</span></span><span class="sig-name descname"><span class="pre">generate_m_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">taps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/common/m_sequence.html#generate_m_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.common.m_sequence.generate_m_sequence" title="Link to this definition">¶</a></dt>
 <dd><p>Generate m-sequence produced by a linear feedback shift register.</p>
-<p>Args:
-order: LFSR阶数（移位寄存器位数）
-taps: 反馈系数（二进制表示，包含最高位）
-init_val: 移位寄存器初始值
-length: 输出序列长度，默认为 2^order - 1（完整m序列周期）</p>
-<p>Returns:
-m序列比特数组, shape (length,), 值为 0/1</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>order</strong> – LFSR阶数（移位寄存器位数）</p></li>
+<li><p><strong>taps</strong> – 反馈系数（二进制表示，包含最高位）</p></li>
+<li><p><strong>init_val</strong> – 移位寄存器初始值</p></li>
+<li><p><strong>length</strong> – 输出序列长度，默认为 2^order - 1（完整m序列周期）</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>m序列比特数组, shape (length,), 值为 0/1</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.common.m_sequence.m31_sequence">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.common.m_sequence.</span></span><span class="sig-name descname"><span class="pre">m31_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">31</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/common/m_sequence.html#m31_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.common.m_sequence.m31_sequence" title="Link to this definition">¶</a></dt>
 <dd><p>Generate the 31-length m-sequence defined in the standard.</p>
-<p>Args:
-index: 序列编号 0~5
-length: 输出长度，默认31</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> – 序列编号 0~5</p></li>
+<li><p><strong>length</strong> – 输出长度，默认31</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.common.m_sequence.m63_sequence">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.common.m_sequence.</span></span><span class="sig-name descname"><span class="pre">m63_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">63</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/common/m_sequence.html#m63_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.common.m_sequence.m63_sequence" title="Link to this definition">¶</a></dt>
 <dd><p>Generate the 63-length m-sequence defined in the standard.</p>
-<p>Args:
-index: 序列编号 0~5
-length: 输出长度，默认63</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> – 序列编号 0~5</p></li>
+<li><p><strong>length</strong> – 输出长度，默认63</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

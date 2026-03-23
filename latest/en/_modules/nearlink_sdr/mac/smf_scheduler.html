@@ -651,11 +651,9 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SystemManagementFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;构建一个 SMF 帧。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            include_schedule: 是否包含调度信令 (通常首帧或参数变更时携带)。</span>
+<span class="sd">        :param include_schedule: 是否包含调度信令 (通常首帧或参数变更时携带)。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            包含当前所有已注册信令的 SystemManagementFrame。</span>
+<span class="sd">        :returns: 包含当前所有已注册信令的 SystemManagementFrame。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">frame</span> <span class="o">=</span> <span class="n">SystemManagementFrame</span><span class="p">(</span>
             <span class="n">header</span><span class="o">=</span><span class="n">SMFHeader</span><span class="p">(</span>
@@ -763,14 +761,12 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OffsetSignaling</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;计算从 SMF 起始点到链路起始点的偏移量 (6.6.2.3)。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            smf_start_slot: SMF 起始时隙。</span>
-<span class="sd">            link_first_slot: 链路第一个起始时隙。</span>
-<span class="sd">            base_slot_us: 基础时隙长度 (us)。</span>
-<span class="sd">            unit: 偏移量单位。</span>
+<span class="sd">        :param smf_start_slot: SMF 起始时隙。</span>
+<span class="sd">        :param link_first_slot: 链路第一个起始时隙。</span>
+<span class="sd">        :param base_slot_us: 基础时隙长度 (us)。</span>
+<span class="sd">        :param unit: 偏移量单位。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            OffsetSignaling 实例。</span>
+<span class="sd">        :returns: OffsetSignaling 实例。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">delta_us</span> <span class="o">=</span> <span class="p">(</span><span class="n">link_first_slot</span> <span class="o">-</span> <span class="n">smf_start_slot</span><span class="p">)</span> <span class="o">*</span> <span class="n">base_slot_us</span>
         <span class="n">unit_us</span> <span class="o">=</span> <span class="mi">25</span> <span class="k">if</span> <span class="n">unit</span> <span class="o">==</span> <span class="n">OffsetUnit</span><span class="o">.</span><span class="n">US_25</span> <span class="k">else</span> <span class="mi">300</span>

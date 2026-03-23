@@ -403,13 +403,11 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">rrc_filter</span><span class="p">(</span><span class="n">beta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">sps</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">span</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;生成平方根升余弦脉冲成型滤波器。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        beta: 滚降系数</span>
-<span class="sd">        sps: 每符号采样数</span>
-<span class="sd">        span: 单侧符号跨度</span>
+<span class="sd">    :param beta: 滚降系数</span>
+<span class="sd">    :param sps: 每符号采样数</span>
+<span class="sd">    :param span: 单侧符号跨度</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        滤波器系数, 归一化使得匹配滤波后采样点增益为1</span>
+<span class="sd">    :returns: 滤波器系数, 归一化使得匹配滤波后采样点增益为1</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">N</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">span</span> <span class="o">*</span> <span class="n">sps</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">sps</span>
@@ -541,8 +539,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">modulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bits</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;PSK调制并进行RRC脉冲成型。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            复基带IQ信号</span>
+<span class="sd">        :returns: 复基带IQ信号</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">symbols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_symbols</span><span class="p">(</span><span class="n">bits</span><span class="p">)</span>
 
@@ -596,11 +593,9 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">demodulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">signal</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;PSK解调。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            signal: 复基带IQ信号</span>
+<span class="sd">        :param signal: 复基带IQ信号</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            解调后的比特序列</span>
+<span class="sd">        :returns: 解调后的比特序列</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># 匹配滤波</span>
         <span class="n">filtered</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rrc</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>

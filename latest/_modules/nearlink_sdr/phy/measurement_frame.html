@@ -422,13 +422,11 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">_nack_m_sequence</span><span class="p">(</span><span class="n">radio_ft</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">m_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">cyclic_shift</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;为指定无线帧类型生成 NACK 反馈 m 序列。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        radio_ft: 无线帧类型 (1-4)。</span>
-<span class="sd">        m_index: m 序列索引。</span>
-<span class="sd">        cyclic_shift: 循环移位量。</span>
+<span class="sd">    :param radio_ft: 无线帧类型 (1-4)。</span>
+<span class="sd">    :param m_index: m 序列索引。</span>
+<span class="sd">    :param cyclic_shift: 循环移位量。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        NACK 反馈序列比特数组。</span>
+<span class="sd">    :returns: NACK 反馈序列比特数组。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">radio_ft</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">seq</span> <span class="o">=</span> <span class="n">m31_sequence</span><span class="p">(</span><span class="n">m_index</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
@@ -459,14 +457,12 @@
 
 <span class="sd">    帧结构: 前导信号 | 同步信号 | NACK 反馈序列</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        radio_ft: 无线帧类型 (1-4), 决定 m 序列长度。</span>
-<span class="sd">        m_index: m 序列索引, 由高层信令配置。</span>
-<span class="sd">        cyclic_shift: m 序列循环移位量, 由高层信令配置。</span>
-<span class="sd">        symbol_rate_mhz: 符号速率, 用于前导码生成。</span>
+<span class="sd">    :param radio_ft: 无线帧类型 (1-4), 决定 m 序列长度。</span>
+<span class="sd">    :param m_index: m 序列索引, 由高层信令配置。</span>
+<span class="sd">    :param cyclic_shift: m 序列循环移位量, 由高层信令配置。</span>
+<span class="sd">    :param symbol_rate_mhz: 符号速率, 用于前导码生成。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        NACK 反馈序列比特数组 (不含前导和同步, 由调用者拼接)。</span>
+<span class="sd">    :returns: NACK 反馈序列比特数组 (不含前导和同步, 由调用者拼接)。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">_nack_m_sequence</span><span class="p">(</span><span class="n">radio_ft</span><span class="p">,</span> <span class="n">m_index</span><span class="p">,</span> <span class="n">cyclic_shift</span><span class="p">)</span></div>
 
@@ -483,11 +479,9 @@
 <span class="sd">    同步信号最后 1 比特为 1 时: 0101 (MSB 优先)</span>
 <span class="sd">    同步信号最后 1 比特为 0 时: 1010 (MSB 优先)</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        sync_last_bit: 同步信号的最后一个比特值 (0 或 1)。</span>
+<span class="sd">    :param sync_last_bit: 同步信号的最后一个比特值 (0 或 1)。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        4 比特均衡保护序列。</span>
+<span class="sd">    :returns: 4 比特均衡保护序列。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">sync_last_bit</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
@@ -523,11 +517,9 @@
 <span class="sd">    先发节点: 前导信号 | 同步信号 | 均衡保护 | 切换间隔 | 测量信号</span>
 <span class="sd">    后发节点: 测量信号 | 切换间隔 | 前导信号 | 同步信号 | 均衡保护</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        config: 测量帧配置。</span>
+<span class="sd">    :param config: 测量帧配置。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        组装后的帧比特/符号序列。</span>
+<span class="sd">    :returns: 组装后的帧比特/符号序列。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">preamble</span> <span class="o">=</span> <span class="n">generate_preamble</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">radio_frame_type</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">symbol_rate_mhz</span><span class="p">)</span>
     <span class="n">sync</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">sync_signal</span>
@@ -551,11 +543,9 @@
 
 <span class="sd">    仅包含测量信号。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        config: 测量帧配置。</span>
+<span class="sd">    :param config: 测量帧配置。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        测量信号序列。</span>
+<span class="sd">    :returns: 测量信号序列。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">config</span><span class="o">.</span><span class="n">measurement_signal</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></div>
 
@@ -574,11 +564,9 @@
 
 <span class="sd">    用于位置测量事件组的初始化阶段。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        config: 测量帧配置。</span>
+<span class="sd">    :param config: 测量帧配置。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        组装后的帧比特/符号序列。</span>
+<span class="sd">    :returns: 组装后的帧比特/符号序列。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">preamble</span> <span class="o">=</span> <span class="n">generate_preamble</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">radio_frame_type</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">symbol_rate_mhz</span><span class="p">)</span>
     <span class="n">sync</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">sync_signal</span>
@@ -606,11 +594,9 @@
 <span class="sd">    用于超宽带脉冲测量的初始化同步阶段,</span>
 <span class="sd">    测量信号应为窄带波形测量信号 1 或 N=1 的窄带波形测量信号 2。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        config: 测量帧配置。</span>
+<span class="sd">    :param config: 测量帧配置。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        组装后的帧比特/符号序列。</span>
+<span class="sd">    :returns: 组装后的帧比特/符号序列。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">preamble</span> <span class="o">=</span> <span class="n">generate_preamble</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">radio_frame_type</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">symbol_rate_mhz</span><span class="p">)</span>
     <span class="n">sync</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">sync_signal</span>
@@ -678,11 +664,9 @@
 <span class="sd">    同步字段由 N_sync 个相同符号重复组成, 每个符号经过插零时域扩展。</span>
 <span class="sd">    总长度: N_sync * K * L 个码片。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        config: UWB 脉冲配置。</span>
+<span class="sd">    :param config: UWB 脉冲配置。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        同步字段码片序列。</span>
+<span class="sd">    :returns: 同步字段码片序列。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">N_sync</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
@@ -729,12 +713,10 @@
 <span class="sd">    测量字段由 M_seg 个测量子片段组成, 每个子片段包含 N_seg 个 CTS 符号,</span>
 <span class="sd">    相邻子片段之间有时间间隔。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        config: UWB 脉冲配置。</span>
-<span class="sd">        cts_symbol_seq: CTS 测量符号序列, 默认使用 config.symbol_seq。</span>
+<span class="sd">    :param config: UWB 脉冲配置。</span>
+<span class="sd">    :param cts_symbol_seq: CTS 测量符号序列, 默认使用 config.symbol_seq。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        测量字段码片序列。</span>
+<span class="sd">    :returns: 测量字段码片序列。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">N_cts</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">N_seg</span> <span class="o">*</span> <span class="n">config</span><span class="o">.</span><span class="n">M_seg</span>
     <span class="k">if</span> <span class="n">N_cts</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -776,12 +758,10 @@
 
 <span class="sd">    帧结构: 同步字段 | 测量字段</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        config: UWB 脉冲配置。</span>
-<span class="sd">        cts_symbol_seq: CTS 测量符号序列, 默认使用同步符号序列。</span>
+<span class="sd">    :param config: UWB 脉冲配置。</span>
+<span class="sd">    :param cts_symbol_seq: CTS 测量符号序列, 默认使用同步符号序列。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        完整帧码片序列。</span>
+<span class="sd">    :returns: 完整帧码片序列。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">sync</span> <span class="o">=</span> <span class="n">build_uwb_sync_field</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
     <span class="n">meas</span> <span class="o">=</span> <span class="n">build_uwb_measurement_field</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">cts_symbol_seq</span><span class="p">)</span>

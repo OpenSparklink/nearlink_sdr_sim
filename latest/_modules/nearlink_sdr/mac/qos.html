@@ -792,8 +792,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">suggest_mcs_adjustment</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;建议 MCS 调整方向。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            +1: 建议提升 MCS (链路质量好)</span>
+<span class="sd">        :returns: +1: 建议提升 MCS (链路质量好)</span>
 <span class="sd">            -1: 建议降低 MCS (链路质量差)</span>
 <span class="sd">             0: 保持当前 MCS</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -959,8 +958,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">prepare_tx</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">TxDecision</span><span class="p">,</span> <span class="n">TxQueueItem</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;准备下一帧发送。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            (发送决策, 队列项或 None)</span>
+<span class="sd">        :returns: (发送决策, 队列项或 None)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">arq</span><span class="o">.</span><span class="n">pending_ack</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">TxDecision</span><span class="o">.</span><span class="n">RETRANSMIT</span><span class="p">,</span> <span class="kc">None</span>

@@ -518,8 +518,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">compute_shared_secret</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">peer_pub_x</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">peer_pub_y</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;计算 ECDH 共享密钥。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            共享密钥 (32 字节)。</span>
+<span class="sd">        :returns: 共享密钥 (32 字节)。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">cryptography.hazmat.primitives.asymmetric.ec</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
             <span class="n">ECDH</span><span class="p">,</span>
@@ -933,12 +932,10 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">encrypt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plaintext</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">aad</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;加密一帧数据, 自动递增 payload_count。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            plaintext: 明文数据。</span>
-<span class="sd">            aad: 关联数据 (不加密但参与完整性校验)。</span>
+<span class="sd">        :param plaintext: 明文数据。</span>
+<span class="sd">        :param aad: 关联数据 (不加密但参与完整性校验)。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            (密文, MIC)。</span>
+<span class="sd">        :returns: (密文, MIC)。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">nonce</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_nonce</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tx_payload_count</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">plaintext</span><span class="p">))</span>
         <span class="n">ciphertext</span><span class="p">,</span> <span class="n">mic</span> <span class="o">=</span> <span class="n">aes_ccm_encrypt</span><span class="p">(</span>
@@ -953,16 +950,12 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">decrypt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ciphertext</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">mic</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">aad</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;解密一帧数据, 自动递增 payload_count。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            ciphertext: 密文数据。</span>
-<span class="sd">            mic: 消息完整性码。</span>
-<span class="sd">            aad: 关联数据。</span>
+<span class="sd">        :param ciphertext: 密文数据。</span>
+<span class="sd">        :param mic: 消息完整性码。</span>
+<span class="sd">        :param aad: 关联数据。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            解密后的明文。</span>
+<span class="sd">        :returns: 解密后的明文。</span>
 
-<span class="sd">        Raises:</span>
-<span class="sd">            cryptography.exceptions.InvalidTag: MIC 验证失败。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">nonce</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_nonce</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rx_payload_count</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">))</span>
         <span class="n">plaintext</span> <span class="o">=</span> <span class="n">aes_ccm_decrypt</span><span class="p">(</span>
@@ -998,8 +991,7 @@
 <span class="sd">    模拟 G 节点和 T 节点之间的配对信令交互,</span>
 <span class="sd">    完成密钥交换和会话密钥派生。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        (G 节点管理器, T 节点管理器)。</span>
+<span class="sd">    :returns: (G 节点管理器, T 节点管理器)。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">g_mgr</span> <span class="o">=</span> <span class="n">PairingManager</span><span class="p">(</span>
         <span class="n">is_g_node</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>

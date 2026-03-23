@@ -530,13 +530,11 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LoopbackResult</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;PHY 全链路环回: 编码 → 调制 → USRP TX → 信道 → USRP RX → 解调 → 解码。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            data_bits: 信息比特。</span>
-<span class="sd">            cfg: 发射配置。</span>
-<span class="sd">            ctrl_bits: 控制信息比特, None 时使用全零。</span>
+<span class="sd">        :param data_bits: 信息比特。</span>
+<span class="sd">        :param cfg: 发射配置。</span>
+<span class="sd">        :param ctrl_bits: 控制信息比特, None 时使用全零。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            LoopbackResult 包含 CRC 校验结果和 BER。</span>
+<span class="sd">        :returns: LoopbackResult 包含 CRC 校验结果和 BER。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">ctrl_bits</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">ctrl_bits</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">ctrl_bits_len</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
@@ -575,12 +573,10 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">MacRxResult</span><span class="p">,</span> <span class="n">LoopbackResult</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;MAC 数据帧环回: bytes → mac_to_iq → USRP → iq_to_mac。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            mac_payload: MAC 层载荷字节。</span>
-<span class="sd">            cfg: 发射配置, None 时使用 FT2 MCS7 默认值。</span>
+<span class="sd">        :param mac_payload: MAC 层载荷字节。</span>
+<span class="sd">        :param cfg: 发射配置, None 时使用 FT2 MCS7 默认值。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            (MacRxResult, LoopbackResult)</span>
+<span class="sd">        :returns: (MacRxResult, LoopbackResult)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">cfg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">cfg</span> <span class="o">=</span> <span class="n">TxConfig</span><span class="p">(</span><span class="n">frame_type</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">mcs_index</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
@@ -626,8 +622,7 @@
 
 <span class="sd">        在每个跳频信道上发射 iq_samples, 然后在同一信道上接收。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            [(channel_num, rx_samples), ...]</span>
+<span class="sd">        :returns: [(channel_num, rx_samples), ...]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">hop_sequence</span><span class="p">:</span>
@@ -649,12 +644,10 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">USRPSimResult</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;批量 MAC 帧环回仿真。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            payloads: MAC 载荷列表。</span>
-<span class="sd">            cfg: 发射配置。</span>
+<span class="sd">        :param payloads: MAC 载荷列表。</span>
+<span class="sd">        :param cfg: 发射配置。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            USRPSimResult 汇总结果。</span>
+<span class="sd">        :returns: USRPSimResult 汇总结果。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">summary</span> <span class="o">=</span> <span class="n">USRPSimResult</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">payload</span> <span class="ow">in</span> <span class="n">payloads</span><span class="p">:</span>

@@ -597,11 +597,9 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;计算此时间片展开后的所有绝对时间区间。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            slot_us: 调度时隙的微秒值。</span>
+<span class="sd">        :param slot_us: 调度时隙的微秒值。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            [(start_us, end_us), ...] 时间区间列表。</span>
+<span class="sd">        :returns: [(start_us, end_us), ...] 时间区间列表。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">intervals</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">repeat_count</span><span class="p">):</span>
@@ -739,8 +737,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">active_region_us</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;计算活动区间 (从 SMF 到最后一个时间片结束)。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            (start_us, end_us) 活动区间。start_us 始终为 0 (SMF 起始)。</span>
+<span class="sd">        :returns: (start_us, end_us) 活动区间。start_us 始终为 0 (SMF 起始)。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">link_entries</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -758,8 +755,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">check_conflicts</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;检测时间片冲突。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            冲突列表 [(link_id_a, link_id_b, overlap_start, overlap_end), ...]。</span>
+<span class="sd">        :returns: 冲突列表 [(link_id_a, link_id_b, overlap_start, overlap_end), ...]。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># 展开所有时间片</span>
         <span class="n">all_intervals</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># (start, end, link_id)</span>
@@ -821,11 +817,9 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;计算指定事件组内每个事件的起始时间。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            group_index: 第几个事件组 (从 0 开始)。</span>
+<span class="sd">        :param group_index: 第几个事件组 (从 0 开始)。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            事件起始时间列表 (μs, 绝对时间)。</span>
+<span class="sd">        :returns: 事件起始时间列表 (μs, 绝对时间)。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timing</span>
         <span class="n">slot_us</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">schedule_slot_us</span>
@@ -852,11 +846,9 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;计算一个事件中先发窗口的时间区间。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            event_start_us: 事件起始时间 (μs)。</span>
+<span class="sd">        :param event_start_us: 事件起始时间 (μs)。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            (start_us, end_us) 先发窗口区间。</span>
+<span class="sd">        :returns: (start_us, end_us) 先发窗口区间。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timing</span>
         <span class="n">tx_dur</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">tx_max_offset</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">TSYS_US</span>
@@ -870,11 +862,9 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;计算一个事件中后发窗口的时间区间。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            event_start_us: 事件起始时间 (μs)。</span>
+<span class="sd">        :param event_start_us: 事件起始时间 (μs)。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            (start_us, end_us) 后发窗口区间。</span>
+<span class="sd">        :returns: (start_us, end_us) 后发窗口区间。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timing</span>
         <span class="n">tx_dur</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">tx_max_offset</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">TSYS_US</span>
@@ -892,11 +882,9 @@
 
 <span class="sd">        返回每个事件的起始时间、先发窗口和后发窗口。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            group_index: 事件组索引。</span>
+<span class="sd">        :param group_index: 事件组索引。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            [{&quot;event_start&quot;: int, &quot;tx_window&quot;: (s, e), &quot;rx_window&quot;: (s, e)}, ...]</span>
+<span class="sd">        :returns: [{&quot;event_start&quot;: int, &quot;tx_window&quot;: (s, e), &quot;rx_window&quot;: (s, e)}, ...]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">result</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_start_times</span><span class="p">(</span><span class="n">group_index</span><span class="p">):</span>
@@ -915,11 +903,9 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;计算下一个事件组的起始时间。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            current_us: 当前时间 (μs)。</span>
+<span class="sd">        :param current_us: 当前时间 (μs)。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            下一个事件组起始时间 (μs)。</span>
+<span class="sd">        :returns: 下一个事件组起始时间 (μs)。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">anchor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">anchor_time_us</span><span class="p">()</span>
         <span class="n">period</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timing</span><span class="o">.</span><span class="n">event_group_period_us</span>
@@ -1070,12 +1056,11 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;注册链路并配置事件组调度。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            link_id: 逻辑链路标识。</span>
-<span class="sd">            timing: 事件计时参数。</span>
-<span class="sd">            time_slices: 超帧内时间片列表 (可选)。</span>
-<span class="sd">            anchor_slot: 事件组锚点时隙。</span>
-<span class="sd">            anchor_offset_us: 事件组起始偏移 (μs)。</span>
+<span class="sd">        :param link_id: 逻辑链路标识。</span>
+<span class="sd">        :param timing: 事件计时参数。</span>
+<span class="sd">        :param time_slices: 超帧内时间片列表 (可选)。</span>
+<span class="sd">        :param anchor_slot: 事件组锚点时隙。</span>
+<span class="sd">        :param anchor_offset_us: 事件组起始偏移 (μs)。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># 创建事件组调度器</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">event_schedulers</span><span class="p">[</span><span class="n">link_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">EventGroupScheduler</span><span class="p">(</span>
@@ -1143,8 +1128,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">update_tx_rx_interval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interval_type</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;更新收发间隔类型。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            更新后的间隔值 (μs)。</span>
+<span class="sd">        :returns: 更新后的间隔值 (μs)。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tx_rx_interval</span> <span class="o">=</span> <span class="n">interval_type</span>
         <span class="k">return</span> <span class="n">tx_rx_interval_us</span><span class="p">(</span><span class="n">interval_type</span><span class="p">)</span></div>
@@ -1158,8 +1142,7 @@
 <span class="sd">        基于事件组调度器的超时参数判断当前时间</span>
 <span class="sd">        是否超过了锚点 + 超时时限。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            True 表示已超时。</span>
+<span class="sd">        :returns: True 表示已超时。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sched</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_schedulers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">link_id</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">sched</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>

@@ -501,8 +501,18 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_frame._nack_m_sequence">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_frame.</span></span><span class="sig-name descname"><span class="pre">_nack_m_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radio_ft</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">m_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cyclic_shift</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_frame.html#_nack_m_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_frame._nack_m_sequence" title="Link to this definition">¶</a></dt>
 <dd><p>Generate a NACK feedback m-sequence for the specified radio frame type.</p>
-<p>Args:     radio_ft: Radio frame type (1-4).     m_index: m-sequence index.     cyclic_shift: Cyclic shift amount.</p>
-<p>Returns:     NACK feedbacksequencebit array。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radio_ft</strong> – 无线帧类型 (1-4)。</p></li>
+<li><p><strong>m_index</strong> – m 序列索引。</p></li>
+<li><p><strong>cyclic_shift</strong> – 循环移位量。</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>NACK 反馈序列比特数组。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -510,8 +520,19 @@
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_frame.</span></span><span class="sig-name descname"><span class="pre">build_nack_feedback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radio_ft</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">m_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cyclic_shift</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbol_rate_mhz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_frame.html#build_nack_feedback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_frame.build_nack_feedback" title="Link to this definition">¶</a></dt>
 <dd><p>Build a semi-reliable multicast NACK feedback frame (standard 6.3.6).</p>
 <p>Frame structure: preamble | sync signal | NACK feedback sequence.</p>
-<p>Args:     radio_ft: Radio frame type (1-4), determines m-sequence length.     m_index: m-sequence index, configured by upper-layer signaling.     cyclic_shift: m-sequence cyclic shift amount, configured by upper-layer signaling.     symbol_rate_mhz: Symbol rate, used for preamble generation.</p>
-<p>Returns:     NACK feedback sequence bit array (excluding preamble and sync, to be concatenated by the caller).</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radio_ft</strong> – 无线帧类型 (1-4), 决定 m 序列长度。</p></li>
+<li><p><strong>m_index</strong> – m 序列索引, 由高层信令配置。</p></li>
+<li><p><strong>cyclic_shift</strong> – m 序列循环移位量, 由高层信令配置。</p></li>
+<li><p><strong>symbol_rate_mhz</strong> – 符号速率, 用于前导码生成。</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>NACK 反馈序列比特数组 (不含前导和同步, 由调用者拼接)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -519,8 +540,14 @@
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_frame.</span></span><span class="sig-name descname"><span class="pre">equalization_guard</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sync_last_bit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_frame.html#equalization_guard"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_frame.equalization_guard" title="Link to this definition">¶</a></dt>
 <dd><p>Generate equalization guard sequence (standard 6.3.7).</p>
 <p>When the last bit of the sync signal is 1: 0101 (MSB first). When the last bit of the sync signal is 0: 1010 (MSB first).</p>
-<p>Args:     sync_last_bit: Last bit value of the sync signal (0 or 1).</p>
-<p>Returns:     4-bit equalization guard sequence.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sync_last_bit</strong> – 同步信号的最后一个比特值 (0 或 1)。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>4 比特均衡保护序列。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py class">
@@ -570,8 +597,14 @@
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_frame.</span></span><span class="sig-name descname"><span class="pre">build_measurement_frame_1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.measurement_frame.MeasFrameConfig" title="nearlink_sdr.phy.measurement_frame.MeasFrameConfig"><span class="pre">nearlink_sdr.phy.measurement_frame.MeasFrameConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_frame.html#build_measurement_frame_1"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_frame.build_measurement_frame_1" title="Link to this definition">¶</a></dt>
 <dd><p>Assemble measurement frame type 1 (standard 6.3.7).</p>
 <p>Initiator node: preamble | sync signal | equalization guard | switch gap | measurement signal. Responder node: measurement signal | switch gap | preamble | sync signal | equalization guard.</p>
-<p>Args:     config: Measurement frame configuration.</p>
-<p>Returns:     Assembled frame bit/symbol sequence.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> – 测量帧配置。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>组装后的帧比特/符号序列。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -579,8 +612,14 @@
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_frame.</span></span><span class="sig-name descname"><span class="pre">build_measurement_frame_2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.measurement_frame.MeasFrameConfig" title="nearlink_sdr.phy.measurement_frame.MeasFrameConfig"><span class="pre">nearlink_sdr.phy.measurement_frame.MeasFrameConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_frame.html#build_measurement_frame_2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_frame.build_measurement_frame_2" title="Link to this definition">¶</a></dt>
 <dd><p>Assemble measurement frame type 2 (standard 6.3.8).</p>
 <p>Contains only the measurement signal.</p>
-<p>Args:     config: Measurement frame configuration.</p>
-<p>Returns:     Measurement signal sequence.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> – 测量帧配置。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>测量信号序列。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -589,8 +628,14 @@
 <dd><p>Assemble measurement frame type 3 (standard 6.3.9).</p>
 <p>Initiator node: preamble | sync signal | equalization guard. Responder node: preamble | sync signal | equalization guard | switch gap | measurement signal.</p>
 <p>Used for the initialization phase of position measurement event groups.</p>
-<p>Args:     config: Measurement frame configuration.</p>
-<p>Returns:     Assembled frame bit/symbol sequence.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> – 测量帧配置。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>组装后的帧比特/符号序列。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -599,8 +644,14 @@
 <dd><p>Assemble measurement frame type 4 (standard 6.3.10).</p>
 <p>Initiator/responder node frames share the same structure: preamble | sync signal | equalization guard | switch gap | measurement signal.</p>
 <p>Used for the initialization synchronization phase of UWB pulse measurement. The measurement signal should be narrowband waveform measurement signal 1 or narrowband waveform measurement signal 2 with N=1.</p>
-<p>Args:     config: Measurement frame configuration.</p>
-<p>Returns:     Assembled frame bit/symbol sequence.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> – 测量帧配置。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>组装后的帧比特/符号序列。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py class">
@@ -693,8 +744,14 @@
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_frame.</span></span><span class="sig-name descname"><span class="pre">build_uwb_sync_field</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.measurement_frame.UWBPulseConfig" title="nearlink_sdr.phy.measurement_frame.UWBPulseConfig"><span class="pre">nearlink_sdr.phy.measurement_frame.UWBPulseConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_frame.html#build_uwb_sync_field"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_frame.build_uwb_sync_field" title="Link to this definition">¶</a></dt>
 <dd><p>Build the UWB pulse measurement frame sync field (standard 6.3.11.1).</p>
 <p>The sync field consists of N_sync identical repeated symbols, each undergoing zero-insertion time-domain spreading. Total length: N_sync * K * L chips.</p>
-<p>Args:     config: UWB pulse configuration.</p>
-<p>Returns:     Sync field chip sequence.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> – UWB 脉冲配置。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>同步字段码片序列。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -709,8 +766,17 @@
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_frame.</span></span><span class="sig-name descname"><span class="pre">build_uwb_measurement_field</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.measurement_frame.UWBPulseConfig" title="nearlink_sdr.phy.measurement_frame.UWBPulseConfig"><span class="pre">nearlink_sdr.phy.measurement_frame.UWBPulseConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cts_symbol_seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_frame.html#build_uwb_measurement_field"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_frame.build_uwb_measurement_field" title="Link to this definition">¶</a></dt>
 <dd><p>Build the UWB pulse measurement frame measurement field (standard 6.3.11.2).</p>
 <p>The measurement field consists of M_seg measurement sub-segments, each containing N_seg CTS symbols, with time gaps between adjacent sub-segments.</p>
-<p>Args:     config: UWB pulse configuration.     cts_symbol_seq: CTS measurement symbol sequence, defaults to config.symbol_seq.</p>
-<p>Returns:     Measurement field chip sequence.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> – UWB 脉冲配置。</p></li>
+<li><p><strong>cts_symbol_seq</strong> – CTS 测量符号序列, 默认使用 config.symbol_seq。</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>测量字段码片序列。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -718,8 +784,17 @@
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_frame.</span></span><span class="sig-name descname"><span class="pre">build_uwb_pulse_measurement_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.measurement_frame.UWBPulseConfig" title="nearlink_sdr.phy.measurement_frame.UWBPulseConfig"><span class="pre">nearlink_sdr.phy.measurement_frame.UWBPulseConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cts_symbol_seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_frame.html#build_uwb_pulse_measurement_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_frame.build_uwb_pulse_measurement_frame" title="Link to this definition">¶</a></dt>
 <dd><p>Build a complete UWB pulse measurement frame (standard 6.3.11).</p>
 <p>Frame structure: sync field | measurement field.</p>
-<p>Args:     config: UWB pulse configuration.     cts_symbol_seq: CTS measurement symbol sequence, defaults to the sync symbol sequence.</p>
-<p>Returns:     Complete frame chip sequence.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> – UWB 脉冲配置。</p></li>
+<li><p><strong>cts_symbol_seq</strong> – CTS 测量符号序列, 默认使用同步符号序列。</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>完整帧码片序列。</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

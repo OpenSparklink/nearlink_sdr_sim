@@ -926,13 +926,18 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.check_freq_tolerance">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">check_freq_tolerance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">band</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.rf_compliance.FreqBand" title="nearlink_sdr.phy.rf_compliance.FreqBand"><span class="pre">nearlink_sdr.phy.rf_compliance.FreqBand</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mod_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_offset_khz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_drift_khz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">drift_rate_hz_per_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">carrier_freq_mhz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="（在 Python v3.14）"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#check_freq_tolerance"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.check_freq_tolerance" title="Link to this definition">¶</a></dt>
 <dd><p>校验频率容限是否满足 8.2.2.3。</p>
-<p>Args:
-band: 频段类型。
-mod_type: 调制类型 (&quot;GFSK&quot;, &quot;BPSK/QPSK&quot;, &quot;8PSK&quot;)。
-freq_offset_khz: 初始频率偏差 (kHz)。
-freq_drift_khz: 频率漂移 (kHz)。
-drift_rate_hz_per_us: 频率漂移率 (Hz/us)。
-carrier_freq_mhz: 载波频率 (MHz), sub-1GHz 时用于 ppm 校验。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>band</strong> -- 频段类型。</p></li>
+<li><p><strong>mod_type</strong> -- 调制类型 (&quot;GFSK&quot;, &quot;BPSK/QPSK&quot;, &quot;8PSK&quot;)。</p></li>
+<li><p><strong>freq_offset_khz</strong> -- 初始频率偏差 (kHz)。</p></li>
+<li><p><strong>freq_drift_khz</strong> -- 频率漂移 (kHz)。</p></li>
+<li><p><strong>drift_rate_hz_per_us</strong> -- 频率漂移率 (Hz/us)。</p></li>
+<li><p><strong>carrier_freq_mhz</strong> -- 载波频率 (MHz), sub-1GHz 时用于 ppm 校验。</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py data">
@@ -1103,9 +1108,14 @@ carrier_freq_mhz: 载波频率 (MHz), sub-1GHz 时用于 ppm 校验。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rf_compliance.reference_sensitivity">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rf_compliance.</span></span><span class="sig-name descname"><span class="pre">reference_sensitivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bw_khz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mcs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="（在 Python v3.14）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rf_compliance.html#reference_sensitivity"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rf_compliance.reference_sensitivity" title="Link to this definition">¶</a></dt>
 <dd><p>返回参考灵敏度 (dBm)。</p>
-<p>Args:
-bw_khz: 信道带宽 (kHz)。
-mcs: MCS 索引。None 时返回 GFSK 灵敏度。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bw_khz</strong> -- 信道带宽 (kHz)。</p></li>
+<li><p><strong>mcs</strong> -- MCS 索引。None 时返回 GFSK 灵敏度。</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py data">

@@ -1000,7 +1000,11 @@ rx_result = node.receive(rx_iq, n_bytes)
 <span class="sig-name descname"><span class="pre">on_broadcast_received</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html#nearlink_sdr.mac.broadcast.BroadcastFrame" title="nearlink_sdr.mac.broadcast.BroadcastFrame"><span class="pre">nearlink_sdr.mac.broadcast.BroadcastFrame</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.on_broadcast_received"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.on_broadcast_received" title="Link to this definition">¶</a></dt>
 <dd><p>Process a received broadcast frame.</p>
 <p>In scanning state, process the frame through the discovery manager and broadcast filter.</p>
-<p>Returns:     True if the frame contains a valid access resource configuration.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True 表示该帧包含有效的接入资源配置。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -1038,14 +1042,22 @@ rx_result = node.receive(rx_iq, n_bytes)
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.start_pairing">
 <span class="sig-name descname"><span class="pre">start_pairing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peer_address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.start_pairing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.start_pairing" title="Link to this definition">¶</a></dt>
 <dd><p>Initiate pairing procedure.</p>
-<p>Returns:     List of pairing signaling messages to send to the peer.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>待发送给对端的配对信令列表。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.node.SleNode.process_pairing_message">
 <span class="sig-name descname"><span class="pre">process_pairing_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><span class="pre">object</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/node.html#SleNode.process_pairing_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.node.SleNode.process_pairing_message" title="Link to this definition">¶</a></dt>
 <dd><p>Process a received pairing signaling message.</p>
-<p>Returns:     List of response signaling messages to send.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>待发送的响应信令列表。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">

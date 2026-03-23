@@ -469,12 +469,10 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;生成 Kaiser 参考脉冲波形 r(t)。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        cfg: UWB 脉冲配置</span>
-<span class="sd">        num_samples: 采样点数, 默认根据脉冲持续时间和采样率计算</span>
+<span class="sd">    :param cfg: UWB 脉冲配置</span>
+<span class="sd">    :param num_samples: 采样点数, 默认根据脉冲持续时间和采样率计算</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        归一化的 Kaiser 脉冲波形采样值</span>
+<span class="sd">    :returns: 归一化的 Kaiser 脉冲波形采样值</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">l_ns</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">pulse_duration_ns</span>
     <span class="k">if</span> <span class="n">num_samples</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -504,13 +502,11 @@
 <span class="sd">    每个码片 c(n) ∈ {-1, 0, +1} 的调制信号为:</span>
 <span class="sd">        c(n) · r(t - n·Tc) · cos[2π·fc·(t - n·Tc)]</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        chips: 码片序列, 值为 -1, 0 或 +1</span>
-<span class="sd">        cfg: UWB 脉冲配置</span>
-<span class="sd">        fc_ghz: 载波中心频率 (GHz)</span>
+<span class="sd">    :param chips: 码片序列, 值为 -1, 0 或 +1</span>
+<span class="sd">    :param cfg: UWB 脉冲配置</span>
+<span class="sd">    :param fc_ghz: 载波中心频率 (GHz)</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        调制后的时域信号</span>
+<span class="sd">    :returns: 调制后的时域信号</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">pulse</span> <span class="o">=</span> <span class="n">kaiser_pulse</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
     <span class="n">pulse_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pulse</span><span class="p">)</span>
@@ -541,12 +537,10 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;计算归一化互相关函数 |φ(τ)|。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        r: 参考脉冲波形</span>
-<span class="sd">        p: 发射脉冲波形</span>
+<span class="sd">    :param r: 参考脉冲波形</span>
+<span class="sd">    :param p: 发射脉冲波形</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        归一化互相关函数的幅度</span>
+<span class="sd">    :returns: 归一化互相关函数的幅度</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">e_r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">r</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
     <span class="n">e_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
@@ -569,14 +563,12 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;验证发射脉冲波形是否满足标准要求。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        p: 发射脉冲波形</span>
-<span class="sd">        cfg: UWB 脉冲配置</span>
-<span class="sd">        main_lobe_threshold: 主瓣最低强度阈值 (默认 0.92)</span>
-<span class="sd">        side_lobe_threshold: 旁瓣最高强度阈值 (默认 0.1)</span>
+<span class="sd">    :param p: 发射脉冲波形</span>
+<span class="sd">    :param cfg: UWB 脉冲配置</span>
+<span class="sd">    :param main_lobe_threshold: 主瓣最低强度阈值 (默认 0.92)</span>
+<span class="sd">    :param side_lobe_threshold: 旁瓣最高强度阈值 (默认 0.1)</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        (是否通过, 主瓣最小强度, 旁瓣最大强度)</span>
+<span class="sd">    :returns: (是否通过, 主瓣最小强度, 旁瓣最大强度)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">kaiser_pulse</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
     <span class="n">phi</span> <span class="o">=</span> <span class="n">normalized_cross_correlation</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>

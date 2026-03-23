@@ -501,12 +501,18 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_frame._nack_m_sequence">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_frame.</span></span><span class="sig-name descname"><span class="pre">_nack_m_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radio_ft</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">m_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cyclic_shift</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_frame.html#_nack_m_sequence"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_frame._nack_m_sequence" title="Link to this definition">¶</a></dt>
 <dd><p>为指定无线帧类型生成 NACK 反馈 m 序列。</p>
-<p>Args:
-radio_ft: 无线帧类型 (1-4)。
-m_index: m 序列索引。
-cyclic_shift: 循环移位量。</p>
-<p>Returns:
-NACK 反馈序列比特数组。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radio_ft</strong> -- 无线帧类型 (1-4)。</p></li>
+<li><p><strong>m_index</strong> -- m 序列索引。</p></li>
+<li><p><strong>cyclic_shift</strong> -- 循环移位量。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>NACK 反馈序列比特数组。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -514,13 +520,19 @@ NACK 反馈序列比特数组。</p>
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_frame.</span></span><span class="sig-name descname"><span class="pre">build_nack_feedback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radio_ft</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">m_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cyclic_shift</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbol_rate_mhz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_frame.html#build_nack_feedback"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_frame.build_nack_feedback" title="Link to this definition">¶</a></dt>
 <dd><p>构建半可靠组播 NACK 反馈帧 (标准 6.3.6)。</p>
 <p>帧结构: 前导信号 | 同步信号 | NACK 反馈序列</p>
-<p>Args:
-radio_ft: 无线帧类型 (1-4), 决定 m 序列长度。
-m_index: m 序列索引, 由高层信令配置。
-cyclic_shift: m 序列循环移位量, 由高层信令配置。
-symbol_rate_mhz: 符号速率, 用于前导码生成。</p>
-<p>Returns:
-NACK 反馈序列比特数组 (不含前导和同步, 由调用者拼接)。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radio_ft</strong> -- 无线帧类型 (1-4), 决定 m 序列长度。</p></li>
+<li><p><strong>m_index</strong> -- m 序列索引, 由高层信令配置。</p></li>
+<li><p><strong>cyclic_shift</strong> -- m 序列循环移位量, 由高层信令配置。</p></li>
+<li><p><strong>symbol_rate_mhz</strong> -- 符号速率, 用于前导码生成。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>NACK 反馈序列比特数组 (不含前导和同步, 由调用者拼接)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -529,10 +541,14 @@ NACK 反馈序列比特数组 (不含前导和同步, 由调用者拼接)。</p>
 <dd><p>生成均衡保护序列 (标准 6.3.7)。</p>
 <p>同步信号最后 1 比特为 1 时: 0101 (MSB 优先)
 同步信号最后 1 比特为 0 时: 1010 (MSB 优先)</p>
-<p>Args:
-sync_last_bit: 同步信号的最后一个比特值 (0 或 1)。</p>
-<p>Returns:
-4 比特均衡保护序列。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sync_last_bit</strong> -- 同步信号的最后一个比特值 (0 或 1)。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>4 比特均衡保护序列。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py class">
@@ -583,10 +599,14 @@ sync_last_bit: 同步信号的最后一个比特值 (0 或 1)。</p>
 <dd><p>组装测量帧类型 1 (标准 6.3.7)。</p>
 <p>先发节点: 前导信号 | 同步信号 | 均衡保护 | 切换间隔 | 测量信号
 后发节点: 测量信号 | 切换间隔 | 前导信号 | 同步信号 | 均衡保护</p>
-<p>Args:
-config: 测量帧配置。</p>
-<p>Returns:
-组装后的帧比特/符号序列。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> -- 测量帧配置。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>组装后的帧比特/符号序列。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -594,10 +614,14 @@ config: 测量帧配置。</p>
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_frame.</span></span><span class="sig-name descname"><span class="pre">build_measurement_frame_2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.measurement_frame.MeasFrameConfig" title="nearlink_sdr.phy.measurement_frame.MeasFrameConfig"><span class="pre">nearlink_sdr.phy.measurement_frame.MeasFrameConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_frame.html#build_measurement_frame_2"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_frame.build_measurement_frame_2" title="Link to this definition">¶</a></dt>
 <dd><p>组装测量帧类型 2 (标准 6.3.8)。</p>
 <p>仅包含测量信号。</p>
-<p>Args:
-config: 测量帧配置。</p>
-<p>Returns:
-测量信号序列。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> -- 测量帧配置。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>测量信号序列。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -607,10 +631,14 @@ config: 测量帧配置。</p>
 <p>先发节点: 前导信号 | 同步信号 | 均衡保护
 后发节点: 前导信号 | 同步信号 | 均衡保护 | 切换间隔 | 测量信号</p>
 <p>用于位置测量事件组的初始化阶段。</p>
-<p>Args:
-config: 测量帧配置。</p>
-<p>Returns:
-组装后的帧比特/符号序列。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> -- 测量帧配置。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>组装后的帧比特/符号序列。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -620,10 +648,14 @@ config: 测量帧配置。</p>
 <p>先发/后发节点结构相同: 前导信号 | 同步信号 | 均衡保护 | 切换间隔 | 测量信号</p>
 <p>用于超宽带脉冲测量的初始化同步阶段,
 测量信号应为窄带波形测量信号 1 或 N=1 的窄带波形测量信号 2。</p>
-<p>Args:
-config: 测量帧配置。</p>
-<p>Returns:
-组装后的帧比特/符号序列。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> -- 测量帧配置。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>组装后的帧比特/符号序列。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py class">
@@ -730,10 +762,14 @@ N_offset: 安全模式偏移码片数, 默认 0 (普通模式)。</p>
 <dd><p>构建超宽带脉冲测量帧同步字段 (标准 6.3.11.1)。</p>
 <p>同步字段由 N_sync 个相同符号重复组成, 每个符号经过插零时域扩展。
 总长度: N_sync * K * L 个码片。</p>
-<p>Args:
-config: UWB 脉冲配置。</p>
-<p>Returns:
-同步字段码片序列。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> -- UWB 脉冲配置。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>同步字段码片序列。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -751,11 +787,17 @@ config: UWB 脉冲配置。</p>
 <dd><p>构建超宽带脉冲测量帧测量字段 (标准 6.3.11.2)。</p>
 <p>测量字段由 M_seg 个测量子片段组成, 每个子片段包含 N_seg 个 CTS 符号,
 相邻子片段之间有时间间隔。</p>
-<p>Args:
-config: UWB 脉冲配置。
-cts_symbol_seq: CTS 测量符号序列, 默认使用 config.symbol_seq。</p>
-<p>Returns:
-测量字段码片序列。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> -- UWB 脉冲配置。</p></li>
+<li><p><strong>cts_symbol_seq</strong> -- CTS 测量符号序列, 默认使用 config.symbol_seq。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>测量字段码片序列。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -763,11 +805,17 @@ cts_symbol_seq: CTS 测量符号序列, 默认使用 config.symbol_seq。</p>
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_frame.</span></span><span class="sig-name descname"><span class="pre">build_uwb_pulse_measurement_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.measurement_frame.UWBPulseConfig" title="nearlink_sdr.phy.measurement_frame.UWBPulseConfig"><span class="pre">nearlink_sdr.phy.measurement_frame.UWBPulseConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cts_symbol_seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="（在 Python v3.14）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_frame.html#build_uwb_pulse_measurement_frame"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_frame.build_uwb_pulse_measurement_frame" title="Link to this definition">¶</a></dt>
 <dd><p>构建完整的超宽带脉冲测量帧 (标准 6.3.11)。</p>
 <p>帧结构: 同步字段 | 测量字段</p>
-<p>Args:
-config: UWB 脉冲配置。
-cts_symbol_seq: CTS 测量符号序列, 默认使用同步符号序列。</p>
-<p>Returns:
-完整帧码片序列。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> -- UWB 脉冲配置。</p></li>
+<li><p><strong>cts_symbol_seq</strong> -- CTS 测量符号序列, 默认使用同步符号序列。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>完整帧码片序列。</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

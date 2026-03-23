@@ -417,14 +417,12 @@
                   <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;按照 TXS-10002-2025 6.10.1 计算循环冗余校验。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        data_bits: 输入信息比特序列, shape (A,), 值为 0/1</span>
-<span class="sd">        poly: CRC生成多项式（不含最高位 D^L）</span>
-<span class="sd">        crc_len: 校验比特长度 L</span>
-<span class="sd">        seed: CRC生成种子</span>
+<span class="sd">    :param data_bits: 输入信息比特序列, shape (A,), 值为 0/1</span>
+<span class="sd">    :param poly: CRC生成多项式（不含最高位 D^L）</span>
+<span class="sd">    :param crc_len: 校验比特长度 L</span>
+<span class="sd">    :param seed: CRC生成种子</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        校验比特序列, shape (L,), 值为 0/1</span>
+<span class="sd">    :returns: 校验比特序列, shape (L,), 值为 0/1</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">_HAS_RUST_CRC</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">_rust_crc</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">data_bits</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span>
@@ -455,8 +453,7 @@
                <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">mask</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;对输入信息比特序列附加CRC校验比特。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        b_0, b_1, ..., b_{B-1}, 其中 B = A + L</span>
+<span class="sd">    :returns: b_0, b_1, ..., b_{B-1}, 其中 B = A + L</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">parity</span> <span class="o">=</span> <span class="n">crc_calculate</span><span class="p">(</span><span class="n">data_bits</span><span class="p">,</span> <span class="n">poly</span><span class="p">,</span> <span class="n">crc_len</span><span class="p">,</span> <span class="n">seed</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -471,8 +468,7 @@
               <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">mask</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;对接收比特序列进行CRC校验。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        True 表示校验通过（无错误），False 表示校验失败</span>
+<span class="sd">    :returns: True 表示校验通过（无错误），False 表示校验失败</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">data_bits</span> <span class="o">=</span> <span class="n">received_bits</span><span class="p">[:</span><span class="o">-</span><span class="n">crc_len</span><span class="p">]</span>
     <span class="n">rx_parity</span> <span class="o">=</span> <span class="n">received_bits</span><span class="p">[</span><span class="o">-</span><span class="n">crc_len</span><span class="p">:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>

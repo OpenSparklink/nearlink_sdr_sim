@@ -480,13 +480,11 @@
 
 <span class="sd">    生成调制前的比特级帧结构。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        ctrl_info_bits: 物理层控制信息比特。</span>
-<span class="sd">        data_payload_bits: 数据 + 完整性保护 + CRC 比特。</span>
-<span class="sd">        config: 帧配置参数。</span>
+<span class="sd">    :param ctrl_info_bits: 物理层控制信息比特。</span>
+<span class="sd">    :param data_payload_bits: 数据 + 完整性保护 + CRC 比特。</span>
+<span class="sd">    :param config: 帧配置参数。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        包含所有帧字段的 FrameFields 对象。</span>
+<span class="sd">    :returns: 包含所有帧字段的 FrameFields 对象。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">fields</span> <span class="o">=</span> <span class="n">FrameFields</span><span class="p">(</span><span class="n">frame_type</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">frame_type</span><span class="p">)</span>
 
@@ -523,12 +521,10 @@
 <span class="sd">    帧类型 1（GFSK）返回拼接后的比特序列（非复数符号）。</span>
 <span class="sd">    帧类型 2-4（PSK）返回含导频的复数符号流。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        fields: 已组装的帧字段。</span>
-<span class="sd">        config: 帧配置参数。</span>
+<span class="sd">    :param fields: 已组装的帧字段。</span>
+<span class="sd">    :param config: 帧配置参数。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        类型 1：比特数组（送入 GFSK 调制器）。</span>
+<span class="sd">    :returns: 类型 1：比特数组（送入 GFSK 调制器）。</span>
 <span class="sd">        类型 2-4：基带复数符号数组。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">frame_type</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -612,14 +608,12 @@
 
 <span class="sd">    简化解析器，假定已知帧参数。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        symbols: 接收到的复数符号流。</span>
-<span class="sd">        config: 帧配置参数。</span>
-<span class="sd">        n_ctrl_coded_bits: 编码控制位的数量。</span>
-<span class="sd">        n_data_bits: 数据位数量（调制前）。</span>
+<span class="sd">    :param symbols: 接收到的复数符号流。</span>
+<span class="sd">    :param config: 帧配置参数。</span>
+<span class="sd">    :param n_ctrl_coded_bits: 编码控制位的数量。</span>
+<span class="sd">    :param n_data_bits: 数据位数量（调制前）。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        (ctrl_bits, data_bits) — 解调后的比特数组。</span>
+<span class="sd">    :returns: (ctrl_bits, data_bits) — 解调后的比特数组。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">frame_type</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="c1"># 帧类型 1：比特级解析</span>

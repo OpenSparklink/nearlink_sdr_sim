@@ -553,11 +553,9 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">event_schedule</span><span class="p">(</span><span class="n">params</span><span class="p">:</span> <span class="n">MeasLinkParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">EventFrameType</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;生成一个事件组内的事件调度序列。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        params: 测量链路参数。</span>
+<span class="sd">    :param params: 测量链路参数。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        列表, 每个元素为 (事件索引, 帧类型)。</span>
+<span class="sd">    :returns: 列表, 每个元素为 (事件索引, 帧类型)。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">schedule</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">EventFrameType</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -599,12 +597,10 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;计算一个事件组内各事件的起始时刻 (us)。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        params: 测量链路参数。</span>
-<span class="sd">        group_index: 事件组序号。</span>
+<span class="sd">    :param params: 测量链路参数。</span>
+<span class="sd">    :param group_index: 事件组序号。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        各事件的起始时刻列表 (us)。</span>
+<span class="sd">    :returns: 各事件的起始时刻列表 (us)。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">schedule</span> <span class="o">=</span> <span class="n">event_schedule</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
     <span class="n">group_offset</span> <span class="o">=</span> <span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">event_group_start_us</span>
@@ -638,12 +634,10 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">ds_twr_2msg</span><span class="p">(</span><span class="n">ra</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">db</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;双边两消息飞行时间估计 (6.8.5.1)。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        ra: 先发节点测量的往返时间差 Ra = Ra2 - Ra1。</span>
-<span class="sd">        db: 后发节点测量的处理时间差 Db = Db2 - Db1。</span>
+<span class="sd">    :param ra: 先发节点测量的往返时间差 Ra = Ra2 - Ra1。</span>
+<span class="sd">    :param db: 后发节点测量的处理时间差 Db = Db2 - Db1。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        单向飞行时间估计 T_prop (与 ra/db 相同时间单位)。</span>
+<span class="sd">    :returns: 单向飞行时间估计 T_prop (与 ra/db 相同时间单位)。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">ra</span> <span class="o">-</span> <span class="n">db</span><span class="p">)</span></div>
 
@@ -659,14 +653,12 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">ds_twr_3msg</span><span class="p">(</span><span class="n">ra</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">rb</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">da</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">db</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;双边三消息飞行时间估计 (6.8.5.2)。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        ra: 先发节点 Ra = Ra2 - Ra1。</span>
-<span class="sd">        rb: 后发节点 Rb = Rb2 - Rb1。</span>
-<span class="sd">        da: 先发节点 Da = Da2 - Da1。</span>
-<span class="sd">        db: 后发节点 Db = Db2 - Db1。</span>
+<span class="sd">    :param ra: 先发节点 Ra = Ra2 - Ra1。</span>
+<span class="sd">    :param rb: 后发节点 Rb = Rb2 - Rb1。</span>
+<span class="sd">    :param da: 先发节点 Da = Da2 - Da1。</span>
+<span class="sd">    :param db: 后发节点 Db = Db2 - Db1。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        单向飞行时间估计 T_prop。</span>
+<span class="sd">    :returns: 单向飞行时间估计 T_prop。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">numerator</span> <span class="o">=</span> <span class="n">ra</span> <span class="o">*</span> <span class="n">rb</span> <span class="o">-</span> <span class="n">da</span> <span class="o">*</span> <span class="n">db</span>
     <span class="n">denominator</span> <span class="o">=</span> <span class="n">ra</span> <span class="o">+</span> <span class="n">rb</span> <span class="o">+</span> <span class="n">da</span> <span class="o">+</span> <span class="n">db</span>
@@ -690,13 +682,11 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;根据相位差估计到达角/出发角 (6.8.5.3)。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        delta_phi: 两天线接收/发送信号的载波相位差 (rad)。</span>
-<span class="sd">        wavelength: 信号波长 (m)。</span>
-<span class="sd">        antenna_spacing: 天线间距 (m)。</span>
+<span class="sd">    :param delta_phi: 两天线接收/发送信号的载波相位差 (rad)。</span>
+<span class="sd">    :param wavelength: 信号波长 (m)。</span>
+<span class="sd">    :param antenna_spacing: 天线间距 (m)。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        角度估计值 (rad), 范围 [0, pi]。</span>
+<span class="sd">    :returns: 角度估计值 (rad), 范围 [0, pi]。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">cos_val</span> <span class="o">=</span> <span class="p">(</span><span class="n">delta_phi</span> <span class="o">*</span> <span class="n">wavelength</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">antenna_spacing</span><span class="p">)</span>
     <span class="n">cos_val</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">cos_val</span><span class="p">))</span>
@@ -730,13 +720,11 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;从接收信号中提取信道冲击响应测量量 (6.8.5.4)。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        rx_signal: 接收到的时域 IQ 信号。</span>
-<span class="sd">        config: CIR 测量配置。</span>
-<span class="sd">        ref_sample: 参考时间点对应的采样索引。</span>
+<span class="sd">    :param rx_signal: 接收到的时域 IQ 信号。</span>
+<span class="sd">    :param config: CIR 测量配置。</span>
+<span class="sd">    :param ref_sample: 参考时间点对应的采样索引。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        截取的 CIR (I+jQ 复数数组)。</span>
+<span class="sd">    :returns: 截取的 CIR (I+jQ 复数数组)。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">samples_per_ns</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">sample_rate_hz</span> <span class="o">/</span> <span class="mf">1e9</span>
     <span class="n">offset_samples</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">delay_offset_ns</span> <span class="o">*</span> <span class="n">samples_per_ns</span><span class="p">)</span>
@@ -764,11 +752,9 @@
 
 <span class="sd">    对多帧 CIR 数据在慢时间维度做 FFT 获取距离-多普勒图。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        cir_frames: 形状 (n_frames, n_delay_bins) 的多帧 CIR 数据。</span>
+<span class="sd">    :param cir_frames: 形状 (n_frames, n_delay_bins) 的多帧 CIR 数据。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        形状 (n_frames, n_delay_bins) 的距离-多普勒矩阵。</span>
+<span class="sd">    :returns: 形状 (n_frames, n_delay_bins) 的距离-多普勒矩阵。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">cir_frames</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">cir_frames</span><span class="p">)</span>
@@ -803,12 +789,10 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CSIFeedback</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;从接收功率和信道 IQ 估计值生成 CSI 反馈。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        rx_power_dbm: 接收信号功率 (dBm)。</span>
-<span class="sd">        channel_iq: 信道估计的复数 IQ 值。</span>
+<span class="sd">    :param rx_power_dbm: 接收信号功率 (dBm)。</span>
+<span class="sd">    :param channel_iq: 信道估计的复数 IQ 值。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        CSIFeedback 实例。</span>
+<span class="sd">    :returns: CSIFeedback 实例。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">iq_mag</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">channel_iq</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">iq_mag</span> <span class="o">&lt;</span> <span class="mf">1e-30</span><span class="p">:</span>
@@ -833,11 +817,9 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">csi_to_rx_power</span><span class="p">(</span><span class="n">feedback</span><span class="p">:</span> <span class="n">CSIFeedback</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;从 CSI 反馈恢复接收信号功率。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        feedback: CSI 反馈数据。</span>
+<span class="sd">    :param feedback: CSI 反馈数据。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        接收信号功率 (dBm)。</span>
+<span class="sd">    :returns: 接收信号功率 (dBm)。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">iq_mag</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">feedback</span><span class="o">.</span><span class="n">relative_iq</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">iq_mag</span> <span class="o">&lt;</span> <span class="mf">1e-30</span><span class="p">:</span>
@@ -923,12 +905,10 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;确定指定事件中谁先发。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        params: UWB 测量参数。</span>
-<span class="sd">        event_index: 事件索引。</span>
+<span class="sd">    :param params: UWB 测量参数。</span>
+<span class="sd">    :param event_index: 事件索引。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        0=配置方先发, 1=对端先发。</span>
+<span class="sd">    :returns: 0=配置方先发, 1=对端先发。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">params</span><span class="o">.</span><span class="n">alternate_sender</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">params</span><span class="o">.</span><span class="n">first_sender</span>

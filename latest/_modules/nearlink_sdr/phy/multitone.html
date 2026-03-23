@@ -477,12 +477,10 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;生成基带多音信号 (复数采样)。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        config: 多音信号配置.</span>
-<span class="sd">        duration_s: 信号持续时间 (秒).</span>
+<span class="sd">    :param config: 多音信号配置.</span>
+<span class="sd">    :param duration_s: 信号持续时间 (秒).</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        复数基带采样序列, shape=(num_samples,).</span>
+<span class="sd">    :returns: 复数基带采样序列, shape=(num_samples,).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">num_samples</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">sample_rate_hz</span> <span class="o">*</span> <span class="n">duration_s</span><span class="p">)</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_samples</span><span class="p">)</span> <span class="o">/</span> <span class="n">config</span><span class="o">.</span><span class="n">sample_rate_hz</span>

@@ -952,8 +952,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">request_feature_exchange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature_set</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ControlFrame</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;发起特性交互 (7.2.4)</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            feature_set: 本端支持特性集 (80-bit 位图)</span>
+<span class="sd">        :param feature_set: 本端支持特性集 (80-bit 位图)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.mac.link_control</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeatureExchangeRequest</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">FeatureExchangeRequest</span><span class="p">(</span><span class="n">feature_set</span><span class="o">=</span><span class="n">feature_set</span><span class="p">)</span>

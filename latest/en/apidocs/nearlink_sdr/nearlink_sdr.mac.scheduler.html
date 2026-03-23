@@ -822,8 +822,14 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.TimeSlice.absolute_intervals">
 <span class="sig-name descname"><span class="pre">absolute_intervals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#TimeSlice.absolute_intervals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.TimeSlice.absolute_intervals" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate all absolute time intervals after expanding this time slice.</p>
-<p>Args:     slot_us: Microsecond value of the scheduling time slot.</p>
-<p>Returns:     [(start_us, end_us), …] list of time intervals.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>slot_us</strong> – 调度时隙的微秒值。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>[(start_us, end_us), …] 时间区间列表。</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -972,14 +978,22 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.Superframe.active_region_us">
 <span class="sig-name descname"><span class="pre">active_region_us</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#Superframe.active_region_us"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.Superframe.active_region_us" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate the active interval (from SMF to the end of the last time slice).</p>
-<p>Returns:     (start_us, end_us) active interval.start_us always 0 (SMF start).</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(start_us, end_us) 活动区间。start_us 始终为 0 (SMF 起始)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.Superframe.check_conflicts">
 <span class="sig-name descname"><span class="pre">check_conflicts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#Superframe.check_conflicts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.Superframe.check_conflicts" title="Link to this definition">¶</a></dt>
 <dd><p>Detect time slice conflicts.</p>
-<p>Returns:     Conflict list [(link_id_a, link_id_b, overlap_start, overlap_end), …].</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>冲突列表 [(link_id_a, link_id_b, overlap_start, overlap_end), …]。</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -1018,24 +1032,42 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.EventGroupScheduler.event_start_times">
 <span class="sig-name descname"><span class="pre">event_start_times</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#EventGroupScheduler.event_start_times"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.EventGroupScheduler.event_start_times" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate the start time of each event within the specified event group.</p>
-<p>Args:     group_index: Event group index (starting from 0).</p>
-<p>Returns:     Event start time list (us, absolute time).</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>group_index</strong> – 第几个事件组 (从 0 开始)。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>事件起始时间列表 (μs, 绝对时间)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.EventGroupScheduler.tx_window">
 <span class="sig-name descname"><span class="pre">tx_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_start_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#EventGroupScheduler.tx_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.EventGroupScheduler.tx_window" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate the time interval of the initiator window in an event.</p>
-<p>Args:     event_start_us: Event start time (us).</p>
-<p>Returns:     (start_us, end_us) first-send window interval.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event_start_us</strong> – 事件起始时间 (μs)。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(start_us, end_us) 先发窗口区间。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.EventGroupScheduler.rx_window">
 <span class="sig-name descname"><span class="pre">rx_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_start_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#EventGroupScheduler.rx_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.EventGroupScheduler.rx_window" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate the time interval of the responder window in an event.</p>
-<p>Args:     event_start_us: Event start time (us).</p>
-<p>Returns:     (start_us, end_us) second-send window interval.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event_start_us</strong> – 事件起始时间 (μs)。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(start_us, end_us) 后发窗口区间。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -1043,17 +1075,28 @@
 <span class="sig-name descname"><span class="pre">event_schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#EventGroupScheduler.event_schedule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.EventGroupScheduler.event_schedule" title="Link to this definition">¶</a></dt>
 <dd><p>Generate the complete event schedule table.</p>
 <p>Return the start time, initiator window, and responder window for each event.</p>
-<p>Args:     group_index: Event group index.</p>
-<p>Returns:
-[{“event_start”: int, “tx_window”: (s, e), “rx_window”: (s, e)}, …]</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>group_index</strong> – 事件组索引。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>[{“event_start”: int, “tx_window”: (s, e), “rx_window”: (s, e)}, …]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.EventGroupScheduler.next_event_group_start">
 <span class="sig-name descname"><span class="pre">next_event_group_start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#EventGroupScheduler.next_event_group_start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.EventGroupScheduler.next_event_group_start" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate the start time of the next event group.</p>
-<p>Args: current_us: whenprevioustime (μs).</p>
-<p>Returns:     Next event group start time (us).</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>current_us</strong> – 当前时间 (μs)。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>下一个事件组起始时间 (μs)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -1193,7 +1236,17 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.ScheduleManager.register_link">
 <span class="sig-name descname"><span class="pre">register_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">link_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">timing</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.mac.scheduler.EventTimingParams" title="nearlink_sdr.mac.scheduler.EventTimingParams"><span class="pre">nearlink_sdr.mac.scheduler.EventTimingParams</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_slices</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nearlink_sdr.mac.scheduler.TimeSlice" title="nearlink_sdr.mac.scheduler.TimeSlice"><span class="pre">nearlink_sdr.mac.scheduler.TimeSlice</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchor_slot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchor_offset_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#ScheduleManager.register_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.ScheduleManager.register_link" title="Link to this definition">¶</a></dt>
 <dd><p>Register a link and configure event group scheduling.</p>
-<p>Args:     link_id: Logical link identifier.     timing: Event timing parameters.     time_slices: Time slice list within the superframe (optional).     anchor_slot: Event group anchor time slot.     anchor_offset_us: Event group start offset (us).</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>link_id</strong> – 逻辑链路标识。</p></li>
+<li><p><strong>timing</strong> – 事件计时参数。</p></li>
+<li><p><strong>time_slices</strong> – 超帧内时间片列表 (可选)。</p></li>
+<li><p><strong>anchor_slot</strong> – 事件组锚点时隙。</p></li>
+<li><p><strong>anchor_offset_us</strong> – 事件组起始偏移 (μs)。</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -1224,7 +1277,11 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.ScheduleManager.update_tx_rx_interval">
 <span class="sig-name descname"><span class="pre">update_tx_rx_interval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#ScheduleManager.update_tx_rx_interval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.ScheduleManager.update_tx_rx_interval" title="Link to this definition">¶</a></dt>
 <dd><p>Update transceive interval type.</p>
-<p>Returns: updatenextintervalvalue (μs).</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>更新后的间隔值 (μs)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -1232,7 +1289,11 @@
 <span class="sig-name descname"><span class="pre">check_supervision_timeout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">link_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#ScheduleManager.check_supervision_timeout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.ScheduleManager.check_supervision_timeout" title="Link to this definition">¶</a></dt>
 <dd><p>Check whether a link has timed out.</p>
 <p>Determine whether the current time exceeds anchor + timeout limit based on the event group scheduler timeout parameters.</p>
-<p>Returns:     True indicates timed out.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True 表示已超时。</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

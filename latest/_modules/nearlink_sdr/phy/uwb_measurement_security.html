@@ -591,15 +591,13 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;计算 TGap (标准 9.5.4)。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        cts_gap: 128-bit ctsGap 密钥.</span>
-<span class="sd">        cts_gap_shift: 当前帧对应的移位量 (首帧为 0, 后续每帧 +1).</span>
-<span class="sd">        t_base: 基准长度 (Tc 单位).</span>
-<span class="sd">        code_len: 码长.</span>
-<span class="sd">        delta_l: deltaL 系数.</span>
+<span class="sd">    :param cts_gap: 128-bit ctsGap 密钥.</span>
+<span class="sd">    :param cts_gap_shift: 当前帧对应的移位量 (首帧为 0, 后续每帧 +1).</span>
+<span class="sd">    :param t_base: 基准长度 (Tc 单位).</span>
+<span class="sd">    :param code_len: 码长.</span>
+<span class="sd">    :param delta_l: deltaL 系数.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        Tgap = Tbase - Toffset (Tc 单位).</span>
+<span class="sd">    :returns: Tgap = Tbase - Toffset (Tc 单位).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># 将 ctsGap 视为 128-bit 整数 (小端)</span>
     <span class="n">gap_int</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">cts_gap</span><span class="p">,</span> <span class="s2">&quot;little&quot;</span><span class="p">)</span>
@@ -682,16 +680,14 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CTSSymbolResult</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;生成 CTS 测量符号索引和加扰 SC 序列 (标准 9.5.5)。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        cts_key: ctsKey (16 字节).</span>
-<span class="sd">        cts_v_upper: ctsVUpper (高 96 bit = 12 字节).</span>
-<span class="sd">        cts_v_counter: ctsVCounter (32 bit).</span>
-<span class="sd">        n_cts: CTS 数据部分符号个数.</span>
-<span class="sd">        symbol_count: 符号索引数 (16 或 32).</span>
-<span class="sd">        encryption_algo: 加密算法 (默认 AES-128).</span>
+<span class="sd">    :param cts_key: ctsKey (16 字节).</span>
+<span class="sd">    :param cts_v_upper: ctsVUpper (高 96 bit = 12 字节).</span>
+<span class="sd">    :param cts_v_counter: ctsVCounter (32 bit).</span>
+<span class="sd">    :param n_cts: CTS 数据部分符号个数.</span>
+<span class="sd">    :param symbol_count: 符号索引数 (16 或 32).</span>
+<span class="sd">    :param encryption_algo: 加密算法 (默认 AES-128).</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        CTSSymbolResult 包含符号索引和 SC 序列.</span>
+<span class="sd">    :returns: CTSSymbolResult 包含符号索引和 SC 序列.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">CTSSymbolResult</span><span class="p">()</span>
     <span class="n">index_bits</span> <span class="o">=</span> <span class="mi">4</span> <span class="k">if</span> <span class="n">symbol_count</span> <span class="o">&lt;=</span> <span class="mi">16</span> <span class="k">else</span> <span class="mi">5</span>

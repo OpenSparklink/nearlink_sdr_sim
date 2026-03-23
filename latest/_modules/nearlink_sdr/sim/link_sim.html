@@ -436,8 +436,7 @@
 
 <span class="sd">    流程: 前导码 + 同步信号1(广播) + 数据 → GFSK调制 → AWGN信道 → GFSK解调 → BER</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {&quot;snr_db&quot;: [...], &quot;ber&quot;: [...]}</span>
+<span class="sd">    :returns: {&quot;snr_db&quot;: [...], &quot;ber&quot;: [...]}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">snr_range_db</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">snr_range_db</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -481,8 +480,7 @@
 <span class="sd">    流程: 数据 → PSK调制 → AWGN信道 → PSK解调 → BER</span>
 <span class="sd">    (前导和同步信号作为独立信号段，不影响数据BER)</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {&quot;snr_db&quot;: [...], &quot;ber&quot;: [...]}</span>
+<span class="sd">    :returns: {&quot;snr_db&quot;: [...], &quot;ber&quot;: [...]}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">snr_range_db</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">snr_range_db</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -576,8 +574,7 @@
 
 <span class="sd">    流程: 信息比特 → Polar编码 → BPSK/QPSK调制 → AWGN信道 → 解调(软判决LLR) → SC解码 → BER</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...]}</span>
+<span class="sd">    :returns: {&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...]}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">snr_range_db</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">snr_range_db</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -728,17 +725,15 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;完整帧级仿真: 帧组装 → Polar编码 → PSK调制(含导频) → AWGN → 解调 → 解码 → BER。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        frame_type: 2, 3, or 4.</span>
-<span class="sd">        num_data_bits: 数据负载比特数.</span>
-<span class="sd">        rate_str: Polar码率.</span>
-<span class="sd">        code_length: Polar码长.</span>
-<span class="sd">        pilot_interval: 导频插入间隔 (0, 4, 8, 16).</span>
-<span class="sd">        snr_range_db: SNR扫描范围.</span>
-<span class="sd">        seed: 随机种子.</span>
+<span class="sd">    :param frame_type: 2, 3, or 4.</span>
+<span class="sd">    :param num_data_bits: 数据负载比特数.</span>
+<span class="sd">    :param rate_str: Polar码率.</span>
+<span class="sd">    :param code_length: Polar码长.</span>
+<span class="sd">    :param pilot_interval: 导频插入间隔 (0, 4, 8, 16).</span>
+<span class="sd">    :param snr_range_db: SNR扫描范围.</span>
+<span class="sd">    :param seed: 随机种子.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...]}</span>
+<span class="sd">    :returns: {&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...]}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.phy.frame</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
         <span class="n">FrameConfig</span><span class="p">,</span>
@@ -938,18 +933,16 @@
 
 <span class="sd">    流程: 信息比特 → Polar编码 → BPSK调制 → 信道(衰落+AWGN) → 均衡 → LLR → 解码</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        channel_type: &quot;awgn&quot; / &quot;rayleigh&quot; / &quot;rician&quot; / &quot;multipath&quot;。</span>
-<span class="sd">        rician_k_db: Rician K 因子。</span>
-<span class="sd">        eq_method: &quot;zf&quot; / &quot;mmse&quot; / &quot;none&quot; (不均衡)。</span>
-<span class="sd">        rate_str: Polar 码率。</span>
-<span class="sd">        code_length: Polar 码长。</span>
-<span class="sd">        snr_range_db: SNR 范围。</span>
-<span class="sd">        n_frames: 每个 SNR 点的帧数。</span>
-<span class="sd">        seed: 随机种子。</span>
+<span class="sd">    :param channel_type: &quot;awgn&quot; / &quot;rayleigh&quot; / &quot;rician&quot; / &quot;multipath&quot;。</span>
+<span class="sd">    :param rician_k_db: Rician K 因子。</span>
+<span class="sd">    :param eq_method: &quot;zf&quot; / &quot;mmse&quot; / &quot;none&quot; (不均衡)。</span>
+<span class="sd">    :param rate_str: Polar 码率。</span>
+<span class="sd">    :param code_length: Polar 码长。</span>
+<span class="sd">    :param snr_range_db: SNR 范围。</span>
+<span class="sd">    :param n_frames: 每个 SNR 点的帧数。</span>
+<span class="sd">    :param seed: 随机种子。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...]}</span>
+<span class="sd">    :returns: {&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...]}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.phy.channel</span><span class="w"> </span><span class="kn">import</span> <span class="n">PDP_2TAP</span><span class="p">,</span> <span class="n">ChannelConfig</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.phy.equalizer</span><span class="w"> </span><span class="kn">import</span> <span class="n">equalize_1tap</span><span class="p">,</span> <span class="n">equalize_mmse_freq</span>
@@ -1141,18 +1134,16 @@
 
 <span class="sd">    流程: 生成跳频序列 → 每跳: Polar编码 → BPSK调制 → 独立 Rayleigh 信道 → 均衡 → 解码</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        hop_param2: 跳频参数 2。</span>
-<span class="sd">        n_hops: 每个 SNR 点的跳频次数 (帧数)。</span>
-<span class="sd">        rate_str: Polar 码率。</span>
-<span class="sd">        code_length: Polar 码长。</span>
-<span class="sd">        snr_range_db: SNR 范围。</span>
-<span class="sd">        bandwidth_mhz: 信道带宽 1/2/4 MHz。</span>
-<span class="sd">        blocked_ratio: 被阻塞信道占比 (0~1)。</span>
-<span class="sd">        seed: 随机种子。</span>
+<span class="sd">    :param hop_param2: 跳频参数 2。</span>
+<span class="sd">    :param n_hops: 每个 SNR 点的跳频次数 (帧数)。</span>
+<span class="sd">    :param rate_str: Polar 码率。</span>
+<span class="sd">    :param code_length: Polar 码长。</span>
+<span class="sd">    :param snr_range_db: SNR 范围。</span>
+<span class="sd">    :param bandwidth_mhz: 信道带宽 1/2/4 MHz。</span>
+<span class="sd">    :param blocked_ratio: 被阻塞信道占比 (0~1)。</span>
+<span class="sd">    :param seed: 随机种子。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...], &quot;channels_used&quot;: [...]}</span>
+<span class="sd">    :returns: {&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...], &quot;channels_used&quot;: [...]}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.phy.channel</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChannelConfig</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.phy.equalizer</span><span class="w"> </span><span class="kn">import</span> <span class="n">equalize_1tap</span>
@@ -1329,17 +1320,15 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;使用 tx_chain / rx_chain 的全链路端到端仿真。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        frame_type: 帧类型 (1-4)</span>
-<span class="sd">        mcs_index: MCS 索引</span>
-<span class="sd">        n_data_bytes: 数据长度 (字节)</span>
-<span class="sd">        snr_range_db: Eb/N0 扫描范围 (dB)</span>
-<span class="sd">        n_frames: 每个 SNR 点的仿真帧数</span>
-<span class="sd">        sps: 每符号采样数</span>
-<span class="sd">        seed: 随机种子</span>
+<span class="sd">    :param frame_type: 帧类型 (1-4)</span>
+<span class="sd">    :param mcs_index: MCS 索引</span>
+<span class="sd">    :param n_data_bytes: 数据长度 (字节)</span>
+<span class="sd">    :param snr_range_db: Eb/N0 扫描范围 (dB)</span>
+<span class="sd">    :param n_frames: 每个 SNR 点的仿真帧数</span>
+<span class="sd">    :param sps: 每符号采样数</span>
+<span class="sd">    :param seed: 随机种子</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...]}</span>
+<span class="sd">    :returns: {&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...]}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.phy.rx_pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">rx_chain</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.phy.tx_pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">TxConfig</span><span class="p">,</span> <span class="n">tx_chain</span>
@@ -1516,21 +1505,19 @@
 <span class="sd">      3. AWGN 噪声</span>
 <span class="sd">    然后可选地进行均衡, 最后送入 rx_chain 解码。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        frame_type: 帧类型 (1-4)。</span>
-<span class="sd">        mcs_index: MCS 索引。</span>
-<span class="sd">        n_data_bytes: 数据长度 (字节)。</span>
-<span class="sd">        channel_type: &quot;awgn&quot; | &quot;rayleigh&quot; | &quot;rician&quot; | &quot;multipath&quot;。</span>
-<span class="sd">        rician_k_db: Rician K 因子 (dB)。</span>
-<span class="sd">        cfo_hz: 载波频率偏移 (Hz)。</span>
-<span class="sd">        eq_method: &quot;none&quot; | &quot;zf&quot; | &quot;mmse&quot;, 仅对衰落信道有效。</span>
-<span class="sd">        snr_range_db: Eb/N0 扫描范围。</span>
-<span class="sd">        n_frames: 每个 SNR 点的仿真帧数。</span>
-<span class="sd">        sps: 每符号采样数。</span>
-<span class="sd">        seed: 随机种子。</span>
+<span class="sd">    :param frame_type: 帧类型 (1-4)。</span>
+<span class="sd">    :param mcs_index: MCS 索引。</span>
+<span class="sd">    :param n_data_bytes: 数据长度 (字节)。</span>
+<span class="sd">    :param channel_type: &quot;awgn&quot; | &quot;rayleigh&quot; | &quot;rician&quot; | &quot;multipath&quot;。</span>
+<span class="sd">    :param rician_k_db: Rician K 因子 (dB)。</span>
+<span class="sd">    :param cfo_hz: 载波频率偏移 (Hz)。</span>
+<span class="sd">    :param eq_method: &quot;none&quot; | &quot;zf&quot; | &quot;mmse&quot;, 仅对衰落信道有效。</span>
+<span class="sd">    :param snr_range_db: Eb/N0 扫描范围。</span>
+<span class="sd">    :param n_frames: 每个 SNR 点的仿真帧数。</span>
+<span class="sd">    :param sps: 每符号采样数。</span>
+<span class="sd">    :param seed: 随机种子。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...]}</span>
+<span class="sd">    :returns: {&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...]}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.phy.channel</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChannelConfig</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.phy.equalizer</span><span class="w"> </span><span class="kn">import</span> <span class="n">equalize_1tap</span><span class="p">,</span> <span class="n">equalize_mmse_freq</span>
@@ -1843,14 +1830,12 @@
 <span class="sd">    每帧随机选取一种信令类型进行编码,</span>
 <span class="sd">    经过 PHY 发射/接收流水线和信道后, 统计信令解码成功率。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        channel_type: &quot;awgn&quot; | &quot;rayleigh&quot; | &quot;rician&quot; | &quot;multipath&quot;。</span>
-<span class="sd">        cfo_hz: 载波频率偏移 (Hz)。</span>
-<span class="sd">        eq_method: &quot;none&quot; | &quot;zf&quot; | &quot;mmse&quot;。</span>
-<span class="sd">        rician_k_db: Rician K 因子 (dB)。</span>
+<span class="sd">    :param channel_type: &quot;awgn&quot; | &quot;rayleigh&quot; | &quot;rician&quot; | &quot;multipath&quot;。</span>
+<span class="sd">    :param cfo_hz: 载波频率偏移 (Hz)。</span>
+<span class="sd">    :param eq_method: &quot;none&quot; | &quot;zf&quot; | &quot;mmse&quot;。</span>
+<span class="sd">    :param rician_k_db: Rician K 因子 (dB)。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {&quot;snr_db&quot;: [...], &quot;signaling_success_rate&quot;: [...]}</span>
+<span class="sd">    :returns: {&quot;snr_db&quot;: [...], &quot;signaling_success_rate&quot;: [...]}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.mac.link_control</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
         <span class="n">IntervalUpdateRequest</span><span class="p">,</span>
@@ -1937,15 +1922,13 @@
 
 <span class="sd">    对不同载荷大小, 统计字节级误码率和帧正确率。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        payload_sizes: 要测试的载荷大小列表 (字节)。</span>
-<span class="sd">        channel_type: &quot;awgn&quot; | &quot;rayleigh&quot; | &quot;rician&quot; | &quot;multipath&quot;。</span>
-<span class="sd">        cfo_hz: 载波频率偏移 (Hz)。</span>
-<span class="sd">        eq_method: &quot;none&quot; | &quot;zf&quot; | &quot;mmse&quot;。</span>
-<span class="sd">        rician_k_db: Rician K 因子 (dB)。</span>
+<span class="sd">    :param payload_sizes: 要测试的载荷大小列表 (字节)。</span>
+<span class="sd">    :param channel_type: &quot;awgn&quot; | &quot;rayleigh&quot; | &quot;rician&quot; | &quot;multipath&quot;。</span>
+<span class="sd">    :param cfo_hz: 载波频率偏移 (Hz)。</span>
+<span class="sd">    :param eq_method: &quot;none&quot; | &quot;zf&quot; | &quot;mmse&quot;。</span>
+<span class="sd">    :param rician_k_db: Rician K 因子 (dB)。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {&quot;snr_db&quot;: [...], &quot;results&quot;: {size: {&quot;fer&quot;: [...], &quot;byte_ber&quot;: [...]}}}</span>
+<span class="sd">    :returns: {&quot;snr_db&quot;: [...], &quot;results&quot;: {size: {&quot;fer&quot;: [...], &quot;byte_ber&quot;: [...]}}}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.mac.frame</span><span class="w"> </span><span class="kn">import</span> <span class="n">AsyncDataFrame</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.phy.mac_interface</span><span class="w"> </span><span class="kn">import</span> <span class="n">iq_to_mac</span><span class="p">,</span> <span class="n">mac_to_iq</span>
@@ -2035,14 +2018,12 @@
 
 <span class="sd">    每帧包含一条信令和一段数据, 验证复用帧在信道传输后的完整性。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        channel_type: &quot;awgn&quot; | &quot;rayleigh&quot; | &quot;rician&quot; | &quot;multipath&quot;。</span>
-<span class="sd">        cfo_hz: 载波频率偏移 (Hz)。</span>
-<span class="sd">        eq_method: &quot;none&quot; | &quot;zf&quot; | &quot;mmse&quot;。</span>
-<span class="sd">        rician_k_db: Rician K 因子 (dB)。</span>
+<span class="sd">    :param channel_type: &quot;awgn&quot; | &quot;rayleigh&quot; | &quot;rician&quot; | &quot;multipath&quot;。</span>
+<span class="sd">    :param cfo_hz: 载波频率偏移 (Hz)。</span>
+<span class="sd">    :param eq_method: &quot;none&quot; | &quot;zf&quot; | &quot;mmse&quot;。</span>
+<span class="sd">    :param rician_k_db: Rician K 因子 (dB)。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {&quot;snr_db&quot;: [...], &quot;mux_success_rate&quot;: [...], &quot;data_match_rate&quot;: [...]}</span>
+<span class="sd">    :returns: {&quot;snr_db&quot;: [...], &quot;mux_success_rate&quot;: [...], &quot;data_match_rate&quot;: [...]}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.mac.frame</span><span class="w"> </span><span class="kn">import</span> <span class="n">AsyncDataFrame</span><span class="p">,</span> <span class="n">MuxFrame</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.mac.link_control</span><span class="w"> </span><span class="kn">import</span> <span class="n">PingRequest</span>
@@ -2268,21 +2249,19 @@
 <span class="sd">    使用 ScheduleManager 分配时间资源, 每条链路在各自的事件组窗口内</span>
 <span class="sd">    发送/接收数据帧, 统计每条链路和总体的 FER。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        n_links: 并发链路数。</span>
-<span class="sd">        snr_range_db: 信噪比范围 (dB)。</span>
-<span class="sd">        n_superframes: 每个 SNR 点仿真的超帧数。</span>
-<span class="sd">        mcs_index: 调制编码策略索引。</span>
-<span class="sd">        payload_size: 每帧载荷字节数。</span>
-<span class="sd">        channel_type: 信道类型。</span>
-<span class="sd">        cfo_hz: 载波频率偏移。</span>
-<span class="sd">        eq_method: 均衡方法。</span>
-<span class="sd">        rician_k_db: Rician K 因子。</span>
-<span class="sd">        smf_interval: SMF 间隔 (基础时隙)。</span>
-<span class="sd">        seed: 随机种子。</span>
+<span class="sd">    :param n_links: 并发链路数。</span>
+<span class="sd">    :param snr_range_db: 信噪比范围 (dB)。</span>
+<span class="sd">    :param n_superframes: 每个 SNR 点仿真的超帧数。</span>
+<span class="sd">    :param mcs_index: 调制编码策略索引。</span>
+<span class="sd">    :param payload_size: 每帧载荷字节数。</span>
+<span class="sd">    :param channel_type: 信道类型。</span>
+<span class="sd">    :param cfo_hz: 载波频率偏移。</span>
+<span class="sd">    :param eq_method: 均衡方法。</span>
+<span class="sd">    :param rician_k_db: Rician K 因子。</span>
+<span class="sd">    :param smf_interval: SMF 间隔 (基础时隙)。</span>
+<span class="sd">    :param seed: 随机种子。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {&quot;snr_db&quot;: [...],</span>
+<span class="sd">    :returns: {&quot;snr_db&quot;: [...],</span>
 <span class="sd">         &quot;aggregate_fer&quot;: [...],</span>
 <span class="sd">         &quot;per_link_fer&quot;: {link_id: [...]},</span>
 <span class="sd">         &quot;throughput_ratio&quot;: [...]}</span>
@@ -2422,19 +2401,17 @@
 <span class="sd">    模拟完整的接入建链过程, 然后使用接入参数配置调度器,</span>
 <span class="sd">    在事件组时间窗口内进行数据帧收发。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        snr_range_db: 信噪比范围 (dB)。</span>
-<span class="sd">        n_frames: 每个 SNR 点仿真帧数。</span>
-<span class="sd">        mcs_index: MCS 索引。</span>
-<span class="sd">        payload_size: 载荷字节数。</span>
-<span class="sd">        channel_type: 信道类型。</span>
-<span class="sd">        cfo_hz: 载波频率偏移。</span>
-<span class="sd">        eq_method: 均衡方法。</span>
-<span class="sd">        rician_k_db: Rician K 因子。</span>
-<span class="sd">        seed: 随机种子。</span>
+<span class="sd">    :param snr_range_db: 信噪比范围 (dB)。</span>
+<span class="sd">    :param n_frames: 每个 SNR 点仿真帧数。</span>
+<span class="sd">    :param mcs_index: MCS 索引。</span>
+<span class="sd">    :param payload_size: 载荷字节数。</span>
+<span class="sd">    :param channel_type: 信道类型。</span>
+<span class="sd">    :param cfo_hz: 载波频率偏移。</span>
+<span class="sd">    :param eq_method: 均衡方法。</span>
+<span class="sd">    :param rician_k_db: Rician K 因子。</span>
+<span class="sd">    :param seed: 随机种子。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {&quot;snr_db&quot;: [...],</span>
+<span class="sd">    :returns: {&quot;snr_db&quot;: [...],</span>
 <span class="sd">         &quot;fer&quot;: [...],</span>
 <span class="sd">         &quot;access_ok&quot;: bool,</span>
 <span class="sd">         &quot;link_params&quot;: dict}</span>
@@ -2562,16 +2539,14 @@
 
 <span class="sd">    可视化事件组内各事件的 TX/RX 窗口分布和资源利用率。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        event_group_period: 事件组周期 (调度时隙)。</span>
-<span class="sd">        event_count: 事件总数。</span>
-<span class="sd">        event_period: 事件周期 (调度时隙)。</span>
-<span class="sd">        intra_event_interval: 事件内间隔 (μs)。</span>
-<span class="sd">        tx_max_offset: TX 最大偏移 (基础时隙)。</span>
-<span class="sd">        rx_max_offset: RX 最大偏移 (基础时隙)。</span>
+<span class="sd">    :param event_group_period: 事件组周期 (调度时隙)。</span>
+<span class="sd">    :param event_count: 事件总数。</span>
+<span class="sd">    :param event_period: 事件周期 (调度时隙)。</span>
+<span class="sd">    :param intra_event_interval: 事件内间隔 (μs)。</span>
+<span class="sd">    :param tx_max_offset: TX 最大偏移 (基础时隙)。</span>
+<span class="sd">    :param rx_max_offset: RX 最大偏移 (基础时隙)。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {&quot;events&quot;: [{&quot;start&quot;: int, &quot;tx_window&quot;: (s,e), &quot;rx_window&quot;: (s,e)}],</span>
+<span class="sd">    :returns: {&quot;events&quot;: [{&quot;start&quot;: int, &quot;tx_window&quot;: (s,e), &quot;rx_window&quot;: (s,e)}],</span>
 <span class="sd">         &quot;total_active_us&quot;: int,</span>
 <span class="sd">         &quot;group_period_us&quot;: int,</span>
 <span class="sd">         &quot;utilization&quot;: float}</span>
@@ -2617,15 +2592,13 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;超帧容量分析: 逐步增加链路直到出现时间片冲突。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        smf_interval: SMF 间隔 (基础时隙)。</span>
-<span class="sd">        slice_duration: 每条链路时间片持续长度 (调度时隙)。</span>
-<span class="sd">        slice_gap: 相邻链路的偏移间距 (调度时隙, 默认等于 slice_duration)。</span>
-<span class="sd">            当 gap &lt; slice_duration 时, 链路时间片将发生重叠。</span>
-<span class="sd">        max_links: 最大测试链路数。</span>
+<span class="sd">    :param smf_interval: SMF 间隔 (基础时隙)。</span>
+<span class="sd">    :param slice_duration: 每条链路时间片持续长度 (调度时隙)。</span>
+<span class="sd">    :param slice_gap: 相邻链路的偏移间距 (调度时隙, 默认等于 slice_duration)。</span>
+<span class="sd">        当 gap &lt; slice_duration 时, 链路时间片将发生重叠。</span>
+<span class="sd">    :param max_links: 最大测试链路数。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {&quot;n_links&quot;: [...],</span>
+<span class="sd">    :returns: {&quot;n_links&quot;: [...],</span>
 <span class="sd">         &quot;n_conflicts&quot;: [...],</span>
 <span class="sd">         &quot;max_no_conflict&quot;: int,</span>
 <span class="sd">         &quot;utilization&quot;: [...]}</span>
@@ -2838,8 +2811,7 @@
 <span class="sd">    2. 配对密钥协商 (run_pairing_procedure)</span>
 <span class="sd">    3. 加密数据帧经 PHY 管道传输</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {&quot;snr_db&quot;, &quot;fer&quot;, &quot;access_ok&quot;, &quot;pairing_ok&quot;, &quot;encrypted&quot;: True}</span>
+<span class="sd">    :returns: {&quot;snr_db&quot;, &quot;fer&quot;, &quot;access_ok&quot;, &quot;pairing_ok&quot;, &quot;encrypted&quot;: True}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.mac.access</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_access_procedure</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.mac.frame</span><span class="w"> </span><span class="kn">import</span> <span class="n">AsyncDataFrame</span>
@@ -2989,8 +2961,7 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;对比加密与明文传输的误帧率。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {&quot;snr_db&quot;, &quot;fer_encrypted&quot;, &quot;fer_plain&quot;}</span>
+<span class="sd">    :returns: {&quot;snr_db&quot;, &quot;fer_encrypted&quot;, &quot;fer_plain&quot;}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.mac.frame</span><span class="w"> </span><span class="kn">import</span> <span class="n">AsyncDataFrame</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.mac.security_manager</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
@@ -3112,8 +3083,7 @@
 <span class="sd">    将配对过程中的每条信令编码为 IQ, 经信道传输后解码,</span>
 <span class="sd">    统计信令传输成功率。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {&quot;snr_db&quot;, &quot;signaling_success_rate&quot;}</span>
+<span class="sd">    :returns: {&quot;snr_db&quot;, &quot;signaling_success_rate&quot;}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.mac.security_manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">PairingManager</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.phy.mac_interface</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
@@ -3288,8 +3258,7 @@
 <span class="sd">    有效吞吐量 = (1 - FER) * spectral_efficiency (bit/symbol)。</span>
 <span class="sd">    AMC 策略: 在每个 SNR 点选择吞吐量最高的 MCS。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {</span>
+<span class="sd">    :returns: {</span>
 <span class="sd">            &quot;snr_db&quot;: [...],</span>
 <span class="sd">            &quot;mcs_fer&quot;: {mcs_idx: [fer_per_snr, ...]},</span>
 <span class="sd">            &quot;mcs_throughput&quot;: {mcs_idx: [throughput_per_snr, ...]},</span>
@@ -3400,8 +3369,7 @@
 <span class="sd">    使用 B1 控制信息中的 harq_feedback 和 packet_sn 字段。</span>
 <span class="sd">    标准 6.10.5 规定 MCS=15 表示重传帧。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {</span>
+<span class="sd">    :returns: {</span>
 <span class="sd">            &quot;snr_db&quot;: [...],</span>
 <span class="sd">            &quot;fer_no_harq&quot;: [...],     # 无重传 FER</span>
 <span class="sd">            &quot;fer_harq&quot;: [...],        # HARQ FER (超过最大重传仍失败)</span>
@@ -3515,8 +3483,7 @@
 <span class="sd">    每帧在不同频率信道上传输, 模拟跳频对抗频率选择性衰落的效果。</span>
 <span class="sd">    对比固定信道 (Rayleigh) 与跳频 (不同信道独立衰落) 的 FER。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {</span>
+<span class="sd">    :returns: {</span>
 <span class="sd">            &quot;snr_db&quot;: [...],</span>
 <span class="sd">            &quot;fer_fixed&quot;: [...],     # 固定信道 FER</span>
 <span class="sd">            &quot;fer_hopping&quot;: [...],   # 跳频 FER</span>
@@ -3706,8 +3673,7 @@
 <span class="sd">    使用 QosLink 封装实现自动 ARQ 重传, 对比无 QoS 管理时的 FER。</span>
 <span class="sd">    验证 QosManager 的序列号管理、重传决策和链路质量跟踪。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {</span>
+<span class="sd">    :returns: {</span>
 <span class="sd">            &quot;snr_db&quot;: [...],</span>
 <span class="sd">            &quot;fer_no_arq&quot;: [...],       # 无重传 FER</span>
 <span class="sd">            &quot;fer_qos_arq&quot;: [...],      # QoS ARQ FER</span>
@@ -3838,8 +3804,7 @@
 <span class="sd">    模拟 SNR 随时间变化的场景, QoS 管理器根据 FER</span>
 <span class="sd">    反馈自动调整 MCS, 验证 AMC 跟踪性能。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {</span>
+<span class="sd">    :returns: {</span>
 <span class="sd">            &quot;snr_trace&quot;: [...],</span>
 <span class="sd">            &quot;mcs_trace&quot;: [...],</span>
 <span class="sd">            &quot;fer_trace&quot;: [...],</span>
@@ -3937,8 +3902,7 @@
 
 <span class="sd">    模拟突发数据到达场景, 验证流控背压机制对缓冲区占用和丢包的影响。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {</span>
+<span class="sd">    :returns: {</span>
 <span class="sd">            &quot;frame_idx&quot;: [...],</span>
 <span class="sd">            &quot;buffer_occupancy&quot;: [...],</span>
 <span class="sd">            &quot;flow_ctrl_bit&quot;: [...],</span>
@@ -4146,8 +4110,7 @@
 <span class="sd">    创建 G 节点与 T 节点, 完成广播→接入→数据交换全流程。</span>
 <span class="sd">    G 节点发送随机数据, T 节点接收并统计 FER 与字节误码率。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {</span>
+<span class="sd">    :returns: {</span>
 <span class="sd">            &quot;snr_db&quot;: [...],</span>
 <span class="sd">            &quot;fer&quot;: [...],</span>
 <span class="sd">            &quot;byte_ber&quot;: [...],</span>
@@ -4251,8 +4214,7 @@
 <span class="sd">    2. 配对 (ECDH 密钥协商)</span>
 <span class="sd">    3. 加密数据帧传输</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {</span>
+<span class="sd">    :returns: {</span>
 <span class="sd">            &quot;snr_db&quot;: [...],</span>
 <span class="sd">            &quot;fer_plain&quot;: [...],</span>
 <span class="sd">            &quot;fer_encrypted&quot;: [...],</span>
@@ -4367,8 +4329,7 @@
 
 <span class="sd">    固定 SNR 下连续帧传输, 跟踪 G 节点的 MCS 自适应过程和吞吐量变化。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {</span>
+<span class="sd">    :returns: {</span>
 <span class="sd">            &quot;frame_idx&quot;: [...],</span>
 <span class="sd">            &quot;mcs_history&quot;: [...],</span>
 <span class="sd">            &quot;fer_history&quot;: [...],</span>
@@ -4568,8 +4529,7 @@
 <span class="sd">    G 节点和 T 节点在跳频序列上逐帧通信,</span>
 <span class="sd">    每帧发送后推进时隙, 观察信道号变化和传输成功率。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {</span>
+<span class="sd">    :returns: {</span>
 <span class="sd">            &quot;channels&quot;: 使用过的信道号列表,</span>
 <span class="sd">            &quot;unique_channels&quot;: 唯一信道数,</span>
 <span class="sd">            &quot;success_count&quot;: 成功帧数,</span>
@@ -4655,8 +4615,7 @@
 
 <span class="sd">    模拟 G 节点广播 → T 节点扫描/发现 → 接入 → 数据交换 → 断开。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {</span>
+<span class="sd">    :returns: {</span>
 <span class="sd">            &quot;g_state&quot;: G 节点最终状态,</span>
 <span class="sd">            &quot;t_state&quot;: T 节点最终状态,</span>
 <span class="sd">            &quot;broadcast_frame_valid&quot;: 广播帧是否有效,</span>
@@ -4731,8 +4690,7 @@
 
 <span class="sd">    使用节点内置的 ChannelModel, 遍历 SNR 范围统计 FER。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {&quot;snr_db&quot;: [...], &quot;fer&quot;: [...], &quot;mcs_history&quot;: [...]}</span>
+<span class="sd">    :returns: {&quot;snr_db&quot;: [...], &quot;fer&quot;: [...], &quot;mcs_history&quot;: [...]}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.mac.frame</span><span class="w"> </span><span class="kn">import</span> <span class="n">AsyncDataFrame</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.mac.link_manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">Role</span>
@@ -4808,8 +4766,7 @@
 
 <span class="sd">    节点逐帧通信, 根据反馈结果动态调整发射功率。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {</span>
+<span class="sd">    :returns: {</span>
 <span class="sd">            &quot;frame_idx&quot;: [...],</span>
 <span class="sd">            &quot;power_history&quot;: [...],</span>
 <span class="sd">            &quot;success_history&quot;: [...],</span>
@@ -4892,8 +4849,7 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;SleNode 测量信号生成仿真。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {</span>
+<span class="sd">    :returns: {</span>
 <span class="sd">            &quot;signal_length&quot;: 测量信号长度,</span>
 <span class="sd">            &quot;signal_energy&quot;: 信号能量,</span>
 <span class="sd">        }</span>
@@ -5014,18 +4970,16 @@
 
 <span class="sd">    使用 Jakes 求和正弦模型生成时间相关衰落, 评估 FER 随 Doppler 扩展的变化。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        doppler_range_hz: Doppler 频移扫描范围 (Hz)。</span>
-<span class="sd">        snr_db: 固定 SNR (dB)。</span>
-<span class="sd">        n_frames: 每个 Doppler 点仿真帧数。</span>
-<span class="sd">        mcs_index: MCS 索引。</span>
-<span class="sd">        payload_size: 载荷字节数。</span>
-<span class="sd">        channel_type: 衰落类型 (&quot;rayleigh&quot; / &quot;rician&quot;)。</span>
-<span class="sd">        eq_method: 均衡方法。</span>
-<span class="sd">        seed: 随机种子。</span>
+<span class="sd">    :param doppler_range_hz: Doppler 频移扫描范围 (Hz)。</span>
+<span class="sd">    :param snr_db: 固定 SNR (dB)。</span>
+<span class="sd">    :param n_frames: 每个 Doppler 点仿真帧数。</span>
+<span class="sd">    :param mcs_index: MCS 索引。</span>
+<span class="sd">    :param payload_size: 载荷字节数。</span>
+<span class="sd">    :param channel_type: 衰落类型 (&quot;rayleigh&quot; / &quot;rician&quot;)。</span>
+<span class="sd">    :param eq_method: 均衡方法。</span>
+<span class="sd">    :param seed: 随机种子。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {&quot;doppler_hz&quot;: [...], &quot;fer&quot;: [...], &quot;avg_fade_depth_db&quot;: [...]}</span>
+<span class="sd">    :returns: {&quot;doppler_hz&quot;: [...], &quot;fer&quot;: [...], &quot;avg_fade_depth_db&quot;: [...]}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.phy.channel</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChannelConfig</span><span class="p">,</span> <span class="n">ChannelModel</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.phy.equalizer</span><span class="w"> </span><span class="kn">import</span> <span class="n">equalize_1tap</span>
@@ -5118,19 +5072,17 @@
 
 <span class="sd">    多个干扰用户在同一频段 (或邻信道) 独立发送, 叠加到有用信号上。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        n_interferers_range: 干扰用户数扫描列表。</span>
-<span class="sd">        sir_db: 每个干扰用户的 SIR (dB)。</span>
-<span class="sd">        snr_db: 噪声 SNR (dB)。</span>
-<span class="sd">        n_frames: 每个点仿真帧数。</span>
-<span class="sd">        mcs_index: MCS 索引。</span>
-<span class="sd">        payload_size: 载荷字节数。</span>
-<span class="sd">        channel_type: 信道类型。</span>
-<span class="sd">        freq_offset_hz: 干扰频偏 (Hz), 0 为同信道。</span>
-<span class="sd">        seed: 随机种子。</span>
+<span class="sd">    :param n_interferers_range: 干扰用户数扫描列表。</span>
+<span class="sd">    :param sir_db: 每个干扰用户的 SIR (dB)。</span>
+<span class="sd">    :param snr_db: 噪声 SNR (dB)。</span>
+<span class="sd">    :param n_frames: 每个点仿真帧数。</span>
+<span class="sd">    :param mcs_index: MCS 索引。</span>
+<span class="sd">    :param payload_size: 载荷字节数。</span>
+<span class="sd">    :param channel_type: 信道类型。</span>
+<span class="sd">    :param freq_offset_hz: 干扰频偏 (Hz), 0 为同信道。</span>
+<span class="sd">    :param seed: 随机种子。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {&quot;n_interferers&quot;: [...], &quot;fer&quot;: [...], &quot;sinr_db&quot;: [...]}</span>
+<span class="sd">    :returns: {&quot;n_interferers&quot;: [...], &quot;fer&quot;: [...], &quot;sinr_db&quot;: [...]}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.phy.channel</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
         <span class="n">ChannelConfig</span><span class="p">,</span>
@@ -5230,18 +5182,16 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;SIR 扫描仿真: 固定干扰用户数, 扫描 SIR 下的 FER。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        sir_range_db: SIR 扫描范围 (dB)。</span>
-<span class="sd">        n_interferers: 干扰用户数。</span>
-<span class="sd">        snr_db: 噪声 SNR (dB)。</span>
-<span class="sd">        n_frames: 每个 SIR 点帧数。</span>
-<span class="sd">        mcs_index: MCS 索引。</span>
-<span class="sd">        payload_size: 载荷字节数。</span>
-<span class="sd">        channel_type: 信道类型。</span>
-<span class="sd">        seed: 随机种子。</span>
+<span class="sd">    :param sir_range_db: SIR 扫描范围 (dB)。</span>
+<span class="sd">    :param n_interferers: 干扰用户数。</span>
+<span class="sd">    :param snr_db: 噪声 SNR (dB)。</span>
+<span class="sd">    :param n_frames: 每个 SIR 点帧数。</span>
+<span class="sd">    :param mcs_index: MCS 索引。</span>
+<span class="sd">    :param payload_size: 载荷字节数。</span>
+<span class="sd">    :param channel_type: 信道类型。</span>
+<span class="sd">    :param seed: 随机种子。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {&quot;sir_db&quot;: [...], &quot;fer&quot;: [...], &quot;sinr_db&quot;: [...]}</span>
+<span class="sd">    :returns: {&quot;sir_db&quot;: [...], &quot;fer&quot;: [...], &quot;sinr_db&quot;: [...]}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.phy.channel</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
         <span class="n">ChannelConfig</span><span class="p">,</span>
@@ -5335,8 +5285,7 @@
 <span class="sd">    在 ITU Indoor Office B 多径模型基础上叠加 Doppler 时变,</span>
 <span class="sd">    评估信道时变对频率选择性衰落下的接收性能影响。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        {&quot;doppler_hz&quot;: [...], &quot;fer&quot;: [...]}</span>
+<span class="sd">    :returns: {&quot;doppler_hz&quot;: [...], &quot;fer&quot;: [...]}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.phy.channel</span><span class="w"> </span><span class="kn">import</span> <span class="n">PDP_INDOOR_OFFICE</span><span class="p">,</span> <span class="n">ChannelConfig</span><span class="p">,</span> <span class="n">ChannelModel</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">nearlink_sdr.phy.equalizer</span><span class="w"> </span><span class="kn">import</span> <span class="n">equalize_mmse_freq</span>

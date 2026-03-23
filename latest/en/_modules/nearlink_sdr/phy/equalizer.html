@@ -401,12 +401,10 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">equalize_zf</span><span class="p">(</span><span class="n">rx_signal</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">channel_freq</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;零强制 (ZF) 频域均衡。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        rx_signal: 接收信号 (时域)。</span>
-<span class="sd">        channel_freq: 信道频率响应 H[k], 长度等于 rx_signal 的 FFT 长度。</span>
+<span class="sd">    :param rx_signal: 接收信号 (时域)。</span>
+<span class="sd">    :param channel_freq: 信道频率响应 H[k], 长度等于 rx_signal 的 FFT 长度。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        均衡后的时域信号。</span>
+<span class="sd">    :returns: 均衡后的时域信号。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">rx_signal</span><span class="p">)</span>
     <span class="n">rx_freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">rx_signal</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
@@ -428,13 +426,11 @@
 
 <span class="sd">    H_mmse[k] = conj(H[k]) / (|H[k]|^2 + sigma^2)</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        rx_signal: 接收信号 (时域)。</span>
-<span class="sd">        channel_freq: 信道频率响应 H[k]。</span>
-<span class="sd">        noise_var: 噪声方差 sigma^2。</span>
+<span class="sd">    :param rx_signal: 接收信号 (时域)。</span>
+<span class="sd">    :param channel_freq: 信道频率响应 H[k]。</span>
+<span class="sd">    :param noise_var: 噪声方差 sigma^2。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        均衡后的时域信号。</span>
+<span class="sd">    :returns: 均衡后的时域信号。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">rx_signal</span><span class="p">)</span>
     <span class="n">rx_freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">rx_signal</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
@@ -456,13 +452,11 @@
 
 <span class="sd">    H_est[k] = Y[k] / X[k]</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        rx_signal: 接收到的训练序列。</span>
-<span class="sd">        tx_known: 已知的发送训练序列。</span>
-<span class="sd">        n_fft: FFT 长度, 默认为信号长度。</span>
+<span class="sd">    :param rx_signal: 接收到的训练序列。</span>
+<span class="sd">    :param tx_known: 已知的发送训练序列。</span>
+<span class="sd">    :param n_fft: FFT 长度, 默认为信号长度。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        估计的信道频率响应。</span>
+<span class="sd">    :returns: 估计的信道频率响应。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">n_fft</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">n_fft</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rx_signal</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">tx_known</span><span class="p">))</span>
@@ -492,14 +486,12 @@
 <span class="sd">        w = R^{-1} p</span>
 <span class="sd">    其中 R = h自相关 + 噪声, p = h与期望延迟的互相关。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        rx_signal: 接收信号。</span>
-<span class="sd">        channel_taps: 信道冲激响应 h[0], h[1], ..., h[L-1]。</span>
-<span class="sd">        noise_var: 噪声方差。</span>
-<span class="sd">        n_taps_eq: 均衡器 FIR 长度。</span>
+<span class="sd">    :param rx_signal: 接收信号。</span>
+<span class="sd">    :param channel_taps: 信道冲激响应 h[0], h[1], ..., h[L-1]。</span>
+<span class="sd">    :param noise_var: 噪声方差。</span>
+<span class="sd">    :param n_taps_eq: 均衡器 FIR 长度。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        均衡后的信号。</span>
+<span class="sd">    :returns: 均衡后的信号。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">channel_taps</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
     <span class="n">l_h</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
@@ -547,14 +539,12 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;逐符号 1-tap 均衡 (平坦衰落信道)。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        rx_symbols: 接收符号。</span>
-<span class="sd">        h_coeffs: 每个符号的信道系数 (与 rx_symbols 等长)。</span>
-<span class="sd">        noise_var: 噪声方差, 仅 MMSE 使用。</span>
-<span class="sd">        method: &quot;zf&quot; 或 &quot;mmse&quot;。</span>
+<span class="sd">    :param rx_symbols: 接收符号。</span>
+<span class="sd">    :param h_coeffs: 每个符号的信道系数 (与 rx_symbols 等长)。</span>
+<span class="sd">    :param noise_var: 噪声方差, 仅 MMSE 使用。</span>
+<span class="sd">    :param method: &quot;zf&quot; 或 &quot;mmse&quot;。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        均衡后的符号。</span>
+<span class="sd">    :returns: 均衡后的符号。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">h_coeffs</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;zf&quot;</span><span class="p">:</span>

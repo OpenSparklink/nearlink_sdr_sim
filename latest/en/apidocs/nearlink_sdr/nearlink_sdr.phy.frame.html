@@ -566,12 +566,18 @@
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.frame.</span></span><span class="sig-name descname"><span class="pre">assemble_frame_bits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctrl_info_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_payload_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.frame.FrameConfig" title="nearlink_sdr.phy.frame.FrameConfig"><span class="pre">nearlink_sdr.phy.frame.FrameConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.phy.frame.FrameFields" title="nearlink_sdr.phy.frame.FrameFields"><span class="pre">nearlink_sdr.phy.frame.FrameFields</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/frame.html#assemble_frame_bits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.frame.assemble_frame_bits" title="Link to this definition">¶</a></dt>
 <dd><p>Assemble a complete frame at the bit level.</p>
 <p>Generate the bit-level frame structure before modulation.</p>
-<p>Args:
-ctrl_info_bits: 物理层控制信息比特。
-data_payload_bits: 数据 + 完整性保护 + CRC 比特。
-config: 帧配置参数。</p>
-<p>Returns:
-包含所有帧字段的 FrameFields 对象。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctrl_info_bits</strong> – 物理层控制信息比特。</p></li>
+<li><p><strong>data_payload_bits</strong> – 数据 + 完整性保护 + CRC 比特。</p></li>
+<li><p><strong>config</strong> – 帧配置参数。</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>包含所有帧字段的 FrameFields 对象。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -579,12 +585,18 @@ config: 帧配置参数。</p>
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.frame.</span></span><span class="sig-name descname"><span class="pre">frame_to_symbols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fields</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.frame.FrameFields" title="nearlink_sdr.phy.frame.FrameFields"><span class="pre">nearlink_sdr.phy.frame.FrameFields</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.frame.FrameConfig" title="nearlink_sdr.phy.frame.FrameConfig"><span class="pre">nearlink_sdr.phy.frame.FrameConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/frame.html#frame_to_symbols"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.frame.frame_to_symbols" title="Link to this definition">¶</a></dt>
 <dd><p>Convert frame fields to a modulated symbol stream with pilot insertion.</p>
 <p>Frame type 1 (GFSK) returns the concatenated bit sequence (not complex symbols). Frame types 2-4 (PSK) return a complex symbol stream with pilot insertion.</p>
-<p>Args:
-fields: 已组装的帧字段。
-config: 帧配置参数。</p>
-<p>Returns:
-类型 1：比特数组（送入 GFSK 调制器）。
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fields</strong> – 已组装的帧字段。</p></li>
+<li><p><strong>config</strong> – 帧配置参数。</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>类型 1：比特数组（送入 GFSK 调制器）。
 类型 2-4：基带复数符号数组。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -592,13 +604,19 @@ config: 帧配置参数。</p>
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.frame.</span></span><span class="sig-name descname"><span class="pre">symbols_to_data_bits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.frame.FrameConfig" title="nearlink_sdr.phy.frame.FrameConfig"><span class="pre">nearlink_sdr.phy.frame.FrameConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_ctrl_coded_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_data_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/frame.html#symbols_to_data_bits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.frame.symbols_to_data_bits" title="Link to this definition">¶</a></dt>
 <dd><p>Parse received symbol stream back to control and data bits.</p>
 <p>Simplified parser, assuming known frame parameters.</p>
-<p>Args:
-symbols: 接收到的复数符号流。
-config: 帧配置参数。
-n_ctrl_coded_bits: 编码控制位的数量。
-n_data_bits: 数据位数量（调制前）。</p>
-<p>Returns:
-(ctrl_bits, data_bits) — 解调后的比特数组。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>symbols</strong> – 接收到的复数符号流。</p></li>
+<li><p><strong>config</strong> – 帧配置参数。</p></li>
+<li><p><strong>n_ctrl_coded_bits</strong> – 编码控制位的数量。</p></li>
+<li><p><strong>n_data_bits</strong> – 数据位数量（调制前）。</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(ctrl_bits, data_bits) — 解调后的比特数组。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">

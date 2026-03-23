@@ -425,14 +425,12 @@
                         <span class="n">length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;生成线性反馈移位寄存器产生的m序列。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        order: LFSR阶数（移位寄存器位数）</span>
-<span class="sd">        taps: 反馈系数（二进制表示，包含最高位）</span>
-<span class="sd">        init_val: 移位寄存器初始值</span>
-<span class="sd">        length: 输出序列长度，默认为 2^order - 1（完整m序列周期）</span>
+<span class="sd">    :param order: LFSR阶数（移位寄存器位数）</span>
+<span class="sd">    :param taps: 反馈系数（二进制表示，包含最高位）</span>
+<span class="sd">    :param init_val: 移位寄存器初始值</span>
+<span class="sd">    :param length: 输出序列长度，默认为 2^order - 1（完整m序列周期）</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        m序列比特数组, shape (length,), 值为 0/1</span>
+<span class="sd">    :returns: m序列比特数组, shape (length,), 值为 0/1</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">length</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">length</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">order</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
@@ -467,9 +465,8 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">m31_sequence</span><span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">31</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;生成标准中定义的31长m序列。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        index: 序列编号 0~5</span>
-<span class="sd">        length: 输出长度，默认31</span>
+<span class="sd">    :param index: 序列编号 0~5</span>
+<span class="sd">    :param length: 输出长度，默认31</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">cfg</span> <span class="o">=</span> <span class="n">M31_CONFIGS</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">generate_m_sequence</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;taps&quot;</span><span class="p">],</span> <span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;init&quot;</span><span class="p">],</span> <span class="n">length</span><span class="p">)</span></div>
@@ -481,9 +478,8 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">m63_sequence</span><span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">63</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;生成标准中定义的63长m序列。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        index: 序列编号 0~5</span>
-<span class="sd">        length: 输出长度，默认63</span>
+<span class="sd">    :param index: 序列编号 0~5</span>
+<span class="sd">    :param length: 输出长度，默认63</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">cfg</span> <span class="o">=</span> <span class="n">M63_CONFIGS</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">generate_m_sequence</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;taps&quot;</span><span class="p">],</span> <span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;init&quot;</span><span class="p">],</span> <span class="n">length</span><span class="p">)</span></div>

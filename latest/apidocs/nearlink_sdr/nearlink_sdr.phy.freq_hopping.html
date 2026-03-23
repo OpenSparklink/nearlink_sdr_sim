@@ -609,11 +609,17 @@ blocked_channels: 被阻塞(不可用)的物理信道号集合。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.hopping_prng">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.freq_hopping.</span></span><span class="sig-name descname"><span class="pre">hopping_prng</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hop_param1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_param2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#hopping_prng"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.hopping_prng" title="Link to this definition">¶</a></dt>
 <dd><p>标准 6.10.3.2 伪随机数生成器。</p>
-<p>Args:
-hop_param1: 16 位跳频参数 1, 通常为调度时隙计数的低 16 位。
-hop_param2: 16 位跳频参数 2, 由同步序列/逻辑链路标识/随机种子派生。</p>
-<p>Returns:
-16 位伪随机数。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hop_param1</strong> -- 16 位跳频参数 1, 通常为调度时隙计数的低 16 位。</p></li>
+<li><p><strong>hop_param2</strong> -- 16 位跳频参数 2, 由同步序列/逻辑链路标识/随机种子派生。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>16 位伪随机数。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -627,11 +633,17 @@ hop_param2: 16 位跳频参数 2, 由同步序列/逻辑链路标识/随机种�
 <li><p>24 位逻辑链路标识: 高位补零至 32 位
 低 16 和高 16 位异或后作为 hop_param2。</p></li>
 </ul>
-<p>Args:
-identifier: 同步序列值或逻辑链路标识。
-bit_width: 标识符位宽 (24/32/64)。</p>
-<p>Returns:
-16 位 hop_param2。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>identifier</strong> -- 同步序列值或逻辑链路标识。</p></li>
+<li><p><strong>bit_width</strong> -- 标识符位宽 (24/32/64)。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>16 位 hop_param2。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -639,12 +651,18 @@ bit_width: 标识符位宽 (24/32/64)。</p>
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.freq_hopping.</span></span><span class="sig-name descname"><span class="pre">data_link_hop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot_counter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_param2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.freq_hopping.FreqTable" title="nearlink_sdr.phy.freq_hopping.FreqTable"><span class="pre">nearlink_sdr.phy.freq_hopping.FreqTable</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#data_link_hop"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.data_link_hop" title="Link to this definition">¶</a></dt>
 <dd><p>数据链路跳频: 根据时隙计数和跳频参数确定跳频频点。</p>
 <p>标准 6.10.3.3: PRNG → 初次频点映射 → (无效时) 可用频点映射。</p>
-<p>Args:
-slot_counter: 当前调度时隙计数。
-hop_param2: 16 位跳频参数 2。
-freq_table: 频率表管理对象。</p>
-<p>Returns:
-选中的物理信道号。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>slot_counter</strong> -- 当前调度时隙计数。</p></li>
+<li><p><strong>hop_param2</strong> -- 16 位跳频参数 2。</p></li>
+<li><p><strong>freq_table</strong> -- 频率表管理对象。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>选中的物理信道号。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -653,13 +671,20 @@ freq_table: 频率表管理对象。</p>
 <dd><p>可用频点映射过程。</p>
 <p>标准 6.10.3.3.2 / 6.10.3.4.1 / 6.10.3.5.1:
 index = floor(rand16 * N_available / 2^16), 然后映射到可用频点表。</p>
-<p>Args:
-rand16: 16 位伪随机数。
-available: 可用频点表 (升序排列)。</p>
-<p>Returns:
-选中的物理信道号。</p>
-<p>Raises:
-ValueError: 可用频点表为空。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rand16</strong> -- 16 位伪随机数。</p></li>
+<li><p><strong>available</strong> -- 可用频点表 (升序排列)。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>选中的物理信道号。</p>
+</dd>
+<dt class="field-odd">抛出<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="（在 Python v3.14）"><strong>ValueError</strong></a> -- 可用频点表为空。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -667,12 +692,18 @@ ValueError: 可用频点表为空。</p>
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.freq_hopping.</span></span><span class="sig-name descname"><span class="pre">mgmt_frame_hop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot_counter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_param2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.freq_hopping.FreqTable" title="nearlink_sdr.phy.freq_hopping.FreqTable"><span class="pre">nearlink_sdr.phy.freq_hopping.FreqTable</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#mgmt_frame_hop"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.mgmt_frame_hop" title="Link to this definition">¶</a></dt>
 <dd><p>系统管理帧链路跳频。</p>
 <p>标准 6.10.3.4: PRNG → 可用频点映射, 直接在可用频点表上映射。</p>
-<p>Args:
-slot_counter: 当前调度时隙计数。
-hop_param2: 16 位跳频参数 2。
-freq_table: 频率表管理对象。</p>
-<p>Returns:
-选中的物理信道号。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>slot_counter</strong> -- 当前调度时隙计数。</p></li>
+<li><p><strong>hop_param2</strong> -- 16 位跳频参数 2。</p></li>
+<li><p><strong>freq_table</strong> -- 频率表管理对象。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>选中的物理信道号。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py data">
@@ -743,11 +774,17 @@ init_channel: 初始化阶段频点 (可选)。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.MeasLinkHopper.next_channel">
 <span class="sig-name descname"><span class="pre">next_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot_counter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_init_phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="（在 Python v3.14）"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#MeasLinkHopper.next_channel"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.MeasLinkHopper.next_channel" title="Link to this definition">¶</a></dt>
 <dd><p>获取下一个跳频信道。</p>
-<p>Args:
-slot_counter: 当前调度时隙计数 (方案 3 使用)。
-is_init_phase: 是否处于初始化阶段。</p>
-<p>Returns:
-物理信道号。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>slot_counter</strong> -- 当前调度时隙计数 (方案 3 使用)。</p></li>
+<li><p><strong>is_init_phase</strong> -- 是否处于初始化阶段。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>物理信道号。</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -756,14 +793,20 @@ is_init_phase: 是否处于初始化阶段。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.generate_hopping_sequence">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.freq_hopping.</span></span><span class="sig-name descname"><span class="pre">generate_hopping_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_hops</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_param2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.freq_hopping.FreqTable" title="nearlink_sdr.phy.freq_hopping.FreqTable"><span class="pre">nearlink_sdr.phy.freq_hopping.FreqTable</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="（在 Python v3.14）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'data'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_slot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="（在 Python v3.14）"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#generate_hopping_sequence"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.generate_hopping_sequence" title="Link to this definition">¶</a></dt>
 <dd><p>生成指定长度的跳频序列。</p>
-<p>Args:
-n_hops: 需要的跳频次数。
-hop_param2: 跳频参数 2。
-freq_table: 频率表对象, 默认 2.4 GHz 1 MHz 全可用。
-link_type: &quot;data&quot; / &quot;mgmt&quot; / &quot;meas_asc&quot; / &quot;meas_desc&quot; / &quot;meas_rand&quot;。
-start_slot: 起始时隙号。</p>
-<p>Returns:
-物理信道号列表。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_hops</strong> -- 需要的跳频次数。</p></li>
+<li><p><strong>hop_param2</strong> -- 跳频参数 2。</p></li>
+<li><p><strong>freq_table</strong> -- 频率表对象, 默认 2.4 GHz 1 MHz 全可用。</p></li>
+<li><p><strong>link_type</strong> -- &quot;data&quot; / &quot;mgmt&quot; / &quot;meas_asc&quot; / &quot;meas_desc&quot; / &quot;meas_rand&quot;。</p></li>
+<li><p><strong>start_slot</strong> -- 起始时隙号。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>物理信道号列表。</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

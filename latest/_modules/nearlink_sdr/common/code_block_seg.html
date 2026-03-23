@@ -467,13 +467,11 @@
 
 <span class="sd">    适用于帧类型 2。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        bits: 输入比特序列 b_0..b_{B-1}, 其中 B = K + L (信息位 + CRC)。</span>
-<span class="sd">        rate_str: 目标码率字符串。</span>
-<span class="sd">        crc_len: L, 已追加到 bits 末尾的 CRC 长度。</span>
+<span class="sd">    :param bits: 输入比特序列 b_0..b_{B-1}, 其中 B = K + L (信息位 + CRC)。</span>
+<span class="sd">    :param rate_str: 目标码率字符串。</span>
+<span class="sd">    :param crc_len: L, 已追加到 bits 末尾的 CRC 长度。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        每个分段的 (码长 N, 信息比特) 元组列表。</span>
+<span class="sd">    :returns: 每个分段的 (码长 N, 信息比特) 元组列表。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">B</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bits</span><span class="p">)</span>
     <span class="n">R</span> <span class="o">=</span> <span class="n">_get_rate_value</span><span class="p">(</span><span class="n">rate_str</span><span class="p">)</span>
@@ -555,12 +553,10 @@
 
 <span class="sd">    适用于帧类型 3 和 4。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        bits: 输入比特序列 b_0..b_{B-1}。</span>
-<span class="sd">        rate_str: 目标码率字符串。</span>
+<span class="sd">    :param bits: 输入比特序列 b_0..b_{B-1}。</span>
+<span class="sd">    :param rate_str: 目标码率字符串。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        每个分段的 (码长 N, 含 CRC 的信息比特) 元组列表。</span>
+<span class="sd">    :returns: 每个分段的 (码长 N, 含 CRC 的信息比特) 元组列表。</span>
 <span class="sd">        最后一个分段可能进一步做子分割。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">B</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bits</span><span class="p">)</span>

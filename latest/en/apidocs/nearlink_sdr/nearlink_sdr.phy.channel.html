@@ -665,17 +665,37 @@
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.channel.</span></span><span class="sig-name descname"><span class="pre">add_interference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">interferers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nearlink_sdr.phy.channel.InterferenceConfig" title="nearlink_sdr.phy.channel.InterferenceConfig"><span class="pre">nearlink_sdr.phy.channel.InterferenceConfig</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator" title="(in NumPy v2.4)"><span class="pre">numpy.random.Generator</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#add_interference"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.add_interference" title="Link to this definition">¶</a></dt>
 <dd><p>Superimpose multiple interference sources onto the signal.</p>
 <p>Each interference source independently generates a random IQ sequence of the same length as the useful signal, scaled by SIR before superposition. Supports co-channel and adjacent-channel interference (via frequency offset).</p>
-<p>Args:     signal: Useful signal (complex IQ).     interferers: List of interference source configurations.     sample_rate_hz: Sample rate (Hz).     rng: Optional random number generator.</p>
-<p>Returns:     Signal after interference superposition.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> – 有用信号 (复数 IQ)。</p></li>
+<li><p><strong>interferers</strong> – 干扰源配置列表。</p></li>
+<li><p><strong>sample_rate_hz</strong> – 采样率 (Hz)。</p></li>
+<li><p><strong>rng</strong> – 可选随机数生成器。</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>叠加干扰后的信号。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.compute_sinr">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.channel.</span></span><span class="sig-name descname"><span class="pre">compute_sinr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">interference_signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#compute_sinr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.compute_sinr" title="Link to this definition">¶</a></dt>
 <dd><p>compute SINR (dB)。</p>
-<p>Args:     signal: Clean useful signal.     noise_signal: Noisy received signal (signal + noise, without interference).     interference_signal: Received signal after interference superposition (signal + noise + interference).</p>
-<p>Returns:
-SINR (dB)。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> – 纯净有用信号。</p></li>
+<li><p><strong>noise_signal</strong> – 含噪声的接收信号 (信号+噪声, 不含干扰)。</p></li>
+<li><p><strong>interference_signal</strong> – 干扰叠加后的接收信号 (信号+噪声+干扰)。</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SINR (dB)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

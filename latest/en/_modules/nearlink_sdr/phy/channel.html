@@ -759,14 +759,12 @@
 <span class="sd">    每个干扰源独立生成与有用信号等长的随机 IQ 序列, 按 SIR 缩放后叠加。</span>
 <span class="sd">    支持同信道和邻信道干扰 (通过频率偏移实现)。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        signal: 有用信号 (复数 IQ)。</span>
-<span class="sd">        interferers: 干扰源配置列表。</span>
-<span class="sd">        sample_rate_hz: 采样率 (Hz)。</span>
-<span class="sd">        rng: 可选随机数生成器。</span>
+<span class="sd">    :param signal: 有用信号 (复数 IQ)。</span>
+<span class="sd">    :param interferers: 干扰源配置列表。</span>
+<span class="sd">    :param sample_rate_hz: 采样率 (Hz)。</span>
+<span class="sd">    :param rng: 可选随机数生成器。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        叠加干扰后的信号。</span>
+<span class="sd">    :returns: 叠加干扰后的信号。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -809,13 +807,11 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;计算 SINR (dB)。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        signal: 纯净有用信号。</span>
-<span class="sd">        noise_signal: 含噪声的接收信号 (信号+噪声, 不含干扰)。</span>
-<span class="sd">        interference_signal: 干扰叠加后的接收信号 (信号+噪声+干扰)。</span>
+<span class="sd">    :param signal: 纯净有用信号。</span>
+<span class="sd">    :param noise_signal: 含噪声的接收信号 (信号+噪声, 不含干扰)。</span>
+<span class="sd">    :param interference_signal: 干扰叠加后的接收信号 (信号+噪声+干扰)。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        SINR (dB)。</span>
+<span class="sd">    :returns: SINR (dB)。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">s_power</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
     <span class="n">n_power</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">noise_signal</span> <span class="o">-</span> <span class="n">signal</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>

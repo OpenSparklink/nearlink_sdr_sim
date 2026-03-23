@@ -430,11 +430,17 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.equalizer.equalize_zf">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.equalizer.</span></span><span class="sig-name descname"><span class="pre">equalize_zf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rx_signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_freq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/equalizer.html#equalize_zf"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.equalizer.equalize_zf" title="Link to this definition">¶</a></dt>
 <dd><p>零强制 (ZF) 频域均衡。</p>
-<p>Args:
-rx_signal: 接收信号 (时域)。
-channel_freq: 信道频率响应 H[k], 长度等于 rx_signal 的 FFT 长度。</p>
-<p>Returns:
-均衡后的时域信号。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rx_signal</strong> -- 接收信号 (时域)。</p></li>
+<li><p><strong>channel_freq</strong> -- 信道频率响应 H[k], 长度等于 rx_signal 的 FFT 长度。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>均衡后的时域信号。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -442,12 +448,18 @@ channel_freq: 信道频率响应 H[k], 长度等于 rx_signal 的 FFT 长度。<
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.equalizer.</span></span><span class="sig-name descname"><span class="pre">equalize_mmse_freq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rx_signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_freq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/equalizer.html#equalize_mmse_freq"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.equalizer.equalize_mmse_freq" title="Link to this definition">¶</a></dt>
 <dd><p>MMSE 频域均衡。</p>
 <p>H_mmse[k] = conj(H[k]) / (|H[k]|^2 + sigma^2)</p>
-<p>Args:
-rx_signal: 接收信号 (时域)。
-channel_freq: 信道频率响应 H[k]。
-noise_var: 噪声方差 sigma^2。</p>
-<p>Returns:
-均衡后的时域信号。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rx_signal</strong> -- 接收信号 (时域)。</p></li>
+<li><p><strong>channel_freq</strong> -- 信道频率响应 H[k]。</p></li>
+<li><p><strong>noise_var</strong> -- 噪声方差 sigma^2。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>均衡后的时域信号。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -455,12 +467,18 @@ noise_var: 噪声方差 sigma^2。</p>
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.equalizer.</span></span><span class="sig-name descname"><span class="pre">estimate_channel_freq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rx_signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tx_known</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_fft</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="（在 Python v3.14）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/equalizer.html#estimate_channel_freq"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.equalizer.estimate_channel_freq" title="Link to this definition">¶</a></dt>
 <dd><p>基于已知训练序列的频域信道估计 (LS)。</p>
 <p>H_est[k] = Y[k] / X[k]</p>
-<p>Args:
-rx_signal: 接收到的训练序列。
-tx_known: 已知的发送训练序列。
-n_fft: FFT 长度, 默认为信号长度。</p>
-<p>Returns:
-估计的信道频率响应。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rx_signal</strong> -- 接收到的训练序列。</p></li>
+<li><p><strong>tx_known</strong> -- 已知的发送训练序列。</p></li>
+<li><p><strong>n_fft</strong> -- FFT 长度, 默认为信号长度。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>估计的信道频率响应。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -470,26 +488,38 @@ n_fft: FFT 长度, 默认为信号长度。</p>
 <p>计算 MMSE 最优 FIR 滤波器系数:
 w = R^{-1} p
 其中 R = h自相关 + 噪声, p = h与期望延迟的互相关。</p>
-<p>Args:
-rx_signal: 接收信号。
-channel_taps: 信道冲激响应 h[0], h[1], ..., h[L-1]。
-noise_var: 噪声方差。
-n_taps_eq: 均衡器 FIR 长度。</p>
-<p>Returns:
-均衡后的信号。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rx_signal</strong> -- 接收信号。</p></li>
+<li><p><strong>channel_taps</strong> -- 信道冲激响应 h[0], h[1], ..., h[L-1]。</p></li>
+<li><p><strong>noise_var</strong> -- 噪声方差。</p></li>
+<li><p><strong>n_taps_eq</strong> -- 均衡器 FIR 长度。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>均衡后的信号。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.equalizer.equalize_1tap">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.equalizer.</span></span><span class="sig-name descname"><span class="pre">equalize_1tap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rx_symbols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">h_coeffs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'mmse'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/equalizer.html#equalize_1tap"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.equalizer.equalize_1tap" title="Link to this definition">¶</a></dt>
 <dd><p>逐符号 1-tap 均衡 (平坦衰落信道)。</p>
-<p>Args:
-rx_symbols: 接收符号。
-h_coeffs: 每个符号的信道系数 (与 rx_symbols 等长)。
-noise_var: 噪声方差, 仅 MMSE 使用。
-method: &quot;zf&quot; 或 &quot;mmse&quot;。</p>
-<p>Returns:
-均衡后的符号。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rx_symbols</strong> -- 接收符号。</p></li>
+<li><p><strong>h_coeffs</strong> -- 每个符号的信道系数 (与 rx_symbols 等长)。</p></li>
+<li><p><strong>noise_var</strong> -- 噪声方差, 仅 MMSE 使用。</p></li>
+<li><p><strong>method</strong> -- &quot;zf&quot; 或 &quot;mmse&quot;。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>均衡后的符号。</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

@@ -854,8 +854,7 @@
 
 <span class="sd">        在扫描态时, 通过发现管理器和广播过滤器处理帧。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            True 表示该帧包含有效的接入资源配置。</span>
+<span class="sd">        :returns: True 表示该帧包含有效的接入资源配置。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_broadcast_filter</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">frame</span><span class="p">):</span>
             <span class="k">return</span> <span class="kc">False</span>
@@ -943,8 +942,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">start_pairing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">peer_address</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;发起配对流程。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            待发送给对端的配对信令列表。</span>
+<span class="sd">        :returns: 待发送给对端的配对信令列表。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">is_g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_link_mgr</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="n">Role</span><span class="o">.</span><span class="n">G_NODE</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pairing</span> <span class="o">=</span> <span class="n">PairingManager</span><span class="p">(</span>
@@ -962,8 +960,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">process_pairing_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;处理收到的配对信令。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            待发送的响应信令列表。</span>
+<span class="sd">        :returns: 待发送的响应信令列表。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pairing</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[]</span>

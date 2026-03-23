@@ -949,10 +949,9 @@
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;初始化 USRP 设备。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            config: 设备配置, None 时使用默认配置。</span>
-<span class="sd">            use_mock: 强制使用 MockUSRP。</span>
-<span class="sd">            loopback: 环回缓冲区, 仅 Mock 模式有效。</span>
+<span class="sd">        :param config: 设备配置, None 时使用默认配置。</span>
+<span class="sd">        :param use_mock: 强制使用 MockUSRP。</span>
+<span class="sd">        :param loopback: 环回缓冲区, 仅 Mock 模式有效。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_config</span> <span class="o">=</span> <span class="n">config</span> <span class="ow">or</span> <span class="n">USRPConfig</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_use_mock</span> <span class="o">=</span> <span class="n">use_mock</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">_UHD_AVAILABLE</span>
@@ -1022,9 +1021,8 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">tune_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_num</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">band</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;切换到指定 SLE 射频信道。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            channel_num: 射频信道号。</span>
-<span class="sd">            band: 频段标识, None 沿用当前配置。</span>
+<span class="sd">        :param channel_num: 射频信道号。</span>
+<span class="sd">        :param band: 频段标识, None 沿用当前配置。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">band</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">band</span> <span class="o">=</span> <span class="n">band</span>
@@ -1137,11 +1135,9 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;发射一帧 IQ 样本。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            samples: 复基带样本, dtype=complex64, shape (N,)。</span>
+<span class="sd">        :param samples: 复基带样本, dtype=complex64, shape (N,)。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            实际发射的样本数。</span>
+<span class="sd">        :returns: 实际发射的样本数。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_streamer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;TX streamer 未打开, 请先调用 open()&quot;</span><span class="p">)</span>
@@ -1161,12 +1157,10 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">send_continuous</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">num_repeats</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;连续发射, 重复指定次数。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            samples: 单帧 IQ 样本。</span>
-<span class="sd">            num_repeats: 重复次数。</span>
+<span class="sd">        :param samples: 单帧 IQ 样本。</span>
+<span class="sd">        :param num_repeats: 重复次数。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            总发射样本数。</span>
+<span class="sd">        :returns: 总发射样本数。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_streamer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;TX streamer 未打开, 请先调用 open()&quot;</span><span class="p">)</span>
@@ -1218,8 +1212,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samps_per_buffer</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;创建 RX streamer 并分配接收缓冲区。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            samps_per_buffer: 每次 recv 调用的缓冲区大小。</span>
+<span class="sd">        :param samps_per_buffer: 每次 recv 调用的缓冲区大小。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="o">.</span><span class="n">is_mock</span><span class="p">:</span>
             <span class="n">stream_args</span> <span class="o">=</span> <span class="s2">&quot;fc32&quot;</span>
@@ -1245,11 +1238,9 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">recv_num_samps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_samps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;接收指定数量的样本。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            num_samps: 要接收的样本数。</span>
+<span class="sd">        :param num_samps: 要接收的样本数。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            复基带样本数组, shape (num_samps,), dtype=complex64。</span>
+<span class="sd">        :returns: 复基带样本数组, shape (num_samps,), dtype=complex64。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_streamer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;RX streamer 未打开, 请先调用 open()&quot;</span><span class="p">)</span>
@@ -1306,8 +1297,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">recv_once</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;在连续模式下接收一个缓冲区的样本。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            接收到的样本, 长度可能小于缓冲区大小。</span>
+<span class="sd">        :returns: 接收到的样本, 长度可能小于缓冲区大小。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_running</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;连续接收未启动, 请先调用 start_continuous()&quot;</span><span class="p">)</span>
@@ -1378,11 +1368,9 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">transmit_iq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iq_samples</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;发射预调制的 IQ 样本。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            iq_samples: 复基带信号。</span>
+<span class="sd">        :param iq_samples: 复基带信号。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            实际发射的样本数。</span>
+<span class="sd">        :returns: 实际发射的样本数。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_open</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Pipeline 未打开&quot;</span><span class="p">)</span>
@@ -1394,11 +1382,9 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">receive_iq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_samps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;接收指定数量的 IQ 样本。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            num_samps: 要接收的样本数。</span>
+<span class="sd">        :param num_samps: 要接收的样本数。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            接收到的复基带信号。</span>
+<span class="sd">        :returns: 接收到的复基带信号。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_open</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Pipeline 未打开&quot;</span><span class="p">)</span>
@@ -1414,12 +1400,10 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;调制并发射一帧。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            frame_bits: 帧比特序列。</span>
-<span class="sd">            modulate_fn: 调制函数, 接收比特数组, 返回 IQ 样本。</span>
+<span class="sd">        :param frame_bits: 帧比特序列。</span>
+<span class="sd">        :param modulate_fn: 调制函数, 接收比特数组, 返回 IQ 样本。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            实际发射的样本数。</span>
+<span class="sd">        :returns: 实际发射的样本数。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">iq</span> <span class="o">=</span> <span class="n">modulate_fn</span><span class="p">(</span><span class="n">frame_bits</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transmit_iq</span><span class="p">(</span><span class="n">iq</span><span class="p">)</span></div>
@@ -1434,12 +1418,10 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;接收并解调一帧。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            num_samps: 接收样本数。</span>
-<span class="sd">            demodulate_fn: 解调函数, 接收 IQ 样本, 返回比特数组。</span>
+<span class="sd">        :param num_samps: 接收样本数。</span>
+<span class="sd">        :param demodulate_fn: 解调函数, 接收 IQ 样本, 返回比特数组。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            解调后的比特序列。</span>
+<span class="sd">        :returns: 解调后的比特序列。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">iq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">receive_iq</span><span class="p">(</span><span class="n">num_samps</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">demodulate_fn</span><span class="p">(</span><span class="n">iq</span><span class="p">)</span></div>
@@ -1455,13 +1437,11 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;跳频后发射。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            channel_num: 目标信道号。</span>
-<span class="sd">            iq_samples: 要发射的 IQ 样本。</span>
-<span class="sd">            band: 频段标识, None 沿用当前配置。</span>
+<span class="sd">        :param channel_num: 目标信道号。</span>
+<span class="sd">        :param iq_samples: 要发射的 IQ 样本。</span>
+<span class="sd">        :param band: 频段标识, None 沿用当前配置。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            实际发射的样本数。</span>
+<span class="sd">        :returns: 实际发射的样本数。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="o">.</span><span class="n">tune_channel</span><span class="p">(</span><span class="n">channel_num</span><span class="p">,</span> <span class="n">band</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transmit_iq</span><span class="p">(</span><span class="n">iq_samples</span><span class="p">)</span></div>
@@ -1477,13 +1457,11 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;跳频后接收。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            channel_num: 目标信道号。</span>
-<span class="sd">            num_samps: 接收样本数。</span>
-<span class="sd">            band: 频段标识, None 沿用当前配置。</span>
+<span class="sd">        :param channel_num: 目标信道号。</span>
+<span class="sd">        :param num_samps: 接收样本数。</span>
+<span class="sd">        :param band: 频段标识, None 沿用当前配置。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            接收到的 IQ 样本。</span>
+<span class="sd">        :returns: 接收到的 IQ 样本。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="o">.</span><span class="n">tune_channel</span><span class="p">(</span><span class="n">channel_num</span><span class="p">,</span> <span class="n">band</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">receive_iq</span><span class="p">(</span><span class="n">num_samps</span><span class="p">)</span></div>

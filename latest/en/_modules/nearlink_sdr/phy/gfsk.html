@@ -441,11 +441,9 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">modulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bits</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;GFSK调制。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            bits: 输入比特序列, shape (N,), 值为 0/1</span>
+<span class="sd">        :param bits: 输入比特序列, shape (N,), 值为 0/1</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            复基带IQ信号, shape (N*sps,)</span>
+<span class="sd">        :returns: 复基带IQ信号, shape (N*sps,)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># NRZ映射: 0 -&gt; -1, 1 -&gt; +1</span>
         <span class="n">nrz</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">bits</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.0</span>
@@ -481,11 +479,9 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">demodulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">signal</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;GFSK解调。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            signal: 复基带IQ信号</span>
+<span class="sd">        :param signal: 复基带IQ信号</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            解调后的比特序列, 值为 0/1</span>
+<span class="sd">        :returns: 解调后的比特序列, 值为 0/1</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># 频率鉴别：取相邻采样点的相位差</span>
         <span class="n">phase_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">signal</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">signal</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>

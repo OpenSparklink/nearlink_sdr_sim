@@ -648,13 +648,12 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;校验频率容限是否满足 8.2.2.3。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        band: 频段类型。</span>
-<span class="sd">        mod_type: 调制类型 (&quot;GFSK&quot;, &quot;BPSK/QPSK&quot;, &quot;8PSK&quot;)。</span>
-<span class="sd">        freq_offset_khz: 初始频率偏差 (kHz)。</span>
-<span class="sd">        freq_drift_khz: 频率漂移 (kHz)。</span>
-<span class="sd">        drift_rate_hz_per_us: 频率漂移率 (Hz/us)。</span>
-<span class="sd">        carrier_freq_mhz: 载波频率 (MHz), sub-1GHz 时用于 ppm 校验。</span>
+<span class="sd">    :param band: 频段类型。</span>
+<span class="sd">    :param mod_type: 调制类型 (&quot;GFSK&quot;, &quot;BPSK/QPSK&quot;, &quot;8PSK&quot;)。</span>
+<span class="sd">    :param freq_offset_khz: 初始频率偏差 (kHz)。</span>
+<span class="sd">    :param freq_drift_khz: 频率漂移 (kHz)。</span>
+<span class="sd">    :param drift_rate_hz_per_us: 频率漂移率 (Hz/us)。</span>
+<span class="sd">    :param carrier_freq_mhz: 载波频率 (MHz), sub-1GHz 时用于 ppm 校验。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">band</span> <span class="o">==</span> <span class="n">FreqBand</span><span class="o">.</span><span class="n">SUB_1G</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">carrier_freq_mhz</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
@@ -847,9 +846,8 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;返回参考灵敏度 (dBm)。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        bw_khz: 信道带宽 (kHz)。</span>
-<span class="sd">        mcs: MCS 索引。None 时返回 GFSK 灵敏度。</span>
+<span class="sd">    :param bw_khz: 信道带宽 (kHz)。</span>
+<span class="sd">    :param mcs: MCS 索引。None 时返回 GFSK 灵敏度。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">mcs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">val</span> <span class="o">=</span> <span class="n">GFSK_SENSITIVITY</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">bw_khz</span><span class="p">)</span>

@@ -565,12 +565,10 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">hopping_prng</span><span class="p">(</span><span class="n">hop_param1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">hop_param2</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;标准 6.10.3.2 伪随机数生成器。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        hop_param1: 16 位跳频参数 1, 通常为调度时隙计数的低 16 位。</span>
-<span class="sd">        hop_param2: 16 位跳频参数 2, 由同步序列/逻辑链路标识/随机种子派生。</span>
+<span class="sd">    :param hop_param1: 16 位跳频参数 1, 通常为调度时隙计数的低 16 位。</span>
+<span class="sd">    :param hop_param2: 16 位跳频参数 2, 由同步序列/逻辑链路标识/随机种子派生。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        16 位伪随机数。</span>
+<span class="sd">    :returns: 16 位伪随机数。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">hop_param1</span> <span class="o">&amp;=</span> <span class="mh">0xFFFF</span>
     <span class="n">hop_param2</span> <span class="o">&amp;=</span> <span class="mh">0xFFFF</span>
@@ -594,12 +592,10 @@
 <span class="sd">    - 24 位逻辑链路标识: 高位补零至 32 位</span>
 <span class="sd">    低 16 和高 16 位异或后作为 hop_param2。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        identifier: 同步序列值或逻辑链路标识。</span>
-<span class="sd">        bit_width: 标识符位宽 (24/32/64)。</span>
+<span class="sd">    :param identifier: 同步序列值或逻辑链路标识。</span>
+<span class="sd">    :param bit_width: 标识符位宽 (24/32/64)。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        16 位 hop_param2。</span>
+<span class="sd">    :returns: 16 位 hop_param2。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">bit_width</span> <span class="o">==</span> <span class="mi">64</span><span class="p">:</span>
         <span class="n">val</span> <span class="o">=</span> <span class="n">identifier</span> <span class="o">&amp;</span> <span class="mh">0xFFFFFFFF</span>  <span class="c1"># 取低 32 位</span>
@@ -625,13 +621,11 @@
 
 <span class="sd">    标准 6.10.3.3: PRNG → 初次频点映射 → (无效时) 可用频点映射。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        slot_counter: 当前调度时隙计数。</span>
-<span class="sd">        hop_param2: 16 位跳频参数 2。</span>
-<span class="sd">        freq_table: 频率表管理对象。</span>
+<span class="sd">    :param slot_counter: 当前调度时隙计数。</span>
+<span class="sd">    :param hop_param2: 16 位跳频参数 2。</span>
+<span class="sd">    :param freq_table: 频率表管理对象。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        选中的物理信道号。</span>
+<span class="sd">    :returns: 选中的物理信道号。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">hop_param1</span> <span class="o">=</span> <span class="n">slot_counter</span> <span class="o">&amp;</span> <span class="mh">0xFFFF</span>
     <span class="n">rand16</span> <span class="o">=</span> <span class="n">hopping_prng</span><span class="p">(</span><span class="n">hop_param1</span><span class="p">,</span> <span class="n">hop_param2</span><span class="p">)</span>
@@ -666,15 +660,12 @@
 <span class="sd">    标准 6.10.3.3.2 / 6.10.3.4.1 / 6.10.3.5.1:</span>
 <span class="sd">    index = floor(rand16 * N_available / 2^16), 然后映射到可用频点表。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        rand16: 16 位伪随机数。</span>
-<span class="sd">        available: 可用频点表 (升序排列)。</span>
+<span class="sd">    :param rand16: 16 位伪随机数。</span>
+<span class="sd">    :param available: 可用频点表 (升序排列)。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        选中的物理信道号。</span>
+<span class="sd">    :returns: 选中的物理信道号。</span>
 
-<span class="sd">    Raises:</span>
-<span class="sd">        ValueError: 可用频点表为空。</span>
+<span class="sd">    :raises ValueError: 可用频点表为空。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">available</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;可用频点表为空&quot;</span><span class="p">)</span>
@@ -696,13 +687,11 @@
 
 <span class="sd">    标准 6.10.3.4: PRNG → 可用频点映射, 直接在可用频点表上映射。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        slot_counter: 当前调度时隙计数。</span>
-<span class="sd">        hop_param2: 16 位跳频参数 2。</span>
-<span class="sd">        freq_table: 频率表管理对象。</span>
+<span class="sd">    :param slot_counter: 当前调度时隙计数。</span>
+<span class="sd">    :param hop_param2: 16 位跳频参数 2。</span>
+<span class="sd">    :param freq_table: 频率表管理对象。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        选中的物理信道号。</span>
+<span class="sd">    :returns: 选中的物理信道号。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">hop_param1</span> <span class="o">=</span> <span class="n">slot_counter</span> <span class="o">&amp;</span> <span class="mh">0xFFFF</span>
     <span class="n">rand16</span> <span class="o">=</span> <span class="n">hopping_prng</span><span class="p">(</span><span class="n">hop_param1</span><span class="p">,</span> <span class="n">hop_param2</span><span class="p">)</span>
@@ -762,12 +751,10 @@
                      <span class="n">is_init_phase</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;获取下一个跳频信道。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            slot_counter: 当前调度时隙计数 (方案 3 使用)。</span>
-<span class="sd">            is_init_phase: 是否处于初始化阶段。</span>
+<span class="sd">        :param slot_counter: 当前调度时隙计数 (方案 3 使用)。</span>
+<span class="sd">        :param is_init_phase: 是否处于初始化阶段。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            物理信道号。</span>
+<span class="sd">        :returns: 物理信道号。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">is_init_phase</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_channel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_channel</span>
@@ -815,15 +802,13 @@
                               <span class="n">start_slot</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;生成指定长度的跳频序列。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        n_hops: 需要的跳频次数。</span>
-<span class="sd">        hop_param2: 跳频参数 2。</span>
-<span class="sd">        freq_table: 频率表对象, 默认 2.4 GHz 1 MHz 全可用。</span>
-<span class="sd">        link_type: &quot;data&quot; / &quot;mgmt&quot; / &quot;meas_asc&quot; / &quot;meas_desc&quot; / &quot;meas_rand&quot;。</span>
-<span class="sd">        start_slot: 起始时隙号。</span>
+<span class="sd">    :param n_hops: 需要的跳频次数。</span>
+<span class="sd">    :param hop_param2: 跳频参数 2。</span>
+<span class="sd">    :param freq_table: 频率表对象, 默认 2.4 GHz 1 MHz 全可用。</span>
+<span class="sd">    :param link_type: &quot;data&quot; / &quot;mgmt&quot; / &quot;meas_asc&quot; / &quot;meas_desc&quot; / &quot;meas_rand&quot;。</span>
+<span class="sd">    :param start_slot: 起始时隙号。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        物理信道号列表。</span>
+<span class="sd">    :returns: 物理信道号列表。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">freq_table</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">freq_table</span> <span class="o">=</span> <span class="n">FreqTable</span><span class="p">()</span>

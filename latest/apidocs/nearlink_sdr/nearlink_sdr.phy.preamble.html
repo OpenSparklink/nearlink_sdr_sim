@@ -446,11 +446,17 @@
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.preamble.</span></span><span class="sig-name descname"><span class="pre">gfsk_preamble_bits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_rate_mhz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/preamble.html#gfsk_preamble_bits"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.preamble.gfsk_preamble_bits" title="Link to this definition">¶</a></dt>
 <dd><p>生成GFSK前导码比特序列。</p>
 <p>帧类型1使用 [0,1] 交替序列，第一个码元为0。</p>
-<p>Args:
-symbol_rate_mhz: 符号速率 (MHz)
-duration_us: 前导码持续时间 (μs)</p>
-<p>Returns:
-前导码比特序列, 值为 0/1</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>symbol_rate_mhz</strong> -- 符号速率 (MHz)</p></li>
+<li><p><strong>duration_us</strong> -- 前导码持续时间 (μs)</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>前导码比特序列, 值为 0/1</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -458,22 +464,34 @@ duration_us: 前导码持续时间 (μs)</p>
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.preamble.</span></span><span class="sig-name descname"><span class="pre">psk_preamble_phases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_rate_mhz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/preamble.html#psk_preamble_phases"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.preamble.psk_preamble_phases" title="Link to this definition">¶</a></dt>
 <dd><p>生成PSK前导码相位序列。</p>
 <p>帧类型2/3/4使用 [π/4, 0] 交替相位。</p>
-<p>Args:
-symbol_rate_mhz: 符号速率 (MHz)
-duration_us: 前导码持续时间 (μs)，帧类型2=10，帧类型3=12，帧类型4=16</p>
-<p>Returns:
-前导码相位序列 (弧度)</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>symbol_rate_mhz</strong> -- 符号速率 (MHz)</p></li>
+<li><p><strong>duration_us</strong> -- 前导码持续时间 (μs)，帧类型2=10，帧类型3=12，帧类型4=16</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>前导码相位序列 (弧度)</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.preamble.psk_preamble_symbols">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.preamble.</span></span><span class="sig-name descname"><span class="pre">psk_preamble_symbols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol_rate_mhz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/preamble.html#psk_preamble_symbols"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.preamble.psk_preamble_symbols" title="Link to this definition">¶</a></dt>
 <dd><p>生成PSK前导码复数符号序列。</p>
-<p>Args:
-symbol_rate_mhz: 符号速率 (MHz)
-duration_us: 前导码持续时间 (μs)</p>
-<p>Returns:
-前导码复数符号, shape (N,)</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>symbol_rate_mhz</strong> -- 符号速率 (MHz)</p></li>
+<li><p><strong>duration_us</strong> -- 前导码持续时间 (μs)</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>前导码复数符号, shape (N,)</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py data">
@@ -486,12 +504,18 @@ duration_us: 前导码持续时间 (μs)</p>
 <dt class="sig sig-object py" id="nearlink_sdr.phy.preamble.generate_preamble">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.preamble.</span></span><span class="sig-name descname"><span class="pre">generate_preamble</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbol_rate_mhz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/preamble.html#generate_preamble"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.preamble.generate_preamble" title="Link to this definition">¶</a></dt>
 <dd><p>生成指定帧类型的前导码。</p>
-<p>Args:
-frame_type: 帧类型 1~4
-symbol_rate_mhz: 符号速率 (MHz)</p>
-<p>Returns:
-帧类型1: 比特数组 (int ndarray)
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frame_type</strong> -- 帧类型 1~4</p></li>
+<li><p><strong>symbol_rate_mhz</strong> -- 符号速率 (MHz)</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>帧类型1: 比特数组 (int ndarray)
 帧类型2/3/4: 复数符号数组 (complex ndarray)</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

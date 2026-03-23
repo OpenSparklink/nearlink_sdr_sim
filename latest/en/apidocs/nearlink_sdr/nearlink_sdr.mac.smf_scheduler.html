@@ -695,8 +695,14 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf_scheduler.SMFTransmitScheduler.build_smf_frame">
 <span class="sig-name descname"><span class="pre">build_smf_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">include_schedule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nearlink_sdr.mac.smf.html#nearlink_sdr.mac.smf.SystemManagementFrame" title="nearlink_sdr.mac.smf.SystemManagementFrame"><span class="pre">nearlink_sdr.mac.smf.SystemManagementFrame</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/smf_scheduler.html#SMFTransmitScheduler.build_smf_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.smf_scheduler.SMFTransmitScheduler.build_smf_frame" title="Link to this definition">¶</a></dt>
 <dd><p>Build one SMF frame.</p>
-<p>Args:     include_schedule: Whether to include schedule signaling (typically carried in the first frame or when parameters change).</p>
-<p>Returns:     A SystemManagementFrame containing all currently registered signaling.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>include_schedule</strong> – 是否包含调度信令 (通常首帧或参数变更时携带)。</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>包含当前所有已注册信令的 SystemManagementFrame。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -717,8 +723,19 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.smf_scheduler.SMFTransmitScheduler.compute_offset_us">
 <span class="sig-name descname"><span class="pre">compute_offset_us</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">smf_start_slot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_first_slot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_slot_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">125</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">OffsetUnit.US_25</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="nearlink_sdr.mac.smf.html#nearlink_sdr.mac.smf.OffsetSignaling" title="nearlink_sdr.mac.smf.OffsetSignaling"><span class="pre">nearlink_sdr.mac.smf.OffsetSignaling</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/smf_scheduler.html#SMFTransmitScheduler.compute_offset_us"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.smf_scheduler.SMFTransmitScheduler.compute_offset_us" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate the offset from the SMF start point to the link start point (6.6.2.3).</p>
-<p>Args:     smf_start_slot: SMF start time slot.     link_first_slot: First time slot of the link.     base_slot_us: Base time slot length (us).     unit: Offset unit.</p>
-<p>Returns:     OffsetSignaling instance.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>smf_start_slot</strong> – SMF 起始时隙。</p></li>
+<li><p><strong>link_first_slot</strong> – 链路第一个起始时隙。</p></li>
+<li><p><strong>base_slot_us</strong> – 基础时隙长度 (us)。</p></li>
+<li><p><strong>unit</strong> – 偏移量单位。</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>OffsetSignaling 实例。</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

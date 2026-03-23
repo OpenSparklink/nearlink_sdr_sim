@@ -1509,11 +1509,9 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">info_bits</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;将 K 个信息位编码为 N 个编码位。</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            info_bits: 长度为 K 的比特数组（取值 0 或 1）。</span>
+<span class="sd">        :param info_bits: 长度为 K 的比特数组（取值 0 或 1）。</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            长度为 N 的码字（取值 0 或 1）。</span>
+<span class="sd">        :returns: 长度为 N 的码字（取值 0 或 1）。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">info_bits</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">info_bits</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">info_bits</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">,):</span>

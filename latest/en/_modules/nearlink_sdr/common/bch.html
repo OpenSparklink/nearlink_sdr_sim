@@ -428,11 +428,9 @@
 <span class="sd">        C(d) = d^5 * Ã(d) mod G(d)</span>
 <span class="sd">        S(d) = Ã(d) + d^26 * C(d)</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        info_26: 26比特信息序列（Ã(d)的系数，索引0=d^0）</span>
+<span class="sd">    :param info_26: 26比特信息序列（Ã(d)的系数，索引0=d^0）</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        31比特码字</span>
+<span class="sd">    :returns: 31比特码字</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">g</span> <span class="o">=</span> <span class="n">BCH_31_26_GEN</span>  <span class="c1"># 阶数5</span>
     <span class="n">n_parity</span> <span class="o">=</span> <span class="mi">5</span>
@@ -459,11 +457,9 @@
 <span class="sd">        C(d) = d^39 * A(d) mod G(d)</span>
 <span class="sd">        S(d) = A(d) + d^24 * C(d)</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        info_24: 24比特信息序列（A(d)的系数，索引0=d^0）</span>
+<span class="sd">    :param info_24: 24比特信息序列（A(d)的系数，索引0=d^0）</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        63比特码字</span>
+<span class="sd">    :returns: 63比特码字</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">g</span> <span class="o">=</span> <span class="n">BCH_63_24_GEN</span>  <span class="c1"># 阶数39</span>
     <span class="n">n_parity</span> <span class="o">=</span> <span class="mi">39</span>

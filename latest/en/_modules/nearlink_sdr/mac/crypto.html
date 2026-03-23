@@ -518,13 +518,11 @@
 <span class="sd">    对 KDF 调用两次 (分别使用 time_param 和 time_param+1 作为消息),</span>
 <span class="sd">    拼接两个 128-bit 输出得到 256-bit 安全序列。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        seed: 128比特安全随机种子 (16字节)</span>
-<span class="sd">        time_param: 32比特时间参数 (如调度时隙号*2)</span>
-<span class="sd">        kdf_type: KDF 类型</span>
+<span class="sd">    :param seed: 128比特安全随机种子 (16字节)</span>
+<span class="sd">    :param time_param: 32比特时间参数 (如调度时隙号*2)</span>
+<span class="sd">    :param kdf_type: KDF 类型</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        32 字节安全序列</span>
+<span class="sd">    :returns: 32 字节安全序列</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">m1</span> <span class="o">=</span> <span class="n">time_param</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;big&quot;</span><span class="p">)</span>
     <span class="n">m2</span> <span class="o">=</span> <span class="p">((</span><span class="n">time_param</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFFFFFFFF</span><span class="p">)</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;big&quot;</span><span class="p">)</span>
@@ -918,7 +916,8 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;生成可解析随机标识 (48 bits)。</span>
 
 <span class="sd">    hash_part = KDF(IRK, rand_part) mod 2^16</span>
-<span class="sd">    Returns: 高16位标记 || 中16位随机 || 低16位hash</span>
+
+<span class="sd">    :returns: 高16位标记 || 中16位随机 || 低16位hash</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">msg</span> <span class="o">=</span> <span class="n">rand_part</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;big&quot;</span><span class="p">)</span>
     <span class="n">mac</span> <span class="o">=</span> <span class="n">kdf</span><span class="p">(</span><span class="n">kdf_type</span><span class="p">,</span> <span class="n">irk</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>

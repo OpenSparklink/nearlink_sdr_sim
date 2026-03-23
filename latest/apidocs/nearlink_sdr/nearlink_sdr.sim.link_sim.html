@@ -614,8 +614,11 @@
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_gfsk_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_data_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snr_range_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="（在 Python v3.14）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="（在 Python v3.14）"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_gfsk_link"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_gfsk_link" title="Link to this definition">¶</a></dt>
 <dd><p>帧类型1 GFSK无编码链路仿真。</p>
 <p>流程: 前导码 + 同步信号1(广播) + 数据 → GFSK调制 → AWGN信道 → GFSK解调 → BER</p>
-<p>Returns:
-{&quot;snr_db&quot;: [...], &quot;ber&quot;: [...]}</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{&quot;snr_db&quot;: [...], &quot;ber&quot;: [...]}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -624,8 +627,11 @@
 <dd><p>帧类型2/3/4 PSK无编码链路仿真。</p>
 <p>流程: 数据 → PSK调制 → AWGN信道 → PSK解调 → BER
 (前导和同步信号作为独立信号段，不影响数据BER)</p>
-<p>Returns:
-{&quot;snr_db&quot;: [...], &quot;ber&quot;: [...]}</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{&quot;snr_db&quot;: [...], &quot;ber&quot;: [...]}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -639,8 +645,11 @@
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_polar_coded_psk_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_info_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mod_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'BPSK'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'1/2'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">256</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snr_range_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="（在 Python v3.14）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="（在 Python v3.14）"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_polar_coded_psk_link"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_polar_coded_psk_link" title="Link to this definition">¶</a></dt>
 <dd><p>Polar编码PSK链路仿真。</p>
 <p>流程: 信息比特 → Polar编码 → BPSK/QPSK调制 → AWGN信道 → 解调(软判决LLR) → SC解码 → BER</p>
-<p>Returns:
-{&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...]}</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...]}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -653,16 +662,22 @@
 <dt class="sig sig-object py" id="nearlink_sdr.sim.link_sim.sim_frame_link">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_frame_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_data_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'1/2'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">256</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pilot_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snr_range_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="（在 Python v3.14）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="（在 Python v3.14）"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_frame_link"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_frame_link" title="Link to this definition">¶</a></dt>
 <dd><p>完整帧级仿真: 帧组装 → Polar编码 → PSK调制(含导频) → AWGN → 解调 → 解码 → BER。</p>
-<p>Args:
-frame_type: 2, 3, or 4.
-num_data_bits: 数据负载比特数.
-rate_str: Polar码率.
-code_length: Polar码长.
-pilot_interval: 导频插入间隔 (0, 4, 8, 16).
-snr_range_db: SNR扫描范围.
-seed: 随机种子.</p>
-<p>Returns:
-{&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...]}</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frame_type</strong> -- 2, 3, or 4.</p></li>
+<li><p><strong>num_data_bits</strong> -- 数据负载比特数.</p></li>
+<li><p><strong>rate_str</strong> -- Polar码率.</p></li>
+<li><p><strong>code_length</strong> -- Polar码长.</p></li>
+<li><p><strong>pilot_interval</strong> -- 导频插入间隔 (0, 4, 8, 16).</p></li>
+<li><p><strong>snr_range_db</strong> -- SNR扫描范围.</p></li>
+<li><p><strong>seed</strong> -- 随机种子.</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>{&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...]}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -676,17 +691,23 @@ seed: 随机种子.</p>
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_channel_eq_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'rayleigh'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rician_k_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eq_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'mmse'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'1/2'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">256</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snr_range_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="（在 Python v3.14）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_frames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="（在 Python v3.14）"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_channel_eq_link"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_channel_eq_link" title="Link to this definition">¶</a></dt>
 <dd><p>多径信道 + 均衡器 + Polar编码 BPSK 链路仿真。</p>
 <p>流程: 信息比特 → Polar编码 → BPSK调制 → 信道(衰落+AWGN) → 均衡 → LLR → 解码</p>
-<p>Args:
-channel_type: &quot;awgn&quot; / &quot;rayleigh&quot; / &quot;rician&quot; / &quot;multipath&quot;。
-rician_k_db: Rician K 因子。
-eq_method: &quot;zf&quot; / &quot;mmse&quot; / &quot;none&quot; (不均衡)。
-rate_str: Polar 码率。
-code_length: Polar 码长。
-snr_range_db: SNR 范围。
-n_frames: 每个 SNR 点的帧数。
-seed: 随机种子。</p>
-<p>Returns:
-{&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...]}</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>channel_type</strong> -- &quot;awgn&quot; / &quot;rayleigh&quot; / &quot;rician&quot; / &quot;multipath&quot;。</p></li>
+<li><p><strong>rician_k_db</strong> -- Rician K 因子。</p></li>
+<li><p><strong>eq_method</strong> -- &quot;zf&quot; / &quot;mmse&quot; / &quot;none&quot; (不均衡)。</p></li>
+<li><p><strong>rate_str</strong> -- Polar 码率。</p></li>
+<li><p><strong>code_length</strong> -- Polar 码长。</p></li>
+<li><p><strong>snr_range_db</strong> -- SNR 范围。</p></li>
+<li><p><strong>n_frames</strong> -- 每个 SNR 点的帧数。</p></li>
+<li><p><strong>seed</strong> -- 随机种子。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>{&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...]}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -700,17 +721,23 @@ seed: 随机种子。</p>
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_hopping_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hop_param2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">43981</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_hops</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'1/2'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">256</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snr_range_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="（在 Python v3.14）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandwidth_mhz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocked_ratio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="（在 Python v3.14）"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_hopping_link"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_hopping_link" title="Link to this definition">¶</a></dt>
 <dd><p>跳频链路仿真: 数据帧在多个跳频信道间传输, 每跳独立衰落。</p>
 <p>流程: 生成跳频序列 → 每跳: Polar编码 → BPSK调制 → 独立 Rayleigh 信道 → 均衡 → 解码</p>
-<p>Args:
-hop_param2: 跳频参数 2。
-n_hops: 每个 SNR 点的跳频次数 (帧数)。
-rate_str: Polar 码率。
-code_length: Polar 码长。
-snr_range_db: SNR 范围。
-bandwidth_mhz: 信道带宽 1/2/4 MHz。
-blocked_ratio: 被阻塞信道占比 (0~1)。
-seed: 随机种子。</p>
-<p>Returns:
-{&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...], &quot;channels_used&quot;: [...]}</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hop_param2</strong> -- 跳频参数 2。</p></li>
+<li><p><strong>n_hops</strong> -- 每个 SNR 点的跳频次数 (帧数)。</p></li>
+<li><p><strong>rate_str</strong> -- Polar 码率。</p></li>
+<li><p><strong>code_length</strong> -- Polar 码长。</p></li>
+<li><p><strong>snr_range_db</strong> -- SNR 范围。</p></li>
+<li><p><strong>bandwidth_mhz</strong> -- 信道带宽 1/2/4 MHz。</p></li>
+<li><p><strong>blocked_ratio</strong> -- 被阻塞信道占比 (0~1)。</p></li>
+<li><p><strong>seed</strong> -- 随机种子。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>{&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...], &quot;channels_used&quot;: [...]}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -723,16 +750,22 @@ seed: 随机种子。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.sim.link_sim.sim_pipeline_link">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_pipeline_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mcs_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_data_bytes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snr_range_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="（在 Python v3.14）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_frames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="（在 Python v3.14）"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_pipeline_link"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_pipeline_link" title="Link to this definition">¶</a></dt>
 <dd><p>使用 tx_chain / rx_chain 的全链路端到端仿真。</p>
-<p>Args:
-frame_type: 帧类型 (1-4)
-mcs_index: MCS 索引
-n_data_bytes: 数据长度 (字节)
-snr_range_db: Eb/N0 扫描范围 (dB)
-n_frames: 每个 SNR 点的仿真帧数
-sps: 每符号采样数
-seed: 随机种子</p>
-<p>Returns:
-{&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...]}</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frame_type</strong> -- 帧类型 (1-4)</p></li>
+<li><p><strong>mcs_index</strong> -- MCS 索引</p></li>
+<li><p><strong>n_data_bytes</strong> -- 数据长度 (字节)</p></li>
+<li><p><strong>snr_range_db</strong> -- Eb/N0 扫描范围 (dB)</p></li>
+<li><p><strong>n_frames</strong> -- 每个 SNR 点的仿真帧数</p></li>
+<li><p><strong>sps</strong> -- 每符号采样数</p></li>
+<li><p><strong>seed</strong> -- 随机种子</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>{&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...]}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -758,20 +791,26 @@ seed: 随机种子</p>
 <li><p>AWGN 噪声
 然后可选地进行均衡, 最后送入 rx_chain 解码。</p></li>
 </ol>
-<p>Args:
-frame_type: 帧类型 (1-4)。
-mcs_index: MCS 索引。
-n_data_bytes: 数据长度 (字节)。
-channel_type: &quot;awgn&quot; | &quot;rayleigh&quot; | &quot;rician&quot; | &quot;multipath&quot;。
-rician_k_db: Rician K 因子 (dB)。
-cfo_hz: 载波频率偏移 (Hz)。
-eq_method: &quot;none&quot; | &quot;zf&quot; | &quot;mmse&quot;, 仅对衰落信道有效。
-snr_range_db: Eb/N0 扫描范围。
-n_frames: 每个 SNR 点的仿真帧数。
-sps: 每符号采样数。
-seed: 随机种子。</p>
-<p>Returns:
-{&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...]}</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frame_type</strong> -- 帧类型 (1-4)。</p></li>
+<li><p><strong>mcs_index</strong> -- MCS 索引。</p></li>
+<li><p><strong>n_data_bytes</strong> -- 数据长度 (字节)。</p></li>
+<li><p><strong>channel_type</strong> -- &quot;awgn&quot; | &quot;rayleigh&quot; | &quot;rician&quot; | &quot;multipath&quot;。</p></li>
+<li><p><strong>rician_k_db</strong> -- Rician K 因子 (dB)。</p></li>
+<li><p><strong>cfo_hz</strong> -- 载波频率偏移 (Hz)。</p></li>
+<li><p><strong>eq_method</strong> -- &quot;none&quot; | &quot;zf&quot; | &quot;mmse&quot;, 仅对衰落信道有效。</p></li>
+<li><p><strong>snr_range_db</strong> -- Eb/N0 扫描范围。</p></li>
+<li><p><strong>n_frames</strong> -- 每个 SNR 点的仿真帧数。</p></li>
+<li><p><strong>sps</strong> -- 每符号采样数。</p></li>
+<li><p><strong>seed</strong> -- 随机种子。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>{&quot;snr_db&quot;: [...], &quot;ber&quot;: [...], &quot;fer&quot;: [...]}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -798,13 +837,19 @@ seed: 随机种子。</p>
 <dd><p>MAC 信令帧端到端仿真: 信令编码 → IQ → 信道 → IQ → 信令解码。</p>
 <p>每帧随机选取一种信令类型进行编码,
 经过 PHY 发射/接收流水线和信道后, 统计信令解码成功率。</p>
-<p>Args:
-channel_type: &quot;awgn&quot; | &quot;rayleigh&quot; | &quot;rician&quot; | &quot;multipath&quot;。
-cfo_hz: 载波频率偏移 (Hz)。
-eq_method: &quot;none&quot; | &quot;zf&quot; | &quot;mmse&quot;。
-rician_k_db: Rician K 因子 (dB)。</p>
-<p>Returns:
-{&quot;snr_db&quot;: [...], &quot;signaling_success_rate&quot;: [...]}</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>channel_type</strong> -- &quot;awgn&quot; | &quot;rayleigh&quot; | &quot;rician&quot; | &quot;multipath&quot;。</p></li>
+<li><p><strong>cfo_hz</strong> -- 载波频率偏移 (Hz)。</p></li>
+<li><p><strong>eq_method</strong> -- &quot;none&quot; | &quot;zf&quot; | &quot;mmse&quot;。</p></li>
+<li><p><strong>rician_k_db</strong> -- Rician K 因子 (dB)。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>{&quot;snr_db&quot;: [...], &quot;signaling_success_rate&quot;: [...]}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -812,14 +857,20 @@ rician_k_db: Rician K 因子 (dB)。</p>
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_mac_data_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload_sizes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="（在 Python v3.14）"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="（在 Python v3.14）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snr_range_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="（在 Python v3.14）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_frames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mcs_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'awgn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfo_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eq_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'none'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rician_k_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="（在 Python v3.14）"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_mac_data_link"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_mac_data_link" title="Link to this definition">¶</a></dt>
 <dd><p>MAC 异步数据帧端到端仿真: 数据编码 → IQ → 信道 → IQ → 数据解码。</p>
 <p>对不同载荷大小, 统计字节级误码率和帧正确率。</p>
-<p>Args:
-payload_sizes: 要测试的载荷大小列表 (字节)。
-channel_type: &quot;awgn&quot; | &quot;rayleigh&quot; | &quot;rician&quot; | &quot;multipath&quot;。
-cfo_hz: 载波频率偏移 (Hz)。
-eq_method: &quot;none&quot; | &quot;zf&quot; | &quot;mmse&quot;。
-rician_k_db: Rician K 因子 (dB)。</p>
-<p>Returns:
-{&quot;snr_db&quot;: [...], &quot;results&quot;: {size: {&quot;fer&quot;: [...], &quot;byte_ber&quot;: [...]}}}</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>payload_sizes</strong> -- 要测试的载荷大小列表 (字节)。</p></li>
+<li><p><strong>channel_type</strong> -- &quot;awgn&quot; | &quot;rayleigh&quot; | &quot;rician&quot; | &quot;multipath&quot;。</p></li>
+<li><p><strong>cfo_hz</strong> -- 载波频率偏移 (Hz)。</p></li>
+<li><p><strong>eq_method</strong> -- &quot;none&quot; | &quot;zf&quot; | &quot;mmse&quot;。</p></li>
+<li><p><strong>rician_k_db</strong> -- Rician K 因子 (dB)。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>{&quot;snr_db&quot;: [...], &quot;results&quot;: {size: {&quot;fer&quot;: [...], &quot;byte_ber&quot;: [...]}}}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -827,13 +878,19 @@ rician_k_db: Rician K 因子 (dB)。</p>
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_mac_mux_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">snr_range_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="（在 Python v3.14）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_frames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mcs_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'awgn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfo_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eq_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'none'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rician_k_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="（在 Python v3.14）"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_mac_mux_link"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_mac_mux_link" title="Link to this definition">¶</a></dt>
 <dd><p>MAC 复用帧端到端仿真: 控制帧+数据帧复用 → IQ → 信道 → IQ → 解码。</p>
 <p>每帧包含一条信令和一段数据, 验证复用帧在信道传输后的完整性。</p>
-<p>Args:
-channel_type: &quot;awgn&quot; | &quot;rayleigh&quot; | &quot;rician&quot; | &quot;multipath&quot;。
-cfo_hz: 载波频率偏移 (Hz)。
-eq_method: &quot;none&quot; | &quot;zf&quot; | &quot;mmse&quot;。
-rician_k_db: Rician K 因子 (dB)。</p>
-<p>Returns:
-{&quot;snr_db&quot;: [...], &quot;mux_success_rate&quot;: [...], &quot;data_match_rate&quot;: [...]}</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>channel_type</strong> -- &quot;awgn&quot; | &quot;rayleigh&quot; | &quot;rician&quot; | &quot;multipath&quot;。</p></li>
+<li><p><strong>cfo_hz</strong> -- 载波频率偏移 (Hz)。</p></li>
+<li><p><strong>eq_method</strong> -- &quot;none&quot; | &quot;zf&quot; | &quot;mmse&quot;。</p></li>
+<li><p><strong>rician_k_db</strong> -- Rician K 因子 (dB)。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>{&quot;snr_db&quot;: [...], &quot;mux_success_rate&quot;: [...], &quot;data_match_rate&quot;: [...]}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -848,23 +905,29 @@ rician_k_db: Rician K 因子 (dB)。</p>
 <dd><p>多链路调度仿真: 多条链路在超帧内按时间片分时传输。</p>
 <p>使用 ScheduleManager 分配时间资源, 每条链路在各自的事件组窗口内
 发送/接收数据帧, 统计每条链路和总体的 FER。</p>
-<p>Args:
-n_links: 并发链路数。
-snr_range_db: 信噪比范围 (dB)。
-n_superframes: 每个 SNR 点仿真的超帧数。
-mcs_index: 调制编码策略索引。
-payload_size: 每帧载荷字节数。
-channel_type: 信道类型。
-cfo_hz: 载波频率偏移。
-eq_method: 均衡方法。
-rician_k_db: Rician K 因子。
-smf_interval: SMF 间隔 (基础时隙)。
-seed: 随机种子。</p>
-<p>Returns:
-{&quot;snr_db&quot;: [...],
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_links</strong> -- 并发链路数。</p></li>
+<li><p><strong>snr_range_db</strong> -- 信噪比范围 (dB)。</p></li>
+<li><p><strong>n_superframes</strong> -- 每个 SNR 点仿真的超帧数。</p></li>
+<li><p><strong>mcs_index</strong> -- 调制编码策略索引。</p></li>
+<li><p><strong>payload_size</strong> -- 每帧载荷字节数。</p></li>
+<li><p><strong>channel_type</strong> -- 信道类型。</p></li>
+<li><p><strong>cfo_hz</strong> -- 载波频率偏移。</p></li>
+<li><p><strong>eq_method</strong> -- 均衡方法。</p></li>
+<li><p><strong>rician_k_db</strong> -- Rician K 因子。</p></li>
+<li><p><strong>smf_interval</strong> -- SMF 间隔 (基础时隙)。</p></li>
+<li><p><strong>seed</strong> -- 随机种子。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>{&quot;snr_db&quot;: [...],
 &quot;aggregate_fer&quot;: [...],
 &quot;per_link_fer&quot;: {link_id: [...]},
 &quot;throughput_ratio&quot;: [...]}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -873,21 +936,27 @@ seed: 随机种子。</p>
 <dd><p>接入流程 + 调度器驱动的数据传输仿真。</p>
 <p>模拟完整的接入建链过程, 然后使用接入参数配置调度器,
 在事件组时间窗口内进行数据帧收发。</p>
-<p>Args:
-snr_range_db: 信噪比范围 (dB)。
-n_frames: 每个 SNR 点仿真帧数。
-mcs_index: MCS 索引。
-payload_size: 载荷字节数。
-channel_type: 信道类型。
-cfo_hz: 载波频率偏移。
-eq_method: 均衡方法。
-rician_k_db: Rician K 因子。
-seed: 随机种子。</p>
-<p>Returns:
-{&quot;snr_db&quot;: [...],
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>snr_range_db</strong> -- 信噪比范围 (dB)。</p></li>
+<li><p><strong>n_frames</strong> -- 每个 SNR 点仿真帧数。</p></li>
+<li><p><strong>mcs_index</strong> -- MCS 索引。</p></li>
+<li><p><strong>payload_size</strong> -- 载荷字节数。</p></li>
+<li><p><strong>channel_type</strong> -- 信道类型。</p></li>
+<li><p><strong>cfo_hz</strong> -- 载波频率偏移。</p></li>
+<li><p><strong>eq_method</strong> -- 均衡方法。</p></li>
+<li><p><strong>rician_k_db</strong> -- Rician K 因子。</p></li>
+<li><p><strong>seed</strong> -- 随机种子。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>{&quot;snr_db&quot;: [...],
 &quot;fer&quot;: [...],
 &quot;access_ok&quot;: bool,
 &quot;link_params&quot;: dict}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -895,35 +964,47 @@ seed: 随机种子。</p>
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_event_group_timing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_group_period</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_period</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intra_event_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tx_max_offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rx_max_offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="（在 Python v3.14）"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_event_group_timing"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_event_group_timing" title="Link to this definition">¶</a></dt>
 <dd><p>事件组时序计算仿真。</p>
 <p>可视化事件组内各事件的 TX/RX 窗口分布和资源利用率。</p>
-<p>Args:
-event_group_period: 事件组周期 (调度时隙)。
-event_count: 事件总数。
-event_period: 事件周期 (调度时隙)。
-intra_event_interval: 事件内间隔 (μs)。
-tx_max_offset: TX 最大偏移 (基础时隙)。
-rx_max_offset: RX 最大偏移 (基础时隙)。</p>
-<p>Returns:
-{&quot;events&quot;: [{&quot;start&quot;: int, &quot;tx_window&quot;: (s,e), &quot;rx_window&quot;: (s,e)}],
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>event_group_period</strong> -- 事件组周期 (调度时隙)。</p></li>
+<li><p><strong>event_count</strong> -- 事件总数。</p></li>
+<li><p><strong>event_period</strong> -- 事件周期 (调度时隙)。</p></li>
+<li><p><strong>intra_event_interval</strong> -- 事件内间隔 (μs)。</p></li>
+<li><p><strong>tx_max_offset</strong> -- TX 最大偏移 (基础时隙)。</p></li>
+<li><p><strong>rx_max_offset</strong> -- RX 最大偏移 (基础时隙)。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>{&quot;events&quot;: [{&quot;start&quot;: int, &quot;tx_window&quot;: (s,e), &quot;rx_window&quot;: (s,e)}],
 &quot;total_active_us&quot;: int,
 &quot;group_period_us&quot;: int,
 &quot;utilization&quot;: float}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.sim.link_sim.sim_superframe_capacity">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_superframe_capacity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">smf_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">800</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slice_duration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slice_gap</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="（在 Python v3.14）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_links</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="（在 Python v3.14）"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_superframe_capacity"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_superframe_capacity" title="Link to this definition">¶</a></dt>
 <dd><p>超帧容量分析: 逐步增加链路直到出现时间片冲突。</p>
-<p>Args:
-smf_interval: SMF 间隔 (基础时隙)。
-slice_duration: 每条链路时间片持续长度 (调度时隙)。
-slice_gap: 相邻链路的偏移间距 (调度时隙, 默认等于 slice_duration)。
-当 gap &lt; slice_duration 时, 链路时间片将发生重叠。
-max_links: 最大测试链路数。</p>
-<p>Returns:
-{&quot;n_links&quot;: [...],
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>smf_interval</strong> -- SMF 间隔 (基础时隙)。</p></li>
+<li><p><strong>slice_duration</strong> -- 每条链路时间片持续长度 (调度时隙)。</p></li>
+<li><p><strong>slice_gap</strong> -- 相邻链路的偏移间距 (调度时隙, 默认等于 slice_duration)。
+当 gap &lt; slice_duration 时, 链路时间片将发生重叠。</p></li>
+<li><p><strong>max_links</strong> -- 最大测试链路数。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>{&quot;n_links&quot;: [...],
 &quot;n_conflicts&quot;: [...],
 &quot;max_no_conflict&quot;: int,
 &quot;utilization&quot;: [...]}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -942,16 +1023,22 @@ max_links: 最大测试链路数。</p>
 <li><p>配对密钥协商 (run_pairing_procedure)</p></li>
 <li><p>加密数据帧经 PHY 管道传输</p></li>
 </ol>
-<p>Returns:
-{&quot;snr_db&quot;, &quot;fer&quot;, &quot;access_ok&quot;, &quot;pairing_ok&quot;, &quot;encrypted&quot;: True}</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{&quot;snr_db&quot;, &quot;fer&quot;, &quot;access_ok&quot;, &quot;pairing_ok&quot;, &quot;encrypted&quot;: True}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.sim.link_sim.sim_encrypted_vs_plain">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_encrypted_vs_plain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">snr_range_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="（在 Python v3.14）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_frames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mcs_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'awgn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="（在 Python v3.14）"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_encrypted_vs_plain"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_encrypted_vs_plain" title="Link to this definition">¶</a></dt>
 <dd><p>对比加密与明文传输的误帧率。</p>
-<p>Returns:
-{&quot;snr_db&quot;, &quot;fer_encrypted&quot;, &quot;fer_plain&quot;}</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{&quot;snr_db&quot;, &quot;fer_encrypted&quot;, &quot;fer_plain&quot;}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -960,8 +1047,11 @@ max_links: 最大测试链路数。</p>
 <dd><p>配对信令经 PHY 管道传输的成功率仿真。</p>
 <p>将配对过程中的每条信令编码为 IQ, 经信道传输后解码,
 统计信令传输成功率。</p>
-<p>Returns:
-{&quot;snr_db&quot;, &quot;signaling_success_rate&quot;}</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{&quot;snr_db&quot;, &quot;signaling_success_rate&quot;}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -977,14 +1067,17 @@ max_links: 最大测试链路数。</p>
 <p>遍历所有 MCS 索引 (0-12), 对每个 SNR 点计算 FER 和有效吞吐量。
 有效吞吐量 = (1 - FER) * spectral_efficiency (bit/symbol)。
 AMC 策略: 在每个 SNR 点选择吞吐量最高的 MCS。</p>
-<p>Returns:
-{
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{
 &quot;snr_db&quot;: [...],
 &quot;mcs_fer&quot;: {mcs_idx: [fer_per_snr, ...]},
 &quot;mcs_throughput&quot;: {mcs_idx: [throughput_per_snr, ...]},
 &quot;amc_throughput&quot;: [...],  # AMC 包络吞吐量
 &quot;amc_mcs&quot;: [...],         # AMC 选择的 MCS 索引
 }</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -994,8 +1087,9 @@ AMC 策略: 在每个 SNR 点选择吞吐量最高的 MCS。</p>
 <p>每帧传输失败时进行重传, 最多重传 max_retries 次。
 使用 B1 控制信息中的 harq_feedback 和 packet_sn 字段。
 标准 6.10.5 规定 MCS=15 表示重传帧。</p>
-<p>Returns:
-{
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{
 &quot;snr_db&quot;: [...],
 &quot;fer_no_harq&quot;: [...],     # 无重传 FER
 &quot;fer_harq&quot;: [...],        # HARQ FER (超过最大重传仍失败)
@@ -1003,6 +1097,8 @@ AMC 策略: 在每个 SNR 点选择吞吐量最高的 MCS。</p>
 &quot;throughput_no_harq&quot;: [...],  # 无重传吞吐量 (归一化)
 &quot;throughput_harq&quot;: [...],     # HARQ 吞吐量 (归一化)
 }</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -1011,12 +1107,15 @@ AMC 策略: 在每个 SNR 点选择吞吐量最高的 MCS。</p>
 <dd><p>跳频 + 多径信道链路仿真。</p>
 <p>每帧在不同频率信道上传输, 模拟跳频对抗频率选择性衰落的效果。
 对比固定信道 (Rayleigh) 与跳频 (不同信道独立衰落) 的 FER。</p>
-<p>Returns:
-{
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{
 &quot;snr_db&quot;: [...],
 &quot;fer_fixed&quot;: [...],     # 固定信道 FER
 &quot;fer_hopping&quot;: [...],   # 跳频 FER
 }</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -1031,8 +1130,9 @@ AMC 策略: 在每个 SNR 点选择吞吐量最高的 MCS。</p>
 <dd><p>QoS 管理器驱动的 ARQ 重传链路仿真。</p>
 <p>使用 QosLink 封装实现自动 ARQ 重传, 对比无 QoS 管理时的 FER。
 验证 QosManager 的序列号管理、重传决策和链路质量跟踪。</p>
-<p>Returns:
-{
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{
 &quot;snr_db&quot;: [...],
 &quot;fer_no_arq&quot;: [...],       # 无重传 FER
 &quot;fer_qos_arq&quot;: [...],      # QoS ARQ FER
@@ -1040,6 +1140,8 @@ AMC 策略: 在每个 SNR 点选择吞吐量最高的 MCS。</p>
 &quot;throughput_no_arq&quot;: [...],
 &quot;throughput_qos_arq&quot;: [...],
 }</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -1048,13 +1150,16 @@ AMC 策略: 在每个 SNR 点选择吞吐量最高的 MCS。</p>
 <dd><p>QoS 链路质量跟踪驱动的 AMC 自适应仿真。</p>
 <p>模拟 SNR 随时间变化的场景, QoS 管理器根据 FER
 反馈自动调整 MCS, 验证 AMC 跟踪性能。</p>
-<p>Returns:
-{
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{
 &quot;snr_trace&quot;: [...],
 &quot;mcs_trace&quot;: [...],
 &quot;fer_trace&quot;: [...],
 &quot;throughput_trace&quot;: [...],
 }</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -1062,14 +1167,17 @@ AMC 策略: 在每个 SNR 点选择吞吐量最高的 MCS。</p>
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_qos_flow_control</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_frames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">burst_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snr_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">15.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mcs_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high_watermark</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low_watermark</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'awgn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rician_k_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="（在 Python v3.14）"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_qos_flow_control"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_qos_flow_control" title="Link to this definition">¶</a></dt>
 <dd><p>QoS 流控机制仿真。</p>
 <p>模拟突发数据到达场景, 验证流控背压机制对缓冲区占用和丢包的影响。</p>
-<p>Returns:
-{
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{
 &quot;frame_idx&quot;: [...],
 &quot;buffer_occupancy&quot;: [...],
 &quot;flow_ctrl_bit&quot;: [...],
 &quot;paused&quot;: [...],
 &quot;tx_success&quot;: [...],
 }</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -1084,14 +1192,17 @@ AMC 策略: 在每个 SNR 点选择吞吐量最高的 MCS。</p>
 <dd><p>双 SleNode 实体数据交换仿真。</p>
 <p>创建 G 节点与 T 节点, 完成广播→接入→数据交换全流程。
 G 节点发送随机数据, T 节点接收并统计 FER 与字节误码率。</p>
-<p>Returns:
-{
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{
 &quot;snr_db&quot;: [...],
 &quot;fer&quot;: [...],
 &quot;byte_ber&quot;: [...],
 &quot;tx_count&quot;: int,
 &quot;rx_count&quot;: int,
 }</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -1104,13 +1215,16 @@ G 节点发送随机数据, T 节点接收并统计 FER 与字节误码率。</p
 <li><p>配对 (ECDH 密钥协商)</p></li>
 <li><p>加密数据帧传输</p></li>
 </ol>
-<p>Returns:
-{
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{
 &quot;snr_db&quot;: [...],
 &quot;fer_plain&quot;: [...],
 &quot;fer_encrypted&quot;: [...],
 &quot;pairing_ok&quot;: bool,
 }</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -1118,13 +1232,16 @@ G 节点发送随机数据, T 节点接收并统计 FER 与字节误码率。</p
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_dual_node_mcs_adapt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">snr_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_frames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_mcs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'awgn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="（在 Python v3.14）"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_dual_node_mcs_adapt"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_dual_node_mcs_adapt" title="Link to this definition">¶</a></dt>
 <dd><p>双节点 MCS 自适应仿真。</p>
 <p>固定 SNR 下连续帧传输, 跟踪 G 节点的 MCS 自适应过程和吞吐量变化。</p>
-<p>Returns:
-{
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{
 &quot;frame_idx&quot;: [...],
 &quot;mcs_history&quot;: [...],
 &quot;fer_history&quot;: [...],
 &quot;success_history&quot;: [...],
 }</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -1145,14 +1262,17 @@ G 节点发送随机数据, T 节点接收并统计 FER 与字节误码率。</p
 <dd><p>SleNode 跳频数据链路仿真。</p>
 <p>G 节点和 T 节点在跳频序列上逐帧通信,
 每帧发送后推进时隙, 观察信道号变化和传输成功率。</p>
-<p>Returns:
-{
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{
 &quot;channels&quot;: 使用过的信道号列表,
 &quot;unique_channels&quot;: 唯一信道数,
 &quot;success_count&quot;: 成功帧数,
 &quot;fer&quot;: 帧错误率,
 &quot;tx_powers&quot;: 各帧发射功率列表,
 }</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -1160,8 +1280,9 @@ G 节点发送随机数据, T 节点接收并统计 FER 与字节误码率。</p
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_node_access_flow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="（在 Python v3.14）"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_node_access_flow"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_node_access_flow" title="Link to this definition">¶</a></dt>
 <dd><p>SleNode 完整接入流程仿真。</p>
 <p>模拟 G 节点广播 → T 节点扫描/发现 → 接入 → 数据交换 → 断开。</p>
-<p>Returns:
-{
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{
 &quot;g_state&quot;: G 节点最终状态,
 &quot;t_state&quot;: T 节点最终状态,
 &quot;broadcast_frame_valid&quot;: 广播帧是否有效,
@@ -1169,6 +1290,8 @@ G 节点发送随机数据, T 节点接收并统计 FER 与字节误码率。</p
 &quot;scheduler_active&quot;: 调度器是否已注册链路,
 &quot;disconnect_ok&quot;: 断开是否成功,
 }</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -1176,8 +1299,11 @@ G 节点发送随机数据, T 节点接收并统计 FER 与字节误码率。</p
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_node_channel_sweep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">snr_range_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="（在 Python v3.14）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_frames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mcs_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'awgn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="（在 Python v3.14）"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_node_channel_sweep"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_node_channel_sweep" title="Link to this definition">¶</a></dt>
 <dd><p>SleNode 内置信道模型扫频仿真。</p>
 <p>使用节点内置的 ChannelModel, 遍历 SNR 范围统计 FER。</p>
-<p>Returns:
-{&quot;snr_db&quot;: [...], &quot;fer&quot;: [...], &quot;mcs_history&quot;: [...]}</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{&quot;snr_db&quot;: [...], &quot;fer&quot;: [...], &quot;mcs_history&quot;: [...]}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -1185,24 +1311,30 @@ G 节点发送随机数据, T 节点接收并统计 FER 与字节误码率。</p
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_node_power_adapt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">snr_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_frames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">80</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="（在 Python v3.14）"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_node_power_adapt"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_node_power_adapt" title="Link to this definition">¶</a></dt>
 <dd><p>SleNode 功率自适应仿真。</p>
 <p>节点逐帧通信, 根据反馈结果动态调整发射功率。</p>
-<p>Returns:
-{
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{
 &quot;frame_idx&quot;: [...],
 &quot;power_history&quot;: [...],
 &quot;success_history&quot;: [...],
 &quot;fer&quot;: float,
 }</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.sim.link_sim.sim_node_measurement">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_node_measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_measur</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="（在 Python v3.14）"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_node_measurement"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_node_measurement" title="Link to this definition">¶</a></dt>
 <dd><p>SleNode 测量信号生成仿真。</p>
-<p>Returns:
-{
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{
 &quot;signal_length&quot;: 测量信号长度,
 &quot;signal_energy&quot;: 信号能量,
 }</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -1216,17 +1348,23 @@ G 节点发送随机数据, T 节点接收并统计 FER 与字节误码率。</p
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_doppler_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doppler_range_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="（在 Python v3.14）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snr_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">12.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_frames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mcs_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'rayleigh'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eq_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'zf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="（在 Python v3.14）"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_doppler_link"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_doppler_link" title="Link to this definition">¶</a></dt>
 <dd><p>Doppler 时变信道仿真: 扫描不同多普勒频移下的 FER。</p>
 <p>使用 Jakes 求和正弦模型生成时间相关衰落, 评估 FER 随 Doppler 扩展的变化。</p>
-<p>Args:
-doppler_range_hz: Doppler 频移扫描范围 (Hz)。
-snr_db: 固定 SNR (dB)。
-n_frames: 每个 Doppler 点仿真帧数。
-mcs_index: MCS 索引。
-payload_size: 载荷字节数。
-channel_type: 衰落类型 (&quot;rayleigh&quot; / &quot;rician&quot;)。
-eq_method: 均衡方法。
-seed: 随机种子。</p>
-<p>Returns:
-{&quot;doppler_hz&quot;: [...], &quot;fer&quot;: [...], &quot;avg_fade_depth_db&quot;: [...]}</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>doppler_range_hz</strong> -- Doppler 频移扫描范围 (Hz)。</p></li>
+<li><p><strong>snr_db</strong> -- 固定 SNR (dB)。</p></li>
+<li><p><strong>n_frames</strong> -- 每个 Doppler 点仿真帧数。</p></li>
+<li><p><strong>mcs_index</strong> -- MCS 索引。</p></li>
+<li><p><strong>payload_size</strong> -- 载荷字节数。</p></li>
+<li><p><strong>channel_type</strong> -- 衰落类型 (&quot;rayleigh&quot; / &quot;rician&quot;)。</p></li>
+<li><p><strong>eq_method</strong> -- 均衡方法。</p></li>
+<li><p><strong>seed</strong> -- 随机种子。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>{&quot;doppler_hz&quot;: [...], &quot;fer&quot;: [...], &quot;avg_fade_depth_db&quot;: [...]}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -1234,35 +1372,47 @@ seed: 随机种子。</p>
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_multi_user_interference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_interferers_range</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="（在 Python v3.14）"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="（在 Python v3.14）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sir_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snr_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">15.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_frames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mcs_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'awgn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_offset_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="（在 Python v3.14）"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_multi_user_interference"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_multi_user_interference" title="Link to this definition">¶</a></dt>
 <dd><p>多用户干扰仿真: 扫描不同干扰用户数下的 FER 和 SINR。</p>
 <p>多个干扰用户在同一频段 (或邻信道) 独立发送, 叠加到有用信号上。</p>
-<p>Args:
-n_interferers_range: 干扰用户数扫描列表。
-sir_db: 每个干扰用户的 SIR (dB)。
-snr_db: 噪声 SNR (dB)。
-n_frames: 每个点仿真帧数。
-mcs_index: MCS 索引。
-payload_size: 载荷字节数。
-channel_type: 信道类型。
-freq_offset_hz: 干扰频偏 (Hz), 0 为同信道。
-seed: 随机种子。</p>
-<p>Returns:
-{&quot;n_interferers&quot;: [...], &quot;fer&quot;: [...], &quot;sinr_db&quot;: [...]}</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_interferers_range</strong> -- 干扰用户数扫描列表。</p></li>
+<li><p><strong>sir_db</strong> -- 每个干扰用户的 SIR (dB)。</p></li>
+<li><p><strong>snr_db</strong> -- 噪声 SNR (dB)。</p></li>
+<li><p><strong>n_frames</strong> -- 每个点仿真帧数。</p></li>
+<li><p><strong>mcs_index</strong> -- MCS 索引。</p></li>
+<li><p><strong>payload_size</strong> -- 载荷字节数。</p></li>
+<li><p><strong>channel_type</strong> -- 信道类型。</p></li>
+<li><p><strong>freq_offset_hz</strong> -- 干扰频偏 (Hz), 0 为同信道。</p></li>
+<li><p><strong>seed</strong> -- 随机种子。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>{&quot;n_interferers&quot;: [...], &quot;fer&quot;: [...], &quot;sinr_db&quot;: [...]}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.sim.link_sim.sim_sir_sweep">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_sir_sweep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sir_range_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="（在 Python v3.14）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_interferers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snr_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="（在 Python v3.14）"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">20.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_frames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mcs_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'awgn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="（在 Python v3.14）"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_sir_sweep"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_sir_sweep" title="Link to this definition">¶</a></dt>
 <dd><p>SIR 扫描仿真: 固定干扰用户数, 扫描 SIR 下的 FER。</p>
-<p>Args:
-sir_range_db: SIR 扫描范围 (dB)。
-n_interferers: 干扰用户数。
-snr_db: 噪声 SNR (dB)。
-n_frames: 每个 SIR 点帧数。
-mcs_index: MCS 索引。
-payload_size: 载荷字节数。
-channel_type: 信道类型。
-seed: 随机种子。</p>
-<p>Returns:
-{&quot;sir_db&quot;: [...], &quot;fer&quot;: [...], &quot;sinr_db&quot;: [...]}</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sir_range_db</strong> -- SIR 扫描范围 (dB)。</p></li>
+<li><p><strong>n_interferers</strong> -- 干扰用户数。</p></li>
+<li><p><strong>snr_db</strong> -- 噪声 SNR (dB)。</p></li>
+<li><p><strong>n_frames</strong> -- 每个 SIR 点帧数。</p></li>
+<li><p><strong>mcs_index</strong> -- MCS 索引。</p></li>
+<li><p><strong>payload_size</strong> -- 载荷字节数。</p></li>
+<li><p><strong>channel_type</strong> -- 信道类型。</p></li>
+<li><p><strong>seed</strong> -- 随机种子。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>{&quot;sir_db&quot;: [...], &quot;fer&quot;: [...], &quot;sinr_db&quot;: [...]}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -1271,8 +1421,11 @@ seed: 随机种子。</p>
 <dd><p>Doppler + 多径信道联合仿真。</p>
 <p>在 ITU Indoor Office B 多径模型基础上叠加 Doppler 时变,
 评估信道时变对频率选择性衰落下的接收性能影响。</p>
-<p>Returns:
-{&quot;doppler_hz&quot;: [...], &quot;fer&quot;: [...]}</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{&quot;doppler_hz&quot;: [...], &quot;fer&quot;: [...]}</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">

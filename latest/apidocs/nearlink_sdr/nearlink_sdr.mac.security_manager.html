@@ -637,8 +637,11 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.ECDHKeyPair.compute_shared_secret">
 <span class="sig-name descname"><span class="pre">compute_shared_secret</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peer_pub_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="（在 Python v3.14）"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">peer_pub_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="（在 Python v3.14）"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="（在 Python v3.14）"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security_manager.html#ECDHKeyPair.compute_shared_secret"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security_manager.ECDHKeyPair.compute_shared_secret" title="Link to this definition">¶</a></dt>
 <dd><p>计算 ECDH 共享密钥。</p>
-<p>Returns:
-共享密钥 (32 字节)。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>共享密钥 (32 字节)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -942,25 +945,35 @@ AESCCM 需要 13 字节 nonce 部分。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.FrameCryptoContext.encrypt">
 <span class="sig-name descname"><span class="pre">encrypt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plaintext</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="（在 Python v3.14）"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">aad</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="（在 Python v3.14）"><span class="pre">bytes</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">b''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="（在 Python v3.14）"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="（在 Python v3.14）"><span class="pre">bytes</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="（在 Python v3.14）"><span class="pre">bytes</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security_manager.html#FrameCryptoContext.encrypt"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security_manager.FrameCryptoContext.encrypt" title="Link to this definition">¶</a></dt>
 <dd><p>加密一帧数据, 自动递增 payload_count。</p>
-<p>Args:
-plaintext: 明文数据。
-aad: 关联数据 (不加密但参与完整性校验)。</p>
-<p>Returns:
-(密文, MIC)。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plaintext</strong> -- 明文数据。</p></li>
+<li><p><strong>aad</strong> -- 关联数据 (不加密但参与完整性校验)。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>(密文, MIC)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.FrameCryptoContext.decrypt">
 <span class="sig-name descname"><span class="pre">decrypt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ciphertext</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="（在 Python v3.14）"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mic</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="（在 Python v3.14）"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">aad</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="（在 Python v3.14）"><span class="pre">bytes</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">b''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="（在 Python v3.14）"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security_manager.html#FrameCryptoContext.decrypt"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security_manager.FrameCryptoContext.decrypt" title="Link to this definition">¶</a></dt>
 <dd><p>解密一帧数据, 自动递增 payload_count。</p>
-<p>Args:
-ciphertext: 密文数据。
-mic: 消息完整性码。
-aad: 关联数据。</p>
-<p>Returns:
-解密后的明文。</p>
-<p>Raises:
-cryptography.exceptions.InvalidTag: MIC 验证失败。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ciphertext</strong> -- 密文数据。</p></li>
+<li><p><strong>mic</strong> -- 消息完整性码。</p></li>
+<li><p><strong>aad</strong> -- 关联数据。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>解密后的明文。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -977,8 +990,11 @@ cryptography.exceptions.InvalidTag: MIC 验证失败。</p>
 <dd><p>执行完整的端到端配对流程。</p>
 <p>模拟 G 节点和 T 节点之间的配对信令交互,
 完成密钥交换和会话密钥派生。</p>
-<p>Returns:
-(G 节点管理器, T 节点管理器)。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(G 节点管理器, T 节点管理器)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

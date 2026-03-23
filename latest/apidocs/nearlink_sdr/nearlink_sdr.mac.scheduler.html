@@ -827,10 +827,14 @@ repeat_count: 时间片重复次数。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.TimeSlice.absolute_intervals">
 <span class="sig-name descname"><span class="pre">absolute_intervals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="（在 Python v3.14）"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="（在 Python v3.14）"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#TimeSlice.absolute_intervals"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.TimeSlice.absolute_intervals" title="Link to this definition">¶</a></dt>
 <dd><p>计算此时间片展开后的所有绝对时间区间。</p>
-<p>Args:
-slot_us: 调度时隙的微秒值。</p>
-<p>Returns:
-[(start_us, end_us), ...] 时间区间列表。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>slot_us</strong> -- 调度时隙的微秒值。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>[(start_us, end_us), ...] 时间区间列表。</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -993,16 +997,22 @@ link_entries: 已注册的链路调度条目。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.Superframe.active_region_us">
 <span class="sig-name descname"><span class="pre">active_region_us</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="（在 Python v3.14）"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#Superframe.active_region_us"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.Superframe.active_region_us" title="Link to this definition">¶</a></dt>
 <dd><p>计算活动区间 (从 SMF 到最后一个时间片结束)。</p>
-<p>Returns:
-(start_us, end_us) 活动区间。start_us 始终为 0 (SMF 起始)。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(start_us, end_us) 活动区间。start_us 始终为 0 (SMF 起始)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.Superframe.check_conflicts">
 <span class="sig-name descname"><span class="pre">check_conflicts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="（在 Python v3.14）"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="（在 Python v3.14）"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#Superframe.check_conflicts"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.Superframe.check_conflicts" title="Link to this definition">¶</a></dt>
 <dd><p>检测时间片冲突。</p>
-<p>Returns:
-冲突列表 [(link_id_a, link_id_b, overlap_start, overlap_end), ...]。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>冲突列表 [(link_id_a, link_id_b, overlap_start, overlap_end), ...]。</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -1045,30 +1055,42 @@ anchor_offset_us: 事件组起始偏移 (μs)。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.EventGroupScheduler.event_start_times">
 <span class="sig-name descname"><span class="pre">event_start_times</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="（在 Python v3.14）"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#EventGroupScheduler.event_start_times"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.EventGroupScheduler.event_start_times" title="Link to this definition">¶</a></dt>
 <dd><p>计算指定事件组内每个事件的起始时间。</p>
-<p>Args:
-group_index: 第几个事件组 (从 0 开始)。</p>
-<p>Returns:
-事件起始时间列表 (μs, 绝对时间)。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>group_index</strong> -- 第几个事件组 (从 0 开始)。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>事件起始时间列表 (μs, 绝对时间)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.EventGroupScheduler.tx_window">
 <span class="sig-name descname"><span class="pre">tx_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_start_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="（在 Python v3.14）"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#EventGroupScheduler.tx_window"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.EventGroupScheduler.tx_window" title="Link to this definition">¶</a></dt>
 <dd><p>计算一个事件中先发窗口的时间区间。</p>
-<p>Args:
-event_start_us: 事件起始时间 (μs)。</p>
-<p>Returns:
-(start_us, end_us) 先发窗口区间。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event_start_us</strong> -- 事件起始时间 (μs)。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>(start_us, end_us) 先发窗口区间。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.EventGroupScheduler.rx_window">
 <span class="sig-name descname"><span class="pre">rx_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_start_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="（在 Python v3.14）"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#EventGroupScheduler.rx_window"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.EventGroupScheduler.rx_window" title="Link to this definition">¶</a></dt>
 <dd><p>计算一个事件中后发窗口的时间区间。</p>
-<p>Args:
-event_start_us: 事件起始时间 (μs)。</p>
-<p>Returns:
-(start_us, end_us) 后发窗口区间。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event_start_us</strong> -- 事件起始时间 (μs)。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>(start_us, end_us) 后发窗口区间。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -1076,20 +1098,28 @@ event_start_us: 事件起始时间 (μs)。</p>
 <span class="sig-name descname"><span class="pre">event_schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="（在 Python v3.14）"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="（在 Python v3.14）"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="（在 Python v3.14）"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#EventGroupScheduler.event_schedule"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.EventGroupScheduler.event_schedule" title="Link to this definition">¶</a></dt>
 <dd><p>生成完整的事件调度表。</p>
 <p>返回每个事件的起始时间、先发窗口和后发窗口。</p>
-<p>Args:
-group_index: 事件组索引。</p>
-<p>Returns:
-[{&quot;event_start&quot;: int, &quot;tx_window&quot;: (s, e), &quot;rx_window&quot;: (s, e)}, ...]</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>group_index</strong> -- 事件组索引。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>[{&quot;event_start&quot;: int, &quot;tx_window&quot;: (s, e), &quot;rx_window&quot;: (s, e)}, ...]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.EventGroupScheduler.next_event_group_start">
 <span class="sig-name descname"><span class="pre">next_event_group_start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#EventGroupScheduler.next_event_group_start"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.EventGroupScheduler.next_event_group_start" title="Link to this definition">¶</a></dt>
 <dd><p>计算下一个事件组的起始时间。</p>
-<p>Args:
-current_us: 当前时间 (μs)。</p>
-<p>Returns:
-下一个事件组起始时间 (μs)。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>current_us</strong> -- 当前时间 (μs)。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>下一个事件组起始时间 (μs)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -1236,12 +1266,17 @@ multi_interval: 多级收发间隔配置。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.ScheduleManager.register_link">
 <span class="sig-name descname"><span class="pre">register_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">link_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">timing</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.mac.scheduler.EventTimingParams" title="nearlink_sdr.mac.scheduler.EventTimingParams"><span class="pre">nearlink_sdr.mac.scheduler.EventTimingParams</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_slices</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="（在 Python v3.14）"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nearlink_sdr.mac.scheduler.TimeSlice" title="nearlink_sdr.mac.scheduler.TimeSlice"><span class="pre">nearlink_sdr.mac.scheduler.TimeSlice</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="（在 Python v3.14）"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchor_slot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchor_offset_us</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="（在 Python v3.14）"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#ScheduleManager.register_link"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.ScheduleManager.register_link" title="Link to this definition">¶</a></dt>
 <dd><p>注册链路并配置事件组调度。</p>
-<p>Args:
-link_id: 逻辑链路标识。
-timing: 事件计时参数。
-time_slices: 超帧内时间片列表 (可选)。
-anchor_slot: 事件组锚点时隙。
-anchor_offset_us: 事件组起始偏移 (μs)。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>link_id</strong> -- 逻辑链路标识。</p></li>
+<li><p><strong>timing</strong> -- 事件计时参数。</p></li>
+<li><p><strong>time_slices</strong> -- 超帧内时间片列表 (可选)。</p></li>
+<li><p><strong>anchor_slot</strong> -- 事件组锚点时隙。</p></li>
+<li><p><strong>anchor_offset_us</strong> -- 事件组起始偏移 (μs)。</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -1272,8 +1307,11 @@ anchor_offset_us: 事件组起始偏移 (μs)。</p>
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.ScheduleManager.update_tx_rx_interval">
 <span class="sig-name descname"><span class="pre">update_tx_rx_interval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/scheduler.html#ScheduleManager.update_tx_rx_interval"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.scheduler.ScheduleManager.update_tx_rx_interval" title="Link to this definition">¶</a></dt>
 <dd><p>更新收发间隔类型。</p>
-<p>Returns:
-更新后的间隔值 (μs)。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>更新后的间隔值 (μs)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -1282,8 +1320,11 @@ anchor_offset_us: 事件组起始偏移 (μs)。</p>
 <dd><p>检查链路是否超时。</p>
 <p>基于事件组调度器的超时参数判断当前时间
 是否超过了锚点 + 超时时限。</p>
-<p>Returns:
-True 表示已超时。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True 表示已超时。</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
