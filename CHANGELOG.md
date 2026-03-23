@@ -5,17 +5,19 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/),
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
-## [1.0.4] - 2026-03-23
+## [1.0.6] - 2026-03-23
 
 ### Fixed
 
-- PDF 代码块溢出: 启用 Sphinx verbatimforcewraps, 严重溢出 (>=100pt) 从 3426 降至 0, 最大溢出从 233pt 降至 95pt
-- 内联代码断行: 添加 hyphenat 包, 允许等宽字体连字符断行
+- PDF 代码块溢出: 启用 Sphinx verbatimforcewraps, 严重溢出 (>=100pt) 从 3426 降至 0
+- PDF 表格溢出: sed 后处理 longtable 列格式, 双语 PDF 均无严重溢出
+- 英文 PDF 构建: 显式加载 xeCJK, 页边距扩展至 1.5cm
+- Release CI: 修复 artifact 路径, HTML 包排除 .doctrees 缓存
 
 ### Changed
 
-- Release CI: 构建并上传双语 PDF (中文/英文) 和 HTML 文档压缩包
-- Makefile: 新增 `docs-pdf-en` 目标, 构建英文版 PDF
+- Release CI: 构建并上传双语 PDF + HTML 文档压缩包
+- Makefile: 新增 `docs-pdf-en` 目标
 
 ## [1.0.3] - 2026-03-23
 
