@@ -1,0 +1,1146 @@
+# {py:mod}`nearlink_sdr.mac.scheduler`
+
+```{py:module} nearlink_sdr.mac.scheduler
+```
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler
+:allowtitles:
+```
+
+## Module Contents
+
+### Classes
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`EventGroupScheduler <nearlink_sdr.mac.scheduler.EventGroupScheduler>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventGroupScheduler
+    :summary:
+    ```
+* - {py:obj}`EventTimingParams <nearlink_sdr.mac.scheduler.EventTimingParams>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventTimingParams
+    :summary:
+    ```
+* - {py:obj}`LinkScheduleEntry <nearlink_sdr.mac.scheduler.LinkScheduleEntry>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.scheduler.LinkScheduleEntry
+    :summary:
+    ```
+* - {py:obj}`MultiLevelInterval <nearlink_sdr.mac.scheduler.MultiLevelInterval>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.scheduler.MultiLevelInterval
+    :summary:
+    ```
+* - {py:obj}`ScheduleManager <nearlink_sdr.mac.scheduler.ScheduleManager>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.scheduler.ScheduleManager
+    :summary:
+    ```
+* - {py:obj}`ScheduleSlotType <nearlink_sdr.mac.scheduler.ScheduleSlotType>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.scheduler.ScheduleSlotType
+    :summary:
+    ```
+* - {py:obj}`SleepClockAccuracy <nearlink_sdr.mac.scheduler.SleepClockAccuracy>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SleepClockAccuracy
+    :summary:
+    ```
+* - {py:obj}`SlotCounter <nearlink_sdr.mac.scheduler.SlotCounter>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SlotCounter
+    :summary:
+    ```
+* - {py:obj}`SmfScheduleConfig <nearlink_sdr.mac.scheduler.SmfScheduleConfig>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SmfScheduleConfig
+    :summary:
+    ```
+* - {py:obj}`Superframe <nearlink_sdr.mac.scheduler.Superframe>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.scheduler.Superframe
+    :summary:
+    ```
+* - {py:obj}`TimeSlice <nearlink_sdr.mac.scheduler.TimeSlice>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.scheduler.TimeSlice
+    :summary:
+    ```
+* - {py:obj}`TxRxIntervalType <nearlink_sdr.mac.scheduler.TxRxIntervalType>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.scheduler.TxRxIntervalType
+    :summary:
+    ```
+````
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`schedule_slot_us <nearlink_sdr.mac.scheduler.schedule_slot_us>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.scheduler.schedule_slot_us
+    :summary:
+    ```
+* - {py:obj}`tx_rx_interval_us <nearlink_sdr.mac.scheduler.tx_rx_interval_us>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.scheduler.tx_rx_interval_us
+    :summary:
+    ```
+````
+
+### API
+
+`````{py:class} EventGroupScheduler
+:canonical: nearlink_sdr.mac.scheduler.EventGroupScheduler
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventGroupScheduler
+```
+
+````{py:attribute} timing
+:canonical: nearlink_sdr.mac.scheduler.EventGroupScheduler.timing
+:type: nearlink_sdr.mac.scheduler.EventTimingParams
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventGroupScheduler.timing
+```
+
+````
+
+````{py:attribute} anchor_slot
+:canonical: nearlink_sdr.mac.scheduler.EventGroupScheduler.anchor_slot
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventGroupScheduler.anchor_slot
+```
+
+````
+
+````{py:attribute} anchor_offset_us
+:canonical: nearlink_sdr.mac.scheduler.EventGroupScheduler.anchor_offset_us
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventGroupScheduler.anchor_offset_us
+```
+
+````
+
+````{py:method} anchor_time_us() -> int
+:canonical: nearlink_sdr.mac.scheduler.EventGroupScheduler.anchor_time_us
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventGroupScheduler.anchor_time_us
+```
+
+````
+
+````{py:method} event_start_times(group_index: int = 0) -> list[int]
+:canonical: nearlink_sdr.mac.scheduler.EventGroupScheduler.event_start_times
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventGroupScheduler.event_start_times
+```
+
+````
+
+````{py:method} tx_window(event_start_us: int) -> tuple[int, int]
+:canonical: nearlink_sdr.mac.scheduler.EventGroupScheduler.tx_window
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventGroupScheduler.tx_window
+```
+
+````
+
+````{py:method} rx_window(event_start_us: int) -> tuple[int, int]
+:canonical: nearlink_sdr.mac.scheduler.EventGroupScheduler.rx_window
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventGroupScheduler.rx_window
+```
+
+````
+
+````{py:method} event_schedule(group_index: int = 0) -> list[dict[str, int | tuple[int, int]]]
+:canonical: nearlink_sdr.mac.scheduler.EventGroupScheduler.event_schedule
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventGroupScheduler.event_schedule
+```
+
+````
+
+````{py:method} next_event_group_start(current_us: int) -> int
+:canonical: nearlink_sdr.mac.scheduler.EventGroupScheduler.next_event_group_start
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventGroupScheduler.next_event_group_start
+```
+
+````
+
+`````
+
+`````{py:class} EventTimingParams
+:canonical: nearlink_sdr.mac.scheduler.EventTimingParams
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventTimingParams
+```
+
+````{py:attribute} event_group_period
+:canonical: nearlink_sdr.mac.scheduler.EventTimingParams.event_group_period
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventTimingParams.event_group_period
+```
+
+````
+
+````{py:attribute} event_period
+:canonical: nearlink_sdr.mac.scheduler.EventTimingParams.event_period
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventTimingParams.event_period
+```
+
+````
+
+````{py:attribute} intra_event_interval
+:canonical: nearlink_sdr.mac.scheduler.EventTimingParams.intra_event_interval
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventTimingParams.intra_event_interval
+```
+
+````
+
+````{py:attribute} inter_event_interval
+:canonical: nearlink_sdr.mac.scheduler.EventTimingParams.inter_event_interval
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventTimingParams.inter_event_interval
+```
+
+````
+
+````{py:attribute} event_count
+:canonical: nearlink_sdr.mac.scheduler.EventTimingParams.event_count
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventTimingParams.event_count
+```
+
+````
+
+````{py:attribute} schedule_slot_type
+:canonical: nearlink_sdr.mac.scheduler.EventTimingParams.schedule_slot_type
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventTimingParams.schedule_slot_type
+```
+
+````
+
+````{py:attribute} first_tx
+:canonical: nearlink_sdr.mac.scheduler.EventTimingParams.first_tx
+:type: bool
+:value: >
+   True
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventTimingParams.first_tx
+```
+
+````
+
+````{py:attribute} tx_max_offset
+:canonical: nearlink_sdr.mac.scheduler.EventTimingParams.tx_max_offset
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventTimingParams.tx_max_offset
+```
+
+````
+
+````{py:attribute} rx_max_offset
+:canonical: nearlink_sdr.mac.scheduler.EventTimingParams.rx_max_offset
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventTimingParams.rx_max_offset
+```
+
+````
+
+````{py:attribute} tx_max_pdu
+:canonical: nearlink_sdr.mac.scheduler.EventTimingParams.tx_max_pdu
+:type: int
+:value: >
+   251
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventTimingParams.tx_max_pdu
+```
+
+````
+
+````{py:attribute} rx_max_pdu
+:canonical: nearlink_sdr.mac.scheduler.EventTimingParams.rx_max_pdu
+:type: int
+:value: >
+   251
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventTimingParams.rx_max_pdu
+```
+
+````
+
+````{py:attribute} delay_period
+:canonical: nearlink_sdr.mac.scheduler.EventTimingParams.delay_period
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventTimingParams.delay_period
+```
+
+````
+
+````{py:attribute} supervision_timeout
+:canonical: nearlink_sdr.mac.scheduler.EventTimingParams.supervision_timeout
+:type: int
+:value: >
+   100
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventTimingParams.supervision_timeout
+```
+
+````
+
+````{py:property} schedule_slot_us
+:canonical: nearlink_sdr.mac.scheduler.EventTimingParams.schedule_slot_us
+:type: int
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventTimingParams.schedule_slot_us
+```
+
+````
+
+````{py:property} event_group_period_us
+:canonical: nearlink_sdr.mac.scheduler.EventTimingParams.event_group_period_us
+:type: int
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventTimingParams.event_group_period_us
+```
+
+````
+
+````{py:property} event_period_us
+:canonical: nearlink_sdr.mac.scheduler.EventTimingParams.event_period_us
+:type: int
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventTimingParams.event_period_us
+```
+
+````
+
+````{py:property} supervision_timeout_us
+:canonical: nearlink_sdr.mac.scheduler.EventTimingParams.supervision_timeout_us
+:type: int
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventTimingParams.supervision_timeout_us
+```
+
+````
+
+````{py:property} max_event_duration_us
+:canonical: nearlink_sdr.mac.scheduler.EventTimingParams.max_event_duration_us
+:type: int
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.EventTimingParams.max_event_duration_us
+```
+
+````
+
+`````
+
+`````{py:class} LinkScheduleEntry
+:canonical: nearlink_sdr.mac.scheduler.LinkScheduleEntry
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.LinkScheduleEntry
+```
+
+````{py:attribute} link_id
+:canonical: nearlink_sdr.mac.scheduler.LinkScheduleEntry.link_id
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.LinkScheduleEntry.link_id
+```
+
+````
+
+````{py:attribute} effective_slot
+:canonical: nearlink_sdr.mac.scheduler.LinkScheduleEntry.effective_slot
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.LinkScheduleEntry.effective_slot
+```
+
+````
+
+````{py:attribute} period_factor
+:canonical: nearlink_sdr.mac.scheduler.LinkScheduleEntry.period_factor
+:type: int
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.LinkScheduleEntry.period_factor
+```
+
+````
+
+````{py:attribute} schedule_slot_type
+:canonical: nearlink_sdr.mac.scheduler.LinkScheduleEntry.schedule_slot_type
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.LinkScheduleEntry.schedule_slot_type
+```
+
+````
+
+````{py:attribute} time_slices
+:canonical: nearlink_sdr.mac.scheduler.LinkScheduleEntry.time_slices
+:type: list[nearlink_sdr.mac.scheduler.TimeSlice]
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.LinkScheduleEntry.time_slices
+```
+
+````
+
+`````
+
+`````{py:class} MultiLevelInterval
+:canonical: nearlink_sdr.mac.scheduler.MultiLevelInterval
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.MultiLevelInterval
+```
+
+````{py:attribute} levels
+:canonical: nearlink_sdr.mac.scheduler.MultiLevelInterval.levels
+:type: list[int]
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.MultiLevelInterval.levels
+```
+
+````
+
+````{py:method} get(level: int) -> int
+:canonical: nearlink_sdr.mac.scheduler.MultiLevelInterval.get
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.MultiLevelInterval.get
+```
+
+````
+
+````{py:method} set(level: int, value_us: int) -> None
+:canonical: nearlink_sdr.mac.scheduler.MultiLevelInterval.set
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.MultiLevelInterval.set
+```
+
+````
+
+````{py:method} pack() -> bytes
+:canonical: nearlink_sdr.mac.scheduler.MultiLevelInterval.pack
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.MultiLevelInterval.pack
+```
+
+````
+
+````{py:method} unpack(data: bytes) -> nearlink_sdr.mac.scheduler.MultiLevelInterval
+:canonical: nearlink_sdr.mac.scheduler.MultiLevelInterval.unpack
+:classmethod:
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.MultiLevelInterval.unpack
+```
+
+````
+
+`````
+
+`````{py:class} ScheduleManager
+:canonical: nearlink_sdr.mac.scheduler.ScheduleManager
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.ScheduleManager
+```
+
+````{py:attribute} superframe
+:canonical: nearlink_sdr.mac.scheduler.ScheduleManager.superframe
+:type: nearlink_sdr.mac.scheduler.Superframe
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.ScheduleManager.superframe
+```
+
+````
+
+````{py:attribute} event_schedulers
+:canonical: nearlink_sdr.mac.scheduler.ScheduleManager.event_schedulers
+:type: dict[int, nearlink_sdr.mac.scheduler.EventGroupScheduler]
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.ScheduleManager.event_schedulers
+```
+
+````
+
+````{py:attribute} slot_counter
+:canonical: nearlink_sdr.mac.scheduler.ScheduleManager.slot_counter
+:type: nearlink_sdr.mac.scheduler.SlotCounter
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.ScheduleManager.slot_counter
+```
+
+````
+
+````{py:attribute} tx_rx_interval
+:canonical: nearlink_sdr.mac.scheduler.ScheduleManager.tx_rx_interval
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.ScheduleManager.tx_rx_interval
+```
+
+````
+
+````{py:attribute} multi_interval
+:canonical: nearlink_sdr.mac.scheduler.ScheduleManager.multi_interval
+:type: nearlink_sdr.mac.scheduler.MultiLevelInterval
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.ScheduleManager.multi_interval
+```
+
+````
+
+````{py:method} configure_smf(config: nearlink_sdr.mac.scheduler.SmfScheduleConfig) -> None
+:canonical: nearlink_sdr.mac.scheduler.ScheduleManager.configure_smf
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.ScheduleManager.configure_smf
+```
+
+````
+
+````{py:method} register_link(link_id: int, timing: nearlink_sdr.mac.scheduler.EventTimingParams, time_slices: list[nearlink_sdr.mac.scheduler.TimeSlice] | None = None, anchor_slot: int = 0, anchor_offset_us: int = 0) -> None
+:canonical: nearlink_sdr.mac.scheduler.ScheduleManager.register_link
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.ScheduleManager.register_link
+```
+
+````
+
+````{py:method} unregister_link(link_id: int) -> None
+:canonical: nearlink_sdr.mac.scheduler.ScheduleManager.unregister_link
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.ScheduleManager.unregister_link
+```
+
+````
+
+````{py:method} get_event_schedule(link_id: int, group_index: int = 0) -> list[dict[str, int | tuple[int, int]]] | None
+:canonical: nearlink_sdr.mac.scheduler.ScheduleManager.get_event_schedule
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.ScheduleManager.get_event_schedule
+```
+
+````
+
+````{py:method} next_smf_slot() -> int
+:canonical: nearlink_sdr.mac.scheduler.ScheduleManager.next_smf_slot
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.ScheduleManager.next_smf_slot
+```
+
+````
+
+````{py:method} advance_time(slots: int) -> int
+:canonical: nearlink_sdr.mac.scheduler.ScheduleManager.advance_time
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.ScheduleManager.advance_time
+```
+
+````
+
+````{py:method} update_tx_rx_interval(interval_type: int) -> int
+:canonical: nearlink_sdr.mac.scheduler.ScheduleManager.update_tx_rx_interval
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.ScheduleManager.update_tx_rx_interval
+```
+
+````
+
+````{py:method} check_supervision_timeout(link_id: int) -> bool
+:canonical: nearlink_sdr.mac.scheduler.ScheduleManager.check_supervision_timeout
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.ScheduleManager.check_supervision_timeout
+```
+
+````
+
+`````
+
+`````{py:class} ScheduleSlotType()
+:canonical: nearlink_sdr.mac.scheduler.ScheduleSlotType
+
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.ScheduleSlotType
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.ScheduleSlotType.__init__
+```
+
+````{py:attribute} T_25US
+:canonical: nearlink_sdr.mac.scheduler.ScheduleSlotType.T_25US
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.ScheduleSlotType.T_25US
+```
+
+````
+
+````{py:attribute} T_50US
+:canonical: nearlink_sdr.mac.scheduler.ScheduleSlotType.T_50US
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.ScheduleSlotType.T_50US
+```
+
+````
+
+````{py:attribute} T_75US
+:canonical: nearlink_sdr.mac.scheduler.ScheduleSlotType.T_75US
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.ScheduleSlotType.T_75US
+```
+
+````
+
+````{py:attribute} T_100US
+:canonical: nearlink_sdr.mac.scheduler.ScheduleSlotType.T_100US
+:value: >
+   3
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.ScheduleSlotType.T_100US
+```
+
+````
+
+````{py:attribute} T_125US
+:canonical: nearlink_sdr.mac.scheduler.ScheduleSlotType.T_125US
+:value: >
+   4
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.ScheduleSlotType.T_125US
+```
+
+````
+
+`````
+
+`````{py:class} SleepClockAccuracy()
+:canonical: nearlink_sdr.mac.scheduler.SleepClockAccuracy
+
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SleepClockAccuracy
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SleepClockAccuracy.__init__
+```
+
+````{py:attribute} PPM_251_500
+:canonical: nearlink_sdr.mac.scheduler.SleepClockAccuracy.PPM_251_500
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SleepClockAccuracy.PPM_251_500
+```
+
+````
+
+````{py:attribute} PPM_151_250
+:canonical: nearlink_sdr.mac.scheduler.SleepClockAccuracy.PPM_151_250
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SleepClockAccuracy.PPM_151_250
+```
+
+````
+
+````{py:attribute} PPM_101_150
+:canonical: nearlink_sdr.mac.scheduler.SleepClockAccuracy.PPM_101_150
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SleepClockAccuracy.PPM_101_150
+```
+
+````
+
+````{py:attribute} PPM_76_100
+:canonical: nearlink_sdr.mac.scheduler.SleepClockAccuracy.PPM_76_100
+:value: >
+   3
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SleepClockAccuracy.PPM_76_100
+```
+
+````
+
+````{py:attribute} PPM_51_75
+:canonical: nearlink_sdr.mac.scheduler.SleepClockAccuracy.PPM_51_75
+:value: >
+   4
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SleepClockAccuracy.PPM_51_75
+```
+
+````
+
+````{py:attribute} PPM_31_50
+:canonical: nearlink_sdr.mac.scheduler.SleepClockAccuracy.PPM_31_50
+:value: >
+   5
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SleepClockAccuracy.PPM_31_50
+```
+
+````
+
+````{py:attribute} PPM_21_30
+:canonical: nearlink_sdr.mac.scheduler.SleepClockAccuracy.PPM_21_30
+:value: >
+   6
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SleepClockAccuracy.PPM_21_30
+```
+
+````
+
+````{py:attribute} PPM_0_20
+:canonical: nearlink_sdr.mac.scheduler.SleepClockAccuracy.PPM_0_20
+:value: >
+   7
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SleepClockAccuracy.PPM_0_20
+```
+
+````
+
+`````
+
+`````{py:class} SlotCounter
+:canonical: nearlink_sdr.mac.scheduler.SlotCounter
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SlotCounter
+```
+
+````{py:attribute} value
+:canonical: nearlink_sdr.mac.scheduler.SlotCounter.value
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SlotCounter.value
+```
+
+````
+
+````{py:method} advance(slots: int = 1) -> int
+:canonical: nearlink_sdr.mac.scheduler.SlotCounter.advance
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SlotCounter.advance
+```
+
+````
+
+````{py:method} time_us() -> int
+:canonical: nearlink_sdr.mac.scheduler.SlotCounter.time_us
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SlotCounter.time_us
+```
+
+````
+
+````{py:method} set_from_us(us: int) -> None
+:canonical: nearlink_sdr.mac.scheduler.SlotCounter.set_from_us
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SlotCounter.set_from_us
+```
+
+````
+
+````{py:method} distance_to(target: int) -> int
+:canonical: nearlink_sdr.mac.scheduler.SlotCounter.distance_to
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SlotCounter.distance_to
+```
+
+````
+
+`````
+
+`````{py:class} SmfScheduleConfig
+:canonical: nearlink_sdr.mac.scheduler.SmfScheduleConfig
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SmfScheduleConfig
+```
+
+````{py:attribute} effective_slot
+:canonical: nearlink_sdr.mac.scheduler.SmfScheduleConfig.effective_slot
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SmfScheduleConfig.effective_slot
+```
+
+````
+
+````{py:attribute} smf_interval
+:canonical: nearlink_sdr.mac.scheduler.SmfScheduleConfig.smf_interval
+:type: int
+:value: >
+   800
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SmfScheduleConfig.smf_interval
+```
+
+````
+
+````{py:attribute} frame_type
+:canonical: nearlink_sdr.mac.scheduler.SmfScheduleConfig.frame_type
+:type: int
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SmfScheduleConfig.frame_type
+```
+
+````
+
+````{py:attribute} bandwidth
+:canonical: nearlink_sdr.mac.scheduler.SmfScheduleConfig.bandwidth
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SmfScheduleConfig.bandwidth
+```
+
+````
+
+````{py:attribute} pilot_density
+:canonical: nearlink_sdr.mac.scheduler.SmfScheduleConfig.pilot_density
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SmfScheduleConfig.pilot_density
+```
+
+````
+
+````{py:attribute} channel_count
+:canonical: nearlink_sdr.mac.scheduler.SmfScheduleConfig.channel_count
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SmfScheduleConfig.channel_count
+```
+
+````
+
+````{py:attribute} channel_table
+:canonical: nearlink_sdr.mac.scheduler.SmfScheduleConfig.channel_table
+:type: bytes
+:value: >
+   b''
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SmfScheduleConfig.channel_table
+```
+
+````
+
+````{py:property} smf_interval_us
+:canonical: nearlink_sdr.mac.scheduler.SmfScheduleConfig.smf_interval_us
+:type: int
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.SmfScheduleConfig.smf_interval_us
+```
+
+````
+
+`````
+
+`````{py:class} Superframe
+:canonical: nearlink_sdr.mac.scheduler.Superframe
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.Superframe
+```
+
+````{py:attribute} smf_config
+:canonical: nearlink_sdr.mac.scheduler.Superframe.smf_config
+:type: nearlink_sdr.mac.scheduler.SmfScheduleConfig
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.Superframe.smf_config
+```
+
+````
+
+````{py:attribute} link_entries
+:canonical: nearlink_sdr.mac.scheduler.Superframe.link_entries
+:type: list[nearlink_sdr.mac.scheduler.LinkScheduleEntry]
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.Superframe.link_entries
+```
+
+````
+
+````{py:property} duration_us
+:canonical: nearlink_sdr.mac.scheduler.Superframe.duration_us
+:type: int
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.Superframe.duration_us
+```
+
+````
+
+````{py:property} duration_slots
+:canonical: nearlink_sdr.mac.scheduler.Superframe.duration_slots
+:type: int
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.Superframe.duration_slots
+```
+
+````
+
+````{py:method} add_link(entry: nearlink_sdr.mac.scheduler.LinkScheduleEntry) -> None
+:canonical: nearlink_sdr.mac.scheduler.Superframe.add_link
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.Superframe.add_link
+```
+
+````
+
+````{py:method} remove_link(link_id: int) -> bool
+:canonical: nearlink_sdr.mac.scheduler.Superframe.remove_link
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.Superframe.remove_link
+```
+
+````
+
+````{py:method} get_link(link_id: int) -> nearlink_sdr.mac.scheduler.LinkScheduleEntry | None
+:canonical: nearlink_sdr.mac.scheduler.Superframe.get_link
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.Superframe.get_link
+```
+
+````
+
+````{py:method} active_region_us() -> tuple[int, int]
+:canonical: nearlink_sdr.mac.scheduler.Superframe.active_region_us
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.Superframe.active_region_us
+```
+
+````
+
+````{py:method} check_conflicts() -> list[tuple[int, int, int, int]]
+:canonical: nearlink_sdr.mac.scheduler.Superframe.check_conflicts
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.Superframe.check_conflicts
+```
+
+````
+
+`````
+
+`````{py:class} TimeSlice
+:canonical: nearlink_sdr.mac.scheduler.TimeSlice
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.TimeSlice
+```
+
+````{py:attribute} offset
+:canonical: nearlink_sdr.mac.scheduler.TimeSlice.offset
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.TimeSlice.offset
+```
+
+````
+
+````{py:attribute} duration
+:canonical: nearlink_sdr.mac.scheduler.TimeSlice.duration
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.TimeSlice.duration
+```
+
+````
+
+````{py:attribute} period
+:canonical: nearlink_sdr.mac.scheduler.TimeSlice.period
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.TimeSlice.period
+```
+
+````
+
+````{py:attribute} repeat_count
+:canonical: nearlink_sdr.mac.scheduler.TimeSlice.repeat_count
+:type: int
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.TimeSlice.repeat_count
+```
+
+````
+
+````{py:method} absolute_intervals(slot_us: int) -> list[tuple[int, int]]
+:canonical: nearlink_sdr.mac.scheduler.TimeSlice.absolute_intervals
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.TimeSlice.absolute_intervals
+```
+
+````
+
+`````
+
+`````{py:class} TxRxIntervalType()
+:canonical: nearlink_sdr.mac.scheduler.TxRxIntervalType
+
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.TxRxIntervalType
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.TxRxIntervalType.__init__
+```
+
+````{py:attribute} INTERVAL_125US
+:canonical: nearlink_sdr.mac.scheduler.TxRxIntervalType.INTERVAL_125US
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.TxRxIntervalType.INTERVAL_125US
+```
+
+````
+
+````{py:attribute} INTERVAL_100US
+:canonical: nearlink_sdr.mac.scheduler.TxRxIntervalType.INTERVAL_100US
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.TxRxIntervalType.INTERVAL_100US
+```
+
+````
+
+````{py:attribute} INTERVAL_75US
+:canonical: nearlink_sdr.mac.scheduler.TxRxIntervalType.INTERVAL_75US
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.TxRxIntervalType.INTERVAL_75US
+```
+
+````
+
+````{py:attribute} INTERVAL_50US
+:canonical: nearlink_sdr.mac.scheduler.TxRxIntervalType.INTERVAL_50US
+:value: >
+   3
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.TxRxIntervalType.INTERVAL_50US
+```
+
+````
+
+````{py:attribute} INTERVAL_25US
+:canonical: nearlink_sdr.mac.scheduler.TxRxIntervalType.INTERVAL_25US
+:value: >
+   4
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.TxRxIntervalType.INTERVAL_25US
+```
+
+````
+
+`````
+
+````{py:function} schedule_slot_us(slot_type: int) -> int
+:canonical: nearlink_sdr.mac.scheduler.schedule_slot_us
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.schedule_slot_us
+```
+````
+
+````{py:function} tx_rx_interval_us(interval_type: int) -> int
+:canonical: nearlink_sdr.mac.scheduler.tx_rx_interval_us
+
+```{autodoc2-docstring} nearlink_sdr.mac.scheduler.tx_rx_interval_us
+```
+````

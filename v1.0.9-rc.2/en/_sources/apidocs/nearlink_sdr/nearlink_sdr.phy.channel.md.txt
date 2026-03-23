@@ -1,0 +1,318 @@
+# {py:mod}`nearlink_sdr.phy.channel`
+
+```{py:module} nearlink_sdr.phy.channel
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel
+:allowtitles:
+```
+
+## Module Contents
+
+### Classes
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`ChannelConfig <nearlink_sdr.phy.channel.ChannelConfig>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.channel.ChannelConfig
+    :summary:
+    ```
+* - {py:obj}`ChannelModel <nearlink_sdr.phy.channel.ChannelModel>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.channel.ChannelModel
+    :summary:
+    ```
+* - {py:obj}`InterferenceConfig <nearlink_sdr.phy.channel.InterferenceConfig>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.channel.InterferenceConfig
+    :summary:
+    ```
+````
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`add_interference <nearlink_sdr.phy.channel.add_interference>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.channel.add_interference
+    :summary:
+    ```
+* - {py:obj}`compute_sinr <nearlink_sdr.phy.channel.compute_sinr>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.channel.compute_sinr
+    :summary:
+    ```
+````
+
+### Data
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`PDP_2TAP <nearlink_sdr.phy.channel.PDP_2TAP>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.channel.PDP_2TAP
+    :summary:
+    ```
+* - {py:obj}`PDP_INDOOR_OFFICE <nearlink_sdr.phy.channel.PDP_INDOOR_OFFICE>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.channel.PDP_INDOOR_OFFICE
+    :summary:
+    ```
+````
+
+### API
+
+````{py:data} PDP_2TAP
+:canonical: nearlink_sdr.phy.channel.PDP_2TAP
+:value: >
+   [(0, 0.0), (1,)]
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.PDP_2TAP
+```
+
+````
+
+````{py:data} PDP_INDOOR_OFFICE
+:canonical: nearlink_sdr.phy.channel.PDP_INDOOR_OFFICE
+:value: >
+   [(0, 0.0), (1,), (2,), (3,), (4,), (5,)]
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.PDP_INDOOR_OFFICE
+```
+
+````
+
+`````{py:class} ChannelConfig
+:canonical: nearlink_sdr.phy.channel.ChannelConfig
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.ChannelConfig
+```
+
+````{py:attribute} snr_db
+:canonical: nearlink_sdr.phy.channel.ChannelConfig.snr_db
+:type: float
+:value: >
+   10.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.ChannelConfig.snr_db
+```
+
+````
+
+````{py:attribute} channel_type
+:canonical: nearlink_sdr.phy.channel.ChannelConfig.channel_type
+:type: str
+:value: >
+   'awgn'
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.ChannelConfig.channel_type
+```
+
+````
+
+````{py:attribute} rician_k_db
+:canonical: nearlink_sdr.phy.channel.ChannelConfig.rician_k_db
+:type: float
+:value: >
+   6.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.ChannelConfig.rician_k_db
+```
+
+````
+
+````{py:attribute} pdp
+:canonical: nearlink_sdr.phy.channel.ChannelConfig.pdp
+:type: list[tuple[int, float]]
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.ChannelConfig.pdp
+```
+
+````
+
+````{py:attribute} max_doppler_hz
+:canonical: nearlink_sdr.phy.channel.ChannelConfig.max_doppler_hz
+:type: float
+:value: >
+   0.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.ChannelConfig.max_doppler_hz
+```
+
+````
+
+````{py:attribute} symbol_rate_hz
+:canonical: nearlink_sdr.phy.channel.ChannelConfig.symbol_rate_hz
+:type: float
+:value: >
+   1000000.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.ChannelConfig.symbol_rate_hz
+```
+
+````
+
+````{py:attribute} n_sinusoids
+:canonical: nearlink_sdr.phy.channel.ChannelConfig.n_sinusoids
+:type: int
+:value: >
+   16
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.ChannelConfig.n_sinusoids
+```
+
+````
+
+````{py:attribute} seed
+:canonical: nearlink_sdr.phy.channel.ChannelConfig.seed
+:type: int | None
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.ChannelConfig.seed
+```
+
+````
+
+`````
+
+`````{py:class} ChannelModel(snr_db: float = 10.0, config: nearlink_sdr.phy.channel.ChannelConfig | None = None)
+:canonical: nearlink_sdr.phy.channel.ChannelModel
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.ChannelModel
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.ChannelModel.__init__
+```
+
+````{py:method} apply_awgn(signal: numpy.ndarray) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.channel.ChannelModel.apply_awgn
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.ChannelModel.apply_awgn
+```
+
+````
+
+````{py:method} apply_fading(signal: numpy.ndarray) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.channel.ChannelModel.apply_fading
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.ChannelModel.apply_fading
+```
+
+````
+
+````{py:property} last_taps
+:canonical: nearlink_sdr.phy.channel.ChannelModel.last_taps
+:type: numpy.ndarray | None
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.ChannelModel.last_taps
+```
+
+````
+
+````{py:method} get_channel_taps(n_symbols: int) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.channel.ChannelModel.get_channel_taps
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.ChannelModel.get_channel_taps
+```
+
+````
+
+````{py:property} noise_variance
+:canonical: nearlink_sdr.phy.channel.ChannelModel.noise_variance
+:type: float
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.ChannelModel.noise_variance
+```
+
+````
+
+````{py:method} doppler_autocorrelation(n: int, max_lag: int = 64) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.channel.ChannelModel.doppler_autocorrelation
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.ChannelModel.doppler_autocorrelation
+```
+
+````
+
+````{py:method} theoretical_autocorrelation(max_lag: int = 64) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.channel.ChannelModel.theoretical_autocorrelation
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.ChannelModel.theoretical_autocorrelation
+```
+
+````
+
+`````
+
+`````{py:class} InterferenceConfig
+:canonical: nearlink_sdr.phy.channel.InterferenceConfig
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.InterferenceConfig
+```
+
+````{py:attribute} sir_db
+:canonical: nearlink_sdr.phy.channel.InterferenceConfig.sir_db
+:type: float
+:value: >
+   10.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.InterferenceConfig.sir_db
+```
+
+````
+
+````{py:attribute} freq_offset_hz
+:canonical: nearlink_sdr.phy.channel.InterferenceConfig.freq_offset_hz
+:type: float
+:value: >
+   0.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.InterferenceConfig.freq_offset_hz
+```
+
+````
+
+````{py:attribute} interferer_bw_hz
+:canonical: nearlink_sdr.phy.channel.InterferenceConfig.interferer_bw_hz
+:type: float
+:value: >
+   0.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.InterferenceConfig.interferer_bw_hz
+```
+
+````
+
+````{py:attribute} seed
+:canonical: nearlink_sdr.phy.channel.InterferenceConfig.seed
+:type: int | None
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.InterferenceConfig.seed
+```
+
+````
+
+`````
+
+````{py:function} add_interference(signal: numpy.ndarray, interferers: list[nearlink_sdr.phy.channel.InterferenceConfig], sample_rate_hz: float = 1000000.0, rng: numpy.random.Generator | None = None) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.channel.add_interference
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.add_interference
+```
+````
+
+````{py:function} compute_sinr(signal: numpy.ndarray, noise_signal: numpy.ndarray, interference_signal: numpy.ndarray) -> float
+:canonical: nearlink_sdr.phy.channel.compute_sinr
+
+```{autodoc2-docstring} nearlink_sdr.phy.channel.compute_sinr
+```
+````

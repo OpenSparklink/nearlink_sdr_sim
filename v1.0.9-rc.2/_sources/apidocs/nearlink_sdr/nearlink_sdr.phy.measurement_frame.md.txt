@@ -1,0 +1,409 @@
+# {py:mod}`nearlink_sdr.phy.measurement_frame`
+
+```{py:module} nearlink_sdr.phy.measurement_frame
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame
+:allowtitles:
+```
+
+## Module Contents
+
+### Classes
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`MeasFrameConfig <nearlink_sdr.phy.measurement_frame.MeasFrameConfig>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.MeasFrameConfig
+    :summary:
+    ```
+* - {py:obj}`RadioFrameType <nearlink_sdr.phy.measurement_frame.RadioFrameType>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.RadioFrameType
+    :summary:
+    ```
+* - {py:obj}`UWBPulseConfig <nearlink_sdr.phy.measurement_frame.UWBPulseConfig>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.UWBPulseConfig
+    :summary:
+    ```
+````
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`build_measurement_frame_1 <nearlink_sdr.phy.measurement_frame.build_measurement_frame_1>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.build_measurement_frame_1
+    :summary:
+    ```
+* - {py:obj}`build_measurement_frame_2 <nearlink_sdr.phy.measurement_frame.build_measurement_frame_2>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.build_measurement_frame_2
+    :summary:
+    ```
+* - {py:obj}`build_measurement_frame_3 <nearlink_sdr.phy.measurement_frame.build_measurement_frame_3>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.build_measurement_frame_3
+    :summary:
+    ```
+* - {py:obj}`build_measurement_frame_4 <nearlink_sdr.phy.measurement_frame.build_measurement_frame_4>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.build_measurement_frame_4
+    :summary:
+    ```
+* - {py:obj}`build_nack_feedback <nearlink_sdr.phy.measurement_frame.build_nack_feedback>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.build_nack_feedback
+    :summary:
+    ```
+* - {py:obj}`build_uwb_measurement_field <nearlink_sdr.phy.measurement_frame.build_uwb_measurement_field>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.build_uwb_measurement_field
+    :summary:
+    ```
+* - {py:obj}`build_uwb_pulse_measurement_frame <nearlink_sdr.phy.measurement_frame.build_uwb_pulse_measurement_frame>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.build_uwb_pulse_measurement_frame
+    :summary:
+    ```
+* - {py:obj}`build_uwb_sync_field <nearlink_sdr.phy.measurement_frame.build_uwb_sync_field>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.build_uwb_sync_field
+    :summary:
+    ```
+* - {py:obj}`equalization_guard <nearlink_sdr.phy.measurement_frame.equalization_guard>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.equalization_guard
+    :summary:
+    ```
+````
+
+### API
+
+`````{py:class} MeasFrameConfig
+:canonical: nearlink_sdr.phy.measurement_frame.MeasFrameConfig
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.MeasFrameConfig
+```
+
+````{py:attribute} sync_signal
+:canonical: nearlink_sdr.phy.measurement_frame.MeasFrameConfig.sync_signal
+:type: numpy.ndarray
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.MeasFrameConfig.sync_signal
+```
+
+````
+
+````{py:attribute} measurement_signal
+:canonical: nearlink_sdr.phy.measurement_frame.MeasFrameConfig.measurement_signal
+:type: numpy.ndarray
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.MeasFrameConfig.measurement_signal
+```
+
+````
+
+````{py:attribute} switch_interval_samples
+:canonical: nearlink_sdr.phy.measurement_frame.MeasFrameConfig.switch_interval_samples
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.MeasFrameConfig.switch_interval_samples
+```
+
+````
+
+````{py:attribute} symbol_rate_mhz
+:canonical: nearlink_sdr.phy.measurement_frame.MeasFrameConfig.symbol_rate_mhz
+:type: float
+:value: >
+   1.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.MeasFrameConfig.symbol_rate_mhz
+```
+
+````
+
+````{py:attribute} radio_frame_type
+:canonical: nearlink_sdr.phy.measurement_frame.MeasFrameConfig.radio_frame_type
+:type: int
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.MeasFrameConfig.radio_frame_type
+```
+
+````
+
+````{py:attribute} is_first_sender
+:canonical: nearlink_sdr.phy.measurement_frame.MeasFrameConfig.is_first_sender
+:type: bool
+:value: >
+   True
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.MeasFrameConfig.is_first_sender
+```
+
+````
+
+`````
+
+`````{py:class} RadioFrameType()
+:canonical: nearlink_sdr.phy.measurement_frame.RadioFrameType
+
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.RadioFrameType
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.RadioFrameType.__init__
+```
+
+````{py:attribute} FT1
+:canonical: nearlink_sdr.phy.measurement_frame.RadioFrameType.FT1
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.RadioFrameType.FT1
+```
+
+````
+
+````{py:attribute} FT2
+:canonical: nearlink_sdr.phy.measurement_frame.RadioFrameType.FT2
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.RadioFrameType.FT2
+```
+
+````
+
+````{py:attribute} FT3
+:canonical: nearlink_sdr.phy.measurement_frame.RadioFrameType.FT3
+:value: >
+   3
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.RadioFrameType.FT3
+```
+
+````
+
+````{py:attribute} FT4
+:canonical: nearlink_sdr.phy.measurement_frame.RadioFrameType.FT4
+:value: >
+   4
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.RadioFrameType.FT4
+```
+
+````
+
+`````
+
+`````{py:class} UWBPulseConfig
+:canonical: nearlink_sdr.phy.measurement_frame.UWBPulseConfig
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.UWBPulseConfig
+```
+
+````{py:attribute} K
+:canonical: nearlink_sdr.phy.measurement_frame.UWBPulseConfig.K
+:type: int
+:value: >
+   31
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.UWBPulseConfig.K
+```
+
+````
+
+````{py:attribute} L
+:canonical: nearlink_sdr.phy.measurement_frame.UWBPulseConfig.L
+:type: int
+:value: >
+   4
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.UWBPulseConfig.L
+```
+
+````
+
+````{py:attribute} Tc
+:canonical: nearlink_sdr.phy.measurement_frame.UWBPulseConfig.Tc
+:type: float
+:value: >
+   1e-09
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.UWBPulseConfig.Tc
+```
+
+````
+
+````{py:attribute} N_sync
+:canonical: nearlink_sdr.phy.measurement_frame.UWBPulseConfig.N_sync
+:type: int
+:value: >
+   8
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.UWBPulseConfig.N_sync
+```
+
+````
+
+````{py:attribute} symbol_seq
+:canonical: nearlink_sdr.phy.measurement_frame.UWBPulseConfig.symbol_seq
+:type: numpy.ndarray
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.UWBPulseConfig.symbol_seq
+```
+
+````
+
+````{py:attribute} M_seg
+:canonical: nearlink_sdr.phy.measurement_frame.UWBPulseConfig.M_seg
+:type: int
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.UWBPulseConfig.M_seg
+```
+
+````
+
+````{py:attribute} N_seg
+:canonical: nearlink_sdr.phy.measurement_frame.UWBPulseConfig.N_seg
+:type: int
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.UWBPulseConfig.N_seg
+```
+
+````
+
+````{py:attribute} N_gap
+:canonical: nearlink_sdr.phy.measurement_frame.UWBPulseConfig.N_gap
+:type: int
+:value: >
+   4
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.UWBPulseConfig.N_gap
+```
+
+````
+
+````{py:attribute} scramble
+:canonical: nearlink_sdr.phy.measurement_frame.UWBPulseConfig.scramble
+:type: numpy.ndarray | None
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.UWBPulseConfig.scramble
+```
+
+````
+
+````{py:attribute} L_cp
+:canonical: nearlink_sdr.phy.measurement_frame.UWBPulseConfig.L_cp
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.UWBPulseConfig.L_cp
+```
+
+````
+
+````{py:attribute} L_zero
+:canonical: nearlink_sdr.phy.measurement_frame.UWBPulseConfig.L_zero
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.UWBPulseConfig.L_zero
+```
+
+````
+
+````{py:attribute} N_offset
+:canonical: nearlink_sdr.phy.measurement_frame.UWBPulseConfig.N_offset
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.UWBPulseConfig.N_offset
+```
+
+````
+
+`````
+
+````{py:function} build_measurement_frame_1(config: nearlink_sdr.phy.measurement_frame.MeasFrameConfig) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.measurement_frame.build_measurement_frame_1
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.build_measurement_frame_1
+```
+````
+
+````{py:function} build_measurement_frame_2(config: nearlink_sdr.phy.measurement_frame.MeasFrameConfig) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.measurement_frame.build_measurement_frame_2
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.build_measurement_frame_2
+```
+````
+
+````{py:function} build_measurement_frame_3(config: nearlink_sdr.phy.measurement_frame.MeasFrameConfig) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.measurement_frame.build_measurement_frame_3
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.build_measurement_frame_3
+```
+````
+
+````{py:function} build_measurement_frame_4(config: nearlink_sdr.phy.measurement_frame.MeasFrameConfig) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.measurement_frame.build_measurement_frame_4
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.build_measurement_frame_4
+```
+````
+
+````{py:function} build_nack_feedback(radio_ft: int, m_index: int, cyclic_shift: int = 0, symbol_rate_mhz: float = 1.0) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.measurement_frame.build_nack_feedback
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.build_nack_feedback
+```
+````
+
+````{py:function} build_uwb_measurement_field(config: nearlink_sdr.phy.measurement_frame.UWBPulseConfig, cts_symbol_seq: numpy.ndarray | None = None) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.measurement_frame.build_uwb_measurement_field
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.build_uwb_measurement_field
+```
+````
+
+````{py:function} build_uwb_pulse_measurement_frame(config: nearlink_sdr.phy.measurement_frame.UWBPulseConfig, cts_symbol_seq: numpy.ndarray | None = None) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.measurement_frame.build_uwb_pulse_measurement_frame
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.build_uwb_pulse_measurement_frame
+```
+````
+
+````{py:function} build_uwb_sync_field(config: nearlink_sdr.phy.measurement_frame.UWBPulseConfig) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.measurement_frame.build_uwb_sync_field
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.build_uwb_sync_field
+```
+````
+
+````{py:function} equalization_guard(sync_last_bit: int) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.measurement_frame.equalization_guard
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement_frame.equalization_guard
+```
+````
