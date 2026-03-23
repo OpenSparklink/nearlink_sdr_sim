@@ -1198,7 +1198,7 @@ def sim_pipeline_channel_link(
             rx_iq = _apply_cfo(rx_iq, cfo_hz, sample_rate)
 
             # 均衡 (genie-aided: 使用 apply_fading 缓存的信道系数)
-            if eq_method != "none" and channel_type not in ("awgn",):
+            if eq_method != "none" and channel_type != "awgn":
                 noise_var = ch.noise_variance
                 taps = ch.last_taps
                 if channel_type in ("rayleigh", "rician"):
@@ -1407,7 +1407,7 @@ def _channel_impair(
         sample_rate = sps * 1e6
         rx_iq = _apply_cfo(rx_iq, cfo_hz, sample_rate)
 
-    if eq_method != "none" and channel_type not in ("awgn",):
+    if eq_method != "none" and channel_type != "awgn":
         noise_var = ch.noise_variance
         taps = ch.last_taps
         if channel_type in ("rayleigh", "rician"):
@@ -2392,6 +2392,8 @@ def sim_secure_link(
 
     :returns: {"snr_db", "fer", "access_ok", "pairing_ok", "encrypted": True}
     """
+    from cryptography.exceptions import InvalidTag
+
     from nearlink_sdr.mac.access import run_access_procedure
     from nearlink_sdr.mac.frame import AsyncDataFrame
     from nearlink_sdr.mac.link_manager import LinkState, Role
@@ -2513,7 +2515,7 @@ def sim_secure_link(
                 decrypted = t_rx_crypto.decrypt(rx_ct, rx_mic)
                 if decrypted != payload:
                     errors += 1
-            except Exception:
+            except (ValueError, InvalidTag):
                 errors += 1
 
         fer_list.append(errors / n_frames)
@@ -2539,6 +2541,8 @@ def sim_encrypted_vs_plain(
 
     :returns: {"snr_db", "fer_encrypted", "fer_plain"}
     """
+    from cryptography.exceptions import InvalidTag
+
     from nearlink_sdr.mac.frame import AsyncDataFrame
     from nearlink_sdr.mac.security_manager import (
         FrameCryptoContext,
@@ -2612,7 +2616,7 @@ def sim_encrypted_vs_plain(
                     dec = rx_crypto.decrypt(rec.data[:-4], rec.data[-4:])
                     if dec != payload:
                         enc_errors += 1
-                except Exception:
+                except (ValueError, InvalidTag):
                     enc_errors += 1
 
             # 明文帧
@@ -2632,7 +2636,7 @@ def sim_encrypted_vs_plain(
                     rec = AsyncDataFrame.unpack(plain_rx.mac_payload)
                     if rec.data != payload:
                         plain_errors += 1
-                except Exception:
+                except ValueError:
                     plain_errors += 1
 
         fer_encrypted.append(enc_errors / n_frames)
@@ -2726,7 +2730,7 @@ def sim_pairing_signaling_phy(
                                 next_pending.extend(
                                     ("g", r) for r in resps
                                 )
-                    except Exception:
+                    except (ValueError, RuntimeError):
                         pass
 
                 pending = next_pending
@@ -4125,7 +4129,7 @@ def sim_node_hopping_link(
         g_node.advance_slot(1)
         t_node.advance_slot(1)
 
-    unique_ch = len(set(c for c in channels if c >= 0))
+    unique_ch = len({c for c in channels if c >= 0})
     return {
         "channels": channels,
         "unique_channels": unique_ch,

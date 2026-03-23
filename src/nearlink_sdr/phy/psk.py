@@ -225,7 +225,6 @@ class PSKDemodulator:
             idx = self._constellation_keys[np.argmin(distances)]
 
             # 解码比特
-            for b in range(bps - 1, -1, -1):
-                bits.append((idx >> b) & 1)
+            bits.extend((idx >> b) & 1 for b in range(bps - 1, -1, -1))
 
         return np.array(bits, dtype=int)

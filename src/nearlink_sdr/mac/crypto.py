@@ -217,7 +217,7 @@ def aes_ccm_encrypt(
     """AES-CCM 加密, 返回 (密文, MIC)。"""
     aesccm = AESCCM(key, tag_length=mic_len)
     ct_and_tag = aesccm.encrypt(
-        nonce, plaintext, associated_data if associated_data else None
+        nonce, plaintext, associated_data or None
     )
     ciphertext = ct_and_tag[:-mic_len]
     mic = ct_and_tag[-mic_len:]
@@ -237,7 +237,7 @@ def aes_ccm_decrypt(
     return aesccm.decrypt(
         nonce,
         ciphertext + mic,
-        associated_data if associated_data else None,
+        associated_data or None,
     )
 
 

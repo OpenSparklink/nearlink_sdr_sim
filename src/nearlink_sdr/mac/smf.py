@@ -376,27 +376,27 @@ class SystemManagementFrame:
 
     def get_schedules(self) -> list[ScheduleSignaling]:
         """提取所有调度信令"""
-        result = []
-        for tlv in self.signalings:
-            if tlv.sig_type == SMFSignalingType.SCHEDULE:
-                result.append(ScheduleSignaling.unpack(tlv.content))
-        return result
+        return [
+            ScheduleSignaling.unpack(tlv.content)
+            for tlv in self.signalings
+            if tlv.sig_type == SMFSignalingType.SCHEDULE
+        ]
 
     def get_links(self) -> list[LinkSignaling]:
         """提取所有链路信令"""
-        result = []
-        for tlv in self.signalings:
-            if tlv.sig_type == SMFSignalingType.LINK:
-                result.append(LinkSignaling.unpack(tlv.content))
-        return result
+        return [
+            LinkSignaling.unpack(tlv.content)
+            for tlv in self.signalings
+            if tlv.sig_type == SMFSignalingType.LINK
+        ]
 
     def get_offsets(self) -> list[OffsetSignaling]:
         """提取所有偏移信令"""
-        result = []
-        for tlv in self.signalings:
-            if tlv.sig_type == SMFSignalingType.OFFSET:
-                result.append(OffsetSignaling.unpack(tlv.content))
-        return result
+        return [
+            OffsetSignaling.unpack(tlv.content)
+            for tlv in self.signalings
+            if tlv.sig_type == SMFSignalingType.OFFSET
+        ]
 
 
 # ---------------------------------------------------------------------------

@@ -24,6 +24,7 @@ from enum import IntEnum, auto
 from typing import TYPE_CHECKING
 
 import numpy as np
+from cryptography.exceptions import InvalidTag
 
 from nearlink_sdr.mac.access import (
     AccessWhitelist,
@@ -321,8 +322,7 @@ class SleNode:
             blocked_channels=set(cfg.blocked_channels),
         )
         self._hop_param2 = (
-            cfg.hop_param2 if cfg.hop_param2
-            else derive_hop_param2(int.from_bytes(cfg.address, "big"))
+            cfg.hop_param2 or derive_hop_param2(int.from_bytes(cfg.address, "big"))
         )
 
         # 功率控制
@@ -572,7 +572,7 @@ class SleNode:
         if self._transceiver is not None:
             try:
                 self._transceiver.transmit_iq(iq)
-            except Exception:
+            except (OSError, RuntimeError):
                 log.warning("USRP 发送失败")
 
         self._tx_count += 1
@@ -612,7 +612,7 @@ class SleNode:
             try:
                 data = self._crypto.decrypt(ciphertext, mic, b"")
                 decrypted = True
-            except Exception:
+            except (ValueError, InvalidTag):
                 return RxResult(data=None, success=False)
 
         self._rx_count += 1

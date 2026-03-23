@@ -1418,7 +1418,5 @@ def _bits_to_bytes(bits: list[int]) -> bytes:
 def _bytes_to_bits(data: bytes) -> list[int]:
     """字节序列转比特列表"""
     bits: list[int] = []
-    for b in data:
-        for i in range(7, -1, -1):
-            bits.append((b >> i) & 1)
+    bits.extend((b >> i) & 1 for b in data for i in range(7, -1, -1))
     return bits

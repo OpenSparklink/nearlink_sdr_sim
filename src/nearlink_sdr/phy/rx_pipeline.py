@@ -184,14 +184,14 @@ def frame_sync(iq_signal: np.ndarray, cfg: TxConfig) -> int:
         signal = iq_signal
     elif cfg.frame_type == 3:
         # FT3: 62 比特同步序列 → BPSK 符号
-        sync_bits = sync_signal_3(cfg.pid if cfg.pid else 0)
+        sync_bits = sync_signal_3(cfg.pid or 0)
         from nearlink_sdr.phy.psk import PSKModulator
         mod = PSKModulator(mod_type="BPSK", sps=1)
         sync_ref = mod.map_symbols(sync_bits)
         signal = iq_signal
     else:
         # FT4: 126 比特同步序列 → BPSK 符号
-        sync_bits = sync_signal_4(cfg.pid if cfg.pid else 0)
+        sync_bits = sync_signal_4(cfg.pid or 0)
         from nearlink_sdr.phy.psk import PSKModulator
         mod = PSKModulator(mod_type="BPSK", sps=1)
         sync_ref = mod.map_symbols(sync_bits)

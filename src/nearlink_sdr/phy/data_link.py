@@ -387,9 +387,10 @@ class PeriodicServiceAdaptor:
         """将 SDU 分段为 PDU 列表。"""
         if not sdu:
             return [b""]
-        segments: list[bytes] = []
-        for offset in range(0, len(sdu), self.pdu_max):
-            segments.append(sdu[offset: offset + self.pdu_max])
+        segments: list[bytes] = [
+            sdu[offset: offset + self.pdu_max]
+            for offset in range(0, len(sdu), self.pdu_max)
+        ]
         expected = self.segments_per_sdu
         while len(segments) < expected:
             segments.append(b"")

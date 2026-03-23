@@ -439,14 +439,14 @@ class EventGroupScheduler:
 
         :returns: [{"event_start": int, "tx_window": (s, e), "rx_window": (s, e)}, ...]
         """
-        result: list[dict[str, int | tuple[int, int]]] = []
-        for start in self.event_start_times(group_index):
-            result.append({
+        return [
+            {
                 "event_start": start,
                 "tx_window": self.tx_window(start),
                 "rx_window": self.rx_window(start),
-            })
-        return result
+            }
+            for start in self.event_start_times(group_index)
+        ]
 
     def next_event_group_start(
         self, current_us: int

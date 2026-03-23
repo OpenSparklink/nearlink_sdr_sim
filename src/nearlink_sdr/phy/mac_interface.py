@@ -8,6 +8,8 @@ QoS 集成: QosLink 类封装了带 ARQ/HARQ/流控的端到端数据链路。
 
 from __future__ import annotations
 
+import struct
+
 __all__ = [
     "MacRxResult",
     "QosLink",
@@ -334,7 +336,7 @@ class QosLink:
         try:
             recovered = AsyncDataFrame.unpack(rx.mac_payload)
             return recovered.data, True
-        except Exception:
+        except (ValueError, struct.error, IndexError):
             return b"", False
 
     def process_feedback(self, crc_ok: bool) -> TxDecision:
