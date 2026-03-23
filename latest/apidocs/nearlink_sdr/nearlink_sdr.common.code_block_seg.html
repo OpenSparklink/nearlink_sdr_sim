@@ -6,11 +6,11 @@
 <link rel="index" title="索引" href="../../genindex.html"><link rel="search" title="搜索" href="../../search.html"><link rel="next" title="nearlink_sdr.common.prbs" href="nearlink_sdr.common.prbs.html"><link rel="prev" title="nearlink_sdr.common.bch" href="nearlink_sdr.common.bch.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>nearlink_sdr.common.code_block_seg - nearlink-sdr 0.1.0 文档</title>
+        <title>nearlink_sdr.common.code_block_seg - nearlink-sdr 1.0.0 文档</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/version-selector.css?v=59d9d931" />
+    <link rel="stylesheet" type="text/css" href="../../_static/version-selector.css?v=022f18c6" />
     
     
 
@@ -168,7 +168,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">nearlink-sdr 0.1.0 文档</div></a>
+      <a href="../../index.html"><div class="brand">nearlink-sdr 1.0.0 文档</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -189,7 +189,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
-  <span class="sidebar-brand-text">nearlink-sdr 0.1.0 文档</span>
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.0 文档</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
@@ -395,7 +395,7 @@
         <article role="main" id="furo-main-content">
           <section class="tex2jax_ignore mathjax_ignore" id="module-nearlink_sdr.common.code_block_seg">
 <span id="nearlink-sdr-common-code-block-seg"></span><h1><a class="reference internal" href="#module-nearlink_sdr.common.code_block_seg" title="nearlink_sdr.common.code_block_seg"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a><a class="headerlink" href="#module-nearlink_sdr.common.code_block_seg" title="Link to this heading">¶</a></h1>
-<p>Code block segmentation per TXS-10002-2025 sections 6.9.1.2 and 6.9.1.3.</p>
+<p>码块分割 -- TXS-10002-2025 标准 6.9.1.2 / 6.9.1.3 节。</p>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
 <section id="functions">
@@ -407,16 +407,16 @@
 <td></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.common.code_block_seg._get_k_for_segmentation" title="nearlink_sdr.common.code_block_seg._get_k_for_segmentation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_get_k_for_segmentation</span></code></a></p></td>
-<td><p>Get K values for each code length at the given rate.</p></td>
+<td><p>获取给定码率下各码长对应的 K 值。</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.common.code_block_seg.segment_without_crc" title="nearlink_sdr.common.code_block_seg.segment_without_crc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">segment_without_crc</span></code></a></p></td>
-<td><p>Code block segmentation without per-block CRC (section 6.9.1.2).</p></td>
+<td><p>无逐码块 CRC 的码块分割 (标准 6.9.1.2 节)。</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.common.code_block_seg.segment_with_crc" title="nearlink_sdr.common.code_block_seg.segment_with_crc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">segment_with_crc</span></code></a></p></td>
-<td><p>Code block segmentation with per-block CRC24B (section 6.9.1.3).</p></td>
+<td><p>含逐码块 CRC24B 的码块分割 (标准 6.9.1.3 节)。</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.common.code_block_seg._subsegment_last_block" title="nearlink_sdr.common.code_block_seg._subsegment_last_block"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_subsegment_last_block</span></code></a></p></td>
-<td><p>Further sub-segment the last code block per section 6.9.1.3.</p></td>
+<td><p>按标准 6.9.1.3 节对最后一个码块进行子分割。</p></td>
 </tr>
 </tbody>
 </table>
@@ -468,42 +468,42 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.common.code_block_seg._get_k_for_segmentation">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.common.code_block_seg.</span></span><span class="sig-name descname"><span class="pre">_get_k_for_segmentation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rate_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_table24</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="（在 Python v3.14）"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="（在 Python v3.14）"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/common/code_block_seg.html#_get_k_for_segmentation"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.common.code_block_seg._get_k_for_segmentation" title="Link to this definition">¶</a></dt>
-<dd><p>Get K values for each code length at the given rate.</p>
-<p>For 6.9.1.2 (without CRC), use_table24=True for rates in Table 24.
-For 6.9.1.3 (with CRC), always use Table 23.</p>
+<dd><p>获取给定码率下各码长对应的 K 值。</p>
+<p>6.9.1.2（无 CRC 分割）时, 若码率在表 24 中则 use_table24=True。
+6.9.1.3（含 CRC 分割）时, 始终使用表 23。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.common.code_block_seg.segment_without_crc">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.common.code_block_seg.</span></span><span class="sig-name descname"><span class="pre">segment_without_crc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">crc_len</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="（在 Python v3.14）"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="（在 Python v3.14）"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/common/code_block_seg.html#segment_without_crc"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.common.code_block_seg.segment_without_crc" title="Link to this definition">¶</a></dt>
-<dd><p>Code block segmentation without per-block CRC (section 6.9.1.2).</p>
-<p>Used for frame type 2.</p>
-<p>Args:
-bits: input bit sequence b_0..b_{B-1}, where B = K + L (info + CRC).
-rate_str: target code rate string.
-crc_len: L, the CRC length already appended to bits.</p>
-<p>Returns:
-List of (code_length_N, info_bits) tuples for each segment.</p>
+<dd><p>无逐码块 CRC 的码块分割 (标准 6.9.1.2 节)。</p>
+<p>适用于帧类型 2。</p>
+<p>参数:
+bits: 输入比特序列 b_0..b_{B-1}, 其中 B = K + L (信息位 + CRC)。
+rate_str: 目标码率字符串。
+crc_len: L, 已追加到 bits 末尾的 CRC 长度。</p>
+<p>返回:
+每个分段的 (码长 N, 信息比特) 元组列表。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.common.code_block_seg.segment_with_crc">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.common.code_block_seg.</span></span><span class="sig-name descname"><span class="pre">segment_with_crc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="（在 Python v3.14）"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="（在 Python v3.14）"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/common/code_block_seg.html#segment_with_crc"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.common.code_block_seg.segment_with_crc" title="Link to this definition">¶</a></dt>
-<dd><p>Code block segmentation with per-block CRC24B (section 6.9.1.3).</p>
-<p>Used for frame type 3 and 4.</p>
-<p>Args:
-bits: input bit sequence b_0..b_{B-1}.
-rate_str: target code rate string.</p>
-<p>Returns:
-List of (code_length_N, info_bits_with_crc) tuples for each segment.
-For the last segment, further sub-segmentation may be applied.</p>
+<dd><p>含逐码块 CRC24B 的码块分割 (标准 6.9.1.3 节)。</p>
+<p>适用于帧类型 3 和 4。</p>
+<p>参数:
+bits: 输入比特序列 b_0..b_{B-1}。
+rate_str: 目标码率字符串。</p>
+<p>返回:
+每个分段的 (码长 N, 含 CRC 的信息比特) 元组列表。
+最后一个分段可能进一步做子分割。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.common.code_block_seg._subsegment_last_block">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.common.code_block_seg.</span></span><span class="sig-name descname"><span class="pre">_subsegment_last_block</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="（在 Python v3.14）"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="（在 Python v3.14）"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="（在 Python v3.14）"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/common/code_block_seg.html#_subsegment_last_block"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.common.code_block_seg._subsegment_last_block" title="Link to this definition">¶</a></dt>
-<dd><p>Further sub-segment the last code block per section 6.9.1.3.</p>
-<p>Returns None if no sub-segmentation is needed (K_r fits in 1024 at rate R).</p>
+<dd><p>按标准 6.9.1.3 节对最后一个码块进行子分割。</p>
+<p>若无需子分割（K_r 在码率 R 下可放入 1024 块中）则返回 None。</p>
 </dd></dl>
 
 </section>
@@ -596,11 +596,11 @@ For the last segment, further sub-segmentation may be applied.</p>
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=9becfed8"></script>
+</div><script src="../../_static/documentation_options.js?v=76d9f950"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
     <script src="../../_static/translations.js?v=beaddf03"></script>
-    <script src="../../_static/version-selector.js?v=7a49bb5b"></script>
+    <script src="../../_static/version-selector.js?v=7d36e42c"></script>
     </body>
 </html>

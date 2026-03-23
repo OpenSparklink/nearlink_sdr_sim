@@ -6,11 +6,11 @@
 <link rel="index" title="索引" href="../../genindex.html"><link rel="search" title="搜索" href="../../search.html"><link rel="next" title="nearlink_sdr.common.m_sequence" href="nearlink_sdr.common.m_sequence.html"><link rel="prev" title="nearlink_sdr.common.prbs" href="nearlink_sdr.common.prbs.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>nearlink_sdr.common.polar - nearlink-sdr 0.1.0 文档</title>
+        <title>nearlink_sdr.common.polar - nearlink-sdr 1.0.0 文档</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/version-selector.css?v=59d9d931" />
+    <link rel="stylesheet" type="text/css" href="../../_static/version-selector.css?v=022f18c6" />
     
     
 
@@ -168,7 +168,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">nearlink-sdr 0.1.0 文档</div></a>
+      <a href="../../index.html"><div class="brand">nearlink-sdr 1.0.0 文档</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -189,7 +189,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
-  <span class="sidebar-brand-text">nearlink-sdr 0.1.0 文档</span>
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.0 文档</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
@@ -395,8 +395,7 @@
         <article role="main" id="furo-main-content">
           <section class="tex2jax_ignore mathjax_ignore" id="module-nearlink_sdr.common.polar">
 <span id="nearlink-sdr-common-polar"></span><h1><a class="reference internal" href="#module-nearlink_sdr.common.polar" title="nearlink_sdr.common.polar"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a><a class="headerlink" href="#module-nearlink_sdr.common.polar" title="Link to this heading">¶</a></h1>
-<p>Polar code encoder and SC (Successive Cancellation) decoder
-per TXS-10002-2025 standard section 6.9.1.4.</p>
+<p>Polar 编码器与 SC（逐次消去）解码器 -- TXS-10002-2025 标准 6.9.1.4 节。</p>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
 <section id="classes">
@@ -405,7 +404,7 @@ per TXS-10002-2025 standard section 6.9.1.4.</p>
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.common.polar.PolarEncoder" title="nearlink_sdr.common.polar.PolarEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PolarEncoder</span></code></a></p></td>
-<td><p>Polar code encoder using butterfly (recursive) algorithm over GF(2).</p></td>
+<td><p>使用 GF(2) 上蝶形（递归）算法的 Polar 编码器。</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.common.polar.PolarDecoder" title="nearlink_sdr.common.polar.PolarDecoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PolarDecoder</span></code></a></p></td>
 <td><p>Successive Cancellation (SC) decoder in LLR domain。</p></td>
@@ -420,13 +419,13 @@ per TXS-10002-2025 standard section 6.9.1.4.</p>
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.common.polar.get_info_bit_count" title="nearlink_sdr.common.polar.get_info_bit_count"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_info_bit_count</span></code></a></p></td>
-<td><p>Look up the number of information bits K from the rate matching table.</p></td>
+<td><p>从速率匹配表中查询给定码率和码长对应的信息位数 K。</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.common.polar._get_reliability_sequence" title="nearlink_sdr.common.polar._get_reliability_sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_get_reliability_sequence</span></code></a></p></td>
-<td><p>Extract the reliability sequence for code length N from the N_max=1024 sequence.</p></td>
+<td><p>从 N_max=1024 可靠性序列中提取码长 N 的可靠性序列。</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.common.polar._get_frozen_and_info_sets" title="nearlink_sdr.common.polar._get_frozen_and_info_sets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_get_frozen_and_info_sets</span></code></a></p></td>
-<td><p>Determine frozen and information bit positions.</p></td>
+<td><p>确定冻结位和信息位的位置集合。</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.common.polar.get_polar_decoder" title="nearlink_sdr.common.polar.get_polar_decoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_polar_decoder</span></code></a></p></td>
 <td><p>获取 PolarDecoder 实例, 相同 (N, K) 复用已创建的对象。</p></td>
@@ -479,37 +478,37 @@ per TXS-10002-2025 standard section 6.9.1.4.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.common.polar.get_info_bit_count">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.common.polar.</span></span><span class="sig-name descname"><span class="pre">get_info_bit_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rate_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/common/polar.html#get_info_bit_count"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.common.polar.get_info_bit_count" title="Link to this definition">¶</a></dt>
-<dd><p>Look up the number of information bits K from the rate matching table.</p>
+<dd><p>从速率匹配表中查询给定码率和码长对应的信息位数 K。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.common.polar._get_reliability_sequence">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.common.polar.</span></span><span class="sig-name descname"><span class="pre">_get_reliability_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="（在 Python v3.14）"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/common/polar.html#_get_reliability_sequence"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.common.polar._get_reliability_sequence" title="Link to this definition">¶</a></dt>
-<dd><p>Extract the reliability sequence for code length N from the N_max=1024 sequence.</p>
-<p>Filters entries where bit index &lt; N, preserving the reliability order.</p>
+<dd><p>从 N_max=1024 可靠性序列中提取码长 N 的可靠性序列。</p>
+<p>过滤比特索引 &lt; N 的条目，保持可靠性顺序不变。</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.common.polar._get_frozen_and_info_sets">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.common.polar.</span></span><span class="sig-name descname"><span class="pre">_get_frozen_and_info_sets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="（在 Python v3.14）"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="（在 Python v3.14）"><span class="pre">set</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="（在 Python v3.14）"><span class="pre">set</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/common/polar.html#_get_frozen_and_info_sets"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.common.polar._get_frozen_and_info_sets" title="Link to this definition">¶</a></dt>
-<dd><p>Determine frozen and information bit positions.</p>
-<p>The last K entries (most reliable) in the reliability sequence are info bits;
-the first N-K entries (least reliable) are frozen.</p>
+<dd><p>确定冻结位和信息位的位置集合。</p>
+<p>可靠性序列中最后 K 个（最可靠）为信息位，
+前 N-K 个（最不可靠）为冻结位。</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.common.polar.PolarEncoder">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.common.polar.</span></span><span class="sig-name descname"><span class="pre">PolarEncoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/common/polar.html#PolarEncoder"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.common.polar.PolarEncoder" title="Link to this definition">¶</a></dt>
-<dd><p>Polar code encoder using butterfly (recursive) algorithm over GF(2).</p>
+<dd><p>使用 GF(2) 上蝶形（递归）算法的 Polar 编码器。</p>
 <p class="rubric">Initialization</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.common.polar.PolarEncoder.encode">
 <span class="sig-name descname"><span class="pre">encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/common/polar.html#PolarEncoder.encode"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.common.polar.PolarEncoder.encode" title="Link to this definition">¶</a></dt>
-<dd><p>Encode K information bits into N coded bits.</p>
-<p>Args:
-info_bits: array of K bits (0 or 1).</p>
-<p>Returns:
-Codeword of length N (0 or 1).</p>
+<dd><p>将 K 个信息位编码为 N 个编码位。</p>
+<p>参数:
+info_bits: 长度为 K 的比特数组（取值 0 或 1）。</p>
+<p>返回:
+长度为 N 的码字（取值 0 或 1）。</p>
 </dd></dl>
 
 </dd></dl>
@@ -531,8 +530,8 @@ rate-0/rate-1 子树不再向下遍历, 与 SSC 剪枝对齐。</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.common.polar.PolarDecoder.decode">
 <span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">llr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="（在 NumPy v2.4）"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/common/polar.html#PolarDecoder.decode"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.common.polar.PolarDecoder.decode" title="Link to this definition">¶</a></dt>
-<dd><p>Decode N channel LLRs to K information bits using SC algorithm.</p>
-<p>Convention: positive LLR means bit 0 is more likely.</p>
+<dd><p>使用 SC 算法将 N 个信道 LLR 解码为 K 个信息位。</p>
+<p>约定：正 LLR 表示比特 0 的可能性更高。</p>
 </dd></dl>
 
 <dl class="py method">
@@ -659,11 +658,11 @@ partial 子树: 标准 f/g 递归。</p>
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=9becfed8"></script>
+</div><script src="../../_static/documentation_options.js?v=76d9f950"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
     <script src="../../_static/translations.js?v=beaddf03"></script>
-    <script src="../../_static/version-selector.js?v=7a49bb5b"></script>
+    <script src="../../_static/version-selector.js?v=7d36e42c"></script>
     </body>
 </html>

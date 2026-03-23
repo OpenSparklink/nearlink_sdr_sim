@@ -1,0 +1,520 @@
+# {py:mod}`nearlink_sdr.phy.uwb_measurement_security`
+
+```{py:module} nearlink_sdr.phy.uwb_measurement_security
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security
+:allowtitles:
+```
+
+## Module Contents
+
+### Classes
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`UWBMeasInputContext <nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext
+    :summary:
+    ```
+* - {py:obj}`CTSKeys <nearlink_sdr.phy.uwb_measurement_security.CTSKeys>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.CTSKeys
+    :summary:
+    ```
+* - {py:obj}`EncryptionAlgo <nearlink_sdr.phy.uwb_measurement_security.EncryptionAlgo>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.EncryptionAlgo
+    :summary:
+    ```
+* - {py:obj}`CTSSymbolResult <nearlink_sdr.phy.uwb_measurement_security.CTSSymbolResult>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.CTSSymbolResult
+    :summary:
+    ```
+````
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`_build_kdf_message <nearlink_sdr.phy.uwb_measurement_security._build_kdf_message>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security._build_kdf_message
+    :summary:
+    ```
+* - {py:obj}`derive_slp_key <nearlink_sdr.phy.uwb_measurement_security.derive_slp_key>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.derive_slp_key
+    :summary:
+    ```
+* - {py:obj}`derive_cts_keys <nearlink_sdr.phy.uwb_measurement_security.derive_cts_keys>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.derive_cts_keys
+    :summary:
+    ```
+* - {py:obj}`update_cts_keys <nearlink_sdr.phy.uwb_measurement_security.update_cts_keys>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.update_cts_keys
+    :summary:
+    ```
+* - {py:obj}`_derive_cts_from_content <nearlink_sdr.phy.uwb_measurement_security._derive_cts_from_content>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security._derive_cts_from_content
+    :summary:
+    ```
+* - {py:obj}`compute_tgap <nearlink_sdr.phy.uwb_measurement_security.compute_tgap>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.compute_tgap
+    :summary:
+    ```
+* - {py:obj}`_encrypt_block <nearlink_sdr.phy.uwb_measurement_security._encrypt_block>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security._encrypt_block
+    :summary:
+    ```
+* - {py:obj}`generate_cts_symbols <nearlink_sdr.phy.uwb_measurement_security.generate_cts_symbols>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.generate_cts_symbols
+    :summary:
+    ```
+* - {py:obj}`advance_cts_v_counter <nearlink_sdr.phy.uwb_measurement_security.advance_cts_v_counter>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.advance_cts_v_counter
+    :summary:
+    ```
+````
+
+### Data
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`LABEL_SLP <nearlink_sdr.phy.uwb_measurement_security.LABEL_SLP>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.LABEL_SLP
+    :summary:
+    ```
+* - {py:obj}`LABEL_CTS_INIT_C <nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_INIT_C>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_INIT_C
+    :summary:
+    ```
+* - {py:obj}`LABEL_CTS_K <nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_K>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_K
+    :summary:
+    ```
+* - {py:obj}`LABEL_CTS_GAP_K <nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_GAP_K>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_GAP_K
+    :summary:
+    ```
+* - {py:obj}`LABEL_CTS_V <nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_V>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_V
+    :summary:
+    ```
+````
+
+### API
+
+````{py:data} LABEL_SLP
+:canonical: nearlink_sdr.phy.uwb_measurement_security.LABEL_SLP
+:value: >
+   'fromhex(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.LABEL_SLP
+```
+
+````
+
+````{py:data} LABEL_CTS_INIT_C
+:canonical: nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_INIT_C
+:value: >
+   'fromhex(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_INIT_C
+```
+
+````
+
+````{py:data} LABEL_CTS_K
+:canonical: nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_K
+:value: >
+   'fromhex(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_K
+```
+
+````
+
+````{py:data} LABEL_CTS_GAP_K
+:canonical: nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_GAP_K
+:value: >
+   'fromhex(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_GAP_K
+```
+
+````
+
+````{py:data} LABEL_CTS_V
+:canonical: nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_V
+:value: >
+   'fromhex(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.LABEL_CTS_V
+```
+
+````
+
+````{py:function} _build_kdf_message(label: bytes, context: bytes) -> bytes
+:canonical: nearlink_sdr.phy.uwb_measurement_security._build_kdf_message
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security._build_kdf_message
+```
+````
+
+`````{py:class} UWBMeasInputContext
+:canonical: nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext
+```
+
+````{py:attribute} phy_channel
+:canonical: nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.phy_channel
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.phy_channel
+```
+
+````
+
+````{py:attribute} ranging_method
+:canonical: nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.ranging_method
+:type: int
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.ranging_method
+```
+
+````
+
+````{py:attribute} ranging_mode
+:canonical: nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.ranging_mode
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.ranging_mode
+```
+
+````
+
+````{py:attribute} code_len_duty
+:canonical: nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.code_len_duty
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.code_len_duty
+```
+
+````
+
+````{py:attribute} symbol_index
+:canonical: nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.symbol_index
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.symbol_index
+```
+
+````
+
+````{py:attribute} nmss
+:canonical: nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.nmss
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.nmss
+```
+
+````
+
+````{py:attribute} g_node_l2id
+:canonical: nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.g_node_l2id
+:type: bytes
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.g_node_l2id
+```
+
+````
+
+````{py:attribute} meas_signal_config_index
+:canonical: nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.meas_signal_config_index
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.meas_signal_config_index
+```
+
+````
+
+````{py:attribute} tx_antenna_first
+:canonical: nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.tx_antenna_first
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.tx_antenna_first
+```
+
+````
+
+````{py:attribute} rx_antenna_first
+:canonical: nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.rx_antenna_first
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.rx_antenna_first
+```
+
+````
+
+````{py:attribute} tx_antenna_second
+:canonical: nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.tx_antenna_second
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.tx_antenna_second
+```
+
+````
+
+````{py:attribute} rx_antenna_second
+:canonical: nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.rx_antenna_second
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.rx_antenna_second
+```
+
+````
+
+````{py:method} pack() -> bytes
+:canonical: nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.pack
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.UWBMeasInputContext.pack
+```
+
+````
+
+`````
+
+`````{py:class} CTSKeys
+:canonical: nearlink_sdr.phy.uwb_measurement_security.CTSKeys
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.CTSKeys
+```
+
+````{py:attribute} cts_key
+:canonical: nearlink_sdr.phy.uwb_measurement_security.CTSKeys.cts_key
+:type: bytes
+:value: >
+   b''
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.CTSKeys.cts_key
+```
+
+````
+
+````{py:attribute} cts_value
+:canonical: nearlink_sdr.phy.uwb_measurement_security.CTSKeys.cts_value
+:type: bytes
+:value: >
+   b''
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.CTSKeys.cts_value
+```
+
+````
+
+````{py:attribute} cts_gap
+:canonical: nearlink_sdr.phy.uwb_measurement_security.CTSKeys.cts_gap
+:type: bytes
+:value: >
+   b''
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.CTSKeys.cts_gap
+```
+
+````
+
+````{py:attribute} cts_content
+:canonical: nearlink_sdr.phy.uwb_measurement_security.CTSKeys.cts_content
+:type: bytes
+:value: >
+   b''
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.CTSKeys.cts_content
+```
+
+````
+
+````{py:attribute} cts_content_32bit
+:canonical: nearlink_sdr.phy.uwb_measurement_security.CTSKeys.cts_content_32bit
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.CTSKeys.cts_content_32bit
+```
+
+````
+
+`````
+
+````{py:function} derive_slp_key(link_key: bytes, kdf_type: nearlink_sdr.mac.crypto.KdfType = KdfType.AES_CMAC) -> bytes
+:canonical: nearlink_sdr.phy.uwb_measurement_security.derive_slp_key
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.derive_slp_key
+```
+````
+
+````{py:function} derive_cts_keys(slp_key: bytes, input_context: bytes, kdf_type: nearlink_sdr.mac.crypto.KdfType = KdfType.AES_CMAC) -> nearlink_sdr.phy.uwb_measurement_security.CTSKeys
+:canonical: nearlink_sdr.phy.uwb_measurement_security.derive_cts_keys
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.derive_cts_keys
+```
+````
+
+````{py:function} update_cts_keys(slp_key: bytes, prev_keys: nearlink_sdr.phy.uwb_measurement_security.CTSKeys, kdf_type: nearlink_sdr.mac.crypto.KdfType = KdfType.AES_CMAC) -> nearlink_sdr.phy.uwb_measurement_security.CTSKeys
+:canonical: nearlink_sdr.phy.uwb_measurement_security.update_cts_keys
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.update_cts_keys
+```
+````
+
+````{py:function} _derive_cts_from_content(slp_key: bytes, cts_content: bytes, cts_content_32bit: int, kdf_type: nearlink_sdr.mac.crypto.KdfType) -> nearlink_sdr.phy.uwb_measurement_security.CTSKeys
+:canonical: nearlink_sdr.phy.uwb_measurement_security._derive_cts_from_content
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security._derive_cts_from_content
+```
+````
+
+````{py:function} compute_tgap(cts_gap: bytes, cts_gap_shift: int, t_base: int, code_len: int, delta_l: int) -> int
+:canonical: nearlink_sdr.phy.uwb_measurement_security.compute_tgap
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.compute_tgap
+```
+````
+
+`````{py:class} EncryptionAlgo
+:canonical: nearlink_sdr.phy.uwb_measurement_security.EncryptionAlgo
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.EncryptionAlgo
+```
+
+````{py:attribute} NONE
+:canonical: nearlink_sdr.phy.uwb_measurement_security.EncryptionAlgo.NONE
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.EncryptionAlgo.NONE
+```
+
+````
+
+````{py:attribute} SM4_128
+:canonical: nearlink_sdr.phy.uwb_measurement_security.EncryptionAlgo.SM4_128
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.EncryptionAlgo.SM4_128
+```
+
+````
+
+````{py:attribute} AES_128
+:canonical: nearlink_sdr.phy.uwb_measurement_security.EncryptionAlgo.AES_128
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.EncryptionAlgo.AES_128
+```
+
+````
+
+````{py:attribute} ZUC_256
+:canonical: nearlink_sdr.phy.uwb_measurement_security.EncryptionAlgo.ZUC_256
+:value: >
+   3
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.EncryptionAlgo.ZUC_256
+```
+
+````
+
+````{py:attribute} AES_256
+:canonical: nearlink_sdr.phy.uwb_measurement_security.EncryptionAlgo.AES_256
+:value: >
+   4
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.EncryptionAlgo.AES_256
+```
+
+````
+
+`````
+
+````{py:function} _encrypt_block(algo: int, key: bytes, plaintext: bytes) -> bytes
+:canonical: nearlink_sdr.phy.uwb_measurement_security._encrypt_block
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security._encrypt_block
+```
+````
+
+`````{py:class} CTSSymbolResult
+:canonical: nearlink_sdr.phy.uwb_measurement_security.CTSSymbolResult
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.CTSSymbolResult
+```
+
+````{py:attribute} symbol_indices
+:canonical: nearlink_sdr.phy.uwb_measurement_security.CTSSymbolResult.symbol_indices
+:type: list[int]
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.CTSSymbolResult.symbol_indices
+```
+
+````
+
+````{py:attribute} sc_values
+:canonical: nearlink_sdr.phy.uwb_measurement_security.CTSSymbolResult.sc_values
+:type: list[int]
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.CTSSymbolResult.sc_values
+```
+
+````
+
+`````
+
+````{py:function} generate_cts_symbols(cts_key: bytes, cts_v_upper: bytes, cts_v_counter: int, n_cts: int, symbol_count: int = 32, encryption_algo: int = EncryptionAlgo.AES_128) -> nearlink_sdr.phy.uwb_measurement_security.CTSSymbolResult
+:canonical: nearlink_sdr.phy.uwb_measurement_security.generate_cts_symbols
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.generate_cts_symbols
+```
+````
+
+````{py:function} advance_cts_v_counter(cts_v_counter: int, n_cts: int) -> int
+:canonical: nearlink_sdr.phy.uwb_measurement_security.advance_cts_v_counter
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_measurement_security.advance_cts_v_counter
+```
+````

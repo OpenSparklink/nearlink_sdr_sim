@@ -5,11 +5,11 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="索引" href="../../../genindex.html"><link rel="search" title="搜索" href="../../../search.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>nearlink_sdr.phy.pilot - nearlink-sdr 0.1.0 文档</title>
+        <title>nearlink_sdr.phy.pilot - nearlink-sdr 1.0.0 文档</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=8dab3a3b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/version-selector.css?v=59d9d931" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/version-selector.css?v=022f18c6" />
     
     
 
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">nearlink-sdr 0.1.0 文档</div></a>
+      <a href="../../../index.html"><div class="brand">nearlink-sdr 1.0.0 文档</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -188,7 +188,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
   
-  <span class="sidebar-brand-text">nearlink-sdr 0.1.0 文档</span>
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.0 文档</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
   <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
@@ -387,11 +387,11 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>nearlink_sdr.phy.pilot 源代码</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Pilot symbol insertion and extraction per TXS-10002-2025 section 6.2.1.2.&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;导频符号插入与提取 -- TXS-10002-2025 标准 6.2.1.2 节。&quot;&quot;&quot;</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="c1"># Pilot reference phases for each modulation scheme (degrees)</span>
+<span class="c1"># 各调制方式的导频参考相位（单位：度）</span>
 <span class="c1"># 标准定义: BPSK导频90°, QPSK导频45°, 8PSK导频22.5°</span>
 <span class="n">PILOT_PHASE_DEG</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;BPSK&quot;</span><span class="p">:</span> <span class="mf">90.0</span><span class="p">,</span>
@@ -399,7 +399,7 @@
     <span class="s2">&quot;8PSK&quot;</span><span class="p">:</span> <span class="mf">22.5</span><span class="p">,</span>
 <span class="p">}</span>
 
-<span class="c1"># Phase rotation per even symbol for each modulation scheme (clockwise, degrees)</span>
+<span class="c1"># 各调制方式偶数符号的相位旋转量（顺时针，单位：度）</span>
 <span class="n">EVEN_ROTATION_DEG</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;BPSK&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">90.0</span><span class="p">,</span>
     <span class="s2">&quot;QPSK&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">45.0</span><span class="p">,</span>
@@ -410,15 +410,15 @@
 <div class="viewcode-block" id="pilot_symbol">
 <a class="viewcode-back" href="../../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.html#nearlink_sdr.phy.pilot.pilot_symbol">[文档]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">pilot_symbol</span><span class="p">(</span><span class="n">mod_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">symbol_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">complex</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate a single pilot symbol with appropriate phase rotation.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;生成带适当相位旋转的单个导频符号。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        mod_type: &quot;BPSK&quot;, &quot;QPSK&quot;, or &quot;8PSK&quot;.</span>
-<span class="sd">        symbol_index: 0-based symbol index in the frame (determines odd/even).</span>
-<span class="sd">                     The standard says the first symbol is at &quot;odd&quot; position.</span>
+<span class="sd">    参数:</span>
+<span class="sd">        mod_type: 调制方式，取 &quot;BPSK&quot;、&quot;QPSK&quot; 或 &quot;8PSK&quot;。</span>
+<span class="sd">        symbol_index: 帧内以 0 为基的符号索引（决定奇偶位置）。</span>
+<span class="sd">                     标准规定第一个符号处于奇数位置。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        Complex pilot symbol.</span>
+<span class="sd">    返回:</span>
+<span class="sd">        复数导频符号。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">phase_deg</span> <span class="o">=</span> <span class="n">PILOT_PHASE_DEG</span><span class="p">[</span><span class="n">mod_type</span><span class="p">]</span>
     <span class="c1"># &quot;无线帧的第一个符号认为处于奇数位&quot; → index 0 is odd, index 1 is even, ...</span>
@@ -438,20 +438,20 @@
     <span class="n">start_symbol_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
     <span class="n">omit_last_pilot</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Insert pilot symbols into data symbol stream.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;向数据符号流中插入导频符号。</span>
 
-<span class="sd">    Every `pilot_interval` data symbols, one pilot symbol is inserted after them.</span>
-<span class="sd">    The last pilot in the frame should be omitted per standard.</span>
+<span class="sd">    每隔 `pilot_interval` 个数据符号后插入一个导频符号。</span>
+<span class="sd">    按标准规定，帧中最后一个导频应省略。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        data_symbols: complex data symbol array.</span>
-<span class="sd">        pilot_interval: N in standard (4, 8, or 16).</span>
-<span class="sd">        mod_type: modulation type for pilot phase.</span>
-<span class="sd">        start_symbol_index: the absolute symbol index of the first data symbol in the frame.</span>
-<span class="sd">        omit_last_pilot: whether to omit the last pilot symbol.</span>
+<span class="sd">    参数:</span>
+<span class="sd">        data_symbols: 复数数据符号数组。</span>
+<span class="sd">        pilot_interval: 标准中的 N 值（4、8 或 16）。</span>
+<span class="sd">        mod_type: 导频相位所用的调制方式。</span>
+<span class="sd">        start_symbol_index: 帧内第一个数据符号的绝对符号索引。</span>
+<span class="sd">        omit_last_pilot: 是否省略最后一个导频符号。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        (output_symbols, total_symbol_count) — symbols with pilots inserted, and count.</span>
+<span class="sd">    返回:</span>
+<span class="sd">        (output_symbols, total_symbol_count) — 插入导频后的符号数组及总符号数。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">pilot_interval</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">data_symbols</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_symbols</span><span class="p">)</span>
@@ -463,14 +463,14 @@
     <span class="n">pilot_positions</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">while</span> <span class="n">data_pos</span> <span class="o">&lt;</span> <span class="n">n_data</span><span class="p">:</span>
-        <span class="c1"># Take up to pilot_interval data symbols</span>
+        <span class="c1"># 取最多 pilot_interval 个数据符号</span>
         <span class="n">chunk_end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">data_pos</span> <span class="o">+</span> <span class="n">pilot_interval</span><span class="p">,</span> <span class="n">n_data</span><span class="p">)</span>
         <span class="n">chunk</span> <span class="o">=</span> <span class="n">data_symbols</span><span class="p">[</span><span class="n">data_pos</span><span class="p">:</span><span class="n">chunk_end</span><span class="p">]</span>
         <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
         <span class="n">sym_idx</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
         <span class="n">data_pos</span> <span class="o">=</span> <span class="n">chunk_end</span>
 
-        <span class="c1"># Insert pilot after this chunk if chunk is full</span>
+        <span class="c1"># 若当前块已满则在其后插入导频</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span> <span class="o">==</span> <span class="n">pilot_interval</span> <span class="ow">and</span> <span class="n">data_pos</span> <span class="o">&lt;=</span> <span class="n">n_data</span><span class="p">:</span>
             <span class="n">pilot_positions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
             <span class="n">p</span> <span class="o">=</span> <span class="n">pilot_symbol</span><span class="p">(</span><span class="n">mod_type</span><span class="p">,</span> <span class="n">sym_idx</span><span class="p">)</span>
@@ -479,15 +479,15 @@
 
     <span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">if</span> <span class="n">result</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
 
-    <span class="c1"># Omit last pilot if requested</span>
+    <span class="c1"># 按需省略最后一个导频</span>
     <span class="k">if</span> <span class="n">omit_last_pilot</span> <span class="ow">and</span> <span class="n">pilot_positions</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">output</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="c1"># Check if the last element is a pilot</span>
-        <span class="c1"># The last pilot position: find the last pilot we inserted</span>
-        <span class="c1"># We need to check if the very last symbol of the output is a pilot</span>
+        <span class="c1"># 检查最后一个元素是否为导频</span>
+        <span class="c1"># 最后一个导频位置：找到最后插入的导频</span>
+        <span class="c1"># 检查输出的最后一个符号是否为导频</span>
         <span class="n">total_data_inserted</span> <span class="o">=</span> <span class="n">n_data</span>
         <span class="n">n_pilots</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pilot_positions</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">n_pilots</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">total_data_inserted</span> <span class="o">%</span> <span class="n">pilot_interval</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="c1"># Last symbol is a pilot → remove it</span>
+            <span class="c1"># 最后一个符号是导频 → 移除</span>
             <span class="n">output</span> <span class="o">=</span> <span class="n">output</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="n">output</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">output</span><span class="p">)</span></div>
@@ -501,15 +501,15 @@
     <span class="n">pilot_interval</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">last_pilot_omitted</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove pilot symbols from the received symbol stream.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;从接收符号流中移除导频符号。</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        symbols: received symbols with pilots.</span>
-<span class="sd">        pilot_interval: N (4, 8, or 16).</span>
-<span class="sd">        last_pilot_omitted: whether the last pilot was omitted at TX.</span>
+<span class="sd">    参数:</span>
+<span class="sd">        symbols: 含导频的接收符号。</span>
+<span class="sd">        pilot_interval: N 值（4、8 或 16）。</span>
+<span class="sd">        last_pilot_omitted: 发送侧是否已省略最后一个导频。</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        Data symbols with pilots removed.</span>
+<span class="sd">    返回:</span>
+<span class="sd">        移除导频后的数据符号。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">pilot_interval</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">symbols</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -521,11 +521,11 @@
     <span class="k">while</span> <span class="n">pos</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">):</span>
         <span class="n">remaining</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">)</span> <span class="o">-</span> <span class="n">pos</span>
         <span class="k">if</span> <span class="n">remaining</span> <span class="o">&gt;=</span> <span class="n">stride</span><span class="p">:</span>
-            <span class="c1"># Full group: take data, skip pilot</span>
+            <span class="c1"># 完整组：取数据，跳过导频</span>
             <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">symbols</span><span class="p">[</span><span class="n">pos</span> <span class="p">:</span> <span class="n">pos</span> <span class="o">+</span> <span class="n">pilot_interval</span><span class="p">])</span>
             <span class="n">pos</span> <span class="o">+=</span> <span class="n">stride</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># Partial group at end (no pilot or pilot was omitted)</span>
+            <span class="c1"># 末尾不完整组（无导频或导频已省略）</span>
             <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">symbols</span><span class="p">[</span><span class="n">pos</span><span class="p">:])</span>
             <span class="n">pos</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">)</span>
 
@@ -566,7 +566,7 @@
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=9becfed8"></script>
+</div><script src="../../../_static/documentation_options.js?v=76d9f950"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>
@@ -1007,6 +1007,6 @@ mermaid.initialize(
 
 window.addEventListener("load", load);
 window.runMermaid = runMermaid;</script>
-    <script src="../../../_static/version-selector.js?v=7a49bb5b"></script>
+    <script src="../../../_static/version-selector.js?v=7d36e42c"></script>
     </body>
 </html>

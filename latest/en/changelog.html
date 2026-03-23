@@ -1,0 +1,1806 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="API Reference" href="apidocs/index.html"><link rel="prev" title="Standard Clause Mapping" href="explanation/standard-mapping.html">
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
+        <title>Changelog - nearlink-sdr 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="_static/version-selector.css?v=022f18c6" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  --color-brand-primary: #1a73e8;
+  --color-brand-content: #1a73e8;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #8ab4f8;
+  --color-brand-content: #8ab4f8;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #8ab4f8;
+  --color-brand-content: #8ab4f8;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">nearlink-sdr 1.0.0 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">nearlink-sdr 1.0.0 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tutorials/getting-started.html">Quick Start</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="how-to/index.html">How-To Guides</a><input aria-label="Toggle navigation of How-To Guides" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="how-to/run-simulation.html">Running Link Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how-to/add-modulation.html">Adding a New Modulation Scheme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how-to/qos-management.html">QoS Service Quality Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how-to/node-usage.html">Using the SLE Node Entity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how-to/rust-acceleration.html">Rust Acceleration Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how-to/sdr-deployment.html">SDR E310 Deployment Planning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how-to/build-docs.html">Building Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="reference/index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.demodulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.demodulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.modulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.modulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.rx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.sim.link_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.link_sim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.sim.usrp_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.usrp_sim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="explanation/index.html">Explanation</a><input aria-label="Toggle navigation of Explanation" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="explanation/overview.html">SparkLink SLE Protocol Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="explanation/principles.html">Physical Layer Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="explanation/physical-layer.html">Physical Layer Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="explanation/mac-layer.html">MAC Layer Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="explanation/security.html">Security Subsystem Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="explanation/data-flow.html">End-to-End Data Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="explanation/architecture.html">System Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="explanation/standard-mapping.html">Standard Clause Mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Changelog</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="apidocs/index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.demodulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.demodulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.modulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.modulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.rx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.sim.link_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.link_sim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.sim.usrp_sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim.usrp_sim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="apidocs/nearlink_sdr/nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/changelog.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>Changelog<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<p>All notable changes to this project are recorded in this file.</p>
+<p>Format based on <a class="reference external" href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>, versioning follows <a class="reference external" href="https://semver.org/">Semantic Versioning</a>.</p>
+<section id="id2">
+<h2>[1.0.2] - 2026-03-23<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<section id="added">
+<h3>Added<a class="headerlink" href="#added" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>英文本地化: 76 个 .po 文件全部翻译 (6205/6261 条目, 99.1%)</p></li>
+<li><p>语言切换器: 侧边栏中文/English 切换按钮 (JS/CSS)</p></li>
+<li><p>Makefile 目标: <code class="docutils literal notranslate"><span class="pre">docs-en</span></code>, <code class="docutils literal notranslate"><span class="pre">docs-i18n</span></code>, <code class="docutils literal notranslate"><span class="pre">i18n-update</span></code></p></li>
+<li><p>CI 双语构建: docs.yml 同时生成中文和英文 HTML, 英文版部署至 <code class="docutils literal notranslate"><span class="pre">/en/</span></code> 子路径</p></li>
+</ul>
+</section>
+<section id="fixed">
+<h3>Fixed<a class="headerlink" href="#fixed" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>PDF 文字堆叠: 消除全部 4 个 vbox overflow, hbox overflow 从 107 降至 86</p></li>
+<li><p>LaTeX preamble: 移除重复 <code class="docutils literal notranslate"><span class="pre">\usepackage{xeCJK}</span></code>, 增加 <code class="docutils literal notranslate"><span class="pre">\linespread{1.25}</span></code> 和 <code class="docutils literal notranslate"><span class="pre">\sloppy</span></code></p></li>
+<li><p>ruff 配置: 添加 RUF001 ignore, 允许字符串中的中文全角标点</p></li>
+</ul>
+</section>
+</section>
+<section id="id3">
+<h2>[1.0.1] - 2026-03-22<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<section id="id4">
+<h3>Added<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Makefile: 15 build targets, unified command source for CI and documentation</p></li>
+<li><p>sphinxcontrib-mermaid integration, 8 text diagrams converted to Mermaid</p></li>
+<li><p>markdownlint configuration (<code class="docutils literal notranslate"><span class="pre">.markdownlint.json</span></code>), 0 errors</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docs/explanation/index.md</span></code>: Diataxis four-quadrant unified entry point</p></li>
+<li><p>ruff per-file-ignores configuration, examples directory exempt from F821/E402</p></li>
+</ul>
+</section>
+<section id="changed">
+<h3>Changed<a class="headerlink" href="#changed" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>CI (<code class="docutils literal notranslate"><span class="pre">ci.yml</span></code>, <code class="docutils literal notranslate"><span class="pre">release.yml</span></code>) all switched to Makefile targets</p></li>
+<li><p>27 bash code blocks in 7 documents changed to literalinclude or make commands</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docs/index.md</span></code> streamlined to 4 Diataxis quadrants</p></li>
+<li><p>Mermaid diagram replacements:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">overview.md</span></code>: link lifecycle state diagram</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mac-layer.md</span></code>: state machine + access timing diagram</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">architecture.md</span></code>: TX/RX Pipeline flowchart</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data-flow.md</span></code>: global transceive flowchart</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">security.md</span></code>: pairing state machine + key derivation tree</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id5">
+<h2>[1.0.0] - 2026-03-21<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
+<section id="id6">
+<h3>Added<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Protocol documentation series (<code class="docutils literal notranslate"><span class="pre">docs/explanation/</span></code>)</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">overview.md</span></code>: SparkLink SLE protocol overview, positioning, stack structure, core concepts</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">physical-layer.md</span></code>: physical layer details, modulation/frame structure/channel coding/TX-RX Pipeline</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mac-layer.md</span></code>: MAC layer details, broadcast/access/link management/signaling/QoS/scheduling</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">security.md</span></code>: security subsystem details, pairing/key derivation/frame encryption/privacy/UWB security</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data-flow.md</span></code>: end-to-end data flow, complete processing chain from application to air interface</p></li>
+<li><p>Updated <code class="docutils literal notranslate"><span class="pre">docs/index.md</span></code> toctree, organizing documents from shallow to deep</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id7">
+<h3>Fixed<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>GFSK modulator: added mod_index [0.45, 0.55] range validation (§6.2.1.1)</p></li>
+<li><p>Broadcast manager: added broadcast interval [4ms, 2097.151875s] range validation (§7.1.1)</p></li>
+<li><p>Broadcast manager: added [0, 2ms] random delay calculation method (§7.1.1)</p></li>
+<li><p>Rust acceleration module (<code class="docutils literal notranslate"><span class="pre">rust/nearlink_sdr_accel</span></code>)</p>
+<ul>
+<li><p>Polar SC decoder Rust implementation built with PyO3 + maturin</p></li>
+<li><p>SSC optimization (rate-0/rate-1 subtree pruning) + scalar f/g operations</p></li>
+<li><p>Python side auto-detection, falls back to pure Python implementation when unavailable</p></li>
+<li><p>Pipeline decode performance improved &gt;10x, overall pipeline speedup 2.2x (389ms → 174ms)</p></li>
+<li><p>Test suite reduced from 9.48s to 5.12s</p></li>
+<li><p>Rust Polar encoder (butterfly GF(2) transform), pipeline speedup 3.9x (389ms → 101ms)</p></li>
+<li><p>Overall test suite reduced from 12.36s to 4.10s</p></li>
+<li><p>Rust CRC computation (bit-level shift register), eliminates Python loop overhead</p></li>
+<li><p>Rust m-sequence generation (popcount feedback optimization), eliminates Python loop overhead</p></li>
+<li><p>Pipeline single call 1.36ms (pure Python baseline 389ms, speedup ~280x)</p></li>
+</ul>
+</li>
+<li><p>Rust acceleration installation tool (<code class="docutils literal notranslate"><span class="pre">scripts/install_accel.py</span></code>)</p>
+<ul>
+<li><p>Auto-detects Rust toolchain, installs maturin, compiles acceleration module</p></li>
+<li><p>Compatible with both uv and pip package management</p></li>
+<li><p>Silently falls back on installation failure, does not affect project operation</p></li>
+</ul>
+</li>
+<li><p>Rust quality toolchain</p>
+<ul>
+<li><p>Core logic extracted as pure Rust functions, verifiable directly with <code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">test</span></code></p></li>
+<li><p>20 native Rust tests (CRC/m-sequence/Polar coding/SC decoding)</p></li>
+<li><p>clippy lint (deny warnings) + rustfmt formatting</p></li>
+<li><p>CI added <code class="docutils literal notranslate"><span class="pre">rust</span></code> job: fmt + clippy + cargo test</p></li>
+</ul>
+</li>
+<li><p>CI integrated Rust acceleration build</p>
+<ul>
+<li><p>test/coverage/examples three jobs integrate <code class="docutils literal notranslate"><span class="pre">dtolnay/rust-toolchain&#64;stable</span></code> + maturin</p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">install-accel</span></code> job: verifies <code class="docutils literal notranslate"><span class="pre">install_accel.py</span></code> script and acceleration module loading</p></li>
+<li><p>Fixed maturin using wrong venv in CI subdirectory (<code class="docutils literal notranslate"><span class="pre">--manifest-path</span></code> replaces <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">rust</span></code>)</p></li>
+</ul>
+</li>
+<li><p>Rust acceleration how-to guide (<code class="docutils literal notranslate"><span class="pre">docs/how-to/rust-acceleration.md</span></code>)</p>
+<ul>
+<li><p>Installation methods (automatic/manual), verification, performance comparison, troubleshooting</p></li>
+</ul>
+</li>
+<li><p>Simulation output directory management</p>
+<ul>
+<li><p>All simulation plots output to <code class="docutils literal notranslate"><span class="pre">output/</span></code> directory</p></li>
+<li><p>Environment variable <code class="docutils literal notranslate"><span class="pre">NEARLINK_SDR_OUTPUT</span></code> for custom output path</p></li>
+<li><p>16 historical PNG files in root directory removed from git tracking</p></li>
+</ul>
+</li>
+<li><p>GitHub Actions CI workflow (<code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code>)</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">lint</span></code>: ruff code check (src/tests/examples)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test</span></code>: pytest full test suite + JUnit report</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">coverage</span></code>: coverage statistics and report</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docs</span></code>: Sphinx strict-mode build (-E -W)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">examples</span></code>: standalone example script verification + example tests</p></li>
+<li><p>Uses <code class="docutils literal notranslate"><span class="pre">astral-sh/setup-uv</span></code> to manage Python 3.14 and dependencies</p></li>
+</ul>
+</li>
+<li><p>GitHub Pages documentation deployment workflow (<code class="docutils literal notranslate"><span class="pre">.github/workflows/docs.yml</span></code>)</p>
+<ul>
+<li><p>Auto-builds and deploys Sphinx documentation on push to master branch or version tag</p></li>
+<li><p>Supports versioned documentation hosting: <code class="docutils literal notranslate"><span class="pre">/latest/</span></code> (master) + <code class="docutils literal notranslate"><span class="pre">/v{X.Y.Z}/</span></code> (tag)</p></li>
+<li><p>Version selector UI: sidebar dropdown to switch documentation versions</p></li>
+<li><p>Incremental deployment to <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch using <code class="docutils literal notranslate"><span class="pre">peaceiris/actions-gh-pages</span></code></p></li>
+</ul>
+</li>
+<li><p>Documentation UI upgrade: Furo theme replaces sphinx-rtd-theme</p>
+<ul>
+<li><p>Dark/light mode adaptive</p></li>
+<li><p>Mobile responsive layout</p></li>
+<li><p>GitHub repository link icon</p></li>
+</ul>
+</li>
+<li><p>Phase 16: multi-user interference + Doppler time-varying channel simulation (25 test cases)</p>
+<ul>
+<li><p>Jakes sum-of-sinusoids model: replaces original independent Rayleigh, generates time-correlated fading with J₀ autocorrelation</p></li>
+<li><p>Multi-user interference model: <code class="docutils literal notranslate"><span class="pre">InterferenceConfig</span></code> / <code class="docutils literal notranslate"><span class="pre">add_interference()</span></code> / <code class="docutils literal notranslate"><span class="pre">compute_sinr()</span></code></p></li>
+<li><p>Co-channel interference: SIR-based power scaling</p></li>
+<li><p>Adjacent-channel interference: frequency offset superposition</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim_doppler_link()</span></code>: Doppler spread vs FER simulation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim_multi_user_interference()</span></code>: number of interfering users vs FER/SINR simulation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim_sir_sweep()</span></code>: SIR sweep vs FER simulation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim_doppler_multipath_link()</span></code>: Doppler + ITU Indoor Office multipath combined simulation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run_phase16_simulation()</span></code>: four-panel visualization runner</p></li>
+</ul>
+</li>
+<li><p>README.md: project description and CI status badges</p></li>
+</ul>
+</section>
+<section id="id8">
+<h3>Changed<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Performance optimization: test suite reduced from 12.36s to 9.48s (23% reduction)</p>
+<ul>
+<li><p>Phase 16 simulation function <code class="docutils literal notranslate"><span class="pre">run_phase16_simulation()</span></code> and example <code class="docutils literal notranslate"><span class="pre">doppler_interference()</span></code> parameterized n_frames</p></li>
+<li><p>Tests use n_frames=5 instead of default 50, greatly reducing simulation time while verifying correctness</p></li>
+<li><p>Profiling conclusion: Polar SC decoder accounts for 45% of pipeline time; pure Python has reached optimization limits. Recursion/iteration/scalar fast-path schemes show no significant improvement; further acceleration requires Cython/Numba compilation.</p></li>
+</ul>
+</li>
+<li><p>Documentation code examples refactored: from inline markdown Python to standalone example projects</p>
+<ul>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">examples/</span></code> directory with 5 standalone runnable example scripts</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">examples/getting_started.py</span></code>: GFSK/Polar+PSK/Pipeline/SleNode getting-started examples</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">examples/qos_management.py</span></code>: full QoS management demo (ARQ/HARQ/flow control/priority queue)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">examples/node_usage.py</span></code>: node lifecycle examples (connection/transmit-receive/hopping/power/pairing/measurement)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">examples/run_simulation.py</span></code>: all simulation scenarios (BER/Pipeline/Phase15/channel impairments/MAC/security/AMC/HARQ)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">examples/custom_modulation.py</span></code>: custom modulation scheme template</p></li>
+<li><p>Documentation uses MyST <code class="docutils literal notranslate"><span class="pre">literalinclude</span></code> directives to reference example code, keeping docs in sync with actual code</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_doc_examples.py</span></code> rewritten as example project persistence tests (34 test cases)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id9">
+<h3>Added<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Comprehensive documentation update (Diataxis four quadrants)</p>
+<ul>
+<li><p>Getting-started tutorial: added SleNode frequency hopping/power control/Phase 15 integration simulation examples</p></li>
+<li><p>Architecture explanation: added uwb_pulse/measurement_tx/rf_compliance/multitone/smf_scheduler/uwb_measurement_security/data_link module descriptions, updated SleNode component diagram</p></li>
+<li><p>Reference docs: added all new module API indexes, sim module split into link_sim/usrp_sim</p></li>
+<li><p>How-to guides: node-usage added hopping/power/access/measurement examples, run-simulation added Phase 15 usage</p></li>
+<li><p>Standard mapping: completed clauses 6.2.1.3/6.2.1.4/6.5.x/6.6/6.7/6.8/8.x/9.x/7.2.x, added conformance test section</p></li>
+<li><p>SDR deployment: updated test statistics (2592 tests/91% coverage), Phase 15, streamlined unimplemented list</p></li>
+</ul>
+</li>
+<li><p>Phase 15: SleNode integration simulation (<code class="docutils literal notranslate"><span class="pre">sim/link_sim.py</span></code>)</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim_node_hopping_link()</span></code>: frequency hopping data link simulation, per-frame hopping/channel statistics/FER</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim_node_access_flow()</span></code>: complete access procedure simulation (broadcast→scan→access→data→disconnect)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim_node_channel_sweep()</span></code>: built-in channel model sweep, SNR-FER curve</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim_node_power_adapt()</span></code>: power adaptation simulation, auto power increase on consecutive failures</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim_node_measurement()</span></code>: measurement signal generation simulation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run_phase15_simulation()</span></code>: four-panel visualization runner</p></li>
+<li><p>Phase 15 tests: 11 test cases covering all simulation functions</p></li>
+</ul>
+</li>
+<li><p>SLE node entity enhancement (<code class="docutils literal notranslate"><span class="pre">node.py</span></code>) – complete modeling capability integration</p>
+<ul>
+<li><p>Hopping: integrated <code class="docutils literal notranslate"><span class="pre">FreqTable</span></code> and <code class="docutils literal notranslate"><span class="pre">data_link_hop()</span></code>, auto-calculates channel per transmission</p></li>
+<li><p>Power control: integrated <code class="docutils literal notranslate"><span class="pre">PowerController</span></code>, supports power adjustment and query</p></li>
+<li><p>Timing scheduling: integrated <code class="docutils literal notranslate"><span class="pre">ScheduleManager</span></code>, auto-registers link after access, supports slot advancement</p></li>
+<li><p>SMF scheduling: optional <code class="docutils literal notranslate"><span class="pre">SMFTransmitScheduler</span></code> integration, G-node System Management Frame scheduling</p></li>
+<li><p>Access procedure: integrated <code class="docutils literal notranslate"><span class="pre">BroadcasterAccessManager</span></code>/<code class="docutils literal notranslate"><span class="pre">InitiatorAccessManager</span></code>/<code class="docutils literal notranslate"><span class="pre">DiscoveryManager</span></code></p></li>
+<li><p>Broadcast: <code class="docutils literal notranslate"><span class="pre">start_advertising()</span></code> returns real broadcast frames, <code class="docutils literal notranslate"><span class="pre">on_broadcast_received()</span></code> filter+discovery</p></li>
+<li><p>Non-connected broadcast: added <code class="docutils literal notranslate"><span class="pre">start_non_connected_broadcast()</span></code> method</p></li>
+<li><p>Channel model: configurable multipath/fading channel in simulation mode, <code class="docutils literal notranslate"><span class="pre">receive()</span></code> auto-applies channel effects</p></li>
+<li><p>USRP hardware: initializes transceiver when <code class="docutils literal notranslate"><span class="pre">TransportMode.USRP</span></code>, supports IQ hardware transmit/receive</p></li>
+<li><p>Measurement signal: added <code class="docutils literal notranslate"><span class="pre">generate_measurement_signal()</span></code> method</p></li>
+<li><p>Data link parameters: auto-initialized async/sync parameters by frame type</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NodeConfig</span></code> extension: band/hopping params/channel blocking/power range/channel config/USRP config/SMF switch</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TxResult</span></code> added <code class="docutils literal notranslate"><span class="pre">channel</span></code> field, <code class="docutils literal notranslate"><span class="pre">stats</span></code> added channel/tx_power_dbm/hop_param2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NodeCallback</span></code> added on_broadcast_received/on_discovery_complete/on_measurement_result</p></li>
+<li><p>Node tests: increased from 46 to 95, covering all new features</p></li>
+</ul>
+</li>
+<li><p>Conformance test framework (<code class="docutils literal notranslate"><span class="pre">tests/conformance/</span></code>) – Standard Chapters 10-13</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_protocol.py</span></code>: protocol conformance tests (Chapter 11)</p>
+<ul>
+<li><p>FT1/FT2/FT3/FT4 full frame type coverage (broadcast/discovery/non-connected/TT/ADL/SDL)</p></li>
+<li><p>FT2: MCS6-12 × pilot density 4/8/16 parameter matrix</p></li>
+<li><p>Control plane features: interval update/feature exchange/version exchange/power control/PING</p></li>
+<li><p>Control plane procedures: broadcast frame filtering/access whitelist</p></li>
+<li><p>System Management Frame/measurement signaling transmission</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_rf.py</span></code>: RF conformance tests (Chapter 12)</p>
+<ul>
+<li><p>12.1 Transmitter: power level/GFSK frequency deviation/PSK EVM/frequency tolerance/clock accuracy/spurious</p></li>
+<li><p>12.2 Receiver: sensitivity/maximum input/selectivity/intermodulation/RSSI/spurious emissions</p></li>
+<li><p>12.3 UWB: channel frequency/spectral template/root mean square error</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_security.py</span></code>: security conformance tests (Chapter 13)</p>
+<ul>
+<li><p>13.1 Pairing: six authentication methods - no input/numeric comparison/passkey/password/OOB/PSK</p></li>
+<li><p>13.2 Security protection: encryption+integrity/integrity only/replay protection/multiple MIC lengths</p></li>
+<li><p>13.3 Privacy: resolvable random address generation and resolution</p></li>
+<li><p>13.4 UWB measurement security: SLP/CTS key derivation/symbol generation/TGap computation</p></li>
+</ul>
+</li>
+<li><p>244 total conformance test cases, total test count reaches 2532</p></li>
+</ul>
+</li>
+<li><p>Security information distribution signaling (<code class="docutils literal notranslate"><span class="pre">mac/security.py</span></code>) – Standard 9.3.3</p>
+<ul>
+<li><p>GNodeIRK(0x0143) / TNodeIRK(0x0144): identity resolving key distribution (resolution algorithm + IRK + IRKID)</p></li>
+<li><p>GNodeAddress(0x0145) / TNodeAddress(0x0146): MAC-layer identity distribution (type + address)</p></li>
+<li><p>ResolutionAlgorithm / AddrType enumerations</p></li>
+</ul>
+</li>
+<li><p>Multicast security signaling (<code class="docutils literal notranslate"><span class="pre">mac/security.py</span></code>) – Standard 9.3.2</p>
+<ul>
+<li><p>MulticastAlgorithmConfig(0x0148): multicast security algorithm indication (RAND + KDF type + encryption/integrity algorithm)</p></li>
+<li><p>MulticastKeyConfig(0x0149): multicast key configuration (C = Kg XOR GK)</p></li>
+</ul>
+</li>
+<li><p>UWB pulse measurement security module (<code class="docutils literal notranslate"><span class="pre">phy/uwb_measurement_security.py</span></code>) – Standard 9.5</p>
+<ul>
+<li><p>9.5.2 KDF message construction (256-bit: reserved || Label || Context)</p></li>
+<li><p>9.5.3 Key derivation: SLPKey -&gt; ctsInitContent -&gt; ctsKey / ctsValue / ctsGap</p></li>
+<li><p>9.5.3 inputContext (128-bit) packing: physical channel/ranging mode/code length/symbols/antenna parameters</p></li>
+<li><p>9.5.4 TGap generation: ctsGap shift extraction + chip transform</p></li>
+<li><p>9.5.5 CTS measurement symbols: symbol index + SC scrambling sequence generation, ctsVCounter advancement</p></li>
+</ul>
+</li>
+<li><p>66 new test cases (<code class="docutils literal notranslate"><span class="pre">tests/test_security_ext.py</span></code>)</p></li>
+<li><p>Multitone signal generation module (<code class="docutils literal notranslate"><span class="pre">phy/multitone.py</span></code>) – Standard 6.2.1.3</p>
+<ul>
+<li><p>Baseband multitone signal generation (N=1/2/4/8, equal amplitude equal spacing symmetric distribution)</p></li>
+<li><p>Standard Table 6.2.4.2 parameters: frequency spacing/initial phase set/bandwidth adaptation</p></li>
+<li><p>Peak-to-average power ratio computation</p></li>
+</ul>
+</li>
+<li><p>Receiver spurious emission verification (<code class="docutils literal notranslate"><span class="pre">phy/rf_compliance.py</span></code>) – Standard 8.3.3</p></li>
+<li><p>Indirect coverage clause audit (17 items confirmed implemented, added to mapping table)</p></li>
+<li><p>27 new test cases (<code class="docutils literal notranslate"><span class="pre">tests/test_multitone.py</span></code> 22 + <code class="docutils literal notranslate"><span class="pre">tests/test_rf_compliance.py</span></code> 5)</p></li>
+<li><p>RF compliance parameter verification module (<code class="docutils literal notranslate"><span class="pre">phy/rf_compliance.py</span></code>) – Standard 8.2 ~ 8.4</p>
+<ul>
+<li><p>8.2.1 Output power level classification and step verification</p></li>
+<li><p>8.2.2.1 GFSK frequency deviation verification (7 symbol rates)</p></li>
+<li><p>8.2.2.2 PSK EVM verification (BPSK/QPSK/8PSK)</p></li>
+<li><p>8.2.2.3 Frequency tolerance verification (2.4GHz/5GHz/sub-1GHz)</p></li>
+<li><p>8.2.2.4/5 Clock accuracy verification (active/sleep state)</p></li>
+<li><p>8.2.3 GFSK in-band spurious emission limit / PSK spectral template</p></li>
+<li><p>8.3.1 Reference sensitivity lookup (GFSK + PSK 13 MCS × 7 bandwidths)</p></li>
+<li><p>8.3.2 Receiver selectivity / out-of-band selectivity / interference intermodulation</p></li>
+<li><p>8.3.4 RSSI measurement accuracy</p></li>
+<li><p>8.4 UWB channel frequency / spectral template / NRMSE verification</p></li>
+<li><p>RFComplianceReport comprehensive verification report</p></li>
+</ul>
+</li>
+<li><p>SMF transmission scheduling module (<code class="docutils literal notranslate"><span class="pre">mac/smf_scheduler.py</span></code>) – Standard 6.6.3</p>
+<ul>
+<li><p>6.6.3.1.1 Start scheduling via access (smf_params_from_access)</p></li>
+<li><p>6.6.3.1.2 Start scheduling via broadcast (smf_params_from_broadcast)</p></li>
+<li><p>SMFTransmitScheduler: periodic transmission plan / frequency rotation / frame construction</p></li>
+<li><p>Link signaling/offset signaling registration and management</p></li>
+<li><p>Dynamic scheduling parameter updates</p></li>
+</ul>
+</li>
+<li><p>125 new test cases (<code class="docutils literal notranslate"><span class="pre">tests/test_rf_compliance.py</span></code> 93 + <code class="docutils literal notranslate"><span class="pre">tests/test_smf_scheduler.py</span></code> 32)</p></li>
+<li><p>UWB pulse waveform module (<code class="docutils literal notranslate"><span class="pre">phy/uwb_pulse.py</span></code>) – Standard 6.2.1.4</p>
+<ul>
+<li><p>UWBPulseConfig: 500MHz/1300MHz bandwidth configuration</p></li>
+<li><p>kaiser_pulse: Kaiser window pulse waveform generation</p></li>
+<li><p>chip_modulate: chip modulation (r(t)·cos carrier modulation)</p></li>
+<li><p>normalized_cross_correlation: normalized cross-correlation function</p></li>
+<li><p>validate_pulse: pulse waveform validation (main lobe/side lobes)</p></li>
+</ul>
+</li>
+<li><p>Non-connected state broadcast transmission (<code class="docutils literal notranslate"><span class="pre">mac/access.py</span></code>) – Standard 7.1.7.2</p>
+<ul>
+<li><p>NonConnectedBroadcastConfig: non-connected state broadcast configuration</p></li>
+<li><p>NonConnectedBroadcastManager: builds extended broadcast frames carrying non-connected state broadcast information</p></li>
+<li><p>parse_non_connected_broadcast: parse non-connected state broadcast frames</p></li>
+<li><p>Supports encrypted/unencrypted transmission (GIV/GSKD)</p></li>
+<li><p>Supports 2.4GHz/5.xGHz hopping maps</p></li>
+</ul>
+</li>
+<li><p>49 new test cases (<code class="docutils literal notranslate"><span class="pre">tests/test_uwb_pulse.py</span></code> 29, <code class="docutils literal notranslate"><span class="pre">tests/test_non_connected_broadcast.py</span></code> 20)</p></li>
+<li><p>Measurement link transmission and measurement computation (<code class="docutils literal notranslate"><span class="pre">phy/measurement_tx.py</span></code>) – Standard 6.7/6.8</p>
+<ul>
+<li><p>MeasLinkParams: narrowband hopping measurement/sensing link parameter model (6.7.2/6.7.3)</p></li>
+<li><p>event_schedule/event_start_times: event group time resource scheduling (6.7.4)</p></li>
+<li><p>ds_twr_2msg/ds_twr_3msg: two-way ranging two/three-message time-of-flight estimation (6.8.5.1/6.8.5.2)</p></li>
+<li><p>angle_estimate: angle of arrival/departure estimation (6.8.5.3)</p></li>
+<li><p>extract_cir: channel impulse response measurement extraction (6.8.5.4)</p></li>
+<li><p>range_doppler: range-Doppler measurement (6.8.5.5)</p></li>
+<li><p>CSI feedback quantization and reconstruction (6.7.5)</p></li>
+<li><p>UWBMeasLinkParams: UWB pulse measurement link parameters (6.8.3/6.8.4)</p></li>
+<li><p>uwb_event_sender/uwb_event_count_per_mode: UWB event scheduling</p></li>
+</ul>
+</li>
+<li><p>54 new test cases (<code class="docutils literal notranslate"><span class="pre">tests/test_measurement_tx.py</span></code>)</p></li>
+<li><p>Link management extension methods (<code class="docutils literal notranslate"><span class="pre">mac/link_manager.py</span></code>) – Standard 7.2.20 ~ 7.2.25</p>
+<ul>
+<li><p>7.2.20 Broadcast link management: setup/parameter update/hopping map update/disconnect</p></li>
+<li><p>7.2.21 System Management Frame link management: parameter update request/indication, time slot update, signaling termination</p></li>
+<li><p>7.2.22 Asynchronous multicast link management: setup/parameter exchange/parameter update/reconfiguration/disconnect</p></li>
+<li><p>7.2.23 Narrowband hopping measurement: capability exchange/configuration/reporting/behavior indication/coordinates/delay</p></li>
+<li><p>7.2.24 UWB pulse measurement and sensing: capability/configuration/reporting/behavior/procedure/proxy sensing</p></li>
+<li><p>7.2.25 Narrowband hopping sensing: procedure/capability/configuration/reporting/behavior/proxy sensing/configuration update</p></li>
+<li><p>Resource reservation: reservation indication/termination</p></li>
+</ul>
+</li>
+<li><p>60 new test cases (<code class="docutils literal notranslate"><span class="pre">tests/test_link_mgmt_ext.py</span></code>)</p></li>
+<li><p>Asynchronous/synchronous data link transmission procedures (<code class="docutils literal notranslate"><span class="pre">phy/data_link.py</span></code>) – Standard 6.5.1 ~ 6.5.3</p>
+<ul>
+<li><p>AsyncDataLinkParams / SyncDataLinkParams: async/sync data link parameter model</p></li>
+<li><p>AsyncFlowControl / SyncFlowControl: flow control decisions (unicast/multicast/bidirectional multicast/feedback multicast)</p></li>
+<li><p>SyncDataDiscard: synchronous data discard mechanism (local reference value/transmit sequence number/payload count)</p></li>
+<li><p>EventGroupSet: event group set scheduling (6.5.2.5)</p></li>
+<li><p>PeriodicServiceAdaptor: periodic adaptation SDU segmentation/reassembly/time synchronization (6.5.3.2)</p></li>
+<li><p>AperiodicServiceAdaptor: aperiodic adaptation fragmentation/reassembly (6.5.3.3)</p></li>
+</ul>
+</li>
+<li><p>Synchronous isochronous link management (<code class="docutils literal notranslate"><span class="pre">mac/link_manager.py</span></code>) – Standard 7.2.19</p>
+<ul>
+<li><p>request_isochronous_link_setup: link setup request (7.2.19.1)</p></li>
+<li><p>request/respond_isochronous_param_exchange: parameter exchange (7.2.19.2)</p></li>
+<li><p>request/indicate_isochronous_param_update: parameter update (7.2.19.3)</p></li>
+</ul>
+</li>
+<li><p>Discovery procedure manager (<code class="docutils literal notranslate"><span class="pre">mac/access.py</span></code>) – Standard 7.1.2</p>
+<ul>
+<li><p>DiscoveryManager: query request/response procedure, supports whitelist filtering</p></li>
+<li><p>Broadcast device side: query request handling and response construction</p></li>
+<li><p>Discovering device side: query request construction and response handling</p></li>
+</ul>
+</li>
+<li><p>Role switching signaling (<code class="docutils literal notranslate"><span class="pre">mac/link_manager.py</span></code>) – Standard 7.2.15</p>
+<ul>
+<li><p>request_role_switch: send RoleSwitchRequest signaling</p></li>
+<li><p>execute_role_switch: send signaling and exchange roles</p></li>
+</ul>
+</li>
+<li><p>PING procedure (<code class="docutils literal notranslate"><span class="pre">mac/link_manager.py</span></code>) – Standard 7.2.16</p>
+<ul>
+<li><p>send_ping / respond_ping</p></li>
+</ul>
+</li>
+<li><p>Link disconnect signaling (<code class="docutils literal notranslate"><span class="pre">mac/link_manager.py</span></code>) – Standard 7.2.17</p>
+<ul>
+<li><p>request_disconnect: drives state machine to disconnect link</p></li>
+</ul>
+</li>
+<li><p>Asynchronous link parameter update (<code class="docutils literal notranslate"><span class="pre">mac/link_manager.py</span></code>) – Standard 7.2.18</p>
+<ul>
+<li><p>request/respond_async_param_update</p></li>
+</ul>
+</li>
+<li><p>Added 16 test cases, 1849 total all passing</p></li>
+<li><p>Broadcast frame filter (<code class="docutils literal notranslate"><span class="pre">mac/broadcast.py</span></code>) – Standard 7.1.5</p>
+<ul>
+<li><p>BroadcastFilter: supports address/name/UUID/service data/manufacturer data filtering</p></li>
+<li><p>FilterCondition: single condition definition, supports negation</p></li>
+<li><p>FilterOp: AND/OR/NOT combinatorial operations</p></li>
+</ul>
+</li>
+<li><p>Access whitelist (<code class="docutils literal notranslate"><span class="pre">mac/access.py</span></code>) – Standard 7.1.6</p>
+<ul>
+<li><p>AccessWhitelist: device address whitelist, when enabled allows only whitelisted devices to access</p></li>
+<li><p>Integrated into BroadcasterAccessManager and InitiatorAccessManager</p></li>
+</ul>
+</li>
+<li><p>Control plane procedure convenience methods (<code class="docutils literal notranslate"><span class="pre">mac/link_manager.py</span></code>) – Standard 7.2.4-7.2.12</p>
+<ul>
+<li><p>Feature exchange (7.2.4): request/respond_feature_exchange</p></li>
+<li><p>Version exchange (7.2.5): request_version_exchange</p></li>
+<li><p>Data length update (7.2.6): request/respond_data_length_update</p></li>
+<li><p>Channel quality reporting configuration (7.2.7): configure_channel_report</p></li>
+<li><p>Frequency hop table update (7.2.8): update_hop_table</p></li>
+<li><p>Frequency hop map update (7.2.9): update_hop_map</p></li>
+<li><p>Minimum available channels (7.2.10): request_min_channels</p></li>
+<li><p>CRC switching (7.2.11): request/indicate_crc_switch</p></li>
+<li><p>Physical layer update (7.2.12): request/indicate_phy_update</p></li>
+</ul>
+</li>
+<li><p>New tests: BroadcastFilter 11 cases, AccessWhitelist 10 cases, control-plane procedure 15 cases</p></li>
+<li><p>System management frame codec module (<code class="docutils literal notranslate"><span class="pre">mac/smf.py</span></code>) – standard 6.6</p>
+<ul>
+<li><p>SMFHeader: segmentation indicator + signaling number</p></li>
+<li><p>ScheduleSignaling: scheduling signaling (effective slot/interval/frame type/bandwidth/frequency table)</p></li>
+<li><p>LinkSignaling: link signaling (logical link identifier/time resource entries)</p></li>
+<li><p>OffsetSignaling: offset signaling (logical link/offset/unit)</p></li>
+<li><p>SystemManagementFrame: complete frame assembly, parsing, and segment reassembly</p></li>
+</ul>
+</li>
+<li><p>Non-connected narrowband frequency-hopping measurement config (<code class="docutils literal notranslate"><span class="pre">mac/broadcast.py</span></code>) – standard 7.1.4.10</p>
+<ul>
+<li><p>NarrowbandMeasurementConfig: 41 fields including variable-length frequency-hopping channel bitmap</p></li>
+</ul>
+</li>
+<li><p>Non-connected UWB pulse measurement config (<code class="docutils literal notranslate"><span class="pre">mac/broadcast.py</span></code>) – standard 7.1.4.11</p>
+<ul>
+<li><p>UWBPulseMeasurementConfig: 38 fields including variable-length frequency list</p></li>
+</ul>
+</li>
+<li><p>System management frame and measurement config tests (<code class="docutils literal notranslate"><span class="pre">tests/test_smf.py</span></code>)</p>
+<ul>
+<li><p>44 tests covering all pack/unpack loopback, boundary values, and segment reassembly</p></li>
+</ul>
+</li>
+<li><p>Coverage gap tests (<code class="docutils literal notranslate"><span class="pre">tests/test_coverage_gaps.py</span></code>)</p>
+<ul>
+<li><p>67 tests covering uncovered branches/boundary conditions in 20+ modules</p></li>
+<li><p>Covering scrambler, link_control, link_manager, frame, access, broadcast, security_manager, mac_interface, psk, tx/rx_pipeline, polar, scheduler, etc.</p></li>
+<li><p>Overall coverage 91%, core module coverage 97%+</p></li>
+</ul>
+</li>
+<li><p>E310 hardware verification script (<code class="docutils literal notranslate"><span class="pre">scripts/hw_verify.py</span></code>)</p>
+<ul>
+<li><p>6-step verification: device init → frequency/channel → gain → IQ loopback → PHY frame loopback → hopping</p></li>
+<li><p>Supports <code class="docutils literal notranslate"><span class="pre">--mock</span></code> mode and <code class="docutils literal notranslate"><span class="pre">--addr</span></code> real device, 25/25 test items</p></li>
+</ul>
+</li>
+<li><p>PHY loopback test script (<code class="docutils literal notranslate"><span class="pre">scripts/phy_loopback.py</span></code>)</p>
+<ul>
+<li><p>Multi-frame-type (FT2/FT3/FT4) × multi-MCS full-link BER/FER statistics</p></li>
+<li><p>Via SLETransceiver + LoopbackBuffer complete TX/RX chain</p></li>
+</ul>
+</li>
+<li><p>FT3/FT4 multi-block loopback test (<code class="docutils literal notranslate"><span class="pre">TestMultiBlockLoopback</span></code> in <code class="docutils literal notranslate"><span class="pre">test_ft_pipeline.py</span></code>)</p>
+<ul>
+<li><p>32-byte payload triggers dual-block segmentation full-link closed-loop verification</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">secure_random_256()</span></code> secure random function (standard 6.10.7), KDF-based 256-bit secure sequence generation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sync_sequence.py</span></code> refactor: sync signals 5/6 now use <code class="docutils literal notranslate"><span class="pre">crypto.secure_random_256</span></code> public API</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">link_manager.py</span></code> added sleep/wake-up state machine (standard 7.2.14)</p>
+<ul>
+<li><p>DORMANT / WAKING states, ENTER_DORMANT / WAKE_UP / WAKE_COMPLETE events</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_dormant</span></code> property, <code class="docutils literal notranslate"><span class="pre">on_dormant_enter</span></code> / <code class="docutils literal notranslate"><span class="pre">on_wake_complete</span></code> callbacks</p></li>
+</ul>
+</li>
+<li><p>USRP loopback simulation engine (<code class="docutils literal notranslate"><span class="pre">sim/usrp_sim.py</span></code>)</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">LoopbackBuffer</span></code>: TX→RX loopback buffer with channel model injection support</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">USRPLoopbackSim</span></code>: end-to-end simulator integrating full PHY/MAC chain</p></li>
+<li><p>Supports IQ-level, PHY-frame-level, MAC-data-frame-level, and signaling-level loopback</p></li>
+<li><p>Frequency-hopping sequence loopback and batch frame simulation</p></li>
+</ul>
+</li>
+<li><p>MockUSRP/MockStreamer added loopback mode; TX transmitted data can be fed directly to RX</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TxResult</span></code> added <code class="docutils literal notranslate"><span class="pre">mac_bytes</span></code> field to help the receiver determine decode length</p></li>
+<li><p>33 USRP simulation tests covering the full chain (FT1-FT4, SleNode dual-node, signaling loopback)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_polar_decoder()</span></code> cached factory function, eliminating repeated PolarDecoder creation overhead</p></li>
+</ul>
+</section>
+<section id="id10">
+<h3>Fixed<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>FT3/FT4 multi-block payload decoding</strong> (<code class="docutils literal notranslate"><span class="pre">rx_pipeline.py</span> <span class="pre">decode_payload</span></code>)</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">segment_with_crc</span></code> in multi-block scenarios: each block carries a per-segment CRC24B</p></li>
+<li><p>Old code directly took the last b_len bits of the concatenated output, which included per-segment CRC instead of raw data</p></li>
+<li><p>Fixed to strip per-segment CRC24B block by block and correctly handle leading zero-padding alignment in the last block</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id11">
+<h3>Changed<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Polar SC decoder introduces SSC optimization</p>
+<ul>
+<li><p>Pre-compute subtree types (rate-0 / rate-1 / partial), pruning to skip pure-frozen/pure-information subtrees</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_build_node_types()</span></code> switched to prefix-sum + iteration, replacing recursion + np.all</p></li>
+<li><p>rate-1 subtree: hard decision + polarity transform directly yields information bits, skipping bit-by-bit recursion</p></li>
+<li><p>Recursive calls reduced from 89100 to 26700 (70% reduction), decoding time reduced by 53%</p></li>
+<li><p>PolarDecoder instance caching eliminates initialization overhead in batch decoding</p></li>
+<li><p>MAC loopback total time 0.443s → 0.289s (35% improvement)</p></li>
+</ul>
+</li>
+<li><p>Polar SC decoder switched to pre-allocated 2D arrays, eliminating array allocation overhead in recursion</p></li>
+<li><p>Scrambler LFSR output uses period cache + <code class="docutils literal notranslate"><span class="pre">np.tile</span></code>, eliminating bit-by-bit Python loop</p></li>
+<li><p>Removed 14 redundant <code class="docutils literal notranslate"><span class="pre">run_phase*</span></code> visualization tests (originally occupied 96% of total test time)</p></li>
+<li><p>Test time: 170s → 4.16s (41x speedup)</p></li>
+<li><p>SDR deployment docs updated, reflecting P0-P2 tasks all complete, currently blocked on E310 hardware readiness</p></li>
+</ul>
+</section>
+</section>
+<section id="id12">
+<h2>[0.26.0] - 2026-03-21<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h2>
+<section id="id13">
+<h3>Added<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Phase 14: dual-node end-to-end simulation (<code class="docutils literal notranslate"><span class="pre">sim/link_sim.py</span></code>)</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim_dual_node_link()</span></code>: dual SleNode data exchange simulation, measuring FER and byte error rate</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim_dual_node_secure_link()</span></code>: pairing + encryption dual-node communication simulation, plaintext/ciphertext FER comparison</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim_dual_node_mcs_adapt()</span></code>: MCS adaptation simulation, tracking MCS level and success rate changes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_run_dual_frames()</span></code>: internal helper function for multi-SNR frame transmission</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run_phase14_simulation()</span></code>: 2x2 visualization (FER/BER, plaintext/ciphertext, MCS history, success rate)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_link_sim_phy.py</span></code>: 5 tests (TestDualNodeLink + test_run_phase14)</p></li>
+</ul>
+</li>
+<li><p>Test coverage supplement: 96% (345 miss, added 32 tests, 1621 → 1653)</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_node.py</span></code>: added 10 tests — pairing completion/failure, encrypted TX/RX, signaling transmission, default callbacks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_security.py</span></code>: added 14 tests — all pack/unpack input validation ValueError paths</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_crypto.py</span></code>: added 2 tests — NO_INPUT/PASSWORD_VERIFY authentication confirmation codes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_channel.py</span></code>: 4 new tests — private methods (rayleigh/rician/multipath) and zero-power noise</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_measurement.py</span></code>: added 2 tests — TYPE_2 perturbation index cycle coverage</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id14">
+<h3>Fixed<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">node.py</span></code> receive side no longer calls <code class="docutils literal notranslate"><span class="pre">on_tx_feedback()</span></code>, fixes receive-side QoS state contamination</p></li>
+<li><p>ARQ retransmission lock issue in simulation loop: each frame independent in FER measurement mode, ARQ pending state cleared after failure</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">node.py</span></code> <code class="docutils literal notranslate"><span class="pre">_setup_crypto()</span></code> handles <code class="docutils literal notranslate"><span class="pre">integrity_key</span></code> being None (authentication-encryption mode)</p></li>
+</ul>
+</section>
+<section id="removed">
+<h3>Removed<a class="headerlink" href="#removed" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">code_block_seg.py</span></code> dead code cleanup: removed 53 lines of unreachable code, coverage 78% → 100%</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">R</span> <span class="pre">==</span> <span class="pre">1.0</span></code> branch (no 1.0 rate in rate table)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">R_adj</span> <span class="pre">&lt;=</span> <span class="pre">0</span></code> guard (all standard rates R_adj &gt; 0)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_subsegment_last_block</span></code> sub-segment path (K_1024 &gt; threshold_1024 always true)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_find_rate_str</span></code> helper function and 5 associated tests</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id15">
+<h2>[0.25.0] - 2026-03-21<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h2>
+<section id="id16">
+<h3>Added<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>SLE node entity class (<code class="docutils literal notranslate"><span class="pre">node.py</span></code>): unified TX/RX interface, integrating MAC/PHY modules</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">NodeConfig</span></code>: node configuration (address, role, frame type, MCS, bandwidth, pilot, encryption, etc.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SleNode</span></code>: node entity, link lifecycle management (broadcast/scan/access/pairing/data exchange/disconnect)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">send()</span></code> / <code class="docutils literal notranslate"><span class="pre">transmit()</span></code> / <code class="docutils literal notranslate"><span class="pre">receive()</span></code>: data TX/RX interface, integrating QoS queue and ARQ</p></li>
+<li><p>Pairing procedure: <code class="docutils literal notranslate"><span class="pre">start_pairing()</span></code> / <code class="docutils literal notranslate"><span class="pre">process_pairing_message()</span></code> drives security subsystem</p></li>
+<li><p>MCS adaptation: <code class="docutils literal notranslate"><span class="pre">recommended_mcs</span></code> / <code class="docutils literal notranslate"><span class="pre">update_mcs()</span></code> dynamically adjusts based on link quality</p></li>
+<li><p>State callbacks: <code class="docutils literal notranslate"><span class="pre">NodeCallback</span></code> notifies state transitions, connect, disconnect events</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_build_ctrl_info()</span></code>: builds A2 physical layer control information from QoS fields</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_build_ctrl_bits()</span></code>: compatible raw bit-level control information construction</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_node.py</span></code>: 36 tests covering initialization, lifecycle, TX/RX, callbacks, MCS, signaling, pairing</p></li>
+</ul>
+</li>
+<li><p>Test coverage improvement: 85% → 96%, added 84 tests (1496 → 1580)</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_link_sim_phy.py</span></code>: Phase 1-13 simulation tests (74 tests)</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">_ber</span></code> / <code class="docutils literal notranslate"><span class="pre">_apply_cfo</span></code> / <code class="docutils literal notranslate"><span class="pre">_channel_impair</span></code> helper function tests</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim_gfsk_link</span></code> / <code class="docutils literal notranslate"><span class="pre">sim_psk_link</span></code> / <code class="docutils literal notranslate"><span class="pre">sim_polar_coded_psk_link</span></code> uncoded/coded BER simulation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim_frame_link</span></code> frame-level simulation (FT2/FT3/FT4, multiple pilot configurations)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim_channel_eq_link</span></code> channel equalization (AWGN/Rayleigh/Rician/multipath, ZF/MMSE)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim_hopping_link</span></code> frequency hopping link (multiple bandwidths, channel blocking)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim_pipeline_link</span></code> / <code class="docutils literal notranslate"><span class="pre">sim_pipeline_channel_link</span></code> full-chain pipeline simulation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run_phase1_simulation</span></code> ~ <code class="docutils literal notranslate"><span class="pre">run_phase13_simulation</span></code> visualization function verification</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_measurement.py</span></code>: measurement signal supplementary tests (10 tests)</p>
+<ul>
+<li><p>8-tone signal, invalid parameter boundary, type2 perturbation path, random antenna pair ordering</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>QoS service quality management module (<code class="docutils literal notranslate"><span class="pre">mac/qos.py</span></code>): implements standard section 6.5 data transmission quality control</p>
+<ul>
+<li><p>ArqState: async/sync link ARQ sequence number management (FT1 1-bit / FT3/FT4 5-bit SN), ACK/NACK feedback handling</p></li>
+<li><p>HarqController: TB mode and CBG mode HARQ feedback encode/decode, partial retransmission decisions (MCS=15)</p></li>
+<li><p>FlowController: transmit buffer flow control management, high/low watermark backpressure mechanism</p></li>
+<li><p>LinkQualityTracker: sliding window FER estimation, AMC MCS adaptive recommendation, LQI field encode/decode</p></li>
+<li><p>TxQueue: 5-level priority transmit queue, retransmission priority, capacity limit</p></li>
+<li><p>QosManager: integrated manager, unified ARQ/HARQ/flow control/quality tracking/queue, provides control information field interface</p></li>
+<li><p>QosLink (<code class="docutils literal notranslate"><span class="pre">phy/mac_interface.py</span></code>): end-to-end data link encapsulation with QoS management, auto-fills control information fields</p></li>
+<li><p>Phase 13 QoS simulation (<code class="docutils literal notranslate"><span class="pre">sim/link_sim.py</span></code>): QoS ARQ retransmission/AMC adaptive/flow control backpressure simulation and visualization</p></li>
+<li><p>96 tests (69 unit + 13 integration + 14 simulation), all passing</p></li>
+</ul>
+</li>
+<li><p>End-to-end integration test enhancement: added 18 MAC-PHY integration tests (1382 → 1400)</p>
+<ul>
+<li><p>TestEncryptedPhyRoundtrip (3 tests): pairing→encryption→PHY TX→decryption verification, multi-frame payload_count increment, MIC tampering rejection</p></li>
+<li><p>TestMultiFrameTypeIntegration (6 tests): FT1/FT2/FT3/FT4 frame type roundtrip, multi-MCS level scan, multiple signaling types</p></li>
+<li><p>TestNoisyChannelMacData (3 tests): AWGN channel high/low SNR MAC data transmission, broadcast frame with noise transmission</p></li>
+<li><p>TestLinkStateDrivenExchange (3 tests): link state machine driven bidirectional data exchange, disconnect, reconnect</p></li>
+<li><p>TestMultiLinkConcurrentData (3 tests): multi-link independent data transmission, scheduler frame distribution, signaling/data interleaving</p></li>
+</ul>
+</li>
+<li><p>Test coverage supplement: overall 84% → 85%, added 28 tests (1354 → 1382)</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_modulator.py</span></code>: TestSLEDemodulator (3 tests) — <code class="docutils literal notranslate"><span class="pre">demodulator.py</span></code> 0% → 100%</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_channel.py</span></code>: TestDoppler (6 tests) — <code class="docutils literal notranslate"><span class="pre">channel.py</span></code> 88% → 92%</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_link_manager.py</span></code>: TestPairingTransitions + TestSupervisionCheck (8 tests) — <code class="docutils literal notranslate"><span class="pre">link_manager.py</span></code> 89% → 95%</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_code_block_seg.py</span></code>: TestSubSegmentation + TestSubsegmentLastBlockDirect + TestFindRateStr (11 tests) — <code class="docutils literal notranslate"><span class="pre">code_block_seg.py</span></code> 67% → 78%</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim/link_sim.py</span></code> Phase 12: AMC adaptive modulation coding + HARQ retransmission + frequency hopping multipath simulation</p>
+<ul>
+<li><p>sim_amc_throughput: full MCS (0-12) throughput and FER scan, AMC envelope selection</p></li>
+<li><p>sim_harq_link: HARQ retransmission link simulation, comparing FER and throughput with/without retransmission</p></li>
+<li><p>sim_hopping_multipath_link: frequency hopping vs fixed channel Rayleigh fading FER comparison</p></li>
+<li><p>run_phase12_simulation: 6 sub-panel visualization (FER/throughput/MCS selection/HARQ/hopping)</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_link_sim_mac.py</span></code>: 15 Phase 12 simulation tests</p>
+<ul>
+<li><p>TestAmcThroughput: AMC throughput envelope, MCS selection, FER monotonicity</p></li>
+<li><p>TestHarqLink: HARQ FER improvement, average transmission count constraint, throughput</p></li>
+<li><p>TestHoppingMultipathLink: frequency hopping link FER range and length consistency</p></li>
+</ul>
+</li>
+<li><p>Documentation update: added missing modules - Phase 9-12 simulation, security module, measurement frames</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">docs/explanation/architecture.md</span></code>: MAC layer module table added access/scheduler/security, simulation phases extended to Phase 12</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docs/explanation/standard-mapping.md</span></code>: added Chapter 9 security subsystem and 6.2.3/6.2.4/6.3.6-6.3.11 clause mappings</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docs/how-to/run-simulation.md</span></code>: added Phase 9-12 how-to guides (MAC frame simulation/security simulation/AMC/HARQ/hopping)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docs/reference/index.md</span></code>: added 8 module references including mac_interface/measurement/access/scheduler/security</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mac/security_manager.py</span></code>: security procedure integration management module (Standard 9.2-9.4)</p>
+<ul>
+<li><p>ECDHKeyPair: P-256 elliptic curve key pair generation and ECDH shared secret computation</p></li>
+<li><p>PairingManager: pairing state machine, drives pairing signaling interaction between G/T nodes</p></li>
+<li><p>FrameCryptoContext: frame-level AES-CCM encryption/decryption context, manages payload_count</p></li>
+<li><p>run_pairing_procedure: end-to-end pairing procedure (for simulation/testing)</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mac/link_manager.py</span></code>: extended link state machine, added PAIRING state</p>
+<ul>
+<li><p>LinkState.PAIRING: pairing state (CONNECTED↔PAIRING)</p></li>
+<li><p>EventType: START_PAIRING, PAIRING_COMPLETE, PAIRING_FAILED events</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_security_manager.py</span></code>: 31 security procedure integration tests</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim/link_sim.py</span></code> Phase 11: access→pairing→encryption end-to-end simulation</p>
+<ul>
+<li><p>sim_secure_link: access link setup + ECDH pairing + AES-CCM encrypted data frame PHY transmission</p></li>
+<li><p>sim_encrypted_vs_plain: encrypted vs plaintext transmission FER comparison</p></li>
+<li><p>sim_pairing_signaling_phy: pairing signaling transmission success rate through PHY pipeline</p></li>
+<li><p>run_phase11_simulation: 4 sub-panel visualization</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_link_sim_mac.py</span></code>: 11 Phase 11 simulation tests</p>
+<ul>
+<li><p>TestECDHKeyPair: P-256 key pair generation and shared secret consistency</p></li>
+<li><p>TestPairingManagerBasic: pairing manager basic functionality and state transitions</p></li>
+<li><p>TestPairingFlow: complete signaling interaction procedure (public key exchange/random number/confirmation code)</p></li>
+<li><p>TestPairingFailure: pairing failure scenarios (wrong confirmation code/failure message)</p></li>
+<li><p>TestRunPairingProcedure: end-to-end pairing verification</p></li>
+<li><p>TestFrameCryptoContext: frame encryption/decryption/tampering detection/AAD</p></li>
+<li><p>TestPairingThenEncryption: integration verification of encrypted data transmission after pairing</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim/link_sim.py</span></code> Phase 10: multi-link scheduling simulation</p>
+<ul>
+<li><p>sim_multi_link: multi-link time-division transmission in superframe, collecting overall FER and per-link FER</p></li>
+<li><p>sim_access_scheduled_link: access link setup + scheduler-driven data transmission end-to-end simulation</p></li>
+<li><p>sim_event_group_timing: event group timing computation and resource utilization analysis</p></li>
+<li><p>sim_superframe_capacity: superframe capacity analysis (link count-collision-utilization)</p></li>
+<li><p>run_phase10_simulation: visualization entry (4 sub-panels)</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_link_sim_mac.py</span></code>: 17 Phase 10 simulation tests</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_mac_phy_integration.py</span></code>: MAC-PHY integration test extension (12 new tests)</p>
+<ul>
+<li><p>TestBroadcastFramePhy: broadcast/extended broadcast/access response frames through full PHY pipeline</p></li>
+<li><p>TestAccessPhyIntegration: end-to-end verification of access procedure frames through PHY encode/decode</p></li>
+<li><p>TestSchedulerPhyIntegration: frame transmission and timing consistency driven by scheduler event schedule</p></li>
+<li><p>TestFullStackIntegration: access+scheduler+PHY complete protocol stack integration test</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mac/scheduler.py</span></code>: added timing scheduler module (Standard 6.3/6.6/7.2)</p>
+<ul>
+<li><p>SlotCounter: 30-bit system slot counter (Tsys=125μs)</p></li>
+<li><p>EventTimingParams: event group timing parameters</p></li>
+<li><p>TimeSlice: time slice configuration within superframe</p></li>
+<li><p>Superframe: superframe management (link registration/collision detection/active interval)</p></li>
+<li><p>EventGroupScheduler: event group scheduling (TX/RX window computation)</p></li>
+<li><p>ScheduleManager: comprehensive scheduling manager (SMF + event groups + TX/RX interval)</p></li>
+<li><p>MultiLevelInterval: 31-level multi-level TX/RX interval</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_scheduler.py</span></code>: 62 scheduler tests</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mac/access.py</span></code>: added access procedure management module (Standard 7.1.3)</p>
+<ul>
+<li><p>negotiate_gt_role: GT role negotiation logic</p></li>
+<li><p>BroadcasterAccessManager: broadcaster access management (phases a/c)</p></li>
+<li><p>InitiatorAccessManager: access initiator management (phases b/d)</p></li>
+<li><p>run_access_procedure: end-to-end access procedure simulation</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_access.py</span></code>: 24 access procedure tests</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">phy/measurement_frame.py</span></code>: added measurement frame structure assembly module (Standard 6.3.6-6.3.11)</p>
+<ul>
+<li><p>build_nack_feedback: semi-reliable multicast NACK feedback sequence (6.3.6)</p></li>
+<li><p>equalization_guard: equalization guard sequence (6.3.7)</p></li>
+<li><p>build_measurement_frame_1: measurement frame type 1 assembly, first/second transmit node (6.3.7)</p></li>
+<li><p>build_measurement_frame_2: measurement frame type 2 (pure measurement signal) (6.3.8)</p></li>
+<li><p>build_measurement_frame_3: measurement frame type 3, location measurement initialization (6.3.9)</p></li>
+<li><p>build_measurement_frame_4: measurement frame type 4, UWB initialization synchronization (6.3.10)</p></li>
+<li><p>build_uwb_sync_field / build_uwb_measurement_field / build_uwb_pulse_measurement_frame: UWB pulse measurement frame (6.3.11)</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_measurement_frame.py</span></code>: 34 measurement frame structure tests</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docs/how-to/sdr-deployment.md</span></code>: SDR E310 deployment planning and MAC layer infrastructure analysis</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mac/security.py</span></code>: added pairing signaling module (Standard 9.2)</p>
+<ul>
+<li><p>16 pairing message types (0x0133-0x0149): PairingInitiate, PairingRequest, PairingResponse, PairingConfirm, PairingInitialInfo, TNodeConfirmCode, RaMessage, RbMessage, GNodeConfirmCodeWithRandom, TNodeConfirmCodeWithRandom, GNodeConfirmCode, GNodeDHKeyVerify, TNodeDHKeyVerify, PairingFailure, RgMessage, RtMessage</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mac/signaling.py</span></code>: registry extended to 128 signaling types (added 16 pairing signaling types)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mac/broadcast.py</span></code>: added 3 broadcast frame sub-info structures</p>
+<ul>
+<li><p>TransportIndicationInfo (7.1.4.3): transmission indication information, supports 2.4GHz/5GHz hopping maps</p></li>
+<li><p>NonLinkedBroadcastLinkInfo (7.1.4.8): non-connected state broadcast link information</p></li>
+<li><p>QueryRequestFilterInfo (7.1.4.9): query request filter information</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_security.py</span></code>: 52 pairing signaling tests</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_broadcast.py</span></code>: 18 broadcast sub-info structure tests</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mac/crypto.py</span></code>: added security subsystem encryption module (Standard 9.3/9.4)</p>
+<ul>
+<li><p>KDF key derivation function (AES-CMAC, HMAC-SM3 reserved)</p></li>
+<li><p>AES-CCM authenticated encryption/decryption</p></li>
+<li><p>CCM Nonce construction (async/sync links, other links)</p></li>
+<li><p>Initialization vector computation (FT1-FT4)</p></li>
+<li><p>Session key derivation (SK/EnK/InK)</p></li>
+<li><p>Link key and DH Key verification code key derivation</p></li>
+<li><p>Confirmation code/numeric comparison code/obfuscation algorithm</p></li>
+<li><p>Multicast key management (GK/GSK/GEnK/GInK)</p></li>
+<li><p>Privacy management (resolvable random identity generation/verification)</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_crypto.py</span></code>: 54 encryption module tests</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">phy/sync_sequence.py</span></code>: added sync signals 5/6 (Standard 6.2.3.5/6.2.3.6)</p>
+<ul>
+<li><p>Secure random function sequence generation (6.10.7, KDF-AES-CMAC 256-bit)</p></li>
+<li><p>sync_signal_5: GFSK secure random sync sequence, TX/RX separation</p></li>
+<li><p>sync_signal_6: non-phase-rotated BPSK secure random sync sequence</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">phy/measurement.py</span></code>: added location measurement signal module (Standard 6.2.4)</p>
+<ul>
+<li><p>measurement_signal_1: four security-type single-tone measurement signals (6.2.4.1)</p></li>
+<li><p>measurement_signal_2: multi-tone measurement signal waveform generation (6.2.4.2)</p></li>
+<li><p>antenna_pair_order_sequential / antenna_pair_order_random: antenna pair ordering (6.2.4.3)</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_sync_sequence.py</span></code>: 11 sync signal 5/6 tests</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_measurement.py</span></code>: 36 measurement signal tests</p></li>
+</ul>
+</section>
+</section>
+<section id="id17">
+<h2>[0.24.0] - 2026-03-20<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h2>
+<section id="id18">
+<h3>Added<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mac/link_control.py</span></code>: added 57 link control signaling types (0x0035-0x0070)</p>
+<ul>
+<li><p>Channel5GStatusIndication / HopMap5GUpdate / BroadcastHopMap5GUpdate: 5G channel and frequency-hopping management</p></li>
+<li><p>MultiIntervalUpdateRequest/Response/Indication: multi-interval update</p></li>
+<li><p>SystemTimeIndication: system time indication</p></li>
+<li><p>AsyncMulticastLinkSetup / AsyncMulticastParamExchange* / AsyncMulticastParamUpdate*: async multicast link management</p></li>
+<li><p>NarrowbandMeasCap*/FreqTable*/MeasConfig/MeasReport/MeasAction: narrowband hopping measurement</p></li>
+<li><p>CoordinateRequest/Report/Config: coordinate management</p></li>
+<li><p>NarrowbandDelayRequest/Response: narrowband delay</p></li>
+<li><p>AsyncTTLinkSetup: asynchronous TT link setup</p></li>
+<li><p>UWBMeasCap*/Config/ConfigFeedback/Report: UWB pulse measurement</p></li>
+<li><p>UWBSensingCap*/Config/ConfigFeedback/Report/Action: UWB sensing</p></li>
+<li><p>ResourceReservation/Terminate: resource reservation</p></li>
+<li><p>NarrowbandSensing*/ProxySensing*/SensingCap*/SensingConfig*: narrowband sensing</p></li>
+<li><p>SensingDeviceStatusReport: sensing device status</p></li>
+<li><p>NarrowbandMeasConfigUpdate*: narrowband measurement configuration update</p></li>
+<li><p>UWBSensingProcess*/UWBProxySensing*/UWBMeasAction: UWB extended sensing</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mac/signaling.py</span></code>: registry extended to 112 signaling types</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_link_control_ext.py</span></code>: added 114 round-trip tests covering all new signaling types</p></li>
+</ul>
+</section>
+<section id="id19">
+<h3>Fixed<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ResourceReservation</span></code>: fixed duplicate unpack method, corrected BYTE_LENGTH to 13</p></li>
+</ul>
+</section>
+</section>
+<section id="id20">
+<h2>[0.23.0] - 2026-03-20<a class="headerlink" href="#id20" title="Link to this heading">¶</a></h2>
+<section id="id21">
+<h3>Added<a class="headerlink" href="#id21" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mac/link_control.py</span></code>: added 14 link control signaling types (0x0020-0x002E)</p>
+<ul>
+<li><p>AsyncLinkParamRequest/Response: connected-state asynchronous link parameter update</p></li>
+<li><p>IsochronousLinkSetup: synchronous isochronous link setup indication (56B, 40-field bitfield encoding)</p></li>
+<li><p>IsochronousParamExchangeRequest/Response: synchronous isochronous parameter exchange (52B)</p></li>
+<li><p>IsochronousParamUpdateRequest/Indication: synchronous isochronous parameter update</p></li>
+<li><p>BroadcastLinkSetup: connected-state broadcast link establishment (44B, with 80-bit hopping map)</p></li>
+<li><p>BroadcastLinkParamUpdate: broadcast link parameter update (32B)</p></li>
+<li><p>BroadcastHopMapUpdate: broadcast link hopping map update (14B)</p></li>
+<li><p>SMFParamUpdateRequest/Indication: System Management Frame parameter update</p></li>
+<li><p>SMFTimeSlotUpdateRequest/Response: System Management Frame time slot update</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mac/signaling.py</span></code>: registry extended to 55 signaling types</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_link_control_ext.py</span></code>: added 20+ round-trip tests covering all new signaling types</p></li>
+</ul>
+</section>
+</section>
+<section id="id22">
+<h2>[0.22.0] - 2026-03-20<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h2>
+<section id="id23">
+<h3>Added<a class="headerlink" href="#id23" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sim/link_sim.py</span></code> Phase 9: MAC frame-level end-to-end simulation</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim_mac_signaling_link</span></code>: signaling frame decode success rate simulation through full PHY chain</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim_mac_data_link</span></code>: async data frame byte-level BER and FER simulation for multiple payload sizes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim_mac_mux_link</span></code>: control+data multiplex frame end-to-end integrity simulation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run_phase9_simulation</span></code>: comprehensive simulation entry, with three sub-panel output</p></li>
+<li><p>All three simulation functions support Rayleigh/Rician/multipath channels, carrier frequency offset, and ZF/MMSE equalizer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_channel_impair</span></code>: unified channel impairment helper function</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_link_sim_mac.py</span></code>: 13 simulation tests covering high-SNR correctness, return value structure, statistical monotonicity, Rayleigh+MMSE channel scenarios, and frequency-offset degradation verification</p></li>
+</ul>
+</section>
+<section id="id24">
+<h3>Changed<a class="headerlink" href="#id24" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sim/link_sim.py</span></code> <code class="docutils literal notranslate"><span class="pre">__main__</span></code> entry refactored as dispatch dictionary, supports phase1-phase9</p></li>
+</ul>
+</section>
+</section>
+<section id="id25">
+<h2>[0.21.0] - 2026-03-20<a class="headerlink" href="#id25" title="Link to this heading">¶</a></h2>
+<section id="id26">
+<h3>Added<a class="headerlink" href="#id26" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">phy/mac_interface.py</span></code>: MAC-PHY integration adaptation layer</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">bytes_to_bits</span></code> / <code class="docutils literal notranslate"><span class="pre">bits_to_bytes</span></code>: conversion between MAC byte stream and PHY bit array</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mac_to_iq</span></code> / <code class="docutils literal notranslate"><span class="pre">iq_to_mac</span></code>: MAC frame to IQ signal transmit/receive adaptation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">signaling_to_iq</span></code> / <code class="docutils literal notranslate"><span class="pre">iq_to_signaling</span></code>: direct signaling message to IQ signal conversion</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">roundtrip_signaling</span></code> / <code class="docutils literal notranslate"><span class="pre">roundtrip_data</span></code>: end-to-end loopback verification tools</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_mac_phy_integration.py</span></code>: 15 integration tests covering bit conversion, IQ transmission, loopback verification, signaling and data frame full chain</p></li>
+</ul>
+</section>
+</section>
+<section id="id27">
+<h2>[0.20.0] - 2026-03-20<a class="headerlink" href="#id27" title="Link to this heading">¶</a></h2>
+<section id="id28">
+<h3>Added<a class="headerlink" href="#id28" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mac/link_manager.py</span></code>: link management state machine implementation (Standard 7.1/7.2)</p>
+<ul>
+<li><p>States: IDLE / BROADCASTING / SCANNING / ACCESSING / CONNECTED / DISCONNECTED</p></li>
+<li><p>G/T node role negotiation and switching (7.1.7.1, 7.2.15)</p></li>
+<li><p>Event-driven architecture supporting broadcast, discovery, access, signaling TX/RX, disconnect full lifecycle</p></li>
+<li><p>Supervision timeout detection, parameter update, callback interface</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_link_manager.py</span></code>: 27 test cases covering state transitions, access procedure, control plane signaling, role switching, disconnect procedure, and complete lifecycle</p></li>
+</ul>
+</section>
+</section>
+<section id="id29">
+<h2>[0.19.0] - 2026-03-20<a class="headerlink" href="#id29" title="Link to this heading">¶</a></h2>
+<section id="id30">
+<h3>Added<a class="headerlink" href="#id30" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mac/link_control.py</span></code>: added 22 control-plane signaling codec types covering security procedures, channel management, PHY updates, role switching, PING, timeout updates, broadcast/multicast disconnect, etc. (standard 7.3.2.6-7.3.2.63)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mac/signaling.py</span></code>: signaling registry extended from 17 to 41 entries</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_link_control_ext.py</span></code>: added 28 signaling round-trip and registry tests</p></li>
+</ul>
+</section>
+<section id="id31">
+<h3>Fixed<a class="headerlink" href="#id31" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mac/link_control.py</span></code>: fixed IntervalUpdateRequest DATA_TYPE_INDEX from 0x0001 → 0x0000; renamed IntervalUpdateResponse to IntervalUpdateIndication (0x0002); created correct IntervalUpdateResponse (0x0001, 1 byte)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mac/link_control.py</span></code>: fixed AsyncMulticastReconfig BYTE_LENGTH from 31 → 30; fixed struct unpack offset alignment</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mac/link_control.py</span></code>: corrected AsyncUnicastUpdate pack output to match standard 15 bytes</p></li>
+</ul>
+</section>
+</section>
+<section id="id32">
+<h2>[0.18.0] - 2026-03-20<a class="headerlink" href="#id32" title="Link to this heading">¶</a></h2>
+<section id="id33">
+<h3>Added<a class="headerlink" href="#id33" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mac/broadcast.py</span></code>: broadcast frame codec implementation (standard 7.1.4), containing 7 data classes: BroadcastFrame, ExtAdvResourceConfig, DiscoveryAccessResourceConfig, AccessBasicInfo, AccessRequestInfo, AccessResponseInfo, SystemMgmtFrameInfo</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/test_broadcast.py</span></code>: broadcast frame 20 test cases</p></li>
+</ul>
+</section>
+</section>
+<section id="id34">
+<h2>[0.17.0] - 2026-03-20<a class="headerlink" href="#id34" title="Link to this heading">¶</a></h2>
+<section id="id35">
+<h3>Added<a class="headerlink" href="#id35" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">docs/explanation/principles.md</span></code>: physical layer principles explanation, covering Polar coding/SC decoding, PSK/GFSK modulation, channel models, equalizer, CRC, code block segmentation, scrambling, etc. with mathematical derivations</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docs/conf.py</span></code>: LaTeX/PDF output configuration, using XeLaTeX + HarmonyOS Sans SC font</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docs/how-to/build-docs.md</span></code>: PDF build instructions</p></li>
+<li><p>MyST math formula extensions (dollarmath, amsmath)</p></li>
+</ul>
+</section>
+</section>
+<section id="id36">
+<h2>[0.16.0] - 2026-03-20<a class="headerlink" href="#id36" title="Link to this heading">¶</a></h2>
+<section id="id37">
+<h3>Added<a class="headerlink" href="#id37" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sim/link_sim.py</span></code>: Phase 8 multi-frame-type + channel + equalizer comprehensive simulation</p></li>
+<li><p>FT1/FT2/FT3/FT4 BER/FER comparison under AWGN and Rayleigh+MMSE</p></li>
+<li><p>CLI: <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">run</span> <span class="pre">python</span> <span class="pre">-m</span> <span class="pre">nearlink_sdr.sim.link_sim</span> <span class="pre">phase8</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="id38">
+<h2>[0.15.0] - 2026-03-20<a class="headerlink" href="#id38" title="Link to this heading">¶</a></h2>
+<section id="id39">
+<h3>Added<a class="headerlink" href="#id39" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">phy/channel.py</span></code>: <code class="docutils literal notranslate"><span class="pre">last_taps</span></code> property, <code class="docutils literal notranslate"><span class="pre">apply_fading</span></code> caches channel coefficients for equalizer reuse</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim/link_sim.py</span></code>: <code class="docutils literal notranslate"><span class="pre">sim_pipeline_channel_link()</span></code> supports <code class="docutils literal notranslate"><span class="pre">eq_method</span></code> parameter (none/zf/mmse)</p></li>
+<li><p>Flat fading (Rayleigh/Rician) uses <code class="docutils literal notranslate"><span class="pre">equalize_1tap</span></code>, multipath uses <code class="docutils literal notranslate"><span class="pre">equalize_mmse_freq</span></code></p></li>
+<li><p>Rayleigh + MMSE equalization: BER reduced from ~16% error floor to 0 (converges at 5dB)</p></li>
+</ul>
+</section>
+<section id="id40">
+<h3>Fixed<a class="headerlink" href="#id40" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fixed equalizer in <code class="docutils literal notranslate"><span class="pre">sim_pipeline_channel_link</span></code> using independent random channel coefficients</p></li>
+</ul>
+</section>
+</section>
+<section id="id41">
+<h2><a class="reference external" href="https://github.com/user/nearlink-sdr/compare/v0.13.0...v0.14.0">0.14.0</a> - 2026-03-20<a class="headerlink" href="#id41" title="Link to this heading">¶</a></h2>
+<section id="id42">
+<h3>Changed<a class="headerlink" href="#id42" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">common/polar.py</span></code>: reliability sequence <code class="docutils literal notranslate"><span class="pre">lru_cache</span></code> caching, SC decode <code class="docutils literal notranslate"><span class="pre">_f</span></code>/<code class="docutils literal notranslate"><span class="pre">_g</span></code> inlined, encoder vectorized butterfly operations</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">phy/psk.py</span></code>: RRC filter <code class="docutils literal notranslate"><span class="pre">lru_cache</span></code> caching, avoiding repeated computation</p></li>
+<li><p>Pipeline simulation speed improved 37% (3.05ms → 1.68ms/frame)</p></li>
+</ul>
+</section>
+</section>
+<section id="id43">
+<h2><a class="reference external" href="https://github.com/user/nearlink-sdr/compare/v0.12.0...v0.13.0">0.13.0</a> - 2026-03-20<a class="headerlink" href="#id43" title="Link to this heading">¶</a></h2>
+<section id="id44">
+<h3>Added<a class="headerlink" href="#id44" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sim/link_sim.py</span></code>: multipath channel + frequency offset pipeline simulation (Phase 7)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim_pipeline_channel_link()</span></code>: supports AWGN/Rayleigh/Rician channels + carrier frequency offset</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run_phase7_simulation()</span></code>: BER/FER curve generation for 6 channel configurations</p></li>
+</ul>
+</section>
+</section>
+<section id="id45">
+<h2><a class="reference external" href="https://github.com/user/nearlink-sdr/compare/v0.11.0...v0.12.0">0.12.0</a> - 2026-03-20<a class="headerlink" href="#id45" title="Link to this heading">¶</a></h2>
+<section id="id46">
+<h3>Added<a class="headerlink" href="#id46" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sim/link_sim.py</span></code>: full-chain pipeline simulation (Phase 6) using <code class="docutils literal notranslate"><span class="pre">tx_chain</span></code>/<code class="docutils literal notranslate"><span class="pre">rx_chain</span></code> end-to-end BER/FER simulation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim_pipeline_link()</span></code>: supports FT1(GFSK)/FT2(QPSK)/FT3(QPSK)/FT4(BPSK) all frame types</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run_phase6_simulation()</span></code>: BER/FER curve generation for 5 MCS/frame type configurations</p></li>
+</ul>
+</section>
+<section id="id47">
+<h3>Fixed<a class="headerlink" href="#id47" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>FT3/4 simulation: <code class="docutils literal notranslate"><span class="pre">m_seq_index</span></code> incorrectly passing PID causing <code class="docutils literal notranslate"><span class="pre">KeyError</span></code>, corrected to 0-5 range</p></li>
+</ul>
+</section>
+</section>
+<section id="id48">
+<h2><a class="reference external" href="https://github.com/user/nearlink-sdr/compare/v0.10.0...v0.11.0">0.11.0</a> - 2026-03-20<a class="headerlink" href="#id48" title="Link to this heading">¶</a></h2>
+<section id="id49">
+<h3>Added<a class="headerlink" href="#id49" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>TX/RX Pipeline fully supports FT1 (GFSK without Polar) / FT3 (Polar 256 + segment_with_crc) / FT4 frame types</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_ft_pipeline.py</span></code>: FT1(5)/FT3(4)/FT4(4)/frame sync(2) total 15 tests</p></li>
+<li><p>Frame sync supports FT3(<code class="docutils literal notranslate"><span class="pre">sync_signal_3</span></code>) and FT4(<code class="docutils literal notranslate"><span class="pre">sync_signal_4</span></code>)</p></li>
+</ul>
+</section>
+<section id="id50">
+<h3>Fixed<a class="headerlink" href="#id50" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">gfsk.py</span></code>: demodulator trailing incomplete symbols causing off-by-one, switched to ceiling division</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rx_pipeline.py</span></code>: FT3/4 header uses CRC24B (not CRC12), corrected <code class="docutils literal notranslate"><span class="pre">k_info</span></code> computation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rx_pipeline.py</span></code>: FT3/4 payload strips Polar leading padding after decoding</p></li>
+</ul>
+</section>
+</section>
+<section id="id51">
+<h2><a class="reference external" href="https://github.com/user/nearlink-sdr/compare/v0.9.0...v0.10.0">0.10.0</a> - 2026-03-20<a class="headerlink" href="#id51" title="Link to this heading">¶</a></h2>
+<section id="id52">
+<h3>Added<a class="headerlink" href="#id52" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>TV202 (MCS7 multi-block) / TV205 (MCS6) / TV206 (MCS6 large payload) / TV209 (MCS11 8PSK) full-chain pipeline tests</p></li>
+<li><p>RX roundtrip + loopback tests covering TV202/205/206/209</p></li>
+</ul>
+</section>
+<section id="id53">
+<h3>Fixed<a class="headerlink" href="#id53" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">frame.py</span></code>: 8PSK demodulation missing, added constellation inverse mapping</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frame.py</span></code>: 8PSK modulation auto-pads with zeros when bit count is not a multiple of 3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frame.py</span></code>: <code class="docutils literal notranslate"><span class="pre">_bits_to_symbols_count</span></code> added 8PSK support (3 bits/symbol)</p></li>
+</ul>
+</section>
+</section>
+<section id="id54">
+<h2><a class="reference external" href="https://github.com/user/nearlink-sdr/compare/v0.8.0...v0.9.0">0.9.0</a> - 2026-03-19<a class="headerlink" href="#id54" title="Link to this heading">¶</a></h2>
+<section id="id55">
+<h3>Added<a class="headerlink" href="#id55" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">phy/rx_pipeline.py</span></code>: complete RX receive pipeline, supports frame sync, header decode, payload decode</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rx_chain()</span></code>: complete decoding chain from IQ signal to data bits</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decode_head()</span></code> / <code class="docutils literal notranslate"><span class="pre">decode_payload()</span></code> / <code class="docutils literal notranslate"><span class="pre">frame_sync()</span></code> sub-functions</p></li>
+<li><p>14 RX pipeline tests</p></li>
+</ul>
+</section>
+</section>
+<section id="id56">
+<h2><a class="reference external" href="https://github.com/user/nearlink-sdr/compare/v0.7.0...v0.8.0">0.8.0</a> - 2026-03-19<a class="headerlink" href="#id56" title="Link to this heading">¶</a></h2>
+<section id="id57">
+<h3>Added<a class="headerlink" href="#id57" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">common/prbs.py</span></code>: PRBS11 (x^11+x^2+1) / PRBS17 (x^17+x^3+1) generators, aligned with standard 8.3.5</p></li>
+<li><p>TV101 end-to-end verification: PRBS11 -&gt; HeadBits -&gt; CRC12 -&gt; scrambling -&gt; txHeadW, full process matches Appendix H</p></li>
+<li><p>24 new tests added</p></li>
+</ul>
+</section>
+<section id="id58">
+<h3>Fixed<a class="headerlink" href="#id58" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">common/scrambler.py</span></code>: changed from right-shift Fibonacci LFSR to left-shift Galois LFSR, output from MSB (bit6), feedback XOR to bit0 and bit4 (mask=0x11), verified end-to-end with TV101 test vector</p></li>
+</ul>
+</section>
+</section>
+<section id="id59">
+<h2><a class="reference external" href="https://github.com/user/nearlink-sdr/compare/v0.6.0...v0.7.0">0.7.0</a> - 2026-03-19<a class="headerlink" href="#id59" title="Link to this heading">¶</a></h2>
+<section id="id60">
+<h3>Added<a class="headerlink" href="#id60" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">common/scrambler.py</span></code>: 7-bit LFSR channel bit scrambling, polynomial x^7+x^4+1, period 127, broadcast seed/data link seed generation, aligned with standard 6.10.4</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">common/mcs.py</span></code>: MCS table (MCS0-MCS12, BPSK/QPSK/8PSK) and rate matching tables 1/2, <code class="docutils literal notranslate"><span class="pre">RateConfig</span></code> factory method, aligned with standard 6.10.5 / 6.10.6</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">phy/control_info.py</span></code>: physical layer control information A1-A7 (frame types 1/2, CRC12) and B1-B5 (frame types 3/4, CRC24B+LLID XOR), aligned with standard 6.4</p></li>
+<li><p>109 new tests added</p></li>
+</ul>
+</section>
+</section>
+<section id="id61">
+<h2><a class="reference external" href="https://github.com/user/nearlink-sdr/compare/v0.5.0...v0.6.0">0.6.0</a> - 2026-03-19<a class="headerlink" href="#id61" title="Link to this heading">¶</a></h2>
+<section id="id62">
+<h3>Added<a class="headerlink" href="#id62" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">phy/usrp.py</span></code>: USRP E310 hardware interface wrapper containing <code class="docutils literal notranslate"><span class="pre">USRPConfig</span></code>/<code class="docutils literal notranslate"><span class="pre">MockUSRP</span></code>/<code class="docutils literal notranslate"><span class="pre">USRPDevice</span></code>/<code class="docutils literal notranslate"><span class="pre">TXStream</span></code>/<code class="docutils literal notranslate"><span class="pre">RXStream</span></code>/<code class="docutils literal notranslate"><span class="pre">SLETransceiver</span></code></p></li>
+<li><p>78 new tests added</p></li>
+</ul>
+</section>
+<section id="id63">
+<h3>Changed<a class="headerlink" href="#id63" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Introduced ruff code checking, added <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code> engineering specification</p></li>
+</ul>
+</section>
+</section>
+<section id="id64">
+<h2><a class="reference external" href="https://github.com/user/nearlink-sdr/compare/v0.4.0...v0.5.0">0.5.0</a> - 2026-03-19<a class="headerlink" href="#id64" title="Link to this heading">¶</a></h2>
+<section id="id65">
+<h3>Added<a class="headerlink" href="#id65" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">phy/freq_hopping.py</span></code>: RF/physical channel mapping, three-band frequency table, pseudo-random hopping sequence, multi-bandwidth filtering and blocked channel management, aligned with standard 6.10.3 / 8.1.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim/link_sim.py</span></code> Phase 5 frequency hopping simulation</p></li>
+<li><p>66 new tests added</p></li>
+</ul>
+</section>
+</section>
+<section id="id66">
+<h2><a class="reference external" href="https://github.com/user/nearlink-sdr/compare/v0.3.0...v0.4.0">0.4.0</a> - 2026-03-19<a class="headerlink" href="#id66" title="Link to this heading">¶</a></h2>
+<section id="id67">
+<h3>Added<a class="headerlink" href="#id67" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">phy/channel.py</span></code>: AWGN / Rayleigh / Rician / multipath frequency-selective channel models</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">phy/equalizer.py</span></code>: ZF/MMSE frequency-domain equalization, MMSE time-domain Wiener equalization, 1-tap equalization, LS channel estimation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim/link_sim.py</span></code> Phase 4 channel simulation (7 configurations)</p></li>
+<li><p>44 new tests added</p></li>
+</ul>
+</section>
+</section>
+<section id="id68">
+<h2><a class="reference external" href="https://github.com/user/nearlink-sdr/compare/v0.2.0...v0.3.0">0.3.0</a> - 2026-03-19<a class="headerlink" href="#id68" title="Link to this heading">¶</a></h2>
+<section id="id69">
+<h3>Added<a class="headerlink" href="#id69" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">phy/pilot.py</span></code>: pilot symbol generation and insertion/removal, mapped to Standard 6.7</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">phy/frame.py</span></code>: frame structure assembly/parsing, supports frame types 1-4, mapped to Standard 6.3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim/link_sim.py</span></code> Phase 3 frame-level simulation</p></li>
+<li><p>39 new tests added</p></li>
+</ul>
+</section>
+</section>
+<section id="id70">
+<h2><a class="reference external" href="https://github.com/user/nearlink-sdr/compare/v0.1.0...v0.2.0">0.2.0</a> - 2026-03-19<a class="headerlink" href="#id70" title="Link to this heading">¶</a></h2>
+<section id="id71">
+<h3>Added<a class="headerlink" href="#id71" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">common/polar.py</span></code>: Polar encoder, SC decoder, LLR mode, mapped to Standard 6.10.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">common/code_block_seg.py</span></code>: code block segmentation, mapped to Standard 6.10.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim/link_sim.py</span></code> Phase 2 coded link simulation</p></li>
+<li><p>75 new tests added</p></li>
+</ul>
+</section>
+</section>
+<section id="id72">
+<h2><a class="reference external" href="https://github.com/user/nearlink-sdr/releases/tag/v0.1.0">0.1.0</a> - 2026-03-19<a class="headerlink" href="#id72" title="Link to this heading">¶</a></h2>
+<section id="id73">
+<h3>Added<a class="headerlink" href="#id73" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">common/crc.py</span></code>: CRC12/CRC24A/CRC24B/CRC32, mapped to Standard 6.9</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">common/m_sequence.py</span></code>: m31/m63 sequence generation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">common/bch.py</span></code>: BCH(31,26) / BCH(63,24) coding, mapped to Standard 6.11</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">phy/gfsk.py</span></code>: GFSK modulation/demodulation, mapped to Standard 6.2.1.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">phy/psk.py</span></code>: BPSK/QPSK/8PSK modulation/demodulation, RRC pulse shaping, mapped to Standard 6.2.1.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">phy/preamble.py</span></code>: preamble generation, mapped to Standard 6.4</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">phy/sync_sequence.py</span></code>: sync signals 1-4, mapped to Standard 6.5/6.6</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sim/link_sim.py</span></code> Phase 1 uncoded link simulation</p></li>
+<li><p>107 tests</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="apidocs/index.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">API Reference</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="explanation/standard-mapping.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Standard Clause Mapping</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/sanchuanhehe/nearlink_sdr_sim" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82 .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Changelog</a><ul>
+<li><a class="reference internal" href="#id2">[1.0.2] - 2026-03-23</a><ul>
+<li><a class="reference internal" href="#added">Added</a></li>
+<li><a class="reference internal" href="#fixed">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3">[1.0.1] - 2026-03-22</a><ul>
+<li><a class="reference internal" href="#id4">Added</a></li>
+<li><a class="reference internal" href="#changed">Changed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id5">[1.0.0] - 2026-03-21</a><ul>
+<li><a class="reference internal" href="#id6">Added</a></li>
+<li><a class="reference internal" href="#id7">Fixed</a></li>
+<li><a class="reference internal" href="#id8">Changed</a></li>
+<li><a class="reference internal" href="#id9">Added</a></li>
+<li><a class="reference internal" href="#id10">Fixed</a></li>
+<li><a class="reference internal" href="#id11">Changed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id12">[0.26.0] - 2026-03-21</a><ul>
+<li><a class="reference internal" href="#id13">Added</a></li>
+<li><a class="reference internal" href="#id14">Fixed</a></li>
+<li><a class="reference internal" href="#removed">Removed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id15">[0.25.0] - 2026-03-21</a><ul>
+<li><a class="reference internal" href="#id16">Added</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id17">[0.24.0] - 2026-03-20</a><ul>
+<li><a class="reference internal" href="#id18">Added</a></li>
+<li><a class="reference internal" href="#id19">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id20">[0.23.0] - 2026-03-20</a><ul>
+<li><a class="reference internal" href="#id21">Added</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id22">[0.22.0] - 2026-03-20</a><ul>
+<li><a class="reference internal" href="#id23">Added</a></li>
+<li><a class="reference internal" href="#id24">Changed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id25">[0.21.0] - 2026-03-20</a><ul>
+<li><a class="reference internal" href="#id26">Added</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id27">[0.20.0] - 2026-03-20</a><ul>
+<li><a class="reference internal" href="#id28">Added</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id29">[0.19.0] - 2026-03-20</a><ul>
+<li><a class="reference internal" href="#id30">Added</a></li>
+<li><a class="reference internal" href="#id31">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id32">[0.18.0] - 2026-03-20</a><ul>
+<li><a class="reference internal" href="#id33">Added</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id34">[0.17.0] - 2026-03-20</a><ul>
+<li><a class="reference internal" href="#id35">Added</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id36">[0.16.0] - 2026-03-20</a><ul>
+<li><a class="reference internal" href="#id37">Added</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id38">[0.15.0] - 2026-03-20</a><ul>
+<li><a class="reference internal" href="#id39">Added</a></li>
+<li><a class="reference internal" href="#id40">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id41">0.14.0 - 2026-03-20</a><ul>
+<li><a class="reference internal" href="#id42">Changed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id43">0.13.0 - 2026-03-20</a><ul>
+<li><a class="reference internal" href="#id44">Added</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id45">0.12.0 - 2026-03-20</a><ul>
+<li><a class="reference internal" href="#id46">Added</a></li>
+<li><a class="reference internal" href="#id47">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id48">0.11.0 - 2026-03-20</a><ul>
+<li><a class="reference internal" href="#id49">Added</a></li>
+<li><a class="reference internal" href="#id50">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id51">0.10.0 - 2026-03-20</a><ul>
+<li><a class="reference internal" href="#id52">Added</a></li>
+<li><a class="reference internal" href="#id53">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id54">0.9.0 - 2026-03-19</a><ul>
+<li><a class="reference internal" href="#id55">Added</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id56">0.8.0 - 2026-03-19</a><ul>
+<li><a class="reference internal" href="#id57">Added</a></li>
+<li><a class="reference internal" href="#id58">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id59">0.7.0 - 2026-03-19</a><ul>
+<li><a class="reference internal" href="#id60">Added</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id61">0.6.0 - 2026-03-19</a><ul>
+<li><a class="reference internal" href="#id62">Added</a></li>
+<li><a class="reference internal" href="#id63">Changed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id64">0.5.0 - 2026-03-19</a><ul>
+<li><a class="reference internal" href="#id65">Added</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id66">0.4.0 - 2026-03-19</a><ul>
+<li><a class="reference internal" href="#id67">Added</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id68">0.3.0 - 2026-03-19</a><ul>
+<li><a class="reference internal" href="#id69">Added</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id70">0.2.0 - 2026-03-19</a><ul>
+<li><a class="reference internal" href="#id71">Added</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id72">0.1.0 - 2026-03-19</a><ul>
+<li><a class="reference internal" href="#id73">Added</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=4ebf8126"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="_static/version-selector.js?v=7d36e42c"></script>
+    </body>
+</html>
