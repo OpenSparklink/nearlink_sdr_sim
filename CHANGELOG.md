@@ -12,6 +12,10 @@
 - autodoc2 参数/返回值解析: 32 个源文件从 Google 风格 docstring 转为 field list 格式
 - 英文翻译同步: 867 个 .po 条目翻译/修复, 0 fuzzy / 0 empty
 
+### Changed
+
+- Release CI: 中英文文档并行构建, TeX Live/npm/字体缓存, 预估缩短 40%+ 耗时
+
 ## [1.0.7] - 2026-03-24
 
 ### Fixed

@@ -8,9 +8,12 @@ on:
 permissions:
   contents: write
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
-  build-docs:
-    name: Build Docs
+  validate:
+    name: Validate Tag
     runs-on: ubuntu-latest
     outputs:
       prerelease: ${{ steps.semver.outputs.prerelease }}
@@ -26,12 +29,15 @@ jobs:
           fi
           if [[ -n "${BASH_REMATCH[4]}" ]]; then
             echo "prerelease=true" >> "$GITHUB_OUTPUT"
-            echo "Tag '$TAG' detected as PRERELEASE"
           else
             echo "prerelease=false" >> "$GITHUB_OUTPUT"
-            echo "Tag '$TAG' detected as STABLE release"
           fi
 
+  build-zh:
+    name: Build Chinese Docs
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
       - uses: actions/checkout@v4
 
       - uses: astral-sh/setup-uv@v6
@@ -44,66 +50,131 @@ jobs:
       - name: Install dependencies
         run: uv sync --group docs
 
-      - name: Install TeX Live
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y texlive-xetex texlive-fonts-recommended \
-            texlive-latex-extra texlive-latex-recommended texlive-lang-chinese \
+      - name: Cache TeX Live packages
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: >-
+            texlive-xetex texlive-fonts-recommended texlive-latex-extra
+            texlive-latex-recommended texlive-lang-chinese
             texlive-extra-utils fonts-dejavu-core latexmk
+          version: texlive-v1
+
+      - name: Cache HarmonyOS fonts
+        id: font-cache
+        uses: actions/cache@v4
+        with:
+          path: /usr/local/share/fonts/HarmonyOS*
+          key: harmonyos-fonts-${{ hashFiles('fonts/**') }}
 
       - name: Install HarmonyOS fonts
+        if: steps.font-cache.outputs.cache-hit != 'true'
         run: make install-fonts
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: "npm"
 
       - name: Install Mermaid CLI
-        run: npm install
+        run: npm ci || npm install
 
       - name: Build Chinese PDF
         run: make docs-pdf
 
+      - name: Build Chinese HTML
+        run: |
+          uv run sphinx-build -b html docs docs/_build/html
+          TAG="${GITHUB_REF#refs/tags/}"
+          cd docs/_build/html && tar czf "../../../nearlink-sdr-docs-zh-${TAG}.tar.gz" --exclude='.doctrees' .
+
+      - name: Upload Chinese artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-zh
+          path: |
+            docs/_build/latex/nearlink-sdr.pdf
+            nearlink-sdr-docs-zh-*.tar.gz
+
+  build-en:
+    name: Build English Docs
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Install Python 3.14
+        run: uv python install 3.14
+
+      - name: Install dependencies
+        run: uv sync --group docs
+
+      - name: Cache TeX Live packages
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: >-
+            texlive-xetex texlive-fonts-recommended texlive-latex-extra
+            texlive-latex-recommended texlive-lang-chinese
+            texlive-extra-utils fonts-dejavu-core latexmk
+          version: texlive-v1
+
+      - name: Cache HarmonyOS fonts
+        id: font-cache
+        uses: actions/cache@v4
+        with:
+          path: /usr/local/share/fonts/HarmonyOS*
+          key: harmonyos-fonts-${{ hashFiles('fonts/**') }}
+
+      - name: Install HarmonyOS fonts
+        if: steps.font-cache.outputs.cache-hit != 'true'
+        run: make install-fonts
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install Mermaid CLI
+        run: npm ci || npm install
+
       - name: Build English PDF
         run: make docs-pdf-en
-
-      - name: Build Chinese HTML
-        run: uv run sphinx-build -b html docs docs/_build/html
 
       - name: Build English HTML
         run: |
           uv run sphinx-intl build -d docs/locales
           uv run sphinx-build -b html -D language=en docs docs/_build/html_en
-
-      - name: Package HTML docs
-        run: |
           TAG="${GITHUB_REF#refs/tags/}"
-          cd docs/_build/html && tar czf "../../../nearlink-sdr-docs-zh-${TAG}.tar.gz" --exclude='.doctrees' .
-          cd ../../..
           cd docs/_build/html_en && tar czf "../../../nearlink-sdr-docs-en-${TAG}.tar.gz" --exclude='.doctrees' .
 
-      - name: Upload artifacts
+      - name: Upload English artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: release-assets
+          name: release-en
           path: |
-            docs/_build/latex/nearlink-sdr.pdf
             docs/_build/latex_en/nearlink-sdr.pdf
-            nearlink-sdr-docs-zh-*.tar.gz
             nearlink-sdr-docs-en-*.tar.gz
 
   release:
     name: Create Release
     runs-on: ubuntu-latest
-    needs: build-docs
+    needs: [validate, build-zh, build-en]
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download artifacts
+      - name: Download Chinese artifacts
         uses: actions/download-artifact@v4
         with:
-          name: release-assets
+          name: release-zh
+          path: dist/
+
+      - name: Download English artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: release-en
           path: dist/
 
       - name: Rename PDF files
@@ -113,12 +184,11 @@ jobs:
           mv dist/docs/_build/latex_en/nearlink-sdr.pdf "dist/nearlink-sdr-en-${TAG}.pdf"
 
       - name: Create GitHub Release (draft)
-        id: create_release
         uses: softprops/action-gh-release@v2
         with:
           draft: true
           generate_release_notes: true
-          prerelease: ${{ needs.build-docs.outputs.prerelease == 'true' }}
+          prerelease: ${{ needs.validate.outputs.prerelease == 'true' }}
           files: |
             dist/nearlink-sdr-zh-*.pdf
             dist/nearlink-sdr-en-*.pdf
