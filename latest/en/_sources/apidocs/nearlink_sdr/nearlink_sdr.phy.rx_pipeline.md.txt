@@ -27,12 +27,12 @@
 :class: autosummary longtable
 :align: left
 
-* - {py:obj}`decode_payload <nearlink_sdr.phy.rx_pipeline.decode_payload>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline.decode_payload
-    :summary:
-    ```
 * - {py:obj}`decode_head <nearlink_sdr.phy.rx_pipeline.decode_head>`
   - ```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline.decode_head
+    :summary:
+    ```
+* - {py:obj}`decode_payload <nearlink_sdr.phy.rx_pipeline.decode_payload>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline.decode_payload
     :summary:
     ```
 * - {py:obj}`frame_sync <nearlink_sdr.phy.rx_pipeline.frame_sync>`
@@ -45,43 +45,7 @@
     ```
 ````
 
-### Data
-
-````{list-table}
-:class: autosummary longtable
-:align: left
-
-* - {py:obj}`_HEAD_CODED_LEN <nearlink_sdr.phy.rx_pipeline._HEAD_CODED_LEN>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline._HEAD_CODED_LEN
-    :summary:
-    ```
-* - {py:obj}`_MOD_STR <nearlink_sdr.phy.rx_pipeline._MOD_STR>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline._MOD_STR
-    :summary:
-    ```
-````
-
 ### API
-
-````{py:data} _HEAD_CODED_LEN
-:canonical: nearlink_sdr.phy.rx_pipeline._HEAD_CODED_LEN
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline._HEAD_CODED_LEN
-```
-
-````
-
-````{py:data} _MOD_STR
-:canonical: nearlink_sdr.phy.rx_pipeline._MOD_STR
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline._MOD_STR
-```
-
-````
 
 `````{py:class} RxResult
 :canonical: nearlink_sdr.phy.rx_pipeline.RxResult
@@ -135,17 +99,17 @@
 
 `````
 
-````{py:function} decode_payload(scrambled_bits: numpy.ndarray, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig, n_info_bits: int) -> tuple[numpy.ndarray, bool]
-:canonical: nearlink_sdr.phy.rx_pipeline.decode_payload
-
-```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline.decode_payload
-```
-````
-
 ````{py:function} decode_head(scrambled_bits: numpy.ndarray, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig) -> tuple[numpy.ndarray, bool]
 :canonical: nearlink_sdr.phy.rx_pipeline.decode_head
 
 ```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline.decode_head
+```
+````
+
+````{py:function} decode_payload(scrambled_bits: numpy.ndarray, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig, n_info_bits: int) -> tuple[numpy.ndarray, bool]
+:canonical: nearlink_sdr.phy.rx_pipeline.decode_payload
+
+```{autodoc2-docstring} nearlink_sdr.phy.rx_pipeline.decode_payload
 ```
 ````
 

@@ -15,24 +15,24 @@
 :class: autosummary longtable
 :align: left
 
-* - {py:obj}`PairingState <nearlink_sdr.mac.security_manager.PairingState>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState
+* - {py:obj}`ECDHKeyPair <nearlink_sdr.mac.security_manager.ECDHKeyPair>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.security_manager.ECDHKeyPair
+    :summary:
+    ```
+* - {py:obj}`FrameCryptoContext <nearlink_sdr.mac.security_manager.FrameCryptoContext>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext
     :summary:
     ```
 * - {py:obj}`PairingFailureReason <nearlink_sdr.mac.security_manager.PairingFailureReason>`
   - ```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingFailureReason
     :summary:
     ```
-* - {py:obj}`ECDHKeyPair <nearlink_sdr.mac.security_manager.ECDHKeyPair>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.security_manager.ECDHKeyPair
-    :summary:
-    ```
 * - {py:obj}`PairingManager <nearlink_sdr.mac.security_manager.PairingManager>`
   - ```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingManager
     :summary:
     ```
-* - {py:obj}`FrameCryptoContext <nearlink_sdr.mac.security_manager.FrameCryptoContext>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext
+* - {py:obj}`PairingState <nearlink_sdr.mac.security_manager.PairingState>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState
     :summary:
     ```
 ````
@@ -49,130 +49,176 @@
     ```
 ````
 
-### Data
-
-````{list-table}
-:class: autosummary longtable
-:align: left
-
-* - {py:obj}`log <nearlink_sdr.mac.security_manager.log>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.security_manager.log
-    :summary:
-    ```
-````
-
 ### API
 
-````{py:data} log
-:canonical: nearlink_sdr.mac.security_manager.log
-:value: >
-   'getLogger(...)'
+`````{py:class} ECDHKeyPair
+:canonical: nearlink_sdr.mac.security_manager.ECDHKeyPair
 
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.log
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.ECDHKeyPair
+```
+
+````{py:attribute} private_key_bytes
+:canonical: nearlink_sdr.mac.security_manager.ECDHKeyPair.private_key_bytes
+:type: bytes
+:value: >
+   b''
+
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.ECDHKeyPair.private_key_bytes
 ```
 
 ````
 
-`````{py:class} PairingState()
-:canonical: nearlink_sdr.mac.security_manager.PairingState
+````{py:attribute} public_key_x
+:canonical: nearlink_sdr.mac.security_manager.ECDHKeyPair.public_key_x
+:type: bytes
+:value: >
+   b''
 
-Bases: {py:obj}`enum.IntEnum`
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.ECDHKeyPair.public_key_x
 ```
 
-```{rubric} Initialization
+````
+
+````{py:attribute} public_key_y
+:canonical: nearlink_sdr.mac.security_manager.ECDHKeyPair.public_key_y
+:type: bytes
+:value: >
+   b''
+
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.ECDHKeyPair.public_key_y
 ```
 
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState.__init__
+````
+
+````{py:method} generate() -> nearlink_sdr.mac.security_manager.ECDHKeyPair
+:canonical: nearlink_sdr.mac.security_manager.ECDHKeyPair.generate
+:classmethod:
+
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.ECDHKeyPair.generate
 ```
 
-````{py:attribute} IDLE
-:canonical: nearlink_sdr.mac.security_manager.PairingState.IDLE
+````
+
+````{py:method} compute_shared_secret(peer_pub_x: bytes, peer_pub_y: bytes) -> bytes
+:canonical: nearlink_sdr.mac.security_manager.ECDHKeyPair.compute_shared_secret
+
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.ECDHKeyPair.compute_shared_secret
+```
+
+````
+
+`````
+
+`````{py:class} FrameCryptoContext
+:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext
+
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext
+```
+
+````{py:attribute} session_key
+:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext.session_key
+:type: bytes
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext.session_key
+```
+
+````
+
+````{py:attribute} iv_base
+:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext.iv_base
+:type: bytes
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext.iv_base
+```
+
+````
+
+````{py:attribute} direction
+:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext.direction
+:type: int
 :value: >
    0
 
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState.IDLE
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext.direction
 ```
 
 ````
 
-````{py:attribute} INITIATED
-:canonical: nearlink_sdr.mac.security_manager.PairingState.INITIATED
+````{py:attribute} mic_len
+:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext.mic_len
+:type: int
 :value: >
-   'auto(...)'
+   4
 
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState.INITIATED
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext.mic_len
 ```
 
 ````
 
-````{py:attribute} REQUEST_SENT
-:canonical: nearlink_sdr.mac.security_manager.PairingState.REQUEST_SENT
+````{py:attribute} frame_type
+:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext.frame_type
+:type: int
 :value: >
-   'auto(...)'
+   2
 
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState.REQUEST_SENT
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext.frame_type
 ```
 
 ````
 
-````{py:attribute} RESPONSE_SENT
-:canonical: nearlink_sdr.mac.security_manager.PairingState.RESPONSE_SENT
+````{py:attribute} link_id
+:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext.link_id
+:type: int
 :value: >
-   'auto(...)'
+   0
 
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState.RESPONSE_SENT
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext.link_id
 ```
 
 ````
 
-````{py:attribute} CONFIRM_SENT
-:canonical: nearlink_sdr.mac.security_manager.PairingState.CONFIRM_SENT
-:value: >
-   'auto(...)'
+````{py:property} tx_count
+:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext.tx_count
+:type: int
 
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState.CONFIRM_SENT
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext.tx_count
 ```
 
 ````
 
-````{py:attribute} PUBLIC_KEY_EXCHANGED
-:canonical: nearlink_sdr.mac.security_manager.PairingState.PUBLIC_KEY_EXCHANGED
-:value: >
-   'auto(...)'
+````{py:property} rx_count
+:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext.rx_count
+:type: int
 
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState.PUBLIC_KEY_EXCHANGED
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext.rx_count
 ```
 
 ````
 
-````{py:attribute} CONFIRM_CODE_SENT
-:canonical: nearlink_sdr.mac.security_manager.PairingState.CONFIRM_CODE_SENT
-:value: >
-   'auto(...)'
+````{py:method} encrypt(plaintext: bytes, aad: bytes = b'') -> tuple[bytes, bytes]
+:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext.encrypt
 
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState.CONFIRM_CODE_SENT
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext.encrypt
 ```
 
 ````
 
-````{py:attribute} COMPLETED
-:canonical: nearlink_sdr.mac.security_manager.PairingState.COMPLETED
-:value: >
-   'auto(...)'
+````{py:method} decrypt(ciphertext: bytes, mic: bytes, aad: bytes = b'') -> bytes
+:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext.decrypt
 
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState.COMPLETED
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext.decrypt
 ```
 
 ````
 
-````{py:attribute} FAILED
-:canonical: nearlink_sdr.mac.security_manager.PairingState.FAILED
-:value: >
-   'auto(...)'
+````{py:method} reset_counters() -> None
+:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext.reset_counters
 
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState.FAILED
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext.reset_counters
 ```
 
 ````
@@ -309,64 +355,6 @@ Bases: {py:obj}`enum.IntEnum`
    12
 
 ```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingFailureReason.NUMERIC_COMPARISON_FAILED
-```
-
-````
-
-`````
-
-`````{py:class} ECDHKeyPair
-:canonical: nearlink_sdr.mac.security_manager.ECDHKeyPair
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.ECDHKeyPair
-```
-
-````{py:attribute} private_key_bytes
-:canonical: nearlink_sdr.mac.security_manager.ECDHKeyPair.private_key_bytes
-:type: bytes
-:value: >
-   b''
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.ECDHKeyPair.private_key_bytes
-```
-
-````
-
-````{py:attribute} public_key_x
-:canonical: nearlink_sdr.mac.security_manager.ECDHKeyPair.public_key_x
-:type: bytes
-:value: >
-   b''
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.ECDHKeyPair.public_key_x
-```
-
-````
-
-````{py:attribute} public_key_y
-:canonical: nearlink_sdr.mac.security_manager.ECDHKeyPair.public_key_y
-:type: bytes
-:value: >
-   b''
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.ECDHKeyPair.public_key_y
-```
-
-````
-
-````{py:method} generate() -> nearlink_sdr.mac.security_manager.ECDHKeyPair
-:canonical: nearlink_sdr.mac.security_manager.ECDHKeyPair.generate
-:classmethod:
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.ECDHKeyPair.generate
-```
-
-````
-
-````{py:method} compute_shared_secret(peer_pub_x: bytes, peer_pub_y: bytes) -> bytes
-:canonical: nearlink_sdr.mac.security_manager.ECDHKeyPair.compute_shared_secret
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.ECDHKeyPair.compute_shared_secret
 ```
 
 ````
@@ -566,17 +554,6 @@ Bases: {py:obj}`enum.IntEnum`
 
 ````
 
-````{py:attribute} _outgoing
-:canonical: nearlink_sdr.mac.security_manager.PairingManager._outgoing
-:type: list[object]
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingManager._outgoing
-```
-
-````
-
 ````{py:method} start_pairing() -> list[object]
 :canonical: nearlink_sdr.mac.security_manager.PairingManager.start_pairing
 
@@ -593,110 +570,6 @@ Bases: {py:obj}`enum.IntEnum`
 
 ````
 
-````{py:method} _handle_initiate(msg: nearlink_sdr.mac.security.PairingInitiate) -> list[object]
-:canonical: nearlink_sdr.mac.security_manager.PairingManager._handle_initiate
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingManager._handle_initiate
-```
-
-````
-
-````{py:method} _handle_request(msg: nearlink_sdr.mac.security.PairingRequest) -> list[object]
-:canonical: nearlink_sdr.mac.security_manager.PairingManager._handle_request
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingManager._handle_request
-```
-
-````
-
-````{py:method} _handle_response(msg: nearlink_sdr.mac.security.PairingResponse) -> list[object]
-:canonical: nearlink_sdr.mac.security_manager.PairingManager._handle_response
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingManager._handle_response
-```
-
-````
-
-````{py:method} _handle_confirm(msg: nearlink_sdr.mac.security.PairingConfirm) -> list[object]
-:canonical: nearlink_sdr.mac.security_manager.PairingManager._handle_confirm
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingManager._handle_confirm
-```
-
-````
-
-````{py:method} _handle_initial_info(msg: nearlink_sdr.mac.security.PairingInitialInfo) -> list[object]
-:canonical: nearlink_sdr.mac.security_manager.PairingManager._handle_initial_info
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingManager._handle_initial_info
-```
-
-````
-
-````{py:method} _handle_ra(msg: nearlink_sdr.mac.security.RaMessage) -> list[object]
-:canonical: nearlink_sdr.mac.security_manager.PairingManager._handle_ra
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingManager._handle_ra
-```
-
-````
-
-````{py:method} _handle_rb(msg: nearlink_sdr.mac.security.RbMessage) -> list[object]
-:canonical: nearlink_sdr.mac.security_manager.PairingManager._handle_rb
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingManager._handle_rb
-```
-
-````
-
-````{py:method} _handle_t_confirm(msg: nearlink_sdr.mac.security.TNodeConfirmCode) -> list[object]
-:canonical: nearlink_sdr.mac.security_manager.PairingManager._handle_t_confirm
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingManager._handle_t_confirm
-```
-
-````
-
-````{py:method} _handle_g_confirm(msg: nearlink_sdr.mac.security.GNodeConfirmCode) -> list[object]
-:canonical: nearlink_sdr.mac.security_manager.PairingManager._handle_g_confirm
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingManager._handle_g_confirm
-```
-
-````
-
-````{py:method} _compute_dh_key() -> None
-:canonical: nearlink_sdr.mac.security_manager.PairingManager._compute_dh_key
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingManager._compute_dh_key
-```
-
-````
-
-````{py:method} _generate_confirm_code() -> bytes
-:canonical: nearlink_sdr.mac.security_manager.PairingManager._generate_confirm_code
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingManager._generate_confirm_code
-```
-
-````
-
-````{py:method} _generate_peer_confirm_code() -> bytes
-:canonical: nearlink_sdr.mac.security_manager.PairingManager._generate_peer_confirm_code
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingManager._generate_peer_confirm_code
-```
-
-````
-
-````{py:method} _derive_keys() -> None
-:canonical: nearlink_sdr.mac.security_manager.PairingManager._derive_keys
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingManager._derive_keys
-```
-
-````
-
 ````{py:property} is_paired
 :canonical: nearlink_sdr.mac.security_manager.PairingManager.is_paired
 :type: bool
@@ -708,146 +581,106 @@ Bases: {py:obj}`enum.IntEnum`
 
 `````
 
-`````{py:class} FrameCryptoContext
-:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext
+`````{py:class} PairingState()
+:canonical: nearlink_sdr.mac.security_manager.PairingState
 
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState
 ```
 
-````{py:attribute} session_key
-:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext.session_key
-:type: bytes
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext.session_key
+```{rubric} Initialization
 ```
 
-````
-
-````{py:attribute} iv_base
-:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext.iv_base
-:type: bytes
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext.iv_base
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState.__init__
 ```
 
-````
-
-````{py:attribute} direction
-:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext.direction
-:type: int
+````{py:attribute} IDLE
+:canonical: nearlink_sdr.mac.security_manager.PairingState.IDLE
 :value: >
    0
 
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext.direction
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState.IDLE
 ```
 
 ````
 
-````{py:attribute} mic_len
-:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext.mic_len
-:type: int
+````{py:attribute} INITIATED
+:canonical: nearlink_sdr.mac.security_manager.PairingState.INITIATED
 :value: >
-   4
+   'auto(...)'
 
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext.mic_len
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState.INITIATED
 ```
 
 ````
 
-````{py:attribute} frame_type
-:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext.frame_type
-:type: int
+````{py:attribute} REQUEST_SENT
+:canonical: nearlink_sdr.mac.security_manager.PairingState.REQUEST_SENT
 :value: >
-   2
+   'auto(...)'
 
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext.frame_type
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState.REQUEST_SENT
 ```
 
 ````
 
-````{py:attribute} link_id
-:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext.link_id
-:type: int
+````{py:attribute} RESPONSE_SENT
+:canonical: nearlink_sdr.mac.security_manager.PairingState.RESPONSE_SENT
 :value: >
-   0
+   'auto(...)'
 
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext.link_id
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState.RESPONSE_SENT
 ```
 
 ````
 
-````{py:attribute} _tx_payload_count
-:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext._tx_payload_count
-:type: int
+````{py:attribute} CONFIRM_SENT
+:canonical: nearlink_sdr.mac.security_manager.PairingState.CONFIRM_SENT
 :value: >
-   0
+   'auto(...)'
 
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext._tx_payload_count
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState.CONFIRM_SENT
 ```
 
 ````
 
-````{py:attribute} _rx_payload_count
-:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext._rx_payload_count
-:type: int
+````{py:attribute} PUBLIC_KEY_EXCHANGED
+:canonical: nearlink_sdr.mac.security_manager.PairingState.PUBLIC_KEY_EXCHANGED
 :value: >
-   0
+   'auto(...)'
 
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext._rx_payload_count
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState.PUBLIC_KEY_EXCHANGED
 ```
 
 ````
 
-````{py:property} tx_count
-:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext.tx_count
-:type: int
+````{py:attribute} CONFIRM_CODE_SENT
+:canonical: nearlink_sdr.mac.security_manager.PairingState.CONFIRM_CODE_SENT
+:value: >
+   'auto(...)'
 
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext.tx_count
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState.CONFIRM_CODE_SENT
 ```
 
 ````
 
-````{py:property} rx_count
-:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext.rx_count
-:type: int
+````{py:attribute} COMPLETED
+:canonical: nearlink_sdr.mac.security_manager.PairingState.COMPLETED
+:value: >
+   'auto(...)'
 
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext.rx_count
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState.COMPLETED
 ```
 
 ````
 
-````{py:method} _build_nonce(payload_count: int, data_length: int) -> bytes
-:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext._build_nonce
+````{py:attribute} FAILED
+:canonical: nearlink_sdr.mac.security_manager.PairingState.FAILED
+:value: >
+   'auto(...)'
 
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext._build_nonce
-```
-
-````
-
-````{py:method} encrypt(plaintext: bytes, aad: bytes = b'') -> tuple[bytes, bytes]
-:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext.encrypt
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext.encrypt
-```
-
-````
-
-````{py:method} decrypt(ciphertext: bytes, mic: bytes, aad: bytes = b'') -> bytes
-:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext.decrypt
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext.decrypt
-```
-
-````
-
-````{py:method} reset_counters() -> None
-:canonical: nearlink_sdr.mac.security_manager.FrameCryptoContext.reset_counters
-
-```{autodoc2-docstring} nearlink_sdr.mac.security_manager.FrameCryptoContext.reset_counters
+```{autodoc2-docstring} nearlink_sdr.mac.security_manager.PairingState.FAILED
 ```
 
 ````

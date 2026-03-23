@@ -15,24 +15,12 @@
 :class: autosummary longtable
 :align: left
 
-* - {py:obj}`_get_rate_value <nearlink_sdr.common.code_block_seg._get_rate_value>`
-  - ```{autodoc2-docstring} nearlink_sdr.common.code_block_seg._get_rate_value
-    :summary:
-    ```
-* - {py:obj}`_get_k_for_segmentation <nearlink_sdr.common.code_block_seg._get_k_for_segmentation>`
-  - ```{autodoc2-docstring} nearlink_sdr.common.code_block_seg._get_k_for_segmentation
-    :summary:
-    ```
-* - {py:obj}`segment_without_crc <nearlink_sdr.common.code_block_seg.segment_without_crc>`
-  - ```{autodoc2-docstring} nearlink_sdr.common.code_block_seg.segment_without_crc
-    :summary:
-    ```
 * - {py:obj}`segment_with_crc <nearlink_sdr.common.code_block_seg.segment_with_crc>`
   - ```{autodoc2-docstring} nearlink_sdr.common.code_block_seg.segment_with_crc
     :summary:
     ```
-* - {py:obj}`_subsegment_last_block <nearlink_sdr.common.code_block_seg._subsegment_last_block>`
-  - ```{autodoc2-docstring} nearlink_sdr.common.code_block_seg._subsegment_last_block
+* - {py:obj}`segment_without_crc <nearlink_sdr.common.code_block_seg.segment_without_crc>`
+  - ```{autodoc2-docstring} nearlink_sdr.common.code_block_seg.segment_without_crc
     :summary:
     ```
 ````
@@ -45,14 +33,6 @@
 
 * - {py:obj}`RATE_TABLE_2 <nearlink_sdr.common.code_block_seg.RATE_TABLE_2>`
   - ```{autodoc2-docstring} nearlink_sdr.common.code_block_seg.RATE_TABLE_2
-    :summary:
-    ```
-* - {py:obj}`_SEG_TABLE_20 <nearlink_sdr.common.code_block_seg._SEG_TABLE_20>`
-  - ```{autodoc2-docstring} nearlink_sdr.common.code_block_seg._SEG_TABLE_20
-    :summary:
-    ```
-* - {py:obj}`_RATE_FRACTIONS <nearlink_sdr.common.code_block_seg._RATE_FRACTIONS>`
-  - ```{autodoc2-docstring} nearlink_sdr.common.code_block_seg._RATE_FRACTIONS
     :summary:
     ```
 ````
@@ -69,47 +49,6 @@
 
 ````
 
-````{py:data} _SEG_TABLE_20
-:canonical: nearlink_sdr.common.code_block_seg._SEG_TABLE_20
-:value: >
-   [(0, 0, 0), (0, 0, 1), (0, 0, 2), (0, 1, 1), (0, 1, 2), (0, 2, 1), (0, 2, 2), (1, 1, 1), (1, 1, 2), ...
-
-```{autodoc2-docstring} nearlink_sdr.common.code_block_seg._SEG_TABLE_20
-```
-
-````
-
-````{py:data} _RATE_FRACTIONS
-:canonical: nearlink_sdr.common.code_block_seg._RATE_FRACTIONS
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.common.code_block_seg._RATE_FRACTIONS
-```
-
-````
-
-````{py:function} _get_rate_value(rate_str: str) -> float
-:canonical: nearlink_sdr.common.code_block_seg._get_rate_value
-
-```{autodoc2-docstring} nearlink_sdr.common.code_block_seg._get_rate_value
-```
-````
-
-````{py:function} _get_k_for_segmentation(rate_str: str, use_table24: bool = False) -> dict[int, int]
-:canonical: nearlink_sdr.common.code_block_seg._get_k_for_segmentation
-
-```{autodoc2-docstring} nearlink_sdr.common.code_block_seg._get_k_for_segmentation
-```
-````
-
-````{py:function} segment_without_crc(bits: numpy.ndarray, rate_str: str, crc_len: int = 0) -> list[tuple[int, numpy.ndarray]]
-:canonical: nearlink_sdr.common.code_block_seg.segment_without_crc
-
-```{autodoc2-docstring} nearlink_sdr.common.code_block_seg.segment_without_crc
-```
-````
-
 ````{py:function} segment_with_crc(bits: numpy.ndarray, rate_str: str) -> list[tuple[int, numpy.ndarray]]
 :canonical: nearlink_sdr.common.code_block_seg.segment_with_crc
 
@@ -117,9 +56,9 @@
 ```
 ````
 
-````{py:function} _subsegment_last_block(bits: numpy.ndarray, rate_str: str) -> list[tuple[int, numpy.ndarray]] | None
-:canonical: nearlink_sdr.common.code_block_seg._subsegment_last_block
+````{py:function} segment_without_crc(bits: numpy.ndarray, rate_str: str, crc_len: int = 0) -> list[tuple[int, numpy.ndarray]]
+:canonical: nearlink_sdr.common.code_block_seg.segment_without_crc
 
-```{autodoc2-docstring} nearlink_sdr.common.code_block_seg._subsegment_last_block
+```{autodoc2-docstring} nearlink_sdr.common.code_block_seg.segment_without_crc
 ```
 ````

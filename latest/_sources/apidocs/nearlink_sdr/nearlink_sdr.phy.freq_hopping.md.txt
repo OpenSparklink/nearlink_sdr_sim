@@ -35,40 +35,28 @@
   - ```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.channel_to_freq
     :summary:
     ```
-* - {py:obj}`freq_to_channel <nearlink_sdr.phy.freq_hopping.freq_to_channel>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.freq_to_channel
-    :summary:
-    ```
-* - {py:obj}`_bit_reverse_byte <nearlink_sdr.phy.freq_hopping._bit_reverse_byte>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping._bit_reverse_byte
-    :summary:
-    ```
-* - {py:obj}`_reverse_16 <nearlink_sdr.phy.freq_hopping._reverse_16>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping._reverse_16
-    :summary:
-    ```
-* - {py:obj}`hopping_prng <nearlink_sdr.phy.freq_hopping.hopping_prng>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.hopping_prng
+* - {py:obj}`data_link_hop <nearlink_sdr.phy.freq_hopping.data_link_hop>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.data_link_hop
     :summary:
     ```
 * - {py:obj}`derive_hop_param2 <nearlink_sdr.phy.freq_hopping.derive_hop_param2>`
   - ```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.derive_hop_param2
     :summary:
     ```
-* - {py:obj}`data_link_hop <nearlink_sdr.phy.freq_hopping.data_link_hop>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.data_link_hop
-    :summary:
-    ```
-* - {py:obj}`_available_freq_map <nearlink_sdr.phy.freq_hopping._available_freq_map>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping._available_freq_map
-    :summary:
-    ```
-* - {py:obj}`mgmt_frame_hop <nearlink_sdr.phy.freq_hopping.mgmt_frame_hop>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.mgmt_frame_hop
+* - {py:obj}`freq_to_channel <nearlink_sdr.phy.freq_hopping.freq_to_channel>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.freq_to_channel
     :summary:
     ```
 * - {py:obj}`generate_hopping_sequence <nearlink_sdr.phy.freq_hopping.generate_hopping_sequence>`
   - ```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.generate_hopping_sequence
+    :summary:
+    ```
+* - {py:obj}`hopping_prng <nearlink_sdr.phy.freq_hopping.hopping_prng>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.hopping_prng
+    :summary:
+    ```
+* - {py:obj}`mgmt_frame_hop <nearlink_sdr.phy.freq_hopping.mgmt_frame_hop>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.mgmt_frame_hop
     :summary:
     ```
 ````
@@ -89,18 +77,6 @@
     ```
 * - {py:obj}`BAND_5800 <nearlink_sdr.phy.freq_hopping.BAND_5800>`
   - ```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.BAND_5800
-    :summary:
-    ```
-* - {py:obj}`_BAND_PARAMS <nearlink_sdr.phy.freq_hopping._BAND_PARAMS>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping._BAND_PARAMS
-    :summary:
-    ```
-* - {py:obj}`_2M_PHYS_2400 <nearlink_sdr.phy.freq_hopping._2M_PHYS_2400>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping._2M_PHYS_2400
-    :summary:
-    ```
-* - {py:obj}`_4M_PHYS_2400 <nearlink_sdr.phy.freq_hopping._4M_PHYS_2400>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping._4M_PHYS_2400
     :summary:
     ```
 * - {py:obj}`MEAS_HOP_ASCENDING <nearlink_sdr.phy.freq_hopping.MEAS_HOP_ASCENDING>`
@@ -149,49 +125,34 @@
 
 ````
 
-````{py:data} _BAND_PARAMS
-:canonical: nearlink_sdr.phy.freq_hopping._BAND_PARAMS
-:type: dict[str, dict]
+````{py:data} MEAS_HOP_ASCENDING
+:canonical: nearlink_sdr.phy.freq_hopping.MEAS_HOP_ASCENDING
 :value: >
-   None
+   0
 
-```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping._BAND_PARAMS
+```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.MEAS_HOP_ASCENDING
 ```
 
 ````
 
-````{py:data} _2M_PHYS_2400
-:canonical: nearlink_sdr.phy.freq_hopping._2M_PHYS_2400
+````{py:data} MEAS_HOP_DESCENDING
+:canonical: nearlink_sdr.phy.freq_hopping.MEAS_HOP_DESCENDING
 :value: >
-   [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, ...
+   1
 
-```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping._2M_PHYS_2400
+```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.MEAS_HOP_DESCENDING
 ```
 
 ````
 
-````{py:data} _4M_PHYS_2400
-:canonical: nearlink_sdr.phy.freq_hopping._4M_PHYS_2400
+````{py:data} MEAS_HOP_RANDOM
+:canonical: nearlink_sdr.phy.freq_hopping.MEAS_HOP_RANDOM
 :value: >
-   [2, 6, 10, 14, 18, 25, 29, 33, 37, 41, 45, 49, 53, 57, 61, 65, 69, 73]
+   2
 
-```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping._4M_PHYS_2400
+```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.MEAS_HOP_RANDOM
 ```
 
-````
-
-````{py:function} channel_to_freq(channel_num: int, band: str = BAND_2400) -> float
-:canonical: nearlink_sdr.phy.freq_hopping.channel_to_freq
-
-```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.channel_to_freq
-```
-````
-
-````{py:function} freq_to_channel(freq_mhz: float, band: str = BAND_2400) -> int
-:canonical: nearlink_sdr.phy.freq_hopping.freq_to_channel
-
-```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.freq_to_channel
-```
 ````
 
 `````{py:class} FreqTable
@@ -249,94 +210,7 @@
 
 ````
 
-````{py:method} _filter_bandwidth(channels: list[int]) -> list[int]
-:canonical: nearlink_sdr.phy.freq_hopping.FreqTable._filter_bandwidth
-
-```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.FreqTable._filter_bandwidth
-```
-
-````
-
 `````
-
-````{py:function} _bit_reverse_byte(b: int) -> int
-:canonical: nearlink_sdr.phy.freq_hopping._bit_reverse_byte
-
-```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping._bit_reverse_byte
-```
-````
-
-````{py:function} _reverse_16(x: int) -> int
-:canonical: nearlink_sdr.phy.freq_hopping._reverse_16
-
-```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping._reverse_16
-```
-````
-
-````{py:function} hopping_prng(hop_param1: int, hop_param2: int) -> int
-:canonical: nearlink_sdr.phy.freq_hopping.hopping_prng
-
-```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.hopping_prng
-```
-````
-
-````{py:function} derive_hop_param2(identifier: int, bit_width: int = 32) -> int
-:canonical: nearlink_sdr.phy.freq_hopping.derive_hop_param2
-
-```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.derive_hop_param2
-```
-````
-
-````{py:function} data_link_hop(slot_counter: int, hop_param2: int, freq_table: nearlink_sdr.phy.freq_hopping.FreqTable) -> int
-:canonical: nearlink_sdr.phy.freq_hopping.data_link_hop
-
-```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.data_link_hop
-```
-````
-
-````{py:function} _available_freq_map(rand16: int, available: list[int]) -> int
-:canonical: nearlink_sdr.phy.freq_hopping._available_freq_map
-
-```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping._available_freq_map
-```
-````
-
-````{py:function} mgmt_frame_hop(slot_counter: int, hop_param2: int, freq_table: nearlink_sdr.phy.freq_hopping.FreqTable) -> int
-:canonical: nearlink_sdr.phy.freq_hopping.mgmt_frame_hop
-
-```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.mgmt_frame_hop
-```
-````
-
-````{py:data} MEAS_HOP_ASCENDING
-:canonical: nearlink_sdr.phy.freq_hopping.MEAS_HOP_ASCENDING
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.MEAS_HOP_ASCENDING
-```
-
-````
-
-````{py:data} MEAS_HOP_DESCENDING
-:canonical: nearlink_sdr.phy.freq_hopping.MEAS_HOP_DESCENDING
-:value: >
-   1
-
-```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.MEAS_HOP_DESCENDING
-```
-
-````
-
-````{py:data} MEAS_HOP_RANDOM
-:canonical: nearlink_sdr.phy.freq_hopping.MEAS_HOP_RANDOM
-:value: >
-   2
-
-```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.MEAS_HOP_RANDOM
-```
-
-````
 
 `````{py:class} MeasLinkHopper
 :canonical: nearlink_sdr.phy.freq_hopping.MeasLinkHopper
@@ -388,14 +262,6 @@
 
 ````
 
-````{py:method} __post_init__() -> None
-:canonical: nearlink_sdr.phy.freq_hopping.MeasLinkHopper.__post_init__
-
-```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.MeasLinkHopper.__post_init__
-```
-
-````
-
 ````{py:method} reset() -> None
 :canonical: nearlink_sdr.phy.freq_hopping.MeasLinkHopper.reset
 
@@ -414,9 +280,51 @@
 
 `````
 
+````{py:function} channel_to_freq(channel_num: int, band: str = BAND_2400) -> float
+:canonical: nearlink_sdr.phy.freq_hopping.channel_to_freq
+
+```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.channel_to_freq
+```
+````
+
+````{py:function} data_link_hop(slot_counter: int, hop_param2: int, freq_table: nearlink_sdr.phy.freq_hopping.FreqTable) -> int
+:canonical: nearlink_sdr.phy.freq_hopping.data_link_hop
+
+```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.data_link_hop
+```
+````
+
+````{py:function} derive_hop_param2(identifier: int, bit_width: int = 32) -> int
+:canonical: nearlink_sdr.phy.freq_hopping.derive_hop_param2
+
+```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.derive_hop_param2
+```
+````
+
+````{py:function} freq_to_channel(freq_mhz: float, band: str = BAND_2400) -> int
+:canonical: nearlink_sdr.phy.freq_hopping.freq_to_channel
+
+```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.freq_to_channel
+```
+````
+
 ````{py:function} generate_hopping_sequence(n_hops: int, hop_param2: int, freq_table: nearlink_sdr.phy.freq_hopping.FreqTable | None = None, link_type: str = 'data', start_slot: int = 0) -> list[int]
 :canonical: nearlink_sdr.phy.freq_hopping.generate_hopping_sequence
 
 ```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.generate_hopping_sequence
+```
+````
+
+````{py:function} hopping_prng(hop_param1: int, hop_param2: int) -> int
+:canonical: nearlink_sdr.phy.freq_hopping.hopping_prng
+
+```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.hopping_prng
+```
+````
+
+````{py:function} mgmt_frame_hop(slot_counter: int, hop_param2: int, freq_table: nearlink_sdr.phy.freq_hopping.FreqTable) -> int
+:canonical: nearlink_sdr.phy.freq_hopping.mgmt_frame_hop
+
+```{autodoc2-docstring} nearlink_sdr.phy.freq_hopping.mgmt_frame_hop
 ```
 ````

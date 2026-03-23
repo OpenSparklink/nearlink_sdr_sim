@@ -15,16 +15,12 @@
 :class: autosummary longtable
 :align: left
 
-* - {py:obj}`register_signaling <nearlink_sdr.mac.signaling.register_signaling>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.signaling.register_signaling
+* - {py:obj}`decode_signaling <nearlink_sdr.mac.signaling.decode_signaling>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.signaling.decode_signaling
     :summary:
     ```
 * - {py:obj}`encode_signaling <nearlink_sdr.mac.signaling.encode_signaling>`
   - ```{autodoc2-docstring} nearlink_sdr.mac.signaling.encode_signaling
-    :summary:
-    ```
-* - {py:obj}`decode_signaling <nearlink_sdr.mac.signaling.decode_signaling>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.signaling.decode_signaling
     :summary:
     ```
 * - {py:obj}`get_signaling_name <nearlink_sdr.mac.signaling.get_signaling_name>`
@@ -35,37 +31,18 @@
   - ```{autodoc2-docstring} nearlink_sdr.mac.signaling.list_registered
     :summary:
     ```
-````
-
-### Data
-
-````{list-table}
-:class: autosummary longtable
-:align: left
-
-* - {py:obj}`_SIGNALING_REGISTRY <nearlink_sdr.mac.signaling._SIGNALING_REGISTRY>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.signaling._SIGNALING_REGISTRY
+* - {py:obj}`register_signaling <nearlink_sdr.mac.signaling.register_signaling>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.signaling.register_signaling
     :summary:
     ```
 ````
 
 ### API
 
-````{py:data} _SIGNALING_REGISTRY
-:canonical: nearlink_sdr.mac.signaling._SIGNALING_REGISTRY
-:type: dict[int, tuple[str, type, int]]
-:value: >
-   None
+````{py:function} decode_signaling(frame: nearlink_sdr.mac.frame.ControlFrame) -> typing.Any
+:canonical: nearlink_sdr.mac.signaling.decode_signaling
 
-```{autodoc2-docstring} nearlink_sdr.mac.signaling._SIGNALING_REGISTRY
-```
-
-````
-
-````{py:function} register_signaling(data_type_index: int, name: str, cls: type, byte_length: int) -> None
-:canonical: nearlink_sdr.mac.signaling.register_signaling
-
-```{autodoc2-docstring} nearlink_sdr.mac.signaling.register_signaling
+```{autodoc2-docstring} nearlink_sdr.mac.signaling.decode_signaling
 ```
 ````
 
@@ -73,13 +50,6 @@
 :canonical: nearlink_sdr.mac.signaling.encode_signaling
 
 ```{autodoc2-docstring} nearlink_sdr.mac.signaling.encode_signaling
-```
-````
-
-````{py:function} decode_signaling(frame: nearlink_sdr.mac.frame.ControlFrame) -> typing.Any
-:canonical: nearlink_sdr.mac.signaling.decode_signaling
-
-```{autodoc2-docstring} nearlink_sdr.mac.signaling.decode_signaling
 ```
 ````
 
@@ -94,5 +64,12 @@
 :canonical: nearlink_sdr.mac.signaling.list_registered
 
 ```{autodoc2-docstring} nearlink_sdr.mac.signaling.list_registered
+```
+````
+
+````{py:function} register_signaling(data_type_index: int, name: str, cls: type, byte_length: int) -> None
+:canonical: nearlink_sdr.mac.signaling.register_signaling
+
+```{autodoc2-docstring} nearlink_sdr.mac.signaling.register_signaling
 ```
 ````

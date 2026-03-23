@@ -19,16 +19,16 @@
   -
 * - {py:obj}`FreqDensity <nearlink_sdr.mac.power_control.FreqDensity>`
   -
+* - {py:obj}`PowerChangeIndication <nearlink_sdr.mac.power_control.PowerChangeIndication>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication
+    :summary:
+    ```
 * - {py:obj}`PowerControlRequest <nearlink_sdr.mac.power_control.PowerControlRequest>`
   - ```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlRequest
     :summary:
     ```
 * - {py:obj}`PowerControlResponse <nearlink_sdr.mac.power_control.PowerControlResponse>`
   - ```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerControlResponse
-    :summary:
-    ```
-* - {py:obj}`PowerChangeIndication <nearlink_sdr.mac.power_control.PowerChangeIndication>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication
     :summary:
     ```
 * - {py:obj}`PowerController <nearlink_sdr.mac.power_control.PowerController>`
@@ -43,17 +43,37 @@
 :class: autosummary longtable
 :align: left
 
-* - {py:obj}`TX_POWER_UNAVAILABLE <nearlink_sdr.mac.power_control.TX_POWER_UNAVAILABLE>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.power_control.TX_POWER_UNAVAILABLE
-    :summary:
-    ```
 * - {py:obj}`TX_POWER_STOP_MANAGEMENT <nearlink_sdr.mac.power_control.TX_POWER_STOP_MANAGEMENT>`
   - ```{autodoc2-docstring} nearlink_sdr.mac.power_control.TX_POWER_STOP_MANAGEMENT
+    :summary:
+    ```
+* - {py:obj}`TX_POWER_UNAVAILABLE <nearlink_sdr.mac.power_control.TX_POWER_UNAVAILABLE>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.power_control.TX_POWER_UNAVAILABLE
     :summary:
     ```
 ````
 
 ### API
+
+````{py:data} TX_POWER_STOP_MANAGEMENT
+:canonical: nearlink_sdr.mac.power_control.TX_POWER_STOP_MANAGEMENT
+:value: >
+   126
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.TX_POWER_STOP_MANAGEMENT
+```
+
+````
+
+````{py:data} TX_POWER_UNAVAILABLE
+:canonical: nearlink_sdr.mac.power_control.TX_POWER_UNAVAILABLE
+:value: >
+   127
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.TX_POWER_UNAVAILABLE
+```
+
+````
 
 `````{py:class} Bandwidth()
 :canonical: nearlink_sdr.mac.power_control.Bandwidth
@@ -149,25 +169,127 @@ Bases: {py:obj}`enum.IntEnum`
 
 `````
 
-````{py:data} TX_POWER_UNAVAILABLE
-:canonical: nearlink_sdr.mac.power_control.TX_POWER_UNAVAILABLE
-:value: >
-   127
+`````{py:class} PowerChangeIndication
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication
 
-```{autodoc2-docstring} nearlink_sdr.mac.power_control.TX_POWER_UNAVAILABLE
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication
+```
+
+````{py:attribute} frame_type
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.frame_type
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.frame_type
 ```
 
 ````
 
-````{py:data} TX_POWER_STOP_MANAGEMENT
-:canonical: nearlink_sdr.mac.power_control.TX_POWER_STOP_MANAGEMENT
+````{py:attribute} bandwidth
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.bandwidth
+:type: int
 :value: >
-   126
+   None
 
-```{autodoc2-docstring} nearlink_sdr.mac.power_control.TX_POWER_STOP_MANAGEMENT
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.bandwidth
 ```
 
 ````
+
+````{py:attribute} freq_density
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.freq_density
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.freq_density
+```
+
+````
+
+````{py:attribute} sender_min_power
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.sender_min_power
+:type: bool
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.sender_min_power
+```
+
+````
+
+````{py:attribute} sender_max_power
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.sender_max_power
+:type: bool
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.sender_max_power
+```
+
+````
+
+````{py:attribute} tx_power_change
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.tx_power_change
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.tx_power_change
+```
+
+````
+
+````{py:attribute} sender_tx_power
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.sender_tx_power
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.sender_tx_power
+```
+
+````
+
+````{py:attribute} DATA_TYPE_INDEX
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.DATA_TYPE_INDEX
+:value: >
+   27
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.DATA_TYPE_INDEX
+```
+
+````
+
+````{py:attribute} BYTE_LENGTH
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.BYTE_LENGTH
+:value: >
+   4
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.BYTE_LENGTH
+```
+
+````
+
+````{py:method} pack() -> bytes
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.pack
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.pack
+```
+
+````
+
+````{py:method} unpack(data: bytes) -> nearlink_sdr.mac.power_control.PowerChangeIndication
+:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.unpack
+:classmethod:
+
+```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.unpack
+```
+
+````
+
+`````
 
 `````{py:class} PowerControlRequest
 :canonical: nearlink_sdr.mac.power_control.PowerControlRequest
@@ -369,128 +491,6 @@ Bases: {py:obj}`enum.IntEnum`
 
 `````
 
-`````{py:class} PowerChangeIndication
-:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication
-
-```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication
-```
-
-````{py:attribute} frame_type
-:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.frame_type
-:type: int
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.frame_type
-```
-
-````
-
-````{py:attribute} bandwidth
-:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.bandwidth
-:type: int
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.bandwidth
-```
-
-````
-
-````{py:attribute} freq_density
-:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.freq_density
-:type: int
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.freq_density
-```
-
-````
-
-````{py:attribute} sender_min_power
-:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.sender_min_power
-:type: bool
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.sender_min_power
-```
-
-````
-
-````{py:attribute} sender_max_power
-:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.sender_max_power
-:type: bool
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.sender_max_power
-```
-
-````
-
-````{py:attribute} tx_power_change
-:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.tx_power_change
-:type: int
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.tx_power_change
-```
-
-````
-
-````{py:attribute} sender_tx_power
-:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.sender_tx_power
-:type: int
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.sender_tx_power
-```
-
-````
-
-````{py:attribute} DATA_TYPE_INDEX
-:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.DATA_TYPE_INDEX
-:value: >
-   27
-
-```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.DATA_TYPE_INDEX
-```
-
-````
-
-````{py:attribute} BYTE_LENGTH
-:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.BYTE_LENGTH
-:value: >
-   4
-
-```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.BYTE_LENGTH
-```
-
-````
-
-````{py:method} pack() -> bytes
-:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.pack
-
-```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.pack
-```
-
-````
-
-````{py:method} unpack(data: bytes) -> nearlink_sdr.mac.power_control.PowerChangeIndication
-:canonical: nearlink_sdr.mac.power_control.PowerChangeIndication.unpack
-:classmethod:
-
-```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerChangeIndication.unpack
-```
-
-````
-
-`````
-
 `````{py:class} PowerController(tx_power_dbm: float = 0.0, min_power_dbm: float = -127.0, max_power_dbm: float = 20.0)
 :canonical: nearlink_sdr.mac.power_control.PowerController
 
@@ -526,14 +526,6 @@ Bases: {py:obj}`enum.IntEnum`
 :type: int
 
 ```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerController.acceptable_power_reduction
-```
-
-````
-
-````{py:method} _clamp_power(power_dbm: float) -> float
-:canonical: nearlink_sdr.mac.power_control.PowerController._clamp_power
-
-```{autodoc2-docstring} nearlink_sdr.mac.power_control.PowerController._clamp_power
 ```
 
 ````

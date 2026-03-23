@@ -15,32 +15,32 @@
 :class: autosummary longtable
 :align: left
 
-* - {py:obj}`AccessPhase <nearlink_sdr.mac.access.AccessPhase>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.access.AccessPhase
-    :summary:
-    ```
 * - {py:obj}`AccessConfig <nearlink_sdr.mac.access.AccessConfig>`
   - ```{autodoc2-docstring} nearlink_sdr.mac.access.AccessConfig
     :summary:
     ```
-* - {py:obj}`NegotiatedRole <nearlink_sdr.mac.access.NegotiatedRole>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.access.NegotiatedRole
+* - {py:obj}`AccessPhase <nearlink_sdr.mac.access.AccessPhase>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.access.AccessPhase
     :summary:
     ```
 * - {py:obj}`AccessWhitelist <nearlink_sdr.mac.access.AccessWhitelist>`
   - ```{autodoc2-docstring} nearlink_sdr.mac.access.AccessWhitelist
     :summary:
     ```
-* - {py:obj}`DiscoveryManager <nearlink_sdr.mac.access.DiscoveryManager>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.access.DiscoveryManager
-    :summary:
-    ```
 * - {py:obj}`BroadcasterAccessManager <nearlink_sdr.mac.access.BroadcasterAccessManager>`
   - ```{autodoc2-docstring} nearlink_sdr.mac.access.BroadcasterAccessManager
     :summary:
     ```
+* - {py:obj}`DiscoveryManager <nearlink_sdr.mac.access.DiscoveryManager>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.access.DiscoveryManager
+    :summary:
+    ```
 * - {py:obj}`InitiatorAccessManager <nearlink_sdr.mac.access.InitiatorAccessManager>`
   - ```{autodoc2-docstring} nearlink_sdr.mac.access.InitiatorAccessManager
+    :summary:
+    ```
+* - {py:obj}`NegotiatedRole <nearlink_sdr.mac.access.NegotiatedRole>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.access.NegotiatedRole
     :summary:
     ```
 * - {py:obj}`NonConnectedBroadcastConfig <nearlink_sdr.mac.access.NonConnectedBroadcastConfig>`
@@ -83,8 +83,16 @@
 :class: autosummary longtable
 :align: left
 
-* - {py:obj}`log <nearlink_sdr.mac.access.log>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.access.log
+* - {py:obj}`MAX_ADV_INTERVAL_US <nearlink_sdr.mac.access.MAX_ADV_INTERVAL_US>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.access.MAX_ADV_INTERVAL_US
+    :summary:
+    ```
+* - {py:obj}`MAX_ADV_RANDOM_DELAY_US <nearlink_sdr.mac.access.MAX_ADV_RANDOM_DELAY_US>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.access.MAX_ADV_RANDOM_DELAY_US
+    :summary:
+    ```
+* - {py:obj}`MIN_ADV_INTERVAL_US <nearlink_sdr.mac.access.MIN_ADV_INTERVAL_US>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.access.MIN_ADV_INTERVAL_US
     :summary:
     ```
 * - {py:obj}`MIN_ADV_TO_EXT_ADV_GAP <nearlink_sdr.mac.access.MIN_ADV_TO_EXT_ADV_GAP>`
@@ -99,28 +107,36 @@
   - ```{autodoc2-docstring} nearlink_sdr.mac.access.MIN_REQUEST_TO_RESPONSE_GAP
     :summary:
     ```
-* - {py:obj}`MIN_ADV_INTERVAL_US <nearlink_sdr.mac.access.MIN_ADV_INTERVAL_US>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.access.MIN_ADV_INTERVAL_US
-    :summary:
-    ```
-* - {py:obj}`MAX_ADV_INTERVAL_US <nearlink_sdr.mac.access.MAX_ADV_INTERVAL_US>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.access.MAX_ADV_INTERVAL_US
-    :summary:
-    ```
-* - {py:obj}`MAX_ADV_RANDOM_DELAY_US <nearlink_sdr.mac.access.MAX_ADV_RANDOM_DELAY_US>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.access.MAX_ADV_RANDOM_DELAY_US
-    :summary:
-    ```
 ````
 
 ### API
 
-````{py:data} log
-:canonical: nearlink_sdr.mac.access.log
+````{py:data} MAX_ADV_INTERVAL_US
+:canonical: nearlink_sdr.mac.access.MAX_ADV_INTERVAL_US
 :value: >
-   'getLogger(...)'
+   2097151875
 
-```{autodoc2-docstring} nearlink_sdr.mac.access.log
+```{autodoc2-docstring} nearlink_sdr.mac.access.MAX_ADV_INTERVAL_US
+```
+
+````
+
+````{py:data} MAX_ADV_RANDOM_DELAY_US
+:canonical: nearlink_sdr.mac.access.MAX_ADV_RANDOM_DELAY_US
+:value: >
+   2000
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.MAX_ADV_RANDOM_DELAY_US
+```
+
+````
+
+````{py:data} MIN_ADV_INTERVAL_US
+:canonical: nearlink_sdr.mac.access.MIN_ADV_INTERVAL_US
+:value: >
+   4000
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.MIN_ADV_INTERVAL_US
 ```
 
 ````
@@ -154,112 +170,6 @@
 ```
 
 ````
-
-````{py:data} MIN_ADV_INTERVAL_US
-:canonical: nearlink_sdr.mac.access.MIN_ADV_INTERVAL_US
-:value: >
-   4000
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.MIN_ADV_INTERVAL_US
-```
-
-````
-
-````{py:data} MAX_ADV_INTERVAL_US
-:canonical: nearlink_sdr.mac.access.MAX_ADV_INTERVAL_US
-:value: >
-   2097151875
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.MAX_ADV_INTERVAL_US
-```
-
-````
-
-````{py:data} MAX_ADV_RANDOM_DELAY_US
-:canonical: nearlink_sdr.mac.access.MAX_ADV_RANDOM_DELAY_US
-:value: >
-   2000
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.MAX_ADV_RANDOM_DELAY_US
-```
-
-````
-
-`````{py:class} AccessPhase()
-:canonical: nearlink_sdr.mac.access.AccessPhase
-
-Bases: {py:obj}`enum.IntEnum`
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.AccessPhase
-```
-
-```{rubric} Initialization
-```
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.AccessPhase.__init__
-```
-
-````{py:attribute} IDLE
-:canonical: nearlink_sdr.mac.access.AccessPhase.IDLE
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.AccessPhase.IDLE
-```
-
-````
-
-````{py:attribute} ADV_SENDING
-:canonical: nearlink_sdr.mac.access.AccessPhase.ADV_SENDING
-:value: >
-   1
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.AccessPhase.ADV_SENDING
-```
-
-````
-
-````{py:attribute} REQ_WINDOW
-:canonical: nearlink_sdr.mac.access.AccessPhase.REQ_WINDOW
-:value: >
-   2
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.AccessPhase.REQ_WINDOW
-```
-
-````
-
-````{py:attribute} RSP_WINDOW
-:canonical: nearlink_sdr.mac.access.AccessPhase.RSP_WINDOW
-:value: >
-   3
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.AccessPhase.RSP_WINDOW
-```
-
-````
-
-````{py:attribute} LINK_SETUP
-:canonical: nearlink_sdr.mac.access.AccessPhase.LINK_SETUP
-:value: >
-   4
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.AccessPhase.LINK_SETUP
-```
-
-````
-
-````{py:attribute} COMPLETED
-:canonical: nearlink_sdr.mac.access.AccessPhase.COMPLETED
-:value: >
-   5
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.AccessPhase.COMPLETED
-```
-
-````
-
-`````
 
 `````{py:class} AccessConfig
 :canonical: nearlink_sdr.mac.access.AccessConfig
@@ -357,41 +267,76 @@ Bases: {py:obj}`enum.IntEnum`
 
 `````
 
-`````{py:class} NegotiatedRole
-:canonical: nearlink_sdr.mac.access.NegotiatedRole
+`````{py:class} AccessPhase()
+:canonical: nearlink_sdr.mac.access.AccessPhase
 
-```{autodoc2-docstring} nearlink_sdr.mac.access.NegotiatedRole
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.AccessPhase
 ```
 
-````{py:attribute} local_role
-:canonical: nearlink_sdr.mac.access.NegotiatedRole.local_role
-:type: nearlink_sdr.mac.link_manager.Role
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.NegotiatedRole.local_role
+```{rubric} Initialization
 ```
 
-````
+```{autodoc2-docstring} nearlink_sdr.mac.access.AccessPhase.__init__
+```
 
-````{py:attribute} peer_role
-:canonical: nearlink_sdr.mac.access.NegotiatedRole.peer_role
-:type: nearlink_sdr.mac.link_manager.Role
+````{py:attribute} IDLE
+:canonical: nearlink_sdr.mac.access.AccessPhase.IDLE
 :value: >
-   None
+   0
 
-```{autodoc2-docstring} nearlink_sdr.mac.access.NegotiatedRole.peer_role
+```{autodoc2-docstring} nearlink_sdr.mac.access.AccessPhase.IDLE
 ```
 
 ````
 
-````{py:attribute} negotiated
-:canonical: nearlink_sdr.mac.access.NegotiatedRole.negotiated
-:type: bool
+````{py:attribute} ADV_SENDING
+:canonical: nearlink_sdr.mac.access.AccessPhase.ADV_SENDING
 :value: >
-   False
+   1
 
-```{autodoc2-docstring} nearlink_sdr.mac.access.NegotiatedRole.negotiated
+```{autodoc2-docstring} nearlink_sdr.mac.access.AccessPhase.ADV_SENDING
+```
+
+````
+
+````{py:attribute} REQ_WINDOW
+:canonical: nearlink_sdr.mac.access.AccessPhase.REQ_WINDOW
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.AccessPhase.REQ_WINDOW
+```
+
+````
+
+````{py:attribute} RSP_WINDOW
+:canonical: nearlink_sdr.mac.access.AccessPhase.RSP_WINDOW
+:value: >
+   3
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.AccessPhase.RSP_WINDOW
+```
+
+````
+
+````{py:attribute} LINK_SETUP
+:canonical: nearlink_sdr.mac.access.AccessPhase.LINK_SETUP
+:value: >
+   4
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.AccessPhase.LINK_SETUP
+```
+
+````
+
+````{py:attribute} COMPLETED
+:canonical: nearlink_sdr.mac.access.AccessPhase.COMPLETED
+:value: >
+   5
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.AccessPhase.COMPLETED
 ```
 
 ````
@@ -403,17 +348,6 @@ Bases: {py:obj}`enum.IntEnum`
 
 ```{autodoc2-docstring} nearlink_sdr.mac.access.AccessWhitelist
 ```
-
-````{py:attribute} _addresses
-:canonical: nearlink_sdr.mac.access.AccessWhitelist._addresses
-:type: set[bytes]
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.AccessWhitelist._addresses
-```
-
-````
 
 ````{py:attribute} enabled
 :canonical: nearlink_sdr.mac.access.AccessWhitelist.enabled
@@ -476,114 +410,6 @@ Bases: {py:obj}`enum.IntEnum`
 ````
 
 `````
-
-`````{py:class} DiscoveryManager
-:canonical: nearlink_sdr.mac.access.DiscoveryManager
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.DiscoveryManager
-```
-
-````{py:attribute} local_address
-:canonical: nearlink_sdr.mac.access.DiscoveryManager.local_address
-:type: bytes
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.DiscoveryManager.local_address
-```
-
-````
-
-````{py:attribute} whitelist
-:canonical: nearlink_sdr.mac.access.DiscoveryManager.whitelist
-:type: nearlink_sdr.mac.access.AccessWhitelist
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.DiscoveryManager.whitelist
-```
-
-````
-
-````{py:attribute} _discovered
-:canonical: nearlink_sdr.mac.access.DiscoveryManager._discovered
-:type: dict[bytes, tuple[nearlink_sdr.mac.broadcast.BroadcastFrame, nearlink_sdr.mac.broadcast.BroadcastFrame | None]]
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.DiscoveryManager._discovered
-```
-
-````
-
-````{py:attribute} _query_responses
-:canonical: nearlink_sdr.mac.access.DiscoveryManager._query_responses
-:type: dict[bytes, nearlink_sdr.mac.broadcast.BroadcastFrame]
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.DiscoveryManager._query_responses
-```
-
-````
-
-````{py:method} on_broadcast_received(frame: nearlink_sdr.mac.broadcast.BroadcastFrame) -> bool
-:canonical: nearlink_sdr.mac.access.DiscoveryManager.on_broadcast_received
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.DiscoveryManager.on_broadcast_received
-```
-
-````
-
-````{py:method} build_query_request(target_addr: bytes, filter_info: nearlink_sdr.mac.broadcast.QueryRequestFilterInfo | None = None, upper_layer_data: bytes = b'') -> nearlink_sdr.mac.broadcast.BroadcastFrame
-:canonical: nearlink_sdr.mac.access.DiscoveryManager.build_query_request
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.DiscoveryManager.build_query_request
-```
-
-````
-
-````{py:method} handle_query_response(frame: nearlink_sdr.mac.broadcast.BroadcastFrame) -> bool
-:canonical: nearlink_sdr.mac.access.DiscoveryManager.handle_query_response
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.DiscoveryManager.handle_query_response
-```
-
-````
-
-````{py:method} handle_query_request(request_frame: nearlink_sdr.mac.broadcast.BroadcastFrame, all_services_data: bytes = b'') -> nearlink_sdr.mac.broadcast.BroadcastFrame
-:canonical: nearlink_sdr.mac.access.DiscoveryManager.handle_query_request
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.DiscoveryManager.handle_query_request
-```
-
-````
-
-````{py:property} discovered_devices
-:canonical: nearlink_sdr.mac.access.DiscoveryManager.discovered_devices
-:type: dict[bytes, tuple[nearlink_sdr.mac.broadcast.BroadcastFrame, nearlink_sdr.mac.broadcast.BroadcastFrame | None]]
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.DiscoveryManager.discovered_devices
-```
-
-````
-
-````{py:method} clear() -> None
-:canonical: nearlink_sdr.mac.access.DiscoveryManager.clear
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.DiscoveryManager.clear
-```
-
-````
-
-`````
-
-````{py:function} negotiate_gt_role(broadcaster_pref: int, broadcaster_negotiable: bool, initiator_pref: int, initiator_negotiable: bool) -> nearlink_sdr.mac.access.NegotiatedRole
-:canonical: nearlink_sdr.mac.access.negotiate_gt_role
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.negotiate_gt_role
-```
-````
 
 `````{py:class} BroadcasterAccessManager
 :canonical: nearlink_sdr.mac.access.BroadcasterAccessManager
@@ -822,36 +648,6 @@ Bases: {py:obj}`enum.IntEnum`
 
 ````
 
-````{py:attribute} _phase
-:canonical: nearlink_sdr.mac.access.BroadcasterAccessManager._phase
-:type: nearlink_sdr.mac.access.AccessPhase
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.BroadcasterAccessManager._phase
-```
-
-````
-
-````{py:attribute} _pending_requests
-:canonical: nearlink_sdr.mac.access.BroadcasterAccessManager._pending_requests
-:type: list[dict[str, typing.Any]]
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.BroadcasterAccessManager._pending_requests
-```
-
-````
-
-````{py:method} __post_init__() -> None
-:canonical: nearlink_sdr.mac.access.BroadcasterAccessManager.__post_init__
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.BroadcasterAccessManager.__post_init__
-```
-
-````
-
 ````{py:method} next_adv_delay_us() -> int
 :canonical: nearlink_sdr.mac.access.BroadcasterAccessManager.next_adv_delay_us
 
@@ -880,6 +676,85 @@ Bases: {py:obj}`enum.IntEnum`
 :canonical: nearlink_sdr.mac.access.BroadcasterAccessManager.reject_access_request
 
 ```{autodoc2-docstring} nearlink_sdr.mac.access.BroadcasterAccessManager.reject_access_request
+```
+
+````
+
+`````
+
+`````{py:class} DiscoveryManager
+:canonical: nearlink_sdr.mac.access.DiscoveryManager
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.DiscoveryManager
+```
+
+````{py:attribute} local_address
+:canonical: nearlink_sdr.mac.access.DiscoveryManager.local_address
+:type: bytes
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.DiscoveryManager.local_address
+```
+
+````
+
+````{py:attribute} whitelist
+:canonical: nearlink_sdr.mac.access.DiscoveryManager.whitelist
+:type: nearlink_sdr.mac.access.AccessWhitelist
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.DiscoveryManager.whitelist
+```
+
+````
+
+````{py:method} on_broadcast_received(frame: nearlink_sdr.mac.broadcast.BroadcastFrame) -> bool
+:canonical: nearlink_sdr.mac.access.DiscoveryManager.on_broadcast_received
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.DiscoveryManager.on_broadcast_received
+```
+
+````
+
+````{py:method} build_query_request(target_addr: bytes, filter_info: nearlink_sdr.mac.broadcast.QueryRequestFilterInfo | None = None, upper_layer_data: bytes = b'') -> nearlink_sdr.mac.broadcast.BroadcastFrame
+:canonical: nearlink_sdr.mac.access.DiscoveryManager.build_query_request
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.DiscoveryManager.build_query_request
+```
+
+````
+
+````{py:method} handle_query_response(frame: nearlink_sdr.mac.broadcast.BroadcastFrame) -> bool
+:canonical: nearlink_sdr.mac.access.DiscoveryManager.handle_query_response
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.DiscoveryManager.handle_query_response
+```
+
+````
+
+````{py:method} handle_query_request(request_frame: nearlink_sdr.mac.broadcast.BroadcastFrame, all_services_data: bytes = b'') -> nearlink_sdr.mac.broadcast.BroadcastFrame
+:canonical: nearlink_sdr.mac.access.DiscoveryManager.handle_query_request
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.DiscoveryManager.handle_query_request
+```
+
+````
+
+````{py:property} discovered_devices
+:canonical: nearlink_sdr.mac.access.DiscoveryManager.discovered_devices
+:type: dict[bytes, tuple[nearlink_sdr.mac.broadcast.BroadcastFrame, nearlink_sdr.mac.broadcast.BroadcastFrame | None]]
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.DiscoveryManager.discovered_devices
+```
+
+````
+
+````{py:method} clear() -> None
+:canonical: nearlink_sdr.mac.access.DiscoveryManager.clear
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.DiscoveryManager.clear
 ```
 
 ````
@@ -936,50 +811,6 @@ Bases: {py:obj}`enum.IntEnum`
 
 ````
 
-````{py:attribute} _adv_frame
-:canonical: nearlink_sdr.mac.access.InitiatorAccessManager._adv_frame
-:type: nearlink_sdr.mac.broadcast.BroadcastFrame | None
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.InitiatorAccessManager._adv_frame
-```
-
-````
-
-````{py:attribute} _discovery_config
-:canonical: nearlink_sdr.mac.access.InitiatorAccessManager._discovery_config
-:type: nearlink_sdr.mac.broadcast.DiscoveryAccessResourceConfig | None
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.InitiatorAccessManager._discovery_config
-```
-
-````
-
-````{py:attribute} _phase
-:canonical: nearlink_sdr.mac.access.InitiatorAccessManager._phase
-:type: nearlink_sdr.mac.access.AccessPhase
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.InitiatorAccessManager._phase
-```
-
-````
-
-````{py:attribute} _retry_count
-:canonical: nearlink_sdr.mac.access.InitiatorAccessManager._retry_count
-:type: int
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.mac.access.InitiatorAccessManager._retry_count
-```
-
-````
-
 ````{py:method} process_ext_adv(frame: nearlink_sdr.mac.broadcast.BroadcastFrame) -> bool
 :canonical: nearlink_sdr.mac.access.InitiatorAccessManager.process_ext_adv
 
@@ -1027,6 +858,47 @@ Bases: {py:obj}`enum.IntEnum`
 :type: nearlink_sdr.mac.access.AccessPhase
 
 ```{autodoc2-docstring} nearlink_sdr.mac.access.InitiatorAccessManager.phase
+```
+
+````
+
+`````
+
+`````{py:class} NegotiatedRole
+:canonical: nearlink_sdr.mac.access.NegotiatedRole
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.NegotiatedRole
+```
+
+````{py:attribute} local_role
+:canonical: nearlink_sdr.mac.access.NegotiatedRole.local_role
+:type: nearlink_sdr.mac.link_manager.Role
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.NegotiatedRole.local_role
+```
+
+````
+
+````{py:attribute} peer_role
+:canonical: nearlink_sdr.mac.access.NegotiatedRole.peer_role
+:type: nearlink_sdr.mac.link_manager.Role
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.NegotiatedRole.peer_role
+```
+
+````
+
+````{py:attribute} negotiated
+:canonical: nearlink_sdr.mac.access.NegotiatedRole.negotiated
+:type: bool
+:value: >
+   False
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.NegotiatedRole.negotiated
 ```
 
 ````
@@ -1504,6 +1376,13 @@ Bases: {py:obj}`enum.IntEnum`
 ````
 
 `````
+
+````{py:function} negotiate_gt_role(broadcaster_pref: int, broadcaster_negotiable: bool, initiator_pref: int, initiator_negotiable: bool) -> nearlink_sdr.mac.access.NegotiatedRole
+:canonical: nearlink_sdr.mac.access.negotiate_gt_role
+
+```{autodoc2-docstring} nearlink_sdr.mac.access.negotiate_gt_role
+```
+````
 
 ````{py:function} parse_non_connected_broadcast(frame: nearlink_sdr.mac.broadcast.BroadcastFrame) -> nearlink_sdr.mac.access.NonConnectedBroadcastResult | None
 :canonical: nearlink_sdr.mac.access.parse_non_connected_broadcast

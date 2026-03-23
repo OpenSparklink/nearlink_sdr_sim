@@ -27,72 +27,21 @@
 :class: autosummary longtable
 :align: left
 
-* - {py:obj}`_head_len <nearlink_sdr.phy.tx_pipeline._head_len>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline._head_len
+* - {py:obj}`encode_head <nearlink_sdr.phy.tx_pipeline.encode_head>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.encode_head
     :summary:
     ```
 * - {py:obj}`encode_payload <nearlink_sdr.phy.tx_pipeline.encode_payload>`
   - ```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.encode_payload
     :summary:
     ```
-* - {py:obj}`encode_head <nearlink_sdr.phy.tx_pipeline.encode_head>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.encode_head
-    :summary:
-    ```
 * - {py:obj}`tx_chain <nearlink_sdr.phy.tx_pipeline.tx_chain>`
   - ```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.tx_chain
-    :summary:
-    ```
-* - {py:obj}`_pulse_shape_symbols <nearlink_sdr.phy.tx_pipeline._pulse_shape_symbols>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline._pulse_shape_symbols
-    :summary:
-    ```
-````
-
-### Data
-
-````{list-table}
-:class: autosummary longtable
-:align: left
-
-* - {py:obj}`_HEAD_CODED_LEN <nearlink_sdr.phy.tx_pipeline._HEAD_CODED_LEN>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline._HEAD_CODED_LEN
-    :summary:
-    ```
-* - {py:obj}`_MOD_STR <nearlink_sdr.phy.tx_pipeline._MOD_STR>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline._MOD_STR
     :summary:
     ```
 ````
 
 ### API
-
-````{py:data} _HEAD_CODED_LEN
-:canonical: nearlink_sdr.phy.tx_pipeline._HEAD_CODED_LEN
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline._HEAD_CODED_LEN
-```
-
-````
-
-````{py:function} _head_len(frame_type: int) -> int
-:canonical: nearlink_sdr.phy.tx_pipeline._head_len
-
-```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline._head_len
-```
-````
-
-````{py:data} _MOD_STR
-:canonical: nearlink_sdr.phy.tx_pipeline._MOD_STR
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline._MOD_STR
-```
-
-````
 
 `````{py:class} TxConfig
 :canonical: nearlink_sdr.phy.tx_pipeline.TxConfig
@@ -210,25 +159,6 @@
 
 ````
 
-````{py:attribute} _mcs
-:canonical: nearlink_sdr.phy.tx_pipeline.TxConfig._mcs
-:type: object
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.TxConfig._mcs
-```
-
-````
-
-````{py:method} __post_init__() -> None
-:canonical: nearlink_sdr.phy.tx_pipeline.TxConfig.__post_init__
-
-```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.TxConfig.__post_init__
-```
-
-````
-
 ````{py:property} code_rate
 :canonical: nearlink_sdr.phy.tx_pipeline.TxConfig.code_rate
 :type: fractions.Fraction
@@ -285,13 +215,6 @@
 
 `````
 
-````{py:function} encode_payload(data_bits: numpy.ndarray, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig) -> numpy.ndarray
-:canonical: nearlink_sdr.phy.tx_pipeline.encode_payload
-
-```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.encode_payload
-```
-````
-
 ````{py:function} encode_head(ctrl_info_bits: numpy.ndarray, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig) -> numpy.ndarray
 :canonical: nearlink_sdr.phy.tx_pipeline.encode_head
 
@@ -299,16 +222,16 @@
 ```
 ````
 
+````{py:function} encode_payload(data_bits: numpy.ndarray, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.tx_pipeline.encode_payload
+
+```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.encode_payload
+```
+````
+
 ````{py:function} tx_chain(ctrl_info_bits: numpy.ndarray, data_bits: numpy.ndarray, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig) -> numpy.ndarray
 :canonical: nearlink_sdr.phy.tx_pipeline.tx_chain
 
 ```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline.tx_chain
-```
-````
-
-````{py:function} _pulse_shape_symbols(symbols: numpy.ndarray, mod: nearlink_sdr.phy.psk.PSKModulator) -> numpy.ndarray
-:canonical: nearlink_sdr.phy.tx_pipeline._pulse_shape_symbols
-
-```{autodoc2-docstring} nearlink_sdr.phy.tx_pipeline._pulse_shape_symbols
 ```
 ````

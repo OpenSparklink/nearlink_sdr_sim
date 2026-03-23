@@ -49,29 +49,7 @@
     ```
 ````
 
-### Data
-
-````{list-table}
-:class: autosummary longtable
-:align: left
-
-* - {py:obj}`log <nearlink_sdr.mac.smf_scheduler.log>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.smf_scheduler.log
-    :summary:
-    ```
-````
-
 ### API
-
-````{py:data} log
-:canonical: nearlink_sdr.mac.smf_scheduler.log
-:value: >
-   'getLogger(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.smf_scheduler.log
-```
-
-````
 
 `````{py:class} SMFActivationSource()
 :canonical: nearlink_sdr.mac.smf_scheduler.SMFActivationSource
@@ -238,20 +216,6 @@ Bases: {py:obj}`enum.IntEnum`
 
 `````
 
-````{py:function} smf_params_from_access(smf_baseline_slot: int, smf_offset: int, smf_link_id: int, smf_period: int, smf_frame_type: int, smf_bandwidth: int, smf_pilot_density: int, smf_channel_count: int, smf_channel_table: bytes) -> nearlink_sdr.mac.smf_scheduler.SMFScheduleParams
-:canonical: nearlink_sdr.mac.smf_scheduler.smf_params_from_access
-
-```{autodoc2-docstring} nearlink_sdr.mac.smf_scheduler.smf_params_from_access
-```
-````
-
-````{py:function} smf_params_from_broadcast(baseline_slot: int, offset: int, access_addr: int, period: int, frame_type: int, bandwidth: int, pilot_density: int, channel_count: int, channel_table: bytes) -> nearlink_sdr.mac.smf_scheduler.SMFScheduleParams
-:canonical: nearlink_sdr.mac.smf_scheduler.smf_params_from_broadcast
-
-```{autodoc2-docstring} nearlink_sdr.mac.smf_scheduler.smf_params_from_broadcast
-```
-````
-
 `````{py:class} SMFTransmission
 :canonical: nearlink_sdr.mac.smf_scheduler.SMFTransmission
 
@@ -310,72 +274,6 @@ Bases: {py:obj}`enum.IntEnum`
 
 ````
 
-````{py:attribute} _next_seq
-:canonical: nearlink_sdr.mac.smf_scheduler.SMFTransmitScheduler._next_seq
-:type: int
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.mac.smf_scheduler.SMFTransmitScheduler._next_seq
-```
-
-````
-
-````{py:attribute} _hop_index
-:canonical: nearlink_sdr.mac.smf_scheduler.SMFTransmitScheduler._hop_index
-:type: int
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.mac.smf_scheduler.SMFTransmitScheduler._hop_index
-```
-
-````
-
-````{py:attribute} _links
-:canonical: nearlink_sdr.mac.smf_scheduler.SMFTransmitScheduler._links
-:type: dict[int, nearlink_sdr.mac.smf.LinkSignaling]
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.smf_scheduler.SMFTransmitScheduler._links
-```
-
-````
-
-````{py:attribute} _offsets
-:canonical: nearlink_sdr.mac.smf_scheduler.SMFTransmitScheduler._offsets
-:type: dict[int, nearlink_sdr.mac.smf.OffsetSignaling]
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.smf_scheduler.SMFTransmitScheduler._offsets
-```
-
-````
-
-````{py:attribute} _last_tx_slot
-:canonical: nearlink_sdr.mac.smf_scheduler.SMFTransmitScheduler._last_tx_slot
-:type: int
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.mac.smf_scheduler.SMFTransmitScheduler._last_tx_slot
-```
-
-````
-
-````{py:attribute} _schedule_dirty
-:canonical: nearlink_sdr.mac.smf_scheduler.SMFTransmitScheduler._schedule_dirty
-:type: bool
-:value: >
-   True
-
-```{autodoc2-docstring} nearlink_sdr.mac.smf_scheduler.SMFTransmitScheduler._schedule_dirty
-```
-
-````
-
 ````{py:method} configure(params: nearlink_sdr.mac.smf_scheduler.SMFScheduleParams) -> None
 :canonical: nearlink_sdr.mac.smf_scheduler.SMFTransmitScheduler.configure
 
@@ -424,22 +322,6 @@ Bases: {py:obj}`enum.IntEnum`
 
 ````
 
-````{py:method} _next_channel() -> int
-:canonical: nearlink_sdr.mac.smf_scheduler.SMFTransmitScheduler._next_channel
-
-```{autodoc2-docstring} nearlink_sdr.mac.smf_scheduler.SMFTransmitScheduler._next_channel
-```
-
-````
-
-````{py:method} _alloc_seq() -> int
-:canonical: nearlink_sdr.mac.smf_scheduler.SMFTransmitScheduler._alloc_seq
-
-```{autodoc2-docstring} nearlink_sdr.mac.smf_scheduler.SMFTransmitScheduler._alloc_seq
-```
-
-````
-
 ````{py:method} build_smf_frame(include_schedule: bool = True) -> nearlink_sdr.mac.smf.SystemManagementFrame
 :canonical: nearlink_sdr.mac.smf_scheduler.SMFTransmitScheduler.build_smf_frame
 
@@ -473,3 +355,17 @@ Bases: {py:obj}`enum.IntEnum`
 ````
 
 `````
+
+````{py:function} smf_params_from_access(smf_baseline_slot: int, smf_offset: int, smf_link_id: int, smf_period: int, smf_frame_type: int, smf_bandwidth: int, smf_pilot_density: int, smf_channel_count: int, smf_channel_table: bytes) -> nearlink_sdr.mac.smf_scheduler.SMFScheduleParams
+:canonical: nearlink_sdr.mac.smf_scheduler.smf_params_from_access
+
+```{autodoc2-docstring} nearlink_sdr.mac.smf_scheduler.smf_params_from_access
+```
+````
+
+````{py:function} smf_params_from_broadcast(baseline_slot: int, offset: int, access_addr: int, period: int, frame_type: int, bandwidth: int, pilot_density: int, channel_count: int, channel_table: bytes) -> nearlink_sdr.mac.smf_scheduler.SMFScheduleParams
+:canonical: nearlink_sdr.mac.smf_scheduler.smf_params_from_broadcast
+
+```{autodoc2-docstring} nearlink_sdr.mac.smf_scheduler.smf_params_from_broadcast
+```
+````

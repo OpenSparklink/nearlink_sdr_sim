@@ -15,28 +15,20 @@
 :class: autosummary longtable
 :align: left
 
-* - {py:obj}`NodeRole <nearlink_sdr.node.NodeRole>`
-  - ```{autodoc2-docstring} nearlink_sdr.node.NodeRole
-    :summary:
-    ```
-* - {py:obj}`TransportMode <nearlink_sdr.node.TransportMode>`
-  - ```{autodoc2-docstring} nearlink_sdr.node.TransportMode
+* - {py:obj}`NodeCallback <nearlink_sdr.node.NodeCallback>`
+  - ```{autodoc2-docstring} nearlink_sdr.node.NodeCallback
     :summary:
     ```
 * - {py:obj}`NodeConfig <nearlink_sdr.node.NodeConfig>`
   - ```{autodoc2-docstring} nearlink_sdr.node.NodeConfig
     :summary:
     ```
+* - {py:obj}`NodeRole <nearlink_sdr.node.NodeRole>`
+  - ```{autodoc2-docstring} nearlink_sdr.node.NodeRole
+    :summary:
+    ```
 * - {py:obj}`NodeState <nearlink_sdr.node.NodeState>`
   - ```{autodoc2-docstring} nearlink_sdr.node.NodeState
-    :summary:
-    ```
-* - {py:obj}`NodeCallback <nearlink_sdr.node.NodeCallback>`
-  - ```{autodoc2-docstring} nearlink_sdr.node.NodeCallback
-    :summary:
-    ```
-* - {py:obj}`TxResult <nearlink_sdr.node.TxResult>`
-  - ```{autodoc2-docstring} nearlink_sdr.node.TxResult
     :summary:
     ```
 * - {py:obj}`RxResult <nearlink_sdr.node.RxResult>`
@@ -47,128 +39,76 @@
   - ```{autodoc2-docstring} nearlink_sdr.node.SleNode
     :summary:
     ```
-* - {py:obj}`_InternalCallback <nearlink_sdr.node._InternalCallback>`
-  - ```{autodoc2-docstring} nearlink_sdr.node._InternalCallback
+* - {py:obj}`TransportMode <nearlink_sdr.node.TransportMode>`
+  - ```{autodoc2-docstring} nearlink_sdr.node.TransportMode
     :summary:
     ```
-````
-
-### Functions
-
-````{list-table}
-:class: autosummary longtable
-:align: left
-
-* - {py:obj}`_build_ctrl_info <nearlink_sdr.node._build_ctrl_info>`
-  - ```{autodoc2-docstring} nearlink_sdr.node._build_ctrl_info
-    :summary:
-    ```
-* - {py:obj}`_build_ctrl_bits <nearlink_sdr.node._build_ctrl_bits>`
-  - ```{autodoc2-docstring} nearlink_sdr.node._build_ctrl_bits
-    :summary:
-    ```
-````
-
-### Data
-
-````{list-table}
-:class: autosummary longtable
-:align: left
-
-* - {py:obj}`log <nearlink_sdr.node.log>`
-  - ```{autodoc2-docstring} nearlink_sdr.node.log
+* - {py:obj}`TxResult <nearlink_sdr.node.TxResult>`
+  - ```{autodoc2-docstring} nearlink_sdr.node.TxResult
     :summary:
     ```
 ````
 
 ### API
 
-````{py:data} log
-:canonical: nearlink_sdr.node.log
-:value: >
-   'getLogger(...)'
+`````{py:class} NodeCallback
+:canonical: nearlink_sdr.node.NodeCallback
 
-```{autodoc2-docstring} nearlink_sdr.node.log
+```{autodoc2-docstring} nearlink_sdr.node.NodeCallback
+```
+
+````{py:method} on_state_changed(old: nearlink_sdr.node.NodeState, new: nearlink_sdr.node.NodeState) -> None
+:canonical: nearlink_sdr.node.NodeCallback.on_state_changed
+
+```{autodoc2-docstring} nearlink_sdr.node.NodeCallback.on_state_changed
 ```
 
 ````
 
-`````{py:class} NodeRole()
-:canonical: nearlink_sdr.node.NodeRole
+````{py:method} on_connected(peer_address: bytes, role: nearlink_sdr.mac.link_manager.Role) -> None
+:canonical: nearlink_sdr.node.NodeCallback.on_connected
 
-Bases: {py:obj}`enum.IntEnum`
-
-```{autodoc2-docstring} nearlink_sdr.node.NodeRole
-```
-
-```{rubric} Initialization
-```
-
-```{autodoc2-docstring} nearlink_sdr.node.NodeRole.__init__
-```
-
-````{py:attribute} AUTO
-:canonical: nearlink_sdr.node.NodeRole.AUTO
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.node.NodeRole.AUTO
+```{autodoc2-docstring} nearlink_sdr.node.NodeCallback.on_connected
 ```
 
 ````
 
-````{py:attribute} G_NODE
-:canonical: nearlink_sdr.node.NodeRole.G_NODE
-:value: >
-   1
+````{py:method} on_data_received(data: bytes) -> None
+:canonical: nearlink_sdr.node.NodeCallback.on_data_received
 
-```{autodoc2-docstring} nearlink_sdr.node.NodeRole.G_NODE
+```{autodoc2-docstring} nearlink_sdr.node.NodeCallback.on_data_received
 ```
 
 ````
 
-````{py:attribute} T_NODE
-:canonical: nearlink_sdr.node.NodeRole.T_NODE
-:value: >
-   2
+````{py:method} on_disconnected(reason: nearlink_sdr.mac.link_manager.DisconnectReason) -> None
+:canonical: nearlink_sdr.node.NodeCallback.on_disconnected
 
-```{autodoc2-docstring} nearlink_sdr.node.NodeRole.T_NODE
+```{autodoc2-docstring} nearlink_sdr.node.NodeCallback.on_disconnected
 ```
 
 ````
 
-`````
+````{py:method} on_broadcast_received(frame: nearlink_sdr.mac.broadcast.BroadcastFrame) -> None
+:canonical: nearlink_sdr.node.NodeCallback.on_broadcast_received
 
-`````{py:class} TransportMode()
-:canonical: nearlink_sdr.node.TransportMode
-
-Bases: {py:obj}`enum.IntEnum`
-
-```{autodoc2-docstring} nearlink_sdr.node.TransportMode
-```
-
-```{rubric} Initialization
-```
-
-```{autodoc2-docstring} nearlink_sdr.node.TransportMode.__init__
-```
-
-````{py:attribute} SIMULATION
-:canonical: nearlink_sdr.node.TransportMode.SIMULATION
-:value: >
-   'auto(...)'
-
-```{autodoc2-docstring} nearlink_sdr.node.TransportMode.SIMULATION
+```{autodoc2-docstring} nearlink_sdr.node.NodeCallback.on_broadcast_received
 ```
 
 ````
 
-````{py:attribute} USRP
-:canonical: nearlink_sdr.node.TransportMode.USRP
-:value: >
-   'auto(...)'
+````{py:method} on_discovery_complete(devices: dict) -> None
+:canonical: nearlink_sdr.node.NodeCallback.on_discovery_complete
 
-```{autodoc2-docstring} nearlink_sdr.node.TransportMode.USRP
+```{autodoc2-docstring} nearlink_sdr.node.NodeCallback.on_discovery_complete
+```
+
+````
+
+````{py:method} on_measurement_result(result: dict) -> None
+:canonical: nearlink_sdr.node.NodeCallback.on_measurement_result
+
+```{autodoc2-docstring} nearlink_sdr.node.NodeCallback.on_measurement_result
 ```
 
 ````
@@ -392,6 +332,52 @@ Bases: {py:obj}`enum.IntEnum`
 
 `````
 
+`````{py:class} NodeRole()
+:canonical: nearlink_sdr.node.NodeRole
+
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.node.NodeRole
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.node.NodeRole.__init__
+```
+
+````{py:attribute} AUTO
+:canonical: nearlink_sdr.node.NodeRole.AUTO
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.node.NodeRole.AUTO
+```
+
+````
+
+````{py:attribute} G_NODE
+:canonical: nearlink_sdr.node.NodeRole.G_NODE
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.node.NodeRole.G_NODE
+```
+
+````
+
+````{py:attribute} T_NODE
+:canonical: nearlink_sdr.node.NodeRole.T_NODE
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.node.NodeRole.T_NODE
+```
+
+````
+
+`````
+
 `````{py:class} NodeState()
 :canonical: nearlink_sdr.node.NodeState
 
@@ -478,133 +464,6 @@ Bases: {py:obj}`enum.IntEnum`
 
 `````
 
-`````{py:class} NodeCallback
-:canonical: nearlink_sdr.node.NodeCallback
-
-```{autodoc2-docstring} nearlink_sdr.node.NodeCallback
-```
-
-````{py:method} on_state_changed(old: nearlink_sdr.node.NodeState, new: nearlink_sdr.node.NodeState) -> None
-:canonical: nearlink_sdr.node.NodeCallback.on_state_changed
-
-```{autodoc2-docstring} nearlink_sdr.node.NodeCallback.on_state_changed
-```
-
-````
-
-````{py:method} on_connected(peer_address: bytes, role: nearlink_sdr.mac.link_manager.Role) -> None
-:canonical: nearlink_sdr.node.NodeCallback.on_connected
-
-```{autodoc2-docstring} nearlink_sdr.node.NodeCallback.on_connected
-```
-
-````
-
-````{py:method} on_data_received(data: bytes) -> None
-:canonical: nearlink_sdr.node.NodeCallback.on_data_received
-
-```{autodoc2-docstring} nearlink_sdr.node.NodeCallback.on_data_received
-```
-
-````
-
-````{py:method} on_disconnected(reason: nearlink_sdr.mac.link_manager.DisconnectReason) -> None
-:canonical: nearlink_sdr.node.NodeCallback.on_disconnected
-
-```{autodoc2-docstring} nearlink_sdr.node.NodeCallback.on_disconnected
-```
-
-````
-
-````{py:method} on_broadcast_received(frame: nearlink_sdr.mac.broadcast.BroadcastFrame) -> None
-:canonical: nearlink_sdr.node.NodeCallback.on_broadcast_received
-
-```{autodoc2-docstring} nearlink_sdr.node.NodeCallback.on_broadcast_received
-```
-
-````
-
-````{py:method} on_discovery_complete(devices: dict) -> None
-:canonical: nearlink_sdr.node.NodeCallback.on_discovery_complete
-
-```{autodoc2-docstring} nearlink_sdr.node.NodeCallback.on_discovery_complete
-```
-
-````
-
-````{py:method} on_measurement_result(result: dict) -> None
-:canonical: nearlink_sdr.node.NodeCallback.on_measurement_result
-
-```{autodoc2-docstring} nearlink_sdr.node.NodeCallback.on_measurement_result
-```
-
-````
-
-`````
-
-`````{py:class} TxResult
-:canonical: nearlink_sdr.node.TxResult
-
-```{autodoc2-docstring} nearlink_sdr.node.TxResult
-```
-
-````{py:attribute} iq
-:canonical: nearlink_sdr.node.TxResult.iq
-:type: numpy.ndarray | None
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.node.TxResult.iq
-```
-
-````
-
-````{py:attribute} mac_bytes
-:canonical: nearlink_sdr.node.TxResult.mac_bytes
-:type: bytes | None
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.node.TxResult.mac_bytes
-```
-
-````
-
-````{py:attribute} decision
-:canonical: nearlink_sdr.node.TxResult.decision
-:type: nearlink_sdr.mac.qos.TxDecision
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.node.TxResult.decision
-```
-
-````
-
-````{py:attribute} encrypted
-:canonical: nearlink_sdr.node.TxResult.encrypted
-:type: bool
-:value: >
-   False
-
-```{autodoc2-docstring} nearlink_sdr.node.TxResult.encrypted
-```
-
-````
-
-````{py:attribute} channel
-:canonical: nearlink_sdr.node.TxResult.channel
-:type: int
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.node.TxResult.channel
-```
-
-````
-
-`````
-
 `````{py:class} RxResult
 :canonical: nearlink_sdr.node.RxResult
 
@@ -670,264 +529,6 @@ Bases: {py:obj}`enum.IntEnum`
    'field(...)'
 
 ```{autodoc2-docstring} nearlink_sdr.node.SleNode.callback
-```
-
-````
-
-````{py:attribute} _link_mgr
-:canonical: nearlink_sdr.node.SleNode._link_mgr
-:type: nearlink_sdr.mac.link_manager.LinkManager
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._link_mgr
-```
-
-````
-
-````{py:attribute} _qos
-:canonical: nearlink_sdr.node.SleNode._qos
-:type: nearlink_sdr.mac.qos.QosManager
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._qos
-```
-
-````
-
-````{py:attribute} _tx_config
-:canonical: nearlink_sdr.node.SleNode._tx_config
-:type: nearlink_sdr.phy.tx_pipeline.TxConfig
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._tx_config
-```
-
-````
-
-````{py:attribute} _pairing
-:canonical: nearlink_sdr.node.SleNode._pairing
-:type: nearlink_sdr.mac.security_manager.PairingManager | None
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._pairing
-```
-
-````
-
-````{py:attribute} _crypto
-:canonical: nearlink_sdr.node.SleNode._crypto
-:type: nearlink_sdr.mac.security_manager.FrameCryptoContext | None
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._crypto
-```
-
-````
-
-````{py:attribute} _state
-:canonical: nearlink_sdr.node.SleNode._state
-:type: nearlink_sdr.node.NodeState
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._state
-```
-
-````
-
-````{py:attribute} _peer_address
-:canonical: nearlink_sdr.node.SleNode._peer_address
-:type: bytes
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._peer_address
-```
-
-````
-
-````{py:attribute} _tx_count
-:canonical: nearlink_sdr.node.SleNode._tx_count
-:type: int
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._tx_count
-```
-
-````
-
-````{py:attribute} _rx_count
-:canonical: nearlink_sdr.node.SleNode._rx_count
-:type: int
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._rx_count
-```
-
-````
-
-````{py:attribute} _freq_table
-:canonical: nearlink_sdr.node.SleNode._freq_table
-:type: nearlink_sdr.phy.freq_hopping.FreqTable
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._freq_table
-```
-
-````
-
-````{py:attribute} _hop_param2
-:canonical: nearlink_sdr.node.SleNode._hop_param2
-:type: int
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._hop_param2
-```
-
-````
-
-````{py:attribute} _power_ctrl
-:canonical: nearlink_sdr.node.SleNode._power_ctrl
-:type: nearlink_sdr.mac.power_control.PowerController
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._power_ctrl
-```
-
-````
-
-````{py:attribute} _scheduler
-:canonical: nearlink_sdr.node.SleNode._scheduler
-:type: nearlink_sdr.mac.scheduler.ScheduleManager
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._scheduler
-```
-
-````
-
-````{py:attribute} _smf_scheduler
-:canonical: nearlink_sdr.node.SleNode._smf_scheduler
-:type: nearlink_sdr.mac.smf_scheduler.SMFTransmitScheduler | None
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._smf_scheduler
-```
-
-````
-
-````{py:attribute} _whitelist
-:canonical: nearlink_sdr.node.SleNode._whitelist
-:type: nearlink_sdr.mac.access.AccessWhitelist
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._whitelist
-```
-
-````
-
-````{py:attribute} _discovery
-:canonical: nearlink_sdr.node.SleNode._discovery
-:type: nearlink_sdr.mac.access.DiscoveryManager
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._discovery
-```
-
-````
-
-````{py:attribute} _broadcast_filter
-:canonical: nearlink_sdr.node.SleNode._broadcast_filter
-:type: nearlink_sdr.mac.broadcast.BroadcastFilter
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._broadcast_filter
-```
-
-````
-
-````{py:attribute} _broadcaster_mgr
-:canonical: nearlink_sdr.node.SleNode._broadcaster_mgr
-:type: nearlink_sdr.mac.access.BroadcasterAccessManager | None
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._broadcaster_mgr
-```
-
-````
-
-````{py:attribute} _initiator_mgr
-:canonical: nearlink_sdr.node.SleNode._initiator_mgr
-:type: nearlink_sdr.mac.access.InitiatorAccessManager | None
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._initiator_mgr
-```
-
-````
-
-````{py:attribute} _data_link_params
-:canonical: nearlink_sdr.node.SleNode._data_link_params
-:type: nearlink_sdr.phy.data_link.AsyncDataLinkParams | nearlink_sdr.phy.data_link.SyncDataLinkParams | None
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._data_link_params
-```
-
-````
-
-````{py:attribute} _channel
-:canonical: nearlink_sdr.node.SleNode._channel
-:type: nearlink_sdr.phy.channel.ChannelModel | None
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._channel
-```
-
-````
-
-````{py:attribute} _transceiver
-:canonical: nearlink_sdr.node.SleNode._transceiver
-:type: nearlink_sdr.phy.usrp.SLETransceiver | None
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._transceiver
-```
-
-````
-
-````{py:method} __post_init__() -> None
-:canonical: nearlink_sdr.node.SleNode.__post_init__
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode.__post_init__
-```
-
-````
-
-````{py:method} _ctrl_bits_len() -> int
-:canonical: nearlink_sdr.node.SleNode._ctrl_bits_len
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._ctrl_bits_len
 ```
 
 ````
@@ -1057,14 +658,6 @@ Bases: {py:obj}`enum.IntEnum`
 
 ````
 
-````{py:method} _setup_crypto() -> None
-:canonical: nearlink_sdr.node.SleNode._setup_crypto
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._setup_crypto
-```
-
-````
-
 ````{py:method} send(data: bytes, priority: nearlink_sdr.mac.qos.Priority = Priority.NORMAL) -> bool
 :canonical: nearlink_sdr.node.SleNode.send
 
@@ -1170,14 +763,6 @@ Bases: {py:obj}`enum.IntEnum`
 :canonical: nearlink_sdr.node.SleNode.advance_slot
 
 ```{autodoc2-docstring} nearlink_sdr.node.SleNode.advance_slot
-```
-
-````
-
-````{py:method} _register_link_schedule(link_id: int = 0) -> None
-:canonical: nearlink_sdr.node.SleNode._register_link_schedule
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._register_link_schedule
 ```
 
 ````
@@ -1359,60 +944,103 @@ Bases: {py:obj}`enum.IntEnum`
 
 ````
 
-````{py:method} _set_state(new: nearlink_sdr.node.NodeState) -> None
-:canonical: nearlink_sdr.node.SleNode._set_state
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._set_state
-```
-
-````
-
-````{py:method} _cleanup() -> None
-:canonical: nearlink_sdr.node.SleNode._cleanup
-
-```{autodoc2-docstring} nearlink_sdr.node.SleNode._cleanup
-```
-
-````
-
 `````
 
-`````{py:class} _InternalCallback(node: nearlink_sdr.node.SleNode)
-:canonical: nearlink_sdr.node._InternalCallback
+`````{py:class} TransportMode()
+:canonical: nearlink_sdr.node.TransportMode
 
-Bases: {py:obj}`nearlink_sdr.mac.link_manager.LinkManagerCallback`
+Bases: {py:obj}`enum.IntEnum`
 
-```{autodoc2-docstring} nearlink_sdr.node._InternalCallback
+```{autodoc2-docstring} nearlink_sdr.node.TransportMode
 ```
 
 ```{rubric} Initialization
 ```
 
-```{autodoc2-docstring} nearlink_sdr.node._InternalCallback.__init__
+```{autodoc2-docstring} nearlink_sdr.node.TransportMode.__init__
 ```
 
-````{py:method} on_access_accepted(role: nearlink_sdr.mac.link_manager.Role) -> None
-:canonical: nearlink_sdr.node._InternalCallback.on_access_accepted
+````{py:attribute} SIMULATION
+:canonical: nearlink_sdr.node.TransportMode.SIMULATION
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.node.TransportMode.SIMULATION
+```
 
 ````
 
-````{py:method} on_disconnected(reason: nearlink_sdr.mac.link_manager.DisconnectReason) -> None
-:canonical: nearlink_sdr.node._InternalCallback.on_disconnected
+````{py:attribute} USRP
+:canonical: nearlink_sdr.node.TransportMode.USRP
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.node.TransportMode.USRP
+```
 
 ````
 
 `````
 
-````{py:function} _build_ctrl_info(ctrl_fields: dict[str, int], data_length: int) -> nearlink_sdr.phy.control_info.ControlInfoA2
-:canonical: nearlink_sdr.node._build_ctrl_info
+`````{py:class} TxResult
+:canonical: nearlink_sdr.node.TxResult
 
-```{autodoc2-docstring} nearlink_sdr.node._build_ctrl_info
+```{autodoc2-docstring} nearlink_sdr.node.TxResult
 ```
+
+````{py:attribute} iq
+:canonical: nearlink_sdr.node.TxResult.iq
+:type: numpy.ndarray | None
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.node.TxResult.iq
+```
+
 ````
 
-````{py:function} _build_ctrl_bits(ctrl_fields: dict[str, int], frame_type: int) -> numpy.ndarray
-:canonical: nearlink_sdr.node._build_ctrl_bits
+````{py:attribute} mac_bytes
+:canonical: nearlink_sdr.node.TxResult.mac_bytes
+:type: bytes | None
+:value: >
+   None
 
-```{autodoc2-docstring} nearlink_sdr.node._build_ctrl_bits
+```{autodoc2-docstring} nearlink_sdr.node.TxResult.mac_bytes
 ```
+
 ````
+
+````{py:attribute} decision
+:canonical: nearlink_sdr.node.TxResult.decision
+:type: nearlink_sdr.mac.qos.TxDecision
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.node.TxResult.decision
+```
+
+````
+
+````{py:attribute} encrypted
+:canonical: nearlink_sdr.node.TxResult.encrypted
+:type: bool
+:value: >
+   False
+
+```{autodoc2-docstring} nearlink_sdr.node.TxResult.encrypted
+```
+
+````
+
+````{py:attribute} channel
+:canonical: nearlink_sdr.node.TxResult.channel
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.node.TxResult.channel
+```
+
+````
+
+`````

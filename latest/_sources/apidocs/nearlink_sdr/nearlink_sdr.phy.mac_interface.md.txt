@@ -31,20 +31,12 @@
 :class: autosummary longtable
 :align: left
 
-* - {py:obj}`bytes_to_bits <nearlink_sdr.phy.mac_interface.bytes_to_bits>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.bytes_to_bits
-    :summary:
-    ```
 * - {py:obj}`bits_to_bytes <nearlink_sdr.phy.mac_interface.bits_to_bytes>`
   - ```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.bits_to_bytes
     :summary:
     ```
-* - {py:obj}`mac_to_iq <nearlink_sdr.phy.mac_interface.mac_to_iq>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.mac_to_iq
-    :summary:
-    ```
-* - {py:obj}`signaling_to_iq <nearlink_sdr.phy.mac_interface.signaling_to_iq>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.signaling_to_iq
+* - {py:obj}`bytes_to_bits <nearlink_sdr.phy.mac_interface.bytes_to_bits>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.bytes_to_bits
     :summary:
     ```
 * - {py:obj}`iq_to_mac <nearlink_sdr.phy.mac_interface.iq_to_mac>`
@@ -55,45 +47,25 @@
   - ```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.iq_to_signaling
     :summary:
     ```
-* - {py:obj}`roundtrip_signaling <nearlink_sdr.phy.mac_interface.roundtrip_signaling>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.roundtrip_signaling
+* - {py:obj}`mac_to_iq <nearlink_sdr.phy.mac_interface.mac_to_iq>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.mac_to_iq
     :summary:
     ```
 * - {py:obj}`roundtrip_data <nearlink_sdr.phy.mac_interface.roundtrip_data>`
   - ```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.roundtrip_data
     :summary:
     ```
+* - {py:obj}`roundtrip_signaling <nearlink_sdr.phy.mac_interface.roundtrip_signaling>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.roundtrip_signaling
+    :summary:
+    ```
+* - {py:obj}`signaling_to_iq <nearlink_sdr.phy.mac_interface.signaling_to_iq>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.signaling_to_iq
+    :summary:
+    ```
 ````
 
 ### API
-
-````{py:function} bytes_to_bits(data: bytes) -> numpy.ndarray
-:canonical: nearlink_sdr.phy.mac_interface.bytes_to_bits
-
-```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.bytes_to_bits
-```
-````
-
-````{py:function} bits_to_bytes(bits: numpy.ndarray) -> bytes
-:canonical: nearlink_sdr.phy.mac_interface.bits_to_bytes
-
-```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.bits_to_bytes
-```
-````
-
-````{py:function} mac_to_iq(mac_payload: bytes, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig, ctrl_info: nearlink_sdr.phy.control_info.ControlInfoA2 | None = None) -> numpy.ndarray
-:canonical: nearlink_sdr.phy.mac_interface.mac_to_iq
-
-```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.mac_to_iq
-```
-````
-
-````{py:function} signaling_to_iq(msg: object, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig) -> numpy.ndarray
-:canonical: nearlink_sdr.phy.mac_interface.signaling_to_iq
-
-```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.signaling_to_iq
-```
-````
 
 `````{py:class} MacRxResult
 :canonical: nearlink_sdr.phy.mac_interface.MacRxResult
@@ -146,34 +118,6 @@
 ````
 
 `````
-
-````{py:function} iq_to_mac(iq_signal: numpy.ndarray, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig, n_mac_bytes: int) -> nearlink_sdr.phy.mac_interface.MacRxResult
-:canonical: nearlink_sdr.phy.mac_interface.iq_to_mac
-
-```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.iq_to_mac
-```
-````
-
-````{py:function} iq_to_signaling(iq_signal: numpy.ndarray, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig, n_mac_bytes: int) -> tuple[object, bool]
-:canonical: nearlink_sdr.phy.mac_interface.iq_to_signaling
-
-```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.iq_to_signaling
-```
-````
-
-````{py:function} roundtrip_signaling(msg: object, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig | None = None) -> tuple[object | None, bool]
-:canonical: nearlink_sdr.phy.mac_interface.roundtrip_signaling
-
-```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.roundtrip_signaling
-```
-````
-
-````{py:function} roundtrip_data(data: bytes, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig | None = None, segment_type: int = 0) -> tuple[bytes, bool]
-:canonical: nearlink_sdr.phy.mac_interface.roundtrip_data
-
-```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.roundtrip_data
-```
-````
 
 `````{py:class} QosLink(cfg: nearlink_sdr.phy.tx_pipeline.TxConfig | None = None, frame_type: int = 2, max_pdu: int = 256)
 :canonical: nearlink_sdr.phy.mac_interface.QosLink
@@ -247,3 +191,59 @@
 ````
 
 `````
+
+````{py:function} bits_to_bytes(bits: numpy.ndarray) -> bytes
+:canonical: nearlink_sdr.phy.mac_interface.bits_to_bytes
+
+```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.bits_to_bytes
+```
+````
+
+````{py:function} bytes_to_bits(data: bytes) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.mac_interface.bytes_to_bits
+
+```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.bytes_to_bits
+```
+````
+
+````{py:function} iq_to_mac(iq_signal: numpy.ndarray, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig, n_mac_bytes: int) -> nearlink_sdr.phy.mac_interface.MacRxResult
+:canonical: nearlink_sdr.phy.mac_interface.iq_to_mac
+
+```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.iq_to_mac
+```
+````
+
+````{py:function} iq_to_signaling(iq_signal: numpy.ndarray, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig, n_mac_bytes: int) -> tuple[object, bool]
+:canonical: nearlink_sdr.phy.mac_interface.iq_to_signaling
+
+```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.iq_to_signaling
+```
+````
+
+````{py:function} mac_to_iq(mac_payload: bytes, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig, ctrl_info: nearlink_sdr.phy.control_info.ControlInfoA2 | None = None) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.mac_interface.mac_to_iq
+
+```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.mac_to_iq
+```
+````
+
+````{py:function} roundtrip_data(data: bytes, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig | None = None, segment_type: int = 0) -> tuple[bytes, bool]
+:canonical: nearlink_sdr.phy.mac_interface.roundtrip_data
+
+```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.roundtrip_data
+```
+````
+
+````{py:function} roundtrip_signaling(msg: object, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig | None = None) -> tuple[object | None, bool]
+:canonical: nearlink_sdr.phy.mac_interface.roundtrip_signaling
+
+```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.roundtrip_signaling
+```
+````
+
+````{py:function} signaling_to_iq(msg: object, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.mac_interface.signaling_to_iq
+
+```{autodoc2-docstring} nearlink_sdr.phy.mac_interface.signaling_to_iq
+```
+````

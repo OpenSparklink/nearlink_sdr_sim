@@ -15,40 +15,8 @@
 :class: autosummary longtable
 :align: left
 
-* - {py:obj}`TransmissionMode <nearlink_sdr.phy.data_link.TransmissionMode>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.data_link.TransmissionMode
-    :summary:
-    ```
 * - {py:obj}`AdaptMode <nearlink_sdr.phy.data_link.AdaptMode>`
   - ```{autodoc2-docstring} nearlink_sdr.phy.data_link.AdaptMode
-    :summary:
-    ```
-* - {py:obj}`AsyncDataLinkParams <nearlink_sdr.phy.data_link.AsyncDataLinkParams>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.data_link.AsyncDataLinkParams
-    :summary:
-    ```
-* - {py:obj}`AsyncFlowControl <nearlink_sdr.phy.data_link.AsyncFlowControl>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.data_link.AsyncFlowControl
-    :summary:
-    ```
-* - {py:obj}`SyncDataLinkParams <nearlink_sdr.phy.data_link.SyncDataLinkParams>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataLinkParams
-    :summary:
-    ```
-* - {py:obj}`SyncDataDiscard <nearlink_sdr.phy.data_link.SyncDataDiscard>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard
-    :summary:
-    ```
-* - {py:obj}`SyncFlowControl <nearlink_sdr.phy.data_link.SyncFlowControl>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncFlowControl
-    :summary:
-    ```
-* - {py:obj}`EventGroupSet <nearlink_sdr.phy.data_link.EventGroupSet>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.data_link.EventGroupSet
-    :summary:
-    ```
-* - {py:obj}`PeriodicServiceAdaptor <nearlink_sdr.phy.data_link.PeriodicServiceAdaptor>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor
     :summary:
     ```
 * - {py:obj}`AperiodicFragment <nearlink_sdr.phy.data_link.AperiodicFragment>`
@@ -59,85 +27,41 @@
   - ```{autodoc2-docstring} nearlink_sdr.phy.data_link.AperiodicServiceAdaptor
     :summary:
     ```
+* - {py:obj}`AsyncDataLinkParams <nearlink_sdr.phy.data_link.AsyncDataLinkParams>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.data_link.AsyncDataLinkParams
+    :summary:
+    ```
+* - {py:obj}`AsyncFlowControl <nearlink_sdr.phy.data_link.AsyncFlowControl>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.data_link.AsyncFlowControl
+    :summary:
+    ```
+* - {py:obj}`EventGroupSet <nearlink_sdr.phy.data_link.EventGroupSet>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.data_link.EventGroupSet
+    :summary:
+    ```
+* - {py:obj}`PeriodicServiceAdaptor <nearlink_sdr.phy.data_link.PeriodicServiceAdaptor>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor
+    :summary:
+    ```
+* - {py:obj}`SyncDataDiscard <nearlink_sdr.phy.data_link.SyncDataDiscard>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard
+    :summary:
+    ```
+* - {py:obj}`SyncDataLinkParams <nearlink_sdr.phy.data_link.SyncDataLinkParams>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataLinkParams
+    :summary:
+    ```
+* - {py:obj}`SyncFlowControl <nearlink_sdr.phy.data_link.SyncFlowControl>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncFlowControl
+    :summary:
+    ```
+* - {py:obj}`TransmissionMode <nearlink_sdr.phy.data_link.TransmissionMode>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.data_link.TransmissionMode
+    :summary:
+    ```
 ````
 
 ### API
-
-`````{py:class} TransmissionMode()
-:canonical: nearlink_sdr.phy.data_link.TransmissionMode
-
-Bases: {py:obj}`enum.IntEnum`
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.TransmissionMode
-```
-
-```{rubric} Initialization
-```
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.TransmissionMode.__init__
-```
-
-````{py:attribute} UNICAST
-:canonical: nearlink_sdr.phy.data_link.TransmissionMode.UNICAST
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.TransmissionMode.UNICAST
-```
-
-````
-
-````{py:attribute} MULTICAST
-:canonical: nearlink_sdr.phy.data_link.TransmissionMode.MULTICAST
-:value: >
-   1
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.TransmissionMode.MULTICAST
-```
-
-````
-
-````{py:attribute} BIDIRECTIONAL_MULTICAST
-:canonical: nearlink_sdr.phy.data_link.TransmissionMode.BIDIRECTIONAL_MULTICAST
-:value: >
-   2
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.TransmissionMode.BIDIRECTIONAL_MULTICAST
-```
-
-````
-
-````{py:attribute} FEEDBACK_MULTICAST
-:canonical: nearlink_sdr.phy.data_link.TransmissionMode.FEEDBACK_MULTICAST
-:value: >
-   3
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.TransmissionMode.FEEDBACK_MULTICAST
-```
-
-````
-
-````{py:attribute} BROADCAST_ASYNC
-:canonical: nearlink_sdr.phy.data_link.TransmissionMode.BROADCAST_ASYNC
-:value: >
-   4
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.TransmissionMode.BROADCAST_ASYNC
-```
-
-````
-
-````{py:attribute} BROADCAST_SYNC
-:canonical: nearlink_sdr.phy.data_link.TransmissionMode.BROADCAST_SYNC
-:value: >
-   5
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.TransmissionMode.BROADCAST_SYNC
-```
-
-````
-
-`````
 
 `````{py:class} AdaptMode()
 :canonical: nearlink_sdr.phy.data_link.AdaptMode
@@ -169,6 +93,96 @@ Bases: {py:obj}`enum.IntEnum`
    1
 
 ```{autodoc2-docstring} nearlink_sdr.phy.data_link.AdaptMode.APERIODIC
+```
+
+````
+
+`````
+
+`````{py:class} AperiodicFragment
+:canonical: nearlink_sdr.phy.data_link.AperiodicFragment
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.AperiodicFragment
+```
+
+````{py:attribute} is_first
+:canonical: nearlink_sdr.phy.data_link.AperiodicFragment.is_first
+:type: bool
+:value: >
+   False
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.AperiodicFragment.is_first
+```
+
+````
+
+````{py:attribute} is_last
+:canonical: nearlink_sdr.phy.data_link.AperiodicFragment.is_last
+:type: bool
+:value: >
+   False
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.AperiodicFragment.is_last
+```
+
+````
+
+````{py:attribute} time_offset_us
+:canonical: nearlink_sdr.phy.data_link.AperiodicFragment.time_offset_us
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.AperiodicFragment.time_offset_us
+```
+
+````
+
+````{py:attribute} data
+:canonical: nearlink_sdr.phy.data_link.AperiodicFragment.data
+:type: bytes
+:value: >
+   b''
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.AperiodicFragment.data
+```
+
+````
+
+`````
+
+`````{py:class} AperiodicServiceAdaptor(pdu_max: int = 251, header_size: int = 4)
+:canonical: nearlink_sdr.phy.data_link.AperiodicServiceAdaptor
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.AperiodicServiceAdaptor
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.AperiodicServiceAdaptor.__init__
+```
+
+````{py:method} fragment_sdu(sdu: bytes, time_offset_us: int = 0) -> list[nearlink_sdr.phy.data_link.AperiodicFragment]
+:canonical: nearlink_sdr.phy.data_link.AperiodicServiceAdaptor.fragment_sdu
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.AperiodicServiceAdaptor.fragment_sdu
+```
+
+````
+
+````{py:method} reassemble_sdu(fragments: list[nearlink_sdr.phy.data_link.AperiodicFragment]) -> tuple[bytes, int]
+:canonical: nearlink_sdr.phy.data_link.AperiodicServiceAdaptor.reassemble_sdu
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.AperiodicServiceAdaptor.reassemble_sdu
+```
+
+````
+
+````{py:method} rx_deliver_time(event_group_start_us: int, sync_anchor_delay_us: int, discard_period: int, event_group_period_us: int, sdu_period_us: int, sdu_time_offset_us: int) -> int
+:canonical: nearlink_sdr.phy.data_link.AperiodicServiceAdaptor.rx_deliver_time
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.AperiodicServiceAdaptor.rx_deliver_time
 ```
 
 ````
@@ -432,6 +446,346 @@ Bases: {py:obj}`enum.IntEnum`
 :canonical: nearlink_sdr.phy.data_link.AsyncFlowControl.should_stop_feedback_multicast_member
 
 ```{autodoc2-docstring} nearlink_sdr.phy.data_link.AsyncFlowControl.should_stop_feedback_multicast_member
+```
+
+````
+
+`````
+
+`````{py:class} EventGroupSet
+:canonical: nearlink_sdr.phy.data_link.EventGroupSet
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.EventGroupSet
+```
+
+````{py:attribute} event_group_count
+:canonical: nearlink_sdr.phy.data_link.EventGroupSet.event_group_count
+:type: int
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.EventGroupSet.event_group_count
+```
+
+````
+
+````{py:attribute} event_group_spacing_slots
+:canonical: nearlink_sdr.phy.data_link.EventGroupSet.event_group_spacing_slots
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.EventGroupSet.event_group_spacing_slots
+```
+
+````
+
+````{py:attribute} event_group_period_us
+:canonical: nearlink_sdr.phy.data_link.EventGroupSet.event_group_period_us
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.EventGroupSet.event_group_period_us
+```
+
+````
+
+````{py:attribute} schedule_slot_us
+:canonical: nearlink_sdr.phy.data_link.EventGroupSet.schedule_slot_us
+:type: int
+:value: >
+   125
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.EventGroupSet.schedule_slot_us
+```
+
+````
+
+````{py:method} event_group_offsets() -> list[int]
+:canonical: nearlink_sdr.phy.data_link.EventGroupSet.event_group_offsets
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.EventGroupSet.event_group_offsets
+```
+
+````
+
+````{py:method} set_duration_us() -> int
+:canonical: nearlink_sdr.phy.data_link.EventGroupSet.set_duration_us
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.EventGroupSet.set_duration_us
+```
+
+````
+
+````{py:method} validate() -> bool
+:canonical: nearlink_sdr.phy.data_link.EventGroupSet.validate
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.EventGroupSet.validate
+```
+
+````
+
+`````
+
+`````{py:class} PeriodicServiceAdaptor
+:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor
+```
+
+````{py:attribute} sdu_max
+:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sdu_max
+:type: int
+:value: >
+   256
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sdu_max
+```
+
+````
+
+````{py:attribute} pdu_max
+:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.pdu_max
+:type: int
+:value: >
+   251
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.pdu_max
+```
+
+````
+
+````{py:attribute} event_group_period_us
+:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.event_group_period_us
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.event_group_period_us
+```
+
+````
+
+````{py:attribute} sdu_period_us
+:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sdu_period_us
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sdu_period_us
+```
+
+````
+
+````{py:attribute} sync_ref_delay_us
+:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sync_ref_delay_us
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sync_ref_delay_us
+```
+
+````
+
+````{py:attribute} sync_anchor_delay_us
+:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sync_anchor_delay_us
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sync_anchor_delay_us
+```
+
+````
+
+````{py:attribute} discard_period
+:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.discard_period
+:type: int
+:value: >
+   3
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.discard_period
+```
+
+````
+
+````{py:property} segments_per_sdu
+:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.segments_per_sdu
+:type: int
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.segments_per_sdu
+```
+
+````
+
+````{py:property} sdus_per_event_group
+:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sdus_per_event_group
+:type: int
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sdus_per_event_group
+```
+
+````
+
+````{py:property} frames_per_event_group
+:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.frames_per_event_group
+:type: int
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.frames_per_event_group
+```
+
+````
+
+````{py:method} segment_sdu(sdu: bytes) -> list[bytes]
+:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.segment_sdu
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.segment_sdu
+```
+
+````
+
+````{py:method} reassemble_sdu(pdus: list[bytes]) -> bytes
+:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.reassemble_sdu
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.reassemble_sdu
+```
+
+````
+
+````{py:method} tx_accept_time(event_group_start_us: int) -> int
+:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.tx_accept_time
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.tx_accept_time
+```
+
+````
+
+````{py:method} rx_deliver_time(event_group_start_us: int) -> int
+:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.rx_deliver_time
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.rx_deliver_time
+```
+
+````
+
+`````
+
+`````{py:class} SyncDataDiscard
+:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard
+```
+
+````{py:attribute} new_pkt_count
+:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.new_pkt_count
+:type: int
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.new_pkt_count
+```
+
+````
+
+````{py:attribute} discard_period
+:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.discard_period
+:type: int
+:value: >
+   3
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.discard_period
+```
+
+````
+
+````{py:attribute} tx_sn
+:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.tx_sn
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.tx_sn
+```
+
+````
+
+````{py:attribute} event_group_index
+:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.event_group_index
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.event_group_index
+```
+
+````
+
+````{py:attribute} payload_count
+:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.payload_count
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.payload_count
+```
+
+````
+
+````{py:property} local_baseline
+:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.local_baseline
+:type: int
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.local_baseline
+```
+
+````
+
+````{py:method} on_ack() -> None
+:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.on_ack
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.on_ack
+```
+
+````
+
+````{py:method} on_nack_or_timeout() -> None
+:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.on_nack_or_timeout
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.on_nack_or_timeout
+```
+
+````
+
+````{py:method} on_event_group_boundary() -> None
+:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.on_event_group_boundary
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.on_event_group_boundary
+```
+
+````
+
+````{py:method} is_discarded(payload_id: int) -> bool
+:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.is_discarded
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.is_discarded
+```
+
+````
+
+````{py:method} should_active_discard(max_retransmit: int) -> bool
+:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.should_active_discard
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.should_active_discard
+```
+
+````
+
+````{py:method} active_discard() -> None
+:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.active_discard
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.active_discard
 ```
 
 ````
@@ -719,137 +1073,6 @@ Bases: {py:obj}`enum.IntEnum`
 
 `````
 
-`````{py:class} SyncDataDiscard
-:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard
-```
-
-````{py:attribute} new_pkt_count
-:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.new_pkt_count
-:type: int
-:value: >
-   2
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.new_pkt_count
-```
-
-````
-
-````{py:attribute} discard_period
-:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.discard_period
-:type: int
-:value: >
-   3
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.discard_period
-```
-
-````
-
-````{py:attribute} tx_sn
-:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.tx_sn
-:type: int
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.tx_sn
-```
-
-````
-
-````{py:attribute} event_group_index
-:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.event_group_index
-:type: int
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.event_group_index
-```
-
-````
-
-````{py:attribute} payload_count
-:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.payload_count
-:type: int
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.payload_count
-```
-
-````
-
-````{py:attribute} _last_ack
-:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard._last_ack
-:type: bool | None
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard._last_ack
-```
-
-````
-
-````{py:property} local_baseline
-:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.local_baseline
-:type: int
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.local_baseline
-```
-
-````
-
-````{py:method} on_ack() -> None
-:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.on_ack
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.on_ack
-```
-
-````
-
-````{py:method} on_nack_or_timeout() -> None
-:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.on_nack_or_timeout
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.on_nack_or_timeout
-```
-
-````
-
-````{py:method} on_event_group_boundary() -> None
-:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.on_event_group_boundary
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.on_event_group_boundary
-```
-
-````
-
-````{py:method} is_discarded(payload_id: int) -> bool
-:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.is_discarded
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.is_discarded
-```
-
-````
-
-````{py:method} should_active_discard(max_retransmit: int) -> bool
-:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.should_active_discard
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.should_active_discard
-```
-
-````
-
-````{py:method} active_discard() -> None
-:canonical: nearlink_sdr.phy.data_link.SyncDataDiscard.active_discard
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.SyncDataDiscard.active_discard
-```
-
-````
-
-`````
-
 `````{py:class} SyncFlowControl
 :canonical: nearlink_sdr.phy.data_link.SyncFlowControl
 
@@ -898,310 +1121,76 @@ Bases: {py:obj}`enum.IntEnum`
 
 `````
 
-`````{py:class} EventGroupSet
-:canonical: nearlink_sdr.phy.data_link.EventGroupSet
+`````{py:class} TransmissionMode()
+:canonical: nearlink_sdr.phy.data_link.TransmissionMode
 
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.EventGroupSet
-```
+Bases: {py:obj}`enum.IntEnum`
 
-````{py:attribute} event_group_count
-:canonical: nearlink_sdr.phy.data_link.EventGroupSet.event_group_count
-:type: int
-:value: >
-   1
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.EventGroupSet.event_group_count
-```
-
-````
-
-````{py:attribute} event_group_spacing_slots
-:canonical: nearlink_sdr.phy.data_link.EventGroupSet.event_group_spacing_slots
-:type: int
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.EventGroupSet.event_group_spacing_slots
-```
-
-````
-
-````{py:attribute} event_group_period_us
-:canonical: nearlink_sdr.phy.data_link.EventGroupSet.event_group_period_us
-:type: int
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.EventGroupSet.event_group_period_us
-```
-
-````
-
-````{py:attribute} schedule_slot_us
-:canonical: nearlink_sdr.phy.data_link.EventGroupSet.schedule_slot_us
-:type: int
-:value: >
-   125
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.EventGroupSet.schedule_slot_us
-```
-
-````
-
-````{py:method} event_group_offsets() -> list[int]
-:canonical: nearlink_sdr.phy.data_link.EventGroupSet.event_group_offsets
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.EventGroupSet.event_group_offsets
-```
-
-````
-
-````{py:method} set_duration_us() -> int
-:canonical: nearlink_sdr.phy.data_link.EventGroupSet.set_duration_us
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.EventGroupSet.set_duration_us
-```
-
-````
-
-````{py:method} validate() -> bool
-:canonical: nearlink_sdr.phy.data_link.EventGroupSet.validate
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.EventGroupSet.validate
-```
-
-````
-
-`````
-
-`````{py:class} PeriodicServiceAdaptor
-:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor
-```
-
-````{py:attribute} sdu_max
-:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sdu_max
-:type: int
-:value: >
-   256
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sdu_max
-```
-
-````
-
-````{py:attribute} pdu_max
-:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.pdu_max
-:type: int
-:value: >
-   251
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.pdu_max
-```
-
-````
-
-````{py:attribute} event_group_period_us
-:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.event_group_period_us
-:type: int
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.event_group_period_us
-```
-
-````
-
-````{py:attribute} sdu_period_us
-:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sdu_period_us
-:type: int
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sdu_period_us
-```
-
-````
-
-````{py:attribute} sync_ref_delay_us
-:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sync_ref_delay_us
-:type: int
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sync_ref_delay_us
-```
-
-````
-
-````{py:attribute} sync_anchor_delay_us
-:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sync_anchor_delay_us
-:type: int
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sync_anchor_delay_us
-```
-
-````
-
-````{py:attribute} discard_period
-:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.discard_period
-:type: int
-:value: >
-   3
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.discard_period
-```
-
-````
-
-````{py:property} segments_per_sdu
-:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.segments_per_sdu
-:type: int
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.segments_per_sdu
-```
-
-````
-
-````{py:property} sdus_per_event_group
-:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sdus_per_event_group
-:type: int
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.sdus_per_event_group
-```
-
-````
-
-````{py:property} frames_per_event_group
-:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.frames_per_event_group
-:type: int
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.frames_per_event_group
-```
-
-````
-
-````{py:method} segment_sdu(sdu: bytes) -> list[bytes]
-:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.segment_sdu
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.segment_sdu
-```
-
-````
-
-````{py:method} reassemble_sdu(pdus: list[bytes]) -> bytes
-:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.reassemble_sdu
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.reassemble_sdu
-```
-
-````
-
-````{py:method} tx_accept_time(event_group_start_us: int) -> int
-:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.tx_accept_time
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.tx_accept_time
-```
-
-````
-
-````{py:method} rx_deliver_time(event_group_start_us: int) -> int
-:canonical: nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.rx_deliver_time
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.PeriodicServiceAdaptor.rx_deliver_time
-```
-
-````
-
-`````
-
-`````{py:class} AperiodicFragment
-:canonical: nearlink_sdr.phy.data_link.AperiodicFragment
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.AperiodicFragment
-```
-
-````{py:attribute} is_first
-:canonical: nearlink_sdr.phy.data_link.AperiodicFragment.is_first
-:type: bool
-:value: >
-   False
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.AperiodicFragment.is_first
-```
-
-````
-
-````{py:attribute} is_last
-:canonical: nearlink_sdr.phy.data_link.AperiodicFragment.is_last
-:type: bool
-:value: >
-   False
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.AperiodicFragment.is_last
-```
-
-````
-
-````{py:attribute} time_offset_us
-:canonical: nearlink_sdr.phy.data_link.AperiodicFragment.time_offset_us
-:type: int
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.AperiodicFragment.time_offset_us
-```
-
-````
-
-````{py:attribute} data
-:canonical: nearlink_sdr.phy.data_link.AperiodicFragment.data
-:type: bytes
-:value: >
-   b''
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.AperiodicFragment.data
-```
-
-````
-
-`````
-
-`````{py:class} AperiodicServiceAdaptor(pdu_max: int = 251, header_size: int = 4)
-:canonical: nearlink_sdr.phy.data_link.AperiodicServiceAdaptor
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.AperiodicServiceAdaptor
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.TransmissionMode
 ```
 
 ```{rubric} Initialization
 ```
 
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.AperiodicServiceAdaptor.__init__
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.TransmissionMode.__init__
 ```
 
-````{py:method} fragment_sdu(sdu: bytes, time_offset_us: int = 0) -> list[nearlink_sdr.phy.data_link.AperiodicFragment]
-:canonical: nearlink_sdr.phy.data_link.AperiodicServiceAdaptor.fragment_sdu
+````{py:attribute} UNICAST
+:canonical: nearlink_sdr.phy.data_link.TransmissionMode.UNICAST
+:value: >
+   0
 
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.AperiodicServiceAdaptor.fragment_sdu
-```
-
-````
-
-````{py:method} reassemble_sdu(fragments: list[nearlink_sdr.phy.data_link.AperiodicFragment]) -> tuple[bytes, int]
-:canonical: nearlink_sdr.phy.data_link.AperiodicServiceAdaptor.reassemble_sdu
-
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.AperiodicServiceAdaptor.reassemble_sdu
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.TransmissionMode.UNICAST
 ```
 
 ````
 
-````{py:method} rx_deliver_time(event_group_start_us: int, sync_anchor_delay_us: int, discard_period: int, event_group_period_us: int, sdu_period_us: int, sdu_time_offset_us: int) -> int
-:canonical: nearlink_sdr.phy.data_link.AperiodicServiceAdaptor.rx_deliver_time
+````{py:attribute} MULTICAST
+:canonical: nearlink_sdr.phy.data_link.TransmissionMode.MULTICAST
+:value: >
+   1
 
-```{autodoc2-docstring} nearlink_sdr.phy.data_link.AperiodicServiceAdaptor.rx_deliver_time
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.TransmissionMode.MULTICAST
+```
+
+````
+
+````{py:attribute} BIDIRECTIONAL_MULTICAST
+:canonical: nearlink_sdr.phy.data_link.TransmissionMode.BIDIRECTIONAL_MULTICAST
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.TransmissionMode.BIDIRECTIONAL_MULTICAST
+```
+
+````
+
+````{py:attribute} FEEDBACK_MULTICAST
+:canonical: nearlink_sdr.phy.data_link.TransmissionMode.FEEDBACK_MULTICAST
+:value: >
+   3
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.TransmissionMode.FEEDBACK_MULTICAST
+```
+
+````
+
+````{py:attribute} BROADCAST_ASYNC
+:canonical: nearlink_sdr.phy.data_link.TransmissionMode.BROADCAST_ASYNC
+:value: >
+   4
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.TransmissionMode.BROADCAST_ASYNC
+```
+
+````
+
+````{py:attribute} BROADCAST_SYNC
+:canonical: nearlink_sdr.phy.data_link.TransmissionMode.BROADCAST_SYNC
+:value: >
+   5
+
+```{autodoc2-docstring} nearlink_sdr.phy.data_link.TransmissionMode.BROADCAST_SYNC
 ```
 
 ````

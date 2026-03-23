@@ -19,39 +19,17 @@
   - ```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.LoopbackResult
     :summary:
     ```
-* - {py:obj}`USRPSimResult <nearlink_sdr.sim.usrp_sim.USRPSimResult>`
-  - ```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult
-    :summary:
-    ```
 * - {py:obj}`USRPLoopbackSim <nearlink_sdr.sim.usrp_sim.USRPLoopbackSim>`
   - ```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPLoopbackSim
     :summary:
     ```
-````
-
-### Data
-
-````{list-table}
-:class: autosummary longtable
-:align: left
-
-* - {py:obj}`logger <nearlink_sdr.sim.usrp_sim.logger>`
-  - ```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.logger
+* - {py:obj}`USRPSimResult <nearlink_sdr.sim.usrp_sim.USRPSimResult>`
+  - ```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult
     :summary:
     ```
 ````
 
 ### API
-
-````{py:data} logger
-:canonical: nearlink_sdr.sim.usrp_sim.logger
-:value: >
-   'getLogger(...)'
-
-```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.logger
-```
-
-````
 
 `````{py:class} LoopbackResult
 :canonical: nearlink_sdr.sim.usrp_sim.LoopbackResult
@@ -121,78 +99,6 @@
    0.0
 
 ```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.LoopbackResult.snr_db
-```
-
-````
-
-`````
-
-`````{py:class} USRPSimResult
-:canonical: nearlink_sdr.sim.usrp_sim.USRPSimResult
-
-```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult
-```
-
-````{py:attribute} total_frames
-:canonical: nearlink_sdr.sim.usrp_sim.USRPSimResult.total_frames
-:type: int
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult.total_frames
-```
-
-````
-
-````{py:attribute} success_frames
-:canonical: nearlink_sdr.sim.usrp_sim.USRPSimResult.success_frames
-:type: int
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult.success_frames
-```
-
-````
-
-````{py:attribute} failed_frames
-:canonical: nearlink_sdr.sim.usrp_sim.USRPSimResult.failed_frames
-:type: int
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult.failed_frames
-```
-
-````
-
-````{py:attribute} avg_ber
-:canonical: nearlink_sdr.sim.usrp_sim.USRPSimResult.avg_ber
-:type: float
-:value: >
-   0.0
-
-```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult.avg_ber
-```
-
-````
-
-````{py:attribute} frame_results
-:canonical: nearlink_sdr.sim.usrp_sim.USRPSimResult.frame_results
-:type: list[nearlink_sdr.sim.usrp_sim.LoopbackResult]
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult.frame_results
-```
-
-````
-
-````{py:property} fer
-:canonical: nearlink_sdr.sim.usrp_sim.USRPSimResult.fer
-:type: float
-
-```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult.fer
 ```
 
 ````
@@ -273,6 +179,78 @@
 :type: nearlink_sdr.phy.usrp.SLETransceiver
 
 ```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.transceiver
+```
+
+````
+
+`````
+
+`````{py:class} USRPSimResult
+:canonical: nearlink_sdr.sim.usrp_sim.USRPSimResult
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult
+```
+
+````{py:attribute} total_frames
+:canonical: nearlink_sdr.sim.usrp_sim.USRPSimResult.total_frames
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult.total_frames
+```
+
+````
+
+````{py:attribute} success_frames
+:canonical: nearlink_sdr.sim.usrp_sim.USRPSimResult.success_frames
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult.success_frames
+```
+
+````
+
+````{py:attribute} failed_frames
+:canonical: nearlink_sdr.sim.usrp_sim.USRPSimResult.failed_frames
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult.failed_frames
+```
+
+````
+
+````{py:attribute} avg_ber
+:canonical: nearlink_sdr.sim.usrp_sim.USRPSimResult.avg_ber
+:type: float
+:value: >
+   0.0
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult.avg_ber
+```
+
+````
+
+````{py:attribute} frame_results
+:canonical: nearlink_sdr.sim.usrp_sim.USRPSimResult.frame_results
+:type: list[nearlink_sdr.sim.usrp_sim.LoopbackResult]
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult.frame_results
+```
+
+````
+
+````{py:property} fer
+:canonical: nearlink_sdr.sim.usrp_sim.USRPSimResult.fer
+:type: float
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult.fer
 ```
 
 ````

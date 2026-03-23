@@ -27,16 +27,12 @@
 :class: autosummary longtable
 :align: left
 
-* - {py:obj}`_extract_security_subseq <nearlink_sdr.phy.measurement._extract_security_subseq>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement._extract_security_subseq
+* - {py:obj}`antenna_pair_order_random <nearlink_sdr.phy.measurement.antenna_pair_order_random>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement.antenna_pair_order_random
     :summary:
     ```
-* - {py:obj}`_gen_signal1_type1 <nearlink_sdr.phy.measurement._gen_signal1_type1>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement._gen_signal1_type1
-    :summary:
-    ```
-* - {py:obj}`_gen_signal1_type2 <nearlink_sdr.phy.measurement._gen_signal1_type2>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement._gen_signal1_type2
+* - {py:obj}`antenna_pair_order_sequential <nearlink_sdr.phy.measurement.antenna_pair_order_sequential>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement.antenna_pair_order_sequential
     :summary:
     ```
 * - {py:obj}`measurement_signal_1 <nearlink_sdr.phy.measurement.measurement_signal_1>`
@@ -47,43 +43,9 @@
   - ```{autodoc2-docstring} nearlink_sdr.phy.measurement.measurement_signal_2
     :summary:
     ```
-* - {py:obj}`antenna_pair_order_sequential <nearlink_sdr.phy.measurement.antenna_pair_order_sequential>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement.antenna_pair_order_sequential
-    :summary:
-    ```
-* - {py:obj}`antenna_pair_order_random <nearlink_sdr.phy.measurement.antenna_pair_order_random>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement.antenna_pair_order_random
-    :summary:
-    ```
-````
-
-### Data
-
-````{list-table}
-:class: autosummary longtable
-:align: left
-
-* - {py:obj}`_VALID_N_MEASUR <nearlink_sdr.phy.measurement._VALID_N_MEASUR>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement._VALID_N_MEASUR
-    :summary:
-    ```
-* - {py:obj}`MULTITONE_PHASES <nearlink_sdr.phy.measurement.MULTITONE_PHASES>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.measurement.MULTITONE_PHASES
-    :summary:
-    ```
 ````
 
 ### API
-
-````{py:data} _VALID_N_MEASUR
-:canonical: nearlink_sdr.phy.measurement._VALID_N_MEASUR
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.phy.measurement._VALID_N_MEASUR
-```
-
-````
 
 `````{py:class} SecurityType()
 :canonical: nearlink_sdr.phy.measurement.SecurityType
@@ -141,49 +103,10 @@ Bases: {py:obj}`enum.IntEnum`
 
 `````
 
-````{py:function} _extract_security_subseq(security_seq: numpy.ndarray, is_tx: bool) -> numpy.ndarray
-:canonical: nearlink_sdr.phy.measurement._extract_security_subseq
+````{py:function} antenna_pair_order_random(m: int, n: int, seed: bytes, slot_number: int, k: int, kdf_type: int = 0) -> list[tuple[int, int]]
+:canonical: nearlink_sdr.phy.measurement.antenna_pair_order_random
 
-```{autodoc2-docstring} nearlink_sdr.phy.measurement._extract_security_subseq
-```
-````
-
-````{py:function} _gen_signal1_type1(sub_seq: numpy.ndarray, n_measur: int, n_disturb_max: int) -> numpy.ndarray
-:canonical: nearlink_sdr.phy.measurement._gen_signal1_type1
-
-```{autodoc2-docstring} nearlink_sdr.phy.measurement._gen_signal1_type1
-```
-````
-
-````{py:function} _gen_signal1_type2(sub_seq: numpy.ndarray, n_measur: int, n_disturb_max: int) -> numpy.ndarray
-:canonical: nearlink_sdr.phy.measurement._gen_signal1_type2
-
-```{autodoc2-docstring} nearlink_sdr.phy.measurement._gen_signal1_type2
-```
-````
-
-````{py:function} measurement_signal_1(n_measur: int, security_type: nearlink_sdr.phy.measurement.SecurityType, seed: bytes = b'\x00' * 16, slot_number: int = 0, is_tx: bool = True, n_disturb_max: int = 11, kdf_type: int = 0) -> numpy.ndarray
-:canonical: nearlink_sdr.phy.measurement.measurement_signal_1
-
-```{autodoc2-docstring} nearlink_sdr.phy.measurement.measurement_signal_1
-```
-````
-
-````{py:data} MULTITONE_PHASES
-:canonical: nearlink_sdr.phy.measurement.MULTITONE_PHASES
-:type: dict[int, dict[int, list[float]]]
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.phy.measurement.MULTITONE_PHASES
-```
-
-````
-
-````{py:function} measurement_signal_2(n_tones: int, bandwidth_mhz: int, duration_us: float, sample_rate: float, phase_set: int = 1) -> numpy.ndarray
-:canonical: nearlink_sdr.phy.measurement.measurement_signal_2
-
-```{autodoc2-docstring} nearlink_sdr.phy.measurement.measurement_signal_2
+```{autodoc2-docstring} nearlink_sdr.phy.measurement.antenna_pair_order_random
 ```
 ````
 
@@ -194,9 +117,16 @@ Bases: {py:obj}`enum.IntEnum`
 ```
 ````
 
-````{py:function} antenna_pair_order_random(m: int, n: int, seed: bytes, slot_number: int, k: int, kdf_type: int = 0) -> list[tuple[int, int]]
-:canonical: nearlink_sdr.phy.measurement.antenna_pair_order_random
+````{py:function} measurement_signal_1(n_measur: int, security_type: nearlink_sdr.phy.measurement.SecurityType, seed: bytes = b'\x00' * 16, slot_number: int = 0, is_tx: bool = True, n_disturb_max: int = 11, kdf_type: int = 0) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.measurement.measurement_signal_1
 
-```{autodoc2-docstring} nearlink_sdr.phy.measurement.antenna_pair_order_random
+```{autodoc2-docstring} nearlink_sdr.phy.measurement.measurement_signal_1
+```
+````
+
+````{py:function} measurement_signal_2(n_tones: int, bandwidth_mhz: int, duration_us: float, sample_rate: float, phase_set: int = 1) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.measurement.measurement_signal_2
+
+```{autodoc2-docstring} nearlink_sdr.phy.measurement.measurement_signal_2
 ```
 ````

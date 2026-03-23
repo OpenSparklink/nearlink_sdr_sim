@@ -15,205 +15,41 @@
 :class: autosummary longtable
 :align: left
 
-* - {py:obj}`Role <nearlink_sdr.mac.link_manager.Role>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Role
-    :summary:
-    ```
-* - {py:obj}`LinkState <nearlink_sdr.mac.link_manager.LinkState>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState
-    :summary:
-    ```
 * - {py:obj}`DisconnectReason <nearlink_sdr.mac.link_manager.DisconnectReason>`
   - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager.DisconnectReason
-    :summary:
-    ```
-* - {py:obj}`LinkParams <nearlink_sdr.mac.link_manager.LinkParams>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams
-    :summary:
-    ```
-* - {py:obj}`EventType <nearlink_sdr.mac.link_manager.EventType>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager.EventType
     :summary:
     ```
 * - {py:obj}`Event <nearlink_sdr.mac.link_manager.Event>`
   - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Event
     :summary:
     ```
-* - {py:obj}`LinkManagerCallback <nearlink_sdr.mac.link_manager.LinkManagerCallback>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback
+* - {py:obj}`EventType <nearlink_sdr.mac.link_manager.EventType>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager.EventType
     :summary:
     ```
 * - {py:obj}`LinkManager <nearlink_sdr.mac.link_manager.LinkManager>`
   - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager
     :summary:
     ```
-````
-
-### Data
-
-````{list-table}
-:class: autosummary longtable
-:align: left
-
-* - {py:obj}`log <nearlink_sdr.mac.link_manager.log>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager.log
+* - {py:obj}`LinkManagerCallback <nearlink_sdr.mac.link_manager.LinkManagerCallback>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback
     :summary:
     ```
-* - {py:obj}`_VALID_TRANSITIONS <nearlink_sdr.mac.link_manager._VALID_TRANSITIONS>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager._VALID_TRANSITIONS
+* - {py:obj}`LinkParams <nearlink_sdr.mac.link_manager.LinkParams>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams
     :summary:
     ```
-* - {py:obj}`_HandlerFunc <nearlink_sdr.mac.link_manager._HandlerFunc>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager._HandlerFunc
+* - {py:obj}`LinkState <nearlink_sdr.mac.link_manager.LinkState>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState
     :summary:
     ```
-* - {py:obj}`_HANDLERS <nearlink_sdr.mac.link_manager._HANDLERS>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager._HANDLERS
+* - {py:obj}`Role <nearlink_sdr.mac.link_manager.Role>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Role
     :summary:
     ```
 ````
 
 ### API
-
-````{py:data} log
-:canonical: nearlink_sdr.mac.link_manager.log
-:value: >
-   'getLogger(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.log
-```
-
-````
-
-`````{py:class} Role
-:canonical: nearlink_sdr.mac.link_manager.Role
-
-Bases: {py:obj}`enum.Enum`
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Role
-```
-
-````{py:attribute} NONE
-:canonical: nearlink_sdr.mac.link_manager.Role.NONE
-:value: >
-   'auto(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Role.NONE
-```
-
-````
-
-````{py:attribute} G_NODE
-:canonical: nearlink_sdr.mac.link_manager.Role.G_NODE
-:value: >
-   'auto(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Role.G_NODE
-```
-
-````
-
-````{py:attribute} T_NODE
-:canonical: nearlink_sdr.mac.link_manager.Role.T_NODE
-:value: >
-   'auto(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Role.T_NODE
-```
-
-````
-
-`````
-
-`````{py:class} LinkState
-:canonical: nearlink_sdr.mac.link_manager.LinkState
-
-Bases: {py:obj}`enum.Enum`
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState
-```
-
-````{py:attribute} IDLE
-:canonical: nearlink_sdr.mac.link_manager.LinkState.IDLE
-:value: >
-   'auto(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.IDLE
-```
-
-````
-
-````{py:attribute} BROADCASTING
-:canonical: nearlink_sdr.mac.link_manager.LinkState.BROADCASTING
-:value: >
-   'auto(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.BROADCASTING
-```
-
-````
-
-````{py:attribute} SCANNING
-:canonical: nearlink_sdr.mac.link_manager.LinkState.SCANNING
-:value: >
-   'auto(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.SCANNING
-```
-
-````
-
-````{py:attribute} ACCESSING
-:canonical: nearlink_sdr.mac.link_manager.LinkState.ACCESSING
-:value: >
-   'auto(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.ACCESSING
-```
-
-````
-
-````{py:attribute} CONNECTED
-:canonical: nearlink_sdr.mac.link_manager.LinkState.CONNECTED
-:value: >
-   'auto(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.CONNECTED
-```
-
-````
-
-````{py:attribute} PAIRING
-:canonical: nearlink_sdr.mac.link_manager.LinkState.PAIRING
-:value: >
-   'auto(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.PAIRING
-```
-
-````
-
-````{py:attribute} DORMANT
-:canonical: nearlink_sdr.mac.link_manager.LinkState.DORMANT
-:value: >
-   'auto(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.DORMANT
-```
-
-````
-
-````{py:attribute} DISCONNECTED
-:canonical: nearlink_sdr.mac.link_manager.LinkState.DISCONNECTED
-:value: >
-   'auto(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.DISCONNECTED
-```
-
-````
-
-`````
 
 `````{py:class} DisconnectReason
 :canonical: nearlink_sdr.mac.link_manager.DisconnectReason
@@ -265,96 +101,30 @@ Bases: {py:obj}`enum.Enum`
 
 `````
 
-`````{py:class} LinkParams
-:canonical: nearlink_sdr.mac.link_manager.LinkParams
+`````{py:class} Event
+:canonical: nearlink_sdr.mac.link_manager.Event
 
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Event
 ```
 
-````{py:attribute} tx_rx_interval
-:canonical: nearlink_sdr.mac.link_manager.LinkParams.tx_rx_interval
-:type: int
+````{py:attribute} type
+:canonical: nearlink_sdr.mac.link_manager.Event.type
+:type: nearlink_sdr.mac.link_manager.EventType
 :value: >
-   20
+   None
 
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.tx_rx_interval
-```
-
-````
-
-````{py:attribute} tx_max_octets
-:canonical: nearlink_sdr.mac.link_manager.LinkParams.tx_max_octets
-:type: int
-:value: >
-   27
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.tx_max_octets
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Event.type
 ```
 
 ````
 
-````{py:attribute} rx_max_octets
-:canonical: nearlink_sdr.mac.link_manager.LinkParams.rx_max_octets
-:type: int
+````{py:attribute} data
+:canonical: nearlink_sdr.mac.link_manager.Event.data
+:type: typing.Any
 :value: >
-   27
+   None
 
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.rx_max_octets
-```
-
-````
-
-````{py:attribute} channel_table
-:canonical: nearlink_sdr.mac.link_manager.LinkParams.channel_table
-:type: bytes
-:value: >
-   b''
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.channel_table
-```
-
-````
-
-````{py:attribute} frame_type
-:canonical: nearlink_sdr.mac.link_manager.LinkParams.frame_type
-:type: int
-:value: >
-   2
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.frame_type
-```
-
-````
-
-````{py:attribute} bandwidth
-:canonical: nearlink_sdr.mac.link_manager.LinkParams.bandwidth
-:type: int
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.bandwidth
-```
-
-````
-
-````{py:attribute} crc_type
-:canonical: nearlink_sdr.mac.link_manager.LinkParams.crc_type
-:type: int
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.crc_type
-```
-
-````
-
-````{py:attribute} supervision_timeout
-:canonical: nearlink_sdr.mac.link_manager.LinkParams.supervision_timeout
-:type: int
-:value: >
-   5000
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.supervision_timeout
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Event.data
 ```
 
 ````
@@ -561,115 +331,34 @@ Bases: {py:obj}`enum.Enum`
 
 `````
 
-`````{py:class} Event
-:canonical: nearlink_sdr.mac.link_manager.Event
+````{py:exception} InvalidState()
+:canonical: nearlink_sdr.mac.link_manager.InvalidState
 
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Event
+Bases: {py:obj}`Exception`
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.InvalidState
 ```
 
-````{py:attribute} type
-:canonical: nearlink_sdr.mac.link_manager.Event.type
-:type: nearlink_sdr.mac.link_manager.EventType
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Event.type
+```{rubric} Initialization
 ```
 
-````
-
-````{py:attribute} data
-:canonical: nearlink_sdr.mac.link_manager.Event.data
-:type: typing.Any
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Event.data
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.InvalidState.__init__
 ```
 
 ````
 
-`````
+````{py:exception} InvalidTransition()
+:canonical: nearlink_sdr.mac.link_manager.InvalidTransition
 
-`````{py:class} LinkManagerCallback
-:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback
+Bases: {py:obj}`Exception`
 
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.InvalidTransition
 ```
 
-````{py:method} on_state_changed(old: nearlink_sdr.mac.link_manager.LinkState, new: nearlink_sdr.mac.link_manager.LinkState) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_state_changed
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_state_changed
+```{rubric} Initialization
 ```
 
-````
-
-````{py:method} on_broadcast_frame(frame: nearlink_sdr.mac.broadcast.BroadcastFrame) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_broadcast_frame
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_broadcast_frame
-```
-
-````
-
-````{py:method} on_access_accepted(role: nearlink_sdr.mac.link_manager.Role) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_access_accepted
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_access_accepted
-```
-
-````
-
-````{py:method} on_access_rejected() -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_access_rejected
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_access_rejected
-```
-
-````
-
-````{py:method} on_signaling(msg: typing.Any) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_signaling
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_signaling
-```
-
-````
-
-````{py:method} on_disconnected(reason: nearlink_sdr.mac.link_manager.DisconnectReason) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_disconnected
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_disconnected
-```
-
-````
-
-````{py:method} on_dormant() -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_dormant
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_dormant
-```
-
-````
-
-````{py:method} on_wakeup() -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_wakeup
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_wakeup
-```
-
-````
-
-`````
-
-````{py:data} _VALID_TRANSITIONS
-:canonical: nearlink_sdr.mac.link_manager._VALID_TRANSITIONS
-:type: dict[nearlink_sdr.mac.link_manager.LinkState, set[nearlink_sdr.mac.link_manager.LinkState]]
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager._VALID_TRANSITIONS
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.InvalidTransition.__init__
 ```
 
 ````
@@ -746,39 +435,6 @@ Bases: {py:obj}`enum.Enum`
 
 ````
 
-````{py:attribute} _slot_counter
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._slot_counter
-:type: int
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._slot_counter
-```
-
-````
-
-````{py:attribute} _last_rx_time
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._last_rx_time
-:type: float
-:value: >
-   0.0
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._last_rx_time
-```
-
-````
-
-````{py:attribute} _event_log
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._event_log
-:type: list[tuple[float, nearlink_sdr.mac.link_manager.EventType, nearlink_sdr.mac.link_manager.LinkState, nearlink_sdr.mac.link_manager.LinkState]]
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._event_log
-```
-
-````
-
 ````{py:method} process_event(event: nearlink_sdr.mac.link_manager.Event) -> None
 :canonical: nearlink_sdr.mac.link_manager.LinkManager.process_event
 
@@ -818,174 +474,6 @@ Bases: {py:obj}`enum.Enum`
 :type: list[tuple[float, nearlink_sdr.mac.link_manager.EventType, nearlink_sdr.mac.link_manager.LinkState, nearlink_sdr.mac.link_manager.LinkState]]
 
 ```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager.event_log
-```
-
-````
-
-````{py:method} _transition(new_state: nearlink_sdr.mac.link_manager.LinkState) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._transition
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._transition
-```
-
-````
-
-````{py:method} _handle_start_broadcast(event: nearlink_sdr.mac.link_manager.Event) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._handle_start_broadcast
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._handle_start_broadcast
-```
-
-````
-
-````{py:method} _handle_stop_broadcast(event: nearlink_sdr.mac.link_manager.Event) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._handle_stop_broadcast
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._handle_stop_broadcast
-```
-
-````
-
-````{py:method} _handle_start_scan(event: nearlink_sdr.mac.link_manager.Event) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._handle_start_scan
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._handle_start_scan
-```
-
-````
-
-````{py:method} _handle_stop_scan(event: nearlink_sdr.mac.link_manager.Event) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._handle_stop_scan
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._handle_stop_scan
-```
-
-````
-
-````{py:method} _handle_broadcast_received(event: nearlink_sdr.mac.link_manager.Event) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._handle_broadcast_received
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._handle_broadcast_received
-```
-
-````
-
-````{py:method} _handle_send_access_request(event: nearlink_sdr.mac.link_manager.Event) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._handle_send_access_request
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._handle_send_access_request
-```
-
-````
-
-````{py:method} _handle_access_response_received(event: nearlink_sdr.mac.link_manager.Event) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._handle_access_response_received
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._handle_access_response_received
-```
-
-````
-
-````{py:method} _handle_access_request_received(event: nearlink_sdr.mac.link_manager.Event) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._handle_access_request_received
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._handle_access_request_received
-```
-
-````
-
-````{py:method} _handle_signaling_received(event: nearlink_sdr.mac.link_manager.Event) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._handle_signaling_received
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._handle_signaling_received
-```
-
-````
-
-````{py:method} _handle_signaling_send(event: nearlink_sdr.mac.link_manager.Event) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._handle_signaling_send
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._handle_signaling_send
-```
-
-````
-
-````{py:method} _handle_disconnect_request(event: nearlink_sdr.mac.link_manager.Event) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._handle_disconnect_request
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._handle_disconnect_request
-```
-
-````
-
-````{py:method} _handle_disconnect_received(event: nearlink_sdr.mac.link_manager.Event) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._handle_disconnect_received
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._handle_disconnect_received
-```
-
-````
-
-````{py:method} _handle_supervision_timeout(event: nearlink_sdr.mac.link_manager.Event) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._handle_supervision_timeout
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._handle_supervision_timeout
-```
-
-````
-
-````{py:method} _handle_start_pairing(event: nearlink_sdr.mac.link_manager.Event) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._handle_start_pairing
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._handle_start_pairing
-```
-
-````
-
-````{py:method} _handle_pairing_complete(event: nearlink_sdr.mac.link_manager.Event) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._handle_pairing_complete
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._handle_pairing_complete
-```
-
-````
-
-````{py:method} _handle_pairing_failed(event: nearlink_sdr.mac.link_manager.Event) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._handle_pairing_failed
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._handle_pairing_failed
-```
-
-````
-
-````{py:method} _handle_sleep_request(event: nearlink_sdr.mac.link_manager.Event) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._handle_sleep_request
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._handle_sleep_request
-```
-
-````
-
-````{py:method} _handle_wake_request(event: nearlink_sdr.mac.link_manager.Event) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._handle_wake_request
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._handle_wake_request
-```
-
-````
-
-````{py:method} _handle_wake_received(event: nearlink_sdr.mac.link_manager.Event) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._handle_wake_received
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._handle_wake_received
-```
-
-````
-
-````{py:method} _handle_dormant_disconnect(event: nearlink_sdr.mac.link_manager.Event) -> None
-:canonical: nearlink_sdr.mac.link_manager.LinkManager._handle_dormant_disconnect
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManager._handle_dormant_disconnect
 ```
 
 ````
@@ -1672,55 +1160,300 @@ Bases: {py:obj}`enum.Enum`
 
 `````
 
-````{py:exception} InvalidTransition()
-:canonical: nearlink_sdr.mac.link_manager.InvalidTransition
+`````{py:class} LinkManagerCallback
+:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback
 
-Bases: {py:obj}`Exception`
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.InvalidTransition
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback
 ```
 
-```{rubric} Initialization
-```
+````{py:method} on_state_changed(old: nearlink_sdr.mac.link_manager.LinkState, new: nearlink_sdr.mac.link_manager.LinkState) -> None
+:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_state_changed
 
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.InvalidTransition.__init__
-```
-
-````
-
-````{py:exception} InvalidState()
-:canonical: nearlink_sdr.mac.link_manager.InvalidState
-
-Bases: {py:obj}`Exception`
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.InvalidState
-```
-
-```{rubric} Initialization
-```
-
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager.InvalidState.__init__
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_state_changed
 ```
 
 ````
 
-````{py:data} _HandlerFunc
-:canonical: nearlink_sdr.mac.link_manager._HandlerFunc
+````{py:method} on_broadcast_frame(frame: nearlink_sdr.mac.broadcast.BroadcastFrame) -> None
+:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_broadcast_frame
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_broadcast_frame
+```
+
+````
+
+````{py:method} on_access_accepted(role: nearlink_sdr.mac.link_manager.Role) -> None
+:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_access_accepted
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_access_accepted
+```
+
+````
+
+````{py:method} on_access_rejected() -> None
+:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_access_rejected
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_access_rejected
+```
+
+````
+
+````{py:method} on_signaling(msg: typing.Any) -> None
+:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_signaling
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_signaling
+```
+
+````
+
+````{py:method} on_disconnected(reason: nearlink_sdr.mac.link_manager.DisconnectReason) -> None
+:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_disconnected
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_disconnected
+```
+
+````
+
+````{py:method} on_dormant() -> None
+:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_dormant
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_dormant
+```
+
+````
+
+````{py:method} on_wakeup() -> None
+:canonical: nearlink_sdr.mac.link_manager.LinkManagerCallback.on_wakeup
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkManagerCallback.on_wakeup
+```
+
+````
+
+`````
+
+`````{py:class} LinkParams
+:canonical: nearlink_sdr.mac.link_manager.LinkParams
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams
+```
+
+````{py:attribute} tx_rx_interval
+:canonical: nearlink_sdr.mac.link_manager.LinkParams.tx_rx_interval
+:type: int
 :value: >
-   'type(...)'
+   20
 
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager._HandlerFunc
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.tx_rx_interval
 ```
 
 ````
 
-````{py:data} _HANDLERS
-:canonical: nearlink_sdr.mac.link_manager._HANDLERS
-:type: dict[tuple[nearlink_sdr.mac.link_manager.LinkState, nearlink_sdr.mac.link_manager.EventType], nearlink_sdr.mac.link_manager._HandlerFunc]
+````{py:attribute} tx_max_octets
+:canonical: nearlink_sdr.mac.link_manager.LinkParams.tx_max_octets
+:type: int
 :value: >
-   None
+   27
 
-```{autodoc2-docstring} nearlink_sdr.mac.link_manager._HANDLERS
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.tx_max_octets
 ```
 
 ````
+
+````{py:attribute} rx_max_octets
+:canonical: nearlink_sdr.mac.link_manager.LinkParams.rx_max_octets
+:type: int
+:value: >
+   27
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.rx_max_octets
+```
+
+````
+
+````{py:attribute} channel_table
+:canonical: nearlink_sdr.mac.link_manager.LinkParams.channel_table
+:type: bytes
+:value: >
+   b''
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.channel_table
+```
+
+````
+
+````{py:attribute} frame_type
+:canonical: nearlink_sdr.mac.link_manager.LinkParams.frame_type
+:type: int
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.frame_type
+```
+
+````
+
+````{py:attribute} bandwidth
+:canonical: nearlink_sdr.mac.link_manager.LinkParams.bandwidth
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.bandwidth
+```
+
+````
+
+````{py:attribute} crc_type
+:canonical: nearlink_sdr.mac.link_manager.LinkParams.crc_type
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.crc_type
+```
+
+````
+
+````{py:attribute} supervision_timeout
+:canonical: nearlink_sdr.mac.link_manager.LinkParams.supervision_timeout
+:type: int
+:value: >
+   5000
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkParams.supervision_timeout
+```
+
+````
+
+`````
+
+`````{py:class} LinkState
+:canonical: nearlink_sdr.mac.link_manager.LinkState
+
+Bases: {py:obj}`enum.Enum`
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState
+```
+
+````{py:attribute} IDLE
+:canonical: nearlink_sdr.mac.link_manager.LinkState.IDLE
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.IDLE
+```
+
+````
+
+````{py:attribute} BROADCASTING
+:canonical: nearlink_sdr.mac.link_manager.LinkState.BROADCASTING
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.BROADCASTING
+```
+
+````
+
+````{py:attribute} SCANNING
+:canonical: nearlink_sdr.mac.link_manager.LinkState.SCANNING
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.SCANNING
+```
+
+````
+
+````{py:attribute} ACCESSING
+:canonical: nearlink_sdr.mac.link_manager.LinkState.ACCESSING
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.ACCESSING
+```
+
+````
+
+````{py:attribute} CONNECTED
+:canonical: nearlink_sdr.mac.link_manager.LinkState.CONNECTED
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.CONNECTED
+```
+
+````
+
+````{py:attribute} PAIRING
+:canonical: nearlink_sdr.mac.link_manager.LinkState.PAIRING
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.PAIRING
+```
+
+````
+
+````{py:attribute} DORMANT
+:canonical: nearlink_sdr.mac.link_manager.LinkState.DORMANT
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.DORMANT
+```
+
+````
+
+````{py:attribute} DISCONNECTED
+:canonical: nearlink_sdr.mac.link_manager.LinkState.DISCONNECTED
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.LinkState.DISCONNECTED
+```
+
+````
+
+`````
+
+`````{py:class} Role
+:canonical: nearlink_sdr.mac.link_manager.Role
+
+Bases: {py:obj}`enum.Enum`
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Role
+```
+
+````{py:attribute} NONE
+:canonical: nearlink_sdr.mac.link_manager.Role.NONE
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Role.NONE
+```
+
+````
+
+````{py:attribute} G_NODE
+:canonical: nearlink_sdr.mac.link_manager.Role.G_NODE
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Role.G_NODE
+```
+
+````
+
+````{py:attribute} T_NODE
+:canonical: nearlink_sdr.mac.link_manager.Role.T_NODE
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.link_manager.Role.T_NODE
+```
+
+````
+
+`````

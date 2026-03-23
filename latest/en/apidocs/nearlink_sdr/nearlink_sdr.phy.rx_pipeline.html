@@ -3,7 +3,7 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="nearlink_sdr.phy.uwb_pulse" href="nearlink_sdr.phy.uwb_pulse.html"><link rel="prev" title="nearlink_sdr.phy.preamble" href="nearlink_sdr.phy.preamble.html">
+<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="nearlink_sdr.phy.sync_sequence" href="nearlink_sdr.phy.sync_sequence.html"><link rel="prev" title="nearlink_sdr.phy.rf_compliance" href="nearlink_sdr.phy.rf_compliance.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
         <title>nearlink_sdr.phy.rx_pipeline - nearlink-sdr 1.0.8 documentation</title>
@@ -212,41 +212,39 @@
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../../reference/index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
 <li class="toctree-l2 current has-children"><a class="reference internal" href="nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
 <li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3 current has-children"><a class="reference internal" href="nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.demodulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.demodulator</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.modulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.modulator</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
@@ -255,20 +253,20 @@
 </ul>
 </li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
@@ -291,41 +289,39 @@
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
 <li class="toctree-l2 current has-children"><a class="reference internal" href="nearlink_sdr.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr</span></code></a><input aria-label="Toggle navigation of nearlink_sdr" checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
 <li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.common.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.common" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.bch.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.bch</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.code_block_seg.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.code_block_seg</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.crc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.crc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.m_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.m_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.mcs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.mcs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.polar.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.polar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.prbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.prbs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.common.scrambler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.common.scrambler</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3 current has-children"><a class="reference internal" href="nearlink_sdr.phy.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.phy" checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.demodulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.demodulator</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.modulator.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.modulator</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
-<li class="toctree-l4 current current-page"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.channel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.control_info.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.control_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.data_link.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.data_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.equalizer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.equalizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.frame</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.freq_hopping.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.freq_hopping</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.gfsk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.gfsk</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.mac_interface.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mac_interface</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.measurement_tx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.measurement_tx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.multitone.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.multitone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.pilot.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pilot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.preamble.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.psk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.psk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.rf_compliance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></a></li>
+<li class="toctree-l4 current current-page"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.sync_sequence.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.tx_pipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.usrp.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.usrp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_measurement_security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_measurement_security</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.phy.uwb_pulse.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.sim.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.sim</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.sim" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
@@ -334,20 +330,20 @@
 </ul>
 </li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="nearlink_sdr.mac.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac</span></code></a><input aria-label="Toggle navigation of nearlink_sdr.mac" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.crypto.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.crypto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_control</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.qos.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.qos</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.scheduler</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.broadcast.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.broadcast</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.frame.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.frame</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.security.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.power_control.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.power_control</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.link_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.link_manager</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.access.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.access</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.security_manager.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.security_manager</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.signaling.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.signaling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="nearlink_sdr.mac.smf_scheduler.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.mac.smf_scheduler</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="nearlink_sdr.node.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.node</span></code></a></li>
@@ -416,11 +412,11 @@
 <div class="table-wrapper autosummary longtable docutils container">
 <table class="autosummary longtable docutils align-left">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rx_pipeline.decode_payload" title="nearlink_sdr.phy.rx_pipeline.decode_payload"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decode_payload</span></code></a></p></td>
-<td><p>Payload decoding: descrambling → [Polar decoding] → CRC verification.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rx_pipeline.decode_head" title="nearlink_sdr.phy.rx_pipeline.decode_head"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decode_head</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rx_pipeline.decode_head" title="nearlink_sdr.phy.rx_pipeline.decode_head"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decode_head</span></code></a></p></td>
 <td><p>Header decoding: descramble → [Polar decode] → return control information bits.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rx_pipeline.decode_payload" title="nearlink_sdr.phy.rx_pipeline.decode_payload"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decode_payload</span></code></a></p></td>
+<td><p>Payload decoding: descrambling → [Polar decoding] → CRC verification.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rx_pipeline.frame_sync" title="nearlink_sdr.phy.rx_pipeline.frame_sync"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frame_sync</span></code></a></p></td>
 <td><p>Frame synchronization: cross-correlation peak search using the sync word.</p></td>
@@ -432,35 +428,8 @@
 </table>
 </div>
 </section>
-<section id="data">
-<h3>Data<a class="headerlink" href="#data" title="Link to this heading">¶</a></h3>
-<div class="table-wrapper autosummary longtable docutils container">
-<table class="autosummary longtable docutils align-left">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rx_pipeline._HEAD_CODED_LEN" title="nearlink_sdr.phy.rx_pipeline._HEAD_CODED_LEN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_HEAD_CODED_LEN</span></code></a></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.rx_pipeline._MOD_STR" title="nearlink_sdr.phy.rx_pipeline._MOD_STR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_MOD_STR</span></code></a></p></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
 <section id="api">
 <h3>API<a class="headerlink" href="#api" title="Link to this heading">¶</a></h3>
-<dl class="py data">
-<dt class="sig sig-object py" id="nearlink_sdr.phy.rx_pipeline._HEAD_CODED_LEN">
-<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rx_pipeline.</span></span><span class="sig-name descname"><span class="pre">_HEAD_CODED_LEN</span></span><a class="headerlink" href="#nearlink_sdr.phy.rx_pipeline._HEAD_CODED_LEN" title="Link to this definition">¶</a></dt>
-<dd><p>None</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="nearlink_sdr.phy.rx_pipeline._MOD_STR">
-<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rx_pipeline.</span></span><span class="sig-name descname"><span class="pre">_MOD_STR</span></span><a class="headerlink" href="#nearlink_sdr.phy.rx_pipeline._MOD_STR" title="Link to this definition">¶</a></dt>
-<dd><p>None</p>
-</dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rx_pipeline.RxResult">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rx_pipeline.</span></span><span class="sig-name descname"><span class="pre">RxResult</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rx_pipeline.html#RxResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rx_pipeline.RxResult" title="Link to this definition">¶</a></dt>
@@ -492,23 +461,23 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="nearlink_sdr.phy.rx_pipeline.decode_payload">
-<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rx_pipeline.</span></span><span class="sig-name descname"><span class="pre">decode_payload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scrambled_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html#nearlink_sdr.phy.tx_pipeline.TxConfig" title="nearlink_sdr.phy.tx_pipeline.TxConfig"><span class="pre">nearlink_sdr.phy.tx_pipeline.TxConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_info_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rx_pipeline.html#decode_payload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rx_pipeline.decode_payload" title="Link to this definition">¶</a></dt>
-<dd><p>Payload decoding: descrambling → [Polar decoding] → CRC verification.</p>
-<p class="rubric" id="id7">Parameters</p>
-<p>scrambled_bits : Scrambled payload bits (txPyLdW). cfg : Transmit/receive configuration. n_info_bits : Original information bit count (data_bytes * 8, excluding CRC).</p>
-<p class="rubric" id="id8">Returns</p>
-<p>(data_bits, crc_ok) : Original data bits and CRC check result.</p>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rx_pipeline.decode_head">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rx_pipeline.</span></span><span class="sig-name descname"><span class="pre">decode_head</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scrambled_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html#nearlink_sdr.phy.tx_pipeline.TxConfig" title="nearlink_sdr.phy.tx_pipeline.TxConfig"><span class="pre">nearlink_sdr.phy.tx_pipeline.TxConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rx_pipeline.html#decode_head"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rx_pipeline.decode_head" title="Link to this definition">¶</a></dt>
 <dd><p>Header decoding: descramble → [Polar decode] → return control information bits.</p>
-<p class="rubric" id="id9">Parameters</p>
+<p class="rubric" id="id7">Parameters</p>
 <p>scrambled_bits : Scrambled header bits (txHeadW). cfg : Transmit/receive configuration.</p>
-<p class="rubric" id="id10">Returns</p>
+<p class="rubric" id="id8">Returns</p>
 <p>(ctrl_bits, crc12_ok) : Control information + CRC12 bits, CRC12 check result.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nearlink_sdr.phy.rx_pipeline.decode_payload">
+<span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rx_pipeline.</span></span><span class="sig-name descname"><span class="pre">decode_payload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scrambled_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html#nearlink_sdr.phy.tx_pipeline.TxConfig" title="nearlink_sdr.phy.tx_pipeline.TxConfig"><span class="pre">nearlink_sdr.phy.tx_pipeline.TxConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_info_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rx_pipeline.html#decode_payload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rx_pipeline.decode_payload" title="Link to this definition">¶</a></dt>
+<dd><p>Payload decoding: descrambling → [Polar decoding] → CRC verification.</p>
+<p class="rubric" id="id9">Parameters</p>
+<p>scrambled_bits : Scrambled payload bits (txPyLdW). cfg : Transmit/receive configuration. n_info_bits : Original information bit count (data_bytes * 8, excluding CRC).</p>
+<p class="rubric" id="id10">Returns</p>
+<p>(data_bits, crc_ok) : Original data bits and CRC check result.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -540,23 +509,23 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="nearlink_sdr.phy.uwb_pulse.html">
+          <a class="next-page" href="nearlink_sdr.phy.sync_sequence.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.uwb_pulse</span></code></div>
+                <div class="title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sync_sequence</span></code></div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="nearlink_sdr.phy.preamble.html">
+          <a class="prev-page" href="nearlink_sdr.phy.rf_compliance.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.preamble</span></code></div>
+                <div class="title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.rf_compliance</span></code></div>
                 
               </div>
             </a>
@@ -597,10 +566,7 @@
 <li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 <li><a class="reference internal" href="#functions">Functions</a></li>
-<li><a class="reference internal" href="#data">Data</a></li>
 <li><a class="reference internal" href="#api">API</a><ul>
-<li><a class="reference internal" href="#nearlink_sdr.phy.rx_pipeline._HEAD_CODED_LEN"><code class="docutils literal notranslate"><span class="pre">_HEAD_CODED_LEN</span></code></a></li>
-<li><a class="reference internal" href="#nearlink_sdr.phy.rx_pipeline._MOD_STR"><code class="docutils literal notranslate"><span class="pre">_MOD_STR</span></code></a></li>
 <li><a class="reference internal" href="#nearlink_sdr.phy.rx_pipeline.RxResult"><code class="docutils literal notranslate"><span class="pre">RxResult</span></code></a><ul>
 <li><a class="reference internal" href="#nearlink_sdr.phy.rx_pipeline.RxResult.data_bits"><code class="docutils literal notranslate"><span class="pre">RxResult.data_bits</span></code></a></li>
 <li><a class="reference internal" href="#nearlink_sdr.phy.rx_pipeline.RxResult.ctrl_bits"><code class="docutils literal notranslate"><span class="pre">RxResult.ctrl_bits</span></code></a></li>
@@ -608,8 +574,8 @@
 <li><a class="reference internal" href="#nearlink_sdr.phy.rx_pipeline.RxResult.head_crc_ok"><code class="docutils literal notranslate"><span class="pre">RxResult.head_crc_ok</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#nearlink_sdr.phy.rx_pipeline.decode_payload"><code class="docutils literal notranslate"><span class="pre">decode_payload()</span></code></a></li>
 <li><a class="reference internal" href="#nearlink_sdr.phy.rx_pipeline.decode_head"><code class="docutils literal notranslate"><span class="pre">decode_head()</span></code></a></li>
+<li><a class="reference internal" href="#nearlink_sdr.phy.rx_pipeline.decode_payload"><code class="docutils literal notranslate"><span class="pre">decode_payload()</span></code></a></li>
 <li><a class="reference internal" href="#nearlink_sdr.phy.rx_pipeline.frame_sync"><code class="docutils literal notranslate"><span class="pre">frame_sync()</span></code></a></li>
 <li><a class="reference internal" href="#nearlink_sdr.phy.rx_pipeline.rx_chain"><code class="docutils literal notranslate"><span class="pre">rx_chain()</span></code></a></li>
 </ul>

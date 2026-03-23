@@ -15,48 +15,48 @@
 :class: autosummary longtable
 :align: left
 
-* - {py:obj}`FeedbackMode <nearlink_sdr.mac.qos.FeedbackMode>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.qos.FeedbackMode
-    :summary:
-    ```
-* - {py:obj}`LinkType <nearlink_sdr.mac.qos.LinkType>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.qos.LinkType
-    :summary:
-    ```
-* - {py:obj}`TxDecision <nearlink_sdr.mac.qos.TxDecision>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.qos.TxDecision
-    :summary:
-    ```
-* - {py:obj}`Priority <nearlink_sdr.mac.qos.Priority>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.qos.Priority
-    :summary:
-    ```
 * - {py:obj}`ArqState <nearlink_sdr.mac.qos.ArqState>`
   - ```{autodoc2-docstring} nearlink_sdr.mac.qos.ArqState
     :summary:
     ```
-* - {py:obj}`HarqController <nearlink_sdr.mac.qos.HarqController>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.qos.HarqController
+* - {py:obj}`FeedbackMode <nearlink_sdr.mac.qos.FeedbackMode>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.qos.FeedbackMode
     :summary:
     ```
 * - {py:obj}`FlowController <nearlink_sdr.mac.qos.FlowController>`
   - ```{autodoc2-docstring} nearlink_sdr.mac.qos.FlowController
     :summary:
     ```
+* - {py:obj}`HarqController <nearlink_sdr.mac.qos.HarqController>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.qos.HarqController
+    :summary:
+    ```
 * - {py:obj}`LinkQualityTracker <nearlink_sdr.mac.qos.LinkQualityTracker>`
   - ```{autodoc2-docstring} nearlink_sdr.mac.qos.LinkQualityTracker
     :summary:
     ```
-* - {py:obj}`TxQueueItem <nearlink_sdr.mac.qos.TxQueueItem>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueueItem
+* - {py:obj}`LinkType <nearlink_sdr.mac.qos.LinkType>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.qos.LinkType
+    :summary:
+    ```
+* - {py:obj}`Priority <nearlink_sdr.mac.qos.Priority>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.qos.Priority
+    :summary:
+    ```
+* - {py:obj}`QosManager <nearlink_sdr.mac.qos.QosManager>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.qos.QosManager
+    :summary:
+    ```
+* - {py:obj}`TxDecision <nearlink_sdr.mac.qos.TxDecision>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.qos.TxDecision
     :summary:
     ```
 * - {py:obj}`TxQueue <nearlink_sdr.mac.qos.TxQueue>`
   - ```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueue
     :summary:
     ```
-* - {py:obj}`QosManager <nearlink_sdr.mac.qos.QosManager>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.qos.QosManager
+* - {py:obj}`TxQueueItem <nearlink_sdr.mac.qos.TxQueueItem>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueueItem
     :summary:
     ```
 ````
@@ -67,6 +67,10 @@
 :class: autosummary longtable
 :align: left
 
+* - {py:obj}`MAX_CBG <nearlink_sdr.mac.qos.MAX_CBG>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.qos.MAX_CBG
+    :summary:
+    ```
 * - {py:obj}`MAX_SN_FT1 <nearlink_sdr.mac.qos.MAX_SN_FT1>`
   - ```{autodoc2-docstring} nearlink_sdr.mac.qos.MAX_SN_FT1
     :summary:
@@ -79,13 +83,19 @@
   - ```{autodoc2-docstring} nearlink_sdr.mac.qos.MAX_SN_FT34
     :summary:
     ```
-* - {py:obj}`MAX_CBG <nearlink_sdr.mac.qos.MAX_CBG>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.qos.MAX_CBG
-    :summary:
-    ```
 ````
 
 ### API
+
+````{py:data} MAX_CBG
+:canonical: nearlink_sdr.mac.qos.MAX_CBG
+:value: >
+   8
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.MAX_CBG
+```
+
+````
 
 ````{py:data} MAX_SN_FT1
 :canonical: nearlink_sdr.mac.qos.MAX_SN_FT1
@@ -116,210 +126,6 @@
 ```
 
 ````
-
-````{py:data} MAX_CBG
-:canonical: nearlink_sdr.mac.qos.MAX_CBG
-:value: >
-   8
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.MAX_CBG
-```
-
-````
-
-`````{py:class} FeedbackMode()
-:canonical: nearlink_sdr.mac.qos.FeedbackMode
-
-Bases: {py:obj}`enum.IntEnum`
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.FeedbackMode
-```
-
-```{rubric} Initialization
-```
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.FeedbackMode.__init__
-```
-
-````{py:attribute} TB
-:canonical: nearlink_sdr.mac.qos.FeedbackMode.TB
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.FeedbackMode.TB
-```
-
-````
-
-````{py:attribute} CBG
-:canonical: nearlink_sdr.mac.qos.FeedbackMode.CBG
-:value: >
-   1
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.FeedbackMode.CBG
-```
-
-````
-
-`````
-
-`````{py:class} LinkType()
-:canonical: nearlink_sdr.mac.qos.LinkType
-
-Bases: {py:obj}`enum.IntEnum`
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.LinkType
-```
-
-```{rubric} Initialization
-```
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.LinkType.__init__
-```
-
-````{py:attribute} ASYNC
-:canonical: nearlink_sdr.mac.qos.LinkType.ASYNC
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.LinkType.ASYNC
-```
-
-````
-
-````{py:attribute} SYNC
-:canonical: nearlink_sdr.mac.qos.LinkType.SYNC
-:value: >
-   1
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.LinkType.SYNC
-```
-
-````
-
-`````
-
-`````{py:class} TxDecision()
-:canonical: nearlink_sdr.mac.qos.TxDecision
-
-Bases: {py:obj}`enum.IntEnum`
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.TxDecision
-```
-
-```{rubric} Initialization
-```
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.TxDecision.__init__
-```
-
-````{py:attribute} NEW_DATA
-:canonical: nearlink_sdr.mac.qos.TxDecision.NEW_DATA
-:value: >
-   'auto(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.TxDecision.NEW_DATA
-```
-
-````
-
-````{py:attribute} RETRANSMIT
-:canonical: nearlink_sdr.mac.qos.TxDecision.RETRANSMIT
-:value: >
-   'auto(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.TxDecision.RETRANSMIT
-```
-
-````
-
-````{py:attribute} RETRANSMIT_CBG
-:canonical: nearlink_sdr.mac.qos.TxDecision.RETRANSMIT_CBG
-:value: >
-   'auto(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.TxDecision.RETRANSMIT_CBG
-```
-
-````
-
-````{py:attribute} EMPTY
-:canonical: nearlink_sdr.mac.qos.TxDecision.EMPTY
-:value: >
-   'auto(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.TxDecision.EMPTY
-```
-
-````
-
-`````
-
-`````{py:class} Priority()
-:canonical: nearlink_sdr.mac.qos.Priority
-
-Bases: {py:obj}`enum.IntEnum`
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.Priority
-```
-
-```{rubric} Initialization
-```
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.Priority.__init__
-```
-
-````{py:attribute} CONTROL
-:canonical: nearlink_sdr.mac.qos.Priority.CONTROL
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.Priority.CONTROL
-```
-
-````
-
-````{py:attribute} REALTIME
-:canonical: nearlink_sdr.mac.qos.Priority.REALTIME
-:value: >
-   1
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.Priority.REALTIME
-```
-
-````
-
-````{py:attribute} HIGH
-:canonical: nearlink_sdr.mac.qos.Priority.HIGH
-:value: >
-   2
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.Priority.HIGH
-```
-
-````
-
-````{py:attribute} NORMAL
-:canonical: nearlink_sdr.mac.qos.Priority.NORMAL
-:value: >
-   3
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.Priority.NORMAL
-```
-
-````
-
-````{py:attribute} LOW
-:canonical: nearlink_sdr.mac.qos.Priority.LOW
-:value: >
-   4
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.Priority.LOW
-```
-
-````
-
-`````
 
 `````{py:class} ArqState
 :canonical: nearlink_sdr.mac.qos.ArqState
@@ -404,17 +210,6 @@ Bases: {py:obj}`enum.IntEnum`
 
 ````
 
-````{py:attribute} _last_tx_data
-:canonical: nearlink_sdr.mac.qos.ArqState._last_tx_data
-:type: bytes
-:value: >
-   b''
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.ArqState._last_tx_data
-```
-
-````
-
 ````{py:property} sn_modulus
 :canonical: nearlink_sdr.mac.qos.ArqState.sn_modulus
 :type: int
@@ -464,10 +259,111 @@ Bases: {py:obj}`enum.IntEnum`
 
 ````
 
-````{py:method} _discard_pending() -> None
-:canonical: nearlink_sdr.mac.qos.ArqState._discard_pending
+`````
 
-```{autodoc2-docstring} nearlink_sdr.mac.qos.ArqState._discard_pending
+`````{py:class} FeedbackMode()
+:canonical: nearlink_sdr.mac.qos.FeedbackMode
+
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.FeedbackMode
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.FeedbackMode.__init__
+```
+
+````{py:attribute} TB
+:canonical: nearlink_sdr.mac.qos.FeedbackMode.TB
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.FeedbackMode.TB
+```
+
+````
+
+````{py:attribute} CBG
+:canonical: nearlink_sdr.mac.qos.FeedbackMode.CBG
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.FeedbackMode.CBG
+```
+
+````
+
+`````
+
+`````{py:class} FlowController
+:canonical: nearlink_sdr.mac.qos.FlowController
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.FlowController
+```
+
+````{py:attribute} buffer_high_watermark
+:canonical: nearlink_sdr.mac.qos.FlowController.buffer_high_watermark
+:type: int
+:value: >
+   16
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.FlowController.buffer_high_watermark
+```
+
+````
+
+````{py:attribute} buffer_low_watermark
+:canonical: nearlink_sdr.mac.qos.FlowController.buffer_low_watermark
+:type: int
+:value: >
+   4
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.FlowController.buffer_low_watermark
+```
+
+````
+
+````{py:method} enqueue(count: int = 1) -> None
+:canonical: nearlink_sdr.mac.qos.FlowController.enqueue
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.FlowController.enqueue
+```
+
+````
+
+````{py:method} dequeue(count: int = 1) -> None
+:canonical: nearlink_sdr.mac.qos.FlowController.dequeue
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.FlowController.dequeue
+```
+
+````
+
+````{py:property} flow_ctrl_bit
+:canonical: nearlink_sdr.mac.qos.FlowController.flow_ctrl_bit
+:type: int
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.FlowController.flow_ctrl_bit
+```
+
+````
+
+````{py:property} is_paused
+:canonical: nearlink_sdr.mac.qos.FlowController.is_paused
+:type: bool
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.FlowController.is_paused
+```
+
+````
+
+````{py:property} buffer_count
+:canonical: nearlink_sdr.mac.qos.FlowController.buffer_count
+:type: int
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.FlowController.buffer_count
 ```
 
 ````
@@ -498,25 +394,6 @@ Bases: {py:obj}`enum.IntEnum`
    1
 
 ```{autodoc2-docstring} nearlink_sdr.mac.qos.HarqController.n_cbg
-```
-
-````
-
-````{py:attribute} _cbg_status
-:canonical: nearlink_sdr.mac.qos.HarqController._cbg_status
-:type: list[bool]
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.HarqController._cbg_status
-```
-
-````
-
-````{py:method} __post_init__() -> None
-:canonical: nearlink_sdr.mac.qos.HarqController.__post_init__
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.HarqController.__post_init__
 ```
 
 ````
@@ -588,101 +465,6 @@ Bases: {py:obj}`enum.IntEnum`
 
 `````
 
-`````{py:class} FlowController
-:canonical: nearlink_sdr.mac.qos.FlowController
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.FlowController
-```
-
-````{py:attribute} buffer_high_watermark
-:canonical: nearlink_sdr.mac.qos.FlowController.buffer_high_watermark
-:type: int
-:value: >
-   16
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.FlowController.buffer_high_watermark
-```
-
-````
-
-````{py:attribute} buffer_low_watermark
-:canonical: nearlink_sdr.mac.qos.FlowController.buffer_low_watermark
-:type: int
-:value: >
-   4
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.FlowController.buffer_low_watermark
-```
-
-````
-
-````{py:attribute} _buffer_count
-:canonical: nearlink_sdr.mac.qos.FlowController._buffer_count
-:type: int
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.FlowController._buffer_count
-```
-
-````
-
-````{py:attribute} _paused
-:canonical: nearlink_sdr.mac.qos.FlowController._paused
-:type: bool
-:value: >
-   False
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.FlowController._paused
-```
-
-````
-
-````{py:method} enqueue(count: int = 1) -> None
-:canonical: nearlink_sdr.mac.qos.FlowController.enqueue
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.FlowController.enqueue
-```
-
-````
-
-````{py:method} dequeue(count: int = 1) -> None
-:canonical: nearlink_sdr.mac.qos.FlowController.dequeue
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.FlowController.dequeue
-```
-
-````
-
-````{py:property} flow_ctrl_bit
-:canonical: nearlink_sdr.mac.qos.FlowController.flow_ctrl_bit
-:type: int
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.FlowController.flow_ctrl_bit
-```
-
-````
-
-````{py:property} is_paused
-:canonical: nearlink_sdr.mac.qos.FlowController.is_paused
-:type: bool
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.FlowController.is_paused
-```
-
-````
-
-````{py:property} buffer_count
-:canonical: nearlink_sdr.mac.qos.FlowController.buffer_count
-:type: int
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.FlowController.buffer_count
-```
-
-````
-
-`````
-
 `````{py:class} LinkQualityTracker
 :canonical: nearlink_sdr.mac.qos.LinkQualityTracker
 
@@ -718,28 +500,6 @@ Bases: {py:obj}`enum.IntEnum`
    0.1
 
 ```{autodoc2-docstring} nearlink_sdr.mac.qos.LinkQualityTracker.fer_target_high
-```
-
-````
-
-````{py:attribute} _history
-:canonical: nearlink_sdr.mac.qos.LinkQualityTracker._history
-:type: collections.deque[bool]
-:value: >
-   'field(...)'
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.LinkQualityTracker._history
-```
-
-````
-
-````{py:attribute} _current_mcs
-:canonical: nearlink_sdr.mac.qos.LinkQualityTracker._current_mcs
-:type: int
-:value: >
-   7
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.LinkQualityTracker._current_mcs
 ```
 
 ````
@@ -814,144 +574,102 @@ Bases: {py:obj}`enum.IntEnum`
 
 `````
 
-`````{py:class} TxQueueItem
-:canonical: nearlink_sdr.mac.qos.TxQueueItem
+`````{py:class} LinkType()
+:canonical: nearlink_sdr.mac.qos.LinkType
 
-```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueueItem
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.LinkType
 ```
 
-````{py:attribute} priority
-:canonical: nearlink_sdr.mac.qos.TxQueueItem.priority
-:type: nearlink_sdr.mac.qos.Priority
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueueItem.priority
+```{rubric} Initialization
 ```
 
-````
-
-````{py:attribute} data
-:canonical: nearlink_sdr.mac.qos.TxQueueItem.data
-:type: bytes
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueueItem.data
+```{autodoc2-docstring} nearlink_sdr.mac.qos.LinkType.__init__
 ```
 
-````
-
-````{py:attribute} segment_type
-:canonical: nearlink_sdr.mac.qos.TxQueueItem.segment_type
-:type: int
+````{py:attribute} ASYNC
+:canonical: nearlink_sdr.mac.qos.LinkType.ASYNC
 :value: >
    0
 
-```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueueItem.segment_type
+```{autodoc2-docstring} nearlink_sdr.mac.qos.LinkType.ASYNC
 ```
 
 ````
 
-````{py:attribute} retransmit
-:canonical: nearlink_sdr.mac.qos.TxQueueItem.retransmit
-:type: bool
+````{py:attribute} SYNC
+:canonical: nearlink_sdr.mac.qos.LinkType.SYNC
 :value: >
-   False
+   1
 
-```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueueItem.retransmit
-```
-
-````
-
-````{py:attribute} attempt
-:canonical: nearlink_sdr.mac.qos.TxQueueItem.attempt
-:type: int
-:value: >
-   0
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueueItem.attempt
+```{autodoc2-docstring} nearlink_sdr.mac.qos.LinkType.SYNC
 ```
 
 ````
 
 `````
 
-`````{py:class} TxQueue(max_size: int = 64)
-:canonical: nearlink_sdr.mac.qos.TxQueue
+`````{py:class} Priority()
+:canonical: nearlink_sdr.mac.qos.Priority
 
-```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueue
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.Priority
 ```
 
 ```{rubric} Initialization
 ```
 
-```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueue.__init__
+```{autodoc2-docstring} nearlink_sdr.mac.qos.Priority.__init__
 ```
 
-````{py:method} push(item: nearlink_sdr.mac.qos.TxQueueItem) -> bool
-:canonical: nearlink_sdr.mac.qos.TxQueue.push
+````{py:attribute} CONTROL
+:canonical: nearlink_sdr.mac.qos.Priority.CONTROL
+:value: >
+   0
 
-```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueue.push
-```
-
-````
-
-````{py:method} pop() -> nearlink_sdr.mac.qos.TxQueueItem | None
-:canonical: nearlink_sdr.mac.qos.TxQueue.pop
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueue.pop
+```{autodoc2-docstring} nearlink_sdr.mac.qos.Priority.CONTROL
 ```
 
 ````
 
-````{py:method} peek() -> nearlink_sdr.mac.qos.TxQueueItem | None
-:canonical: nearlink_sdr.mac.qos.TxQueue.peek
+````{py:attribute} REALTIME
+:canonical: nearlink_sdr.mac.qos.Priority.REALTIME
+:value: >
+   1
 
-```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueue.peek
+```{autodoc2-docstring} nearlink_sdr.mac.qos.Priority.REALTIME
 ```
 
 ````
 
-````{py:property} size
-:canonical: nearlink_sdr.mac.qos.TxQueue.size
-:type: int
+````{py:attribute} HIGH
+:canonical: nearlink_sdr.mac.qos.Priority.HIGH
+:value: >
+   2
 
-```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueue.size
+```{autodoc2-docstring} nearlink_sdr.mac.qos.Priority.HIGH
 ```
 
 ````
 
-````{py:property} is_empty
-:canonical: nearlink_sdr.mac.qos.TxQueue.is_empty
-:type: bool
+````{py:attribute} NORMAL
+:canonical: nearlink_sdr.mac.qos.Priority.NORMAL
+:value: >
+   3
 
-```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueue.is_empty
+```{autodoc2-docstring} nearlink_sdr.mac.qos.Priority.NORMAL
 ```
 
 ````
 
-````{py:property} is_full
-:canonical: nearlink_sdr.mac.qos.TxQueue.is_full
-:type: bool
+````{py:attribute} LOW
+:canonical: nearlink_sdr.mac.qos.Priority.LOW
+:value: >
+   4
 
-```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueue.is_full
-```
-
-````
-
-````{py:method} count_by_priority(priority: nearlink_sdr.mac.qos.Priority) -> int
-:canonical: nearlink_sdr.mac.qos.TxQueue.count_by_priority
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueue.count_by_priority
-```
-
-````
-
-````{py:method} clear() -> None
-:canonical: nearlink_sdr.mac.qos.TxQueue.clear
-
-```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueue.clear
+```{autodoc2-docstring} nearlink_sdr.mac.qos.Priority.LOW
 ```
 
 ````
@@ -1047,6 +765,206 @@ Bases: {py:obj}`enum.IntEnum`
 :canonical: nearlink_sdr.mac.qos.QosManager.get_ctrl_fields
 
 ```{autodoc2-docstring} nearlink_sdr.mac.qos.QosManager.get_ctrl_fields
+```
+
+````
+
+`````
+
+`````{py:class} TxDecision()
+:canonical: nearlink_sdr.mac.qos.TxDecision
+
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.TxDecision
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.TxDecision.__init__
+```
+
+````{py:attribute} NEW_DATA
+:canonical: nearlink_sdr.mac.qos.TxDecision.NEW_DATA
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.TxDecision.NEW_DATA
+```
+
+````
+
+````{py:attribute} RETRANSMIT
+:canonical: nearlink_sdr.mac.qos.TxDecision.RETRANSMIT
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.TxDecision.RETRANSMIT
+```
+
+````
+
+````{py:attribute} RETRANSMIT_CBG
+:canonical: nearlink_sdr.mac.qos.TxDecision.RETRANSMIT_CBG
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.TxDecision.RETRANSMIT_CBG
+```
+
+````
+
+````{py:attribute} EMPTY
+:canonical: nearlink_sdr.mac.qos.TxDecision.EMPTY
+:value: >
+   'auto(...)'
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.TxDecision.EMPTY
+```
+
+````
+
+`````
+
+`````{py:class} TxQueue(max_size: int = 64)
+:canonical: nearlink_sdr.mac.qos.TxQueue
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueue
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueue.__init__
+```
+
+````{py:method} push(item: nearlink_sdr.mac.qos.TxQueueItem) -> bool
+:canonical: nearlink_sdr.mac.qos.TxQueue.push
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueue.push
+```
+
+````
+
+````{py:method} pop() -> nearlink_sdr.mac.qos.TxQueueItem | None
+:canonical: nearlink_sdr.mac.qos.TxQueue.pop
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueue.pop
+```
+
+````
+
+````{py:method} peek() -> nearlink_sdr.mac.qos.TxQueueItem | None
+:canonical: nearlink_sdr.mac.qos.TxQueue.peek
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueue.peek
+```
+
+````
+
+````{py:property} size
+:canonical: nearlink_sdr.mac.qos.TxQueue.size
+:type: int
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueue.size
+```
+
+````
+
+````{py:property} is_empty
+:canonical: nearlink_sdr.mac.qos.TxQueue.is_empty
+:type: bool
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueue.is_empty
+```
+
+````
+
+````{py:property} is_full
+:canonical: nearlink_sdr.mac.qos.TxQueue.is_full
+:type: bool
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueue.is_full
+```
+
+````
+
+````{py:method} count_by_priority(priority: nearlink_sdr.mac.qos.Priority) -> int
+:canonical: nearlink_sdr.mac.qos.TxQueue.count_by_priority
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueue.count_by_priority
+```
+
+````
+
+````{py:method} clear() -> None
+:canonical: nearlink_sdr.mac.qos.TxQueue.clear
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueue.clear
+```
+
+````
+
+`````
+
+`````{py:class} TxQueueItem
+:canonical: nearlink_sdr.mac.qos.TxQueueItem
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueueItem
+```
+
+````{py:attribute} priority
+:canonical: nearlink_sdr.mac.qos.TxQueueItem.priority
+:type: nearlink_sdr.mac.qos.Priority
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueueItem.priority
+```
+
+````
+
+````{py:attribute} data
+:canonical: nearlink_sdr.mac.qos.TxQueueItem.data
+:type: bytes
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueueItem.data
+```
+
+````
+
+````{py:attribute} segment_type
+:canonical: nearlink_sdr.mac.qos.TxQueueItem.segment_type
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueueItem.segment_type
+```
+
+````
+
+````{py:attribute} retransmit
+:canonical: nearlink_sdr.mac.qos.TxQueueItem.retransmit
+:type: bool
+:value: >
+   False
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueueItem.retransmit
+```
+
+````
+
+````{py:attribute} attempt
+:canonical: nearlink_sdr.mac.qos.TxQueueItem.attempt
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.qos.TxQueueItem.attempt
 ```
 
 ````

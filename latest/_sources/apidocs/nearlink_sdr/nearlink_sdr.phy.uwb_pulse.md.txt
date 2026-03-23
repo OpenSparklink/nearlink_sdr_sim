@@ -27,16 +27,12 @@
 :class: autosummary longtable
 :align: left
 
-* - {py:obj}`_i0 <nearlink_sdr.phy.uwb_pulse._i0>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse._i0
+* - {py:obj}`chip_modulate <nearlink_sdr.phy.uwb_pulse.chip_modulate>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.chip_modulate
     :summary:
     ```
 * - {py:obj}`kaiser_pulse <nearlink_sdr.phy.uwb_pulse.kaiser_pulse>`
   - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.kaiser_pulse
-    :summary:
-    ```
-* - {py:obj}`chip_modulate <nearlink_sdr.phy.uwb_pulse.chip_modulate>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.chip_modulate
     :summary:
     ```
 * - {py:obj}`normalized_cross_correlation <nearlink_sdr.phy.uwb_pulse.normalized_cross_correlation>`
@@ -50,13 +46,6 @@
 ````
 
 ### API
-
-````{py:function} _i0(x: float) -> float
-:canonical: nearlink_sdr.phy.uwb_pulse._i0
-
-```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse._i0
-```
-````
 
 `````{py:class} UWBPulseConfig
 :canonical: nearlink_sdr.phy.uwb_pulse.UWBPulseConfig
@@ -166,17 +155,17 @@
 
 `````
 
-````{py:function} kaiser_pulse(cfg: nearlink_sdr.phy.uwb_pulse.UWBPulseConfig, num_samples: int | None = None) -> numpy.typing.NDArray[numpy.float64]
-:canonical: nearlink_sdr.phy.uwb_pulse.kaiser_pulse
-
-```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.kaiser_pulse
-```
-````
-
 ````{py:function} chip_modulate(chips: numpy.typing.NDArray[numpy.int8], cfg: nearlink_sdr.phy.uwb_pulse.UWBPulseConfig, fc_ghz: float) -> numpy.typing.NDArray[numpy.float64]
 :canonical: nearlink_sdr.phy.uwb_pulse.chip_modulate
 
 ```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.chip_modulate
+```
+````
+
+````{py:function} kaiser_pulse(cfg: nearlink_sdr.phy.uwb_pulse.UWBPulseConfig, num_samples: int | None = None) -> numpy.typing.NDArray[numpy.float64]
+:canonical: nearlink_sdr.phy.uwb_pulse.kaiser_pulse
+
+```{autodoc2-docstring} nearlink_sdr.phy.uwb_pulse.kaiser_pulse
 ```
 ````
 

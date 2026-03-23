@@ -15,10 +15,6 @@
 :class: autosummary longtable
 :align: left
 
-* - {py:obj}`ControlInfoType <nearlink_sdr.phy.control_info.ControlInfoType>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType
-    :summary:
-    ```
 * - {py:obj}`ControlInfoA1 <nearlink_sdr.phy.control_info.ControlInfoA1>`
   - ```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoA1
     :summary:
@@ -67,6 +63,10 @@
   - ```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoB5
     :summary:
     ```
+* - {py:obj}`ControlInfoType <nearlink_sdr.phy.control_info.ControlInfoType>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType
+    :summary:
+    ```
 ````
 
 ### Functions
@@ -75,221 +75,17 @@
 :class: autosummary longtable
 :align: left
 
-* - {py:obj}`_int_to_bits <nearlink_sdr.phy.control_info._int_to_bits>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.control_info._int_to_bits
-    :summary:
-    ```
-* - {py:obj}`_bits_to_int <nearlink_sdr.phy.control_info._bits_to_int>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.control_info._bits_to_int
-    :summary:
-    ```
-* - {py:obj}`_a_group_pack <nearlink_sdr.phy.control_info._a_group_pack>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.control_info._a_group_pack
-    :summary:
-    ```
-* - {py:obj}`_a_group_unpack <nearlink_sdr.phy.control_info._a_group_unpack>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.control_info._a_group_unpack
-    :summary:
-    ```
-* - {py:obj}`_llid_mask <nearlink_sdr.phy.control_info._llid_mask>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.control_info._llid_mask
-    :summary:
-    ```
-* - {py:obj}`_b_group_pack <nearlink_sdr.phy.control_info._b_group_pack>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.control_info._b_group_pack
-    :summary:
-    ```
-* - {py:obj}`_b_group_check <nearlink_sdr.phy.control_info._b_group_check>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.control_info._b_group_check
+* - {py:obj}`polar_decode_control <nearlink_sdr.phy.control_info.polar_decode_control>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.control_info.polar_decode_control
     :summary:
     ```
 * - {py:obj}`polar_encode_control <nearlink_sdr.phy.control_info.polar_encode_control>`
   - ```{autodoc2-docstring} nearlink_sdr.phy.control_info.polar_encode_control
     :summary:
     ```
-* - {py:obj}`polar_decode_control <nearlink_sdr.phy.control_info.polar_decode_control>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.control_info.polar_decode_control
-    :summary:
-    ```
-````
-
-### Data
-
-````{list-table}
-:class: autosummary longtable
-:align: left
-
-* - {py:obj}`_CRC24B_SEED <nearlink_sdr.phy.control_info._CRC24B_SEED>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.control_info._CRC24B_SEED
-    :summary:
-    ```
 ````
 
 ### API
-
-````{py:function} _int_to_bits(value: int, width: int) -> numpy.typing.NDArray[numpy.int_]
-:canonical: nearlink_sdr.phy.control_info._int_to_bits
-
-```{autodoc2-docstring} nearlink_sdr.phy.control_info._int_to_bits
-```
-````
-
-````{py:function} _bits_to_int(bits: numpy.typing.NDArray[numpy.int_]) -> int
-:canonical: nearlink_sdr.phy.control_info._bits_to_int
-
-```{autodoc2-docstring} nearlink_sdr.phy.control_info._bits_to_int
-```
-````
-
-`````{py:class} ControlInfoType()
-:canonical: nearlink_sdr.phy.control_info.ControlInfoType
-
-Bases: {py:obj}`enum.IntEnum`
-
-```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType
-```
-
-```{rubric} Initialization
-```
-
-```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.__init__
-```
-
-````{py:attribute} A1
-:canonical: nearlink_sdr.phy.control_info.ControlInfoType.A1
-:value: >
-   1
-
-```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.A1
-```
-
-````
-
-````{py:attribute} A2
-:canonical: nearlink_sdr.phy.control_info.ControlInfoType.A2
-:value: >
-   2
-
-```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.A2
-```
-
-````
-
-````{py:attribute} A3
-:canonical: nearlink_sdr.phy.control_info.ControlInfoType.A3
-:value: >
-   3
-
-```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.A3
-```
-
-````
-
-````{py:attribute} A4
-:canonical: nearlink_sdr.phy.control_info.ControlInfoType.A4
-:value: >
-   4
-
-```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.A4
-```
-
-````
-
-````{py:attribute} A5
-:canonical: nearlink_sdr.phy.control_info.ControlInfoType.A5
-:value: >
-   5
-
-```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.A5
-```
-
-````
-
-````{py:attribute} A6
-:canonical: nearlink_sdr.phy.control_info.ControlInfoType.A6
-:value: >
-   6
-
-```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.A6
-```
-
-````
-
-````{py:attribute} A7
-:canonical: nearlink_sdr.phy.control_info.ControlInfoType.A7
-:value: >
-   7
-
-```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.A7
-```
-
-````
-
-````{py:attribute} B1
-:canonical: nearlink_sdr.phy.control_info.ControlInfoType.B1
-:value: >
-   17
-
-```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.B1
-```
-
-````
-
-````{py:attribute} B2
-:canonical: nearlink_sdr.phy.control_info.ControlInfoType.B2
-:value: >
-   18
-
-```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.B2
-```
-
-````
-
-````{py:attribute} B3
-:canonical: nearlink_sdr.phy.control_info.ControlInfoType.B3
-:value: >
-   19
-
-```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.B3
-```
-
-````
-
-````{py:attribute} B4
-:canonical: nearlink_sdr.phy.control_info.ControlInfoType.B4
-:value: >
-   20
-
-```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.B4
-```
-
-````
-
-````{py:attribute} B5
-:canonical: nearlink_sdr.phy.control_info.ControlInfoType.B5
-:value: >
-   21
-
-```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.B5
-```
-
-````
-
-`````
-
-````{py:function} _a_group_pack(info_bits: numpy.typing.NDArray[numpy.int_], sync_seed: int, lqi: int | None = None) -> numpy.typing.NDArray[numpy.int_]
-:canonical: nearlink_sdr.phy.control_info._a_group_pack
-
-```{autodoc2-docstring} nearlink_sdr.phy.control_info._a_group_pack
-```
-````
-
-````{py:function} _a_group_unpack(bits: numpy.typing.NDArray[numpy.int_], sync_seed: int, has_lqi: bool) -> tuple[int | None, numpy.typing.NDArray[numpy.int_]]
-:canonical: nearlink_sdr.phy.control_info._a_group_unpack
-
-```{autodoc2-docstring} nearlink_sdr.phy.control_info._a_group_unpack
-```
-````
 
 `````{py:class} ControlInfoA1
 :canonical: nearlink_sdr.phy.control_info.ControlInfoA1
@@ -983,37 +779,6 @@ Bases: {py:obj}`enum.IntEnum`
 
 `````
 
-````{py:data} _CRC24B_SEED
-:canonical: nearlink_sdr.phy.control_info._CRC24B_SEED
-:value: >
-   5592405
-
-```{autodoc2-docstring} nearlink_sdr.phy.control_info._CRC24B_SEED
-```
-
-````
-
-````{py:function} _llid_mask(llid: int) -> numpy.typing.NDArray[numpy.int_]
-:canonical: nearlink_sdr.phy.control_info._llid_mask
-
-```{autodoc2-docstring} nearlink_sdr.phy.control_info._llid_mask
-```
-````
-
-````{py:function} _b_group_pack(info_bits: numpy.typing.NDArray[numpy.int_], llid: int) -> numpy.typing.NDArray[numpy.int_]
-:canonical: nearlink_sdr.phy.control_info._b_group_pack
-
-```{autodoc2-docstring} nearlink_sdr.phy.control_info._b_group_pack
-```
-````
-
-````{py:function} _b_group_check(bits: numpy.typing.NDArray[numpy.int_], llid: int) -> numpy.typing.NDArray[numpy.int_]
-:canonical: nearlink_sdr.phy.control_info._b_group_check
-
-```{autodoc2-docstring} nearlink_sdr.phy.control_info._b_group_check
-```
-````
-
 `````{py:class} ControlInfoB1
 :canonical: nearlink_sdr.phy.control_info.ControlInfoB1
 
@@ -1491,16 +1256,152 @@ Bases: {py:obj}`enum.IntEnum`
 
 `````
 
-````{py:function} polar_encode_control(raw_bits: numpy.typing.NDArray[numpy.int_], n_coded: int = 64) -> numpy.typing.NDArray[numpy.int_]
-:canonical: nearlink_sdr.phy.control_info.polar_encode_control
+`````{py:class} ControlInfoType()
+:canonical: nearlink_sdr.phy.control_info.ControlInfoType
 
-```{autodoc2-docstring} nearlink_sdr.phy.control_info.polar_encode_control
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType
 ```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.__init__
+```
+
+````{py:attribute} A1
+:canonical: nearlink_sdr.phy.control_info.ControlInfoType.A1
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.A1
+```
+
 ````
+
+````{py:attribute} A2
+:canonical: nearlink_sdr.phy.control_info.ControlInfoType.A2
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.A2
+```
+
+````
+
+````{py:attribute} A3
+:canonical: nearlink_sdr.phy.control_info.ControlInfoType.A3
+:value: >
+   3
+
+```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.A3
+```
+
+````
+
+````{py:attribute} A4
+:canonical: nearlink_sdr.phy.control_info.ControlInfoType.A4
+:value: >
+   4
+
+```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.A4
+```
+
+````
+
+````{py:attribute} A5
+:canonical: nearlink_sdr.phy.control_info.ControlInfoType.A5
+:value: >
+   5
+
+```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.A5
+```
+
+````
+
+````{py:attribute} A6
+:canonical: nearlink_sdr.phy.control_info.ControlInfoType.A6
+:value: >
+   6
+
+```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.A6
+```
+
+````
+
+````{py:attribute} A7
+:canonical: nearlink_sdr.phy.control_info.ControlInfoType.A7
+:value: >
+   7
+
+```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.A7
+```
+
+````
+
+````{py:attribute} B1
+:canonical: nearlink_sdr.phy.control_info.ControlInfoType.B1
+:value: >
+   17
+
+```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.B1
+```
+
+````
+
+````{py:attribute} B2
+:canonical: nearlink_sdr.phy.control_info.ControlInfoType.B2
+:value: >
+   18
+
+```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.B2
+```
+
+````
+
+````{py:attribute} B3
+:canonical: nearlink_sdr.phy.control_info.ControlInfoType.B3
+:value: >
+   19
+
+```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.B3
+```
+
+````
+
+````{py:attribute} B4
+:canonical: nearlink_sdr.phy.control_info.ControlInfoType.B4
+:value: >
+   20
+
+```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.B4
+```
+
+````
+
+````{py:attribute} B5
+:canonical: nearlink_sdr.phy.control_info.ControlInfoType.B5
+:value: >
+   21
+
+```{autodoc2-docstring} nearlink_sdr.phy.control_info.ControlInfoType.B5
+```
+
+````
+
+`````
 
 ````{py:function} polar_decode_control(coded_bits: numpy.typing.NDArray[numpy.int_], k_info: int, n_coded: int = 64) -> numpy.typing.NDArray[numpy.int_]
 :canonical: nearlink_sdr.phy.control_info.polar_decode_control
 
 ```{autodoc2-docstring} nearlink_sdr.phy.control_info.polar_decode_control
+```
+````
+
+````{py:function} polar_encode_control(raw_bits: numpy.typing.NDArray[numpy.int_], n_coded: int = 64) -> numpy.typing.NDArray[numpy.int_]
+:canonical: nearlink_sdr.phy.control_info.polar_encode_control
+
+```{autodoc2-docstring} nearlink_sdr.phy.control_info.polar_encode_control
 ```
 ````

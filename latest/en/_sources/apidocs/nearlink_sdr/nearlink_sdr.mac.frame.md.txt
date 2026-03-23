@@ -15,80 +15,71 @@
 :class: autosummary longtable
 :align: left
 
-* - {py:obj}`SegmentType <nearlink_sdr.mac.frame.SegmentType>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.frame.SegmentType
+* - {py:obj}`AsyncDataFrame <nearlink_sdr.mac.frame.AsyncDataFrame>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.frame.AsyncDataFrame
     :summary:
     ```
 * - {py:obj}`ControlFrame <nearlink_sdr.mac.frame.ControlFrame>`
   - ```{autodoc2-docstring} nearlink_sdr.mac.frame.ControlFrame
     :summary:
     ```
-* - {py:obj}`AsyncDataFrame <nearlink_sdr.mac.frame.AsyncDataFrame>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.frame.AsyncDataFrame
+* - {py:obj}`MuxFrame <nearlink_sdr.mac.frame.MuxFrame>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.frame.MuxFrame
+    :summary:
+    ```
+* - {py:obj}`SegmentType <nearlink_sdr.mac.frame.SegmentType>`
+  - ```{autodoc2-docstring} nearlink_sdr.mac.frame.SegmentType
     :summary:
     ```
 * - {py:obj}`SyncDataFrame <nearlink_sdr.mac.frame.SyncDataFrame>`
   - ```{autodoc2-docstring} nearlink_sdr.mac.frame.SyncDataFrame
     :summary:
     ```
-* - {py:obj}`MuxFrame <nearlink_sdr.mac.frame.MuxFrame>`
-  - ```{autodoc2-docstring} nearlink_sdr.mac.frame.MuxFrame
-    :summary:
-    ```
 ````
 
 ### API
 
-`````{py:class} SegmentType()
-:canonical: nearlink_sdr.mac.frame.SegmentType
+`````{py:class} AsyncDataFrame
+:canonical: nearlink_sdr.mac.frame.AsyncDataFrame
 
-Bases: {py:obj}`enum.IntEnum`
-
-```{autodoc2-docstring} nearlink_sdr.mac.frame.SegmentType
+```{autodoc2-docstring} nearlink_sdr.mac.frame.AsyncDataFrame
 ```
 
-```{rubric} Initialization
-```
-
-```{autodoc2-docstring} nearlink_sdr.mac.frame.SegmentType.__init__
-```
-
-````{py:attribute} COMPLETE
-:canonical: nearlink_sdr.mac.frame.SegmentType.COMPLETE
+````{py:attribute} segment_type
+:canonical: nearlink_sdr.mac.frame.AsyncDataFrame.segment_type
+:type: int
 :value: >
-   0
+   None
 
-```{autodoc2-docstring} nearlink_sdr.mac.frame.SegmentType.COMPLETE
+```{autodoc2-docstring} nearlink_sdr.mac.frame.AsyncDataFrame.segment_type
 ```
 
 ````
 
-````{py:attribute} FIRST
-:canonical: nearlink_sdr.mac.frame.SegmentType.FIRST
+````{py:attribute} data
+:canonical: nearlink_sdr.mac.frame.AsyncDataFrame.data
+:type: bytes
 :value: >
-   1
+   None
 
-```{autodoc2-docstring} nearlink_sdr.mac.frame.SegmentType.FIRST
+```{autodoc2-docstring} nearlink_sdr.mac.frame.AsyncDataFrame.data
 ```
 
 ````
 
-````{py:attribute} MIDDLE
-:canonical: nearlink_sdr.mac.frame.SegmentType.MIDDLE
-:value: >
-   2
+````{py:method} pack() -> bytes
+:canonical: nearlink_sdr.mac.frame.AsyncDataFrame.pack
 
-```{autodoc2-docstring} nearlink_sdr.mac.frame.SegmentType.MIDDLE
+```{autodoc2-docstring} nearlink_sdr.mac.frame.AsyncDataFrame.pack
 ```
 
 ````
 
-````{py:attribute} LAST
-:canonical: nearlink_sdr.mac.frame.SegmentType.LAST
-:value: >
-   3
+````{py:method} unpack(data: bytes) -> nearlink_sdr.mac.frame.AsyncDataFrame
+:canonical: nearlink_sdr.mac.frame.AsyncDataFrame.unpack
+:classmethod:
 
-```{autodoc2-docstring} nearlink_sdr.mac.frame.SegmentType.LAST
+```{autodoc2-docstring} nearlink_sdr.mac.frame.AsyncDataFrame.unpack
 ```
 
 ````
@@ -142,47 +133,94 @@ Bases: {py:obj}`enum.IntEnum`
 
 `````
 
-`````{py:class} AsyncDataFrame
-:canonical: nearlink_sdr.mac.frame.AsyncDataFrame
+`````{py:class} MuxFrame
+:canonical: nearlink_sdr.mac.frame.MuxFrame
 
-```{autodoc2-docstring} nearlink_sdr.mac.frame.AsyncDataFrame
+```{autodoc2-docstring} nearlink_sdr.mac.frame.MuxFrame
 ```
 
-````{py:attribute} segment_type
-:canonical: nearlink_sdr.mac.frame.AsyncDataFrame.segment_type
-:type: int
+````{py:attribute} control_frames
+:canonical: nearlink_sdr.mac.frame.MuxFrame.control_frames
+:type: list[nearlink_sdr.mac.frame.ControlFrame]
 :value: >
    None
 
-```{autodoc2-docstring} nearlink_sdr.mac.frame.AsyncDataFrame.segment_type
+```{autodoc2-docstring} nearlink_sdr.mac.frame.MuxFrame.control_frames
 ```
 
 ````
 
-````{py:attribute} data
-:canonical: nearlink_sdr.mac.frame.AsyncDataFrame.data
-:type: bytes
+````{py:attribute} data_frame
+:canonical: nearlink_sdr.mac.frame.MuxFrame.data_frame
+:type: nearlink_sdr.mac.frame.AsyncDataFrame | nearlink_sdr.mac.frame.SyncDataFrame | None
 :value: >
    None
 
-```{autodoc2-docstring} nearlink_sdr.mac.frame.AsyncDataFrame.data
+```{autodoc2-docstring} nearlink_sdr.mac.frame.MuxFrame.data_frame
 ```
 
 ````
 
 ````{py:method} pack() -> bytes
-:canonical: nearlink_sdr.mac.frame.AsyncDataFrame.pack
+:canonical: nearlink_sdr.mac.frame.MuxFrame.pack
 
-```{autodoc2-docstring} nearlink_sdr.mac.frame.AsyncDataFrame.pack
+```{autodoc2-docstring} nearlink_sdr.mac.frame.MuxFrame.pack
 ```
 
 ````
 
-````{py:method} unpack(data: bytes) -> nearlink_sdr.mac.frame.AsyncDataFrame
-:canonical: nearlink_sdr.mac.frame.AsyncDataFrame.unpack
-:classmethod:
+`````
 
-```{autodoc2-docstring} nearlink_sdr.mac.frame.AsyncDataFrame.unpack
+`````{py:class} SegmentType()
+:canonical: nearlink_sdr.mac.frame.SegmentType
+
+Bases: {py:obj}`enum.IntEnum`
+
+```{autodoc2-docstring} nearlink_sdr.mac.frame.SegmentType
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.mac.frame.SegmentType.__init__
+```
+
+````{py:attribute} COMPLETE
+:canonical: nearlink_sdr.mac.frame.SegmentType.COMPLETE
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.mac.frame.SegmentType.COMPLETE
+```
+
+````
+
+````{py:attribute} FIRST
+:canonical: nearlink_sdr.mac.frame.SegmentType.FIRST
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.mac.frame.SegmentType.FIRST
+```
+
+````
+
+````{py:attribute} MIDDLE
+:canonical: nearlink_sdr.mac.frame.SegmentType.MIDDLE
+:value: >
+   2
+
+```{autodoc2-docstring} nearlink_sdr.mac.frame.SegmentType.MIDDLE
+```
+
+````
+
+````{py:attribute} LAST
+:canonical: nearlink_sdr.mac.frame.SegmentType.LAST
+:value: >
+   3
+
+```{autodoc2-docstring} nearlink_sdr.mac.frame.SegmentType.LAST
 ```
 
 ````
@@ -285,44 +323,6 @@ Bases: {py:obj}`enum.IntEnum`
 :classmethod:
 
 ```{autodoc2-docstring} nearlink_sdr.mac.frame.SyncDataFrame.unpack
-```
-
-````
-
-`````
-
-`````{py:class} MuxFrame
-:canonical: nearlink_sdr.mac.frame.MuxFrame
-
-```{autodoc2-docstring} nearlink_sdr.mac.frame.MuxFrame
-```
-
-````{py:attribute} control_frames
-:canonical: nearlink_sdr.mac.frame.MuxFrame.control_frames
-:type: list[nearlink_sdr.mac.frame.ControlFrame]
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.mac.frame.MuxFrame.control_frames
-```
-
-````
-
-````{py:attribute} data_frame
-:canonical: nearlink_sdr.mac.frame.MuxFrame.data_frame
-:type: nearlink_sdr.mac.frame.AsyncDataFrame | nearlink_sdr.mac.frame.SyncDataFrame | None
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.mac.frame.MuxFrame.data_frame
-```
-
-````
-
-````{py:method} pack() -> bytes
-:canonical: nearlink_sdr.mac.frame.MuxFrame.pack
-
-```{autodoc2-docstring} nearlink_sdr.mac.frame.MuxFrame.pack
 ```
 
 ````

@@ -15,6 +15,10 @@
 :class: autosummary longtable
 :align: left
 
+* - {py:obj}`generate_preamble <nearlink_sdr.phy.preamble.generate_preamble>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.preamble.generate_preamble
+    :summary:
+    ```
 * - {py:obj}`gfsk_preamble_bits <nearlink_sdr.phy.preamble.gfsk_preamble_bits>`
   - ```{autodoc2-docstring} nearlink_sdr.phy.preamble.gfsk_preamble_bits
     :summary:
@@ -25,10 +29,6 @@
     ```
 * - {py:obj}`psk_preamble_symbols <nearlink_sdr.phy.preamble.psk_preamble_symbols>`
   - ```{autodoc2-docstring} nearlink_sdr.phy.preamble.psk_preamble_symbols
-    :summary:
-    ```
-* - {py:obj}`generate_preamble <nearlink_sdr.phy.preamble.generate_preamble>`
-  - ```{autodoc2-docstring} nearlink_sdr.phy.preamble.generate_preamble
     :summary:
     ```
 ````
@@ -61,6 +61,23 @@
 
 ````
 
+````{py:data} PREAMBLE_CONFIG
+:canonical: nearlink_sdr.phy.preamble.PREAMBLE_CONFIG
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.preamble.PREAMBLE_CONFIG
+```
+
+````
+
+````{py:function} generate_preamble(frame_type: int, symbol_rate_mhz: float = 1.0)
+:canonical: nearlink_sdr.phy.preamble.generate_preamble
+
+```{autodoc2-docstring} nearlink_sdr.phy.preamble.generate_preamble
+```
+````
+
 ````{py:function} gfsk_preamble_bits(symbol_rate_mhz: float = 1.0, duration_us: float = 10.0) -> numpy.ndarray
 :canonical: nearlink_sdr.phy.preamble.gfsk_preamble_bits
 
@@ -79,22 +96,5 @@
 :canonical: nearlink_sdr.phy.preamble.psk_preamble_symbols
 
 ```{autodoc2-docstring} nearlink_sdr.phy.preamble.psk_preamble_symbols
-```
-````
-
-````{py:data} PREAMBLE_CONFIG
-:canonical: nearlink_sdr.phy.preamble.PREAMBLE_CONFIG
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.phy.preamble.PREAMBLE_CONFIG
-```
-
-````
-
-````{py:function} generate_preamble(frame_type: int, symbol_rate_mhz: float = 1.0)
-:canonical: nearlink_sdr.phy.preamble.generate_preamble
-
-```{autodoc2-docstring} nearlink_sdr.phy.preamble.generate_preamble
 ```
 ````

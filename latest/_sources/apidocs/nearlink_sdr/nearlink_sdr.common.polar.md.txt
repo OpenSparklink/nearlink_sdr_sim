@@ -15,12 +15,12 @@
 :class: autosummary longtable
 :align: left
 
-* - {py:obj}`PolarEncoder <nearlink_sdr.common.polar.PolarEncoder>`
-  - ```{autodoc2-docstring} nearlink_sdr.common.polar.PolarEncoder
-    :summary:
-    ```
 * - {py:obj}`PolarDecoder <nearlink_sdr.common.polar.PolarDecoder>`
   - ```{autodoc2-docstring} nearlink_sdr.common.polar.PolarDecoder
+    :summary:
+    ```
+* - {py:obj}`PolarEncoder <nearlink_sdr.common.polar.PolarEncoder>`
+  - ```{autodoc2-docstring} nearlink_sdr.common.polar.PolarEncoder
     :summary:
     ```
 ````
@@ -35,14 +35,6 @@
   - ```{autodoc2-docstring} nearlink_sdr.common.polar.get_info_bit_count
     :summary:
     ```
-* - {py:obj}`_get_reliability_sequence <nearlink_sdr.common.polar._get_reliability_sequence>`
-  - ```{autodoc2-docstring} nearlink_sdr.common.polar._get_reliability_sequence
-    :summary:
-    ```
-* - {py:obj}`_get_frozen_and_info_sets <nearlink_sdr.common.polar._get_frozen_and_info_sets>`
-  - ```{autodoc2-docstring} nearlink_sdr.common.polar._get_frozen_and_info_sets
-    :summary:
-    ```
 * - {py:obj}`get_polar_decoder <nearlink_sdr.common.polar.get_polar_decoder>`
   - ```{autodoc2-docstring} nearlink_sdr.common.polar.get_polar_decoder
     :summary:
@@ -55,35 +47,21 @@
 :class: autosummary longtable
 :align: left
 
-* - {py:obj}`RELIABILITY_SEQ_1024 <nearlink_sdr.common.polar.RELIABILITY_SEQ_1024>`
-  - ```{autodoc2-docstring} nearlink_sdr.common.polar.RELIABILITY_SEQ_1024
-    :summary:
-    ```
 * - {py:obj}`RATE_TABLE <nearlink_sdr.common.polar.RATE_TABLE>`
   - ```{autodoc2-docstring} nearlink_sdr.common.polar.RATE_TABLE
+    :summary:
+    ```
+* - {py:obj}`RELIABILITY_SEQ_1024 <nearlink_sdr.common.polar.RELIABILITY_SEQ_1024>`
+  - ```{autodoc2-docstring} nearlink_sdr.common.polar.RELIABILITY_SEQ_1024
     :summary:
     ```
 * - {py:obj}`VALID_CODE_LENGTHS <nearlink_sdr.common.polar.VALID_CODE_LENGTHS>`
   - ```{autodoc2-docstring} nearlink_sdr.common.polar.VALID_CODE_LENGTHS
     :summary:
     ```
-* - {py:obj}`_decoder_cache <nearlink_sdr.common.polar._decoder_cache>`
-  - ```{autodoc2-docstring} nearlink_sdr.common.polar._decoder_cache
-    :summary:
-    ```
 ````
 
 ### API
-
-````{py:data} RELIABILITY_SEQ_1024
-:canonical: nearlink_sdr.common.polar.RELIABILITY_SEQ_1024
-:value: >
-   [0, 1, 2, 4, 8, 16, 32, 3, 5, 64, 9, 6, 17, 10, 18, 128, 12, 33, 65, 20, 256, 34, 24, 36, 7, 129, 66...
-
-```{autodoc2-docstring} nearlink_sdr.common.polar.RELIABILITY_SEQ_1024
-```
-
-````
 
 ````{py:data} RATE_TABLE
 :canonical: nearlink_sdr.common.polar.RATE_TABLE
@@ -91,6 +69,16 @@
    None
 
 ```{autodoc2-docstring} nearlink_sdr.common.polar.RATE_TABLE
+```
+
+````
+
+````{py:data} RELIABILITY_SEQ_1024
+:canonical: nearlink_sdr.common.polar.RELIABILITY_SEQ_1024
+:value: >
+   [0, 1, 2, 4, 8, 16, 32, 3, 5, 64, 9, 6, 17, 10, 18, 128, 12, 33, 65, 20, 256, 34, 24, 36, 7, 129, 66...
+
+```{autodoc2-docstring} nearlink_sdr.common.polar.RELIABILITY_SEQ_1024
 ```
 
 ````
@@ -105,26 +93,27 @@
 
 ````
 
-````{py:function} get_info_bit_count(rate_str: str, N: int) -> int
-:canonical: nearlink_sdr.common.polar.get_info_bit_count
+`````{py:class} PolarDecoder(N: int, K: int)
+:canonical: nearlink_sdr.common.polar.PolarDecoder
 
-```{autodoc2-docstring} nearlink_sdr.common.polar.get_info_bit_count
+```{autodoc2-docstring} nearlink_sdr.common.polar.PolarDecoder
 ```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.common.polar.PolarDecoder.__init__
+```
+
+````{py:method} decode(llr: numpy.ndarray) -> numpy.ndarray
+:canonical: nearlink_sdr.common.polar.PolarDecoder.decode
+
+```{autodoc2-docstring} nearlink_sdr.common.polar.PolarDecoder.decode
+```
+
 ````
 
-````{py:function} _get_reliability_sequence(N: int) -> tuple[int, ...]
-:canonical: nearlink_sdr.common.polar._get_reliability_sequence
-
-```{autodoc2-docstring} nearlink_sdr.common.polar._get_reliability_sequence
-```
-````
-
-````{py:function} _get_frozen_and_info_sets(N: int, K: int) -> tuple[set[int], set[int]]
-:canonical: nearlink_sdr.common.polar._get_frozen_and_info_sets
-
-```{autodoc2-docstring} nearlink_sdr.common.polar._get_frozen_and_info_sets
-```
-````
+`````
 
 `````{py:class} PolarEncoder(N: int, K: int)
 :canonical: nearlink_sdr.common.polar.PolarEncoder
@@ -148,53 +137,11 @@
 
 `````
 
-`````{py:class} PolarDecoder(N: int, K: int)
-:canonical: nearlink_sdr.common.polar.PolarDecoder
+````{py:function} get_info_bit_count(rate_str: str, N: int) -> int
+:canonical: nearlink_sdr.common.polar.get_info_bit_count
 
-```{autodoc2-docstring} nearlink_sdr.common.polar.PolarDecoder
+```{autodoc2-docstring} nearlink_sdr.common.polar.get_info_bit_count
 ```
-
-```{rubric} Initialization
-```
-
-```{autodoc2-docstring} nearlink_sdr.common.polar.PolarDecoder.__init__
-```
-
-````{py:method} _build_node_types() -> dict[tuple[int, int], int]
-:canonical: nearlink_sdr.common.polar.PolarDecoder._build_node_types
-
-```{autodoc2-docstring} nearlink_sdr.common.polar.PolarDecoder._build_node_types
-```
-
-````
-
-````{py:method} decode(llr: numpy.ndarray) -> numpy.ndarray
-:canonical: nearlink_sdr.common.polar.PolarDecoder.decode
-
-```{autodoc2-docstring} nearlink_sdr.common.polar.PolarDecoder.decode
-```
-
-````
-
-````{py:method} _sc(start: int, length: int, depth: int) -> None
-:canonical: nearlink_sdr.common.polar.PolarDecoder._sc
-
-```{autodoc2-docstring} nearlink_sdr.common.polar.PolarDecoder._sc
-```
-
-````
-
-`````
-
-````{py:data} _decoder_cache
-:canonical: nearlink_sdr.common.polar._decoder_cache
-:type: dict[tuple[int, int], nearlink_sdr.common.polar.PolarDecoder]
-:value: >
-   None
-
-```{autodoc2-docstring} nearlink_sdr.common.polar._decoder_cache
-```
-
 ````
 
 ````{py:function} get_polar_decoder(n: int, k: int) -> nearlink_sdr.common.polar.PolarDecoder
