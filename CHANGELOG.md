@@ -12,11 +12,17 @@
 - PDF Mermaid 图表: 添加 pdfcrop 裁剪白边, 消除全页留白
 - PDF 代码块字体: 切换等宽字体为 DejaVu Sans Mono, 修复 box-drawing 字符缺失
 - PDF 特殊字符: 将源文件中 HarmonyOS Sans 不支持的 ↔ 替换为 `<->`
+- `secure_random_256`: 修复 time_param=0xFFFFFFFF 时 32 位溢出
+
+### Added
+
+- 模糊测试: 20 个 hypothesis 属性测试覆盖 CRC/scrambler/BCH/Polar/MAC 帧/AES-CCM 等 API
 
 ### Changed
 
 - Release CI: 添加 semver 标签校验, 不合规标签构建失败
 - Release CI: 预发布标签自动标记为 GitHub Pre-release
+- Release CI: 补充 texlive-extra-utils (pdfcrop) 和 fonts-dejavu-core 安装
 - AGENTS.md: 新增版本与发布规范、文档构建规范章节
 
 ## [1.0.6] - 2026-03-23

@@ -121,7 +121,7 @@ def secure_random_256(
         32 字节安全序列
     """
     m1 = time_param.to_bytes(4, "big")
-    m2 = (time_param + 1).to_bytes(4, "big")
+    m2 = ((time_param + 1) & 0xFFFFFFFF).to_bytes(4, "big")
     return kdf(kdf_type, seed, m1) + kdf(kdf_type, seed, m2)
 
 
