@@ -4,12 +4,11 @@
 # package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-23 22:54+0800\n"
+"POT-Creation-Date: 2026-03-24 04:07+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -65,7 +64,7 @@ msgstr "linkkeyand DH Key validatecodekey (9.3.4.4)"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:17
 msgid "确认码生成 (9.3.4.3)"
-msgstr "acknowledgmentcodegenerate (9.3.4.3)"
+msgstr "Confirmation code generation (9.3.4.3)"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:18
 msgid "DH Key 验证码 (9.3.4.5)"
@@ -113,7 +112,7 @@ msgstr "{py:obj}`AuthMethod <nearlink_sdr.mac.crypto.AuthMethod>`"
 #: ../../../src/nearlink_sdr/mac/crypto.py:24
 #: ../../../src/nearlink_sdr/mac/crypto.py:165
 msgid "鉴权方式 (9.3.4.3)"
-msgstr "authenticationmethod (9.3.4.3)"
+msgstr "Authentication method (9.3.4.3)"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:28
 msgid "Functions"
@@ -239,7 +238,8 @@ msgstr "{py:obj}`derive_link_key <nearlink_sdr.mac.crypto.derive_link_key>`"
 #: ../../../src/nearlink_sdr/mac/crypto.py:76
 #: ../../../src/nearlink_sdr/mac/crypto.py:308
 msgid "Link Key = KDF(dh_key_low128, \"lk\" || Ra || Rb || G_addr || T_addr)。"
-msgstr "Link Key = KDF(dh_key_low128, \"lk\" || Ra || Rb || G_addr || T_addr)。"
+msgstr ""
+"Link Key = KDF(dh_key_low128, \"lk\" || Ra || Rb || G_addr || T_addr)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:78
 #, python-brace-format
@@ -267,7 +267,7 @@ msgstr ""
 #: ../../../src/nearlink_sdr/mac/crypto.py:84
 #: ../../../src/nearlink_sdr/mac/crypto.py:322
 msgid "生成确认码 (16 bytes)。"
-msgstr "generateacknowledgmentcode (16 bytes)."
+msgstr "Generate confirmation code (16 bytes)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:86
 #, python-brace-format
@@ -315,7 +315,7 @@ msgstr "{py:obj}`generate_group_key <nearlink_sdr.mac.crypto.generate_group_key>
 #: ../../../src/nearlink_sdr/mac/crypto.py:100
 #: ../../../src/nearlink_sdr/mac/crypto.py:350
 msgid "GK = KDF(RAND1, RAND2)。"
-msgstr "GK = KDF(RAND1, RAND2)。"
+msgstr "GK = KDF(RAND1, RAND2)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:102
 #, python-brace-format
@@ -339,7 +339,7 @@ msgstr "{py:obj}`derive_kg <nearlink_sdr.mac.crypto.derive_kg>`"
 #: ../../../src/nearlink_sdr/mac/crypto.py:108
 #: ../../../src/nearlink_sdr/mac/crypto.py:364
 msgid "Kg = KDF(link_key, rand)。"
-msgstr "Kg = KDF(link_key, rand)。"
+msgstr "Kg = KDF(link_key, rand)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:110
 #, python-brace-format
@@ -420,20 +420,29 @@ msgstr ""
 "respectively), concatenate two 128-bit outputs to obtain a 256-bit secure"
 " sequence."
 
-#: ../../../src/nearlink_sdr/mac/crypto.py:264
-#, fuzzy
-msgid ""
-"Args:     seed: 128比特安全随机种子 (16字节)     time_param: 32比特时间参数 (如调度时隙号*2)"
-"     kdf_type: KDF 类型"
-msgstr ""
-"Args:     seed: 128-bit secure random seed (16 bytes)     time_param: "
-"32-bit time parameter (e.g., scheduling slot number * 2)     kdf_type: "
-"KDF type"
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md
+msgid "参数"
+msgstr "Parameters"
 
-#: ../../../src/nearlink_sdr/mac/crypto.py:269
-#, fuzzy
-msgid "Returns:     32 字节安全序列"
-msgstr "Returns:     32-byte secure sequence"
+#: ../../../src/nearlink_sdr/mac/crypto.py:264
+msgid "128比特安全随机种子 (16字节)"
+msgstr "128-bit secure random seed (16 bytes)"
+
+#: ../../../src/nearlink_sdr/mac/crypto.py:265
+msgid "32比特时间参数 (如调度时隙号*2)"
+msgstr "32-bit time parameter (e.g. scheduling slot number * 2)"
+
+#: ../../../src/nearlink_sdr/mac/crypto.py:266
+msgid "KDF 类型"
+msgstr "KDF type"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md
+msgid "返回"
+msgstr "Returns"
+
+#: ../../../src/nearlink_sdr/mac/crypto.py:268
+msgid "32 字节安全序列"
+msgstr "32-byte secure sequence"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:268
 msgid ""
@@ -473,9 +482,9 @@ msgid ""
 "random_value: Ra (G节点) 或 Rb (T节点), PSK鉴权时为 PSK obfuscated: 通行码/口令鉴权的混淆码, "
 "PSK鉴权的对端随机数"
 msgstr ""
-"random_value: Ra (Gnode) or Rb (Tnode), PSKauthenticationwhenis PSK "
-"obfuscated: passkey/passwordauthenticationobfuscationcode, "
-"PSKauthenticationpeerrandom number"
+"random_value: Ra (G node) or Rb (T node), for PSK authentication is PSK "
+"obfuscated: obfuscation code for passkey/password authentication, peer "
+"random number for PSK authentication"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:338
 msgid ""
@@ -500,11 +509,25 @@ msgstr ""
 "Split algorithm: GEnK / GInK derived separately, returns (GEnK, GInK)"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:373
-#, fuzzy
-msgid ""
-"hash_part = KDF(IRK, rand_part) mod 2^16 Returns: 高16位标记 || 中16位随机 || "
-"低16位hash"
+msgid "hash_part = KDF(IRK, rand_part) mod 2^16"
 msgstr ""
 "hash_part = KDF(IRK, rand_part) mod 2^16 Returns: upper 16-bit tag || "
 "middle 16-bit random || lower 16-bit hash"
+
+#: ../../../src/nearlink_sdr/mac/crypto.py:375
+msgid "高16位标记 || 中16位随机 || 低16位hash"
+msgstr "High 16-bit flag || middle 16-bit random || low 16-bit hash"
+
+#~ msgid ""
+#~ "Args:     seed: 128比特安全随机种子 (16字节)     "
+#~ "time_param: 32比特时间参数 (如调度时隙号*2)     kdf_type: "
+#~ "KDF 类型"
+#~ msgstr ""
+#~ "Args:     seed: 128-bit secure random "
+#~ "seed (16 bytes)     time_param: 32-bit "
+#~ "time parameter (e.g., scheduling slot "
+#~ "number * 2)     kdf_type: KDF type"
+
+#~ msgid "Returns:     32 字节安全序列"
+#~ msgstr "Returns:     32-byte secure sequence"
 

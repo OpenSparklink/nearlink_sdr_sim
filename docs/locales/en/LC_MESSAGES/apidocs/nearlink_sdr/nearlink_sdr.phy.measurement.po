@@ -4,12 +4,11 @@
 # package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-23 22:54+0800\n"
+"POT-Creation-Date: 2026-03-24 04:07+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -231,75 +230,153 @@ msgstr ""
 msgid "无相位旋转 BPSK 调制, 返回比特序列。"
 msgstr "Non-rotated BPSK modulation, returns bit sequence."
 
-#: ../../../src/nearlink_sdr/phy/measurement.py:173
-#, fuzzy
-msgid ""
-"Args:     n_measur: 测量序列长度 [16, 32, 64, 128, 256, 512, 1024, 2048]     "
-"security_type: 安全类型 (1~4)     seed: 安全随机种子 (16 字节)     slot_number: "
-"起始调度时隙号     is_tx: True=先发节点, False=后发节点     n_disturb_max: 最大扰动符号数配置 "
-"[0-11]     kdf_type: 0=AES-CMAC, 1=HMAC-SM3"
-msgstr ""
-"Parameters:     n_measur: Measurement sequence length [16, 32, 64, 128, "
-"256, 512, 1024, 2048].     security_type: Security type (1-4).     seed: "
-"Security random seed (16 bytes).     slot_number: Starting scheduling "
-"slot number.     is_tx: True=initiator node, False=responder node.     "
-"n_disturb_max: Maximum disturbance value."
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md
+msgid "参数"
+msgstr "Parameters"
 
-#: ../../../src/nearlink_sdr/phy/measurement.py:182
-#, fuzzy
-msgid "Returns:     np.ndarray, dtype=int, 长度 n_measur"
-msgstr "Returns:     np.ndarray, dtype=int, length n_measur."
+#: ../../../src/nearlink_sdr/phy/measurement.py:173
+msgid "测量序列长度 [16, 32, 64, 128, 256, 512, 1024, 2048]"
+msgstr "Measurement sequence length [16, 32, 64, 128, 256, 512, 1024, 2048]"
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:174
+msgid "安全类型 (1~4)"
+msgstr "Security type (1~4)"
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:175
+#: ../../../src/nearlink_sdr/phy/measurement.py:205
+msgid "安全随机种子 (16 字节)"
+msgstr "secure random seed (16 byte)"
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:176
+#: ../../../src/nearlink_sdr/phy/measurement.py:206
+msgid "起始调度时隙号"
+msgstr "start scheduling slot number"
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:177
+msgid "True=先发节点, False=后发节点"
+msgstr "True= initiator node, False= responder node"
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:178
+msgid "最大扰动符号数配置 [0-11]"
+msgstr "Maximum perturbation symbol count configuration [0-11]"
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:179
+#: ../../../src/nearlink_sdr/phy/measurement.py:208
+msgid "0=AES-CMAC, 1=HMAC-SM3"
+msgstr "0=AES-CMAC, 1=HMAC-SM3"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md
+msgid "返回"
+msgstr "Returns"
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:181
+msgid "np.ndarray, dtype=int, 长度 n_measur"
+msgstr "np.ndarray, dtype=int, length n_measur."
 
 #: ../../../src/nearlink_sdr/phy/measurement.py:189
 msgid "多音信号, 频率对称分布。"
 msgstr "Multi-tone signal with symmetric frequency distribution."
 
 #: ../../../src/nearlink_sdr/phy/measurement.py:191
-#, fuzzy
-msgid ""
-"Args:     n_tones: 音的个数 [1, 2, 4, 8]     bandwidth_mhz: SLE 带宽 [1, 2, 4] "
-"MHz     duration_us: 信号时长 (微秒)     sample_rate: 采样率 (Hz)     phase_set: "
-"相位集合 [1, 2], N≥4 时有效"
-msgstr ""
-"Parameters:     n_tones: Number of tones [1, 2, 4, 8].     bandwidth_mhz:"
-" SLE bandwidth [1, 2, 4] MHz.     duration_us: Signal duration "
-"(microseconds).     sample_rate: Sample rate (Hz).     phase_set: Phase "
-"set [1, 2], effective when N≥4."
+msgid "音的个数 [1, 2, 4, 8]"
+msgstr "Number of tones [1, 2, 4, 8]"
 
-#: ../../../src/nearlink_sdr/phy/measurement.py:198
-#, fuzzy
-msgid "Returns:     np.ndarray, dtype=complex128, 复数基带波形"
-msgstr "Returns:     np.ndarray, dtype=complex128, complex baseband waveform."
+#: ../../../src/nearlink_sdr/phy/measurement.py:192
+msgid "SLE 带宽 [1, 2, 4] MHz"
+msgstr "SLE bandwidth [1, 2, 4] MHz"
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:193
+msgid "信号时长 (微秒)"
+msgstr "Signal duration (microseconds)"
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:194
+msgid "采样率 (Hz)"
+msgstr "sample rate (Hz)"
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:195
+msgid "相位集合 [1, 2], N≥4 时有效"
+msgstr "Phase set [1, 2], valid when N >= 4"
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:197
+msgid "np.ndarray, dtype=complex128, 复数基带波形"
+msgstr "np.ndarray, dtype=complex128, complex baseband waveform."
 
 #: ../../../src/nearlink_sdr/phy/measurement.py:196
-#, fuzzy
-msgid "Args:     m: 发送天线数     n: 接收天线数"
-msgstr ""
-"Parameters:     m: Number of transmit antennas.     n: Number of receive "
-"antennas."
+#: ../../../src/nearlink_sdr/phy/measurement.py:203
+msgid "发送天线数"
+msgstr "Number of transmit antennas"
 
-#: ../../../src/nearlink_sdr/phy/measurement.py:200
-#, fuzzy
-msgid "Returns:     天线对列表 [(tx_ant, rx_ant), ...]"
+#: ../../../src/nearlink_sdr/phy/measurement.py:197
+#: ../../../src/nearlink_sdr/phy/measurement.py:204
+msgid "接收天线数"
+msgstr "Number of receive antennas"
+
+#: ../../../src/nearlink_sdr/phy/measurement.py:199
+msgid "天线对列表 [(tx_ant, rx_ant), ...]"
 msgstr "returns: antennapairlist [(tx_ant, rx_ant), ...]"
 
-#: ../../../src/nearlink_sdr/phy/measurement.py:203
+#: ../../../src/nearlink_sdr/phy/measurement.py:201
 msgid "示例:     m=3, n=2: [(0,0), (0,1), (1,0), (1,1), (2,0), (2,1)]"
 msgstr "example:     m=3, n=2: [(0,0), (0,1), (1,0), (1,1), (2,0), (2,1)]"
 
-#: ../../../src/nearlink_sdr/phy/measurement.py:203
-#, fuzzy
-msgid ""
-"Args:     m: 发送天线数     n: 接收天线数     seed: 安全随机种子 (16 字节)     slot_number:"
-" 起始调度时隙号     k: 随机数位宽     kdf_type: 0=AES-CMAC, 1=HMAC-SM3"
-msgstr ""
-"Parameters:     m: Number of transmit antennas.     n: Number of receive "
-"antennas.     seed: Security random seed (16 bytes).     slot_number: "
-"Starting scheduling slot number.     k: Random number bit width.     "
-"kdf_type: 0=AES-CMAC, 1=HMAC-SM3."
+#: ../../../src/nearlink_sdr/phy/measurement.py:207
+msgid "随机数位宽"
+msgstr "Random number bit width"
 
-#: ../../../src/nearlink_sdr/phy/measurement.py:211
-#, fuzzy
-msgid "Returns:     随机排列的天线对列表 [(tx_ant, rx_ant), ...]"
-msgstr "Returns:     Randomly permuted antenna pair list [(tx_ant, rx_ant), ...]."
+#: ../../../src/nearlink_sdr/phy/measurement.py:210
+msgid "随机排列的天线对列表 [(tx_ant, rx_ant), ...]"
+msgstr "Randomly permuted antenna pair list [(tx_ant, rx_ant), ...]."
+
+#~ msgid ""
+#~ "Args:     n_measur: 测量序列长度 [16, 32, 64,"
+#~ " 128, 256, 512, 1024, 2048]     "
+#~ "security_type: 安全类型 (1~4)     seed: 安全随机种子 "
+#~ "(16 字节)     slot_number: 起始调度时隙号     is_tx:"
+#~ " True=先发节点, False=后发节点     n_disturb_max: "
+#~ "最大扰动符号数配置 [0-11]     kdf_type: 0=AES-CMAC, "
+#~ "1=HMAC-SM3"
+#~ msgstr ""
+#~ "Parameters:     n_measur: Measurement sequence "
+#~ "length [16, 32, 64, 128, 256, 512,"
+#~ " 1024, 2048].     security_type: Security "
+#~ "type (1-4).     seed: Security random "
+#~ "seed (16 bytes).     slot_number: Starting "
+#~ "scheduling slot number.     is_tx: "
+#~ "True=initiator node, False=responder node.     "
+#~ "n_disturb_max: Maximum disturbance value."
+
+#~ msgid ""
+#~ "Args:     n_tones: 音的个数 [1, 2, 4, "
+#~ "8]     bandwidth_mhz: SLE 带宽 [1, 2, "
+#~ "4] MHz     duration_us: 信号时长 (微秒)     "
+#~ "sample_rate: 采样率 (Hz)     phase_set: 相位集合 "
+#~ "[1, 2], N≥4 时有效"
+#~ msgstr ""
+#~ "Parameters:     n_tones: Number of tones "
+#~ "[1, 2, 4, 8].     bandwidth_mhz: SLE "
+#~ "bandwidth [1, 2, 4] MHz.     "
+#~ "duration_us: Signal duration (microseconds).     "
+#~ "sample_rate: Sample rate (Hz).     phase_set:"
+#~ " Phase set [1, 2], effective when "
+#~ "N≥4."
+
+#~ msgid "Args:     m: 发送天线数     n: 接收天线数"
+#~ msgstr ""
+#~ "Parameters:     m: Number of transmit "
+#~ "antennas.     n: Number of receive "
+#~ "antennas."
+
+#~ msgid ""
+#~ "Args:     m: 发送天线数     n: 接收天线数     "
+#~ "seed: 安全随机种子 (16 字节)     slot_number: "
+#~ "起始调度时隙号     k: 随机数位宽     kdf_type: 0=AES-"
+#~ "CMAC, 1=HMAC-SM3"
+#~ msgstr ""
+#~ "Parameters:     m: Number of transmit "
+#~ "antennas.     n: Number of receive "
+#~ "antennas.     seed: Security random seed "
+#~ "(16 bytes).     slot_number: Starting "
+#~ "scheduling slot number.     k: Random "
+#~ "number bit width.     kdf_type: 0=AES-"
+#~ "CMAC, 1=HMAC-SM3."
 

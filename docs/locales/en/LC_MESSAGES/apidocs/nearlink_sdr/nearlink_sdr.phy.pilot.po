@@ -4,12 +4,11 @@
 # package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-23 22:54+0800\n"
+"POT-Creation-Date: 2026-03-24 04:07+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -92,21 +91,27 @@ msgstr "API"
 msgid "None"
 msgstr "None"
 
-#: ../../../src/nearlink_sdr/phy/pilot.py:76
-#, fuzzy
-msgid ""
-"Args:     mod_type: 调制方式，取 \"BPSK\"、\"QPSK\" 或 \"8PSK\"。     "
-"symbol_index: 帧内以 0 为基的符号索引（决定奇偶位置）。                  标准规定第一个符号处于奇数位置。"
-msgstr ""
-"Parameters:     mod_type: Modulation scheme, one of \"BPSK\", \"QPSK\" or"
-" \"8PSK\".     symbol_index: Zero-based symbol index within the frame "
-"(determines odd/even position).                  The standard specifies "
-"that the first symbol is at an odd position."
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.md
+msgid "参数"
+msgstr "Parameters"
 
-#: ../../../src/nearlink_sdr/phy/pilot.py:81
-#, fuzzy
-msgid "Returns:     复数导频符号。"
-msgstr "Returns:     Complex pilot symbol."
+#: ../../../src/nearlink_sdr/phy/pilot.py:76
+msgid "调制方式，取 \"BPSK\"、\"QPSK\" 或 \"8PSK\"。"
+msgstr "Modulation scheme, one of \"BPSK\", \"QPSK\", or \"8PSK\"."
+
+#: ../../../src/nearlink_sdr/phy/pilot.py:77
+msgid "帧内以 0 为基的符号索引（决定奇偶位置）。 标准规定第一个符号处于奇数位置。"
+msgstr ""
+"Zero-based symbol index within the frame (determines odd/even position). "
+"The standard specifies that the first symbol is at an odd position."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.md
+msgid "返回"
+msgstr "Returns"
+
+#: ../../../src/nearlink_sdr/phy/pilot.py:80
+msgid "复数导频符号。"
+msgstr "complex pilot symbol."
 
 #: ../../../src/nearlink_sdr/phy/pilot.py:83
 msgid "每隔 `pilot_interval` 个数据符号后插入一个导频符号。 按标准规定，帧中最后一个导频应省略。"
@@ -115,39 +120,46 @@ msgstr ""
 "the standard, the last pilot in a frame shall be omitted."
 
 #: ../../../src/nearlink_sdr/phy/pilot.py:86
-#, fuzzy
-msgid ""
-"Args:     data_symbols: 复数数据符号数组。     pilot_interval: 标准中的 N 值（4、8 或 16）。"
-"     mod_type: 导频相位所用的调制方式。     start_symbol_index: 帧内第一个数据符号的绝对符号索引。"
-"     omit_last_pilot: 是否省略最后一个导频符号。"
-msgstr ""
-"Parameters:     data_symbols: Complex data symbol array.     "
-"pilot_interval: N value from the standard (4, 8 or 16).     mod_type: "
-"Modulation scheme used for pilot phase.     start_symbol_index: Absolute "
-"symbol index of the first data symbol in the frame.     omit_last_pilot: "
-"Whether to omit the last pilot symbol."
+msgid "复数数据符号数组。"
+msgstr "complex data symbol array."
 
-#: ../../../src/nearlink_sdr/phy/pilot.py:93
-#, fuzzy
-msgid "Returns:     (output_symbols, total_symbol_count) — 插入导频后的符号数组及总符号数。"
-msgstr ""
-"Returns:     (output_symbols, total_symbol_count) — symbol array after "
-"pilot insertion and total symbol count."
+#: ../../../src/nearlink_sdr/phy/pilot.py:87
+msgid "标准中的 N 值（4、8 或 16）。"
+msgstr "N value in the standard (4, 8, or 16)."
+
+#: ../../../src/nearlink_sdr/phy/pilot.py:88
+msgid "导频相位所用的调制方式。"
+msgstr "Modulation scheme used for pilot phase."
+
+#: ../../../src/nearlink_sdr/phy/pilot.py:89
+msgid "帧内第一个数据符号的绝对符号索引。"
+msgstr "Absolute symbol index of the first data symbol within the frame."
 
 #: ../../../src/nearlink_sdr/phy/pilot.py:90
-#, fuzzy
-msgid ""
-"Args:     symbols: 含导频的接收符号。     pilot_interval: N 值（4、8 或 16）。     "
-"last_pilot_omitted: 发送侧是否已省略最后一个导频。"
-msgstr ""
-"Parameters:     symbols: Received symbols containing pilots.     "
-"pilot_interval: N value (4, 8 or 16).     last_pilot_omitted: Whether the"
-" transmitter has omitted the last pilot."
+msgid "是否省略最后一个导频符号。"
+msgstr "Whether to omit the last pilot symbol."
 
-#: ../../../src/nearlink_sdr/phy/pilot.py:95
-#, fuzzy
-msgid "Returns:     移除导频后的数据符号。"
-msgstr "Returns:     Data symbols after pilot removal."
+#: ../../../src/nearlink_sdr/phy/pilot.py:92
+msgid "(output_symbols, total_symbol_count) — 插入导频后的符号数组及总符号数。"
+msgstr ""
+"(output_symbols, total_symbol_count) — symbol array after pilot insertion "
+"and total symbol count."
+
+#: ../../../src/nearlink_sdr/phy/pilot.py:90
+msgid "含导频的接收符号。"
+msgstr "pilot-bearing receive symbol."
+
+#: ../../../src/nearlink_sdr/phy/pilot.py:91
+msgid "N 值（4、8 或 16）。"
+msgstr "N value (4, 8, or 16)."
+
+#: ../../../src/nearlink_sdr/phy/pilot.py:92
+msgid "发送侧是否已省略最后一个导频。"
+msgstr "Whether the transmit side has omitted the last pilot."
+
+#: ../../../src/nearlink_sdr/phy/pilot.py:94
+msgid "移除导频后的数据符号。"
+msgstr "Data symbols after pilot removal."
 
 #~ msgid ""
 #~ "Pilot symbol insertion and extraction "
@@ -208,4 +220,47 @@ msgstr "Returns:     Data symbols after pilot removal."
 
 #~ msgid "Returns:     Data symbols with pilots removed."
 #~ msgstr ""
+
+#~ msgid ""
+#~ "Args:     mod_type: 调制方式，取 \"BPSK\"、\"QPSK\" 或"
+#~ " \"8PSK\"。     symbol_index: 帧内以 0 "
+#~ "为基的符号索引（决定奇偶位置）。                  标准规定第一个符号处于奇数位置。"
+#~ msgstr ""
+#~ "Parameters:     mod_type: Modulation scheme, "
+#~ "one of \"BPSK\", \"QPSK\" or \"8PSK\"."
+#~ "     symbol_index: Zero-based symbol index"
+#~ " within the frame (determines odd/even "
+#~ "position).                  The standard specifies"
+#~ " that the first symbol is at an"
+#~ " odd position."
+
+#~ msgid "Returns:     复数导频符号。"
+#~ msgstr "Returns:     Complex pilot symbol."
+
+#~ msgid ""
+#~ "Args:     data_symbols: 复数数据符号数组。     "
+#~ "pilot_interval: 标准中的 N 值（4、8 或 16）。"
+#~ "     mod_type: 导频相位所用的调制方式。     start_symbol_index: "
+#~ "帧内第一个数据符号的绝对符号索引。     omit_last_pilot: 是否省略最后一个导频符号。"
+#~ msgstr ""
+#~ "Parameters:     data_symbols: Complex data "
+#~ "symbol array.     pilot_interval: N value "
+#~ "from the standard (4, 8 or 16)."
+#~ "     mod_type: Modulation scheme used for"
+#~ " pilot phase.     start_symbol_index: Absolute"
+#~ " symbol index of the first data "
+#~ "symbol in the frame.     omit_last_pilot: "
+#~ "Whether to omit the last pilot "
+#~ "symbol."
+
+#~ msgid ""
+#~ "Args:     symbols: 含导频的接收符号。     pilot_interval: "
+#~ "N 值（4、8 或 16）。     last_pilot_omitted: "
+#~ "发送侧是否已省略最后一个导频。"
+#~ msgstr ""
+#~ "Parameters:     symbols: Received symbols "
+#~ "containing pilots.     pilot_interval: N value"
+#~ " (4, 8 or 16).     last_pilot_omitted: "
+#~ "Whether the transmitter has omitted the"
+#~ " last pilot."
 

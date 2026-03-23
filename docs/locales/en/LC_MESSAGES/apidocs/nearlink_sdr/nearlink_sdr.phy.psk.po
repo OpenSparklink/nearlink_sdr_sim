@@ -4,12 +4,11 @@
 # package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-23 22:54+0800\n"
+"POT-Creation-Date: 2026-03-24 04:07+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -119,19 +118,31 @@ msgstr "API"
 msgid "0.4"
 msgstr "0.4"
 
-#: ../../../src/nearlink_sdr/phy/psk.py:98
-#, fuzzy
-msgid "Args:     beta: 滚降系数     sps: 每符号采样数     span: 单侧符号跨度"
-msgstr ""
-"Parameters:     beta: Roll-off factor.     sps: Samples per symbol.     "
-"span: One-sided symbol span."
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md
+msgid "参数"
+msgstr "Parameters"
 
-#: ../../../src/nearlink_sdr/phy/psk.py:103
-#, fuzzy
-msgid "Returns:     滤波器系数, 归一化使得匹配滤波后采样点增益为1"
+#: ../../../src/nearlink_sdr/phy/psk.py:98
+msgid "滚降系数"
+msgstr "Roll-off factor"
+
+#: ../../../src/nearlink_sdr/phy/psk.py:99
+msgid "每符号采样数"
+msgstr "samples per symbol"
+
+#: ../../../src/nearlink_sdr/phy/psk.py:100
+msgid "单侧符号跨度"
+msgstr "Single-sided symbol span"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md
+msgid "返回"
+msgstr "Returns"
+
+#: ../../../src/nearlink_sdr/phy/psk.py:102
+msgid "滤波器系数, 归一化使得匹配滤波后采样点增益为1"
 msgstr ""
-"Returns:     Filter coefficients, normalized so that the matched filter "
-"sampling gain is 1."
+"Filter coefficients, normalized so that the matched filter sampling gain is "
+"1."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:103
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.psk.md:123
@@ -164,21 +175,30 @@ msgid "PSK调制并进行RRC脉冲成型。"
 msgstr "PSK modulation with RRC pulse shaping."
 
 #: ../../../src/nearlink_sdr/phy/psk.py:206
-#, fuzzy
-msgid "Returns:     复基带IQ信号"
-msgstr "Returns:     Complex baseband IQ signal."
+#: ../../../src/nearlink_sdr/phy/psk.py:228
+msgid "复基带IQ信号"
+msgstr "complex baseband IQ signal"
 
 #: ../../../src/nearlink_sdr/phy/psk.py:226
 msgid "PSK解调。"
-msgstr "PSKdemodulation。"
+msgstr "PSK demodulation."
 
-#: ../../../src/nearlink_sdr/phy/psk.py:228
-#, fuzzy
-msgid "Args:     signal: 复基带IQ信号"
-msgstr "Parameters:     signal: Complex baseband IQ signal."
+#: ../../../src/nearlink_sdr/phy/psk.py:230
+msgid "解调后的比特序列"
+msgstr "Demodulated bit sequence"
 
-#: ../../../src/nearlink_sdr/phy/psk.py:231
-#, fuzzy
-msgid "Returns:     解调后的比特序列"
-msgstr "Returns:     Demodulated bit sequence."
+#~ msgid "Args:     beta: 滚降系数     sps: 每符号采样数     span: 单侧符号跨度"
+#~ msgstr ""
+#~ "Parameters:     beta: Roll-off factor.     "
+#~ "sps: Samples per symbol.     span: "
+#~ "One-sided symbol span."
+
+#~ msgid "Returns:     复基带IQ信号"
+#~ msgstr "Returns:     Complex baseband IQ signal."
+
+#~ msgid "Args:     signal: 复基带IQ信号"
+#~ msgstr "Parameters:     signal: Complex baseband IQ signal."
+
+#~ msgid "Returns:     解调后的比特序列"
+#~ msgstr "Returns:     Demodulated bit sequence."
 

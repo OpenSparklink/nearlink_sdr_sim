@@ -4,12 +4,11 @@
 # package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-23 22:54+0800\n"
+"POT-Creation-Date: 2026-03-24 04:07+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -199,20 +198,31 @@ msgstr "1"
 msgid "生成调制前的比特级帧结构。"
 msgstr "Generate the bit-level frame structure before modulation."
 
-#: ../../../src/nearlink_sdr/phy/frame.py:261
-#, fuzzy
-msgid ""
-"Args:     ctrl_info_bits: 物理层控制信息比特。     data_payload_bits: 数据 + 完整性保护 + "
-"CRC 比特。     config: 帧配置参数。"
-msgstr ""
-"Parameters:     ctrl_info_bits: Physical layer control information bits."
-"     data_payload_bits: Data + integrity protection + CRC bits.     "
-"config: Frame configuration parameters."
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.frame.md
+msgid "参数"
+msgstr "Parameters"
 
-#: ../../../src/nearlink_sdr/phy/frame.py:266
-#, fuzzy
-msgid "Returns:     包含所有帧字段的 FrameFields 对象。"
-msgstr "Returns:     A FrameFields object containing all frame fields."
+#: ../../../src/nearlink_sdr/phy/frame.py:261
+msgid "物理层控制信息比特。"
+msgstr "physical layer control information bits."
+
+#: ../../../src/nearlink_sdr/phy/frame.py:262
+msgid "数据 + 完整性保护 + CRC 比特。"
+msgstr "data + integrity protection + CRC bits."
+
+#: ../../../src/nearlink_sdr/phy/frame.py:263
+#: ../../../src/nearlink_sdr/phy/frame.py:270
+#: ../../../src/nearlink_sdr/phy/frame.py:276
+msgid "帧配置参数。"
+msgstr "Radio frame configuration parameters."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.frame.md
+msgid "返回"
+msgstr "Returns"
+
+#: ../../../src/nearlink_sdr/phy/frame.py:265
+msgid "包含所有帧字段的 FrameFields 对象。"
+msgstr "A FrameFields object containing all frame fields."
 
 #: ../../../src/nearlink_sdr/phy/frame.py:266
 msgid "帧类型 1（GFSK）返回拼接后的比特序列（非复数符号）。 帧类型 2-4（PSK）返回含导频的复数符号流。"
@@ -222,37 +232,34 @@ msgstr ""
 " insertion."
 
 #: ../../../src/nearlink_sdr/phy/frame.py:269
-#, fuzzy
-msgid "Args:     fields: 已组装的帧字段。     config: 帧配置参数。"
-msgstr ""
-"Parameters:     fields: Assembled frame fields.     config: Frame "
-"configuration parameters."
+msgid "已组装的帧字段。"
+msgstr "assembled frame field."
 
-#: ../../../src/nearlink_sdr/phy/frame.py:273
-#, fuzzy
-msgid "Returns:     类型 1：比特数组（送入 GFSK 调制器）。     类型 2-4：基带复数符号数组。"
+#: ../../../src/nearlink_sdr/phy/frame.py:272
+msgid "类型 1：比特数组（送入 GFSK 调制器）。 类型 2-4：基带复数符号数组。"
 msgstr ""
-"Returns:     Type 1: bit array (fed to the GFSK modulator).     Types "
-"2-4: baseband complex symbol array."
+"Type 1: bit array (fed to the GFSK modulator).     Types 2-4: baseband "
+"complex symbol array."
 
 #: ../../../src/nearlink_sdr/phy/frame.py:273
 msgid "简化解析器，假定已知帧参数。"
 msgstr "Simplified parser, assuming known frame parameters."
 
 #: ../../../src/nearlink_sdr/phy/frame.py:275
-#, fuzzy
-msgid ""
-"Args:     symbols: 接收到的复数符号流。     config: 帧配置参数。     n_ctrl_coded_bits: "
-"编码控制位的数量。     n_data_bits: 数据位数量（调制前）。"
-msgstr ""
-"Parameters:     symbols: Received complex symbol stream.     config: "
-"Frame configuration parameters.     n_ctrl_coded_bits: Number of coded "
-"control bits.     n_data_bits: Number of data bits (before modulation)."
+msgid "接收到的复数符号流。"
+msgstr "Received complex symbol stream."
 
-#: ../../../src/nearlink_sdr/phy/frame.py:281
-#, fuzzy
-msgid "Returns:     (ctrl_bits, data_bits) — 解调后的比特数组。"
-msgstr "Returns:     (ctrl_bits, data_bits) — demodulated bit arrays."
+#: ../../../src/nearlink_sdr/phy/frame.py:277
+msgid "编码控制位的数量。"
+msgstr "Number of encoding control bits."
+
+#: ../../../src/nearlink_sdr/phy/frame.py:278
+msgid "数据位数量（调制前）。"
+msgstr "Number of data bits (before modulation)."
+
+#: ../../../src/nearlink_sdr/phy/frame.py:280
+msgid "(ctrl_bits, data_bits) — 解调后的比特数组。"
+msgstr "(ctrl_bits, data_bits) — demodulated bit arrays."
 
 #~ msgid ""
 #~ "Frame structure assembly and parsing per"
@@ -338,4 +345,32 @@ msgstr "Returns:     (ctrl_bits, data_bits) — demodulated bit arrays."
 
 #~ msgid "Returns:     (ctrl_bits, data_bits) — demodulated bit arrays."
 #~ msgstr ""
+
+#~ msgid ""
+#~ "Args:     ctrl_info_bits: 物理层控制信息比特。     "
+#~ "data_payload_bits: 数据 + 完整性保护 + CRC "
+#~ "比特。     config: 帧配置参数。"
+#~ msgstr ""
+#~ "Parameters:     ctrl_info_bits: Physical layer "
+#~ "control information bits.     data_payload_bits: "
+#~ "Data + integrity protection + CRC "
+#~ "bits.     config: Frame configuration "
+#~ "parameters."
+
+#~ msgid "Args:     fields: 已组装的帧字段。     config: 帧配置参数。"
+#~ msgstr ""
+#~ "Parameters:     fields: Assembled frame "
+#~ "fields.     config: Frame configuration "
+#~ "parameters."
+
+#~ msgid ""
+#~ "Args:     symbols: 接收到的复数符号流。     config: "
+#~ "帧配置参数。     n_ctrl_coded_bits: 编码控制位的数量。     "
+#~ "n_data_bits: 数据位数量（调制前）。"
+#~ msgstr ""
+#~ "Parameters:     symbols: Received complex "
+#~ "symbol stream.     config: Frame configuration"
+#~ " parameters.     n_ctrl_coded_bits: Number of "
+#~ "coded control bits.     n_data_bits: Number"
+#~ " of data bits (before modulation)."
 

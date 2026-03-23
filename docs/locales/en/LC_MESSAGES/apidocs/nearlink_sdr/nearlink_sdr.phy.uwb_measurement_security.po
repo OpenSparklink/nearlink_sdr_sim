@@ -4,20 +4,19 @@
 # package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"POT-Creation-Date: 2026-03-24 04:07+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: en <LL@li.org>\n"
 "Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:1
@@ -47,8 +46,7 @@ msgstr "9.5.4  TGap generate"
 
 #: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:13
 msgid "9.5.5  CTS 测量符号索引与加扰 SC 序列生成"
-msgstr ""
-"9.5.5  CTS measurement symbol index and scrambling SC sequence generation"
+msgstr "9.5.5  CTS measurement symbol index and scrambling SC sequence generation"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:10
 msgid "Module Contents"
@@ -198,7 +196,7 @@ msgstr ""
 #: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:64
 #: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:410
 msgid "计算 TGap (标准 9.5.4)。"
-msgstr "compute TGap (standard 9.5.4)。"
+msgstr "Calculate TGap (standard 9.5.4)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:66
 #, python-brace-format
@@ -227,8 +225,8 @@ msgstr ""
 #: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:512
 msgid "生成 CTS 测量符号索引和加扰 SC 序列 (标准 9.5.5)。"
 msgstr ""
-"Generate CTS measurement symbol index and scrambling SC sequence (standard "
-"9.5.5)."
+"Generate CTS measurement symbol index and scrambling SC sequence "
+"(standard 9.5.5)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:74
 #, python-brace-format
@@ -250,10 +248,8 @@ msgstr "Data"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:86
 #, python-brace-format
-msgid ""
-"{py:obj}`LABEL_SLP <nearlink_sdr.phy.uwb_measurement_security.LABEL_SLP>`"
-msgstr ""
-"{py:obj}`LABEL_SLP <nearlink_sdr.phy.uwb_measurement_security.LABEL_SLP>`"
+msgid "{py:obj}`LABEL_SLP <nearlink_sdr.phy.uwb_measurement_security.LABEL_SLP>`"
+msgstr "{py:obj}`LABEL_SLP <nearlink_sdr.phy.uwb_measurement_security.LABEL_SLP>`"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:90
 #, python-brace-format
@@ -338,20 +334,39 @@ msgstr "packis 16 byte (128 bit)."
 msgid "b''"
 msgstr "b''"
 
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:412
-msgid ""
-"Args:     cts_gap: 128-bit ctsGap 密钥.     cts_gap_shift: 当前帧对应的移位量 (首帧为 0, "
-"后续每帧 +1).     t_base: 基准长度 (Tc 单位).     code_len: 码长.     delta_l: deltaL "
-"系数."
-msgstr ""
-"Args:     cts_gap: 128-bit ctsGap key.     cts_gap_shift: Shift amount for "
-"the current frame (0 for the first frame, +1 for each subsequent frame)."
-"     t_base: Base length (Tc units).     code_len: Code length.     delta_l:"
-" deltaL coefficient."
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md
+msgid "参数"
+msgstr "Parameters"
 
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:419
-msgid "Returns:     Tgap = Tbase - Toffset (Tc 单位)."
-msgstr "Returns:     Tgap = Tbase - Toffset (Tc unit)."
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:412
+msgid "128-bit ctsGap 密钥."
+msgstr "128-bit ctsGap key."
+
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:413
+msgid "当前帧对应的移位量 (首帧为 0, 后续每帧 +1)."
+msgstr ""
+"Shift amount corresponding to the current frame (0 for the first frame, +1 "
+"for each subsequent frame)."
+
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:414
+msgid "基准长度 (Tc 单位)."
+msgstr "Reference length (Tc units)."
+
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:415
+msgid "码长."
+msgstr "Code length."
+
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:416
+msgid "deltaL 系数."
+msgstr "deltaL coefficient."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md
+msgid "返回"
+msgstr "Returns"
+
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:418
+msgid "Tgap = Tbase - Toffset (Tc 单位)."
+msgstr "Tgap = Tbase - Toffset (Tc unit)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.uwb_measurement_security.md:444
 msgid "2"
@@ -371,16 +386,60 @@ msgid "'field(...)'"
 msgstr "'field(...)'"
 
 #: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:514
-msgid ""
-"Args:     cts_key: ctsKey (16 字节).     cts_v_upper: ctsVUpper (高 96 bit = 12"
-" 字节).     cts_v_counter: ctsVCounter (32 bit).     n_cts: CTS 数据部分符号个数.     "
-"symbol_count: 符号索引数 (16 或 32).     encryption_algo: 加密算法 (默认 AES-128)."
-msgstr ""
-"Args:     cts_key: ctsKey (16 bytes).     cts_v_upper: ctsVUpper (upper 96 "
-"bits = 12 bytes).     cts_v_counter: ctsVCounter (32 bits).     n_cts: "
-"Number of CTS data symbols.     symbol_count: Symbol index count (16 or 32)."
-"     encryption_algorithm: Encryption algorithm type."
+msgid "ctsKey (16 字节)."
+msgstr "ctsKey (16 bytes)."
 
-#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:522
-msgid "Returns:     CTSSymbolResult 包含符号索引和 SC 序列."
-msgstr "Returns:     CTSSymbolResult containing symbol index and SC sequence."
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:515
+msgid "ctsVUpper (高 96 bit = 12 字节)."
+msgstr "ctsVUpper (upper 96 bits = 12 bytes)."
+
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:516
+msgid "ctsVCounter (32 bit)."
+msgstr "Advance ctsVCounter after each frame (standard 9.5.5)."
+
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:517
+msgid "CTS 数据部分符号个数."
+msgstr "CTS data section symbol count."
+
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:518
+msgid "符号索引数 (16 或 32)."
+msgstr "Number of symbol indices (16 or 32)."
+
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:519
+msgid "加密算法 (默认 AES-128)."
+msgstr "Encryption algorithm (default AES-128)."
+
+#: ../../../src/nearlink_sdr/phy/uwb_measurement_security.py:521
+msgid "CTSSymbolResult 包含符号索引和 SC 序列."
+msgstr "CTSSymbolResult containing symbol index and SC sequence."
+
+#~ msgid ""
+#~ "Args:     cts_gap: 128-bit ctsGap 密钥.     "
+#~ "cts_gap_shift: 当前帧对应的移位量 (首帧为 0, 后续每帧 "
+#~ "+1).     t_base: 基准长度 (Tc 单位).     "
+#~ "code_len: 码长.     delta_l: deltaL 系数."
+#~ msgstr ""
+#~ "Args:     cts_gap: 128-bit ctsGap key.     "
+#~ "cts_gap_shift: Shift amount for the "
+#~ "current frame (0 for the first "
+#~ "frame, +1 for each subsequent frame)."
+#~ "     t_base: Base length (Tc units)."
+#~ "     code_len: Code length.     delta_l: "
+#~ "deltaL coefficient."
+
+#~ msgid ""
+#~ "Args:     cts_key: ctsKey (16 字节).     "
+#~ "cts_v_upper: ctsVUpper (高 96 bit = "
+#~ "12 字节).     cts_v_counter: ctsVCounter (32 "
+#~ "bit).     n_cts: CTS 数据部分符号个数.     "
+#~ "symbol_count: 符号索引数 (16 或 32).     "
+#~ "encryption_algo: 加密算法 (默认 AES-128)."
+#~ msgstr ""
+#~ "Args:     cts_key: ctsKey (16 bytes).     "
+#~ "cts_v_upper: ctsVUpper (upper 96 bits ="
+#~ " 12 bytes).     cts_v_counter: ctsVCounter "
+#~ "(32 bits).     n_cts: Number of CTS "
+#~ "data symbols.     symbol_count: Symbol index"
+#~ " count (16 or 32).     "
+#~ "encryption_algorithm: Encryption algorithm type."
+

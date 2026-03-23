@@ -4,20 +4,19 @@
 # package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"POT-Creation-Date: 2026-03-24 04:07+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: en <LL@li.org>\n"
 "Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.multitone.md:1
@@ -33,15 +32,15 @@ msgstr "Multi-tone signal generator — TXS-10002-2025 standard 6.2.1.3"
 #, python-brace-format
 msgid "基带多音信号: S(t) = sum_{i=1}^{N} A_i * exp(j * (omega_i * t + phi_i))"
 msgstr ""
-"Baseband multi-tone signal: S(t) = sum_{i=1}^{N} A_i * exp(j * (omega_i * t "
-"+ phi_i))"
+"Baseband multi-tone signal: S(t) = sum_{i=1}^{N} A_i * exp(j * (omega_i *"
+" t + phi_i))"
 
 #: ../../../src/nearlink_sdr/phy/multitone.py:11
 msgid "标准规定 N = 1, 2, 4, 8, 各音等幅、等间隔、对称分布。 测量信号 2 (6.2.4.2) 引用本模块生成多音波形。"
 msgstr ""
-"The standard specifies N = 1, 2, 4, 8, with equal amplitude, equal spacing, "
-"and symmetric distribution. Measurement signal 2 (6.2.4.2) references this "
-"module to generate multi-tone waveforms."
+"The standard specifies N = 1, 2, 4, 8, with equal amplitude, equal "
+"spacing, and symmetric distribution. Measurement signal 2 (6.2.4.2) "
+"references this module to generate multi-tone waveforms."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.multitone.md:10
 msgid "Module Contents"
@@ -54,8 +53,7 @@ msgstr "Classes"
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.multitone.md:18
 #, python-brace-format
 msgid "{py:obj}`MultitoneConfig <nearlink_sdr.phy.multitone.MultitoneConfig>`"
-msgstr ""
-"{py:obj}`MultitoneConfig <nearlink_sdr.phy.multitone.MultitoneConfig>`"
+msgstr "{py:obj}`MultitoneConfig <nearlink_sdr.phy.multitone.MultitoneConfig>`"
 
 #: ../../../src/nearlink_sdr/phy/multitone.py:20
 #: ../../../src/nearlink_sdr/phy/multitone.py:85
@@ -69,9 +67,11 @@ msgstr "Functions"
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.multitone.md:30
 #, python-brace-format
 msgid ""
-"{py:obj}`generate_multitone <nearlink_sdr.phy.multitone.generate_multitone>`"
+"{py:obj}`generate_multitone "
+"<nearlink_sdr.phy.multitone.generate_multitone>`"
 msgstr ""
-"{py:obj}`generate_multitone <nearlink_sdr.phy.multitone.generate_multitone>`"
+"{py:obj}`generate_multitone "
+"<nearlink_sdr.phy.multitone.generate_multitone>`"
 
 #: ../../../src/nearlink_sdr/phy/multitone.py:32
 #: ../../../src/nearlink_sdr/phy/multitone.py:174
@@ -141,25 +141,41 @@ msgstr "Adjacent tone frequency spacing (Hz)."
 
 #: ../../../src/nearlink_sdr/phy/multitone.py:157
 msgid "各音的基带频率列表 (Hz), 中心对称分布。"
-msgstr ""
-"Baseband frequency list of each tone (Hz), center-symmetric distribution."
+msgstr "Baseband frequency list of each tone (Hz), center-symmetric distribution."
 
 #: ../../../src/nearlink_sdr/phy/multitone.py:166
 msgid "各音的初始相位 (rad)。"
 msgstr "Initial phase of each tone (rad)."
 
-#: ../../../src/nearlink_sdr/phy/multitone.py:176
-msgid "Args:     config: 多音信号配置.     duration_s: 信号持续时间 (秒)."
-msgstr ""
-"Args:     config: Multi-tone signal configuration.     duration_s: Signal "
-"duration (seconds)."
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.multitone.md
+msgid "参数"
+msgstr "Parameters"
 
-#: ../../../src/nearlink_sdr/phy/multitone.py:180
-msgid "Returns:     复数基带采样序列, shape=(num_samples,)."
-msgstr "Returns:     Complex baseband sample sequence, shape=(num_samples,)."
+#: ../../../src/nearlink_sdr/phy/multitone.py:176
+msgid "多音信号配置."
+msgstr "Multi-tone signal configuration."
+
+#: ../../../src/nearlink_sdr/phy/multitone.py:177
+msgid "信号持续时间 (秒)."
+msgstr "Signal duration (seconds)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.multitone.md
+msgid "返回"
+msgstr "Returns"
+
+#: ../../../src/nearlink_sdr/phy/multitone.py:179
+msgid "复数基带采样序列, shape=(num_samples,)."
+msgstr "Complex baseband sample sequence, shape=(num_samples,)."
 
 #: ../../../src/nearlink_sdr/phy/multitone.py:183
 msgid "对于等幅多音, 理论最大 PAPR = N (所有音同相叠加时)."
 msgstr ""
-"For equal-amplitude multi-tone, the theoretical maximum PAPR = N (when all "
-"tones add in phase)."
+"For equal-amplitude multi-tone, the theoretical maximum PAPR = N (when "
+"all tones add in phase)."
+
+#~ msgid "Args:     config: 多音信号配置.     duration_s: 信号持续时间 (秒)."
+#~ msgstr ""
+#~ "Args:     config: Multi-tone signal "
+#~ "configuration.     duration_s: Signal duration "
+#~ "(seconds)."
+

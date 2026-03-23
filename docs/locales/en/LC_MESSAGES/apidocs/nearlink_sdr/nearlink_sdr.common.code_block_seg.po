@@ -4,12 +4,11 @@
 # package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-23 22:54+0800\n"
+"POT-Creation-Date: 2026-03-24 04:07+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -157,38 +156,47 @@ msgstr ""
 msgid "适用于帧类型 2。"
 msgstr "Used for frame type 2."
 
-#: ../../../src/nearlink_sdr/common/code_block_seg.py:114
-#, fuzzy, python-brace-format
-msgid ""
-"Args:     bits: 输入比特序列 b_0..b_{B-1}, 其中 B = K + L (信息位 + CRC)。     "
-"rate_str: 目标码率字符串。     crc_len: L, 已追加到 bits 末尾的 CRC 长度。"
-msgstr ""
-"parameter: bits: input bit sequence b_0..b_{B-1}, where B = K + L "
-"(information bits + CRC). rate_str: targetcode ratestring. crc_len: L, "
-"appended to bits end CRC length."
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.md
+msgid "参数"
+msgstr "Parameters"
 
-#: ../../../src/nearlink_sdr/common/code_block_seg.py:119
-#, fuzzy
-msgid "Returns:     每个分段的 (码长 N, 信息比特) 元组列表。"
-msgstr "Returns:     List of (code_length N, info_bits) tuples for each segment."
+#: ../../../src/nearlink_sdr/common/code_block_seg.py:114
+#, python-brace-format
+msgid "输入比特序列 b_0..b_{B-1}, 其中 B = K + L (信息位 + CRC)。"
+msgstr ""
+"input bit sequence b_0..b_{B-1}, where B = K + L (information bits + CRC)."
+
+#: ../../../src/nearlink_sdr/common/code_block_seg.py:115
+#: ../../../src/nearlink_sdr/common/code_block_seg.py:122
+msgid "目标码率字符串。"
+msgstr "target code rate string."
+
+#: ../../../src/nearlink_sdr/common/code_block_seg.py:116
+msgid "L, 已追加到 bits 末尾的 CRC 长度。"
+msgstr "L, CRC length already appended to the end of bits."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.code_block_seg.md
+msgid "返回"
+msgstr "Returns"
+
+#: ../../../src/nearlink_sdr/common/code_block_seg.py:118
+msgid "每个分段的 (码长 N, 信息比特) 元组列表。"
+msgstr "List of (code_length N, info_bits) tuples for each segment."
 
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:119
 msgid "适用于帧类型 3 和 4。"
 msgstr "Used for frame types 3 and 4."
 
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:121
-#, fuzzy, python-brace-format
-msgid "Args:     bits: 输入比特序列 b_0..b_{B-1}。     rate_str: 目标码率字符串。"
-msgstr ""
-"parameter: bits: input bit sequence b_0..b_{B-1}. rate_str: targetcode "
-"ratestring."
+#, python-brace-format
+msgid "输入比特序列 b_0..b_{B-1}。"
+msgstr "input bit sequence b_0..b_{B-1}."
 
-#: ../../../src/nearlink_sdr/common/code_block_seg.py:125
-#, fuzzy
-msgid "Returns:     每个分段的 (码长 N, 含 CRC 的信息比特) 元组列表。     最后一个分段可能进一步做子分割。"
+#: ../../../src/nearlink_sdr/common/code_block_seg.py:124
+msgid "每个分段的 (码长 N, 含 CRC 的信息比特) 元组列表。 最后一个分段可能进一步做子分割。"
 msgstr ""
-"Returns:     List of (code_length N, info_bits_with_CRC) tuples for each "
-"segment.     The last segment may be further sub-segmented."
+"List of (code_length N, info_bits_with_CRC) tuples for each segment.     "
+"The last segment may be further sub-segmented."
 
 #: ../../../src/nearlink_sdr/common/code_block_seg.py:126
 msgid "若无需子分割（K_r 在码率 R 下可放入 1024 块中）则返回 None。"
@@ -257,4 +265,21 @@ msgstr ""
 #~ "is needed (K_r fits in 1024 at "
 #~ "rate R)."
 #~ msgstr ""
+
+#~ msgid ""
+#~ "Args:     bits: 输入比特序列 b_0..b_{B-1}, 其中 "
+#~ "B = K + L (信息位 + CRC)。"
+#~ "     rate_str: 目标码率字符串。     crc_len: L, "
+#~ "已追加到 bits 末尾的 CRC 长度。"
+#~ msgstr ""
+#~ "parameter: bits: input bit sequence "
+#~ "b_0..b_{B-1}, where B = K + L "
+#~ "(information bits + CRC). rate_str: "
+#~ "targetcode ratestring. crc_len: L, appended"
+#~ " to bits end CRC length."
+
+#~ msgid "Args:     bits: 输入比特序列 b_0..b_{B-1}。     rate_str: 目标码率字符串。"
+#~ msgstr ""
+#~ "parameter: bits: input bit sequence "
+#~ "b_0..b_{B-1}. rate_str: targetcode ratestring."
 

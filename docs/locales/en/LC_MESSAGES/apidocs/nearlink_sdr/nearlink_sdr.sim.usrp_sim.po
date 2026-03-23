@@ -4,20 +4,19 @@
 # package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"POT-Creation-Date: 2026-03-24 04:07+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: en <LL@li.org>\n"
 "Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.sim.usrp_sim.md:1
@@ -33,7 +32,8 @@ msgstr "USRP loopback simulation engine."
 msgid "使用 MockUSRP loopback 模式, 将完整的 SLE 发射/接收流水线 通过虚拟 USRP 设备连接, 验证端到端功能正确性。"
 msgstr ""
 "Uses MockUSRP loopback mode to connect the complete SLE TX/RX pipeline "
-"through a virtual USRP device, verifying end-to-end functional correctness."
+"through a virtual USRP device, verifying end-to-end functional "
+"correctness."
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:12
 msgid "支持的仿真场景:"
@@ -46,8 +46,8 @@ msgstr "Single-frame IQ loopback (AWGN channel)"
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:14
 msgid "PHY 全链路环回 (CRC → Polar → 调制 → 信道 → 解调 → 解码 → CRC)"
 msgstr ""
-"PHY full-chain loopback (CRC → Polar → modulation → channel → demodulation →"
-" decoding → CRC)"
+"PHY full-chain loopback (CRC → Polar → modulation → channel → "
+"demodulation → decoding → CRC)"
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:15
 msgid "MAC 数据帧环回 (AsyncDataFrame 打包 → PHY → 环回 → PHY → 解包)"
@@ -152,8 +152,7 @@ msgid "帧错误率。"
 msgstr "Frame error rate."
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:209
-msgid ""
-"在 MockUSRP loopback 模式下, TX 端发送的 IQ 信号经可选信道模型 后直接送入 RX 端, 实现完整的硬件在环式仿真。"
+msgid "在 MockUSRP loopback 模式下, TX 端发送的 IQ 信号经可选信道模型 后直接送入 RX 端, 实现完整的硬件在环式仿真。"
 msgstr ""
 "In MockUSRP loopback mode, IQ signals transmitted by the TX side pass "
 "through an optional channel model and are fed directly to the RX side, "
@@ -170,34 +169,49 @@ msgstr "IQ samples through MockUSRP TX → loopback → RX roundtrip."
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:236
 msgid "PHY 全链路环回: 编码 → 调制 → USRP TX → 信道 → USRP RX → 解调 → 解码。"
 msgstr ""
-"PHY full-chain loopback: encoding → modulation → USRP TX → channel → USRP RX"
-" → demodulation → decoding."
+"PHY full-chain loopback: encoding → modulation → USRP TX → channel → USRP"
+" RX → demodulation → decoding."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.sim.usrp_sim.md
+msgid "参数"
+msgstr "Parameters"
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:238
-msgid ""
-"Args:     data_bits: 信息比特。     cfg: 发射配置。     ctrl_bits: 控制信息比特, None 时使用全零。"
-msgstr ""
-"Args:     data_bits: Information bits.     cfg: Transmit configuration.     "
-"ctrl_bits: Control information bits; None defaults to all zeros."
+msgid "信息比特。"
+msgstr "information bit."
 
-#: ../../../src/nearlink_sdr/sim/usrp_sim.py:243
-msgid "Returns:     LoopbackResult 包含 CRC 校验结果和 BER。"
-msgstr "Returns:     LoopbackResult containing CRC check result and BER."
+#: ../../../src/nearlink_sdr/sim/usrp_sim.py:239
+#: ../../../src/nearlink_sdr/sim/usrp_sim.py:263
+msgid "发射配置。"
+msgstr "Transmit configuration."
+
+#: ../../../src/nearlink_sdr/sim/usrp_sim.py:240
+msgid "控制信息比特, None 时使用全零。"
+msgstr "Control information bits, uses all zeros when None."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.sim.usrp_sim.md
+msgid "返回"
+msgstr "Returns"
+
+#: ../../../src/nearlink_sdr/sim/usrp_sim.py:242
+msgid "LoopbackResult 包含 CRC 校验结果和 BER。"
+msgstr "LoopbackResult containing CRC check result and BER."
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:244
 msgid "MAC 数据帧环回: bytes → mac_to_iq → USRP → iq_to_mac。"
 msgstr "MAC data frame loopback: bytes → mac_to_iq → USRP → iq_to_mac."
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:246
-msgid ""
-"Args:     mac_payload: MAC 层载荷字节。     cfg: 发射配置, None 时使用 FT2 MCS7 默认值。"
-msgstr ""
-"Args:     mac_payload: MAC layer payload bytes.     cfg: Transmit "
-"configuration; None defaults to FT2 MCS7."
+msgid "MAC 层载荷字节。"
+msgstr "MAC layer payload bytes."
 
-#: ../../../src/nearlink_sdr/sim/usrp_sim.py:250
-msgid "Returns:     (MacRxResult, LoopbackResult)"
-msgstr "Returns:     (MacRxResult, LoopbackResult)"
+#: ../../../src/nearlink_sdr/sim/usrp_sim.py:247
+msgid "发射配置, None 时使用 FT2 MCS7 默认值。"
+msgstr "Transmit configuration, uses FT2 MCS7 default when None."
+
+#: ../../../src/nearlink_sdr/sim/usrp_sim.py:249
+msgid "(MacRxResult, LoopbackResult)"
+msgstr "(MacRxResult, LoopbackResult)"
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:252
 msgid "跳频发射 + 接收环回。"
@@ -210,18 +224,38 @@ msgstr ""
 "channel."
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:256
-msgid "Returns:     [(channel_num, rx_samples), ...]"
-msgstr "Returns:     [(channel_num, rx_samples), ...]"
+msgid "[(channel_num, rx_samples), ...]"
+msgstr "[(channel_num, rx_samples), ...]"
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:260
 msgid "批量 MAC 帧环回仿真。"
 msgstr "Batch MAC frame loopback simulation."
 
 #: ../../../src/nearlink_sdr/sim/usrp_sim.py:262
-msgid "Args:     payloads: MAC 载荷列表。     cfg: 发射配置。"
-msgstr ""
-"Args:     payloads: List of MAC payloads.     cfg: Transmit configuration."
+msgid "MAC 载荷列表。"
+msgstr "MAC payload list."
 
-#: ../../../src/nearlink_sdr/sim/usrp_sim.py:266
-msgid "Returns:     USRPSimResult 汇总结果。"
-msgstr "Returns:     USRPSimResult summary."
+#: ../../../src/nearlink_sdr/sim/usrp_sim.py:265
+msgid "USRPSimResult 汇总结果。"
+msgstr "USRPSimResult summary."
+
+#~ msgid ""
+#~ "Args:     data_bits: 信息比特。     cfg: 发射配置。"
+#~ "     ctrl_bits: 控制信息比特, None 时使用全零。"
+#~ msgstr ""
+#~ "Args:     data_bits: Information bits.     "
+#~ "cfg: Transmit configuration.     ctrl_bits: "
+#~ "Control information bits; None defaults "
+#~ "to all zeros."
+
+#~ msgid "Args:     mac_payload: MAC 层载荷字节。     cfg: 发射配置, None 时使用 FT2 MCS7 默认值。"
+#~ msgstr ""
+#~ "Args:     mac_payload: MAC layer payload "
+#~ "bytes.     cfg: Transmit configuration; None"
+#~ " defaults to FT2 MCS7."
+
+#~ msgid "Args:     payloads: MAC 载荷列表。     cfg: 发射配置。"
+#~ msgstr ""
+#~ "Args:     payloads: List of MAC "
+#~ "payloads.     cfg: Transmit configuration."
+

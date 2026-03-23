@@ -4,12 +4,11 @@
 # package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-23 22:54+0800\n"
+"POT-Creation-Date: 2026-03-24 04:07+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -114,56 +113,74 @@ msgstr ""
 "Frame type 1 uses an alternating [0,1] sequence, with the first symbol "
 "being 0."
 
-#: ../../../src/nearlink_sdr/phy/preamble.py:72
-#: ../../../src/nearlink_sdr/phy/preamble.py:84
-#, fuzzy
-msgid "Args:     symbol_rate_mhz: 符号速率 (MHz)     duration_us: 前导码持续时间 (μs)"
-msgstr ""
-"Parameters:     symbol_rate_mhz: Symbol rate (MHz).     duration_us: "
-"Preamble duration (μs)."
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.preamble.md
+msgid "参数"
+msgstr "Parameters"
 
-#: ../../../src/nearlink_sdr/phy/preamble.py:76
-#, fuzzy
-msgid "Returns:     前导码比特序列, 值为 0/1"
-msgstr "Returns:     Preamble bit sequence, values 0/1."
+#: ../../../src/nearlink_sdr/phy/preamble.py:72
+#: ../../../src/nearlink_sdr/phy/preamble.py:79
+#: ../../../src/nearlink_sdr/phy/preamble.py:84
+#: ../../../src/nearlink_sdr/phy/preamble.py:102
+msgid "符号速率 (MHz)"
+msgstr "symbol rate (MHz)"
+
+#: ../../../src/nearlink_sdr/phy/preamble.py:73
+#: ../../../src/nearlink_sdr/phy/preamble.py:85
+msgid "前导码持续时间 (μs)"
+msgstr "Preamble duration (μs)"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.preamble.md
+msgid "返回"
+msgstr "Returns"
+
+#: ../../../src/nearlink_sdr/phy/preamble.py:75
+msgid "前导码比特序列, 值为 0/1"
+msgstr "Preamble bit sequence, values 0/1."
 
 #: ../../../src/nearlink_sdr/phy/preamble.py:77
 msgid "帧类型2/3/4使用 [π/4, 0] 交替相位。"
 msgstr "Frame types 2/3/4 use alternating [π/4, 0] phases."
 
-#: ../../../src/nearlink_sdr/phy/preamble.py:79
-#, fuzzy
-msgid ""
-"Args:     symbol_rate_mhz: 符号速率 (MHz)     duration_us: 前导码持续时间 "
-"(μs)，帧类型2=10，帧类型3=12，帧类型4=16"
+#: ../../../src/nearlink_sdr/phy/preamble.py:80
+msgid "前导码持续时间 (μs)，帧类型2=10，帧类型3=12，帧类型4=16"
 msgstr ""
-"Parameters:     symbol_rate_mhz: Symbol rate (MHz).     duration_us: "
-"Preamble duration (μs), frame type 2=10, frame type 3=12, frame type "
-"4=16."
+"Preamble duration (μs), frame type 2=10, frame type 3=12, frame type 4=16"
 
-#: ../../../src/nearlink_sdr/phy/preamble.py:83
-#, fuzzy
-msgid "Returns:     前导码相位序列 (弧度)"
-msgstr "Returns:     Preamble phase sequence (radians)."
+#: ../../../src/nearlink_sdr/phy/preamble.py:82
+msgid "前导码相位序列 (弧度)"
+msgstr "Preamble phase sequence (radians)."
 
-#: ../../../src/nearlink_sdr/phy/preamble.py:88
-#, fuzzy
-msgid "Returns:     前导码复数符号, shape (N,)"
-msgstr "Returns:     Preamble complex symbols, shape (N,)."
+#: ../../../src/nearlink_sdr/phy/preamble.py:87
+msgid "前导码复数符号, shape (N,)"
+msgstr "Preamble complex symbols, shape (N,)."
 
 #: ../../../src/nearlink_sdr/phy/preamble.py:101
-#, fuzzy
-msgid "Args:     frame_type: 帧类型 1~4     symbol_rate_mhz: 符号速率 (MHz)"
-msgstr ""
-"Parameters:     frame_type: Frame type 1-4.     symbol_rate_mhz: Symbol "
-"rate (MHz)."
+msgid "帧类型 1~4"
+msgstr "frame type 1 ~4"
 
-#: ../../../src/nearlink_sdr/phy/preamble.py:105
-#, fuzzy
-msgid ""
-"Returns:     帧类型1: 比特数组 (int ndarray)     帧类型2/3/4: 复数符号数组 (complex "
-"ndarray)"
+#: ../../../src/nearlink_sdr/phy/preamble.py:104
+msgid "帧类型1: 比特数组 (int ndarray) 帧类型2/3/4: 复数符号数组 (complex ndarray)"
 msgstr ""
-"Returns:     Frame type 1: bit array (int ndarray).     Frame types "
-"2/3/4: complex symbol array (complex ndarray)."
+"Frame type 1: bit array (int ndarray).     Frame types 2/3/4: complex "
+"symbol array (complex ndarray)."
+
+#~ msgid "Args:     symbol_rate_mhz: 符号速率 (MHz)     duration_us: 前导码持续时间 (μs)"
+#~ msgstr ""
+#~ "Parameters:     symbol_rate_mhz: Symbol rate "
+#~ "(MHz).     duration_us: Preamble duration "
+#~ "(μs)."
+
+#~ msgid ""
+#~ "Args:     symbol_rate_mhz: 符号速率 (MHz)     "
+#~ "duration_us: 前导码持续时间 (μs)，帧类型2=10，帧类型3=12，帧类型4=16"
+#~ msgstr ""
+#~ "Parameters:     symbol_rate_mhz: Symbol rate "
+#~ "(MHz).     duration_us: Preamble duration "
+#~ "(μs), frame type 2=10, frame type "
+#~ "3=12, frame type 4=16."
+
+#~ msgid "Args:     frame_type: 帧类型 1~4     symbol_rate_mhz: 符号速率 (MHz)"
+#~ msgstr ""
+#~ "Parameters:     frame_type: Frame type 1-4."
+#~ "     symbol_rate_mhz: Symbol rate (MHz)."
 

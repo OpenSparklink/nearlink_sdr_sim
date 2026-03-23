@@ -4,12 +4,11 @@
 # package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-23 22:54+0800\n"
+"POT-Creation-Date: 2026-03-24 04:07+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -76,7 +75,7 @@ msgstr "{py:obj}`sim_psk_link <nearlink_sdr.sim.link_sim.sim_psk_link>`"
 #: ../../../src/nearlink_sdr/sim/link_sim.py:32
 #: ../../../src/nearlink_sdr/sim/link_sim.py:297
 msgid "帧类型2/3/4 PSK无编码链路仿真。"
-msgstr "frame type2/3/4 PSKnoencodelinksimulation."
+msgstr "Frame type 2/3/4 PSK uncoded link simulation."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.sim.link_sim.md:34
 #, python-brace-format
@@ -104,7 +103,7 @@ msgstr ""
 #: ../../../src/nearlink_sdr/sim/link_sim.py:40
 #: ../../../src/nearlink_sdr/sim/link_sim.py:311
 msgid "Polar编码PSK链路仿真。"
-msgstr "PolarencodePSKlinksimulation。"
+msgstr "Polar-coded PSK link simulation."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.sim.link_sim.md:42
 #, python-brace-format
@@ -145,8 +144,8 @@ msgstr ""
 #: ../../../src/nearlink_sdr/sim/link_sim.py:332
 msgid "Phase 3 帧级仿真: 不同帧类型、导频配置的 BER/FER。"
 msgstr ""
-"Phase 3 framelevelsimulation: notsameframe type, pilotconfiguration "
-"BER/FER."
+"Phase 3 frame-level simulation: BER/FER with different frame types and "
+"pilot configurations."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.sim.link_sim.md:54
 #, python-brace-format
@@ -309,8 +308,8 @@ msgstr ""
 #: ../../../src/nearlink_sdr/sim/link_sim.py:416
 msgid "MAC 信令帧端到端仿真: 信令编码 → IQ → 信道 → IQ → 信令解码。"
 msgstr ""
-"MAC signalingframeendtoendsimulation: signalingencode → IQ → channel → IQ"
-" → signalingdecode."
+"MAC signaling frame end-to-end simulation: signaling encoding → IQ → "
+"channel → IQ → signaling decoding."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.sim.link_sim.md:102
 #, python-brace-format
@@ -666,7 +665,7 @@ msgstr ""
 #: ../../../src/nearlink_sdr/sim/link_sim.py:204
 #: ../../../src/nearlink_sdr/sim/link_sim.py:598
 msgid "SleNode 跳频数据链路仿真。"
-msgstr "SleNode frequency hoppingdatalinksimulation。"
+msgstr "SleNode frequency hopping data link simulation."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.sim.link_sim.md:206
 #, python-brace-format
@@ -831,11 +830,15 @@ msgstr ""
 "procedure: preamble + syncsignal1(broadcast) + data → GFSKmodulation → "
 "AWGNchannel → GFSKdemodulation → BER"
 
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.sim.link_sim.md
+msgid "返回"
+msgstr "Returns"
+
 #: ../../../src/nearlink_sdr/sim/link_sim.py:294
 #: ../../../src/nearlink_sdr/sim/link_sim.py:302
-#, fuzzy, python-brace-format
-msgid "Returns:     {\"snr_db\": [...], \"ber\": [...]}"
-msgstr "returns:     {\"snr_db\": [...], \"ber\": [...]}"
+#, python-brace-format
+msgid "{\"snr_db\": [...], \"ber\": [...]}"
+msgstr "{\"snr_db\": [...], \"ber\": [...]}"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:299
 msgid "流程: 数据 → PSK调制 → AWGN信道 → PSK解调 → BER (前导和同步信号作为独立信号段，不影响数据BER)"
@@ -851,24 +854,45 @@ msgstr ""
 "AWGNchannel → demodulation(soft decisionLLR) → SCdecode → BER"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:315
-#: ../../../src/nearlink_sdr/sim/link_sim.py:336
-#: ../../../src/nearlink_sdr/sim/link_sim.py:353
-#: ../../../src/nearlink_sdr/sim/link_sim.py:378
-#: ../../../src/nearlink_sdr/sim/link_sim.py:409
+#: ../../../src/nearlink_sdr/sim/link_sim.py:335
+#: ../../../src/nearlink_sdr/sim/link_sim.py:352
+#: ../../../src/nearlink_sdr/sim/link_sim.py:377
+#: ../../../src/nearlink_sdr/sim/link_sim.py:408
 #, python-brace-format
-msgid "Returns:     {\"snr_db\": [...], \"ber\": [...], \"fer\": [...]}"
-msgstr "Returns:     {\"snr_db\": [...], \"ber\": [...], \"fer\": [...]}"
+msgid "{\"snr_db\": [...], \"ber\": [...], \"fer\": [...]}"
+msgstr "{\"snr_db\": [...], \"ber\": [...], \"fer\": [...]}"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.sim.link_sim.md
+msgid "参数"
+msgstr "Parameters"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:327
-msgid ""
-"Args:     frame_type: 2, 3, or 4.     num_data_bits: 数据负载比特数.     "
-"rate_str: Polar码率.     code_length: Polar码长.     pilot_interval: 导频插入间隔 "
-"(0, 4, 8, 16).     snr_range_db: SNR扫描范围.     seed: 随机种子."
-msgstr ""
-"Args:     frame_type: 2, 3, or 4.     num_data_bits: Number of data "
-"payload bits.     rate_str: Polar code rate.     code_length: Polar code "
-"length.     pilot_interval: Pilot insertion interval (0, 4, 8, 16).     "
-"snr_range_db: SNR sweep range.     seed: Random seed."
+msgid "2, 3, or 4."
+msgstr "2, 3, or 4."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:328
+msgid "数据负载比特数."
+msgstr "Number of data payload bits."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:329
+msgid "Polar码率."
+msgstr "Polar code rate."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:330
+msgid "Polar码长."
+msgstr "Polar code length."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:331
+msgid "导频插入间隔 (0, 4, 8, 16)."
+msgstr "Pilot insertion interval (0, 4, 8, 16)."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:332
+msgid "SNR扫描范围."
+msgstr "SNR scan range."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:333
+msgid "随机种子."
+msgstr "random seed."
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:341
 msgid "流程: 信息比特 → Polar编码 → BPSK调制 → 信道(衰落+AWGN) → 均衡 → LLR → 解码"
@@ -877,17 +901,48 @@ msgstr ""
 "(fading + AWGN) → equalization → LLR → decoding"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:343
-msgid ""
-"Args:     channel_type: \"awgn\" / \"rayleigh\" / \"rician\" / "
-"\"multipath\"。     rician_k_db: Rician K 因子。     eq_method: \"zf\" / "
-"\"mmse\" / \"none\" (不均衡)。     rate_str: Polar 码率。     code_length: Polar"
-" 码长。     snr_range_db: SNR 范围。     n_frames: 每个 SNR 点的帧数。     seed: 随机种子。"
-msgstr ""
-"Args:     channel_type: \"awgn\" / \"rayleigh\" / \"rician\" / "
-"\"multipath\".     rician_k_db: Rician K-factor.     eq_method: \"zf\" / "
-"\"mmse\" / \"none\" (no equalization).     rate_str: Polar code rate."
-"     code_length: Polar code length.     snr_range_db: SNR range.     "
-"n_frames: Number of frames per SNR point.     seed: Random seed."
+msgid "\"awgn\" / \"rayleigh\" / \"rician\" / \"multipath\"。"
+msgstr "\"awgn\" / \"rayleigh\" / \"rician\" / \"multipath\"."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:344
+#: ../../../src/nearlink_sdr/sim/link_sim.py:457
+#: ../../../src/nearlink_sdr/sim/link_sim.py:463
+msgid "Rician K 因子。"
+msgstr "Rician K factor."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:345
+msgid "\"zf\" / \"mmse\" / \"none\" (不均衡)。"
+msgstr "\"zf\" / \"mmse\" / \"none\" (no equalization)."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:346
+#: ../../../src/nearlink_sdr/sim/link_sim.py:359
+msgid "Polar 码率。"
+msgstr "Polar code rate."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:347
+#: ../../../src/nearlink_sdr/sim/link_sim.py:360
+msgid "Polar 码长。"
+msgstr "Polar code length."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:348
+#: ../../../src/nearlink_sdr/sim/link_sim.py:361
+msgid "SNR 范围。"
+msgstr "SNR range."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:349
+msgid "每个 SNR 点的帧数。"
+msgstr "Number of frames per SNR point."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:350
+#: ../../../src/nearlink_sdr/sim/link_sim.py:364
+#: ../../../src/nearlink_sdr/sim/link_sim.py:406
+#: ../../../src/nearlink_sdr/sim/link_sim.py:459
+#: ../../../src/nearlink_sdr/sim/link_sim.py:464
+#: ../../../src/nearlink_sdr/sim/link_sim.py:651
+#: ../../../src/nearlink_sdr/sim/link_sim.py:659
+#: ../../../src/nearlink_sdr/sim/link_sim.py:663
+msgid "随机种子。"
+msgstr "random seed."
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:355
 msgid "流程: 生成跳频序列 → 每跳: Polar编码 → BPSK调制 → 独立 Rayleigh 信道 → 均衡 → 解码"
@@ -896,37 +951,57 @@ msgstr ""
 "modulation → independent Rayleigh channel → equalization → decoding"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:357
-msgid ""
-"Args:     hop_param2: 跳频参数 2。     n_hops: 每个 SNR 点的跳频次数 (帧数)。     "
-"rate_str: Polar 码率。     code_length: Polar 码长。     snr_range_db: SNR 范围。"
-"     bandwidth_mhz: 信道带宽 1/2/4 MHz。     blocked_ratio: 被阻塞信道占比 (0~1)。"
-"     seed: 随机种子。"
-msgstr ""
-"Args:     hop_param2: Frequency-hopping parameter 2.     n_hops: Number "
-"of hops (frames) per SNR point.     rate_str: Polar code rate.     "
-"code_length: Polar code length.     snr_range_db: SNR range.     "
-"bandwidth_mhz: Channel bandwidth 1/2/4 MHz.     blocked_ratio: Ratio of "
-"blocked channels (0-1).     seed: Random seed."
+msgid "跳频参数 2。"
+msgstr "frequency hopping parameter 2."
 
-#: ../../../src/nearlink_sdr/sim/link_sim.py:367
+#: ../../../src/nearlink_sdr/sim/link_sim.py:358
+msgid "每个 SNR 点的跳频次数 (帧数)。"
+msgstr "Number of frequency hops per SNR point (frames)."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:362
+msgid "信道带宽 1/2/4 MHz。"
+msgstr "channel bandwidth 1/2/4 MHz."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:363
+msgid "被阻塞信道占比 (0~1)。"
+msgstr "Proportion of blocked channels (0~1)."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:366
 #, python-brace-format
 msgid ""
-"Returns:     {\"snr_db\": [...], \"ber\": [...], \"fer\": [...], "
-"\"channels_used\": [...]}"
+"{\"snr_db\": [...], \"ber\": [...], \"fer\": [...], \"channels_used\": "
+"[...]}"
 msgstr ""
-"Returns:     {\"snr_db\": [...], \"ber\": [...], \"fer\": [...], "
-"\"channels_used\": [...]}"
+"{\"snr_db\": [...], \"ber\": [...], \"fer\": [...], \"channels_used\": "
+"[...]}"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:369
-msgid ""
-"Args:     frame_type: 帧类型 (1-4)     mcs_index: MCS 索引     n_data_bytes: "
-"数据长度 (字节)     snr_range_db: Eb/N0 扫描范围 (dB)     n_frames: 每个 SNR 点的仿真帧数"
-"     sps: 每符号采样数     seed: 随机种子"
-msgstr ""
-"Args:     frame_type: Frame type (1-4)     mcs_index: MCS index     "
-"n_data_bytes: Data length (bytes)     snr_range_db: Eb/N0 sweep range "
-"(dB)     n_frames: Number of simulation frames per SNR point     sps: "
-"Samples per symbol     seed: Random seed"
+msgid "帧类型 (1-4)"
+msgstr "frame type (1-4)"
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:370
+msgid "MCS 索引"
+msgstr "MCS index"
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:371
+msgid "数据长度 (字节)"
+msgstr "data length (byte)"
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:372
+msgid "Eb/N0 扫描范围 (dB)"
+msgstr "Eb/N0 scan range (dB)"
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:373
+msgid "每个 SNR 点的仿真帧数"
+msgstr "Number of simulation frames per SNR point"
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:374
+msgid "每符号采样数"
+msgstr "samples per symbol"
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:375
+msgid "随机种子"
+msgstr "random seed"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:390
 msgid "在 tx_chain 输出的 IQ 信号上依次施加:"
@@ -947,21 +1022,57 @@ msgstr ""
 "decoding."
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:396
-msgid ""
-"Args:     frame_type: 帧类型 (1-4)。     mcs_index: MCS 索引。     n_data_bytes:"
-" 数据长度 (字节)。     channel_type: \"awgn\" | \"rayleigh\" | \"rician\" | "
-"\"multipath\"。     rician_k_db: Rician K 因子 (dB)。     cfo_hz: 载波频率偏移 "
-"(Hz)。     eq_method: \"none\" | \"zf\" | \"mmse\", 仅对衰落信道有效。     "
-"snr_range_db: Eb/N0 扫描范围。     n_frames: 每个 SNR 点的仿真帧数。     sps: 每符号采样数。"
-"     seed: 随机种子。"
-msgstr ""
-"Args:     frame_type: Frame type (1-4).     mcs_index: MCS index.     "
-"n_data_bytes: Data length (bytes).     channel_type: \"awgn\" | "
-"\"rayleigh\" | \"rician\" | \"multipath\".     rician_k_db: Rician "
-"K-factor (dB).     cfo_hz: Carrier frequency offset (Hz).     eq_method: "
-"\"none\" | \"zf\" | \"mmse\", effective only for fading channels.     "
-"snr_range_db: Eb/N0 sweep range.     n_frames: Number of simulation "
-"frames per SNR point.     sps: Samples per symbol.     seed: Random seed."
+msgid "帧类型 (1-4)。"
+msgstr "frame type (1-4)."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:397
+#: ../../../src/nearlink_sdr/sim/link_sim.py:458
+#: ../../../src/nearlink_sdr/sim/link_sim.py:647
+#: ../../../src/nearlink_sdr/sim/link_sim.py:655
+#: ../../../src/nearlink_sdr/sim/link_sim.py:660
+msgid "MCS 索引。"
+msgstr "MCS index."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:398
+msgid "数据长度 (字节)。"
+msgstr "data length (byte)."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:399
+#: ../../../src/nearlink_sdr/sim/link_sim.py:421
+#: ../../../src/nearlink_sdr/sim/link_sim.py:428
+#: ../../../src/nearlink_sdr/sim/link_sim.py:434
+msgid "\"awgn\" | \"rayleigh\" | \"rician\" | \"multipath\"。"
+msgstr "\"awgn\" | \"rayleigh\" | \"rician\" | \"multipath\"."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:400
+#: ../../../src/nearlink_sdr/sim/link_sim.py:424
+#: ../../../src/nearlink_sdr/sim/link_sim.py:431
+#: ../../../src/nearlink_sdr/sim/link_sim.py:437
+msgid "Rician K 因子 (dB)。"
+msgstr "Rician K factor (dB)."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:401
+#: ../../../src/nearlink_sdr/sim/link_sim.py:422
+#: ../../../src/nearlink_sdr/sim/link_sim.py:429
+#: ../../../src/nearlink_sdr/sim/link_sim.py:435
+msgid "载波频率偏移 (Hz)。"
+msgstr "Carrier frequency offset"
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:402
+msgid "\"none\" | \"zf\" | \"mmse\", 仅对衰落信道有效。"
+msgstr "\"none\" | \"zf\" | \"mmse\", only valid for fading channels."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:403
+msgid "Eb/N0 扫描范围。"
+msgstr "Eb/N0 scan range."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:404
+msgid "每个 SNR 点的仿真帧数。"
+msgstr "Number of simulation frames per SNR point."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:405
+msgid "每符号采样数。"
+msgstr "samples per symbol."
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:418
 msgid "每帧随机选取一种信令类型进行编码, 经过 PHY 发射/接收流水线和信道后, 统计信令解码成功率。"
@@ -970,21 +1081,16 @@ msgstr ""
 "through the PHY TX/RX pipeline and channel, the signaling decoding "
 "success rate is measured."
 
-#: ../../../src/nearlink_sdr/sim/link_sim.py:421
-#: ../../../src/nearlink_sdr/sim/link_sim.py:434
-msgid ""
-"Args:     channel_type: \"awgn\" | \"rayleigh\" | \"rician\" | "
-"\"multipath\"。     cfo_hz: 载波频率偏移 (Hz)。     eq_method: \"none\" | \"zf\" "
-"| \"mmse\"。     rician_k_db: Rician K 因子 (dB)。"
-msgstr ""
-"Args:     channel_type: \"awgn\" | \"rayleigh\" | \"rician\" | "
-"\"multipath\".     cfo_hz: Carrier frequency offset (Hz).     eq_method: "
-"\"none\" | \"zf\" | \"mmse\".     rician_k_db: Rician K-factor (dB)."
+#: ../../../src/nearlink_sdr/sim/link_sim.py:423
+#: ../../../src/nearlink_sdr/sim/link_sim.py:430
+#: ../../../src/nearlink_sdr/sim/link_sim.py:436
+msgid "\"none\" | \"zf\" | \"mmse\"。"
+msgstr "\"none\" | \"zf\" | \"mmse\"."
 
-#: ../../../src/nearlink_sdr/sim/link_sim.py:427
+#: ../../../src/nearlink_sdr/sim/link_sim.py:426
 #, python-brace-format
-msgid "Returns:     {\"snr_db\": [...], \"signaling_success_rate\": [...]}"
-msgstr "Returns:     {\"snr_db\": [...], \"signaling_success_rate\": [...]}"
+msgid "{\"snr_db\": [...], \"signaling_success_rate\": [...]}"
+msgstr "{\"snr_db\": [...], \"signaling_success_rate\": [...]}"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:425
 msgid "对不同载荷大小, 统计字节级误码率和帧正确率。"
@@ -993,25 +1099,17 @@ msgstr ""
 "payload sizes."
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:427
-msgid ""
-"Args:     payload_sizes: 要测试的载荷大小列表 (字节)。     channel_type: \"awgn\" | "
-"\"rayleigh\" | \"rician\" | \"multipath\"。     cfo_hz: 载波频率偏移 (Hz)。     "
-"eq_method: \"none\" | \"zf\" | \"mmse\"。     rician_k_db: Rician K 因子 "
-"(dB)。"
-msgstr ""
-"Args:     payload_sizes: List of payload sizes to test (bytes).     "
-"channel_type: \"awgn\" | \"rayleigh\" | \"rician\" | \"multipath\".     "
-"cfo_hz: Carrier frequency offset (Hz).     eq_method: \"none\" | \"zf\" |"
-" \"mmse\".     rician_k_db: Rician K-factor (dB)."
+msgid "要测试的载荷大小列表 (字节)。"
+msgstr "List of payload sizes to test (bytes)."
 
-#: ../../../src/nearlink_sdr/sim/link_sim.py:434
+#: ../../../src/nearlink_sdr/sim/link_sim.py:433
 #, python-brace-format
 msgid ""
-"Returns:     {\"snr_db\": [...], \"results\": {size: {\"fer\": [...], "
-"\"byte_ber\": [...]}}}"
+"{\"snr_db\": [...], \"results\": {size: {\"fer\": [...], \"byte_ber\": "
+"[...]}}}"
 msgstr ""
-"Returns:     {\"snr_db\": [...], \"results\": {size: {\"fer\": [...], "
-"\"byte_ber\": [...]}}}"
+"{\"snr_db\": [...], \"results\": {size: {\"fer\": [...], \"byte_ber\": "
+"[...]}}}"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:432
 msgid "每帧包含一条信令和一段数据, 验证复用帧在信道传输后的完整性。"
@@ -1019,14 +1117,13 @@ msgstr ""
 "Each frame contains one signaling message and one data segment, verifying"
 " the integrity of multiplexed frames after channel transmission."
 
-#: ../../../src/nearlink_sdr/sim/link_sim.py:440
+#: ../../../src/nearlink_sdr/sim/link_sim.py:439
 #, python-brace-format
 msgid ""
-"Returns:     {\"snr_db\": [...], \"mux_success_rate\": [...], "
-"\"data_match_rate\": [...]}"
+"{\"snr_db\": [...], \"mux_success_rate\": [...], \"data_match_rate\": "
+"[...]}"
 msgstr ""
-"Returns:     {\"snr_db\": [...], \"mux_success_rate\": [...], "
-"\"data_match_rate\": [...]}"
+"{\"snr_db\": [...], \"mux_success_rate\": [...], \"data_match_rate\": [...]}"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:446
 msgid "使用 ScheduleManager 分配时间资源, 每条链路在各自的事件组窗口内 发送/接收数据帧, 统计每条链路和总体的 FER。"
@@ -1036,29 +1133,57 @@ msgstr ""
 "overall FER."
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:449
-msgid ""
-"Args:     n_links: 并发链路数。     snr_range_db: 信噪比范围 (dB)。     "
-"n_superframes: 每个 SNR 点仿真的超帧数。     mcs_index: 调制编码策略索引。     payload_size:"
-" 每帧载荷字节数。     channel_type: 信道类型。     cfo_hz: 载波频率偏移。     eq_method: "
-"均衡方法。     rician_k_db: Rician K 因子。     smf_interval: SMF 间隔 (基础时隙)。     "
-"seed: 随机种子。"
-msgstr ""
-"Args:     n_links: Number of concurrent links.     snr_range_db: SNR "
-"range (dB).     n_superframes: Number of superframes simulated per SNR "
-"point.     mcs_index: Modulation and coding scheme index.     "
-"payload_size: Payload bytes per frame.     channel_type: Channel type."
-"     cfo_hz: Carrier frequency offset.     eq_method: Equalization "
-"method.     rician_k_db: Rician K-factor.     smf_interval: SMF interval "
-"(base time slots).     seed: Random seed."
+msgid "并发链路数。"
+msgstr "Number of concurrent links."
 
+#: ../../../src/nearlink_sdr/sim/link_sim.py:450
+#: ../../../src/nearlink_sdr/sim/link_sim.py:456
+msgid "信噪比范围 (dB)。"
+msgstr "SNR range (dB)."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:451
+msgid "每个 SNR 点仿真的超帧数。"
+msgstr "Number of superframes simulated per SNR point."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:452
+msgid "调制编码策略索引。"
+msgstr "Modulation and coding strategy index."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:453
+msgid "每帧载荷字节数。"
+msgstr "Payload bytes per frame."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:454
+#: ../../../src/nearlink_sdr/sim/link_sim.py:460
+#: ../../../src/nearlink_sdr/sim/link_sim.py:657
+#: ../../../src/nearlink_sdr/sim/link_sim.py:662
+msgid "信道类型。"
+msgstr "channel type."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:455
+#: ../../../src/nearlink_sdr/sim/link_sim.py:461
+msgid "载波频率偏移。"
+msgstr "Carrier frequency offset"
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:456
 #: ../../../src/nearlink_sdr/sim/link_sim.py:462
+#: ../../../src/nearlink_sdr/sim/link_sim.py:650
+msgid "均衡方法。"
+msgstr "Equalization method."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:458
+#: ../../../src/nearlink_sdr/sim/link_sim.py:467
+msgid "SMF 间隔 (基础时隙)。"
+msgstr "SMF interval (base slot)."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:461
 #, python-brace-format
 msgid ""
-"Returns:     {\"snr_db\": [...],      \"aggregate_fer\": [...],      "
-"\"per_link_fer\": {link_id: [...]},      \"throughput_ratio\": [...]}"
+"{\"snr_db\": [...], \"aggregate_fer\": [...], \"per_link_fer\": {link_id:"
+" [...]}, \"throughput_ratio\": [...]}"
 msgstr ""
-"Returns:     {\"snr_db\": [...],      \"aggregate_fer\": [...],      "
-"\"per_link_fer\": {link_id: [...]},      \"throughput_ratio\": [...]}"
+"{\"snr_db\": [...],      \"aggregate_fer\": [...],      \"per_link_fer\": "
+"{link_id: [...]},      \"throughput_ratio\": [...]}"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:453
 msgid "模拟完整的接入建链过程, 然后使用接入参数配置调度器, 在事件组时间窗口内进行数据帧收发。"
@@ -1067,27 +1192,25 @@ msgstr ""
 "the scheduler with access parameters and send/receive data frames within "
 "event group time windows."
 
-#: ../../../src/nearlink_sdr/sim/link_sim.py:456
-msgid ""
-"Args:     snr_range_db: 信噪比范围 (dB)。     n_frames: 每个 SNR 点仿真帧数。     "
-"mcs_index: MCS 索引。     payload_size: 载荷字节数。     channel_type: 信道类型。     "
-"cfo_hz: 载波频率偏移。     eq_method: 均衡方法。     rician_k_db: Rician K 因子。     "
-"seed: 随机种子。"
-msgstr ""
-"Args:     snr_range_db: SNR range (dB).     n_frames: Number of "
-"simulation frames per SNR point.     mcs_index: MCS index.     "
-"payload_size: Payload bytes.     channel_type: Channel type.     cfo_hz: "
-"Carrier frequency offset.     eq_method: Equalization method.     "
-"rician_k_db: Rician K-factor.     seed: Random seed."
+#: ../../../src/nearlink_sdr/sim/link_sim.py:457
+msgid "每个 SNR 点仿真帧数。"
+msgstr "Number of simulation frames per SNR point."
 
-#: ../../../src/nearlink_sdr/sim/link_sim.py:467
+#: ../../../src/nearlink_sdr/sim/link_sim.py:459
+#: ../../../src/nearlink_sdr/sim/link_sim.py:648
+#: ../../../src/nearlink_sdr/sim/link_sim.py:656
+#: ../../../src/nearlink_sdr/sim/link_sim.py:661
+msgid "载荷字节数。"
+msgstr "Number of payload bytes."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:466
 #, python-brace-format
 msgid ""
-"Returns:     {\"snr_db\": [...],      \"fer\": [...],      \"access_ok\":"
-" bool,      \"link_params\": dict}"
+"{\"snr_db\": [...], \"fer\": [...], \"access_ok\": bool, \"link_params\":"
+" dict}"
 msgstr ""
-"Returns:     {\"snr_db\": [...],      \"fer\": [...],      \"access_ok\":"
-" bool,      \"link_params\": dict}"
+"{\"snr_db\": [...],      \"fer\": [...],      \"access_ok\": bool,      "
+"\"link_params\": dict}"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:460
 msgid "可视化事件组内各事件的 TX/RX 窗口分布和资源利用率。"
@@ -1096,48 +1219,64 @@ msgstr ""
 "events within an event group."
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:462
-msgid ""
-"Args:     event_group_period: 事件组周期 (调度时隙)。     event_count: 事件总数。     "
-"event_period: 事件周期 (调度时隙)。     intra_event_interval: 事件内间隔 (μs)。     "
-"tx_max_offset: TX 最大偏移 (基础时隙)。     rx_max_offset: RX 最大偏移 (基础时隙)。"
-msgstr ""
-"Args:     event_group_period: Event group period (scheduling slots).     "
-"event_count: Total number of events.     event_period: Event period "
-"(scheduling slots).     intra_event_interval: Intra-event interval (us)."
-"     tx_max_offset: TX maximum offset (base time slots).     "
-"rx_max_offset: RX maximum offset (base time slots)."
+msgid "事件组周期 (调度时隙)。"
+msgstr "Event group period (scheduling slots)."
 
-#: ../../../src/nearlink_sdr/sim/link_sim.py:470
-#, python-brace-format
-msgid ""
-"Returns:     {\"events\": [{\"start\": int, \"tx_window\": (s,e), "
-"\"rx_window\": (s,e)}],      \"total_active_us\": int,      "
-"\"group_period_us\": int,      \"utilization\": float}"
-msgstr ""
-"Returns:     {\"events\": [{\"start\": int, \"tx_window\": (s,e), "
-"\"rx_window\": (s,e)}],      \"total_active_us\": int,      "
-"\"group_period_us\": int,      \"utilization\": float}"
+#: ../../../src/nearlink_sdr/sim/link_sim.py:463
+msgid "事件总数。"
+msgstr "Total number of events."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:464
+msgid "事件周期 (调度时隙)。"
+msgstr "Event period (scheduling slots)."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:465
+msgid "事件内间隔 (μs)。"
+msgstr "Intra-event interval (μs)."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:466
+msgid "TX 最大偏移 (基础时隙)。"
+msgstr "TX maximum offset (base slot)."
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:467
-msgid ""
-"Args:     smf_interval: SMF 间隔 (基础时隙)。     slice_duration: 每条链路时间片持续长度 "
-"(调度时隙)。     slice_gap: 相邻链路的偏移间距 (调度时隙, 默认等于 slice_duration)。         当 "
-"gap < slice_duration 时, 链路时间片将发生重叠。     max_links: 最大测试链路数。"
-msgstr ""
-"Args:     smf_interval: SMF interval (base time slots).     "
-"slice_duration: Time-slice duration per link (scheduling slots).     "
-"slice_gap: Offset gap between adjacent links (scheduling slots, defaults "
-"to slice_duration).         When gap < slice_duration, link time slices "
-"will overlap.     max_links: Maximum number of test links."
+msgid "RX 最大偏移 (基础时隙)。"
+msgstr "RX maximum offset (base slot)."
 
-#: ../../../src/nearlink_sdr/sim/link_sim.py:474
+#: ../../../src/nearlink_sdr/sim/link_sim.py:469
 #, python-brace-format
 msgid ""
-"Returns:     {\"n_links\": [...],      \"n_conflicts\": [...],      "
-"\"max_no_conflict\": int,      \"utilization\": [...]}"
+"{\"events\": [{\"start\": int, \"tx_window\": (s,e), \"rx_window\": "
+"(s,e)}], \"total_active_us\": int, \"group_period_us\": int, "
+"\"utilization\": float}"
 msgstr ""
-"Returns:     {\"n_links\": [...],      \"n_conflicts\": [...],      "
-"\"max_no_conflict\": int,      \"utilization\": [...]}"
+"{\"events\": [{\"start\": int, \"tx_window\": (s,e), \"rx_window\": "
+"(s,e)}],      \"total_active_us\": int,      \"group_period_us\": int,      "
+"\"utilization\": float}"
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:468
+msgid "每条链路时间片持续长度 (调度时隙)。"
+msgstr "Time slice duration per link (scheduling slots)."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:469
+msgid ""
+"相邻链路的偏移间距 (调度时隙, 默认等于 slice_duration)。 当 gap < slice_duration 时, "
+"链路时间片将发生重叠。"
+msgstr ""
+"Offset spacing between adjacent links (scheduling slots, defaults to "
+"slice_duration). When gap < slice_duration, link time slices will overlap."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:471
+msgid "最大测试链路数。"
+msgstr "Maximum number of test links."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:473
+#, python-brace-format
+msgid ""
+"{\"n_links\": [...], \"n_conflicts\": [...], \"max_no_conflict\": int, "
+"\"utilization\": [...]}"
+msgstr ""
+"{\"n_links\": [...],      \"n_conflicts\": [...],      \"max_no_conflict\": "
+"int,      \"utilization\": [...]}"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:481
 msgid "模拟完整的安全通信建立过程:"
@@ -1149,7 +1288,7 @@ msgstr "Access and link establishment (run_access_procedure)"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:483
 msgid "配对密钥协商 (run_pairing_procedure)"
-msgstr "pairingkeynegotiation (run_pairing_procedure)"
+msgstr "Pairing key negotiation (run_pairing_procedure)"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:484
 msgid "加密数据帧经 PHY 管道传输"
@@ -1157,17 +1296,14 @@ msgstr "Encrypted data frames transmitted through the PHY pipeline"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:486
 #, python-brace-format
-msgid ""
-"Returns:     {\"snr_db\", \"fer\", \"access_ok\", \"pairing_ok\", "
-"\"encrypted\": True}"
+msgid "{\"snr_db\", \"fer\", \"access_ok\", \"pairing_ok\", \"encrypted\": True}"
 msgstr ""
-"Returns:     {\"snr_db\", \"fer\", \"access_ok\", \"pairing_ok\", "
-"\"encrypted\": True}"
+"{\"snr_db\", \"fer\", \"access_ok\", \"pairing_ok\", \"encrypted\": True}"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:488
 #, python-brace-format
-msgid "Returns:     {\"snr_db\", \"fer_encrypted\", \"fer_plain\"}"
-msgstr "Returns:     {\"snr_db\", \"fer_encrypted\", \"fer_plain\"}"
+msgid "{\"snr_db\", \"fer_encrypted\", \"fer_plain\"}"
+msgstr "{\"snr_db\", \"fer_encrypted\", \"fer_plain\"}"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:495
 msgid "将配对过程中的每条信令编码为 IQ, 经信道传输后解码, 统计信令传输成功率。"
@@ -1177,8 +1313,8 @@ msgstr ""
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:498
 #, python-brace-format
-msgid "Returns:     {\"snr_db\", \"signaling_success_rate\"}"
-msgstr "Returns:     {\"snr_db\", \"signaling_success_rate\"}"
+msgid "{\"snr_db\", \"signaling_success_rate\"}"
+msgstr "{\"snr_db\", \"signaling_success_rate\"}"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:509
 msgid ""
@@ -1193,16 +1329,15 @@ msgstr ""
 #: ../../../src/nearlink_sdr/sim/link_sim.py:513
 #, python-brace-format
 msgid ""
-"Returns:     {         \"snr_db\": [...],         \"mcs_fer\": {mcs_idx: "
-"[fer_per_snr, ...]},         \"mcs_throughput\": {mcs_idx: "
-"[throughput_per_snr, ...]},         \"amc_throughput\": [...],  # AMC "
-"包络吞吐量         \"amc_mcs\": [...],         # AMC 选择的 MCS 索引     }"
+"{ \"snr_db\": [...], \"mcs_fer\": {mcs_idx: [fer_per_snr, ...]}, "
+"\"mcs_throughput\": {mcs_idx: [throughput_per_snr, ...]}, "
+"\"amc_throughput\": [...],  # AMC 包络吞吐量 \"amc_mcs\": [...],         # AMC"
+" 选择的 MCS 索引 }"
 msgstr ""
-"Returns:     {         \"snr_db\": [...],         \"mcs_fer\": {mcs_idx: "
-"[fer_per_snr, ...]},         \"mcs_throughput\": {mcs_idx: "
-"[throughput_per_snr, ...]},         \"amc_throughput\": [...],  # AMC "
-"envelope throughput         \"amc_mcs\": [...],         # MCS index "
-"selected by AMC     }"
+"{         \"snr_db\": [...],         \"mcs_fer\": {mcs_idx: [fer_per_snr, "
+"...]},         \"mcs_throughput\": {mcs_idx: [throughput_per_snr, ...]},    "
+"     \"amc_throughput\": [...],  # AMC envelope throughput         "
+"\"amc_mcs\": [...],         # MCS index selected by AMC     }"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:516
 msgid ""
@@ -1216,19 +1351,17 @@ msgstr ""
 #: ../../../src/nearlink_sdr/sim/link_sim.py:520
 #, python-brace-format
 msgid ""
-"Returns:     {         \"snr_db\": [...],         \"fer_no_harq\": [...],"
-"     # 无重传 FER         \"fer_harq\": [...],        # HARQ FER (超过最大重传仍失败)"
-"         \"avg_transmissions\": [...], # 平均每帧传输次数         "
-"\"throughput_no_harq\": [...],  # 无重传吞吐量 (归一化)         "
-"\"throughput_harq\": [...],     # HARQ 吞吐量 (归一化)     }"
+"{ \"snr_db\": [...], \"fer_no_harq\": [...],     # 无重传 FER \"fer_harq\": "
+"[...],        # HARQ FER (超过最大重传仍失败) \"avg_transmissions\": [...], # "
+"平均每帧传输次数 \"throughput_no_harq\": [...],  # 无重传吞吐量 (归一化) "
+"\"throughput_harq\": [...],     # HARQ 吞吐量 (归一化) }"
 msgstr ""
-"Returns:     {         \"snr_db\": [...],         \"fer_no_harq\": [...],"
-"     # FER without retransmission         \"fer_harq\": [...],        # "
-"HARQ FER (still failed after max retransmissions)         "
-"\"avg_transmissions\": [...], # Average transmissions per frame         "
-"\"throughput_no_harq\": [...],  # Throughput without retransmission "
-"(normalized)         \"throughput_harq\": [...],     # HARQ throughput "
-"(normalized)     }"
+"{         \"snr_db\": [...],         \"fer_no_harq\": [...],     # FER "
+"without retransmission         \"fer_harq\": [...],        # HARQ FER "
+"(still failed after max retransmissions)         \"avg_transmissions\": "
+"[...], # Average transmissions per frame         \"throughput_no_harq\": "
+"[...],  # Throughput without retransmission (normalized)         "
+"\"throughput_harq\": [...],     # HARQ throughput (normalized)     }"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:523
 msgid "每帧在不同频率信道上传输, 模拟跳频对抗频率选择性衰落的效果。 对比固定信道 (Rayleigh) 与跳频 (不同信道独立衰落) 的 FER。"
@@ -1241,12 +1374,12 @@ msgstr ""
 #: ../../../src/nearlink_sdr/sim/link_sim.py:526
 #, python-brace-format
 msgid ""
-"Returns:     {         \"snr_db\": [...],         \"fer_fixed\": [...],"
-"     # 固定信道 FER         \"fer_hopping\": [...],   # 跳频 FER     }"
+"{ \"snr_db\": [...], \"fer_fixed\": [...],     # 固定信道 FER "
+"\"fer_hopping\": [...],   # 跳频 FER }"
 msgstr ""
-"Returns:     {         \"snr_db\": [...],         \"fer_fixed\": [...],"
-"     # Fixed-channel FER         \"fer_hopping\": [...],   # Frequency-"
-"hopping FER     }"
+"{         \"snr_db\": [...],         \"fer_fixed\": [...],     # "
+"Fixed-channel FER         \"fer_hopping\": [...],   # Frequency-hopping FER "
+"    }"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:537
 msgid ""
@@ -1261,17 +1394,14 @@ msgstr ""
 #: ../../../src/nearlink_sdr/sim/link_sim.py:540
 #, python-brace-format
 msgid ""
-"Returns:     {         \"snr_db\": [...],         \"fer_no_arq\": [...],"
-"       # 无重传 FER         \"fer_qos_arq\": [...],      # QoS ARQ FER"
-"         \"avg_transmissions\": [...], # 平均每帧传输次数         "
-"\"throughput_no_arq\": [...],         \"throughput_qos_arq\": [...],     "
-"}"
+"{ \"snr_db\": [...], \"fer_no_arq\": [...],       # 无重传 FER "
+"\"fer_qos_arq\": [...],      # QoS ARQ FER \"avg_transmissions\": [...], "
+"# 平均每帧传输次数 \"throughput_no_arq\": [...], \"throughput_qos_arq\": [...], }"
 msgstr ""
-"Returns:     {         \"snr_db\": [...],         \"fer_no_arq\": [...],"
-"       # FER without retransmission         \"fer_qos_arq\": [...],      "
-"# QoS ARQ FER         \"avg_transmissions\": [...], # Average "
-"transmissions per frame         \"throughput_no_arq\": [...],         "
-"\"throughput_qos_arq\": [...],     }"
+"{         \"snr_db\": [...],         \"fer_no_arq\": [...],       # FER "
+"without retransmission         \"fer_qos_arq\": [...],      # QoS ARQ FER   "
+"      \"avg_transmissions\": [...], # Average transmissions per frame       "
+"  \"throughput_no_arq\": [...],         \"throughput_qos_arq\": [...],     }"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:544
 msgid "模拟 SNR 随时间变化的场景, QoS 管理器根据 FER 反馈自动调整 MCS, 验证 AMC 跟踪性能。"
@@ -1283,13 +1413,11 @@ msgstr ""
 #: ../../../src/nearlink_sdr/sim/link_sim.py:547
 #, python-brace-format
 msgid ""
-"Returns:     {         \"snr_trace\": [...],         \"mcs_trace\": "
-"[...],         \"fer_trace\": [...],         \"throughput_trace\": [...],"
-"     }"
+"{ \"snr_trace\": [...], \"mcs_trace\": [...], \"fer_trace\": [...], "
+"\"throughput_trace\": [...], }"
 msgstr ""
-"Returns:     {         \"snr_trace\": [...],         \"mcs_trace\": "
-"[...],         \"fer_trace\": [...],         \"throughput_trace\": [...],"
-"     }"
+"{         \"snr_trace\": [...],         \"mcs_trace\": [...],         "
+"\"fer_trace\": [...],         \"throughput_trace\": [...],     }"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:551
 msgid "模拟突发数据到达场景, 验证流控背压机制对缓冲区占用和丢包的影响。"
@@ -1300,13 +1428,12 @@ msgstr ""
 #: ../../../src/nearlink_sdr/sim/link_sim.py:553
 #, python-brace-format
 msgid ""
-"Returns:     {         \"frame_idx\": [...],         "
-"\"buffer_occupancy\": [...],         \"flow_ctrl_bit\": [...],         "
-"\"paused\": [...],         \"tx_success\": [...],     }"
+"{ \"frame_idx\": [...], \"buffer_occupancy\": [...], \"flow_ctrl_bit\": "
+"[...], \"paused\": [...], \"tx_success\": [...], }"
 msgstr ""
-"Returns:     {         \"frame_idx\": [...],         "
-"\"buffer_occupancy\": [...],         \"flow_ctrl_bit\": [...],         "
-"\"paused\": [...],         \"tx_success\": [...],     }"
+"{         \"frame_idx\": [...],         \"buffer_occupancy\": [...],        "
+" \"flow_ctrl_bit\": [...],         \"paused\": [...],         "
+"\"tx_success\": [...],     }"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:565
 msgid "创建 G 节点与 T 节点, 完成广播→接入→数据交换全流程。 G 节点发送随机数据, T 节点接收并统计 FER 与字节误码率。"
@@ -1318,13 +1445,11 @@ msgstr ""
 #: ../../../src/nearlink_sdr/sim/link_sim.py:568
 #, python-brace-format
 msgid ""
-"Returns:     {         \"snr_db\": [...],         \"fer\": [...],"
-"         \"byte_ber\": [...],         \"tx_count\": int,         "
-"\"rx_count\": int,     }"
+"{ \"snr_db\": [...], \"fer\": [...], \"byte_ber\": [...], \"tx_count\": "
+"int, \"rx_count\": int, }"
 msgstr ""
-"Returns:     {         \"snr_db\": [...],         \"fer\": [...],"
-"         \"byte_ber\": [...],         \"tx_count\": int,         "
-"\"rx_count\": int,     }"
+"{         \"snr_db\": [...],         \"fer\": [...],         \"byte_ber\": "
+"[...],         \"tx_count\": int,         \"rx_count\": int,     }"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:572
 msgid "在 sim_dual_node_link 基础上增加配对与加密流程:"
@@ -1345,11 +1470,11 @@ msgstr "Encrypted data frame transmission"
 #: ../../../src/nearlink_sdr/sim/link_sim.py:577
 #, python-brace-format
 msgid ""
-"Returns:     {         \"snr_db\": [...],         \"fer_plain\": [...],"
-"         \"fer_encrypted\": [...],         \"pairing_ok\": bool,     }"
+"{ \"snr_db\": [...], \"fer_plain\": [...], \"fer_encrypted\": [...], "
+"\"pairing_ok\": bool, }"
 msgstr ""
-"Returns:     {         \"snr_db\": [...],         \"fer_plain\": [...],"
-"         \"fer_encrypted\": [...],         \"pairing_ok\": bool,     }"
+"{         \"snr_db\": [...],         \"fer_plain\": [...],         "
+"\"fer_encrypted\": [...],         \"pairing_ok\": bool,     }"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:579
 msgid "固定 SNR 下连续帧传输, 跟踪 G 节点的 MCS 自适应过程和吞吐量变化。"
@@ -1360,13 +1485,11 @@ msgstr ""
 #: ../../../src/nearlink_sdr/sim/link_sim.py:581
 #, python-brace-format
 msgid ""
-"Returns:     {         \"frame_idx\": [...],         \"mcs_history\": "
-"[...],         \"fer_history\": [...],         \"success_history\": "
-"[...],     }"
+"{ \"frame_idx\": [...], \"mcs_history\": [...], \"fer_history\": [...], "
+"\"success_history\": [...], }"
 msgstr ""
-"Returns:     {         \"frame_idx\": [...],         \"mcs_history\": "
-"[...],         \"fer_history\": [...],         \"success_history\": "
-"[...],     }"
+"{         \"frame_idx\": [...],         \"mcs_history\": [...],         "
+"\"fer_history\": [...],         \"success_history\": [...],     }"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:600
 msgid "G 节点和 T 节点在跳频序列上逐帧通信, 每帧发送后推进时隙, 观察信道号变化和传输成功率。"
@@ -1378,15 +1501,13 @@ msgstr ""
 #: ../../../src/nearlink_sdr/sim/link_sim.py:603
 #, python-brace-format
 msgid ""
-"Returns:     {         \"channels\": 使用过的信道号列表,         "
-"\"unique_channels\": 唯一信道数,         \"success_count\": 成功帧数,         "
-"\"fer\": 帧错误率,         \"tx_powers\": 各帧发射功率列表,     }"
+"{ \"channels\": 使用过的信道号列表, \"unique_channels\": 唯一信道数, \"success_count\":"
+" 成功帧数, \"fer\": 帧错误率, \"tx_powers\": 各帧发射功率列表, }"
 msgstr ""
-"Returns:     {         \"channels\": List of used channel numbers,"
-"         \"unique_channels\": Number of unique channels,         "
-"\"success_count\": Number of successful frames,         \"fer\": Frame "
-"error rate,         \"tx_powers\": List of transmit power per frame,     "
-"}"
+"{         \"channels\": List of used channel numbers,         "
+"\"unique_channels\": Number of unique channels,         \"success_count\": "
+"Number of successful frames,         \"fer\": Frame error rate,         "
+"\"tx_powers\": List of transmit power per frame,     }"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:607
 msgid "模拟 G 节点广播 → T 节点扫描/发现 → 接入 → 数据交换 → 断开。"
@@ -1397,17 +1518,16 @@ msgstr ""
 #: ../../../src/nearlink_sdr/sim/link_sim.py:609
 #, python-brace-format
 msgid ""
-"Returns:     {         \"g_state\": G 节点最终状态,         \"t_state\": T "
-"节点最终状态,         \"broadcast_frame_valid\": 广播帧是否有效,         "
-"\"data_roundtrip_ok\": 数据往返是否成功,         \"scheduler_active\": "
-"调度器是否已注册链路,         \"disconnect_ok\": 断开是否成功,     }"
+"{ \"g_state\": G 节点最终状态, \"t_state\": T 节点最终状态, "
+"\"broadcast_frame_valid\": 广播帧是否有效, \"data_roundtrip_ok\": 数据往返是否成功, "
+"\"scheduler_active\": 调度器是否已注册链路, \"disconnect_ok\": 断开是否成功, }"
 msgstr ""
-"Returns:     {         \"g_state\": Final state of G node,         "
-"\"t_state\": Final state of T node,         \"broadcast_frame_valid\": "
-"Whether the broadcast frame is valid,         \"data_roundtrip_ok\": "
-"Whether data round-trip succeeded,         \"scheduler_active\": Whether "
-"the scheduler has registered the link,         \"disconnect_ok\": Whether"
-" disconnect succeeded,     }"
+"{         \"g_state\": Final state of G node,         \"t_state\": Final "
+"state of T node,         \"broadcast_frame_valid\": Whether the broadcast "
+"frame is valid,         \"data_roundtrip_ok\": Whether data round-trip "
+"succeeded,         \"scheduler_active\": Whether the scheduler has "
+"registered the link,         \"disconnect_ok\": Whether disconnect "
+"succeeded,     }"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:614
 msgid "使用节点内置的 ChannelModel, 遍历 SNR 范围统计 FER。"
@@ -1417,8 +1537,8 @@ msgstr ""
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:616
 #, python-brace-format
-msgid "Returns:     {\"snr_db\": [...], \"fer\": [...], \"mcs_history\": [...]}"
-msgstr "Returns:     {\"snr_db\": [...], \"fer\": [...], \"mcs_history\": [...]}"
+msgid "{\"snr_db\": [...], \"fer\": [...], \"mcs_history\": [...]}"
+msgstr "{\"snr_db\": [...], \"fer\": [...], \"mcs_history\": [...]}"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:621
 msgid "节点逐帧通信, 根据反馈结果动态调整发射功率。"
@@ -1429,20 +1549,18 @@ msgstr ""
 #: ../../../src/nearlink_sdr/sim/link_sim.py:623
 #, python-brace-format
 msgid ""
-"Returns:     {         \"frame_idx\": [...],         \"power_history\": "
-"[...],         \"success_history\": [...],         \"fer\": float,     }"
+"{ \"frame_idx\": [...], \"power_history\": [...], \"success_history\": "
+"[...], \"fer\": float, }"
 msgstr ""
-"Returns:     {         \"frame_idx\": [...],         \"power_history\": "
-"[...],         \"success_history\": [...],         \"fer\": float,     }"
+"{         \"frame_idx\": [...],         \"power_history\": [...],         "
+"\"success_history\": [...],         \"fer\": float,     }"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:628
 #, python-brace-format
-msgid ""
-"Returns:     {         \"signal_length\": 测量信号长度,         "
-"\"signal_energy\": 信号能量,     }"
+msgid "{ \"signal_length\": 测量信号长度, \"signal_energy\": 信号能量, }"
 msgstr ""
-"Returns:     {         \"signal_length\": Measurement signal length,"
-"         \"signal_energy\": Signal energy,     }"
+"{         \"signal_length\": Measurement signal length,         "
+"\"signal_energy\": Signal energy,     }"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:642
 msgid "使用 Jakes 求和正弦模型生成时间相关衰落, 评估 FER 随 Doppler 扩展的变化。"
@@ -1451,26 +1569,26 @@ msgstr ""
 "evaluating FER variation with Doppler spread."
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:644
-msgid ""
-"Args:     doppler_range_hz: Doppler 频移扫描范围 (Hz)。     snr_db: 固定 SNR (dB)。"
-"     n_frames: 每个 Doppler 点仿真帧数。     mcs_index: MCS 索引。     payload_size:"
-" 载荷字节数。     channel_type: 衰落类型 (\"rayleigh\" / \"rician\")。     "
-"eq_method: 均衡方法。     seed: 随机种子。"
-msgstr ""
-"Args:     doppler_range_hz: Doppler shift sweep range (Hz).     snr_db: "
-"Fixed SNR (dB).     n_frames: Number of simulation frames per Doppler "
-"point.     mcs_index: MCS index.     payload_size: Payload bytes.     "
-"channel_type: Fading type (\"rayleigh\" / \"rician\").     eq_method: "
-"Equalization method.     seed: Random seed."
+msgid "Doppler 频移扫描范围 (Hz)。"
+msgstr "Doppler frequency shift scan range (Hz)."
 
-#: ../../../src/nearlink_sdr/sim/link_sim.py:654
+#: ../../../src/nearlink_sdr/sim/link_sim.py:645
+msgid "固定 SNR (dB)。"
+msgstr "Fixed SNR (dB)."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:646
+msgid "每个 Doppler 点仿真帧数。"
+msgstr "Doppler + multipath channel joint simulation."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:649
+msgid "衰落类型 (\"rayleigh\" / \"rician\")。"
+msgstr "Fading channel (Rayleigh / Rician / multipath)"
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:653
 #, python-brace-format
-msgid ""
-"Returns:     {\"doppler_hz\": [...], \"fer\": [...], "
-"\"avg_fade_depth_db\": [...]}"
+msgid "{\"doppler_hz\": [...], \"fer\": [...], \"avg_fade_depth_db\": [...]}"
 msgstr ""
-"Returns:     {\"doppler_hz\": [...], \"fer\": [...], "
-"\"avg_fade_depth_db\": [...]}"
+"{\"doppler_hz\": [...], \"fer\": [...], \"avg_fade_depth_db\": [...]}"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:649
 msgid "多个干扰用户在同一频段 (或邻信道) 独立发送, 叠加到有用信号上。"
@@ -1479,43 +1597,47 @@ msgstr ""
 " adjacent channels), superimposed on the desired signal."
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:651
-msgid ""
-"Args:     n_interferers_range: 干扰用户数扫描列表。     sir_db: 每个干扰用户的 SIR (dB)。"
-"     snr_db: 噪声 SNR (dB)。     n_frames: 每个点仿真帧数。     mcs_index: MCS 索引。"
-"     payload_size: 载荷字节数。     channel_type: 信道类型。     freq_offset_hz: "
-"干扰频偏 (Hz), 0 为同信道。     seed: 随机种子。"
-msgstr ""
-"Args:     n_interferers_range: List of interferer counts to sweep.     "
-"sir_db: SIR per interfering user (dB).     snr_db: Noise SNR (dB).     "
-"n_frames: Number of simulation frames per point.     mcs_index: MCS "
-"index.     payload_size: Payload bytes.     channel_type: Channel type."
-"     freq_offset_hz: Interference frequency offset (Hz); 0 for co-"
-"channel.     seed: Random seed."
+msgid "干扰用户数扫描列表。"
+msgstr "Interfering user count scan list."
 
-#: ../../../src/nearlink_sdr/sim/link_sim.py:662
+#: ../../../src/nearlink_sdr/sim/link_sim.py:652
+msgid "每个干扰用户的 SIR (dB)。"
+msgstr "SIR (dB) per interfering user."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:653
+#: ../../../src/nearlink_sdr/sim/link_sim.py:658
+msgid "噪声 SNR (dB)。"
+msgstr "Noise SNR (dB)."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:654
+msgid "每个点仿真帧数。"
+msgstr "Number of simulation frames per point."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:658
+msgid "干扰频偏 (Hz), 0 为同信道。"
+msgstr "Interference frequency offset (Hz), 0 means co-channel."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:661
 #, python-brace-format
-msgid ""
-"Returns:     {\"n_interferers\": [...], \"fer\": [...], \"sinr_db\": "
-"[...]}"
-msgstr ""
-"Returns:     {\"n_interferers\": [...], \"fer\": [...], \"sinr_db\": "
-"[...]}"
+msgid "{\"n_interferers\": [...], \"fer\": [...], \"sinr_db\": [...]}"
+msgstr "{\"n_interferers\": [...], \"fer\": [...], \"sinr_db\": [...]}"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:656
-msgid ""
-"Args:     sir_range_db: SIR 扫描范围 (dB)。     n_interferers: 干扰用户数。     "
-"snr_db: 噪声 SNR (dB)。     n_frames: 每个 SIR 点帧数。     mcs_index: MCS 索引。"
-"     payload_size: 载荷字节数。     channel_type: 信道类型。     seed: 随机种子。"
-msgstr ""
-"Args:     sir_range_db: SIR sweep range (dB).     n_interferers: Number "
-"of interfering users.     snr_db: Noise SNR (dB).     n_frames: Number of"
-" frames per SIR point.     mcs_index: MCS index.     payload_size: "
-"Payload bytes.     channel_type: Channel type.     seed: Random seed."
+msgid "SIR 扫描范围 (dB)。"
+msgstr "SIR scan range (dB)."
 
-#: ../../../src/nearlink_sdr/sim/link_sim.py:666
+#: ../../../src/nearlink_sdr/sim/link_sim.py:657
+msgid "干扰用户数。"
+msgstr "Number of interfering users."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:659
+msgid "每个 SIR 点帧数。"
+msgstr "Number of frames per SIR point."
+
+#: ../../../src/nearlink_sdr/sim/link_sim.py:665
 #, python-brace-format
-msgid "Returns:     {\"sir_db\": [...], \"fer\": [...], \"sinr_db\": [...]}"
-msgstr "Returns:     {\"sir_db\": [...], \"fer\": [...], \"sinr_db\": [...]}"
+msgid "{\"sir_db\": [...], \"fer\": [...], \"sinr_db\": [...]}"
+msgstr "{\"sir_db\": [...], \"fer\": [...], \"sinr_db\": [...]}"
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:663
 msgid "在 ITU Indoor Office B 多径模型基础上叠加 Doppler 时变, 评估信道时变对频率选择性衰落下的接收性能影响。"
@@ -1526,9 +1648,254 @@ msgstr ""
 
 #: ../../../src/nearlink_sdr/sim/link_sim.py:666
 #, python-brace-format
-msgid "Returns:     {\"doppler_hz\": [...], \"fer\": [...]}"
-msgstr "Returns:     {\"doppler_hz\": [...], \"fer\": [...]}"
+msgid "{\"doppler_hz\": [...], \"fer\": [...]}"
+msgstr "{\"doppler_hz\": [...], \"fer\": [...]}"
 
 #~ msgid "返回:     {\"snr_db\": [...], \"ber\": [...], \"fer\": [...]}"
 #~ msgstr "returns:     {\"snr_db\": [...], \"ber\": [...], \"fer\": [...]}"
+
+#~ msgid ""
+#~ "Args:     frame_type: 2, 3, or 4."
+#~ "     num_data_bits: 数据负载比特数.     rate_str: "
+#~ "Polar码率.     code_length: Polar码长.     "
+#~ "pilot_interval: 导频插入间隔 (0, 4, 8, 16)."
+#~ "     snr_range_db: SNR扫描范围.     seed: 随机种子."
+#~ msgstr ""
+#~ "Args:     frame_type: 2, 3, or 4."
+#~ "     num_data_bits: Number of data payload"
+#~ " bits.     rate_str: Polar code rate."
+#~ "     code_length: Polar code length.     "
+#~ "pilot_interval: Pilot insertion interval (0,"
+#~ " 4, 8, 16).     snr_range_db: SNR "
+#~ "sweep range.     seed: Random seed."
+
+#~ msgid ""
+#~ "Args:     channel_type: \"awgn\" / "
+#~ "\"rayleigh\" / \"rician\" / \"multipath\"。"
+#~ "     rician_k_db: Rician K 因子。     "
+#~ "eq_method: \"zf\" / \"mmse\" / \"none\""
+#~ " (不均衡)。     rate_str: Polar 码率。     "
+#~ "code_length: Polar 码长。     snr_range_db: SNR"
+#~ " 范围。     n_frames: 每个 SNR 点的帧数。     "
+#~ "seed: 随机种子。"
+#~ msgstr ""
+#~ "Args:     channel_type: \"awgn\" / "
+#~ "\"rayleigh\" / \"rician\" / \"multipath\"."
+#~ "     rician_k_db: Rician K-factor.     eq_method:"
+#~ " \"zf\" / \"mmse\" / \"none\" (no "
+#~ "equalization).     rate_str: Polar code rate."
+#~ "     code_length: Polar code length.     "
+#~ "snr_range_db: SNR range.     n_frames: Number"
+#~ " of frames per SNR point.     seed:"
+#~ " Random seed."
+
+#~ msgid ""
+#~ "Args:     hop_param2: 跳频参数 2。     n_hops: "
+#~ "每个 SNR 点的跳频次数 (帧数)。     rate_str: Polar"
+#~ " 码率。     code_length: Polar 码长。     "
+#~ "snr_range_db: SNR 范围。     bandwidth_mhz: 信道带宽"
+#~ " 1/2/4 MHz。     blocked_ratio: 被阻塞信道占比 "
+#~ "(0~1)。     seed: 随机种子。"
+#~ msgstr ""
+#~ "Args:     hop_param2: Frequency-hopping "
+#~ "parameter 2.     n_hops: Number of hops"
+#~ " (frames) per SNR point.     rate_str: "
+#~ "Polar code rate.     code_length: Polar "
+#~ "code length.     snr_range_db: SNR range."
+#~ "     bandwidth_mhz: Channel bandwidth 1/2/4 "
+#~ "MHz.     blocked_ratio: Ratio of blocked "
+#~ "channels (0-1).     seed: Random seed."
+
+#~ msgid ""
+#~ "Args:     frame_type: 帧类型 (1-4)     mcs_index:"
+#~ " MCS 索引     n_data_bytes: 数据长度 (字节)     "
+#~ "snr_range_db: Eb/N0 扫描范围 (dB)     n_frames:"
+#~ " 每个 SNR 点的仿真帧数     sps: 每符号采样数     "
+#~ "seed: 随机种子"
+#~ msgstr ""
+#~ "Args:     frame_type: Frame type (1-4)     "
+#~ "mcs_index: MCS index     n_data_bytes: Data"
+#~ " length (bytes)     snr_range_db: Eb/N0 "
+#~ "sweep range (dB)     n_frames: Number of"
+#~ " simulation frames per SNR point     "
+#~ "sps: Samples per symbol     seed: Random"
+#~ " seed"
+
+#~ msgid ""
+#~ "Args:     frame_type: 帧类型 (1-4)。     "
+#~ "mcs_index: MCS 索引。     n_data_bytes: 数据长度 "
+#~ "(字节)。     channel_type: \"awgn\" | "
+#~ "\"rayleigh\" | \"rician\" | \"multipath\"。"
+#~ "     rician_k_db: Rician K 因子 (dB)。     "
+#~ "cfo_hz: 载波频率偏移 (Hz)。     eq_method: \"none\""
+#~ " | \"zf\" | \"mmse\", 仅对衰落信道有效。     "
+#~ "snr_range_db: Eb/N0 扫描范围。     n_frames: 每个 "
+#~ "SNR 点的仿真帧数。     sps: 每符号采样数。     seed: "
+#~ "随机种子。"
+#~ msgstr ""
+#~ "Args:     frame_type: Frame type (1-4)."
+#~ "     mcs_index: MCS index.     n_data_bytes: "
+#~ "Data length (bytes).     channel_type: "
+#~ "\"awgn\" | \"rayleigh\" | \"rician\" |"
+#~ " \"multipath\".     rician_k_db: Rician K-factor"
+#~ " (dB).     cfo_hz: Carrier frequency offset"
+#~ " (Hz).     eq_method: \"none\" | \"zf\" "
+#~ "| \"mmse\", effective only for fading"
+#~ " channels.     snr_range_db: Eb/N0 sweep "
+#~ "range.     n_frames: Number of simulation "
+#~ "frames per SNR point.     sps: Samples"
+#~ " per symbol.     seed: Random seed."
+
+#~ msgid ""
+#~ "Args:     channel_type: \"awgn\" | "
+#~ "\"rayleigh\" | \"rician\" | \"multipath\"。"
+#~ "     cfo_hz: 载波频率偏移 (Hz)。     eq_method: "
+#~ "\"none\" | \"zf\" | \"mmse\"。     "
+#~ "rician_k_db: Rician K 因子 (dB)。"
+#~ msgstr ""
+#~ "Args:     channel_type: \"awgn\" | "
+#~ "\"rayleigh\" | \"rician\" | \"multipath\"."
+#~ "     cfo_hz: Carrier frequency offset (Hz)."
+#~ "     eq_method: \"none\" | \"zf\" | "
+#~ "\"mmse\".     rician_k_db: Rician K-factor "
+#~ "(dB)."
+
+#~ msgid ""
+#~ "Args:     payload_sizes: 要测试的载荷大小列表 (字节)。     "
+#~ "channel_type: \"awgn\" | \"rayleigh\" | "
+#~ "\"rician\" | \"multipath\"。     cfo_hz: 载波频率偏移"
+#~ " (Hz)。     eq_method: \"none\" | \"zf\" "
+#~ "| \"mmse\"。     rician_k_db: Rician K 因子"
+#~ " (dB)。"
+#~ msgstr ""
+#~ "Args:     payload_sizes: List of payload "
+#~ "sizes to test (bytes).     channel_type: "
+#~ "\"awgn\" | \"rayleigh\" | \"rician\" |"
+#~ " \"multipath\".     cfo_hz: Carrier frequency "
+#~ "offset (Hz).     eq_method: \"none\" | "
+#~ "\"zf\" | \"mmse\".     rician_k_db: Rician "
+#~ "K-factor (dB)."
+
+#~ msgid ""
+#~ "Args:     n_links: 并发链路数。     snr_range_db: "
+#~ "信噪比范围 (dB)。     n_superframes: 每个 SNR "
+#~ "点仿真的超帧数。     mcs_index: 调制编码策略索引。     payload_size:"
+#~ " 每帧载荷字节数。     channel_type: 信道类型。     cfo_hz: "
+#~ "载波频率偏移。     eq_method: 均衡方法。     rician_k_db: "
+#~ "Rician K 因子。     smf_interval: SMF 间隔"
+#~ " (基础时隙)。     seed: 随机种子。"
+#~ msgstr ""
+#~ "Args:     n_links: Number of concurrent "
+#~ "links.     snr_range_db: SNR range (dB)."
+#~ "     n_superframes: Number of superframes "
+#~ "simulated per SNR point.     mcs_index: "
+#~ "Modulation and coding scheme index.     "
+#~ "payload_size: Payload bytes per frame.     "
+#~ "channel_type: Channel type.     cfo_hz: "
+#~ "Carrier frequency offset.     eq_method: "
+#~ "Equalization method.     rician_k_db: Rician "
+#~ "K-factor.     smf_interval: SMF interval (base"
+#~ " time slots).     seed: Random seed."
+
+#~ msgid ""
+#~ "Args:     snr_range_db: 信噪比范围 (dB)。     "
+#~ "n_frames: 每个 SNR 点仿真帧数。     mcs_index: "
+#~ "MCS 索引。     payload_size: 载荷字节数。     "
+#~ "channel_type: 信道类型。     cfo_hz: 载波频率偏移。     "
+#~ "eq_method: 均衡方法。     rician_k_db: Rician K "
+#~ "因子。     seed: 随机种子。"
+#~ msgstr ""
+#~ "Args:     snr_range_db: SNR range (dB)."
+#~ "     n_frames: Number of simulation frames"
+#~ " per SNR point.     mcs_index: MCS "
+#~ "index.     payload_size: Payload bytes.     "
+#~ "channel_type: Channel type.     cfo_hz: "
+#~ "Carrier frequency offset.     eq_method: "
+#~ "Equalization method.     rician_k_db: Rician "
+#~ "K-factor.     seed: Random seed."
+
+#~ msgid ""
+#~ "Args:     event_group_period: 事件组周期 (调度时隙)。     "
+#~ "event_count: 事件总数。     event_period: 事件周期 "
+#~ "(调度时隙)。     intra_event_interval: 事件内间隔 (μs)。"
+#~ "     tx_max_offset: TX 最大偏移 (基础时隙)。     "
+#~ "rx_max_offset: RX 最大偏移 (基础时隙)。"
+#~ msgstr ""
+#~ "Args:     event_group_period: Event group "
+#~ "period (scheduling slots).     event_count: "
+#~ "Total number of events.     event_period: "
+#~ "Event period (scheduling slots).     "
+#~ "intra_event_interval: Intra-event interval "
+#~ "(us).     tx_max_offset: TX maximum offset "
+#~ "(base time slots).     rx_max_offset: RX "
+#~ "maximum offset (base time slots)."
+
+#~ msgid ""
+#~ "Args:     smf_interval: SMF 间隔 (基础时隙)。     "
+#~ "slice_duration: 每条链路时间片持续长度 (调度时隙)。     slice_gap:"
+#~ " 相邻链路的偏移间距 (调度时隙, 默认等于 slice_duration)。"
+#~ "         当 gap < slice_duration 时, "
+#~ "链路时间片将发生重叠。     max_links: 最大测试链路数。"
+#~ msgstr ""
+#~ "Args:     smf_interval: SMF interval (base "
+#~ "time slots).     slice_duration: Time-slice"
+#~ " duration per link (scheduling slots)."
+#~ "     slice_gap: Offset gap between adjacent"
+#~ " links (scheduling slots, defaults to "
+#~ "slice_duration).         When gap < "
+#~ "slice_duration, link time slices will "
+#~ "overlap.     max_links: Maximum number of "
+#~ "test links."
+
+#~ msgid ""
+#~ "Args:     doppler_range_hz: Doppler 频移扫描范围 "
+#~ "(Hz)。     snr_db: 固定 SNR (dB)。     "
+#~ "n_frames: 每个 Doppler 点仿真帧数。     mcs_index: "
+#~ "MCS 索引。     payload_size: 载荷字节数。     "
+#~ "channel_type: 衰落类型 (\"rayleigh\" / "
+#~ "\"rician\")。     eq_method: 均衡方法。     seed: "
+#~ "随机种子。"
+#~ msgstr ""
+#~ "Args:     doppler_range_hz: Doppler shift "
+#~ "sweep range (Hz).     snr_db: Fixed SNR"
+#~ " (dB).     n_frames: Number of simulation"
+#~ " frames per Doppler point.     mcs_index:"
+#~ " MCS index.     payload_size: Payload "
+#~ "bytes.     channel_type: Fading type "
+#~ "(\"rayleigh\" / \"rician\").     eq_method: "
+#~ "Equalization method.     seed: Random seed."
+
+#~ msgid ""
+#~ "Args:     n_interferers_range: 干扰用户数扫描列表。     "
+#~ "sir_db: 每个干扰用户的 SIR (dB)。     snr_db: 噪声"
+#~ " SNR (dB)。     n_frames: 每个点仿真帧数。     "
+#~ "mcs_index: MCS 索引。     payload_size: 载荷字节数。"
+#~ "     channel_type: 信道类型。     freq_offset_hz: 干扰频偏"
+#~ " (Hz), 0 为同信道。     seed: 随机种子。"
+#~ msgstr ""
+#~ "Args:     n_interferers_range: List of "
+#~ "interferer counts to sweep.     sir_db: "
+#~ "SIR per interfering user (dB).     "
+#~ "snr_db: Noise SNR (dB).     n_frames: "
+#~ "Number of simulation frames per point."
+#~ "     mcs_index: MCS index.     payload_size: "
+#~ "Payload bytes.     channel_type: Channel type."
+#~ "     freq_offset_hz: Interference frequency "
+#~ "offset (Hz); 0 for co-channel.     "
+#~ "seed: Random seed."
+
+#~ msgid ""
+#~ "Args:     sir_range_db: SIR 扫描范围 (dB)。     "
+#~ "n_interferers: 干扰用户数。     snr_db: 噪声 SNR "
+#~ "(dB)。     n_frames: 每个 SIR 点帧数。     "
+#~ "mcs_index: MCS 索引。     payload_size: 载荷字节数。"
+#~ "     channel_type: 信道类型。     seed: 随机种子。"
+#~ msgstr ""
+#~ "Args:     sir_range_db: SIR sweep range "
+#~ "(dB).     n_interferers: Number of interfering"
+#~ " users.     snr_db: Noise SNR (dB).     "
+#~ "n_frames: Number of frames per SIR "
+#~ "point.     mcs_index: MCS index.     "
+#~ "payload_size: Payload bytes.     channel_type: "
+#~ "Channel type.     seed: Random seed."
 

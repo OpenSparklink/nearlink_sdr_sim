@@ -4,20 +4,19 @@
 # package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"POT-Creation-Date: 2026-03-24 04:07+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: en <LL@li.org>\n"
 "Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.md:1
@@ -31,12 +30,12 @@ msgstr "USRP E310 hardware interface layer."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:9
 msgid ""
-"封装 UHD Python API, 提供针对 SparkLink SLE 标准优化的 USRP 设备管理、 TX/RX 流接口以及与现有 PHY "
-"模块的集成 Pipeline。"
+"封装 UHD Python API, 提供针对 SparkLink SLE 标准优化的 USRP 设备管理、 TX/RX 流接口以及与现有 PHY"
+" 模块的集成 Pipeline。"
 msgstr ""
-"Wraps the UHD Python API, providing USRP device management optimized for the"
-" SparkLink SLE standard, TX/RX streaming interfaces and an integration "
-"pipeline with existing PHY modules."
+"Wraps the UHD Python API, providing USRP device management optimized for "
+"the SparkLink SLE standard, TX/RX streaming interfaces and an integration"
+" pipeline with existing PHY modules."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:12
 msgid "硬件参数 (USRP E310 / AD9361):"
@@ -82,7 +81,7 @@ msgstr "{py:obj}`USRPConfig <nearlink_sdr.phy.usrp.USRPConfig>`"
 #: ../../../src/nearlink_sdr/phy/usrp.py:20
 #: ../../../src/nearlink_sdr/phy/usrp.py:270
 msgid "USRP 设备配置参数。"
-msgstr "USRP deviceconfigurationparameter。"
+msgstr "USRP device configuration parameters."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.md:22
 #, python-brace-format
@@ -259,24 +258,18 @@ msgstr "{py:obj}`E310_ADC_BITS <nearlink_sdr.phy.usrp.E310_ADC_BITS>`"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.md:122
 #, python-brace-format
-msgid ""
-"{py:obj}`SLE_BANDWIDTHS_MHZ <nearlink_sdr.phy.usrp.SLE_BANDWIDTHS_MHZ>`"
-msgstr ""
-"{py:obj}`SLE_BANDWIDTHS_MHZ <nearlink_sdr.phy.usrp.SLE_BANDWIDTHS_MHZ>`"
+msgid "{py:obj}`SLE_BANDWIDTHS_MHZ <nearlink_sdr.phy.usrp.SLE_BANDWIDTHS_MHZ>`"
+msgstr "{py:obj}`SLE_BANDWIDTHS_MHZ <nearlink_sdr.phy.usrp.SLE_BANDWIDTHS_MHZ>`"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.md:126
 #, python-brace-format
-msgid ""
-"{py:obj}`DEFAULT_CPU_FORMAT <nearlink_sdr.phy.usrp.DEFAULT_CPU_FORMAT>`"
-msgstr ""
-"{py:obj}`DEFAULT_CPU_FORMAT <nearlink_sdr.phy.usrp.DEFAULT_CPU_FORMAT>`"
+msgid "{py:obj}`DEFAULT_CPU_FORMAT <nearlink_sdr.phy.usrp.DEFAULT_CPU_FORMAT>`"
+msgstr "{py:obj}`DEFAULT_CPU_FORMAT <nearlink_sdr.phy.usrp.DEFAULT_CPU_FORMAT>`"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.md:130
 #, python-brace-format
-msgid ""
-"{py:obj}`DEFAULT_WIRE_FORMAT <nearlink_sdr.phy.usrp.DEFAULT_WIRE_FORMAT>`"
-msgstr ""
-"{py:obj}`DEFAULT_WIRE_FORMAT <nearlink_sdr.phy.usrp.DEFAULT_WIRE_FORMAT>`"
+msgid "{py:obj}`DEFAULT_WIRE_FORMAT <nearlink_sdr.phy.usrp.DEFAULT_WIRE_FORMAT>`"
+msgstr "{py:obj}`DEFAULT_WIRE_FORMAT <nearlink_sdr.phy.usrp.DEFAULT_WIRE_FORMAT>`"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.md:136
 msgid "API"
@@ -330,19 +323,20 @@ msgstr "'sc16'"
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:272
 msgid ""
-"Attributes:     device_args: UHD 设备地址参数, 空字符串表示自动发现。     channel_num: SLE "
-"射频信道号。     band: 频段标识 (\"2400\" / \"5100\" / \"5800\")。     sample_rate_hz: "
-"采样率 (Hz)。     rx_gain_db: 接收增益 (dB)。     tx_gain_db: 发射增益 (dB)。     "
-"bandwidth_hz: 前端模拟滤波器带宽 (Hz), 0 表示不设置。     rx_antenna: 接收天线端口名称。     "
-"tx_antenna: 发射天线端口名称。     clock_source: 参考时钟源。     time_source: PPS 时间源。"
-"     cpu_format: 主机端样本格式。     wire_format: 线缆端样本格式。     num_recv_frames: "
-"接收缓冲区帧数, 增大可减少溢出。     stream_timeout_s: 流操作超时时间 (秒)。"
+"Attributes:     device_args: UHD 设备地址参数, 空字符串表示自动发现。     channel_num: SLE"
+" 射频信道号。     band: 频段标识 (\"2400\" / \"5100\" / \"5800\")。     "
+"sample_rate_hz: 采样率 (Hz)。     rx_gain_db: 接收增益 (dB)。     tx_gain_db: 发射增益"
+" (dB)。     bandwidth_hz: 前端模拟滤波器带宽 (Hz), 0 表示不设置。     rx_antenna: "
+"接收天线端口名称。     tx_antenna: 发射天线端口名称。     clock_source: 参考时钟源。     "
+"time_source: PPS 时间源。     cpu_format: 主机端样本格式。     wire_format: 线缆端样本格式。"
+"     num_recv_frames: 接收缓冲区帧数, 增大可减少溢出。     stream_timeout_s: 流操作超时时间 "
+"(秒)。"
 msgstr ""
-"Attributes:     device_args: UHD device address arguments, empty string for "
-"auto-discovery.     channel_num: SLE RF channel number.     band: Band "
-"identifier (\"2400\" / \"5100\" / \"5800\").     sample_rate_hz: Sample rate"
-" (Hz).     rx_gain_db: Receive gain (dB).     tx_gain_db: Transmit gain "
-"(dB)."
+"Attributes:     device_args: UHD device address arguments, empty string "
+"for auto-discovery.     channel_num: SLE RF channel number.     band: "
+"Band identifier (\"2400\" / \"5100\" / \"5800\").     sample_rate_hz: "
+"Sample rate (Hz).     rx_gain_db: Receive gain (dB).     tx_gain_db: "
+"Transmit gain (dB)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.md:287
 msgid "0"
@@ -397,7 +391,7 @@ msgstr "Compute the center frequency (Hz) from the channel number and band."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:467
 msgid "带宽 (MHz)。"
-msgstr "bandwidth (MHz)。"
+msgstr "Bandwidth (MHz)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.md:478
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.md:530
@@ -455,28 +449,35 @@ msgstr ""
 msgid "记录所有配置调用的参数, 并提供可验证的状态。 支持 loopback 模式: TX 发射的数据经可选信道模型后送入 RX。"
 msgstr ""
 "Records all configuration call parameters and provides verifiable state. "
-"Supports loopback mode: TX-transmitted data is routed through an optional "
-"channel model into RX."
+"Supports loopback mode: TX-transmitted data is routed through an optional"
+" channel model into RX."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:881
 msgid "封装 UHD MultiUSRP 对象, 提供 SLE 标准所需的设备配置和控制接口。 无硬件时自动使用 MockUSRP。"
 msgstr ""
-"Wraps the UHD MultiUSRP object, providing device configuration and control "
-"interfaces required by the SLE standard. Automatically uses MockUSRP when no"
-" hardware is available."
+"Wraps the UHD MultiUSRP object, providing device configuration and "
+"control interfaces required by the SLE standard. Automatically uses "
+"MockUSRP when no hardware is available."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:885
 msgid "初始化 USRP 设备。"
 msgstr "initialize USRP device."
 
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.md
+msgid "参数"
+msgstr "Parameters"
+
 #: ../../../src/nearlink_sdr/phy/usrp.py:887
-msgid ""
-"Args:     config: 设备配置, None 时使用默认配置。     use_mock: 强制使用 MockUSRP。     "
-"loopback: 环回缓冲区, 仅 Mock 模式有效。"
-msgstr ""
-"Args:     config: Device configuration, uses default when None.     "
-"use_mock: Force MockUSRP usage.     loopback: Loopback buffer, effective "
-"only in Mock mode."
+msgid "设备配置, None 时使用默认配置。"
+msgstr "Device configuration, uses default configuration when None."
+
+#: ../../../src/nearlink_sdr/phy/usrp.py:888
+msgid "强制使用 MockUSRP。"
+msgstr "Force use of MockUSRP."
+
+#: ../../../src/nearlink_sdr/phy/usrp.py:889
+msgid "环回缓冲区, 仅 Mock 模式有效。"
+msgstr "Loopback buffer, only valid in Mock mode."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:892
 msgid "将 USRPConfig 的参数应用到设备。"
@@ -491,10 +492,14 @@ msgid "切换到指定 SLE 射频信道。"
 msgstr "Switch to the specified SLE RF channel."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:910
-msgid "Args:     channel_num: 射频信道号。     band: 频段标识, None 沿用当前配置。"
-msgstr ""
-"Args:     channel_num: RF channel number.     band: Band identifier, None "
-"retains the current configuration."
+msgid "射频信道号。"
+msgstr "RF channel number."
+
+#: ../../../src/nearlink_sdr/phy/usrp.py:911
+#: ../../../src/nearlink_sdr/phy/usrp.py:1140
+#: ../../../src/nearlink_sdr/phy/usrp.py:1148
+msgid "频段标识, None 沿用当前配置。"
+msgstr "Frequency band identifier, None keeps current configuration."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:916
 msgid "设置 RX 增益。"
@@ -518,42 +523,46 @@ msgstr "Return a human-readable device status summary."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:977
 msgid "管理 TX streamer 的生命周期, 提供帧级发射方法。"
-msgstr ""
-"Manage the TX streamer lifecycle, providing frame-level transmit methods."
+msgstr "Manage the TX streamer lifecycle, providing frame-level transmit methods."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:988
 msgid "创建 TX streamer。"
-msgstr "create TX streamer。"
+msgstr "Create TX streamer."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:996
 msgid "发射一帧 IQ 样本。"
 msgstr "Transmit one frame of IQ samples."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:998
-msgid "Args:     samples: 复基带样本, dtype=complex64, shape (N,)。"
-msgstr ""
-"Args:     samples: Complex baseband samples, dtype=complex64, shape (N,)."
+msgid "复基带样本, dtype=complex64, shape (N,)。"
+msgstr "samples: Complex baseband samples, dtype=complex64, shape (N,)."
 
-#: ../../../src/nearlink_sdr/phy/usrp.py:1001
-#: ../../../src/nearlink_sdr/phy/usrp.py:1109
-#: ../../../src/nearlink_sdr/phy/usrp.py:1126
-#: ../../../src/nearlink_sdr/phy/usrp.py:1143
-msgid "Returns:     实际发射的样本数。"
-msgstr "Returns:     Number of samples actually transmitted."
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.md
+msgid "返回"
+msgstr "Returns"
+
+#: ../../../src/nearlink_sdr/phy/usrp.py:1000
+#: ../../../src/nearlink_sdr/phy/usrp.py:1108
+#: ../../../src/nearlink_sdr/phy/usrp.py:1125
+#: ../../../src/nearlink_sdr/phy/usrp.py:1142
+msgid "实际发射的样本数。"
+msgstr "Number of actually transmitted samples."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:1004
 msgid "连续发射, 重复指定次数。"
 msgstr "Continuous transmission, repeated a specified number of times."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:1006
-msgid "Args:     samples: 单帧 IQ 样本。     num_repeats: 重复次数。"
-msgstr ""
-"Args:     samples: Single-frame IQ samples.     num_repeats: Number of "
-"repetitions."
+msgid "单帧 IQ 样本。"
+msgstr "Transmit one frame of IQ samples."
 
-#: ../../../src/nearlink_sdr/phy/usrp.py:1010
-msgid "Returns:     总发射样本数。"
-msgstr "Returns:     Total number of transmitted samples."
+#: ../../../src/nearlink_sdr/phy/usrp.py:1007
+msgid "重复次数。"
+msgstr "Number of repetitions."
+
+#: ../../../src/nearlink_sdr/phy/usrp.py:1009
+msgid "总发射样本数。"
+msgstr "Total number of transmitted samples."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:1012
 msgid "关闭 TX streamer。"
@@ -570,8 +579,8 @@ msgid "创建 RX streamer 并分配接收缓冲区。"
 msgstr "Create an RX streamer and allocate the receive buffer."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:1036
-msgid "Args:     samps_per_buffer: 每次 recv 调用的缓冲区大小。"
-msgstr "Args:     samps_per_buffer: Buffer size per recv call."
+msgid "每次 recv 调用的缓冲区大小。"
+msgstr "Buffer size per recv call."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:1042
 msgid "接收指定数量的样本。"
@@ -579,14 +588,12 @@ msgstr "Receive a specified number of samples."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:1044
 #: ../../../src/nearlink_sdr/phy/usrp.py:1114
-msgid "Args:     num_samps: 要接收的样本数。"
-msgstr "Args:     num_samps: Number of samples to receive."
+msgid "要接收的样本数。"
+msgstr "Receive a specified number of samples."
 
-#: ../../../src/nearlink_sdr/phy/usrp.py:1047
-msgid "Returns:     复基带样本数组, shape (num_samps,), dtype=complex64。"
-msgstr ""
-"Returns:     Complex baseband sample array, shape (num_samps,), "
-"dtype=complex64."
+#: ../../../src/nearlink_sdr/phy/usrp.py:1046
+msgid "复基带样本数组, shape (num_samps,), dtype=complex64。"
+msgstr "Complex baseband sample array, shape (num_samps,), dtype=complex64."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:1050
 msgid "启动连续接收模式。"
@@ -597,9 +604,8 @@ msgid "在连续模式下接收一个缓冲区的样本。"
 msgstr "Receive one buffer of samples in continuous mode."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:1060
-msgid "Returns:     接收到的样本, 长度可能小于缓冲区大小。"
-msgstr ""
-"Returns:     Received samples, length may be less than the buffer size."
+msgid "接收到的样本, 长度可能小于缓冲区大小。"
+msgstr "Received samples, length may be less than the buffer size."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:1066
 msgid "停止连续接收。"
@@ -613,7 +619,8 @@ msgstr "close RX streamer."
 msgid "将 USRP 设备与 PHY 调制/解调模块集成, 提供帧级收发功能。 支持跳频操作。"
 msgstr ""
 "Integrate the USRP device with PHY modulation/demodulation modules, "
-"providing frame-level transceiver functionality. Supports frequency hopping."
+"providing frame-level transceiver functionality. Supports frequency "
+"hopping."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:1096
 msgid "初始化收发流。"
@@ -624,70 +631,144 @@ msgid "发射预调制的 IQ 样本。"
 msgstr "Transmit pre-modulated IQ samples."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:1106
-msgid "Args:     iq_samples: 复基带信号。"
-msgstr "Args:     iq_samples: Complex baseband signal."
+msgid "复基带信号。"
+msgstr "Complex baseband signal."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:1112
 msgid "接收指定数量的 IQ 样本。"
 msgstr "Receive a specified number of IQ samples."
 
-#: ../../../src/nearlink_sdr/phy/usrp.py:1117
-msgid "Returns:     接收到的复基带信号。"
-msgstr "Returns:     Received complex baseband signal."
+#: ../../../src/nearlink_sdr/phy/usrp.py:1116
+msgid "接收到的复基带信号。"
+msgstr "Received complex baseband signal."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:1120
 msgid "调制并发射一帧。"
 msgstr "Modulate and transmit one frame."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:1122
-msgid "Args:     frame_bits: 帧比特序列。     modulate_fn: 调制函数, 接收比特数组, 返回 IQ 样本。"
-msgstr ""
-"Args:     frame_bits: Frame bit sequence.     modulate_fn: Modulation "
-"function, takes a bit array and returns IQ samples."
+msgid "帧比特序列。"
+msgstr "frame bit sequence."
+
+#: ../../../src/nearlink_sdr/phy/usrp.py:1123
+msgid "调制函数, 接收比特数组, 返回 IQ 样本。"
+msgstr "Modulation function, receives bit array, returns IQ samples."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:1128
 msgid "接收并解调一帧。"
 msgstr "Receive and demodulate one frame."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:1130
-msgid "Args:     num_samps: 接收样本数。     demodulate_fn: 解调函数, 接收 IQ 样本, 返回比特数组。"
-msgstr ""
-"Args:     num_samps: Number of samples to receive.     demodulate_fn: "
-"Demodulation function, takes IQ samples and returns a bit array."
+#: ../../../src/nearlink_sdr/phy/usrp.py:1147
+msgid "接收样本数。"
+msgstr "Receive a specified number of samples."
 
-#: ../../../src/nearlink_sdr/phy/usrp.py:1134
-msgid "Returns:     解调后的比特序列。"
-msgstr "Returns:     Demodulated bit sequence."
+#: ../../../src/nearlink_sdr/phy/usrp.py:1131
+msgid "解调函数, 接收 IQ 样本, 返回比特数组。"
+msgstr "Demodulation function, receives IQ samples, returns bit array."
+
+#: ../../../src/nearlink_sdr/phy/usrp.py:1133
+msgid "解调后的比特序列。"
+msgstr "Demodulated bit sequence."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:1136
 msgid "跳频后发射。"
 msgstr "Transmit after frequency hopping."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:1138
-msgid ""
-"Args:     channel_num: 目标信道号。     iq_samples: 要发射的 IQ 样本。     band: 频段标识, "
-"None 沿用当前配置。"
-msgstr ""
-"Args:     channel_num: Target channel number.     iq_samples: IQ samples to "
-"transmit.     band: Band identifier, None retains the current configuration."
+#: ../../../src/nearlink_sdr/phy/usrp.py:1146
+msgid "目标信道号。"
+msgstr "Target channel number."
+
+#: ../../../src/nearlink_sdr/phy/usrp.py:1139
+msgid "要发射的 IQ 样本。"
+msgstr "Transmit pre-modulated IQ samples."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:1144
 msgid "跳频后接收。"
-msgstr "frequency hoppingnextreceive."
+msgstr "Receive after frequency hopping."
 
-#: ../../../src/nearlink_sdr/phy/usrp.py:1146
-msgid ""
-"Args:     channel_num: 目标信道号。     num_samps: 接收样本数。     band: 频段标识, None "
-"沿用当前配置。"
-msgstr ""
-"Args:     channel_num: Target channel number.     num_samps: Number of "
-"samples to receive.     band: Band identifier, None retains the current "
-"configuration."
-
-#: ../../../src/nearlink_sdr/phy/usrp.py:1151
-msgid "Returns:     接收到的 IQ 样本。"
-msgstr "Returns:     Received IQ samples."
+#: ../../../src/nearlink_sdr/phy/usrp.py:1150
+msgid "接收到的 IQ 样本。"
+msgstr "Receive a specified number of IQ samples."
 
 #: ../../../src/nearlink_sdr/phy/usrp.py:1152
 msgid "关闭所有收发流。"
 msgstr "Close all transmit and receive streams."
+
+#~ msgid ""
+#~ "Args:     config: 设备配置, None 时使用默认配置。     "
+#~ "use_mock: 强制使用 MockUSRP。     loopback: 环回缓冲区,"
+#~ " 仅 Mock 模式有效。"
+#~ msgstr ""
+#~ "Args:     config: Device configuration, uses"
+#~ " default when None.     use_mock: Force "
+#~ "MockUSRP usage.     loopback: Loopback buffer,"
+#~ " effective only in Mock mode."
+
+#~ msgid "Args:     channel_num: 射频信道号。     band: 频段标识, None 沿用当前配置。"
+#~ msgstr ""
+#~ "Args:     channel_num: RF channel number."
+#~ "     band: Band identifier, None retains"
+#~ " the current configuration."
+
+#~ msgid "Returns:     实际发射的样本数。"
+#~ msgstr "Returns:     Number of samples actually transmitted."
+
+#~ msgid "Args:     samples: 单帧 IQ 样本。     num_repeats: 重复次数。"
+#~ msgstr ""
+#~ "Args:     samples: Single-frame IQ "
+#~ "samples.     num_repeats: Number of "
+#~ "repetitions."
+
+#~ msgid "Returns:     总发射样本数。"
+#~ msgstr "Returns:     Total number of transmitted samples."
+
+#~ msgid "Args:     samps_per_buffer: 每次 recv 调用的缓冲区大小。"
+#~ msgstr "Args:     samps_per_buffer: Buffer size per recv call."
+
+#~ msgid "Args:     num_samps: 要接收的样本数。"
+#~ msgstr "Args:     num_samps: Number of samples to receive."
+
+#~ msgid "Args:     iq_samples: 复基带信号。"
+#~ msgstr "Args:     iq_samples: Complex baseband signal."
+
+#~ msgid "Args:     frame_bits: 帧比特序列。     modulate_fn: 调制函数, 接收比特数组, 返回 IQ 样本。"
+#~ msgstr ""
+#~ "Args:     frame_bits: Frame bit sequence."
+#~ "     modulate_fn: Modulation function, takes "
+#~ "a bit array and returns IQ "
+#~ "samples."
+
+#~ msgid "Args:     num_samps: 接收样本数。     demodulate_fn: 解调函数, 接收 IQ 样本, 返回比特数组。"
+#~ msgstr ""
+#~ "Args:     num_samps: Number of samples "
+#~ "to receive.     demodulate_fn: Demodulation "
+#~ "function, takes IQ samples and returns"
+#~ " a bit array."
+
+#~ msgid "Returns:     解调后的比特序列。"
+#~ msgstr "Returns:     Demodulated bit sequence."
+
+#~ msgid ""
+#~ "Args:     channel_num: 目标信道号。     iq_samples: "
+#~ "要发射的 IQ 样本。     band: 频段标识, None "
+#~ "沿用当前配置。"
+#~ msgstr ""
+#~ "Args:     channel_num: Target channel number."
+#~ "     iq_samples: IQ samples to transmit."
+#~ "     band: Band identifier, None retains"
+#~ " the current configuration."
+
+#~ msgid ""
+#~ "Args:     channel_num: 目标信道号。     num_samps: "
+#~ "接收样本数。     band: 频段标识, None 沿用当前配置。"
+#~ msgstr ""
+#~ "Args:     channel_num: Target channel number."
+#~ "     num_samps: Number of samples to "
+#~ "receive.     band: Band identifier, None "
+#~ "retains the current configuration."
+
+#~ msgid "Returns:     接收到的 IQ 样本。"
+#~ msgstr "Returns:     Received IQ samples."
+

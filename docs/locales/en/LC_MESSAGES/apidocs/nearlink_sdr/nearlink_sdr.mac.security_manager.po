@@ -4,20 +4,19 @@
 # package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"POT-Creation-Date: 2026-03-24 04:07+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: en <LL@li.org>\n"
 "Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:1
@@ -28,7 +27,8 @@ msgstr "{py:mod}`nearlink_sdr.mac.security_manager`"
 #: ../../../src/nearlink_sdr/mac/security_manager.py:7
 msgid "安全流程集成管理 -- TXS-10002-2025 标准 9.2-9.4。"
 msgstr ""
-"Security procedure integration management — TXS-10002-2025 standard 9.2-9.4."
+"Security procedure integration management — TXS-10002-2025 standard "
+"9.2-9.4."
 
 #: ../../../src/nearlink_sdr/mac/security_manager.py:9
 msgid "将配对信令 (security.py)、密码学原语 (crypto.py) 和链路管理器 整合为端到端的安全流程:"
@@ -39,14 +39,14 @@ msgstr ""
 #: ../../../src/nearlink_sdr/mac/security_manager.py:11
 msgid "配对状态机 (PairingManager): 驱动配对信令交互和密钥协商"
 msgstr ""
-"Pairing state machine (PairingManager): drives pairing signaling exchange "
-"and key negotiation"
+"Pairing state machine (PairingManager): drives pairing signaling exchange"
+" and key negotiation"
 
 #: ../../../src/nearlink_sdr/mac/security_manager.py:12
 msgid "帧加密上下文 (FrameCryptoContext): 管理 payload_count 和 AES-CCM 加解密"
 msgstr ""
-"Frame crypto context (FrameCryptoContext): manage payload_count and AES-CCM "
-"encryption/decryption"
+"Frame crypto context (FrameCryptoContext): manage payload_count and AES-"
+"CCM encryption/decryption"
 
 #: ../../../src/nearlink_sdr/mac/security_manager.py:13
 msgid "ECDH 密钥交换 (P-256): 生成密钥对和共享密钥"
@@ -62,15 +62,13 @@ msgstr "Classes"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:18
 #, python-brace-format
-msgid ""
-"{py:obj}`PairingState <nearlink_sdr.mac.security_manager.PairingState>`"
-msgstr ""
-"{py:obj}`PairingState <nearlink_sdr.mac.security_manager.PairingState>`"
+msgid "{py:obj}`PairingState <nearlink_sdr.mac.security_manager.PairingState>`"
+msgstr "{py:obj}`PairingState <nearlink_sdr.mac.security_manager.PairingState>`"
 
 #: ../../../src/nearlink_sdr/mac/security_manager.py:20
 #: ../../../src/nearlink_sdr/mac/security_manager.py:83
 msgid "配对流程状态。"
-msgstr "pairingprocedurestate。"
+msgstr "Pairing procedure state."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:22
 #, python-brace-format
@@ -99,14 +97,16 @@ msgstr "P-256 elliptic curve key pair."
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:30
 #, python-brace-format
 msgid ""
-"{py:obj}`PairingManager <nearlink_sdr.mac.security_manager.PairingManager>`"
+"{py:obj}`PairingManager "
+"<nearlink_sdr.mac.security_manager.PairingManager>`"
 msgstr ""
-"{py:obj}`PairingManager <nearlink_sdr.mac.security_manager.PairingManager>`"
+"{py:obj}`PairingManager "
+"<nearlink_sdr.mac.security_manager.PairingManager>`"
 
 #: ../../../src/nearlink_sdr/mac/security_manager.py:32
 #: ../../../src/nearlink_sdr/mac/security_manager.py:381
 msgid "配对流程状态机 (标准 9.2)。"
-msgstr "pairingprocedurestate machine (standard 9.2)。"
+msgstr "Pairing procedure state machine (standard 9.2)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:34
 #, python-brace-format
@@ -264,9 +264,13 @@ msgstr "generate P-256 keypair."
 msgid "计算 ECDH 共享密钥。"
 msgstr "Compute the ECDH shared key."
 
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md
+msgid "返回"
+msgstr "Returns"
+
 #: ../../../src/nearlink_sdr/mac/security_manager.py:374
-msgid "Returns:     共享密钥 (32 字节)。"
-msgstr "Returns:     Shared key (32 bytes)."
+msgid "共享密钥 (32 字节)。"
+msgstr "Shared key (32 bytes)."
 
 #: ../../../src/nearlink_sdr/mac/security_manager.py:383
 msgid "驱动 G 节点与 T 节点之间的配对信令交互, 完成:"
@@ -299,9 +303,9 @@ msgid ""
 "Attributes:     is_g_node: 本端是否为 G 节点。     kdf_type: 密钥派生函数类型。     "
 "auth_method: 鉴权方式。     max_key_length: 最大密钥长度 (字节)。"
 msgstr ""
-"Attributes:     is_g_node: Whether the local end is a G node.     kdf_type: "
-"Key derivation function type.     auth_method: Authentication method.     "
-"max_key_length: Maximum key length (bytes)."
+"Attributes:     is_g_node: Whether the local end is a G node.     "
+"kdf_type: Key derivation function type.     auth_method: Authentication "
+"method.     max_key_length: Maximum key length (bytes)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:388
 msgid "True"
@@ -335,13 +339,12 @@ msgstr "Initiate pairing and return a list of signaling messages to send."
 #: ../../../src/nearlink_sdr/mac/security_manager.py:588
 msgid "G 节点发送: PairingInitiate → PairingRequest T 节点发送: (等待 G 节点发起)"
 msgstr ""
-"G node sends: PairingInitiate -> PairingRequest T node sends: (waits for G "
-"node to initiate)"
+"G node sends: PairingInitiate -> PairingRequest T node sends: (waits for "
+"G node to initiate)"
 
 #: ../../../src/nearlink_sdr/mac/security_manager.py:594
 msgid "处理收到的配对信令, 返回待发送的响应信令。"
-msgstr ""
-"Process received pairing signaling and return response signaling to send."
+msgstr "Process received pairing signaling and return response signaling to send."
 
 #: ../../../src/nearlink_sdr/mac/security_manager.py:682
 msgid "生成本端确认码。"
@@ -363,15 +366,15 @@ msgstr ""
 
 #: ../../../src/nearlink_sdr/mac/security_manager.py:721
 msgid ""
-"Attributes:     session_key: 会话密钥 (16 字节)。     iv_base: 初始化向量基底 (8 字节)。     "
-"direction: 传输方向 (0=G→T, 1=T→G)。     mic_len: MIC 长度 (字节, 4/8/12/16)。     "
-"frame_type: 帧类型 (用于 IV 计算)。     link_id: 链路标识 (用于 IV 计算)。"
+"Attributes:     session_key: 会话密钥 (16 字节)。     iv_base: 初始化向量基底 (8 字节)。"
+"     direction: 传输方向 (0=G→T, 1=T→G)。     mic_len: MIC 长度 (字节, 4/8/12/16)。"
+"     frame_type: 帧类型 (用于 IV 计算)。     link_id: 链路标识 (用于 IV 计算)。"
 msgstr ""
 "Attributes:     session_key: Session key (16 bytes).     iv_base: "
-"Initialization vector base (8 bytes).     direction: Transmission direction "
-"(0=G->T, 1=T->G).     mic_len: MIC length (bytes, 4/8/12/16).     "
-"frame_type: Frame type (for IV calculation).     link_id: Link identifier "
-"(for IV calculation)."
+"Initialization vector base (8 bytes).     direction: Transmission "
+"direction (0=G->T, 1=T->G).     mic_len: MIC length (bytes, 4/8/12/16)."
+"     frame_type: Frame type (for IV calculation).     link_id: Link "
+"identifier (for IV calculation)."
 
 #: ../../../src/nearlink_sdr/mac/security_manager.py:829
 msgid "构建 CCM nonce (13 字节)。"
@@ -379,43 +382,52 @@ msgstr "build CCM nonce (13 byte)."
 
 #: ../../../src/nearlink_sdr/mac/security_manager.py:831
 msgid ""
-"build_ccm_nonce_async 返回 16 字节 B0 块: flag(1B) | nonce(13B) | data_length(2B)"
-" AESCCM 需要 13 字节 nonce 部分。"
+"build_ccm_nonce_async 返回 16 字节 B0 块: flag(1B) | nonce(13B) | "
+"data_length(2B) AESCCM 需要 13 字节 nonce 部分。"
 msgstr ""
-"build_ccm_nonce_async returns a 16-byte B0 block: flag(1B) | nonce(13B) | "
-"data_length(2B) AESCCM requires the 13-byte nonce part."
+"build_ccm_nonce_async returns a 16-byte B0 block: flag(1B) | nonce(13B) |"
+" data_length(2B) AESCCM requires the 13-byte nonce part."
 
 #: ../../../src/nearlink_sdr/mac/security_manager.py:837
 msgid "加密一帧数据, 自动递增 payload_count。"
 msgstr "Encrypt one frame of data, automatically incrementing payload_count."
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:839
-msgid "Args:     plaintext: 明文数据。     aad: 关联数据 (不加密但参与完整性校验)。"
-msgstr ""
-"Args:     plaintext: Plaintext data.     aad: Associated data (not encrypted"
-" but participates in integrity check)."
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md
+msgid "参数"
+msgstr "Parameters"
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:843
-msgid "Returns:     (密文, MIC)。"
-msgstr "Returns:     (ciphertext, MIC)."
+#: ../../../src/nearlink_sdr/mac/security_manager.py:839
+msgid "明文数据。"
+msgstr "Plaintext data."
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:840
+msgid "关联数据 (不加密但参与完整性校验)。"
+msgstr ""
+"Associated data (not encrypted but participates in integrity check)."
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:842
+msgid "(密文, MIC)。"
+msgstr "(ciphertext, MIC)."
 
 #: ../../../src/nearlink_sdr/mac/security_manager.py:845
 msgid "解密一帧数据, 自动递增 payload_count。"
 msgstr "Decrypt one frame of data, automatically incrementing payload_count."
 
 #: ../../../src/nearlink_sdr/mac/security_manager.py:847
-msgid "Args:     ciphertext: 密文数据。     mic: 消息完整性码。     aad: 关联数据。"
-msgstr ""
-"Args:     ciphertext: Ciphertext data.     mic: Message integrity code.     "
-"aad: Associated data."
+msgid "密文数据。"
+msgstr "Ciphertext data."
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:852
-msgid "Returns:     解密后的明文。"
-msgstr "Returns:     Decrypted plaintext."
+#: ../../../src/nearlink_sdr/mac/security_manager.py:848
+msgid "消息完整性码。"
+msgstr "Message integrity code."
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:855
-msgid "Raises:     cryptography.exceptions.InvalidTag: MIC 验证失败。"
-msgstr "Raises:     cryptography.exceptions.InvalidTag: MIC validatefailure。"
+#: ../../../src/nearlink_sdr/mac/security_manager.py:849
+msgid "关联数据。"
+msgstr "Associated data."
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:851
+msgid "解密后的明文。"
+msgstr "Decrypted plaintext."
 
 #: ../../../src/nearlink_sdr/mac/security_manager.py:853
 msgid "重置 payload 计数器。"
@@ -424,9 +436,28 @@ msgstr "reset payload counter."
 #: ../../../src/nearlink_sdr/mac/security_manager.py:863
 msgid "模拟 G 节点和 T 节点之间的配对信令交互, 完成密钥交换和会话密钥派生。"
 msgstr ""
-"Simulate pairing signaling interaction between G node and T node, completing"
-" key exchange and session key derivation."
+"Simulate pairing signaling interaction between G node and T node, "
+"completing key exchange and session key derivation."
 
 #: ../../../src/nearlink_sdr/mac/security_manager.py:866
-msgid "Returns:     (G 节点管理器, T 节点管理器)。"
-msgstr "Returns:     (G node manager, T node manager)."
+msgid "(G 节点管理器, T 节点管理器)。"
+msgstr "(G node manager, T node manager)."
+
+#~ msgid "Args:     plaintext: 明文数据。     aad: 关联数据 (不加密但参与完整性校验)。"
+#~ msgstr ""
+#~ "Args:     plaintext: Plaintext data.     aad:"
+#~ " Associated data (not encrypted but "
+#~ "participates in integrity check)."
+
+#~ msgid "Args:     ciphertext: 密文数据。     mic: 消息完整性码。     aad: 关联数据。"
+#~ msgstr ""
+#~ "Args:     ciphertext: Ciphertext data.     "
+#~ "mic: Message integrity code.     aad: "
+#~ "Associated data."
+
+#~ msgid "Returns:     解密后的明文。"
+#~ msgstr "Returns:     Decrypted plaintext."
+
+#~ msgid "Raises:     cryptography.exceptions.InvalidTag: MIC 验证失败。"
+#~ msgstr "Raises:     cryptography.exceptions.InvalidTag: MIC validatefailure。"
+

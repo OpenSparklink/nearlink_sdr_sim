@@ -4,12 +4,11 @@
 # package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-23 22:54+0800\n"
+"POT-Creation-Date: 2026-03-24 04:07+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -90,29 +89,70 @@ msgstr "API"
 msgid "None"
 msgstr "None"
 
-#: ../../../src/nearlink_sdr/common/m_sequence.py:76
-#, fuzzy
-msgid ""
-"Args:     order: LFSR阶数（移位寄存器位数）     taps: 反馈系数（二进制表示，包含最高位）     "
-"init_val: 移位寄存器初始值     length: 输出序列长度，默认为 2^order - 1（完整m序列周期）"
-msgstr ""
-"Parameters:     order: LFSR order (number of shift register bits).     "
-"taps: Feedback taps (binary representation, including the MSB).     "
-"init_val: Shift register initial value.     length: Output sequence "
-"length, default is 2^order - 1 (full m-sequence period)."
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.m_sequence.md
+msgid "参数"
+msgstr "Parameters"
 
-#: ../../../src/nearlink_sdr/common/m_sequence.py:82
-#, fuzzy
-msgid "Returns:     m序列比特数组, shape (length,), 值为 0/1"
-msgstr "Returns:     m-sequence bit array, shape (length,), values 0/1"
+#: ../../../src/nearlink_sdr/common/m_sequence.py:76
+msgid "LFSR阶数（移位寄存器位数）"
+msgstr "LFSR order (number of shift register bits)"
+
+#: ../../../src/nearlink_sdr/common/m_sequence.py:77
+msgid "反馈系数（二进制表示，包含最高位）"
+msgstr ""
+"Feedback coefficient (binary representation, including the most significant "
+"bit)"
+
+#: ../../../src/nearlink_sdr/common/m_sequence.py:78
+msgid "移位寄存器初始值"
+msgstr "Shift register initial value"
+
+#: ../../../src/nearlink_sdr/common/m_sequence.py:79
+msgid "输出序列长度，默认为 2^order - 1（完整m序列周期）"
+msgstr ""
+"Output sequence length, defaults to 2^order - 1 (full m-sequence period)"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.m_sequence.md
+msgid "返回"
+msgstr "Returns"
+
+#: ../../../src/nearlink_sdr/common/m_sequence.py:81
+msgid "m序列比特数组, shape (length,), 值为 0/1"
+msgstr "m-sequence bit array, shape (length,), values 0/1"
 
 #: ../../../src/nearlink_sdr/common/m_sequence.py:83
-#, fuzzy
-msgid "Args:     index: 序列编号 0~5     length: 输出长度，默认31"
-msgstr "Args:     index: sequence index 0~5     length: output length, default 31"
-
 #: ../../../src/nearlink_sdr/common/m_sequence.py:90
-#, fuzzy
-msgid "Args:     index: 序列编号 0~5     length: 输出长度，默认63"
-msgstr "Args:     index: sequence index 0~5     length: output length, default 63"
+msgid "序列编号 0~5"
+msgstr "Sequence index 0–5"
+
+#: ../../../src/nearlink_sdr/common/m_sequence.py:84
+msgid "输出长度，默认31"
+msgstr "output length, default 31"
+
+#: ../../../src/nearlink_sdr/common/m_sequence.py:91
+msgid "输出长度，默认63"
+msgstr "output length, default 63"
+
+#~ msgid ""
+#~ "Args:     order: LFSR阶数（移位寄存器位数）     taps: "
+#~ "反馈系数（二进制表示，包含最高位）     init_val: 移位寄存器初始值     length:"
+#~ " 输出序列长度，默认为 2^order - 1（完整m序列周期）"
+#~ msgstr ""
+#~ "Parameters:     order: LFSR order (number "
+#~ "of shift register bits).     taps: "
+#~ "Feedback taps (binary representation, "
+#~ "including the MSB).     init_val: Shift "
+#~ "register initial value.     length: Output "
+#~ "sequence length, default is 2^order -"
+#~ " 1 (full m-sequence period)."
+
+#~ msgid "Args:     index: 序列编号 0~5     length: 输出长度，默认31"
+#~ msgstr ""
+#~ "Args:     index: sequence index 0~5     "
+#~ "length: output length, default 31"
+
+#~ msgid "Args:     index: 序列编号 0~5     length: 输出长度，默认63"
+#~ msgstr ""
+#~ "Args:     index: sequence index 0~5     "
+#~ "length: output length, default 63"
 

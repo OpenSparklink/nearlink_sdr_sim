@@ -4,20 +4,19 @@
 # package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"POT-Creation-Date: 2026-03-24 04:07+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: en <LL@li.org>\n"
 "Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.qos.md:1
@@ -27,32 +26,31 @@ msgstr "{py:mod}`nearlink_sdr.mac.qos`"
 
 #: ../../../src/nearlink_sdr/mac/qos.py:7
 msgid "MAC 层服务质量管理 -- TXS-10002-2025 标准 6.5/7.2"
-msgstr ""
-"MAC layer quality of service management — TXS-10002-2025 standard 6.5/7.2"
+msgstr "MAC layer quality of service management — TXS-10002-2025 standard 6.5/7.2"
 
 #: ../../../src/nearlink_sdr/mac/qos.py:9
 msgid "实现异步/同步数据链路的数据传输质量控制:"
 msgstr ""
-"Implements data transmission quality control for asynchronous/synchronous "
-"data links:"
+"Implements data transmission quality control for asynchronous/synchronous"
+" data links:"
 
 #: ../../../src/nearlink_sdr/mac/qos.py:10
 msgid "ARQ 自动重传请求: 序列号管理、ACK/NACK 反馈、重传决策 (6.5.1)"
 msgstr ""
-"ARQ automatic repeat request: sequence number management, ACK/NACK feedback,"
-" retransmission decision (6.5.1)"
+"ARQ automatic repeat request: sequence number management, ACK/NACK "
+"feedback, retransmission decision (6.5.1)"
 
 #: ../../../src/nearlink_sdr/mac/qos.py:11
 msgid "HARQ 混合自动重传: 基于 TB 和 CBG 的反馈模式 (6.5.1.1)"
 msgstr ""
-"HARQ hybrid automatic repeat request: TB-based and CBG-based feedback modes "
-"(6.5.1.1)"
+"HARQ hybrid automatic repeat request: TB-based and CBG-based feedback "
+"modes (6.5.1.1)"
 
 #: ../../../src/nearlink_sdr/mac/qos.py:12
 msgid "流控: 发送缓冲区管理与流控信令 (控制信息 flow_ctrl 字段)"
 msgstr ""
-"Flow control: TX buffer management and flow control signaling (control info "
-"flow_ctrl field)"
+"Flow control: TX buffer management and flow control signaling (control "
+"info flow_ctrl field)"
 
 #: ../../../src/nearlink_sdr/mac/qos.py:13
 msgid "链路质量跟踪: MCS 反馈、FER 估计、AMC 建议 (控制信息 LQI 字段)"
@@ -145,8 +143,7 @@ msgstr "TX flow control manager."
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.qos.md:46
 #, python-brace-format
 msgid "{py:obj}`LinkQualityTracker <nearlink_sdr.mac.qos.LinkQualityTracker>`"
-msgstr ""
-"{py:obj}`LinkQualityTracker <nearlink_sdr.mac.qos.LinkQualityTracker>`"
+msgstr "{py:obj}`LinkQualityTracker <nearlink_sdr.mac.qos.LinkQualityTracker>`"
 
 #: ../../../src/nearlink_sdr/mac/qos.py:48
 #: ../../../src/nearlink_sdr/mac/qos.py:691
@@ -171,7 +168,7 @@ msgstr "{py:obj}`TxQueue <nearlink_sdr.mac.qos.TxQueue>`"
 #: ../../../src/nearlink_sdr/mac/qos.py:56
 #: ../../../src/nearlink_sdr/mac/qos.py:885
 msgid "优先级发送队列。"
-msgstr "prioritytransmitqueue。"
+msgstr "Priority send queue."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.qos.md:58
 #, python-brace-format
@@ -288,12 +285,11 @@ msgstr "4"
 
 #: ../../../src/nearlink_sdr/mac/qos.py:331
 msgid "标准 6.5.1.1 描述的异步数据链路传输流程:"
-msgstr ""
-"Asynchronous data link transmission process described in standard 6.5.1.1:"
+msgstr "Asynchronous data link transmission process described in standard 6.5.1.1:"
 
 #: ../../../src/nearlink_sdr/mac/qos.py:332
 msgid "tx_sn: 当前发送序列号"
-msgstr "tx_sn: whenprevioustransmitsequencenumber"
+msgstr "tx_sn: current transmit sequence number"
 
 #: ../../../src/nearlink_sdr/mac/qos.py:333
 msgid "expected_rx_sn: 期望接收的对端序列号"
@@ -345,8 +341,8 @@ msgstr "NACK received: decide whether to retransmit."
 #: ../../../src/nearlink_sdr/mac/qos.py:451
 msgid "异步链路: 持续重传直到收到 ACK。 同步链路: 超出 max_retransmit 后丢弃。"
 msgstr ""
-"Async link: keep retransmitting until ACK is received. Sync link: discard "
-"after exceeding max_retransmit."
+"Async link: keep retransmitting until ACK is received. Sync link: discard"
+" after exceeding max_retransmit."
 
 #: ../../../src/nearlink_sdr/mac/qos.py:457
 msgid "未收到反馈: 与 NACK 处理相同。"
@@ -369,17 +365,17 @@ msgstr "Discard current unacknowledged data (sync link timeout)."
 #: ../../../src/nearlink_sdr/mac/qos.py:484
 msgid "管理 HARQ 反馈字段 (8 bit) 和 CBG 级部分重传逻辑。"
 msgstr ""
-"Manage the HARQ feedback field (8 bit) and CBG-level partial retransmission "
-"logic."
+"Manage the HARQ feedback field (8 bit) and CBG-level partial "
+"retransmission logic."
 
 #: ../../../src/nearlink_sdr/mac/qos.py:486
 msgid ""
-"TB 模式: harq_feedback 指示期望对端传输的数据包 SN。 CBG 模式: harq_feedback 每 bit 对应一个 CBG 的"
-" ACK/NACK。"
+"TB 模式: harq_feedback 指示期望对端传输的数据包 SN。 CBG 模式: harq_feedback 每 bit 对应一个 "
+"CBG 的 ACK/NACK。"
 msgstr ""
 "TB mode: harq_feedback indicates the expected SN for the remote end to "
-"transmit. CBG mode: each bit of harq_feedback corresponds to the ACK/NACK of"
-" one CBG."
+"transmit. CBG mode: each bit of harq_feedback corresponds to the ACK/NACK"
+" of one CBG."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.qos.md:511
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.qos.md:731
@@ -398,8 +394,8 @@ msgstr "Encode the HARQ feedback field (8 bit)."
 #: ../../../src/nearlink_sdr/mac/qos.py:532
 msgid "TB 模式: 返回期望对端传输的 SN。 CBG 模式: 返回 CBG ACK/NACK bitmap。"
 msgstr ""
-"TB mode: return the SN expected from the remote end. CBG mode: return CBG "
-"ACK/NACK bitmap."
+"TB mode: return the SN expected from the remote end. CBG mode: return CBG"
+" ACK/NACK bitmap."
 
 #: ../../../src/nearlink_sdr/mac/qos.py:538
 msgid "解码 HARQ 反馈字段。"
@@ -413,7 +409,7 @@ msgstr ""
 
 #: ../../../src/nearlink_sdr/mac/qos.py:546
 msgid "更新 CBG 接收状态。"
-msgstr "update CBG receivestate。"
+msgstr "Update CBG receive state."
 
 #: ../../../src/nearlink_sdr/mac/qos.py:554
 msgid "是否需要 CBG 级部分重传。"
@@ -428,8 +424,8 @@ msgstr ""
 #: ../../../src/nearlink_sdr/mac/qos.py:564
 msgid "标准 6.5.1.1: MCS=15 时, data_length 低 M bit 指示需要传输的 CBG。"
 msgstr ""
-"Standard 6.5.1.1: when MCS=15, the lower M bits of data_length indicate the "
-"CBGs to be transmitted."
+"Standard 6.5.1.1: when MCS=15, the lower M bits of data_length indicate "
+"the CBGs to be transmitted."
 
 #: ../../../src/nearlink_sdr/mac/qos.py:570
 msgid "综合 HARQ 反馈决定发送行为。"
@@ -478,8 +474,8 @@ msgstr "Whether in backpressure pause state."
 #: ../../../src/nearlink_sdr/mac/qos.py:693
 msgid "跟踪最近 N 帧的 CRC 通过率, 计算瞬时 FER, 根据 FER 阈值建议 MCS 调整方向。"
 msgstr ""
-"Track the CRC pass rate of the last N frames, compute instantaneous FER, and"
-" recommend MCS adjustment direction based on FER thresholds."
+"Track the CRC pass rate of the last N frames, compute instantaneous FER, "
+"and recommend MCS adjustment direction based on FER thresholds."
 
 #: ../../../src/nearlink_sdr/mac/qos.py:696
 msgid "标准: 控制信息 LQI 字段 (前 4 bit 为 MCS 指示)。"
@@ -513,12 +509,15 @@ msgstr "Current window success rate."
 msgid "建议 MCS 调整方向。"
 msgstr "recommended MCS adjustment direction."
 
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.qos.md
+msgid "返回"
+msgstr "Returns"
+
 #: ../../../src/nearlink_sdr/mac/qos.py:790
-msgid ""
-"Returns:     +1: 建议提升 MCS (链路质量好)     -1: 建议降低 MCS (链路质量差)      0: 保持当前 MCS"
+msgid "+1: 建议提升 MCS (链路质量好) -1: 建议降低 MCS (链路质量差) 0: 保持当前 MCS"
 msgstr ""
-"Returns:     +1: Recommend increasing MCS (good link quality)     -1: "
-"Recommend decreasing MCS (poor link quality)      0: Keep current MCS"
+"+1: Recommend increasing MCS (good link quality)     -1: Recommend "
+"decreasing MCS (poor link quality)      0: Keep current MCS"
 
 #: ../../../src/nearlink_sdr/mac/qos.py:796
 msgid "应用 MCS 调整建议并返回新 MCS。"
@@ -535,8 +534,9 @@ msgstr "Decode the LQI field and extract the MCS indication."
 #: ../../../src/nearlink_sdr/mac/qos.py:887
 msgid "高优先级数据优先出队; 同优先级内按FIFO顺序; 重传数据优先于同优先级新数据。"
 msgstr ""
-"Higher priority data is dequeued first; FIFO order within the same priority;"
-" retransmission data takes precedence over new data at the same priority."
+"Higher priority data is dequeued first; FIFO order within the same "
+"priority; retransmission data takes precedence over new data at the same "
+"priority."
 
 #: ../../../src/nearlink_sdr/mac/qos.py:898
 msgid "入队, 队满时返回 False。"
@@ -561,8 +561,8 @@ msgstr "Clear all queues."
 #: ../../../src/nearlink_sdr/mac/qos.py:968
 msgid "集成 ARQ、HARQ、流控、链路质量跟踪和发送队列, 为 MAC-PHY 接口提供统一的数据传输质量管理。"
 msgstr ""
-"Integrate ARQ, HARQ, flow control, link quality tracking, and TX queue to "
-"provide unified data transmission quality management for the MAC-PHY "
+"Integrate ARQ, HARQ, flow control, link quality tracking, and TX queue to"
+" provide unified data transmission quality management for the MAC-PHY "
 "interface."
 
 #: ../../../src/nearlink_sdr/mac/qos.py:1028
@@ -570,8 +570,8 @@ msgid "准备下一帧发送。"
 msgstr "Prepare the next frame for transmission."
 
 #: ../../../src/nearlink_sdr/mac/qos.py:1030
-msgid "Returns:     (发送决策, 队列项或 None)"
-msgstr "Returns:     (transmission decision, queue item or None)"
+msgid "(发送决策, 队列项或 None)"
+msgstr "(transmission decision, queue item or None)"
 
 #: ../../../src/nearlink_sdr/mac/qos.py:1036
 msgid "处理来自对端的 ACK/NACK 反馈。"
@@ -583,4 +583,5 @@ msgstr "Submit data to the TX queue."
 
 #: ../../../src/nearlink_sdr/mac/qos.py:1052
 msgid "获取当前控制信息字段值。"
-msgstr "getwhenpreviouscontrol informationfieldvalue."
+msgstr "Get current control information field value."
+
