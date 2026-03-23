@@ -1,0 +1,182 @@
+# {py:mod}`nearlink_sdr.phy.multitone`
+
+```{py:module} nearlink_sdr.phy.multitone
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.multitone
+:allowtitles:
+```
+
+## Module Contents
+
+### Classes
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`MultitoneConfig <nearlink_sdr.phy.multitone.MultitoneConfig>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.multitone.MultitoneConfig
+    :summary:
+    ```
+````
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`generate_multitone <nearlink_sdr.phy.multitone.generate_multitone>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.multitone.generate_multitone
+    :summary:
+    ```
+* - {py:obj}`multitone_peak_to_avg_ratio <nearlink_sdr.phy.multitone.multitone_peak_to_avg_ratio>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.multitone.multitone_peak_to_avg_ratio
+    :summary:
+    ```
+````
+
+### Data
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`MULTITONE_PHASE_SETS <nearlink_sdr.phy.multitone.MULTITONE_PHASE_SETS>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.multitone.MULTITONE_PHASE_SETS
+    :summary:
+    ```
+* - {py:obj}`DELTA_F_TABLE <nearlink_sdr.phy.multitone.DELTA_F_TABLE>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.multitone.DELTA_F_TABLE
+    :summary:
+    ```
+````
+
+### API
+
+````{py:data} MULTITONE_PHASE_SETS
+:canonical: nearlink_sdr.phy.multitone.MULTITONE_PHASE_SETS
+:type: dict[int, dict[int, list[float]]]
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.multitone.MULTITONE_PHASE_SETS
+```
+
+````
+
+````{py:data} DELTA_F_TABLE
+:canonical: nearlink_sdr.phy.multitone.DELTA_F_TABLE
+:type: dict[int, dict[int, float]]
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.multitone.DELTA_F_TABLE
+```
+
+````
+
+`````{py:class} MultitoneConfig
+:canonical: nearlink_sdr.phy.multitone.MultitoneConfig
+
+```{autodoc2-docstring} nearlink_sdr.phy.multitone.MultitoneConfig
+```
+
+````{py:attribute} n_tones
+:canonical: nearlink_sdr.phy.multitone.MultitoneConfig.n_tones
+:type: int
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.multitone.MultitoneConfig.n_tones
+```
+
+````
+
+````{py:attribute} sle_bandwidth_mhz
+:canonical: nearlink_sdr.phy.multitone.MultitoneConfig.sle_bandwidth_mhz
+:type: int
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.multitone.MultitoneConfig.sle_bandwidth_mhz
+```
+
+````
+
+````{py:attribute} phase_set
+:canonical: nearlink_sdr.phy.multitone.MultitoneConfig.phase_set
+:type: int
+:value: >
+   1
+
+```{autodoc2-docstring} nearlink_sdr.phy.multitone.MultitoneConfig.phase_set
+```
+
+````
+
+````{py:attribute} amplitude
+:canonical: nearlink_sdr.phy.multitone.MultitoneConfig.amplitude
+:type: float
+:value: >
+   1.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.multitone.MultitoneConfig.amplitude
+```
+
+````
+
+````{py:attribute} sample_rate_hz
+:canonical: nearlink_sdr.phy.multitone.MultitoneConfig.sample_rate_hz
+:type: float
+:value: >
+   8000000.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.multitone.MultitoneConfig.sample_rate_hz
+```
+
+````
+
+````{py:property} delta_f_hz
+:canonical: nearlink_sdr.phy.multitone.MultitoneConfig.delta_f_hz
+:type: float
+
+```{autodoc2-docstring} nearlink_sdr.phy.multitone.MultitoneConfig.delta_f_hz
+```
+
+````
+
+````{py:property} frequencies_hz
+:canonical: nearlink_sdr.phy.multitone.MultitoneConfig.frequencies_hz
+:type: list[float]
+
+```{autodoc2-docstring} nearlink_sdr.phy.multitone.MultitoneConfig.frequencies_hz
+```
+
+````
+
+````{py:property} phases_rad
+:canonical: nearlink_sdr.phy.multitone.MultitoneConfig.phases_rad
+:type: list[float]
+
+```{autodoc2-docstring} nearlink_sdr.phy.multitone.MultitoneConfig.phases_rad
+```
+
+````
+
+`````
+
+````{py:function} generate_multitone(config: nearlink_sdr.phy.multitone.MultitoneConfig, duration_s: float) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.multitone.generate_multitone
+
+```{autodoc2-docstring} nearlink_sdr.phy.multitone.generate_multitone
+```
+````
+
+````{py:function} multitone_peak_to_avg_ratio(config: nearlink_sdr.phy.multitone.MultitoneConfig) -> float
+:canonical: nearlink_sdr.phy.multitone.multitone_peak_to_avg_ratio
+
+```{autodoc2-docstring} nearlink_sdr.phy.multitone.multitone_peak_to_avg_ratio
+```
+````
