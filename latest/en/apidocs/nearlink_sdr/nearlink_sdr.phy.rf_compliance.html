@@ -929,12 +929,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>band</strong> – 频段类型。</p></li>
-<li><p><strong>mod_type</strong> – 调制类型 (“GFSK”, “BPSK/QPSK”, “8PSK”)。</p></li>
-<li><p><strong>freq_offset_khz</strong> – 初始频率偏差 (kHz)。</p></li>
-<li><p><strong>freq_drift_khz</strong> – 频率漂移 (kHz)。</p></li>
-<li><p><strong>drift_rate_hz_per_us</strong> – 频率漂移率 (Hz/us)。</p></li>
-<li><p><strong>carrier_freq_mhz</strong> – 载波频率 (MHz), sub-1GHz 时用于 ppm 校验。</p></li>
+<li><p><strong>band</strong> – frequency band type.</p></li>
+<li><p><strong>mod_type</strong> – modulation type (“GFSK”, “BPSK/QPSK”, “8PSK”).</p></li>
+<li><p><strong>freq_offset_khz</strong> – Initial frequency deviation (kHz).</p></li>
+<li><p><strong>freq_drift_khz</strong> – Frequency drift (kHz).</p></li>
+<li><p><strong>drift_rate_hz_per_us</strong> – Frequency drift rate (Hz/us).</p></li>
+<li><p><strong>carrier_freq_mhz</strong> – Carrier frequency (MHz), used for ppm check at sub-1GHz.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1110,8 +1110,8 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>bw_khz</strong> – 信道带宽 (kHz)。</p></li>
-<li><p><strong>mcs</strong> – MCS 索引。None 时返回 GFSK 灵敏度。</p></li>
+<li><p><strong>bw_khz</strong> – channel bandwidth (kHz).</p></li>
+<li><p><strong>mcs</strong> – MCS index. Returns GFSK sensitivity when None.</p></li>
 </ul>
 </dd>
 </dl>

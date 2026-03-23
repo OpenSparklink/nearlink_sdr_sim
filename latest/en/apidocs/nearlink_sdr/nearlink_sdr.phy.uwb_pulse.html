@@ -517,12 +517,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>cfg</strong> – UWB 脉冲配置</p></li>
-<li><p><strong>num_samples</strong> – 采样点数, 默认根据脉冲持续时间和采样率计算</p></li>
+<li><p><strong>cfg</strong> – UWB pulse configuration parameters.</p></li>
+<li><p><strong>num_samples</strong> – Number of sample points, defaults to calculation based on pulse duration and sample rate</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>归一化的 Kaiser 脉冲波形采样值</p>
+<dd class="field-even"><p>Normalized Kaiser pulse waveform samples.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -535,13 +535,13 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>chips</strong> – 码片序列, 值为 -1, 0 或 +1</p></li>
-<li><p><strong>cfg</strong> – UWB 脉冲配置</p></li>
-<li><p><strong>fc_ghz</strong> – 载波中心频率 (GHz)</p></li>
+<li><p><strong>chips</strong> – Chip sequence, values are -1, 0, or +1</p></li>
+<li><p><strong>cfg</strong> – UWB pulse configuration parameters.</p></li>
+<li><p><strong>fc_ghz</strong> – Carrier center frequency (GHz)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>调制后的时域信号</p>
+<dd class="field-even"><p>Modulated time-domain signal</p>
 </dd>
 </dl>
 </dd></dl>
@@ -553,12 +553,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>r</strong> – 参考脉冲波形</p></li>
-<li><p><strong>p</strong> – 发射脉冲波形</p></li>
+<li><p><strong>r</strong> – Reference pulse waveform</p></li>
+<li><p><strong>p</strong> – Transmit pulse waveform</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>归一化互相关函数的幅度</p>
+<dd class="field-even"><p>Amplitude of normalized cross-correlation function</p>
 </dd>
 </dl>
 </dd></dl>
@@ -570,14 +570,14 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>p</strong> – 发射脉冲波形</p></li>
-<li><p><strong>cfg</strong> – UWB 脉冲配置</p></li>
-<li><p><strong>main_lobe_threshold</strong> – 主瓣最低强度阈值 (默认 0.92)</p></li>
-<li><p><strong>side_lobe_threshold</strong> – 旁瓣最高强度阈值 (默认 0.1)</p></li>
+<li><p><strong>p</strong> – Transmit pulse waveform</p></li>
+<li><p><strong>cfg</strong> – UWB pulse configuration parameters.</p></li>
+<li><p><strong>main_lobe_threshold</strong> – Main lobe minimum intensity threshold (default 0.92)</p></li>
+<li><p><strong>side_lobe_threshold</strong> – Side lobe maximum intensity threshold (default 0.1)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>(是否通过, 主瓣最小强度, 旁瓣最大强度)</p>
+<dd class="field-even"><p>(pass/fail, minimum main-lobe intensity, maximum side-lobe intensity).</p>
 </dd>
 </dl>
 </dd></dl>

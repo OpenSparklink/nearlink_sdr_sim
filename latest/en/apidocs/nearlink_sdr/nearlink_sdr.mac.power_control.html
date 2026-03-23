@@ -527,7 +527,7 @@
 <p>Field order (MSB to LSB per standard bit layout):</p>
 <ul class="simple">
 <li><p>frame_type:       4 bits, radio frame type indication (0-15)</p></li>
-<li><p>bandwidth:        2 bits, bandwidthindication (Bandwidth enum)</p></li>
+<li><p>bandwidth:        2 bits, bandwidth indication (Bandwidth enum)</p></li>
 <li><p>freq_density:     2 bits, frequency density indication (FreqDensity enum)</p></li>
 <li><p>tx_power_change:  8 bits, signed, requested receiver TX power change (dB)</p></li>
 <li><p>sender_tx_power:  8 bits, signed, sender TX power (dBm)</p></li>
@@ -664,7 +664,7 @@
 <p>Field order:</p>
 <ul class="simple">
 <li><p>frame_type:        4 bits, radio frame type indication</p></li>
-<li><p>bandwidth:         2 bits, bandwidthindication</p></li>
+<li><p>bandwidth:         2 bits, bandwidth indication</p></li>
 <li><p>freq_density:      2 bits, pilot density indication</p></li>
 <li><p>sender_min_power:  1 bit</p></li>
 <li><p>sender_max_power:  1 bit</p></li>
@@ -778,7 +778,7 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.power_control.PowerController.create_request">
 <span class="sig-name descname"><span class="pre">create_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">requested_change_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandwidth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Bandwidth.BW_1MHZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_density</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">FreqDensity.RATIO_4_1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.power_control.PowerControlRequest" title="nearlink_sdr.mac.power_control.PowerControlRequest"><span class="pre">nearlink_sdr.mac.power_control.PowerControlRequest</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/power_control.html#PowerController.create_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.power_control.PowerController.create_request" title="Link to this definition">¶</a></dt>
-<dd><p>generatepower controlrequestsignaling。</p>
+<dd><p>Generate power control request signaling.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -814,7 +814,7 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.power_control.PowerController.create_query_request">
 <span class="sig-name descname"><span class="pre">create_query_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandwidth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Bandwidth.BW_1MHZ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_density</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">FreqDensity.RATIO_4_1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.mac.power_control.PowerControlRequest" title="nearlink_sdr.mac.power_control.PowerControlRequest"><span class="pre">nearlink_sdr.mac.power_control.PowerControlRequest</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/power_control.html#PowerController.create_query_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.power_control.PowerController.create_query_request" title="Link to this definition">¶</a></dt>
-<dd><p>generatepowerquery request (tx_power_change=0)。</p>
+<dd><p>Generate power query request (tx_power_change=0).</p>
 </dd></dl>
 
 </dd></dl>

@@ -452,13 +452,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>mod_type</strong> – 调制方式，取 “BPSK”、”QPSK” 或 “8PSK”。</p></li>
-<li><p><strong>symbol_index</strong> – 帧内以 0 为基的符号索引（决定奇偶位置）。
-标准规定第一个符号处于奇数位置。</p></li>
+<li><p><strong>mod_type</strong> – Modulation scheme, one of “BPSK”, “QPSK”, or “8PSK”.</p></li>
+<li><p><strong>symbol_index</strong> – Zero-based symbol index within the frame (determines odd/even position). The standard specifies that the first symbol is at an odd position.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>复数导频符号。</p>
+<dd class="field-even"><p>complex pilot symbol.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -471,15 +470,15 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data_symbols</strong> – 复数数据符号数组。</p></li>
-<li><p><strong>pilot_interval</strong> – 标准中的 N 值（4、8 或 16）。</p></li>
-<li><p><strong>mod_type</strong> – 导频相位所用的调制方式。</p></li>
-<li><p><strong>start_symbol_index</strong> – 帧内第一个数据符号的绝对符号索引。</p></li>
-<li><p><strong>omit_last_pilot</strong> – 是否省略最后一个导频符号。</p></li>
+<li><p><strong>data_symbols</strong> – complex data symbol array.</p></li>
+<li><p><strong>pilot_interval</strong> – N value in the standard (4, 8, or 16).</p></li>
+<li><p><strong>mod_type</strong> – Modulation scheme used for pilot phase.</p></li>
+<li><p><strong>start_symbol_index</strong> – Absolute symbol index of the first data symbol within the frame.</p></li>
+<li><p><strong>omit_last_pilot</strong> – Whether to omit the last pilot symbol.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>(output_symbols, total_symbol_count) — 插入导频后的符号数组及总符号数。</p>
+<dd class="field-even"><p>(output_symbols, total_symbol_count) — symbol array after pilot insertion and total symbol count.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -491,13 +490,13 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>symbols</strong> – 含导频的接收符号。</p></li>
-<li><p><strong>pilot_interval</strong> – N 值（4、8 或 16）。</p></li>
-<li><p><strong>last_pilot_omitted</strong> – 发送侧是否已省略最后一个导频。</p></li>
+<li><p><strong>symbols</strong> – pilot-bearing receive symbol.</p></li>
+<li><p><strong>pilot_interval</strong> – N value (4, 8, or 16).</p></li>
+<li><p><strong>last_pilot_omitted</strong> – Whether the transmit side has omitted the last pilot.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>移除导频后的数据符号。</p>
+<dd class="field-even"><p>Data symbols after pilot removal.</p>
 </dd>
 </dl>
 </dd></dl>

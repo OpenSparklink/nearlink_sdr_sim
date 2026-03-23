@@ -569,13 +569,13 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ctrl_info_bits</strong> – 物理层控制信息比特。</p></li>
-<li><p><strong>data_payload_bits</strong> – 数据 + 完整性保护 + CRC 比特。</p></li>
-<li><p><strong>config</strong> – 帧配置参数。</p></li>
+<li><p><strong>ctrl_info_bits</strong> – physical layer control information bits.</p></li>
+<li><p><strong>data_payload_bits</strong> – data + integrity protection + CRC bits.</p></li>
+<li><p><strong>config</strong> – Radio frame configuration parameters.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>包含所有帧字段的 FrameFields 对象。</p>
+<dd class="field-even"><p>A FrameFields object containing all frame fields.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -588,13 +588,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>fields</strong> – 已组装的帧字段。</p></li>
-<li><p><strong>config</strong> – 帧配置参数。</p></li>
+<li><p><strong>fields</strong> – assembled frame field.</p></li>
+<li><p><strong>config</strong> – Radio frame configuration parameters.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>类型 1：比特数组（送入 GFSK 调制器）。
-类型 2-4：基带复数符号数组。</p>
+<dd class="field-even"><p>Type 1: bit array (fed to the GFSK modulator).     Types 2-4: baseband complex symbol array.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -607,14 +606,14 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>symbols</strong> – 接收到的复数符号流。</p></li>
-<li><p><strong>config</strong> – 帧配置参数。</p></li>
-<li><p><strong>n_ctrl_coded_bits</strong> – 编码控制位的数量。</p></li>
-<li><p><strong>n_data_bits</strong> – 数据位数量（调制前）。</p></li>
+<li><p><strong>symbols</strong> – Received complex symbol stream.</p></li>
+<li><p><strong>config</strong> – Radio frame configuration parameters.</p></li>
+<li><p><strong>n_ctrl_coded_bits</strong> – Number of encoding control bits.</p></li>
+<li><p><strong>n_data_bits</strong> – Number of data bits (before modulation).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>(ctrl_bits, data_bits) — 解调后的比特数组。</p>
+<dd class="field-even"><p>(ctrl_bits, data_bits) — demodulated bit arrays.</p>
 </dd>
 </dl>
 </dd></dl>

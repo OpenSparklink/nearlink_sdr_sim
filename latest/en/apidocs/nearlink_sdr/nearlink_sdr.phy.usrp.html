@@ -414,7 +414,7 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.usrp.USRPConfig" title="nearlink_sdr.phy.usrp.USRPConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">USRPConfig</span></code></a></p></td>
-<td><p>USRP deviceconfigurationparameter。</p></td>
+<td><p>USRP device configuration parameters.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.usrp.MockStreamCmd" title="nearlink_sdr.phy.usrp.MockStreamCmd"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MockStreamCmd</span></code></a></p></td>
 <td><p>mock uhd.types.StreamCMD.</p></td>
@@ -593,7 +593,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.USRPConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.usrp.</span></span><span class="sig-name descname"><span class="pre">USRPConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#USRPConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.USRPConfig" title="Link to this definition">¶</a></dt>
-<dd><p>USRP deviceconfigurationparameter。</p>
+<dd><p>USRP device configuration parameters.</p>
 <p>Attributes:     device_args: UHD device address arguments, empty string for auto-discovery.     channel_num: SLE RF channel number.     band: Band identifier (“2400” / “5100” / “5800”).     sample_rate_hz: Sample rate (Hz).     rx_gain_db: Receive gain (dB).     tx_gain_db: Transmit gain (dB).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.USRPConfig.device_args">
@@ -704,7 +704,7 @@
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.USRPConfig.bandwidth_mhz">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bandwidth_mhz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.usrp.USRPConfig.bandwidth_mhz" title="Link to this definition">¶</a></dt>
-<dd><p>bandwidth (MHz)。</p>
+<dd><p>Bandwidth (MHz).</p>
 </dd></dl>
 
 </dd></dl>
@@ -966,9 +966,9 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>config</strong> – 设备配置, None 时使用默认配置。</p></li>
-<li><p><strong>use_mock</strong> – 强制使用 MockUSRP。</p></li>
-<li><p><strong>loopback</strong> – 环回缓冲区, 仅 Mock 模式有效。</p></li>
+<li><p><strong>config</strong> – Device configuration, uses default configuration when None.</p></li>
+<li><p><strong>use_mock</strong> – Force use of MockUSRP.</p></li>
+<li><p><strong>loopback</strong> – Loopback buffer, only valid in Mock mode.</p></li>
 </ul>
 </dd>
 </dl>
@@ -991,8 +991,8 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>channel_num</strong> – 射频信道号。</p></li>
-<li><p><strong>band</strong> – 频段标识, None 沿用当前配置。</p></li>
+<li><p><strong>channel_num</strong> – RF channel number.</p></li>
+<li><p><strong>band</strong> – Frequency band identifier, None keeps current configuration.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1049,7 +1049,7 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.TXStream.open">
 <span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#TXStream.open"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.TXStream.open" title="Link to this definition">¶</a></dt>
-<dd><p>create TX streamer。</p>
+<dd><p>Create TX streamer.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1058,10 +1058,10 @@
 <dd><p>Transmit one frame of IQ samples.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>samples</strong> – 复基带样本, dtype=complex64, shape (N,)。</p>
+<dd class="field-odd"><p><strong>samples</strong> – samples: Complex baseband samples, dtype=complex64, shape (N,).</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>实际发射的样本数。</p>
+<dd class="field-even"><p>Number of actually transmitted samples.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1073,12 +1073,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>samples</strong> – 单帧 IQ 样本。</p></li>
-<li><p><strong>num_repeats</strong> – 重复次数。</p></li>
+<li><p><strong>samples</strong> – Transmit one frame of IQ samples.</p></li>
+<li><p><strong>num_repeats</strong> – Number of repetitions.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>总发射样本数。</p>
+<dd class="field-even"><p>Total number of transmitted samples.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1103,7 +1103,7 @@
 <dd><p>Create an RX streamer and allocate the receive buffer.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>samps_per_buffer</strong> – 每次 recv 调用的缓冲区大小。</p>
+<dd class="field-odd"><p><strong>samps_per_buffer</strong> – Buffer size per recv call.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1114,10 +1114,10 @@
 <dd><p>Receive a specified number of samples.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>num_samps</strong> – 要接收的样本数。</p>
+<dd class="field-odd"><p><strong>num_samps</strong> – Receive a specified number of samples.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>复基带样本数组, shape (num_samps,), dtype=complex64。</p>
+<dd class="field-even"><p>Complex baseband sample array, shape (num_samps,), dtype=complex64.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1134,7 +1134,7 @@
 <dd><p>Receive one buffer of samples in continuous mode.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>接收到的样本, 长度可能小于缓冲区大小。</p>
+<dd class="field-odd"><p>Received samples, length may be less than the buffer size.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1171,10 +1171,10 @@
 <dd><p>Transmit pre-modulated IQ samples.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>iq_samples</strong> – 复基带信号。</p>
+<dd class="field-odd"><p><strong>iq_samples</strong> – Complex baseband signal.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>实际发射的样本数。</p>
+<dd class="field-even"><p>Number of actually transmitted samples.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1185,10 +1185,10 @@
 <dd><p>Receive a specified number of IQ samples.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>num_samps</strong> – 要接收的样本数。</p>
+<dd class="field-odd"><p><strong>num_samps</strong> – Receive a specified number of samples.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>接收到的复基带信号。</p>
+<dd class="field-even"><p>Received complex baseband signal.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1200,12 +1200,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>frame_bits</strong> – 帧比特序列。</p></li>
-<li><p><strong>modulate_fn</strong> – 调制函数, 接收比特数组, 返回 IQ 样本。</p></li>
+<li><p><strong>frame_bits</strong> – frame bit sequence.</p></li>
+<li><p><strong>modulate_fn</strong> – Modulation function, receives bit array, returns IQ samples.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>实际发射的样本数。</p>
+<dd class="field-even"><p>Number of actually transmitted samples.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1217,12 +1217,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>num_samps</strong> – 接收样本数。</p></li>
-<li><p><strong>demodulate_fn</strong> – 解调函数, 接收 IQ 样本, 返回比特数组。</p></li>
+<li><p><strong>num_samps</strong> – Receive a specified number of samples.</p></li>
+<li><p><strong>demodulate_fn</strong> – Demodulation function, receives IQ samples, returns bit array.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>解调后的比特序列。</p>
+<dd class="field-even"><p>Demodulated bit sequence.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1234,13 +1234,13 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>channel_num</strong> – 目标信道号。</p></li>
-<li><p><strong>iq_samples</strong> – 要发射的 IQ 样本。</p></li>
-<li><p><strong>band</strong> – 频段标识, None 沿用当前配置。</p></li>
+<li><p><strong>channel_num</strong> – Target channel number.</p></li>
+<li><p><strong>iq_samples</strong> – Transmit pre-modulated IQ samples.</p></li>
+<li><p><strong>band</strong> – Frequency band identifier, None keeps current configuration.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>实际发射的样本数。</p>
+<dd class="field-even"><p>Number of actually transmitted samples.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1248,17 +1248,17 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.usrp.SLETransceiver.hop_and_receive">
 <span class="sig-name descname"><span class="pre">hop_and_receive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_samps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">band</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/usrp.html#SLETransceiver.hop_and_receive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.usrp.SLETransceiver.hop_and_receive" title="Link to this definition">¶</a></dt>
-<dd><p>frequency hoppingnextreceive.</p>
+<dd><p>Receive after frequency hopping.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>channel_num</strong> – 目标信道号。</p></li>
-<li><p><strong>num_samps</strong> – 接收样本数。</p></li>
-<li><p><strong>band</strong> – 频段标识, None 沿用当前配置。</p></li>
+<li><p><strong>channel_num</strong> – Target channel number.</p></li>
+<li><p><strong>num_samps</strong> – Receive a specified number of samples.</p></li>
+<li><p><strong>band</strong> – Frequency band identifier, None keeps current configuration.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>接收到的 IQ 样本。</p>
+<dd class="field-even"><p>Receive a specified number of IQ samples.</p>
 </dd>
 </dl>
 </dd></dl>

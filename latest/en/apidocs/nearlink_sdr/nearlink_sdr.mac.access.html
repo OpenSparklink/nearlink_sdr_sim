@@ -745,10 +745,10 @@
 <p>If the frame contains discovery/access resource configuration and is a queryable frame, return True indicating an inquiry request can be sent. Only process whitelisted devices when the whitelist is enabled.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>frame</strong> – 收到的广播帧。</p>
+<dd class="field-odd"><p><strong>frame</strong> – Process a received broadcast frame.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>True 表示可查询, 需要后续发送查询请求。</p>
+<dd class="field-even"><p>True indicates queryable; a subsequent inquiry request should be sent.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -760,13 +760,13 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>target_addr</strong> – 目标广播设备地址。</p></li>
-<li><p><strong>filter_info</strong> – 查询过滤信息 (按服务UUID过滤)。</p></li>
-<li><p><strong>upper_layer_data</strong> – 高层广播数据。</p></li>
+<li><p><strong>target_addr</strong> – Target broadcast device address.</p></li>
+<li><p><strong>filter_info</strong> – Inquiry filter information (filtered by service UUID).</p></li>
+<li><p><strong>upper_layer_data</strong> – Higher layer broadcast data.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>查询请求广播帧。</p>
+<dd class="field-even"><p>Inquiry request broadcast frame.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -777,10 +777,10 @@
 <dd><p>Process an inquiry response frame (stage d).</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>frame</strong> – 收到的查询响应帧。</p>
+<dd class="field-odd"><p><strong>frame</strong> – Received inquiry response frame.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>True 表示发现完成。</p>
+<dd class="field-even"><p>True indicates discovery completed.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -792,12 +792,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>request_frame</strong> – 收到的查询请求帧。</p></li>
-<li><p><strong>all_services_data</strong> – 本设备支持的所有服务数据。</p></li>
+<li><p><strong>request_frame</strong> – Received inquiry request frame.</p></li>
+<li><p><strong>all_services_data</strong> – All service data supported by this device.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>查询响应广播帧。</p>
+<dd class="field-even"><p>Inquiry response broadcast frame.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -824,14 +824,14 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>broadcaster_pref</strong> – 广播方角色偏好 (0=T, 1=G)。</p></li>
-<li><p><strong>broadcaster_negotiable</strong> – 广播方角色是否可协商。</p></li>
-<li><p><strong>initiator_pref</strong> – 发起方 (接入方) 角色偏好。</p></li>
-<li><p><strong>initiator_negotiable</strong> – 发起方角色是否可协商。</p></li>
+<li><p><strong>broadcaster_pref</strong> – Broadcaster role preference (0=T, 1=G).</p></li>
+<li><p><strong>broadcaster_negotiable</strong> – Whether the broadcaster role is negotiable.</p></li>
+<li><p><strong>initiator_pref</strong> – Initiator (access party) role preference.</p></li>
+<li><p><strong>initiator_negotiable</strong> – Whether the initiator role is negotiable.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>协商结果, 从发起方视角: local_role 为发起方角色。</p>
+<dd class="field-even"><p>Negotiation result from the initiator perspective: local_role is the initiator role.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -844,7 +844,7 @@
 <ul class="simple">
 <li><p>Construct an accessible extended advertising frame</p></li>
 <li><p>Process a received access request</p></li>
-<li><p>generateaccessresponse</p></li>
+<li><p>Generate access response</p></li>
 <li><p>Complete GT role negotiation</p></li>
 </ul>
 <dl class="py attribute">
@@ -1004,7 +1004,7 @@
 <p>Contains discovery access resource configuration information (7.1.4.2).</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>填充好的 BroadcastFrame 对象。</p>
+<dd class="field-odd"><p>A populated BroadcastFrame object.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1016,13 +1016,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>request_data</strong> – 接入请求帧数据。</p></li>
-<li><p><strong>peer_address</strong> – 请求方 MAC 地址。</p></li>
+<li><p><strong>request_data</strong> – Reject an access request.</p></li>
+<li><p><strong>peer_address</strong> – Requester MAC address.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>(响应帧, 是否接受)。响应帧包含 AccessResponseInfo,
-以及 (若接受且角色为 G) AccessBasicInfo 或 TransportIndicationInfo。</p>
+<dd class="field-even"><p>(response frame, accepted). The response frame contains AccessResponseInfo,     and (if accepted and role is G) AccessBasicInfo or TransportIndicationInfo.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1034,12 +1033,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>peer_address</strong> – 请求方 MAC 地址。</p></li>
-<li><p><strong>reason</strong> – 拒绝原因。</p></li>
+<li><p><strong>peer_address</strong> – Requester MAC address.</p></li>
+<li><p><strong>reason</strong> – Rejection reason.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>包含拒绝响应的帧。</p>
+<dd class="field-even"><p>Frame containing rejection response.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1053,7 +1052,7 @@
 <p>responsibilities:</p>
 <ul class="simple">
 <li><p>Parse a received extended advertising frame</p></li>
-<li><p>constructaccessrequest</p></li>
+<li><p>Construct access request</p></li>
 <li><p>Process an access response</p></li>
 <li><p>Complete GT role negotiation</p></li>
 </ul>
@@ -1112,10 +1111,10 @@
 <p>Parse discovery access resource configuration and extract request window parameters. When the whitelist is enabled, only process broadcast frames from whitelisted devices (7.1.6).</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>frame</strong> – 收到的广播帧。</p>
+<dd class="field-odd"><p><strong>frame</strong> – Process a received broadcast frame.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>True 表示帧中包含有效的接入资源配置。</p>
+<dd class="field-even"><p>True indicates the frame contains a valid access resource configuration.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1127,7 +1126,7 @@
 <p>Build AccessRequestInfo based on local role preference.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>接入请求帧的序列化数据。</p>
+<dd class="field-odd"><p>Serialized data of the access request frame.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1138,10 +1137,10 @@
 <dd><p>Process an access response (stage d).</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>response_data</strong> – 接入响应帧完整数据 (BroadcastFrame.pack() 格式)。</p>
+<dd class="field-odd"><p><strong>response_data</strong> – response_data: Complete access response frame data (BroadcastFrame.pack() format).</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>(最终角色, 链路参数字典)。角色为 None 表示接入被拒绝。</p>
+<dd class="field-even"><p>(final role, link parameter dict). Role is None if access was rejected.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1408,7 +1407,7 @@
 </ul>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>构建好的 BroadcastFrame。</p>
+<dd class="field-odd"><p>The constructed BroadcastFrame.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1445,10 +1444,10 @@
 <dd><p>Parse non-connected state broadcast information in the extended advertising frame (7.1.7.2).</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>frame</strong> – 收到的扩展广播帧。</p>
+<dd class="field-odd"><p><strong>frame</strong> – Parse a received extended advertising frame</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>解析结果; 若帧中不包含非链接态广播信息则返回 None。</p>
+<dd class="field-even"><p>Parsing result; returns None if the frame does not contain non-connected state broadcast information.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1461,16 +1460,15 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>broadcaster_addr</strong> – 广播方 MAC 地址。</p></li>
-<li><p><strong>initiator_addr</strong> – 发起方 MAC 地址。</p></li>
-<li><p><strong>broadcaster_config</strong> – 广播方配置。</p></li>
-<li><p><strong>initiator_config</strong> – 发起方配置。</p></li>
-<li><p><strong>broadcaster_use_smf</strong> – 是否使用系统管理帧模式。</p></li>
+<li><p><strong>broadcaster_addr</strong> – Broadcaster MAC address.</p></li>
+<li><p><strong>initiator_addr</strong> – Initiator MAC address.</p></li>
+<li><p><strong>broadcaster_config</strong> – Broadcaster configuration.</p></li>
+<li><p><strong>initiator_config</strong> – Initiator configuration.</p></li>
+<li><p><strong>broadcaster_use_smf</strong> – Whether to use system management frame mode.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>(广播方管理器, 发起方管理器) 二元组,
-两者的 link_manager 在成功时均处于 CONNECTED 状态。</p>
+<dd class="field-even"><p>A (broadcaster manager, initiator manager) tuple;     both link_managers are in CONNECTED state upon success.</p>
 </dd>
 </dl>
 </dd></dl>

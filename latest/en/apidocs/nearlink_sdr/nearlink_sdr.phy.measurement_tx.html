@@ -440,10 +440,10 @@
 <td><p>Channel impulse response measurement configuration.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.CSIFeedback" title="nearlink_sdr.phy.measurement_tx.CSIFeedback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSIFeedback</span></code></a></p></td>
-<td><p>channelstateinformationfeedback (6.7.5).</p></td>
+<td><p>Channel state information feedback (6.7.5).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.UWBMeasMode" title="nearlink_sdr.phy.measurement_tx.UWBMeasMode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UWBMeasMode</span></code></a></p></td>
-<td><p>UWB pulsemeasurementmode (6.8.1).</p></td>
+<td><p>UWB pulse measurement mode (6.8.1).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.measurement_tx.ChannelSpliceMode" title="nearlink_sdr.phy.measurement_tx.ChannelSpliceMode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChannelSpliceMode</span></code></a></p></td>
 <td><p>Channel stitching method (6.8.3).</p></td>
@@ -891,10 +891,10 @@
 <dd><p>Generate the event scheduling sequence within an event group.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>params</strong> – 测量链路参数。</p>
+<dd class="field-odd"><p><strong>params</strong> – measurement link parameters.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>列表, 每个元素为 (事件索引, 帧类型)。</p>
+<dd class="field-even"><p>List, each element is (event_index, frame_type).</p>
 </dd>
 </dl>
 </dd></dl>
@@ -906,12 +906,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>params</strong> – 测量链路参数。</p></li>
-<li><p><strong>group_index</strong> – 事件组序号。</p></li>
+<li><p><strong>params</strong> – measurement link parameters.</p></li>
+<li><p><strong>group_index</strong> – Event group index.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>各事件的起始时刻列表 (us)。</p>
+<dd class="field-even"><p>Compute the start time of each event within an event group (us).</p>
 </dd>
 </dl>
 </dd></dl>
@@ -923,12 +923,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ra</strong> – 先发节点测量的往返时间差 Ra = Ra2 - Ra1。</p></li>
-<li><p><strong>db</strong> – 后发节点测量的处理时间差 Db = Db2 - Db1。</p></li>
+<li><p><strong>ra</strong> – Round-trip time difference Ra = Ra2 - Ra1 measured by the initiator node.</p></li>
+<li><p><strong>db</strong> – Processing time difference Db = Db2 - Db1 measured by the responder node.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>单向飞行时间估计 T_prop (与 ra/db 相同时间单位)。</p>
+<dd class="field-even"><p>One-way propagation time estimate T_prop (same time unit as ra/db).</p>
 </dd>
 </dl>
 </dd></dl>
@@ -940,14 +940,14 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ra</strong> – 先发节点 Ra = Ra2 - Ra1。</p></li>
-<li><p><strong>rb</strong> – 后发节点 Rb = Rb2 - Rb1。</p></li>
-<li><p><strong>da</strong> – 先发节点 Da = Da2 - Da1。</p></li>
-<li><p><strong>db</strong> – 后发节点 Db = Db2 - Db1。</p></li>
+<li><p><strong>ra</strong> – initiator node Ra = Ra2 - Ra1.</p></li>
+<li><p><strong>rb</strong> – responder node Rb = Rb2 - Rb1.</p></li>
+<li><p><strong>da</strong> – initiator node Da = Da2 - Da1.</p></li>
+<li><p><strong>db</strong> – responder node Db = Db2 - Db1.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>单向飞行时间估计 T_prop。</p>
+<dd class="field-even"><p>One-way propagation time estimate T_prop.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -959,13 +959,13 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>delta_phi</strong> – 两天线接收/发送信号的载波相位差 (rad)。</p></li>
-<li><p><strong>wavelength</strong> – 信号波长 (m)。</p></li>
-<li><p><strong>antenna_spacing</strong> – 天线间距 (m)。</p></li>
+<li><p><strong>delta_phi</strong> – Carrier phase difference between two-antenna receive/transmit signals (rad).</p></li>
+<li><p><strong>wavelength</strong> – Signal wavelength (m).</p></li>
+<li><p><strong>antenna_spacing</strong> – Antenna spacing (m).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>角度估计值 (rad), 范围 [0, pi]。</p>
+<dd class="field-even"><p>angle estimate (rad), range [0, pi].</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1007,13 +1007,13 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>rx_signal</strong> – 接收到的时域 IQ 信号。</p></li>
-<li><p><strong>config</strong> – CIR 测量配置。</p></li>
-<li><p><strong>ref_sample</strong> – 参考时间点对应的采样索引。</p></li>
+<li><p><strong>rx_signal</strong> – Received time-domain IQ signal.</p></li>
+<li><p><strong>config</strong> – CIR measurement configuration.</p></li>
+<li><p><strong>ref_sample</strong> – Sampling index corresponding to the reference time point.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>截取的 CIR (I+jQ 复数数组)。</p>
+<dd class="field-even"><p>Truncated CIR (I+jQ complex array).</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1025,10 +1025,10 @@
 <p>Perform FFT on multi-frame CIR data along the slow-time dimension to obtain a range-Doppler map.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>cir_frames</strong> – 形状 (n_frames, n_delay_bins) 的多帧 CIR 数据。</p>
+<dd class="field-odd"><p><strong>cir_frames</strong> – cir_frames: Multi-frame CIR data of shape (n_frames, n_delay_bins).</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>形状 (n_frames, n_delay_bins) 的距离-多普勒矩阵。</p>
+<dd class="field-even"><p>Range-Doppler matrix of shape (n_frames, n_delay_bins).</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1036,7 +1036,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.CSIFeedback">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">CSIFeedback</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#CSIFeedback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.CSIFeedback" title="Link to this definition">¶</a></dt>
-<dd><p>channelstateinformationfeedback (6.7.5).</p>
+<dd><p>Channel state information feedback (6.7.5).</p>
 <p>Received signal power (dBm) = 20*lg(abs(relative_IQ_value / 1024)) + reference receive power value.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.CSIFeedback.ref_power_dbm">
@@ -1059,12 +1059,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>rx_power_dbm</strong> – 接收信号功率 (dBm)。</p></li>
-<li><p><strong>channel_iq</strong> – 信道估计的复数 IQ 值。</p></li>
+<li><p><strong>rx_power_dbm</strong> – Received signal power (dBm).</p></li>
+<li><p><strong>channel_iq</strong> – Complex IQ values of channel estimation.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>CSIFeedback 实例。</p>
+<dd class="field-even"><p>CSIFeedback instance.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1075,10 +1075,10 @@
 <dd><p>Recover received signal power from CSI feedback.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>feedback</strong> – CSI 反馈数据。</p>
+<dd class="field-odd"><p><strong>feedback</strong> – CSI feedback data.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>接收信号功率 (dBm)。</p>
+<dd class="field-even"><p>Received signal power (dBm).</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1087,7 +1087,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.measurement_tx.UWBMeasMode">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.measurement_tx.</span></span><span class="sig-name descname"><span class="pre">UWBMeasMode</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/measurement_tx.html#UWBMeasMode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.measurement_tx.UWBMeasMode" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>UWB pulsemeasurementmode (6.8.1).</p>
+<p>UWB pulse measurement mode (6.8.1).</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -1275,12 +1275,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>params</strong> – UWB 测量参数。</p></li>
-<li><p><strong>event_index</strong> – 事件索引。</p></li>
+<li><p><strong>params</strong> – UWB measurement parameter.</p></li>
+<li><p><strong>event_index</strong> – Event index.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>0=配置方先发, 1=对端先发。</p>
+<dd class="field-even"><p>0=configurator transmits first, 1=remote peer transmits first.</p>
 </dd>
 </dl>
 </dd></dl>

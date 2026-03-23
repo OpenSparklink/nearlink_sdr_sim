@@ -469,14 +469,14 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data_bits</strong> – 输入信息比特序列, shape (A,), 值为 0/1</p></li>
-<li><p><strong>poly</strong> – CRC生成多项式（不含最高位 D^L）</p></li>
-<li><p><strong>crc_len</strong> – 校验比特长度 L</p></li>
-<li><p><strong>seed</strong> – CRC生成种子</p></li>
+<li><p><strong>data_bits</strong> – Check bit sequence, shape (L,), values 0/1</p></li>
+<li><p><strong>poly</strong> – CRC generator polynomial (excluding the most significant bit D^L)</p></li>
+<li><p><strong>crc_len</strong> – check bit length L</p></li>
+<li><p><strong>seed</strong> – CRC generate seed</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>校验比特序列, shape (L,), 值为 0/1</p>
+<dd class="field-even"><p>Check bit sequence, shape (L,), values 0/1</p>
 </dd>
 </dl>
 </dd></dl>
@@ -487,7 +487,7 @@
 <dd><p>Append CRC check bits to the input information bit sequence.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>b_0, b_1, …, b_{B-1}, 其中 B = A + L</p>
+<dd class="field-odd"><p>b_0, b_1, …, b_{B-1}, where B = A + L</p>
 </dd>
 </dl>
 </dd></dl>
@@ -498,7 +498,7 @@
 <dd><p>Perform CRC verification on the received bit sequence.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>True 表示校验通过（无错误），False 表示校验失败</p>
+<dd class="field-odd"><p>True indicates check passed (no errors), False indicates check failed</p>
 </dd>
 </dl>
 </dd></dl>

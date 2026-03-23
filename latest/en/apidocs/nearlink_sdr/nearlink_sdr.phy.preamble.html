@@ -449,12 +449,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>symbol_rate_mhz</strong> – 符号速率 (MHz)</p></li>
-<li><p><strong>duration_us</strong> – 前导码持续时间 (μs)</p></li>
+<li><p><strong>symbol_rate_mhz</strong> – symbol rate (MHz)</p></li>
+<li><p><strong>duration_us</strong> – Preamble duration (μs)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>前导码比特序列, 值为 0/1</p>
+<dd class="field-even"><p>Preamble bit sequence, values 0/1.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -467,12 +467,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>symbol_rate_mhz</strong> – 符号速率 (MHz)</p></li>
-<li><p><strong>duration_us</strong> – 前导码持续时间 (μs)，帧类型2=10，帧类型3=12，帧类型4=16</p></li>
+<li><p><strong>symbol_rate_mhz</strong> – symbol rate (MHz)</p></li>
+<li><p><strong>duration_us</strong> – Preamble duration (μs), frame type 2=10, frame type 3=12, frame type 4=16</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>前导码相位序列 (弧度)</p>
+<dd class="field-even"><p>Preamble phase sequence (radians).</p>
 </dd>
 </dl>
 </dd></dl>
@@ -484,12 +484,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>symbol_rate_mhz</strong> – 符号速率 (MHz)</p></li>
-<li><p><strong>duration_us</strong> – 前导码持续时间 (μs)</p></li>
+<li><p><strong>symbol_rate_mhz</strong> – symbol rate (MHz)</p></li>
+<li><p><strong>duration_us</strong> – Preamble duration (μs)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>前导码复数符号, shape (N,)</p>
+<dd class="field-even"><p>Preamble complex symbols, shape (N,).</p>
 </dd>
 </dl>
 </dd></dl>
@@ -507,13 +507,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>frame_type</strong> – 帧类型 1~4</p></li>
-<li><p><strong>symbol_rate_mhz</strong> – 符号速率 (MHz)</p></li>
+<li><p><strong>frame_type</strong> – frame type 1 ~4</p></li>
+<li><p><strong>symbol_rate_mhz</strong> – symbol rate (MHz)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>帧类型1: 比特数组 (int ndarray)
-帧类型2/3/4: 复数符号数组 (complex ndarray)</p>
+<dd class="field-even"><p>Frame type 1: bit array (int ndarray).     Frame types 2/3/4: complex symbol array (complex ndarray).</p>
 </dd>
 </dl>
 </dd></dl>

@@ -405,13 +405,13 @@
 <li><p>PDF Mermaid diagrams: added pdfcrop to trim whitespace, eliminated full-page margins</p></li>
 <li><p>PDF code block font: switched to DejaVu Sans Mono, fixed missing box-drawing characters</p></li>
 <li><p>PDF special characters: replaced unsupported characters with text alternatives</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">secure_random_256</span></code>: 修复 time_param=0xFFFFFFFF 时 32 位溢出</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">secure_random_256</span></code>: fix 32-bit overflow when time_param=0xFFFFFFFF</p></li>
 </ul>
 </section>
 <section id="added">
 <h3>Added<a class="headerlink" href="#added" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>模糊测试: 20 个 hypothesis 属性测试覆盖 CRC/scrambler/BCH/Polar/MAC 帧/AES-CCM 等 API</p></li>
+<li><p>Fuzz testing: 20 hypothesis property tests covering CRC/scrambler/BCH/Polar/MAC frame/AES-CCM and other APIs</p></li>
 </ul>
 </section>
 <section id="changed">
@@ -419,7 +419,7 @@
 <ul class="simple">
 <li><p>Release CI: added semver tag validation, non-compliant tags fail the build</p></li>
 <li><p>Release CI: prerelease tags automatically marked as GitHub Pre-release</p></li>
-<li><p>Release CI: 补充 texlive-extra-utils (pdfcrop) 和 fonts-dejavu-core 安装</p></li>
+<li><p>Release CI: add texlive-extra-utils (pdfcrop) and fonts-dejavu-core installation</p></li>
 <li><p>AGENTS.md: added version/release standards and documentation build standards sections</p></li>
 </ul>
 </section>

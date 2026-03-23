@@ -410,7 +410,7 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security_manager.PairingState" title="nearlink_sdr.mac.security_manager.PairingState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PairingState</span></code></a></p></td>
-<td><p>pairingprocedurestate。</p></td>
+<td><p>Pairing procedure state.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security_manager.PairingFailureReason" title="nearlink_sdr.mac.security_manager.PairingFailureReason"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PairingFailureReason</span></code></a></p></td>
 <td><p>Pairing failure reason (standard 9.2).</p></td>
@@ -419,7 +419,7 @@
 <td><p>P-256 elliptic curve key pair.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security_manager.PairingManager" title="nearlink_sdr.mac.security_manager.PairingManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PairingManager</span></code></a></p></td>
-<td><p>pairingprocedurestate machine (standard 9.2)。</p></td>
+<td><p>Pairing procedure state machine (standard 9.2).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.security_manager.FrameCryptoContext" title="nearlink_sdr.mac.security_manager.FrameCryptoContext"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FrameCryptoContext</span></code></a></p></td>
 <td><p>Frame-level AES-CCM encryption/decryption context.</p></td>
@@ -464,7 +464,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.PairingState">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security_manager.</span></span><span class="sig-name descname"><span class="pre">PairingState</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security_manager.html#PairingState"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security_manager.PairingState" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>pairingprocedurestate。</p>
+<p>Pairing procedure state.</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -638,7 +638,7 @@
 <dd><p>Compute the ECDH shared key.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>共享密钥 (32 字节)。</p>
+<dd class="field-odd"><p>Shared key (32 bytes).</p>
 </dd>
 </dl>
 </dd></dl>
@@ -648,7 +648,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.security_manager.PairingManager">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.security_manager.</span></span><span class="sig-name descname"><span class="pre">PairingManager</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/security_manager.html#PairingManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.security_manager.PairingManager" title="Link to this definition">¶</a></dt>
-<dd><p>pairingprocedurestate machine (standard 9.2)。</p>
+<dd><p>Pairing procedure state machine (standard 9.2).</p>
 <p>Drive the pairing signaling interaction between the G node and T node to complete:</p>
 <ol class="arabic simple">
 <li><p>Pairing initiate/request/response</p></li>
@@ -933,12 +933,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>plaintext</strong> – 明文数据。</p></li>
-<li><p><strong>aad</strong> – 关联数据 (不加密但参与完整性校验)。</p></li>
+<li><p><strong>plaintext</strong> – Plaintext data.</p></li>
+<li><p><strong>aad</strong> – Associated data (not encrypted but participates in integrity check).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>(密文, MIC)。</p>
+<dd class="field-even"><p>(ciphertext, MIC).</p>
 </dd>
 </dl>
 </dd></dl>
@@ -950,13 +950,13 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ciphertext</strong> – 密文数据。</p></li>
-<li><p><strong>mic</strong> – 消息完整性码。</p></li>
-<li><p><strong>aad</strong> – 关联数据。</p></li>
+<li><p><strong>ciphertext</strong> – Ciphertext data.</p></li>
+<li><p><strong>mic</strong> – Message integrity code.</p></li>
+<li><p><strong>aad</strong> – Associated data.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>解密后的明文。</p>
+<dd class="field-even"><p>Decrypted plaintext.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -976,7 +976,7 @@
 <p>Simulate pairing signaling interaction between G node and T node, completing key exchange and session key derivation.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>(G 节点管理器, T 节点管理器)。</p>
+<dd class="field-odd"><p>(G node manager, T node manager).</p>
 </dd>
 </dl>
 </dd></dl>

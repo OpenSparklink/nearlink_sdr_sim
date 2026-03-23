@@ -412,7 +412,7 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.channel.ChannelConfig" title="nearlink_sdr.phy.channel.ChannelConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChannelConfig</span></code></a></p></td>
-<td><p>channelconfigurationparameter。</p></td>
+<td><p>Channel configuration parameters.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.channel.ChannelModel" title="nearlink_sdr.phy.channel.ChannelModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChannelModel</span></code></a></p></td>
 <td><p>Multi-mode channel model supporting AWGN / flat fading / frequency-selective fading.</p></td>
@@ -433,7 +433,7 @@
 <td><p>Superimpose multiple interference sources onto the signal.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.channel.compute_sinr" title="nearlink_sdr.phy.channel.compute_sinr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_sinr</span></code></a></p></td>
-<td><p>compute SINR (dB)。</p></td>
+<td><p>Calculate SINR (dB).</p></td>
 </tr>
 </tbody>
 </table>
@@ -471,7 +471,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.ChannelConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.channel.</span></span><span class="sig-name descname"><span class="pre">ChannelConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#ChannelConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.ChannelConfig" title="Link to this definition">¶</a></dt>
-<dd><p>channelconfigurationparameter。</p>
+<dd><p>Channel configuration parameters.</p>
 <p>Attributes:     snr_db: Signal-to-noise ratio (dB).     channel_type: “awgn” | “rayleigh” | “rician” | “multipath”.     rician_k_db: Rician K factor (dB), used only in “rician” mode.     pdp: Power delay profile [(delay_samples, power_dB), …], used only in “multipath” mode.     max_doppler_hz: Maximum Doppler frequency shift (Hz). 0 means quasi-static.     symbol_rate_hz: Symbol rate (Hz), used to compute the normalized Doppler shift.     n_sinusoids: Number of sinusoidal components in the Jakes model; higher values yield a more accurate spectrum.     seed: Random seed.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.ChannelConfig.snr_db">
@@ -668,14 +668,14 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>signal</strong> – 有用信号 (复数 IQ)。</p></li>
-<li><p><strong>interferers</strong> – 干扰源配置列表。</p></li>
-<li><p><strong>sample_rate_hz</strong> – 采样率 (Hz)。</p></li>
-<li><p><strong>rng</strong> – 可选随机数生成器。</p></li>
+<li><p><strong>signal</strong> – Useful signal (complex IQ).</p></li>
+<li><p><strong>interferers</strong> – Interference source configuration.</p></li>
+<li><p><strong>sample_rate_hz</strong> – sample rate (Hz).</p></li>
+<li><p><strong>rng</strong> – Optional random number generator.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>叠加干扰后的信号。</p>
+<dd class="field-even"><p>Signal after interference superposition.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -683,17 +683,17 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.channel.compute_sinr">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.channel.</span></span><span class="sig-name descname"><span class="pre">compute_sinr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">interference_signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/channel.html#compute_sinr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.channel.compute_sinr" title="Link to this definition">¶</a></dt>
-<dd><p>compute SINR (dB)。</p>
+<dd><p>Calculate SINR (dB).</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>signal</strong> – 纯净有用信号。</p></li>
-<li><p><strong>noise_signal</strong> – 含噪声的接收信号 (信号+噪声, 不含干扰)。</p></li>
-<li><p><strong>interference_signal</strong> – 干扰叠加后的接收信号 (信号+噪声+干扰)。</p></li>
+<li><p><strong>signal</strong> – Clean useful signal.</p></li>
+<li><p><strong>noise_signal</strong> – Noisy received signal (signal + noise, without interference).</p></li>
+<li><p><strong>interference_signal</strong> – Received signal after interference superposition (signal + noise + interference).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>SINR (dB)。</p>
+<dd class="field-even"><p>SINR (dB).</p>
 </dd>
 </dl>
 </dd></dl>

@@ -459,13 +459,13 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.gfsk.GFSKModulator.modulate">
 <span class="sig-name descname"><span class="pre">modulate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/gfsk.html#GFSKModulator.modulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.gfsk.GFSKModulator.modulate" title="Link to this definition">¶</a></dt>
-<dd><p>GFSKmodulation。</p>
+<dd><p>GFSK modulation.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>bits</strong> – 输入比特序列, shape (N,), 值为 0/1</p>
+<dd class="field-odd"><p><strong>bits</strong> – parameter:     bits: input bit sequence, shape (N,), valued 0/1</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>复基带IQ信号, shape (N*sps,)</p>
+<dd class="field-even"><p>Complex baseband IQ signal, shape (N*sps,)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -480,13 +480,13 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.gfsk.GFSKDemodulator.demodulate">
 <span class="sig-name descname"><span class="pre">demodulate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/gfsk.html#GFSKDemodulator.demodulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.gfsk.GFSKDemodulator.demodulate" title="Link to this definition">¶</a></dt>
-<dd><p>GFSKdemodulation。</p>
+<dd><p>GFSK demodulation.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>signal</strong> – 复基带IQ信号</p>
+<dd class="field-odd"><p><strong>signal</strong> – complex baseband IQ signal</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>解调后的比特序列, 值为 0/1</p>
+<dd class="field-even"><p>Demodulated bit sequence, values 0/1</p>
 </dd>
 </dl>
 </dd></dl>

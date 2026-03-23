@@ -529,17 +529,17 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_measur</strong> – 测量序列长度 [16, 32, 64, 128, 256, 512, 1024, 2048]</p></li>
-<li><p><strong>security_type</strong> – 安全类型 (1~4)</p></li>
-<li><p><strong>seed</strong> – 安全随机种子 (16 字节)</p></li>
-<li><p><strong>slot_number</strong> – 起始调度时隙号</p></li>
-<li><p><strong>is_tx</strong> – True=先发节点, False=后发节点</p></li>
-<li><p><strong>n_disturb_max</strong> – 最大扰动符号数配置 [0-11]</p></li>
+<li><p><strong>n_measur</strong> – Measurement sequence length [16, 32, 64, 128, 256, 512, 1024, 2048]</p></li>
+<li><p><strong>security_type</strong> – Security type (1~4)</p></li>
+<li><p><strong>seed</strong> – secure random seed (16 byte)</p></li>
+<li><p><strong>slot_number</strong> – start scheduling slot number</p></li>
+<li><p><strong>is_tx</strong> – True= initiator node, False= responder node</p></li>
+<li><p><strong>n_disturb_max</strong> – Maximum perturbation symbol count configuration [0-11]</p></li>
 <li><p><strong>kdf_type</strong> – 0=AES-CMAC, 1=HMAC-SM3</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>np.ndarray, dtype=int, 长度 n_measur</p>
+<dd class="field-even"><p>np.ndarray, dtype=int, length n_measur.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -558,15 +558,15 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_tones</strong> – 音的个数 [1, 2, 4, 8]</p></li>
-<li><p><strong>bandwidth_mhz</strong> – SLE 带宽 [1, 2, 4] MHz</p></li>
-<li><p><strong>duration_us</strong> – 信号时长 (微秒)</p></li>
-<li><p><strong>sample_rate</strong> – 采样率 (Hz)</p></li>
-<li><p><strong>phase_set</strong> – 相位集合 [1, 2], N≥4 时有效</p></li>
+<li><p><strong>n_tones</strong> – Number of tones [1, 2, 4, 8]</p></li>
+<li><p><strong>bandwidth_mhz</strong> – SLE bandwidth [1, 2, 4] MHz</p></li>
+<li><p><strong>duration_us</strong> – Signal duration (microseconds)</p></li>
+<li><p><strong>sample_rate</strong> – sample rate (Hz)</p></li>
+<li><p><strong>phase_set</strong> – Phase set [1, 2], valid when N &gt;= 4</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>np.ndarray, dtype=complex128, 复数基带波形</p>
+<dd class="field-even"><p>np.ndarray, dtype=complex128, complex baseband waveform.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -578,12 +578,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>m</strong> – 发送天线数</p></li>
-<li><p><strong>n</strong> – 接收天线数</p></li>
+<li><p><strong>m</strong> – Number of transmit antennas</p></li>
+<li><p><strong>n</strong> – Number of receive antennas</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>天线对列表 [(tx_ant, rx_ant), …]</p>
+<dd class="field-even"><p>returns: antennapairlist [(tx_ant, rx_ant), …]</p>
 </dd>
 </dl>
 <p>example:     m=3, n=2: [(0,0), (0,1), (1,0), (1,1), (2,0), (2,1)]</p>
@@ -596,16 +596,16 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>m</strong> – 发送天线数</p></li>
-<li><p><strong>n</strong> – 接收天线数</p></li>
-<li><p><strong>seed</strong> – 安全随机种子 (16 字节)</p></li>
-<li><p><strong>slot_number</strong> – 起始调度时隙号</p></li>
-<li><p><strong>k</strong> – 随机数位宽</p></li>
+<li><p><strong>m</strong> – Number of transmit antennas</p></li>
+<li><p><strong>n</strong> – Number of receive antennas</p></li>
+<li><p><strong>seed</strong> – secure random seed (16 byte)</p></li>
+<li><p><strong>slot_number</strong> – start scheduling slot number</p></li>
+<li><p><strong>k</strong> – Random number bit width</p></li>
 <li><p><strong>kdf_type</strong> – 0=AES-CMAC, 1=HMAC-SM3</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>随机排列的天线对列表 [(tx_ant, rx_ant), …]</p>
+<dd class="field-even"><p>Randomly permuted antenna pair list [(tx_ant, rx_ant), …].</p>
 </dd>
 </dl>
 </dd></dl>

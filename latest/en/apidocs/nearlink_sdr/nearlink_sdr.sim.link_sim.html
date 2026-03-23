@@ -413,13 +413,13 @@
 <td><p>Frame type 1 GFSK uncoded link simulation.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_psk_link" title="nearlink_sdr.sim.link_sim.sim_psk_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_psk_link</span></code></a></p></td>
-<td><p>frame type2/3/4 PSKnoencodelinksimulation.</p></td>
+<td><p>Frame type 2/3/4 PSK uncoded link simulation.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase1_simulation" title="nearlink_sdr.sim.link_sim.run_phase1_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase1_simulation</span></code></a></p></td>
 <td><p>Phase 1 comprehensive simulation: GFSK + BPSK + QPSK BER curves.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_polar_coded_psk_link" title="nearlink_sdr.sim.link_sim.sim_polar_coded_psk_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_polar_coded_psk_link</span></code></a></p></td>
-<td><p>PolarencodePSKlinksimulation。</p></td>
+<td><p>Polar-coded PSK link simulation.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase2_simulation" title="nearlink_sdr.sim.link_sim.run_phase2_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase2_simulation</span></code></a></p></td>
 <td><p>Phase 2 comprehensive simulation: Polar-coded BPSK/QPSK BER/FER curves.</p></td>
@@ -428,7 +428,7 @@
 <td><p>Full frame-level simulation: frame assembly → Polar encoding → PSK modulation (with pilot) → AWGN → demodulation → decoding → BER.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.run_phase3_simulation" title="nearlink_sdr.sim.link_sim.run_phase3_simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_phase3_simulation</span></code></a></p></td>
-<td><p>Phase 3 framelevelsimulation: notsameframe type, pilotconfiguration BER/FER.</p></td>
+<td><p>Phase 3 frame-level simulation: BER/FER with different frame types and pilot configurations.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_channel_eq_link" title="nearlink_sdr.sim.link_sim.sim_channel_eq_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_channel_eq_link</span></code></a></p></td>
 <td><p>Multipath channel + equalizer + Polar-coded BPSK link simulation.</p></td>
@@ -464,7 +464,7 @@
 <td><p>Apply channel impairments (fading/noise/frequency offset) to IQ signals with optional equalization.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_mac_signaling_link" title="nearlink_sdr.sim.link_sim.sim_mac_signaling_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_mac_signaling_link</span></code></a></p></td>
-<td><p>MAC signalingframeendtoendsimulation: signalingencode → IQ → channel → IQ → signalingdecode.</p></td>
+<td><p>MAC signaling frame end-to-end simulation: signaling encoding → IQ → channel → IQ → signaling decoding.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_mac_data_link" title="nearlink_sdr.sim.link_sim.sim_mac_data_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_mac_data_link</span></code></a></p></td>
 <td><p>MAC asynchronous data frame end-to-end simulation: data encoding → IQ → channel → IQ → data decoding.</p></td>
@@ -542,7 +542,7 @@
 <td><p>Phase 14: dual-node end-to-end simulation visualization.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_node_hopping_link" title="nearlink_sdr.sim.link_sim.sim_node_hopping_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_node_hopping_link</span></code></a></p></td>
-<td><p>SleNode frequency hoppingdatalinksimulation。</p></td>
+<td><p>SleNode frequency hopping data link simulation.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.sim.link_sim.sim_node_access_flow" title="nearlink_sdr.sim.link_sim.sim_node_access_flow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sim_node_access_flow</span></code></a></p></td>
 <td><p>SleNode full access procedure simulation.</p></td>
@@ -624,7 +624,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.sim.link_sim.sim_psk_link">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_psk_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_data_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mod_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'QPSK'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snr_range_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_psk_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_psk_link" title="Link to this definition">¶</a></dt>
-<dd><p>frame type2/3/4 PSKnoencodelinksimulation.</p>
+<dd><p>Frame type 2/3/4 PSK uncoded link simulation.</p>
 <p>Pipeline: data → PSK modulation → AWGN channel → PSK demodulation → BER (preamble and sync signals are independent signal segments that do not affect data BER)</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -642,7 +642,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.sim.link_sim.sim_polar_coded_psk_link">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_polar_coded_psk_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_info_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mod_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'BPSK'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'1/2'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">256</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snr_range_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_polar_coded_psk_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_polar_coded_psk_link" title="Link to this definition">¶</a></dt>
-<dd><p>PolarencodePSKlinksimulation。</p>
+<dd><p>Polar-coded PSK link simulation.</p>
 <p>procedure: information bits → Polarencode → BPSK/QPSKmodulation → AWGNchannel → demodulation(soft decisionLLR) → SCdecode → BER</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -665,12 +665,12 @@
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>frame_type</strong> – 2, 3, or 4.</p></li>
-<li><p><strong>num_data_bits</strong> – 数据负载比特数.</p></li>
-<li><p><strong>rate_str</strong> – Polar码率.</p></li>
-<li><p><strong>code_length</strong> – Polar码长.</p></li>
-<li><p><strong>pilot_interval</strong> – 导频插入间隔 (0, 4, 8, 16).</p></li>
-<li><p><strong>snr_range_db</strong> – SNR扫描范围.</p></li>
-<li><p><strong>seed</strong> – 随机种子.</p></li>
+<li><p><strong>num_data_bits</strong> – Number of data payload bits.</p></li>
+<li><p><strong>rate_str</strong> – Polar code rate.</p></li>
+<li><p><strong>code_length</strong> – Polar code length.</p></li>
+<li><p><strong>pilot_interval</strong> – Pilot insertion interval (0, 4, 8, 16).</p></li>
+<li><p><strong>snr_range_db</strong> – SNR scan range.</p></li>
+<li><p><strong>seed</strong> – random seed.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -682,7 +682,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.sim.link_sim.run_phase3_simulation">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">run_phase3_simulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#run_phase3_simulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.run_phase3_simulation" title="Link to this definition">¶</a></dt>
-<dd><p>Phase 3 framelevelsimulation: notsameframe type, pilotconfiguration BER/FER.</p>
+<dd><p>Phase 3 frame-level simulation: BER/FER with different frame types and pilot configurations.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -693,14 +693,14 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>channel_type</strong> – “awgn” / “rayleigh” / “rician” / “multipath”。</p></li>
-<li><p><strong>rician_k_db</strong> – Rician K 因子。</p></li>
-<li><p><strong>eq_method</strong> – “zf” / “mmse” / “none” (不均衡)。</p></li>
-<li><p><strong>rate_str</strong> – Polar 码率。</p></li>
-<li><p><strong>code_length</strong> – Polar 码长。</p></li>
-<li><p><strong>snr_range_db</strong> – SNR 范围。</p></li>
-<li><p><strong>n_frames</strong> – 每个 SNR 点的帧数。</p></li>
-<li><p><strong>seed</strong> – 随机种子。</p></li>
+<li><p><strong>channel_type</strong> – “awgn” / “rayleigh” / “rician” / “multipath”.</p></li>
+<li><p><strong>rician_k_db</strong> – Rician K factor.</p></li>
+<li><p><strong>eq_method</strong> – “zf” / “mmse” / “none” (no equalization).</p></li>
+<li><p><strong>rate_str</strong> – Polar code rate.</p></li>
+<li><p><strong>code_length</strong> – Polar code length.</p></li>
+<li><p><strong>snr_range_db</strong> – SNR range.</p></li>
+<li><p><strong>n_frames</strong> – Number of frames per SNR point.</p></li>
+<li><p><strong>seed</strong> – random seed.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -723,14 +723,14 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>hop_param2</strong> – 跳频参数 2。</p></li>
-<li><p><strong>n_hops</strong> – 每个 SNR 点的跳频次数 (帧数)。</p></li>
-<li><p><strong>rate_str</strong> – Polar 码率。</p></li>
-<li><p><strong>code_length</strong> – Polar 码长。</p></li>
-<li><p><strong>snr_range_db</strong> – SNR 范围。</p></li>
-<li><p><strong>bandwidth_mhz</strong> – 信道带宽 1/2/4 MHz。</p></li>
-<li><p><strong>blocked_ratio</strong> – 被阻塞信道占比 (0~1)。</p></li>
-<li><p><strong>seed</strong> – 随机种子。</p></li>
+<li><p><strong>hop_param2</strong> – frequency hopping parameter 2.</p></li>
+<li><p><strong>n_hops</strong> – Number of frequency hops per SNR point (frames).</p></li>
+<li><p><strong>rate_str</strong> – Polar code rate.</p></li>
+<li><p><strong>code_length</strong> – Polar code length.</p></li>
+<li><p><strong>snr_range_db</strong> – SNR range.</p></li>
+<li><p><strong>bandwidth_mhz</strong> – channel bandwidth 1/2/4 MHz.</p></li>
+<li><p><strong>blocked_ratio</strong> – Proportion of blocked channels (0~1).</p></li>
+<li><p><strong>seed</strong> – random seed.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -752,13 +752,13 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>frame_type</strong> – 帧类型 (1-4)</p></li>
-<li><p><strong>mcs_index</strong> – MCS 索引</p></li>
-<li><p><strong>n_data_bytes</strong> – 数据长度 (字节)</p></li>
-<li><p><strong>snr_range_db</strong> – Eb/N0 扫描范围 (dB)</p></li>
-<li><p><strong>n_frames</strong> – 每个 SNR 点的仿真帧数</p></li>
-<li><p><strong>sps</strong> – 每符号采样数</p></li>
-<li><p><strong>seed</strong> – 随机种子</p></li>
+<li><p><strong>frame_type</strong> – frame type (1-4)</p></li>
+<li><p><strong>mcs_index</strong> – MCS index</p></li>
+<li><p><strong>n_data_bytes</strong> – data length (byte)</p></li>
+<li><p><strong>snr_range_db</strong> – Eb/N0 scan range (dB)</p></li>
+<li><p><strong>n_frames</strong> – Number of simulation frames per SNR point</p></li>
+<li><p><strong>sps</strong> – samples per symbol</p></li>
+<li><p><strong>seed</strong> – random seed</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -792,17 +792,17 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>frame_type</strong> – 帧类型 (1-4)。</p></li>
-<li><p><strong>mcs_index</strong> – MCS 索引。</p></li>
-<li><p><strong>n_data_bytes</strong> – 数据长度 (字节)。</p></li>
-<li><p><strong>channel_type</strong> – “awgn” | “rayleigh” | “rician” | “multipath”。</p></li>
-<li><p><strong>rician_k_db</strong> – Rician K 因子 (dB)。</p></li>
-<li><p><strong>cfo_hz</strong> – 载波频率偏移 (Hz)。</p></li>
-<li><p><strong>eq_method</strong> – “none” | “zf” | “mmse”, 仅对衰落信道有效。</p></li>
-<li><p><strong>snr_range_db</strong> – Eb/N0 扫描范围。</p></li>
-<li><p><strong>n_frames</strong> – 每个 SNR 点的仿真帧数。</p></li>
-<li><p><strong>sps</strong> – 每符号采样数。</p></li>
-<li><p><strong>seed</strong> – 随机种子。</p></li>
+<li><p><strong>frame_type</strong> – frame type (1-4).</p></li>
+<li><p><strong>mcs_index</strong> – MCS index.</p></li>
+<li><p><strong>n_data_bytes</strong> – data length (byte).</p></li>
+<li><p><strong>channel_type</strong> – “awgn” | “rayleigh” | “rician” | “multipath”.</p></li>
+<li><p><strong>rician_k_db</strong> – Rician K factor (dB).</p></li>
+<li><p><strong>cfo_hz</strong> – Carrier frequency offset</p></li>
+<li><p><strong>eq_method</strong> – “none” | “zf” | “mmse”, only valid for fading channels.</p></li>
+<li><p><strong>snr_range_db</strong> – Eb/N0 scan range.</p></li>
+<li><p><strong>n_frames</strong> – Number of simulation frames per SNR point.</p></li>
+<li><p><strong>sps</strong> – samples per symbol.</p></li>
+<li><p><strong>seed</strong> – random seed.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -832,15 +832,15 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.sim.link_sim.sim_mac_signaling_link">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_mac_signaling_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">snr_range_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_frames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mcs_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'awgn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfo_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eq_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'none'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rician_k_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_mac_signaling_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_mac_signaling_link" title="Link to this definition">¶</a></dt>
-<dd><p>MAC signalingframeendtoendsimulation: signalingencode → IQ → channel → IQ → signalingdecode.</p>
+<dd><p>MAC signaling frame end-to-end simulation: signaling encoding → IQ → channel → IQ → signaling decoding.</p>
 <p>Each frame randomly selects a signaling type for encoding; after passing through the PHY TX/RX pipeline and channel, the signaling decoding success rate is measured.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>channel_type</strong> – “awgn” | “rayleigh” | “rician” | “multipath”。</p></li>
-<li><p><strong>cfo_hz</strong> – 载波频率偏移 (Hz)。</p></li>
-<li><p><strong>eq_method</strong> – “none” | “zf” | “mmse”。</p></li>
-<li><p><strong>rician_k_db</strong> – Rician K 因子 (dB)。</p></li>
+<li><p><strong>channel_type</strong> – “awgn” | “rayleigh” | “rician” | “multipath”.</p></li>
+<li><p><strong>cfo_hz</strong> – Carrier frequency offset</p></li>
+<li><p><strong>eq_method</strong> – “none” | “zf” | “mmse”.</p></li>
+<li><p><strong>rician_k_db</strong> – Rician K factor (dB).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -857,11 +857,11 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>payload_sizes</strong> – 要测试的载荷大小列表 (字节)。</p></li>
-<li><p><strong>channel_type</strong> – “awgn” | “rayleigh” | “rician” | “multipath”。</p></li>
-<li><p><strong>cfo_hz</strong> – 载波频率偏移 (Hz)。</p></li>
-<li><p><strong>eq_method</strong> – “none” | “zf” | “mmse”。</p></li>
-<li><p><strong>rician_k_db</strong> – Rician K 因子 (dB)。</p></li>
+<li><p><strong>payload_sizes</strong> – List of payload sizes to test (bytes).</p></li>
+<li><p><strong>channel_type</strong> – “awgn” | “rayleigh” | “rician” | “multipath”.</p></li>
+<li><p><strong>cfo_hz</strong> – Carrier frequency offset</p></li>
+<li><p><strong>eq_method</strong> – “none” | “zf” | “mmse”.</p></li>
+<li><p><strong>rician_k_db</strong> – Rician K factor (dB).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -878,10 +878,10 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>channel_type</strong> – “awgn” | “rayleigh” | “rician” | “multipath”。</p></li>
-<li><p><strong>cfo_hz</strong> – 载波频率偏移 (Hz)。</p></li>
-<li><p><strong>eq_method</strong> – “none” | “zf” | “mmse”。</p></li>
-<li><p><strong>rician_k_db</strong> – Rician K 因子 (dB)。</p></li>
+<li><p><strong>channel_type</strong> – “awgn” | “rayleigh” | “rician” | “multipath”.</p></li>
+<li><p><strong>cfo_hz</strong> – Carrier frequency offset</p></li>
+<li><p><strong>eq_method</strong> – “none” | “zf” | “mmse”.</p></li>
+<li><p><strong>rician_k_db</strong> – Rician K factor (dB).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -904,24 +904,21 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_links</strong> – 并发链路数。</p></li>
-<li><p><strong>snr_range_db</strong> – 信噪比范围 (dB)。</p></li>
-<li><p><strong>n_superframes</strong> – 每个 SNR 点仿真的超帧数。</p></li>
-<li><p><strong>mcs_index</strong> – 调制编码策略索引。</p></li>
-<li><p><strong>payload_size</strong> – 每帧载荷字节数。</p></li>
-<li><p><strong>channel_type</strong> – 信道类型。</p></li>
-<li><p><strong>cfo_hz</strong> – 载波频率偏移。</p></li>
-<li><p><strong>eq_method</strong> – 均衡方法。</p></li>
-<li><p><strong>rician_k_db</strong> – Rician K 因子。</p></li>
-<li><p><strong>smf_interval</strong> – SMF 间隔 (基础时隙)。</p></li>
-<li><p><strong>seed</strong> – 随机种子。</p></li>
+<li><p><strong>n_links</strong> – Number of concurrent links.</p></li>
+<li><p><strong>snr_range_db</strong> – SNR range (dB).</p></li>
+<li><p><strong>n_superframes</strong> – Number of superframes simulated per SNR point.</p></li>
+<li><p><strong>mcs_index</strong> – Modulation and coding strategy index.</p></li>
+<li><p><strong>payload_size</strong> – Payload bytes per frame.</p></li>
+<li><p><strong>channel_type</strong> – channel type.</p></li>
+<li><p><strong>cfo_hz</strong> – Carrier frequency offset</p></li>
+<li><p><strong>eq_method</strong> – Equalization method.</p></li>
+<li><p><strong>rician_k_db</strong> – Rician K factor.</p></li>
+<li><p><strong>smf_interval</strong> – SMF interval (base slot).</p></li>
+<li><p><strong>seed</strong> – random seed.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>{“snr_db”: […],
-“aggregate_fer”: […],
-“per_link_fer”: {link_id: […]},
-“throughput_ratio”: […]}</p>
+<dd class="field-even"><p>{“snr_db”: […],      “aggregate_fer”: […],      “per_link_fer”: {link_id: […]},      “throughput_ratio”: […]}</p>
 </dd>
 </dl>
 </dd></dl>
@@ -934,22 +931,19 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>snr_range_db</strong> – 信噪比范围 (dB)。</p></li>
-<li><p><strong>n_frames</strong> – 每个 SNR 点仿真帧数。</p></li>
-<li><p><strong>mcs_index</strong> – MCS 索引。</p></li>
-<li><p><strong>payload_size</strong> – 载荷字节数。</p></li>
-<li><p><strong>channel_type</strong> – 信道类型。</p></li>
-<li><p><strong>cfo_hz</strong> – 载波频率偏移。</p></li>
-<li><p><strong>eq_method</strong> – 均衡方法。</p></li>
-<li><p><strong>rician_k_db</strong> – Rician K 因子。</p></li>
-<li><p><strong>seed</strong> – 随机种子。</p></li>
+<li><p><strong>snr_range_db</strong> – SNR range (dB).</p></li>
+<li><p><strong>n_frames</strong> – Number of simulation frames per SNR point.</p></li>
+<li><p><strong>mcs_index</strong> – MCS index.</p></li>
+<li><p><strong>payload_size</strong> – Number of payload bytes.</p></li>
+<li><p><strong>channel_type</strong> – channel type.</p></li>
+<li><p><strong>cfo_hz</strong> – Carrier frequency offset</p></li>
+<li><p><strong>eq_method</strong> – Equalization method.</p></li>
+<li><p><strong>rician_k_db</strong> – Rician K factor.</p></li>
+<li><p><strong>seed</strong> – random seed.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>{“snr_db”: […],
-“fer”: […],
-“access_ok”: bool,
-“link_params”: dict}</p>
+<dd class="field-even"><p>{“snr_db”: […],      “fer”: […],      “access_ok”: bool,      “link_params”: dict}</p>
 </dd>
 </dl>
 </dd></dl>
@@ -962,19 +956,16 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>event_group_period</strong> – 事件组周期 (调度时隙)。</p></li>
-<li><p><strong>event_count</strong> – 事件总数。</p></li>
-<li><p><strong>event_period</strong> – 事件周期 (调度时隙)。</p></li>
-<li><p><strong>intra_event_interval</strong> – 事件内间隔 (μs)。</p></li>
-<li><p><strong>tx_max_offset</strong> – TX 最大偏移 (基础时隙)。</p></li>
-<li><p><strong>rx_max_offset</strong> – RX 最大偏移 (基础时隙)。</p></li>
+<li><p><strong>event_group_period</strong> – Event group period (scheduling slots).</p></li>
+<li><p><strong>event_count</strong> – Total number of events.</p></li>
+<li><p><strong>event_period</strong> – Event period (scheduling slots).</p></li>
+<li><p><strong>intra_event_interval</strong> – Intra-event interval (μs).</p></li>
+<li><p><strong>tx_max_offset</strong> – TX maximum offset (base slot).</p></li>
+<li><p><strong>rx_max_offset</strong> – RX maximum offset (base slot).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>{“events”: [{“start”: int, “tx_window”: (s,e), “rx_window”: (s,e)}],
-“total_active_us”: int,
-“group_period_us”: int,
-“utilization”: float}</p>
+<dd class="field-even"><p>{“events”: [{“start”: int, “tx_window”: (s,e), “rx_window”: (s,e)}],      “total_active_us”: int,      “group_period_us”: int,      “utilization”: float}</p>
 </dd>
 </dl>
 </dd></dl>
@@ -986,18 +977,14 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>smf_interval</strong> – SMF 间隔 (基础时隙)。</p></li>
-<li><p><strong>slice_duration</strong> – 每条链路时间片持续长度 (调度时隙)。</p></li>
-<li><p><strong>slice_gap</strong> – 相邻链路的偏移间距 (调度时隙, 默认等于 slice_duration)。
-当 gap &lt; slice_duration 时, 链路时间片将发生重叠。</p></li>
-<li><p><strong>max_links</strong> – 最大测试链路数。</p></li>
+<li><p><strong>smf_interval</strong> – SMF interval (base slot).</p></li>
+<li><p><strong>slice_duration</strong> – Time slice duration per link (scheduling slots).</p></li>
+<li><p><strong>slice_gap</strong> – Offset spacing between adjacent links (scheduling slots, defaults to slice_duration). When gap &lt; slice_duration, link time slices will overlap.</p></li>
+<li><p><strong>max_links</strong> – Maximum number of test links.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>{“n_links”: […],
-“n_conflicts”: […],
-“max_no_conflict”: int,
-“utilization”: […]}</p>
+<dd class="field-even"><p>{“n_links”: […],      “n_conflicts”: […],      “max_no_conflict”: int,      “utilization”: […]}</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1015,7 +1002,7 @@
 <p>Simulate the full secure communication establishment process:</p>
 <ol class="arabic simple">
 <li><p>Access and link establishment (run_access_procedure)</p></li>
-<li><p>pairingkeynegotiation (run_pairing_procedure)</p></li>
+<li><p>Pairing key negotiation (run_pairing_procedure)</p></li>
 <li><p>Encrypted data frames transmitted through the PHY pipeline</p></li>
 </ol>
 <dl class="myst field-list simple">
@@ -1061,13 +1048,7 @@
 <p>Iterate over all MCS indices (0-12); for each SNR point compute FER and effective throughput. Effective throughput = (1 - FER) * spectral_efficiency (bit/symbol). AMC strategy: select the MCS with the highest throughput at each SNR point.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>{
-“snr_db”: […],
-“mcs_fer”: {mcs_idx: [fer_per_snr, …]},
-“mcs_throughput”: {mcs_idx: [throughput_per_snr, …]},
-“amc_throughput”: […],  # AMC 包络吞吐量
-“amc_mcs”: […],         # AMC 选择的 MCS 索引
-}</p>
+<dd class="field-odd"><p>{         “snr_db”: […],         “mcs_fer”: {mcs_idx: [fer_per_snr, …]},         “mcs_throughput”: {mcs_idx: [throughput_per_snr, …]},         “amc_throughput”: […],  # AMC envelope throughput         “amc_mcs”: […],         # MCS index selected by AMC     }</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1079,14 +1060,7 @@
 <p>Retransmit on each frame failure, up to max_retries times. Uses the harq_feedback and packet_sn fields in B1 control information. Standard clause 6.10.5 specifies MCS=15 for retransmission frames.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>{
-“snr_db”: […],
-“fer_no_harq”: […],     # 无重传 FER
-“fer_harq”: […],        # HARQ FER (超过最大重传仍失败)
-“avg_transmissions”: […], # 平均每帧传输次数
-“throughput_no_harq”: […],  # 无重传吞吐量 (归一化)
-“throughput_harq”: […],     # HARQ 吞吐量 (归一化)
-}</p>
+<dd class="field-odd"><p>{         “snr_db”: […],         “fer_no_harq”: […],     # FER without retransmission         “fer_harq”: […],        # HARQ FER (still failed after max retransmissions)         “avg_transmissions”: […], # Average transmissions per frame         “throughput_no_harq”: […],  # Throughput without retransmission (normalized)         “throughput_harq”: […],     # HARQ throughput (normalized)     }</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1098,11 +1072,7 @@
 <p>Each frame is transmitted on a different frequency channel, simulating the effect of frequency hopping against frequency-selective fading. Compares fixed-channel (Rayleigh) FER with frequency-hopping (independent fading per channel) FER.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>{
-“snr_db”: […],
-“fer_fixed”: […],     # 固定信道 FER
-“fer_hopping”: […],   # 跳频 FER
-}</p>
+<dd class="field-odd"><p>{         “snr_db”: […],         “fer_fixed”: […],     # Fixed-channel FER         “fer_hopping”: […],   # Frequency-hopping FER     }</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1120,14 +1090,7 @@
 <p>Use QosLink encapsulation to implement automatic ARQ retransmission, comparing FER with and without QoS management. Validates QosManager sequence number management, retransmission decisions, and link quality tracking.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>{
-“snr_db”: […],
-“fer_no_arq”: […],       # 无重传 FER
-“fer_qos_arq”: […],      # QoS ARQ FER
-“avg_transmissions”: […], # 平均每帧传输次数
-“throughput_no_arq”: […],
-“throughput_qos_arq”: […],
-}</p>
+<dd class="field-odd"><p>{         “snr_db”: […],         “fer_no_arq”: […],       # FER without retransmission         “fer_qos_arq”: […],      # QoS ARQ FER         “avg_transmissions”: […], # Average transmissions per frame         “throughput_no_arq”: […],         “throughput_qos_arq”: […],     }</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1139,12 +1102,7 @@
 <p>Simulate a scenario where SNR varies over time; the QoS manager automatically adjusts MCS based on FER feedback, validating AMC tracking performance.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>{
-“snr_trace”: […],
-“mcs_trace”: […],
-“fer_trace”: […],
-“throughput_trace”: […],
-}</p>
+<dd class="field-odd"><p>{         “snr_trace”: […],         “mcs_trace”: […],         “fer_trace”: […],         “throughput_trace”: […],     }</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1156,13 +1114,7 @@
 <p>Simulate a bursty data arrival scenario, validating the effect of flow control back-pressure on buffer occupancy and packet loss.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>{
-“frame_idx”: […],
-“buffer_occupancy”: […],
-“flow_ctrl_bit”: […],
-“paused”: […],
-“tx_success”: […],
-}</p>
+<dd class="field-odd"><p>{         “frame_idx”: […],         “buffer_occupancy”: […],         “flow_ctrl_bit”: […],         “paused”: […],         “tx_success”: […],     }</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1180,13 +1132,7 @@
 <p>Create a G node and a T node, completing the full broadcast → access → data exchange process. The G node sends random data; the T node receives it and computes FER and byte error rate.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>{
-“snr_db”: […],
-“fer”: […],
-“byte_ber”: […],
-“tx_count”: int,
-“rx_count”: int,
-}</p>
+<dd class="field-odd"><p>{         “snr_db”: […],         “fer”: […],         “byte_ber”: […],         “tx_count”: int,         “rx_count”: int,     }</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1203,12 +1149,7 @@
 </ol>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>{
-“snr_db”: […],
-“fer_plain”: […],
-“fer_encrypted”: […],
-“pairing_ok”: bool,
-}</p>
+<dd class="field-odd"><p>{         “snr_db”: […],         “fer_plain”: […],         “fer_encrypted”: […],         “pairing_ok”: bool,     }</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1220,12 +1161,7 @@
 <p>Continuous frame transmission at fixed SNR, tracking the G node MCS adaptation process and throughput variation.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>{
-“frame_idx”: […],
-“mcs_history”: […],
-“fer_history”: […],
-“success_history”: […],
-}</p>
+<dd class="field-odd"><p>{         “frame_idx”: […],         “mcs_history”: […],         “fer_history”: […],         “success_history”: […],     }</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1245,17 +1181,11 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.sim.link_sim.sim_node_hopping_link">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.sim.link_sim.</span></span><span class="sig-name descname"><span class="pre">sim_node_hopping_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">snr_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_frames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mcs_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/sim/link_sim.html#sim_node_hopping_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.sim.link_sim.sim_node_hopping_link" title="Link to this definition">¶</a></dt>
-<dd><p>SleNode frequency hoppingdatalinksimulation。</p>
+<dd><p>SleNode frequency hopping data link simulation.</p>
 <p>G node and T node communicate frame-by-frame on a hopping sequence; after each frame the slot advances, observing channel number changes and transmission success rate.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>{
-“channels”: 使用过的信道号列表,
-“unique_channels”: 唯一信道数,
-“success_count”: 成功帧数,
-“fer”: 帧错误率,
-“tx_powers”: 各帧发射功率列表,
-}</p>
+<dd class="field-odd"><p>{         “channels”: List of used channel numbers,         “unique_channels”: Number of unique channels,         “success_count”: Number of successful frames,         “fer”: Frame error rate,         “tx_powers”: List of transmit power per frame,     }</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1267,14 +1197,7 @@
 <p>Simulate G node broadcast → T node scan/discover → access → data exchange → disconnect.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>{
-“g_state”: G 节点最终状态,
-“t_state”: T 节点最终状态,
-“broadcast_frame_valid”: 广播帧是否有效,
-“data_roundtrip_ok”: 数据往返是否成功,
-“scheduler_active”: 调度器是否已注册链路,
-“disconnect_ok”: 断开是否成功,
-}</p>
+<dd class="field-odd"><p>{         “g_state”: Final state of G node,         “t_state”: Final state of T node,         “broadcast_frame_valid”: Whether the broadcast frame is valid,         “data_roundtrip_ok”: Whether data round-trip succeeded,         “scheduler_active”: Whether the scheduler has registered the link,         “disconnect_ok”: Whether disconnect succeeded,     }</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1298,12 +1221,7 @@
 <p>Nodes communicate frame-by-frame, dynamically adjusting transmit power based on feedback.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>{
-“frame_idx”: […],
-“power_history”: […],
-“success_history”: […],
-“fer”: float,
-}</p>
+<dd class="field-odd"><p>{         “frame_idx”: […],         “power_history”: […],         “success_history”: […],         “fer”: float,     }</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1314,10 +1232,7 @@
 <dd><p>SleNode measurement signal generation simulation.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>{
-“signal_length”: 测量信号长度,
-“signal_energy”: 信号能量,
-}</p>
+<dd class="field-odd"><p>{         “signal_length”: Measurement signal length,         “signal_energy”: Signal energy,     }</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1336,14 +1251,14 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>doppler_range_hz</strong> – Doppler 频移扫描范围 (Hz)。</p></li>
-<li><p><strong>snr_db</strong> – 固定 SNR (dB)。</p></li>
-<li><p><strong>n_frames</strong> – 每个 Doppler 点仿真帧数。</p></li>
-<li><p><strong>mcs_index</strong> – MCS 索引。</p></li>
-<li><p><strong>payload_size</strong> – 载荷字节数。</p></li>
-<li><p><strong>channel_type</strong> – 衰落类型 (“rayleigh” / “rician”)。</p></li>
-<li><p><strong>eq_method</strong> – 均衡方法。</p></li>
-<li><p><strong>seed</strong> – 随机种子。</p></li>
+<li><p><strong>doppler_range_hz</strong> – Doppler frequency shift scan range (Hz).</p></li>
+<li><p><strong>snr_db</strong> – Fixed SNR (dB).</p></li>
+<li><p><strong>n_frames</strong> – Doppler + multipath channel joint simulation.</p></li>
+<li><p><strong>mcs_index</strong> – MCS index.</p></li>
+<li><p><strong>payload_size</strong> – Number of payload bytes.</p></li>
+<li><p><strong>channel_type</strong> – Fading channel (Rayleigh / Rician / multipath)</p></li>
+<li><p><strong>eq_method</strong> – Equalization method.</p></li>
+<li><p><strong>seed</strong> – random seed.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -1360,15 +1275,15 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_interferers_range</strong> – 干扰用户数扫描列表。</p></li>
-<li><p><strong>sir_db</strong> – 每个干扰用户的 SIR (dB)。</p></li>
-<li><p><strong>snr_db</strong> – 噪声 SNR (dB)。</p></li>
-<li><p><strong>n_frames</strong> – 每个点仿真帧数。</p></li>
-<li><p><strong>mcs_index</strong> – MCS 索引。</p></li>
-<li><p><strong>payload_size</strong> – 载荷字节数。</p></li>
-<li><p><strong>channel_type</strong> – 信道类型。</p></li>
-<li><p><strong>freq_offset_hz</strong> – 干扰频偏 (Hz), 0 为同信道。</p></li>
-<li><p><strong>seed</strong> – 随机种子。</p></li>
+<li><p><strong>n_interferers_range</strong> – Interfering user count scan list.</p></li>
+<li><p><strong>sir_db</strong> – SIR (dB) per interfering user.</p></li>
+<li><p><strong>snr_db</strong> – Noise SNR (dB).</p></li>
+<li><p><strong>n_frames</strong> – Number of simulation frames per point.</p></li>
+<li><p><strong>mcs_index</strong> – MCS index.</p></li>
+<li><p><strong>payload_size</strong> – Number of payload bytes.</p></li>
+<li><p><strong>channel_type</strong> – channel type.</p></li>
+<li><p><strong>freq_offset_hz</strong> – Interference frequency offset (Hz), 0 means co-channel.</p></li>
+<li><p><strong>seed</strong> – random seed.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -1384,14 +1299,14 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>sir_range_db</strong> – SIR 扫描范围 (dB)。</p></li>
-<li><p><strong>n_interferers</strong> – 干扰用户数。</p></li>
-<li><p><strong>snr_db</strong> – 噪声 SNR (dB)。</p></li>
-<li><p><strong>n_frames</strong> – 每个 SIR 点帧数。</p></li>
-<li><p><strong>mcs_index</strong> – MCS 索引。</p></li>
-<li><p><strong>payload_size</strong> – 载荷字节数。</p></li>
-<li><p><strong>channel_type</strong> – 信道类型。</p></li>
-<li><p><strong>seed</strong> – 随机种子。</p></li>
+<li><p><strong>sir_range_db</strong> – SIR scan range (dB).</p></li>
+<li><p><strong>n_interferers</strong> – Number of interfering users.</p></li>
+<li><p><strong>snr_db</strong> – Noise SNR (dB).</p></li>
+<li><p><strong>n_frames</strong> – Number of frames per SIR point.</p></li>
+<li><p><strong>mcs_index</strong> – MCS index.</p></li>
+<li><p><strong>payload_size</strong> – Number of payload bytes.</p></li>
+<li><p><strong>channel_type</strong> – channel type.</p></li>
+<li><p><strong>seed</strong> – random seed.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>

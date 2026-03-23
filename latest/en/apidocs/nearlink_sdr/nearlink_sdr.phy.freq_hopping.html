@@ -401,7 +401,7 @@
 <li><p>RF channel/physical channel mapping and frequency table management (8.1.2)</p></li>
 <li><p>Pseudo-random number generator (6.10.3.2)</p></li>
 <li><p>datalinkfrequency hopping (6.10.3.3)</p></li>
-<li><p>system managementframelinkfrequency hopping (6.10.3.4)</p></li>
+<li><p>System management frame link frequency hopping (6.10.3.4)</p></li>
 <li><p>Measurement link frequency hopping (6.10.3.5)</p></li>
 </ul>
 <section id="module-contents">
@@ -451,7 +451,7 @@
 <td><p>Available frequency point mapping procedure.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.freq_hopping.mgmt_frame_hop" title="nearlink_sdr.phy.freq_hopping.mgmt_frame_hop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mgmt_frame_hop</span></code></a></p></td>
-<td><p>system managementframelinkfrequency hopping.</p></td>
+<td><p>System management frame link frequency hopping.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.freq_hopping.generate_hopping_sequence" title="nearlink_sdr.phy.freq_hopping.generate_hopping_sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_hopping_sequence</span></code></a></p></td>
 <td><p>Generate a frequency hopping sequence of the specified length.</p></td>
@@ -609,12 +609,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>hop_param1</strong> – 16 位跳频参数 1, 通常为调度时隙计数的低 16 位。</p></li>
-<li><p><strong>hop_param2</strong> – 16 位跳频参数 2, 由同步序列/逻辑链路标识/随机种子派生。</p></li>
+<li><p><strong>hop_param1</strong> – 16-bit frequency hopping parameter 1, typically the low 16 bits of the scheduling slot count.</p></li>
+<li><p><strong>hop_param2</strong> – 16-bit frequency hopping parameter 2, derived from sync sequence / logical link identifier / random seed.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>16 位伪随机数。</p>
+<dd class="field-even"><p>16-bit pseudo-random number.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -632,12 +632,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>identifier</strong> – 同步序列值或逻辑链路标识。</p></li>
-<li><p><strong>bit_width</strong> – 标识符位宽 (24/32/64)。</p></li>
+<li><p><strong>identifier</strong> – Derive hopping parameter 2 from the sync word or logical link identifier.</p></li>
+<li><p><strong>bit_width</strong> – identifier bit width (24/32/64).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>16 位 hop_param2。</p>
+<dd class="field-even"><p>16 bit hop_param2.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -650,13 +650,13 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>slot_counter</strong> – 当前调度时隙计数。</p></li>
-<li><p><strong>hop_param2</strong> – 16 位跳频参数 2。</p></li>
-<li><p><strong>freq_table</strong> – 频率表管理对象。</p></li>
+<li><p><strong>slot_counter</strong> – current scheduling slot count.</p></li>
+<li><p><strong>hop_param2</strong> – 16-bit frequency hopping parameter 2.</p></li>
+<li><p><strong>freq_table</strong> – Channel frequency table management.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>选中的物理信道号。</p>
+<dd class="field-even"><p>selected physical channel number.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -669,15 +669,15 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>rand16</strong> – 16 位伪随机数。</p></li>
-<li><p><strong>available</strong> – 可用频点表 (升序排列)。</p></li>
+<li><p><strong>rand16</strong> – 16-bit pseudo-random number.</p></li>
+<li><p><strong>available</strong> – available frequency table (sorted in ascending order).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>选中的物理信道号。</p>
+<dd class="field-even"><p>selected physical channel number.</p>
 </dd>
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – 可用频点表为空。</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – Reset the available frequency table to the initial state.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -685,18 +685,18 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.freq_hopping.mgmt_frame_hop">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.freq_hopping.</span></span><span class="sig-name descname"><span class="pre">mgmt_frame_hop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot_counter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_param2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.freq_hopping.FreqTable" title="nearlink_sdr.phy.freq_hopping.FreqTable"><span class="pre">nearlink_sdr.phy.freq_hopping.FreqTable</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/freq_hopping.html#mgmt_frame_hop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.freq_hopping.mgmt_frame_hop" title="Link to this definition">¶</a></dt>
-<dd><p>system managementframelinkfrequency hopping.</p>
+<dd><p>System management frame link frequency hopping.</p>
 <p>Standard 6.10.3.4: PRNG → available frequency point mapping, mapped directly onto the available frequency table.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>slot_counter</strong> – 当前调度时隙计数。</p></li>
-<li><p><strong>hop_param2</strong> – 16 位跳频参数 2。</p></li>
-<li><p><strong>freq_table</strong> – 频率表管理对象。</p></li>
+<li><p><strong>slot_counter</strong> – current scheduling slot count.</p></li>
+<li><p><strong>hop_param2</strong> – 16-bit frequency hopping parameter 2.</p></li>
+<li><p><strong>freq_table</strong> – Channel frequency table management.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>选中的物理信道号。</p>
+<dd class="field-even"><p>selected physical channel number.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -767,12 +767,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>slot_counter</strong> – 当前调度时隙计数 (方案 3 使用)。</p></li>
-<li><p><strong>is_init_phase</strong> – 是否处于初始化阶段。</p></li>
+<li><p><strong>slot_counter</strong> – current scheduling slot count (scheme 3 use).</p></li>
+<li><p><strong>is_init_phase</strong> – whether in initialization phase.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>物理信道号。</p>
+<dd class="field-even"><p>physical channel number.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -786,15 +786,15 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_hops</strong> – 需要的跳频次数。</p></li>
-<li><p><strong>hop_param2</strong> – 跳频参数 2。</p></li>
-<li><p><strong>freq_table</strong> – 频率表对象, 默认 2.4 GHz 1 MHz 全可用。</p></li>
-<li><p><strong>link_type</strong> – “data” / “mgmt” / “meas_asc” / “meas_desc” / “meas_rand”。</p></li>
-<li><p><strong>start_slot</strong> – 起始时隙号。</p></li>
+<li><p><strong>n_hops</strong> – required frequency hopping count.</p></li>
+<li><p><strong>hop_param2</strong> – frequency hopping parameter 2.</p></li>
+<li><p><strong>freq_table</strong> – frequency table object, default 2.4 GHz 1 MHz all available.</p></li>
+<li><p><strong>link_type</strong> – “data” / “mgmt” / “meas_asc” / “meas_desc” / “meas_rand”.</p></li>
+<li><p><strong>start_slot</strong> – start slot number.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>物理信道号列表。</p>
+<dd class="field-even"><p>physical channel number list.</p>
 </dd>
 </dl>
 </dd></dl>

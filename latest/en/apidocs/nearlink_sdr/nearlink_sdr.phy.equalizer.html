@@ -432,12 +432,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>rx_signal</strong> – 接收信号 (时域)。</p></li>
-<li><p><strong>channel_freq</strong> – 信道频率响应 H[k], 长度等于 rx_signal 的 FFT 长度。</p></li>
+<li><p><strong>rx_signal</strong> – Received signal (time domain).</p></li>
+<li><p><strong>channel_freq</strong> – Channel frequency response H[k], length equals the FFT length of rx_signal.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>均衡后的时域信号。</p>
+<dd class="field-even"><p>Equalized time-domain signal.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -450,13 +450,13 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>rx_signal</strong> – 接收信号 (时域)。</p></li>
-<li><p><strong>channel_freq</strong> – 信道频率响应 H[k]。</p></li>
-<li><p><strong>noise_var</strong> – 噪声方差 sigma^2。</p></li>
+<li><p><strong>rx_signal</strong> – Received signal (time domain).</p></li>
+<li><p><strong>channel_freq</strong> – channel frequency response H[k].</p></li>
+<li><p><strong>noise_var</strong> – Noise variance sigma^2.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>均衡后的时域信号。</p>
+<dd class="field-even"><p>Equalized time-domain signal.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -469,13 +469,13 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>rx_signal</strong> – 接收到的训练序列。</p></li>
-<li><p><strong>tx_known</strong> – 已知的发送训练序列。</p></li>
-<li><p><strong>n_fft</strong> – FFT 长度, 默认为信号长度。</p></li>
+<li><p><strong>rx_signal</strong> – Received training sequence.</p></li>
+<li><p><strong>tx_known</strong> – Known transmit training sequence.</p></li>
+<li><p><strong>n_fft</strong> – FFT length, defaults to signal length.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>估计的信道频率响应。</p>
+<dd class="field-even"><p>Estimated channel frequency response.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -488,14 +488,14 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>rx_signal</strong> – 接收信号。</p></li>
-<li><p><strong>channel_taps</strong> – 信道冲激响应 h[0], h[1], …, h[L-1]。</p></li>
-<li><p><strong>noise_var</strong> – 噪声方差。</p></li>
-<li><p><strong>n_taps_eq</strong> – 均衡器 FIR 长度。</p></li>
+<li><p><strong>rx_signal</strong> – Received signal.</p></li>
+<li><p><strong>channel_taps</strong> – Channel impulse response h[0], h[1], …, h[L-1].</p></li>
+<li><p><strong>noise_var</strong> – Noise variance.</p></li>
+<li><p><strong>n_taps_eq</strong> – equalizer FIR length.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>均衡后的信号。</p>
+<dd class="field-even"><p>Equalized signal.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -507,14 +507,14 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>rx_symbols</strong> – 接收符号。</p></li>
-<li><p><strong>h_coeffs</strong> – 每个符号的信道系数 (与 rx_symbols 等长)。</p></li>
-<li><p><strong>noise_var</strong> – 噪声方差, 仅 MMSE 使用。</p></li>
-<li><p><strong>method</strong> – “zf” 或 “mmse”。</p></li>
+<li><p><strong>rx_symbols</strong> – receive symbol.</p></li>
+<li><p><strong>h_coeffs</strong> – Channel coefficient per symbol (same length as rx_symbols).</p></li>
+<li><p><strong>noise_var</strong> – Noise variance, used only by MMSE.</p></li>
+<li><p><strong>method</strong> – “zf” or “mmse”.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>均衡后的符号。</p>
+<dd class="field-even"><p>Equalized symbols.</p>
 </dd>
 </dl>
 </dd></dl>

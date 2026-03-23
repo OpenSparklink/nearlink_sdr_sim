@@ -439,7 +439,7 @@
 <td><p>TX queue item.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.qos.TxQueue" title="nearlink_sdr.mac.qos.TxQueue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TxQueue</span></code></a></p></td>
-<td><p>prioritytransmitqueue。</p></td>
+<td><p>Priority send queue.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.qos.QosManager" title="nearlink_sdr.mac.qos.QosManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QosManager</span></code></a></p></td>
 <td><p>QoS quality of service manager.</p></td>
@@ -615,7 +615,7 @@
 <dd><p>ARQ sequence number and retransmission state.</p>
 <p>Asynchronous data link transmission process described in standard 6.5.1.1:</p>
 <ul class="simple">
-<li><p>tx_sn: whenprevioustransmitsequencenumber</p></li>
+<li><p>tx_sn: current transmit sequence number</p></li>
 <li><p>expected_rx_sn: Expected sequence number from the remote end</p></li>
 <li><p>pending_ack: whenpreviouswait ACK dataisnonot yetacknowledgment</p></li>
 <li><p>retransmit_count: Retransmission count of the current packet</p></li>
@@ -760,7 +760,7 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.HarqController.update_cbg_status">
 <span class="sig-name descname"><span class="pre">update_cbg_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cbg_ack</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#HarqController.update_cbg_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.HarqController.update_cbg_status" title="Link to this definition">¶</a></dt>
-<dd><p>update CBG receivestate。</p>
+<dd><p>Update CBG receive state.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -925,9 +925,7 @@
 <dd><p>recommended MCS adjustment direction.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>+1: 建议提升 MCS (链路质量好)
--1: 建议降低 MCS (链路质量差)
-0: 保持当前 MCS</p>
+<dd class="field-odd"><p>+1: Recommend increasing MCS (good link quality)     -1: Recommend decreasing MCS (poor link quality)      0: Keep current MCS</p>
 </dd>
 </dl>
 </dd></dl>
@@ -991,7 +989,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.TxQueue">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.qos.</span></span><span class="sig-name descname"><span class="pre">TxQueue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">64</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#TxQueue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.TxQueue" title="Link to this definition">¶</a></dt>
-<dd><p>prioritytransmitqueue。</p>
+<dd><p>Priority send queue.</p>
 <p>Higher priority data is dequeued first; FIFO order within the same priority; retransmission data takes precedence over new data at the same priority.</p>
 <p class="rubric">Initialization</p>
 <dl class="py method">
@@ -1082,7 +1080,7 @@
 <dd><p>Prepare the next frame for transmission.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>(发送决策, 队列项或 None)</p>
+<dd class="field-odd"><p>(transmission decision, queue item or None)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1102,7 +1100,7 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.qos.QosManager.get_ctrl_fields">
 <span class="sig-name descname"><span class="pre">get_ctrl_fields</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/qos.html#QosManager.get_ctrl_fields"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.qos.QosManager.get_ctrl_fields" title="Link to this definition">¶</a></dt>
-<dd><p>getwhenpreviouscontrol informationfieldvalue.</p>
+<dd><p>Get current control information field value.</p>
 </dd></dl>
 
 </dd></dl>

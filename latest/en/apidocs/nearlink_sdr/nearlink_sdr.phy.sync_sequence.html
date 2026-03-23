@@ -518,10 +518,10 @@
 </ul>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>link_id_24</strong> – 24位逻辑链路标识，None表示广播帧</p>
+<dd class="field-odd"><p><strong>link_id_24</strong> – link_id_24: 24-bit logical link identifier, None for broadcast frames.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>32比特同步序列</p>
+<dd class="field-even"><p>32-bit sync sequence</p>
 </dd>
 </dl>
 </dd></dl>
@@ -537,10 +537,10 @@
 </ul>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>link_id_24</strong> – 24位逻辑链路标识，None表示广播帧</p>
+<dd class="field-odd"><p><strong>link_id_24</strong> – link_id_24: 24-bit logical link identifier, None for broadcast frames.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>64比特同步序列</p>
+<dd class="field-even"><p>64-bit sync sequence</p>
 </dd>
 </dl>
 </dd></dl>
@@ -552,10 +552,10 @@
 <p>Standard 6.2.3.3: concatenation of two identical length-31 m-sequences. After BPSK modulation, produces 62 symbols.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>m_seq_index</strong> – m31序列编号 0~5，基础广播信道为0</p>
+<dd class="field-odd"><p><strong>m_seq_index</strong> – m31 sequence index 0~5, base broadcast channel is 0</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>62比特序列</p>
+<dd class="field-even"><p>62-bit sequence</p>
 </dd>
 </dl>
 </dd></dl>
@@ -567,10 +567,10 @@
 <p>Standard 6.2.3.4: concatenation of two identical length-63 m-sequences. After BPSK modulation, produces 126 symbols.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>m_seq_index</strong> – m63序列编号 0~5，基础广播信道为0</p>
+<dd class="field-odd"><p><strong>m_seq_index</strong> – m63 sequence index 0~5, base broadcast channel is 0</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>126比特序列</p>
+<dd class="field-even"><p>Generate the 126-bit sequence for sync signal 4.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -594,13 +594,13 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>seed</strong> – 128比特安全随机种子 (16字节)</p></li>
-<li><p><strong>time_param</strong> – 32比特时间参数 (如调度时隙号×2)</p></li>
+<li><p><strong>seed</strong> – 128-bit secure random seed (16 bytes)</p></li>
+<li><p><strong>time_param</strong> – 32-bit time parameter (e.g. scheduling slot number × 2)</p></li>
 <li><p><strong>kdf_type</strong> – 0=AES-CMAC, 1=HMAC-SM3</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>256比特数组</p>
+<dd class="field-even"><p>256-bit array</p>
 </dd>
 </dl>
 </dd></dl>
@@ -613,9 +613,9 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>security_seq</strong> – 256比特安全序列</p></li>
-<li><p><strong>n_sync</strong> – 同步序列长度 (32, 64, 128)</p></li>
-<li><p><strong>is_tx</strong> – True=先发节点, False=后发节点</p></li>
+<li><p><strong>security_seq</strong> – 256-bit secure sequence</p></li>
+<li><p><strong>n_sync</strong> – sync sequence length (32, 64, 128)</p></li>
+<li><p><strong>is_tx</strong> – True= initiator node, False= responder node</p></li>
 </ul>
 </dd>
 </dl>
@@ -629,10 +629,10 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>seed</strong> – 安全随机种子 (16字节)</p></li>
-<li><p><strong>slot_number</strong> – 起始调度时隙号</p></li>
-<li><p><strong>n_sync</strong> – 同步序列长度 [32, 64, 128]</p></li>
-<li><p><strong>is_tx</strong> – True=先发节点, False=后发节点</p></li>
+<li><p><strong>seed</strong> – secure random seed (16 byte)</p></li>
+<li><p><strong>slot_number</strong> – start scheduling slot number</p></li>
+<li><p><strong>n_sync</strong> – sync sequence length [32, 64, 128]</p></li>
+<li><p><strong>is_tx</strong> – True= initiator node, False= responder node</p></li>
 <li><p><strong>kdf_type</strong> – 0=AES-CMAC, 1=HMAC-SM3</p></li>
 </ul>
 </dd>
@@ -647,10 +647,10 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>seed</strong> – 安全随机种子 (16字节)</p></li>
-<li><p><strong>slot_number</strong> – 起始调度时隙号</p></li>
-<li><p><strong>n_sync</strong> – 同步序列长度 [32, 64, 128]</p></li>
-<li><p><strong>is_tx</strong> – True=先发节点, False=后发节点</p></li>
+<li><p><strong>seed</strong> – secure random seed (16 byte)</p></li>
+<li><p><strong>slot_number</strong> – start scheduling slot number</p></li>
+<li><p><strong>n_sync</strong> – sync sequence length [32, 64, 128]</p></li>
+<li><p><strong>is_tx</strong> – True= initiator node, False= responder node</p></li>
 <li><p><strong>kdf_type</strong> – 0=AES-CMAC, 1=HMAC-SM3</p></li>
 </ul>
 </dd>

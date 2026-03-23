@@ -504,13 +504,13 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>radio_ft</strong> – 无线帧类型 (1-4)。</p></li>
-<li><p><strong>m_index</strong> – m 序列索引。</p></li>
-<li><p><strong>cyclic_shift</strong> – 循环移位量。</p></li>
+<li><p><strong>radio_ft</strong> – Wireless frame type (1-4).</p></li>
+<li><p><strong>m_index</strong> – m-sequence index.</p></li>
+<li><p><strong>cyclic_shift</strong> – Cyclic shift amount.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>NACK 反馈序列比特数组。</p>
+<dd class="field-even"><p>NACK feedback sequence bit array.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -523,14 +523,14 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>radio_ft</strong> – 无线帧类型 (1-4), 决定 m 序列长度。</p></li>
-<li><p><strong>m_index</strong> – m 序列索引, 由高层信令配置。</p></li>
-<li><p><strong>cyclic_shift</strong> – m 序列循环移位量, 由高层信令配置。</p></li>
-<li><p><strong>symbol_rate_mhz</strong> – 符号速率, 用于前导码生成。</p></li>
+<li><p><strong>radio_ft</strong> – Radio frame type, used to determine the m-sequence length for semi-reliable multicast feedback.</p></li>
+<li><p><strong>m_index</strong> – m-sequence index, configured by higher layer signaling.</p></li>
+<li><p><strong>cyclic_shift</strong> – m-sequence cyclic shift amount, configured by higher layer signaling.</p></li>
+<li><p><strong>symbol_rate_mhz</strong> – Symbol rate, used for preamble generation.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>NACK 反馈序列比特数组 (不含前导和同步, 由调用者拼接)。</p>
+<dd class="field-even"><p>NACK feedback sequence bit array (excluding preamble and sync, to be concatenated by the caller).</p>
 </dd>
 </dl>
 </dd></dl>
@@ -542,10 +542,10 @@
 <p>When the last bit of the sync signal is 1: 0101 (MSB first). When the last bit of the sync signal is 0: 1010 (MSB first).</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>sync_last_bit</strong> – 同步信号的最后一个比特值 (0 或 1)。</p>
+<dd class="field-odd"><p><strong>sync_last_bit</strong> – sync_last_bit: Last bit value of the sync signal (0 or 1).</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>4 比特均衡保护序列。</p>
+<dd class="field-even"><p>4-bit equalization guard sequence.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -599,10 +599,10 @@
 <p>Initiator node: preamble | sync signal | equalization guard | switch gap | measurement signal. Responder node: measurement signal | switch gap | preamble | sync signal | equalization guard.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>config</strong> – 测量帧配置。</p>
+<dd class="field-odd"><p><strong>config</strong> – Measurement frame configuration parameters.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>组装后的帧比特/符号序列。</p>
+<dd class="field-even"><p>Assembled frame bit/symbol sequence.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -614,10 +614,10 @@
 <p>Contains only the measurement signal.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>config</strong> – 测量帧配置。</p>
+<dd class="field-odd"><p><strong>config</strong> – Measurement frame configuration parameters.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>测量信号序列。</p>
+<dd class="field-even"><p>Contains only the measurement signal.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -630,10 +630,10 @@
 <p>Used for the initialization phase of position measurement event groups.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>config</strong> – 测量帧配置。</p>
+<dd class="field-odd"><p><strong>config</strong> – Measurement frame configuration parameters.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>组装后的帧比特/符号序列。</p>
+<dd class="field-even"><p>Assembled frame bit/symbol sequence.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -646,10 +646,10 @@
 <p>Used for the initialization synchronization phase of UWB pulse measurement. The measurement signal should be narrowband waveform measurement signal 1 or narrowband waveform measurement signal 2 with N=1.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>config</strong> – 测量帧配置。</p>
+<dd class="field-odd"><p><strong>config</strong> – Measurement frame configuration parameters.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>组装后的帧比特/符号序列。</p>
+<dd class="field-even"><p>Assembled frame bit/symbol sequence.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -746,10 +746,10 @@
 <p>The sync field consists of N_sync identical repeated symbols, each undergoing zero-insertion time-domain spreading. Total length: N_sync * K * L chips.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>config</strong> – UWB 脉冲配置。</p>
+<dd class="field-odd"><p><strong>config</strong> – UWB pulse configuration.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>同步字段码片序列。</p>
+<dd class="field-even"><p>Synchronization field chip sequence.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -769,12 +769,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>config</strong> – UWB 脉冲配置。</p></li>
-<li><p><strong>cts_symbol_seq</strong> – CTS 测量符号序列, 默认使用 config.symbol_seq。</p></li>
+<li><p><strong>config</strong> – UWB pulse configuration.</p></li>
+<li><p><strong>cts_symbol_seq</strong> – CTS measurement symbol sequence, defaults to config.symbol_seq.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>测量字段码片序列。</p>
+<dd class="field-even"><p>Measurement field chip sequence.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -787,12 +787,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>config</strong> – UWB 脉冲配置。</p></li>
-<li><p><strong>cts_symbol_seq</strong> – CTS 测量符号序列, 默认使用同步符号序列。</p></li>
+<li><p><strong>config</strong> – UWB pulse configuration.</p></li>
+<li><p><strong>cts_symbol_seq</strong> – CTS measurement symbol sequence, defaults to the synchronization symbol sequence.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>完整帧码片序列。</p>
+<dd class="field-even"><p>Full frame chip sequence.</p>
 </dd>
 </dl>
 </dd></dl>

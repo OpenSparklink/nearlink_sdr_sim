@@ -405,7 +405,7 @@
 <li><p>Initialization vector computation</p></li>
 <li><p>Session key derivation (clause 9.3.1.1)</p></li>
 <li><p>linkkeyand DH Key validatecodekey (9.3.4.4)</p></li>
-<li><p>acknowledgmentcodegenerate (9.3.4.3)</p></li>
+<li><p>Confirmation code generation (9.3.4.3)</p></li>
 <li><p>DH Key validatecode (9.3.4.5)</p></li>
 <li><p>6-digit numeric comparison code (9.3.4.6)</p></li>
 <li><p>Obfuscation algorithm (clause 9.3.4.7)</p></li>
@@ -423,7 +423,7 @@
 <td><p>Key derivation function type</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.crypto.AuthMethod" title="nearlink_sdr.mac.crypto.AuthMethod"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AuthMethod</span></code></a></p></td>
-<td><p>authenticationmethod (9.3.4.3)</p></td>
+<td><p>Authentication method (9.3.4.3)</p></td>
 </tr>
 </tbody>
 </table>
@@ -465,13 +465,13 @@
 <td><p>Derive session key.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.crypto.derive_link_key" title="nearlink_sdr.mac.crypto.derive_link_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">derive_link_key</span></code></a></p></td>
-<td><p>Link Key = KDF(dh_key_low128, “lk” || Ra || Rb || G_addr || T_addr)。</p></td>
+<td><p>Link Key = KDF(dh_key_low128, “lk” || Ra || Rb || G_addr || T_addr).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.crypto.derive_dh_verify_key" title="nearlink_sdr.mac.crypto.derive_dh_verify_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">derive_dh_verify_key</span></code></a></p></td>
 <td><p>DH Key validatecodekey = KDF(dh_key_low128, “dk” || …).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.crypto.generate_confirm_code" title="nearlink_sdr.mac.crypto.generate_confirm_code"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_confirm_code</span></code></a></p></td>
-<td><p>generateacknowledgmentcode (16 bytes).</p></td>
+<td><p>Generate confirmation code (16 bytes).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.crypto.generate_dh_verify_code" title="nearlink_sdr.mac.crypto.generate_dh_verify_code"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_dh_verify_code</span></code></a></p></td>
 <td><p>generate DH Key validatecode (16 bytes).</p></td>
@@ -483,13 +483,13 @@
 <td><p>Obfuscation algorithm, returns 16-byte obfuscation code.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.crypto.generate_group_key" title="nearlink_sdr.mac.crypto.generate_group_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_group_key</span></code></a></p></td>
-<td><p>GK = KDF(RAND1, RAND2)。</p></td>
+<td><p>GK = KDF(RAND1, RAND2).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.crypto.derive_group_session_key" title="nearlink_sdr.mac.crypto.derive_group_session_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">derive_group_session_key</span></code></a></p></td>
 <td><p>Derive multicast session key.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.mac.crypto.derive_kg" title="nearlink_sdr.mac.crypto.derive_kg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">derive_kg</span></code></a></p></td>
-<td><p>Kg = KDF(link_key, rand)。</p></td>
+<td><p>Kg = KDF(link_key, rand).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.mac.crypto.generate_resolvable_address" title="nearlink_sdr.mac.crypto.generate_resolvable_address"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_resolvable_address</span></code></a></p></td>
 <td><p>Generate a resolvable random identifier (48 bits).</p></td>
@@ -528,7 +528,7 @@
 <dt class="sig sig-object py" id="nearlink_sdr.mac.crypto.AuthMethod">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.crypto.</span></span><span class="sig-name descname"><span class="pre">AuthMethod</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/crypto.html#AuthMethod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.crypto.AuthMethod" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></a></p>
-<p>authenticationmethod (9.3.4.3)</p>
+<p>Authentication method (9.3.4.3)</p>
 <p class="rubric">Initialization</p>
 <p>Initialize self. See help(type(self)) for accurate signature.</p>
 <dl class="py attribute">
@@ -595,13 +595,13 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>seed</strong> – 128比特安全随机种子 (16字节)</p></li>
-<li><p><strong>time_param</strong> – 32比特时间参数 (如调度时隙号*2)</p></li>
-<li><p><strong>kdf_type</strong> – KDF 类型</p></li>
+<li><p><strong>seed</strong> – 128-bit secure random seed (16 bytes)</p></li>
+<li><p><strong>time_param</strong> – 32-bit time parameter (e.g. scheduling slot number * 2)</p></li>
+<li><p><strong>kdf_type</strong> – KDF type</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>32 字节安全序列</p>
+<dd class="field-even"><p>32-byte secure sequence</p>
 </dd>
 </dl>
 </dd></dl>
@@ -649,7 +649,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.crypto.derive_link_key">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.crypto.</span></span><span class="sig-name descname"><span class="pre">derive_link_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.mac.crypto.KdfType" title="nearlink_sdr.mac.crypto.KdfType"><span class="pre">nearlink_sdr.mac.crypto.KdfType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dh_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rb</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">g_addr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_addr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/crypto.html#derive_link_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.crypto.derive_link_key" title="Link to this definition">¶</a></dt>
-<dd><p>Link Key = KDF(dh_key_low128, “lk” || Ra || Rb || G_addr || T_addr)。</p>
+<dd><p>Link Key = KDF(dh_key_low128, “lk” || Ra || Rb || G_addr || T_addr).</p>
 </dd></dl>
 
 <dl class="py function">
@@ -661,8 +661,8 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.crypto.generate_confirm_code">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.crypto.</span></span><span class="sig-name descname"><span class="pre">generate_confirm_code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.mac.crypto.KdfType" title="nearlink_sdr.mac.crypto.KdfType"><span class="pre">nearlink_sdr.mac.crypto.KdfType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">auth_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.mac.crypto.AuthMethod" title="nearlink_sdr.mac.crypto.AuthMethod"><span class="pre">nearlink_sdr.mac.crypto.AuthMethod</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">g_pubkey</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_pubkey</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">obfuscated</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">b''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_g_node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/crypto.html#generate_confirm_code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.crypto.generate_confirm_code" title="Link to this definition">¶</a></dt>
-<dd><p>generateacknowledgmentcode (16 bytes).</p>
-<p>random_value: Ra (Gnode) or Rb (Tnode), PSKauthenticationwhenis PSK obfuscated: passkey/passwordauthenticationobfuscationcode, PSKauthenticationpeerrandom number</p>
+<dd><p>Generate confirmation code (16 bytes).</p>
+<p>random_value: Ra (G node) or Rb (T node), for PSK authentication is PSK obfuscated: obfuscation code for passkey/password authentication, peer random number for PSK authentication</p>
 </dd></dl>
 
 <dl class="py function">
@@ -688,7 +688,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.crypto.generate_group_key">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.crypto.</span></span><span class="sig-name descname"><span class="pre">generate_group_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.mac.crypto.KdfType" title="nearlink_sdr.mac.crypto.KdfType"><span class="pre">nearlink_sdr.mac.crypto.KdfType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rand1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rand2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/crypto.html#generate_group_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.crypto.generate_group_key" title="Link to this definition">¶</a></dt>
-<dd><p>GK = KDF(RAND1, RAND2)。</p>
+<dd><p>GK = KDF(RAND1, RAND2).</p>
 </dd></dl>
 
 <dl class="py function">
@@ -701,17 +701,17 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.crypto.derive_kg">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.crypto.</span></span><span class="sig-name descname"><span class="pre">derive_kg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.mac.crypto.KdfType" title="nearlink_sdr.mac.crypto.KdfType"><span class="pre">nearlink_sdr.mac.crypto.KdfType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/crypto.html#derive_kg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.crypto.derive_kg" title="Link to this definition">¶</a></dt>
-<dd><p>Kg = KDF(link_key, rand)。</p>
+<dd><p>Kg = KDF(link_key, rand).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.crypto.generate_resolvable_address">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.mac.crypto.</span></span><span class="sig-name descname"><span class="pre">generate_resolvable_address</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.mac.crypto.KdfType" title="nearlink_sdr.mac.crypto.KdfType"><span class="pre">nearlink_sdr.mac.crypto.KdfType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">irk</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rand_part</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/mac/crypto.html#generate_resolvable_address"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.mac.crypto.generate_resolvable_address" title="Link to this definition">¶</a></dt>
 <dd><p>Generate a resolvable random identifier (48 bits).</p>
-<p>hash_part = KDF(IRK, rand_part) mod 2^16</p>
+<p>hash_part = KDF(IRK, rand_part) mod 2^16 Returns: upper 16-bit tag || middle 16-bit random || lower 16-bit hash</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>高16位标记 || 中16位随机 || 低16位hash</p>
+<dd class="field-odd"><p>High 16-bit flag || middle 16-bit random || low 16-bit hash</p>
 </dd>
 </dl>
 </dd></dl>

@@ -480,13 +480,13 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>bits</strong> – 输入比特序列 b_0..b_{B-1}, 其中 B = K + L (信息位 + CRC)。</p></li>
-<li><p><strong>rate_str</strong> – 目标码率字符串。</p></li>
-<li><p><strong>crc_len</strong> – L, 已追加到 bits 末尾的 CRC 长度。</p></li>
+<li><p><strong>bits</strong> – input bit sequence b_0..b_{B-1}, where B = K + L (information bits + CRC).</p></li>
+<li><p><strong>rate_str</strong> – target code rate string.</p></li>
+<li><p><strong>crc_len</strong> – L, CRC length already appended to the end of bits.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>每个分段的 (码长 N, 信息比特) 元组列表。</p>
+<dd class="field-even"><p>List of (code_length N, info_bits) tuples for each segment.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -499,13 +499,12 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>bits</strong> – 输入比特序列 b_0..b_{B-1}。</p></li>
-<li><p><strong>rate_str</strong> – 目标码率字符串。</p></li>
+<li><p><strong>bits</strong> – input bit sequence b_0..b_{B-1}.</p></li>
+<li><p><strong>rate_str</strong> – target code rate string.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>每个分段的 (码长 N, 含 CRC 的信息比特) 元组列表。
-最后一个分段可能进一步做子分割。</p>
+<dd class="field-even"><p>List of (code_length N, info_bits_with_CRC) tuples for each segment.     The last segment may be further sub-segmented.</p>
 </dd>
 </dl>
 </dd></dl>

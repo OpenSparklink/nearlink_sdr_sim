@@ -777,7 +777,7 @@
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.EventTimingParams.supervision_timeout_us">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">supervision_timeout_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.scheduler.EventTimingParams.supervision_timeout_us" title="Link to this definition">¶</a></dt>
-<dd><p>timeouttime (μs)。</p>
+<dd><p>Timeout (μs).</p>
 </dd></dl>
 
 <dl class="py property">
@@ -824,10 +824,10 @@
 <dd><p>Calculate all absolute time intervals after expanding this time slice.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>slot_us</strong> – 调度时隙的微秒值。</p>
+<dd class="field-odd"><p><strong>slot_us</strong> – Microsecond value of the current scheduling time slot.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>[(start_us, end_us), …] 时间区间列表。</p>
+<dd class="field-even"><p>[(start_us, end_us), …] list of time intervals.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -884,7 +884,7 @@
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.mac.scheduler.SmfScheduleConfig.smf_interval_us">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">smf_interval_us</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.mac.scheduler.SmfScheduleConfig.smf_interval_us" title="Link to this definition">¶</a></dt>
-<dd><p>SMF interval (μs)。</p>
+<dd><p>SMF interval (μs).</p>
 </dd></dl>
 
 </dd></dl>
@@ -980,7 +980,7 @@
 <dd><p>Calculate the active interval (from SMF to the end of the last time slice).</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>(start_us, end_us) 活动区间。start_us 始终为 0 (SMF 起始)。</p>
+<dd class="field-odd"><p>(start_us, end_us) active interval.start_us always 0 (SMF start).</p>
 </dd>
 </dl>
 </dd></dl>
@@ -991,7 +991,7 @@
 <dd><p>Detect time slice conflicts.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>冲突列表 [(link_id_a, link_id_b, overlap_start, overlap_end), …]。</p>
+<dd class="field-odd"><p>Conflict list [(link_id_a, link_id_b, overlap_start, overlap_end), …].</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1034,10 +1034,10 @@
 <dd><p>Calculate the start time of each event within the specified event group.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>group_index</strong> – 第几个事件组 (从 0 开始)。</p>
+<dd class="field-odd"><p><strong>group_index</strong> – Event group index (starting from 0).</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>事件起始时间列表 (μs, 绝对时间)。</p>
+<dd class="field-even"><p>Event start time list (us, absolute time).</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1048,10 +1048,10 @@
 <dd><p>Calculate the time interval of the initiator window in an event.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>event_start_us</strong> – 事件起始时间 (μs)。</p>
+<dd class="field-odd"><p><strong>event_start_us</strong> – Event start time (μs).</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>(start_us, end_us) 先发窗口区间。</p>
+<dd class="field-even"><p>(start_us, end_us) first-send window interval.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1062,10 +1062,10 @@
 <dd><p>Calculate the time interval of the responder window in an event.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>event_start_us</strong> – 事件起始时间 (μs)。</p>
+<dd class="field-odd"><p><strong>event_start_us</strong> – Event start time (μs).</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>(start_us, end_us) 后发窗口区间。</p>
+<dd class="field-even"><p>(start_us, end_us) second-send window interval.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1077,7 +1077,7 @@
 <p>Return the start time, initiator window, and responder window for each event.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>group_index</strong> – 事件组索引。</p>
+<dd class="field-odd"><p><strong>group_index</strong> – Event group scheduler.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>[{“event_start”: int, “tx_window”: (s, e), “rx_window”: (s, e)}, …]</p>
@@ -1091,10 +1091,10 @@
 <dd><p>Calculate the start time of the next event group.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>current_us</strong> – 当前时间 (μs)。</p>
+<dd class="field-odd"><p><strong>current_us</strong> – Current time (μs).</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>下一个事件组起始时间 (μs)。</p>
+<dd class="field-even"><p>Calculate the start time of the next event group.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1239,11 +1239,11 @@
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>link_id</strong> – 逻辑链路标识。</p></li>
-<li><p><strong>timing</strong> – 事件计时参数。</p></li>
-<li><p><strong>time_slices</strong> – 超帧内时间片列表 (可选)。</p></li>
-<li><p><strong>anchor_slot</strong> – 事件组锚点时隙。</p></li>
-<li><p><strong>anchor_offset_us</strong> – 事件组起始偏移 (μs)。</p></li>
+<li><p><strong>link_id</strong> – logical link identifier.</p></li>
+<li><p><strong>timing</strong> – Event timing parameter.</p></li>
+<li><p><strong>time_slices</strong> – Superframe duration (us).</p></li>
+<li><p><strong>anchor_slot</strong> – Event group anchor slot.</p></li>
+<li><p><strong>anchor_offset_us</strong> – Event group period (us).</p></li>
 </ul>
 </dd>
 </dl>
@@ -1279,7 +1279,7 @@
 <dd><p>Update transceive interval type.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>更新后的间隔值 (μs)。</p>
+<dd class="field-odd"><p>Updated interval value (μs).</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1291,7 +1291,7 @@
 <p>Determine whether the current time exceeds anchor + timeout limit based on the event group scheduler timeout parameters.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>True 表示已超时。</p>
+<dd class="field-odd"><p>True indicates timed out.</p>
 </dd>
 </dl>
 </dd></dl>
