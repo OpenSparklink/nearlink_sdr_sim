@@ -258,6 +258,7 @@ MAJOR.MINOR.PATCH[-PRERELEASE][+BUILDMETADATA]
 | - | SLE 节点实体类 (全功能集成) | 完成 | `node.py` |
 | - | USRP 环回仿真引擎 | 完成 | `sim/usrp_sim.py` |
 | - | USRP 环回仿真测试 | 完成 | `tests/test_usrp_sim.py` |
+| - | SDR 后端抽象层 (Mock/Pluto/UHD) | 完成 | `phy/sdr_backend.py`, `phy/mock_backend.py`, `phy/pluto_backend.py`, `phy/uhd_backend.py` |
 | 6.10.7 | 安全随机函数 | 完成 | `mac/crypto.py` |
 | 6.5.1 | 异步数据链路参数/流控 | 完成 | `phy/data_link.py` |
 | 6.5.2 | 同步数据链路参数/流控/丢弃 | 完成 | `phy/data_link.py` |
@@ -317,7 +318,7 @@ MAJOR.MINOR.PATCH[-PRERELEASE][+BUILDMETADATA]
 
 ## 测试质量
 
-- 2652 个测试用例, 全部通过 (crypto 依赖测试除外)
+- 2691 个测试用例, 全部通过 (crypto 依赖测试除外)
 - 整体覆盖率 91%, 核心模块覆盖率 97%+, 测试执行时间 5 秒 (Rust 加速)
 - 标准第 14 章测试向量全部验证通过
 - 一致性测试 244 个 (协议/射频/安全)
