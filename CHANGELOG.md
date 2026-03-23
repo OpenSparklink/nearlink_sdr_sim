@@ -5,6 +5,13 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/),
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.0.8-rc.1] - 2026-03-24
+
+### Fixed
+
+- autodoc2 参数/返回值解析: 32 个源文件从 Google 风格 docstring 转为 field list 格式
+- 英文翻译同步: 867 个 .po 条目翻译/修复, 0 fuzzy / 0 empty
+
 ## [1.0.7] - 2026-03-24
 
 ### Fixed
