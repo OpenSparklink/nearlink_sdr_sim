@@ -1,4 +1,4 @@
-"""Code block segmentation per TXS-10002-2025 sections 6.9.1.2 and 6.9.1.3."""
+"""码块分割 -- TXS-10002-2025 标准 6.9.1.2 / 6.9.1.3 节。"""
 
 import math
 
@@ -7,15 +7,15 @@ import numpy as np
 from nearlink_sdr.common.crc import CRC24B_POLY, crc_calculate
 from nearlink_sdr.common.polar import RATE_TABLE
 
-# Table 24: alternative rate matching table for 6.9.1.2 (without CRC segmentation)
+# 表 24：6.9.1.2（无 CRC 分割）备用速率匹配表
 RATE_TABLE_2 = {
     "5/8": {1024: 640, 512: 316, 256: 156, 128: 74, 64: 36},
     "3/4": {1024: 768, 512: 382, 256: 189, 128: 90, 64: 45},
     "7/8": {1024: 896, 512: 446, 256: 221, 128: 106, 64: 53},
 }
 
-# Table 20: segmentation lookup table
-# index -> (N512, N256, N128)
+# 表 20：分割查表
+# 索引 -> (N512, N256, N128)
 _SEG_TABLE_20 = [
     (0, 0, 0),  # 0
     (0, 0, 1),  # 1
@@ -51,10 +51,10 @@ def _get_rate_value(rate_str: str) -> float:
 
 
 def _get_k_for_segmentation(rate_str: str, use_table24: bool = False) -> dict[int, int]:
-    """Get K values for each code length at the given rate.
+    """获取给定码率下各码长对应的 K 值。
 
-    For 6.9.1.2 (without CRC), use_table24=True for rates in Table 24.
-    For 6.9.1.3 (with CRC), always use Table 23.
+    6.9.1.2（无 CRC 分割）时, 若码率在表 24 中则 use_table24=True。
+    6.9.1.3（含 CRC 分割）时, 始终使用表 23。
     """
     if use_table24 and rate_str in RATE_TABLE_2:
         return RATE_TABLE_2[rate_str]
@@ -66,22 +66,22 @@ def segment_without_crc(
     rate_str: str,
     crc_len: int = 0,
 ) -> list[tuple[int, np.ndarray]]:
-    """Code block segmentation without per-block CRC (section 6.9.1.2).
+    """无逐码块 CRC 的码块分割 (标准 6.9.1.2 节)。
 
-    Used for frame type 2.
+    适用于帧类型 2。
 
-    Args:
-        bits: input bit sequence b_0..b_{B-1}, where B = K + L (info + CRC).
-        rate_str: target code rate string.
-        crc_len: L, the CRC length already appended to bits.
+    参数:
+        bits: 输入比特序列 b_0..b_{B-1}, 其中 B = K + L (信息位 + CRC)。
+        rate_str: 目标码率字符串。
+        crc_len: L, 已追加到 bits 末尾的 CRC 长度。
 
-    Returns:
-        List of (code_length_N, info_bits) tuples for each segment.
+    返回:
+        每个分段的 (码长 N, 信息比特) 元组列表。
     """
     B = len(bits)
     R = _get_rate_value(rate_str)
 
-    # K values for each code length from Table 24 (if available) or Table 23
+    # 各码长对应的 K 值，优先取表 24（若有），否则取表 23
     k_table = _get_k_for_segmentation(rate_str, use_table24=True)
     K_1024 = k_table[1024]
     K_512 = k_table[512]
@@ -89,7 +89,7 @@ def segment_without_crc(
     K_128 = k_table[128]
     K_64 = k_table[64]
 
-    # Step 1: determine N_1024
+    # 步骤 1：确定 N_1024
     threshold = R * (1024 + 512 + 256 + 128)
     if threshold < B:
         N_1024 = math.floor(
@@ -100,17 +100,17 @@ def segment_without_crc(
         N_1024 = 0
         K_m = B
 
-    # Step 2: Table 20 lookup
+    # 步骤 2：查表 20
     index = 0 if K_m <= 0 else math.floor((K_m - 1) / (128 * R))
 
-    index = min(index, 14)  # clamp to table range
+    index = min(index, 14)  # 限制在表范围内
     N_512, N_256, N_128 = _SEG_TABLE_20[index]
 
-    # Step 3: N_64
+    # 步骤 3：N_64
     remaining = K_m - N_512 * K_512 - N_256 * K_256 - N_128 * K_128
     N_64 = math.ceil(remaining / K_64) if remaining > 0 else 0
 
-    # Build output segments
+    # 构建输出分段
     segments = []
     pos = 0
 
@@ -139,7 +139,7 @@ def segment_without_crc(
             seg_bits = bits[pos : pos + K_64]
             pos += K_64
         else:
-            # Last N_64 block takes remaining bits (may be < K_64)
+            # 最后一个 N_64 块取剩余比特（可能 < K_64）
             seg_bits = bits[pos:]
             pos = len(bits)
         segments.append((64, seg_bits))
@@ -151,26 +151,26 @@ def segment_with_crc(
     bits: np.ndarray,
     rate_str: str,
 ) -> list[tuple[int, np.ndarray]]:
-    """Code block segmentation with per-block CRC24B (section 6.9.1.3).
+    """含逐码块 CRC24B 的码块分割 (标准 6.9.1.3 节)。
 
-    Used for frame type 3 and 4.
+    适用于帧类型 3 和 4。
 
-    Args:
-        bits: input bit sequence b_0..b_{B-1}.
-        rate_str: target code rate string.
+    参数:
+        bits: 输入比特序列 b_0..b_{B-1}。
+        rate_str: 目标码率字符串。
 
-    Returns:
-        List of (code_length_N, info_bits_with_crc) tuples for each segment.
-        For the last segment, further sub-segmentation may be applied.
+    返回:
+        每个分段的 (码长 N, 含 CRC 的信息比特) 元组列表。
+        最后一个分段可能进一步做子分割。
     """
     B = len(bits)
     _get_rate_value(rate_str)  # validate
 
-    # K_cb: max info bits for 1024 code length at rate R
+    # K_cb：码率 R 下 1024 码长的最大信息位数
     k_table = RATE_TABLE[rate_str]
     K_cb = k_table[1024]
 
-    # Determine number of code blocks
+    # 确定码块数量
     if K_cb >= B:
         C = 1
         L = 0
@@ -183,23 +183,23 @@ def segment_with_crc(
     pos = 0
 
     if C == 1:
-        # Single segment, no per-block CRC
+        # 单分段，无逐块 CRC
         segments.append((1024, bits.copy()))
     else:
         for r in range(C):
             K_r = K_cb if r <= C - 2 else B - (C - 1) * (K_cb - L) + L
 
-            # Extract info bits for this segment
+            # 提取本分段的信息位
             info_len = K_r - L
             seg_info = bits[pos : pos + info_len]
             pos += info_len
 
-            # Append CRC24B
+            # 追加 CRC24B
             crc_bits = crc_calculate(seg_info, CRC24B_POLY, 24)
             seg_with_crc = np.concatenate([seg_info, crc_bits])
             segments.append((1024, seg_with_crc))
 
-    # For the last segment, apply further sub-segmentation per the standard
+    # 对最后一个分段按标准进行子分割
     if len(segments) > 0:
         _, last_bits = segments[-1]
         sub_segs = _subsegment_last_block(last_bits, rate_str)
@@ -213,18 +213,18 @@ def _subsegment_last_block(
     bits: np.ndarray,
     rate_str: str,
 ) -> list[tuple[int, np.ndarray]] | None:
-    """Further sub-segment the last code block per section 6.9.1.3.
+    """按标准 6.9.1.3 节对最后一个码块进行子分割。
 
-    Returns None if no sub-segmentation is needed (K_r fits in 1024 at rate R).
+    若无需子分割（K_r 在码率 R 下可放入 1024 块中）则返回 None。
     """
     K_r = len(bits)
     _get_rate_value(rate_str)  # validate
     k_table = RATE_TABLE[rate_str]
     K_1024 = k_table[1024]
 
-    # Check if it fits directly in a 1024 block
+    # 检查是否可直接放入 1024 块
     if K_r <= K_1024:
-        # No sub-segmentation, pad if needed
+        # 无需子分割，按需填充
         if K_r < K_1024:
             padded = np.concatenate([
                 np.zeros(K_1024 - K_r, dtype=np.int8),
@@ -234,6 +234,6 @@ def _subsegment_last_block(
             padded = bits
         return [(1024, padded)]
 
-    # K_r > K_1024: K_1024 > 1024 * R_adj for all standard rates,
-    # so this always truncates to K_1024.
+    # K_r > K_1024：对所有标准码率均有 K_1024 > 1024 * R_adj，
+    # 因此始终截断至 K_1024。
     return [(1024, bits[:K_1024])]

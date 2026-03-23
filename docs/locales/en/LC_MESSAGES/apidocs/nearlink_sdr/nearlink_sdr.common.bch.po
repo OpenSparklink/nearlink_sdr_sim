@@ -1,0 +1,116 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the nearlink-sdr
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: nearlink-sdr 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.bch.md:1
+#, python-brace-format
+msgid "{py:mod}`nearlink_sdr.common.bch`"
+msgstr "{py:mod}`nearlink_sdr.common.bch`"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.bch.md:10
+msgid "Module Contents"
+msgstr "Module Contents"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.bch.md:12
+msgid "Functions"
+msgstr "Functions"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.bch.md:18
+#, python-brace-format
+msgid "{py:obj}`_gf2_poly_mod <nearlink_sdr.common.bch._gf2_poly_mod>`"
+msgstr "{py:obj}`_gf2_poly_mod <nearlink_sdr.common.bch._gf2_poly_mod>`"
+
+#: ../../../src/nearlink_sdr/common/bch.py:20
+#: ../../../src/nearlink_sdr/common/bch.py:54
+msgid "GF(2)多项式模运算。"
+msgstr "GF(2) polynomial modulo operation."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.bch.md:22
+#, python-brace-format
+msgid "{py:obj}`bch_31_26_encode <nearlink_sdr.common.bch.bch_31_26_encode>`"
+msgstr "{py:obj}`bch_31_26_encode <nearlink_sdr.common.bch.bch_31_26_encode>`"
+
+#: ../../../src/nearlink_sdr/common/bch.py:24
+#: ../../../src/nearlink_sdr/common/bch.py:81
+msgid "BCH(31,26)系统编码。"
+msgstr "BCH(31,26) systematic encoding."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.bch.md:26
+#, python-brace-format
+msgid "{py:obj}`bch_63_24_encode <nearlink_sdr.common.bch.bch_63_24_encode>`"
+msgstr "{py:obj}`bch_63_24_encode <nearlink_sdr.common.bch.bch_63_24_encode>`"
+
+#: ../../../src/nearlink_sdr/common/bch.py:28
+#: ../../../src/nearlink_sdr/common/bch.py:88
+msgid "BCH(63,24)系统编码。"
+msgstr "BCH(63,24) systematic encoding."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.bch.md:32
+msgid "Data"
+msgstr "Data"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.bch.md:38
+#, python-brace-format
+msgid "{py:obj}`BCH_31_26_GEN <nearlink_sdr.common.bch.BCH_31_26_GEN>`"
+msgstr "{py:obj}`BCH_31_26_GEN <nearlink_sdr.common.bch.BCH_31_26_GEN>`"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.bch.md:42
+#, python-brace-format
+msgid "{py:obj}`BCH_63_24_GEN <nearlink_sdr.common.bch.BCH_63_24_GEN>`"
+msgstr "{py:obj}`BCH_63_24_GEN <nearlink_sdr.common.bch.BCH_63_24_GEN>`"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.bch.md:48
+msgid "API"
+msgstr "API"
+
+#: ../../../src/nearlink_sdr/common/bch.py:56
+msgid "多项式用比特数组表示，索引i对应d^i的系数。"
+msgstr "The polynomial is represented as a bit array; index i corresponds to the coefficient of d^i."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.bch.md:61
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.bch.md:71
+msgid "'array(...)'"
+msgstr "'array(...)'"
+
+#: ../../../src/nearlink_sdr/common/bch.py:83
+msgid "按标准6.2.3.1:     C(d) = d^5 * Ã(d) mod G(d)     S(d) = Ã(d) + d^26 * C(d)"
+msgstr "Per standard 6.2.3.1:     C(d) = d^5 * Ã(d) mod G(d)     S(d) = Ã(d) + d^26 * C(d)"
+
+#: ../../../src/nearlink_sdr/common/bch.py:87
+msgid "参数:     info_26: 26比特信息序列（Ã(d)的系数，索引0=d^0）"
+msgstr "Args:     info_26: 26-bit information sequence (coefficients of Ã(d), index 0=d^0)"
+
+#: ../../../src/nearlink_sdr/common/bch.py:90
+msgid "返回:     31比特码字"
+msgstr "Returns:     31-bit codeword"
+
+#: ../../../src/nearlink_sdr/common/bch.py:90
+msgid "按标准6.2.3.2:     C(d) = d^39 * A(d) mod G(d)     S(d) = A(d) + d^24 * C(d)"
+msgstr "Per standard 6.2.3.2:     C(d) = d^39 * A(d) mod G(d)     S(d) = A(d) + d^24 * C(d)"
+
+#: ../../../src/nearlink_sdr/common/bch.py:94
+msgid "参数:     info_24: 24比特信息序列（A(d)的系数，索引0=d^0）"
+msgstr "Args:     info_24: 24-bit information sequence (coefficients of A(d), index 0=d^0)"
+
+#: ../../../src/nearlink_sdr/common/bch.py:97
+msgid "返回:     63比特码字"
+msgstr "Returns:     63-bit codeword"
+

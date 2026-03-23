@@ -1,0 +1,900 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the nearlink-sdr
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: nearlink-sdr 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../explanation/mac-layer.md:1
+msgid "MAC 层详解"
+msgstr "MAC Layer Details"
+
+#: ../../explanation/mac-layer.md:3
+msgid ""
+"本文详细解释 SparkLink SLE 数据链路层 (MAC 层) 的设计与实现, "
+"涵盖广播与发现、接入流程、链路管理状态机、帧结构与信令编解码、QoS 管理和时序调度, 对标 TXS-10002-2025 标准第 7 章。"
+msgstr "This document explains the design and implementation of the SparkLink SLE data link layer (MAC layer), covering broadcast and discovery, access procedures, link management state machines, frame structure and signaling codec, QoS management, and timing scheduling, cross-referenced against Chapter 7 of TXS-10002-2025."
+
+#: ../../explanation/mac-layer.md:5
+msgid "广播与发现 (§7.1.1-7.1.2)"
+msgstr "Broadcast and Discovery (§7.1.1-7.1.2)"
+
+#: ../../explanation/mac-layer.md:7
+msgid "广播是 SLE 建立通信的起点。G 节点周期性发送广播帧, T 节点通过扫描接收这些帧来发现附近的设备。"
+msgstr "Broadcasting is the starting point for SLE communication. The G node periodically transmits broadcast frames; T nodes scan these frames to discover nearby devices."
+
+#: ../../explanation/mac-layer.md:9
+msgid "广播帧的两级结构"
+msgstr "Two-Level Broadcast Frame Structure"
+
+#: ../../explanation/mac-layer.md:11
+msgid "SLE 广播帧分为两级:"
+msgstr "SLE broadcast frames have two levels:"
+
+#: ../../explanation/mac-layer.md:13
+msgid "**基础广播帧**: 使用 FT1 或 FT4 帧类型, 在 1 至 3 个广播信道上依次发送 3 次"
+msgstr "**Basic broadcast frame**: uses FT1 or FT4 frame type, transmitted 3 times sequentially on 1 to 3 broadcast channels"
+
+#: ../../explanation/mac-layer.md:14
+msgid "**扩展广播帧**: 紧随基础广播帧之后发送, 间隔不小于 300 $\\mu$s, 携带更多信息"
+msgstr "**Extended broadcast frame**: sent immediately after the basic broadcast frame with a minimum gap of 300 $\\mu$s, carrying additional information"
+
+#: ../../explanation/mac-layer.md:16
+msgid "基础广播帧提供设备发现所需的最少信息, 扩展广播帧则指示接入资源、传输参数、系统管理帧配置等详细内容。"
+msgstr "The basic broadcast frame provides the minimum information required for device discovery; the extended broadcast frame indicates access resources, transmission parameters, System Management Frame configuration, and other details."
+
+#: ../../explanation/mac-layer.md:18
+msgid "广播帧数据类型"
+msgstr "Broadcast Frame Data Types"
+
+#: ../../explanation/mac-layer.md:20
+msgid "广播帧内部由多个子信息条目组成, 每个条目包含类型索引和载荷, 标准定义了 11 种数据类型:"
+msgstr "A broadcast frame consists of multiple sub-info entries, each containing a type index and payload. The standard defines 11 data types:"
+
+#: ../../explanation/mac-layer.md
+msgid "索引"
+msgstr "Index"
+
+#: ../../explanation/mac-layer.md
+msgid "名称"
+msgstr "Name"
+
+#: ../../explanation/mac-layer.md
+msgid "用途"
+msgstr "Purpose"
+
+#: ../../explanation/mac-layer.md
+msgid "0x00"
+msgstr "0x00"
+
+#: ../../explanation/mac-layer.md
+msgid "发现接入资源配置"
+msgstr "Discovery access resource configuration"
+
+#: ../../explanation/mac-layer.md
+msgid "指示可用的接入资源时隙"
+msgstr "Indicates available access resource slots"
+
+#: ../../explanation/mac-layer.md
+msgid "0x01"
+msgstr "0x01"
+
+#: ../../explanation/mac-layer.md
+msgid "传输指示信息"
+msgstr "Transmission indication information"
+
+#: ../../explanation/mac-layer.md
+msgid "首次调度点参数 (58B)"
+msgstr "First scheduling point parameters (58B)"
+
+#: ../../explanation/mac-layer.md
+msgid "0x02"
+msgstr "0x02"
+
+#: ../../explanation/mac-layer.md
+msgid "接入基本信息"
+msgstr "Basic access information"
+
+#: ../../explanation/mac-layer.md
+msgid "设备能力和接入参数 (5B)"
+msgstr "Device capability and access parameters (5B)"
+
+#: ../../explanation/mac-layer.md
+msgid "0x03"
+msgstr "0x03"
+
+#: ../../explanation/mac-layer.md
+msgid "接入请求信息"
+msgstr "Access request information"
+
+#: ../../explanation/mac-layer.md
+msgid "T 节点发出的连接请求"
+msgstr "Connection request from T node"
+
+#: ../../explanation/mac-layer.md
+msgid "0x04"
+msgstr "0x04"
+
+#: ../../explanation/mac-layer.md
+msgid "接入响应信息"
+msgstr "Access response information"
+
+#: ../../explanation/mac-layer.md
+msgid "G 节点回复的连接结果"
+msgstr "Connection result replied by G node"
+
+#: ../../explanation/mac-layer.md
+msgid "0x05"
+msgstr "0x05"
+
+#: ../../explanation/mac-layer.md
+msgid "启动系统管理帧信息"
+msgstr "Start System Management Frame information"
+
+#: ../../explanation/mac-layer.md
+msgid "SMF 资源配置"
+msgstr "SMF resource configuration"
+
+#: ../../explanation/mac-layer.md
+msgid "0x06"
+msgstr "0x06"
+
+#: ../../explanation/mac-layer.md
+msgid "非链接态广播链路信息"
+msgstr "Non-connected state broadcast link information"
+
+#: ../../explanation/mac-layer.md
+msgid "无连接广播参数 (70B)"
+msgstr "Connectionless broadcast parameters (70B)"
+
+#: ../../explanation/mac-layer.md
+msgid "0x07"
+msgstr "0x07"
+
+#: ../../explanation/mac-layer.md
+msgid "查询请求过滤信息"
+msgstr "Query request filter information"
+
+#: ../../explanation/mac-layer.md
+msgid "服务发现过滤条件"
+msgstr "Service discovery filter conditions"
+
+#: ../../explanation/mac-layer.md
+msgid "0x08"
+msgstr "0x08"
+
+#: ../../explanation/mac-layer.md
+msgid "窄带跳频测量配置"
+msgstr "Narrowband frequency hopping measurement configuration"
+
+#: ../../explanation/mac-layer.md
+msgid "窄带定位参数"
+msgstr "Narrowband positioning parameters"
+
+#: ../../explanation/mac-layer.md
+msgid "0x09"
+msgstr "0x09"
+
+#: ../../explanation/mac-layer.md
+msgid "UWB 脉冲测量配置"
+msgstr "UWB pulse measurement configuration"
+
+#: ../../explanation/mac-layer.md
+msgid "超宽带定位参数"
+msgstr "UWB positioning parameters"
+
+#: ../../explanation/mac-layer.md
+msgid "0xFF"
+msgstr "0xFF"
+
+#: ../../explanation/mac-layer.md
+msgid "高层广播数据"
+msgstr "Upper-layer broadcast data"
+
+#: ../../explanation/mac-layer.md
+msgid "应用自定义数据"
+msgstr "Application-defined data"
+
+#: ../../explanation/mac-layer.md:36
+msgid ""
+"**代码实现**: `mac.broadcast` 模块定义了 `BroadcastDataType` 枚举和 21 种子信息数据类, 包括 "
+"`ExtAdvResourceConfig`, `DiscoveryAccessResourceConfig`, "
+"`AccessBasicInfo` 等, 每个类实现 `pack()`/`unpack()` 方法。`BroadcastFrame` "
+"封装了广播帧的整体编解码。"
+msgstr "**Implementation**: The `mac.broadcast` module defines the `BroadcastDataType` enum and 21 sub-information data classes, including `ExtAdvResourceConfig`, `DiscoveryAccessResourceConfig`, `AccessBasicInfo`, etc.; each class implements `pack()`/`unpack()`. `BroadcastFrame` encapsulates the overall broadcast frame encoding/decoding."
+
+#: ../../explanation/mac-layer.md:38
+msgid "发现流程 (§7.1.2)"
+msgstr "Discovery Procedure (§7.1.2)"
+
+#: ../../explanation/mac-layer.md:40
+msgid "发现设备 (T 节点) 监听基础广播帧和扩展广播帧, 从中提取设备信息。可选的主动查询流程:"
+msgstr "Discovering devices (T nodes) listen to basic and extended broadcast frames to extract device information. Optional active query procedure:"
+
+#: ../../explanation/mac-layer.md:42
+msgid "T 节点发送查询请求帧 (携带过滤信息)"
+msgstr "T node sends query request frame (with filter information)"
+
+#: ../../explanation/mac-layer.md:43
+msgid "G 节点回复查询响应帧"
+msgstr "G node replies with query response frame"
+
+#: ../../explanation/mac-layer.md:45
+msgid "**代码实现**: `mac.access.DiscoveryManager` 管理发现流程, 维护已发现设备列表。"
+msgstr "**Code implementation**: `mac.access.DiscoveryManager` manages the discovery procedure and maintains the discovered device list."
+
+#: ../../explanation/mac-layer.md:47
+msgid "广播帧过滤 (§7.1.5)"
+msgstr "Broadcast Frame Filtering (§7.1.5)"
+
+#: ../../explanation/mac-layer.md:49
+msgid "接收端可配置过滤规则, 只接收满足条件的广播帧, 支持按地址、接入类型等条件过滤。"
+msgstr "The receiver can configure filtering rules to accept only broadcast frames meeting certain conditions, supporting filtering by address, access type, etc."
+
+#: ../../explanation/mac-layer.md:51
+msgid ""
+"**代码实现**: `mac.broadcast.BroadcastFilter`, 使用 `FilterCondition` 和 "
+"`FilterOp` 定义规则。"
+msgstr "**Implementation**: `mac.broadcast.BroadcastFilter`, using `FilterCondition` and `FilterOp` to define rules."
+
+#: ../../explanation/mac-layer.md:53
+msgid "接入流程 (§7.1.3)"
+msgstr "Access Procedure (§7.1.3)"
+
+#: ../../explanation/mac-layer.md:55
+msgid "接入是 T 节点与 G 节点建立连接的过程, 分为以下步骤:"
+msgstr "Access is the process by which a T node establishes a connection with a G node, and proceeds in the following steps:"
+
+#: ../../explanation/mac-layer.md:71
+msgid "接入请求携带 GT 角色偏好, G 节点根据自身策略决定是否接受, 以及最终的角色分配。"
+msgstr "The access request carries GT role preferences; the G node decides whether to accept and determines the final role assignment based on its own policy."
+
+#: ../../explanation/mac-layer.md:73
+msgid "角色协商"
+msgstr "Role Negotiation"
+
+#: ../../explanation/mac-layer.md:75
+msgid "GT 角色协商有四种结果:"
+msgstr "GT role negotiation has four outcomes:"
+
+#: ../../explanation/mac-layer.md:77
+msgid "**协商 T 节点**: 接受请求, 发起方为 T"
+msgstr "**Negotiate T node**: accept request, initiator becomes T"
+
+#: ../../explanation/mac-layer.md:78
+msgid "**协商 G 节点**: 接受请求, 发起方为 G"
+msgstr "**Negotiate G node**: accept request, initiator becomes G"
+
+#: ../../explanation/mac-layer.md:79
+msgid "**固定 T 节点**: 强制分配为 T"
+msgstr "**Fixed T node**: forcibly assigned as T"
+
+#: ../../explanation/mac-layer.md:80
+msgid "**固定 G 节点**: 强制分配为 G"
+msgstr "**Fixed G node**: forcibly assigned as G"
+
+#: ../../explanation/mac-layer.md:82
+msgid "接入白名单 (§7.1.6)"
+msgstr "Access Whitelist (§7.1.6)"
+
+#: ../../explanation/mac-layer.md:84
+msgid "G 节点可配置地址白名单, 仅允许已知设备接入。白名单基于地址匹配, 支持动态添加/删除。"
+msgstr "The G node can configure an address whitelist to allow only known devices to access. The whitelist is based on address matching and supports dynamic add/remove."
+
+#: ../../explanation/mac-layer.md:86
+msgid "**代码实现**: `mac.access` 模块提供两个管理器:"
+msgstr "**Code implementation**: the `mac.access` module provides two managers:"
+
+#: ../../explanation/mac-layer.md:88
+msgid "`BroadcasterAccessManager`: G 节点侧, 发送广播、处理请求、发送响应"
+msgstr "`BroadcasterAccessManager`: G node side, sends broadcasts, handles requests, sends responses"
+
+#: ../../explanation/mac-layer.md:89
+msgid "`InitiatorAccessManager`: T 节点侧, 发送请求、处理响应"
+msgstr "`InitiatorAccessManager`: T node side, sends requests, handles responses"
+
+#: ../../explanation/mac-layer.md:90
+msgid "`AccessWhitelist`: 地址白名单"
+msgstr "`AccessWhitelist`: address whitelist"
+
+#: ../../explanation/mac-layer.md:91
+msgid ""
+"`AccessPhase` 枚举: IDLE → ADV_SENDING → REQ_WINDOW → RSP_WINDOW → "
+"LINK_SETUP → COMPLETED"
+msgstr "`AccessPhase` enum: IDLE → ADV_SENDING → REQ_WINDOW → RSP_WINDOW → LINK_SETUP → COMPLETED"
+
+#: ../../explanation/mac-layer.md:93
+msgid "关键时序约束: 广播帧到扩展广播帧间隔不小于 300 $\\mu$s, 扩展广播帧到接入请求间隔不小于 300 $\\mu$s。"
+msgstr "Key timing constraints: the interval from broadcast frame to extended broadcast frame must be at least 300 $\\mu$s; the interval from extended broadcast frame to access request must be at least 300 $\\mu$s."
+
+#: ../../explanation/mac-layer.md:95
+msgid "链路管理状态机 (§7.1/7.2)"
+msgstr "Link Management State Machine (§7.1/7.2)"
+
+#: ../../explanation/mac-layer.md:97
+msgid "链路管理器 (`LinkManager`) 是 MAC 层的核心组件, 通过事件驱动的有限状态机管理链路完整生命周期。"
+msgstr "The link manager (`LinkManager`) is the core component of the MAC layer, managing the complete link lifecycle through an event-driven finite state machine."
+
+#: ../../explanation/mac-layer.md:99
+msgid "状态定义"
+msgstr "State Definitions"
+
+#: ../../explanation/mac-layer.md:115
+msgid "8 种状态:"
+msgstr "8 states:"
+
+#: ../../explanation/mac-layer.md:101
+msgid "状态"
+msgstr "State"
+
+#: ../../explanation/mac-layer.md:101
+msgid "含义"
+msgstr "Meaning"
+
+#: ../../explanation/mac-layer.md:101
+msgid "IDLE"
+msgstr "IDLE"
+
+#: ../../explanation/mac-layer.md:101
+msgid "空闲, 未参与任何通信"
+msgstr "Idle, not participating in any communication"
+
+#: ../../explanation/mac-layer.md:101
+msgid "BROADCASTING"
+msgstr "BROADCASTING"
+
+#: ../../explanation/mac-layer.md:101
+msgid "G 节点正在发送广播帧"
+msgstr "G node is transmitting broadcast frames"
+
+#: ../../explanation/mac-layer.md:101
+msgid "SCANNING"
+msgstr "SCANNING"
+
+#: ../../explanation/mac-layer.md:101
+msgid "T 节点正在扫描广播"
+msgstr "T node is scanning for broadcasts"
+
+#: ../../explanation/mac-layer.md:101
+msgid "ACCESSING"
+msgstr "ACCESSING"
+
+#: ../../explanation/mac-layer.md:101
+msgid "正在执行接入流程"
+msgstr "Executing access procedure"
+
+#: ../../explanation/mac-layer.md:101
+msgid "CONNECTED"
+msgstr "CONNECTED"
+
+#: ../../explanation/mac-layer.md:101
+msgid "链路已建立, 可收发数据"
+msgstr "Link established, can transmit/receive data"
+
+#: ../../explanation/mac-layer.md:101
+msgid "PAIRING"
+msgstr "PAIRING"
+
+#: ../../explanation/mac-layer.md:101
+msgid "正在执行安全配对"
+msgstr "Executing security pairing"
+
+#: ../../explanation/mac-layer.md:101
+msgid "DORMANT"
+msgstr "DORMANT"
+
+#: ../../explanation/mac-layer.md:101
+msgid "休眠状态 (§7.2.14)"
+msgstr "Sleep state (§7.2.14)"
+
+#: ../../explanation/mac-layer.md:101
+msgid "DISCONNECTED"
+msgstr "DISCONNECTED"
+
+#: ../../explanation/mac-layer.md:101
+msgid "链路已断开"
+msgstr "Link disconnected"
+
+#: ../../explanation/mac-layer.md:128
+msgid "事件类型"
+msgstr "Event Types"
+
+#: ../../explanation/mac-layer.md:130
+msgid "状态机接收 21 种事件驱动状态转移, 主要类别:"
+msgstr "The state machine processes 21 event types driving state transitions, in these main categories:"
+
+#: ../../explanation/mac-layer.md:132
+msgid "**广播/发现**: 启动/停止广播和扫描, 接收广播帧"
+msgstr "**Broadcast/discovery**: start/stop broadcast and scan, receive broadcast frames"
+
+#: ../../explanation/mac-layer.md:133
+msgid "**接入**: 发送/接收请求和响应"
+msgstr "**Access**: send/receive requests and responses"
+
+#: ../../explanation/mac-layer.md:134
+msgid "**信令**: 收发链路控制信令"
+msgstr "**Signaling**: send/receive link control signaling"
+
+#: ../../explanation/mac-layer.md:135
+msgid "**配对**: 启动配对、完成、失败"
+msgstr "**Pairing**: initiate pairing, completion, failure"
+
+#: ../../explanation/mac-layer.md:136
+msgid "**断开**: 主动断开请求、对端断开、监督超时"
+msgstr "**Disconnect**: active disconnect request, peer disconnect, supervision timeout"
+
+#: ../../explanation/mac-layer.md:137
+msgid "**休眠**: 休眠请求、唤醒请求、唤醒接收"
+msgstr "**Sleep**: sleep request, wake request, wake reception"
+
+#: ../../explanation/mac-layer.md:139
+msgid "链路参数"
+msgstr "Link Parameters"
+
+#: ../../explanation/mac-layer.md:141
+msgid "`LinkParams` 保存当前链路运行参数:"
+msgstr "`LinkParams` stores the current link operating parameters:"
+
+#: ../../explanation/mac-layer.md:143
+msgid "收发间隔 (interval_us)"
+msgstr "TX/RX interval (interval_us)"
+
+#: ../../explanation/mac-layer.md:144
+msgid "最大数据长度 (max_data_length)"
+msgstr "Maximum data length (max_data_length)"
+
+#: ../../explanation/mac-layer.md:145
+msgid "跳频表 (hop_table)"
+msgstr "Hopping table (hop_table)"
+
+#: ../../explanation/mac-layer.md:146
+msgid "帧类型 (frame_type)"
+msgstr "Frame type (frame_type)"
+
+#: ../../explanation/mac-layer.md:147
+msgid "CRC 长度 (crc_len)"
+msgstr "CRC length (crc_len)"
+
+#: ../../explanation/mac-layer.md:148
+msgid "监督超时 (supervision_timeout_ms)"
+msgstr "Supervision timeout (supervision_timeout_ms)"
+
+#: ../../explanation/mac-layer.md:150
+msgid "这些参数可通过控制面流程 (§7.2.1-7.2.25) 动态更新。"
+msgstr "These parameters can be dynamically updated via control plane procedures (§7.2.1-7.2.25)."
+
+#: ../../explanation/mac-layer.md:152
+msgid ""
+"**代码实现**: `mac.link_manager.LinkManager` 类, 提供 `process_event(Event)` "
+"方法驱动状态转移, 通过 `LinkManagerCallback` 接口向上层通知状态变化。"
+msgstr "**Implementation**: The `mac.link_manager.LinkManager` class drives state transitions via `process_event(Event)` and notifies the upper layer through the `LinkManagerCallback` interface."
+
+#: ../../explanation/mac-layer.md:154
+msgid "控制面流程 (§7.2)"
+msgstr "Control Plane Procedures (§7.2)"
+
+#: ../../explanation/mac-layer.md:156
+msgid "标准定义了 25 种控制面流程, 全部支持 G 节点和 T 节点双向发起:"
+msgstr "The standard defines 25 control plane procedures, all supporting bidirectional initiation by G and T nodes:"
+
+#: ../../explanation/mac-layer.md:158
+msgid "链路参数更新 (§7.2.1-7.2.2)"
+msgstr "Link Parameter Update (§7.2.1-7.2.2)"
+
+#: ../../explanation/mac-layer.md:160
+msgid "**收发间隔更新**: 请求→接受/拒绝 或 直接更新"
+msgstr "**TX/RX interval update**: request → accept/reject or direct update"
+
+#: ../../explanation/mac-layer.md:161
+msgid "**多级收发间隔**: 支持在不同优先级间切换间隔参数"
+msgstr "**Multi-level TX/RX interval**: supports switching interval parameters between different priorities"
+
+#: ../../explanation/mac-layer.md:163
+msgid "链路能力协商 (§7.2.4-7.2.6)"
+msgstr "Link Capability Negotiation (§7.2.4-7.2.6)"
+
+#: ../../explanation/mac-layer.md:165
+msgid "**特性交互**: 交换双方支持的功能特性位图"
+msgstr "**Feature exchange**: exchange capability feature bitmaps supported by both sides"
+
+#: ../../explanation/mac-layer.md:166
+msgid "**版本交互**: 交换协议版本信息"
+msgstr "**Version exchange**: exchange protocol version information"
+
+#: ../../explanation/mac-layer.md:167
+msgid "**数据长度更新**: 协商最大 PDU 长度"
+msgstr "**Data length update**: negotiate maximum PDU length"
+
+#: ../../explanation/mac-layer.md:169
+msgid "信道管理 (§7.2.7-7.2.12)"
+msgstr "Channel Management (§7.2.7-7.2.12)"
+
+#: ../../explanation/mac-layer.md:171
+msgid "**信道质量上报**: 配置信道质量汇报周期和方式"
+msgstr "**Channel quality reporting**: configure channel quality reporting period and method"
+
+#: ../../explanation/mac-layer.md:172
+msgid "**跳频表更新**: 更新跳频频点序列"
+msgstr "**Hopping table update**: update frequency hopping sequence"
+
+#: ../../explanation/mac-layer.md:173
+msgid "**跳频地图更新**: 更新信道可用性位图"
+msgstr "**Hopping map update**: update channel availability bitmap"
+
+#: ../../explanation/mac-layer.md:174
+msgid "**最少可用信道**: 确保可用信道数不低于门限"
+msgstr "**Minimum available channels**: ensure available channel count does not fall below threshold"
+
+#: ../../explanation/mac-layer.md:175
+msgid "**CRC 切换**: 在 CRC24 和 CRC32 之间切换"
+msgstr "**CRC switching**: switch between CRC24 and CRC32"
+
+#: ../../explanation/mac-layer.md:176
+msgid "**物理层更新**: 切换帧类型或调制参数"
+msgstr "**Physical layer update**: switch frame type or modulation parameters"
+
+#: ../../explanation/mac-layer.md:178
+msgid "连接管理 (§7.2.13-7.2.17)"
+msgstr "Connection Management (§7.2.13-7.2.17)"
+
+#: ../../explanation/mac-layer.md:180
+msgid "**功率控制**: 请求→响应→调整发射功率 (§7.2.13)"
+msgstr "**Power control**: request → response → adjust transmit power (§7.2.13)"
+
+#: ../../explanation/mac-layer.md:181
+msgid "**休眠与唤醒**: 一方请求进入休眠, 对方确认; 唤醒时反向操作 (§7.2.14)"
+msgstr "**Sleep and wake**: one side requests sleep, other confirms; reverse for wake (§7.2.14)"
+
+#: ../../explanation/mac-layer.md:182
+msgid "**角色切换**: G/T 角色互换 (§7.2.15)"
+msgstr "**Role switching**: G/T role swap (§7.2.15)"
+
+#: ../../explanation/mac-layer.md:183
+msgid "**PING 流程**: 检测链路连通性 (§7.2.16)"
+msgstr "**PING procedure**: detect link connectivity (§7.2.16)"
+
+#: ../../explanation/mac-layer.md:184
+msgid "**链路断开**: 发送断开指示, 释放资源 (§7.2.17)"
+msgstr "**Link disconnect**: send disconnect indication, release resources (§7.2.17)"
+
+#: ../../explanation/mac-layer.md:186
+msgid "高级链路管理 (§7.2.18-7.2.25)"
+msgstr "Advanced Link Management (§7.2.18-7.2.25)"
+
+#: ../../explanation/mac-layer.md:188
+msgid "**链接态异步链路**: 参数重配置/更新/建链/断链 (§7.2.18)"
+msgstr "**Connected asynchronous link**: parameter reconfiguration/update/setup/teardown (§7.2.18)"
+
+#: ../../explanation/mac-layer.md:189
+msgid "**同步等时链路**: 建链/参数交互/参数更新 (§7.2.19)"
+msgstr "**Synchronous isochronous link**: setup/parameter exchange/parameter update (§7.2.19)"
+
+#: ../../explanation/mac-layer.md:190
+msgid "**广播链路**: 建立/参数更新/跳频地图/断开 (§7.2.20)"
+msgstr "**Broadcast link**: establishment/parameter update/hopping map/disconnect (§7.2.20)"
+
+#: ../../explanation/mac-layer.md:191
+msgid "**系统管理帧链路**: 参数/时间片更新/信道状态 (§7.2.21)"
+msgstr "**System management frame link**: parameters/time slot update/channel status (§7.2.21)"
+
+#: ../../explanation/mac-layer.md:192
+msgid "**异步组播链路**: 建立/参数/断开/超时 (§7.2.22)"
+msgstr "**Asynchronous multicast link**: establishment/parameters/disconnect/timeout (§7.2.22)"
+
+#: ../../explanation/mac-layer.md:193
+msgid "**窄带/UWB 测量与感知**: 测量和感知流程管理 (§7.2.23-7.2.25)"
+msgstr "**Narrowband/UWB measurement and sensing**: measurement and sensing procedure management (§7.2.23-7.2.25)"
+
+#: ../../explanation/mac-layer.md:195
+msgid ""
+"**代码实现**: `mac.link_manager.LinkManager` 内部对全部 25 种流程提供处理逻辑, 通过 "
+"`mac.link_control` 模块的 109 种信令类型驱动。`mac.power_control` 独立实现功率控制的 3 种信令。"
+msgstr "**Implementation**: `mac.link_manager.LinkManager` provides handling logic for all 25 procedures internally, driven by 109 signaling types from `mac.link_control`. `mac.power_control` independently implements 3 power control signaling types."
+
+#: ../../explanation/mac-layer.md:197
+msgid "帧结构 (§7.3)"
+msgstr "Frame Structure (§7.3)"
+
+#: ../../explanation/mac-layer.md:199
+msgid "MAC 帧分为三种:"
+msgstr "MAC frames are divided into three types:"
+
+#: ../../explanation/mac-layer.md:201
+msgid "控制面帧 (§7.3.2)"
+msgstr "Control Plane Frame (§7.3.2)"
+
+#: ../../explanation/mac-layer.md:210
+msgid "数据类型索引标识信令类型 (130 种), 数据长度指示载荷字节数。"
+msgstr "The data type index identifies the signaling type (130 types); data length indicates the payload byte count."
+
+#: ../../explanation/mac-layer.md:212
+msgid "数据面帧 (§7.3.3)"
+msgstr "Data Plane Frame (§7.3.3)"
+
+#: ../../explanation/mac-layer.md:214
+msgid "**异步数据帧** (§7.3.3.2):"
+msgstr "**Asynchronous data frame** (§7.3.3.2):"
+
+#: ../../explanation/mac-layer.md:223
+msgid "分段标志 (SegmentType): COMPLETE / FIRST / MIDDLE / LAST, 支持将大 PDU 分段传输。"
+msgstr "Segmentation flag (SegmentType): COMPLETE / FIRST / MIDDLE / LAST, supporting large PDU segmented transmission."
+
+#: ../../explanation/mac-layer.md:225
+msgid "**同步数据帧** (§7.3.3.3): 增加 PDU 序号、事件组编号和时间偏移字段, 适用于等时传输。"
+msgstr "**Synchronous data frame** (§7.3.3.3): adds PDU sequence number, event group number, and time offset fields, suitable for isochronous transmission."
+
+#: ../../explanation/mac-layer.md:227
+msgid "复用帧 (§7.3.4)"
+msgstr "Multiplex Frame (§7.3.4)"
+
+#: ../../explanation/mac-layer.md:229
+msgid "复用帧允许在单个物理帧中同时携带控制面数据和用户面数据:"
+msgstr "Multiplex frames allow control plane data and user plane data to be carried simultaneously in a single physical frame:"
+
+#: ../../explanation/mac-layer.md:238
+msgid ""
+"**代码实现**: `mac.frame` 模块定义 `ControlFrame`, `AsyncDataFrame`, "
+"`SyncDataFrame`, `MuxFrame`, 各有 `pack()`/`unpack()` 方法。"
+msgstr "**Implementation**: The `mac.frame` module defines `ControlFrame`, `AsyncDataFrame`, `SyncDataFrame`, `MuxFrame`, each with `pack()`/`unpack()` methods."
+
+#: ../../explanation/mac-layer.md:240
+msgid "信令编解码 (§7.3)"
+msgstr "Signaling Encode/Decode (§7.3)"
+
+#: ../../explanation/mac-layer.md:242
+msgid "SLE 数据链路层共注册了 **130 种信令类型**:"
+msgstr "The SLE data link layer registers a total of **130 signaling types**:"
+
+#: ../../explanation/mac-layer.md:101
+msgid "类别"
+msgstr "Category"
+
+#: ../../explanation/mac-layer.md:101
+msgid "数量"
+msgstr "Count"
+
+#: ../../explanation/mac-layer.md:101
+msgid "索引范围"
+msgstr "Index Range"
+
+#: ../../explanation/mac-layer.md:101
+msgid "实现模块"
+msgstr "Implementation Module"
+
+#: ../../explanation/mac-layer.md:101
+msgid "链路控制"
+msgstr "Link control"
+
+#: ../../explanation/mac-layer.md:101
+msgid "109"
+msgstr "109"
+
+#: ../../explanation/mac-layer.md:101
+msgid "0x0000-0x0070"
+msgstr "0x0000-0x0070"
+
+#: ../../explanation/mac-layer.md:101
+msgid "`mac.link_control`"
+msgstr "`mac.link_control`"
+
+#: ../../explanation/mac-layer.md:101
+msgid "功率控制"
+msgstr "Power control"
+
+#: ../../explanation/mac-layer.md:101
+msgid "3"
+msgstr "3"
+
+#: ../../explanation/mac-layer.md:101
+msgid "0x0019-0x001B"
+msgstr "0x0019-0x001B"
+
+#: ../../explanation/mac-layer.md:101
+msgid "`mac.power_control`"
+msgstr "`mac.power_control`"
+
+#: ../../explanation/mac-layer.md:101
+msgid "安全配对"
+msgstr "Security pairing"
+
+#: ../../explanation/mac-layer.md:101
+msgid "18"
+msgstr "18"
+
+#: ../../explanation/mac-layer.md:101
+msgid "0x0133-0x0149"
+msgstr "0x0133-0x0149"
+
+#: ../../explanation/mac-layer.md:101
+msgid "`mac.security`"
+msgstr "`mac.security`"
+
+#: ../../explanation/mac-layer.md:250
+msgid ""
+"每种信令都是一个数据类, 包含 `DATA_TYPE_INDEX`、`BYTE_LENGTH`、字段定义和 `pack()`/`unpack()`"
+" 方法。"
+msgstr "Each signaling type is a data class containing `DATA_TYPE_INDEX`, `BYTE_LENGTH`, field definitions, and `pack()`/`unpack()` methods."
+
+#: ../../explanation/mac-layer.md:252
+msgid "信令注册表 (`mac.signaling`) 维护索引到类的映射, 提供统一的编解码接口:"
+msgstr "The signaling registry (`mac.signaling`) maintains an index-to-class mapping, providing a unified encode/decode interface:"
+
+#: ../../explanation/mac-layer.md:254
+msgid "`encode_signaling(msg)` → 序列化为 `ControlFrame`"
+msgstr "`encode_signaling(msg)` → serialize to `ControlFrame`"
+
+#: ../../explanation/mac-layer.md:255
+msgid "`decode_signaling(frame)` → 从 `ControlFrame` 解析出具体信令对象"
+msgstr "`decode_signaling(frame)` → parse a specific signaling object from `ControlFrame`"
+
+#: ../../explanation/mac-layer.md:257
+msgid "QoS 管理 (§6.5)"
+msgstr "QoS Management (§6.5)"
+
+#: ../../explanation/mac-layer.md:259
+msgid "QoS 管理器保障数据传输的可靠性和效率:"
+msgstr "The QoS manager ensures data transmission reliability and efficiency:"
+
+#: ../../explanation/mac-layer.md:261
+msgid "ARQ 自动重传"
+msgstr "ARQ Automatic Retransmission"
+
+#: ../../explanation/mac-layer.md:263
+msgid "序列号管理和重传控制。不同帧类型的模数不同:"
+msgstr "Sequence number management and retransmission control. Different frame types have different moduli:"
+
+#: ../../explanation/mac-layer.md:101
+msgid "帧类型"
+msgstr "Frame Type"
+
+#: ../../explanation/mac-layer.md:101
+msgid "SN 模数"
+msgstr "SN Modulus"
+
+#: ../../explanation/mac-layer.md:101
+msgid "FT1"
+msgstr "FT1"
+
+#: ../../explanation/mac-layer.md:101
+msgid "2"
+msgstr "2"
+
+#: ../../explanation/mac-layer.md:101
+msgid "FT2"
+msgstr "FT2"
+
+#: ../../explanation/mac-layer.md:101
+msgid "FT3/FT4"
+msgstr "FT3/FT4"
+
+#: ../../explanation/mac-layer.md:101
+msgid "32"
+msgstr "32"
+
+#: ../../explanation/mac-layer.md:271
+msgid "HARQ 混合重传"
+msgstr "HARQ Hybrid Retransmission"
+
+#: ../../explanation/mac-layer.md:273
+msgid "支持两种反馈模式:"
+msgstr "Supports two feedback modes:"
+
+#: ../../explanation/mac-layer.md:275
+msgid "**TB (传输块)**: 整个传输块 ACK/NACK"
+msgstr "**TB (transport block)**: ACK/NACK for the entire transport block"
+
+#: ../../explanation/mac-layer.md:276
+msgid "**CBG (码块组)**: 按码块组粒度反馈, 部分重传 (最多 8 个 CBG)"
+msgstr "**CBG (code block group)**: feedback at code block group granularity, partial retransmission (up to 8 CBGs)"
+
+#: ../../explanation/mac-layer.md:278
+msgid "流控"
+msgstr "Flow Control"
+
+#: ../../explanation/mac-layer.md:280
+msgid "基于信用额度的发送窗口控制, 防止发送端淹没接收端。"
+msgstr "Credit-based transmit window control, preventing the sender from overwhelming the receiver."
+
+#: ../../explanation/mac-layer.md:282
+msgid "链路质量跟踪"
+msgstr "Link Quality Tracking"
+
+#: ../../explanation/mac-layer.md:284
+msgid "实时统计帧错误率 (FER), 计算推荐 MCS 索引, 支持自适应调制编码 (AMC)。"
+msgstr "Real-time frame error rate (FER) statistics, computing recommended MCS index, supporting adaptive modulation and coding (AMC)."
+
+#: ../../explanation/mac-layer.md:286
+msgid "优先级队列"
+msgstr "Priority Queue"
+
+#: ../../explanation/mac-layer.md:288
+msgid "五级优先级: CONTROL > REALTIME > HIGH > NORMAL > LOW, 高优先级载荷优先发送。"
+msgstr "Five priority levels: CONTROL > REALTIME > HIGH > NORMAL > LOW; higher priority payloads are sent first."
+
+#: ../../explanation/mac-layer.md:290
+msgid ""
+"**代码实现**: `mac.qos.QosManager` 整合 `ArqState`, `HarqController`, "
+"`FlowController`, `LinkQualityTracker`, `TxQueue`。"
+msgstr "**Implementation**: `mac.qos.QosManager` integrates `ArqState`, `HarqController`, `FlowController`, `LinkQualityTracker`, and `TxQueue`."
+
+#: ../../explanation/mac-layer.md:292
+msgid "时序调度 (§6.3/6.6)"
+msgstr "Timing Scheduling (§6.3/6.6)"
+
+#: ../../explanation/mac-layer.md:294
+msgid "超帧结构"
+msgstr "Superframe Structure"
+
+#: ../../explanation/mac-layer.md:296
+msgid ""
+"SLE 时序由超帧 (Superframe) 组织, 两个系统管理帧 (SMF) 之间为一个超帧周期。超帧内部划分为多个时间片 "
+"(TimeSlice), 每个时间片分配给特定链路。"
+msgstr "SLE timing is organized by superframes (Superframe); the period between two system management frames (SMF) constitutes one superframe cycle. Each superframe is subdivided into multiple time slices (TimeSlice), each assigned to a specific link."
+
+#: ../../explanation/mac-layer.md:298
+msgid "系统管理帧 (§6.6)"
+msgstr "System Management Frame (§6.6)"
+
+#: ../../explanation/mac-layer.md:300
+msgid "SMF 是 G 节点向所有 T 节点广播的调度信息帧, 包含:"
+msgstr "SMF is the scheduling information frame broadcast by the G node to all T nodes, containing:"
+
+#: ../../explanation/mac-layer.md:302
+msgid "**调度信令**: 时间片分配和链路调度"
+msgstr "**Scheduling signaling**: time slot allocation and link scheduling"
+
+#: ../../explanation/mac-layer.md:303
+msgid "**链路信令**: 链路参数更新通知"
+msgstr "**Link signaling**: link parameter update notification"
+
+#: ../../explanation/mac-layer.md:304
+msgid "**偏移信令**: 时间偏移校正"
+msgstr "**Offset signaling**: time offset correction"
+
+#: ../../explanation/mac-layer.md:306
+msgid "SMF 发送调度由 `mac.smf_scheduler.SMFTransmitScheduler` 管理。"
+msgstr "SMF transmission scheduling is managed by `mac.smf_scheduler.SMFTransmitScheduler`."
+
+#: ../../explanation/mac-layer.md:308
+msgid "事件组 (§附录 D)"
+msgstr "Event Groups (§Appendix D)"
+
+#: ../../explanation/mac-layer.md:310
+msgid "事件组将多个传输事件组合为一组, 用于等时场景的同步调度。"
+msgstr "Event groups combine multiple transmission events into a group for synchronous scheduling in isochronous scenarios."
+
+#: ../../explanation/mac-layer.md:312
+msgid ""
+"**代码实现**: `mac.scheduler.ScheduleManager` 管理超帧、事件组和多级收发间隔, `mac.smf` 模块负责"
+" SMF 帧的编解码, `mac.smf_scheduler` 负责发送调度。"
+msgstr "**Implementation**: `mac.scheduler.ScheduleManager` manages superframes, event groups, and multi-level TX/RX intervals; `mac.smf` handles SMF frame encoding/decoding; `mac.smf_scheduler` manages transmission scheduling."
+
+#: ../../explanation/mac-layer.md:314
+msgid "非链接态广播 (§7.1.7)"
+msgstr "Non-Connected State Broadcast (§7.1.7)"
+
+#: ../../explanation/mac-layer.md:316
+msgid "设备之间无需建立连接即可进行数据广播, 适用于周期性公告信息等场景。非链接态广播帧使用独立的参数配置, 与有连接的数据传输互不干扰。"
+msgstr "Devices can broadcast data without establishing a connection, suitable for periodic announcement scenarios. Non-connected state broadcast frames use independent parameter configurations and do not interfere with connected data transmission."
+
+#: ../../explanation/mac-layer.md:318
+msgid ""
+"**代码实现**: `mac.access.NonConnectedBroadcastManager`, 配合 "
+"`NonConnectedBroadcastConfig` 使用。"
+msgstr "**Implementation**: `mac.access.NonConnectedBroadcastManager`, used together with `NonConnectedBroadcastConfig`."
+

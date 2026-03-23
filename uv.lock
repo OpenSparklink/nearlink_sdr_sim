@@ -160,6 +160,18 @@ wheels = [
 ]
 
 [[package]]
+name = "click"
+version = "8.3.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "colorama", marker = "sys_platform == 'win32'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/3d/fa/656b739db8587d7b5dfa22e22ed02566950fbfbcdc20311993483657a5c0/click-8.3.1.tar.gz", hash = "sha256:12ff4785d337a1bb490bb7e9c2b1ee5da3112e94a8622f26a6c77f5d2fc6842a", size = 295065, upload-time = "2025-11-15T20:45:42.706Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/98/78/01c019cdb5d6498122777c1a43056ebb3ebfeef2076d9d026bfe15583b2b/click-8.3.1-py3-none-any.whl", hash = "sha256:981153a64e25f12d547d3426c367a4857371575ee7ad18df2a6183ab0545b2a6", size = 108274, upload-time = "2025-11-15T20:45:41.139Z" },
+]
+
+[[package]]
 name = "colorama"
 version = "0.4.6"
 source = { registry = "https://pypi.org/simple" }
@@ -564,6 +576,7 @@ dev = [
     { name = "ruff" },
     { name = "sphinx" },
     { name = "sphinx-autodoc2" },
+    { name = "sphinx-intl" },
     { name = "sphinxcontrib-mermaid" },
 ]
 docs = [
@@ -571,6 +584,7 @@ docs = [
     { name = "myst-parser" },
     { name = "sphinx" },
     { name = "sphinx-autodoc2" },
+    { name = "sphinx-intl" },
     { name = "sphinxcontrib-mermaid" },
 ]
 
@@ -594,6 +608,7 @@ dev = [
     { name = "ruff", specifier = ">=0.15.6" },
     { name = "sphinx", specifier = ">=8.0,<9.0" },
     { name = "sphinx-autodoc2", specifier = ">=0.5" },
+    { name = "sphinx-intl", specifier = ">=2.0" },
     { name = "sphinxcontrib-mermaid", specifier = ">=1.0" },
 ]
 docs = [
@@ -602,6 +617,7 @@ docs = [
     { name = "myst-parser", specifier = ">=4.0" },
     { name = "sphinx", specifier = ">=8.0,<9.0" },
     { name = "sphinx-autodoc2", specifier = ">=0.5" },
+    { name = "sphinx-intl", specifier = ">=2.0" },
     { name = "sphinxcontrib-mermaid", specifier = ">=1.0" },
 ]
 
@@ -950,6 +966,20 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/98/0b/a866924ded68efec7a1759587a4e478aec7559d8165fac8b2ad1c0e774d6/sphinx_basic_ng-1.0.0b2.tar.gz", hash = "sha256:9ec55a47c90c8c002b5960c57492ec3021f5193cb26cebc2dc4ea226848651c9", size = 20736, upload-time = "2023-07-08T18:40:54.166Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/3c/dd/018ce05c532a22007ac58d4f45232514cd9d6dd0ee1dc374e309db830983/sphinx_basic_ng-1.0.0b2-py3-none-any.whl", hash = "sha256:eb09aedbabfb650607e9b4b68c9d240b90b1e1be221d6ad71d61c52e29f7932b", size = 22496, upload-time = "2023-07-08T18:40:52.659Z" },
+]
+
+[[package]]
+name = "sphinx-intl"
+version = "2.3.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "babel" },
+    { name = "click" },
+    { name = "sphinx" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/7a/21/eb12016ecb0b52861762b0d227dff75622988f238776a5ee4c75bade507e/sphinx_intl-2.3.2.tar.gz", hash = "sha256:04b0d8ea04d111a7ba278b17b7b3fe9625c58b6f8ffb78bb8a1dd1288d88c1c7", size = 27921, upload-time = "2025-08-02T04:53:01.891Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f7/3b/156032fa29a87e9eba9182b8e893a7e88c1d98907a078a371d69be432e52/sphinx_intl-2.3.2-py3-none-any.whl", hash = "sha256:f0082f9383066bab8406129a2ed531d21c38706d08467bf5ca3714e8914bb2be", size = 12899, upload-time = "2025-08-02T04:53:00.353Z" },
 ]
 
 [[package]]

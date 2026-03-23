@@ -35,6 +35,7 @@ docs = [
     "sphinx-autodoc2>=0.5",
     "furo>=2025.12.19",
     "sphinxcontrib-mermaid>=1.0",
+    "sphinx-intl>=2.0",
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -58,6 +59,7 @@ select = [
 ]
 ignore = [
     "E501",   # 行长度由 line-length 控制
+    "RUF001", # 允许中文全角标点 (字符串中)
     "RUF002", # 允许中文全角标点
     "RUF003", # 允许中文注释中的 CJK 字符
     "B023",   # 允许闭包中引用循环变量 (仿真代码常用)

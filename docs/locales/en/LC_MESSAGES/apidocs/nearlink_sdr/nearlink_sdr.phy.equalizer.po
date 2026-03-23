@@ -1,0 +1,182 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the nearlink-sdr
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: nearlink-sdr 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: en <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.equalizer.md:1
+#, python-brace-format
+msgid "{py:mod}`nearlink_sdr.phy.equalizer`"
+msgstr "{py:mod}`nearlink_sdr.phy.equalizer`"
+
+#: ../../../src/nearlink_sdr/phy/equalizer.py:7
+msgid "TXS-10002-2025 均衡器: ZF / MMSE 频域与时域均衡。"
+msgstr ""
+"TXS-10002-2025 equalizer: ZF / MMSE frequency-domain and time-domain "
+"equalization."
+
+#: ../../../src/nearlink_sdr/phy/equalizer.py:9
+msgid "对于 SparkLink SLE 的 PSK 调制 (帧类型 2-4),接收端需要 信道均衡来对抗多径衰落引起的符号间干扰 (ISI)。"
+msgstr ""
+"For SparkLink SLE PSK modulation (frame types 2-4), the receiver requires "
+"channel equalization to combat inter-symbol interference (ISI) caused by "
+"multipath fading."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.equalizer.md:10
+msgid "Module Contents"
+msgstr "Module Contents"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.equalizer.md:12
+msgid "Functions"
+msgstr "Functions"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.equalizer.md:18
+#, python-brace-format
+msgid "{py:obj}`equalize_zf <nearlink_sdr.phy.equalizer.equalize_zf>`"
+msgstr "{py:obj}`equalize_zf <nearlink_sdr.phy.equalizer.equalize_zf>`"
+
+#: ../../../src/nearlink_sdr/phy/equalizer.py:20
+#: ../../../src/nearlink_sdr/phy/equalizer.py:46
+msgid "零强制 (ZF) 频域均衡。"
+msgstr "Zero-forcing (ZF) frequency-domain equalizer."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.equalizer.md:22
+#, python-brace-format
+msgid ""
+"{py:obj}`equalize_mmse_freq <nearlink_sdr.phy.equalizer.equalize_mmse_freq>`"
+msgstr ""
+"{py:obj}`equalize_mmse_freq <nearlink_sdr.phy.equalizer.equalize_mmse_freq>`"
+
+#: ../../../src/nearlink_sdr/phy/equalizer.py:24
+#: ../../../src/nearlink_sdr/phy/equalizer.py:53
+msgid "MMSE 频域均衡。"
+msgstr "MMSE 频域均衡。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.equalizer.md:26
+#, python-brace-format
+msgid ""
+"{py:obj}`estimate_channel_freq "
+"<nearlink_sdr.phy.equalizer.estimate_channel_freq>`"
+msgstr ""
+"{py:obj}`estimate_channel_freq "
+"<nearlink_sdr.phy.equalizer.estimate_channel_freq>`"
+
+#: ../../../src/nearlink_sdr/phy/equalizer.py:28
+#: ../../../src/nearlink_sdr/phy/equalizer.py:60
+msgid "基于已知训练序列的频域信道估计 (LS)。"
+msgstr "基于已知训练sequence的频域channel估计 (LS)。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.equalizer.md:30
+#, python-brace-format
+msgid ""
+"{py:obj}`equalize_mmse_time <nearlink_sdr.phy.equalizer.equalize_mmse_time>`"
+msgstr ""
+"{py:obj}`equalize_mmse_time <nearlink_sdr.phy.equalizer.equalize_mmse_time>`"
+
+#: ../../../src/nearlink_sdr/phy/equalizer.py:32
+#: ../../../src/nearlink_sdr/phy/equalizer.py:67
+msgid "MMSE 时域均衡器 (FIR Wiener 滤波器)。"
+msgstr "MMSE 时域均衡器 (FIR Wiener 滤波器)。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.equalizer.md:34
+#, python-brace-format
+msgid "{py:obj}`equalize_1tap <nearlink_sdr.phy.equalizer.equalize_1tap>`"
+msgstr "{py:obj}`equalize_1tap <nearlink_sdr.phy.equalizer.equalize_1tap>`"
+
+#: ../../../src/nearlink_sdr/phy/equalizer.py:36
+#: ../../../src/nearlink_sdr/phy/equalizer.py:74
+msgid "逐符号 1-tap 均衡 (平坦衰落信道)。"
+msgstr "逐符号 1-tap 均衡 (平坦衰落channel)。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.equalizer.md:40
+msgid "API"
+msgstr "API"
+
+#: ../../../src/nearlink_sdr/phy/equalizer.py:48
+msgid ""
+"Args:     rx_signal: 接收信号 (时域)。     channel_freq: 信道频率响应 H[k], 长度等于 "
+"rx_signal 的 FFT 长度。"
+msgstr ""
+"Args:     rx_signal: receivesignal (时域)。     channel_freq: "
+"channelfrequencyresponse H[k], length等于 rx_signal 的 FFT length。"
+
+#: ../../../src/nearlink_sdr/phy/equalizer.py:52
+#: ../../../src/nearlink_sdr/phy/equalizer.py:62
+msgid "Returns:     均衡后的时域信号。"
+msgstr "Returns:     均衡后的时域signal。"
+
+#: ../../../src/nearlink_sdr/phy/equalizer.py:55
+msgid "H_mmse[k] = conj(H[k]) / (|H[k]|^2 + sigma^2)"
+msgstr "H_mmse[k] = conj(H[k]) / (|H[k]|^2 + sigma^2)"
+
+#: ../../../src/nearlink_sdr/phy/equalizer.py:57
+msgid ""
+"Args:     rx_signal: 接收信号 (时域)。     channel_freq: 信道频率响应 H[k]。     "
+"noise_var: 噪声方差 sigma^2。"
+msgstr ""
+"Args:     rx_signal: receivesignal (时域)。     channel_freq: "
+"channelfrequencyresponse H[k]。     noise_var: 噪声方差 sigma^2。"
+
+#: ../../../src/nearlink_sdr/phy/equalizer.py:62
+msgid "H_est[k] = Y[k] / X[k]"
+msgstr "H_est[k] = Y[k] / X[k]"
+
+#: ../../../src/nearlink_sdr/phy/equalizer.py:64
+msgid ""
+"Args:     rx_signal: 接收到的训练序列。     tx_known: 已知的发送训练序列。     n_fft: FFT 长度, "
+"默认为信号长度。"
+msgstr ""
+"Args:     rx_signal: receive到的训练sequence。     tx_known: "
+"已知的transmit训练sequence。     n_fft: FFT length, default为signallength。"
+
+#: ../../../src/nearlink_sdr/phy/equalizer.py:69
+msgid "Returns:     估计的信道频率响应。"
+msgstr "Returns:     估计的channelfrequencyresponse。"
+
+#: ../../../src/nearlink_sdr/phy/equalizer.py:69
+#, python-brace-format
+msgid ""
+"计算 MMSE 最优 FIR 滤波器系数:     w = R^{-1} p 其中 R = h自相关 + 噪声, p = h与期望延迟的互相关。"
+msgstr ""
+"compute MMSE 最优 FIR 滤波器系数:     w = R^{-1} p 其中 R = h自相关 + 噪声, p = "
+"h与期望延迟的互相关。"
+
+#: ../../../src/nearlink_sdr/phy/equalizer.py:73
+msgid ""
+"Args:     rx_signal: 接收信号。     channel_taps: 信道冲激响应 h[0], h[1], ..., h[L-1]。"
+"     noise_var: 噪声方差。     n_taps_eq: 均衡器 FIR 长度。"
+msgstr ""
+"Args:     rx_signal: receivesignal。     channel_taps: channel冲激response "
+"h[0], h[1], ..., h[L-1]。     noise_var: 噪声方差。     n_taps_eq: 均衡器 FIR length。"
+
+#: ../../../src/nearlink_sdr/phy/equalizer.py:79
+msgid "Returns:     均衡后的信号。"
+msgstr "Returns:     均衡后的signal。"
+
+#: ../../../src/nearlink_sdr/phy/equalizer.py:76
+msgid ""
+"Args:     rx_symbols: 接收符号。     h_coeffs: 每个符号的信道系数 (与 rx_symbols 等长)。     "
+"noise_var: 噪声方差, 仅 MMSE 使用。     method: \"zf\" 或 \"mmse\"。"
+msgstr ""
+"Args:     rx_symbols: receive符号。     h_coeffs: 每个符号的channel系数 (与 rx_symbols "
+"等长)。     noise_var: 噪声方差, 仅 MMSE 使用。     method: \"zf\" 或 \"mmse\"。"
+
+#: ../../../src/nearlink_sdr/phy/equalizer.py:82
+msgid "Returns:     均衡后的符号。"
+msgstr "Returns:     均衡后的符号。"

@@ -1,0 +1,1324 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the nearlink-sdr
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: nearlink-sdr 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: en <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../explanation/physical-layer.md:1
+msgid "物理层详解"
+msgstr "Physical Layer Details"
+
+#: ../../explanation/physical-layer.md:3
+msgid ""
+"本文详细解释 SparkLink SLE 物理层的设计与实现, 覆盖调制波形、帧结构、信道编码和收发流水线, 逐一对标 TXS-10002-2025 "
+"标准条款并说明代码中的实现方式。"
+msgstr ""
+"This document explains the design and implementation of the SparkLink SLE "
+"physical layer in detail, covering modulation waveforms, frame structure, "
+"channel coding, and TX/RX pipelines, with each section cross-referenced "
+"against TXS-10002-2025 clauses and implementation notes."
+
+#: ../../explanation/physical-layer.md:5
+msgid "调制方式"
+msgstr "Modulation Schemes"
+
+#: ../../explanation/physical-layer.md:7
+msgid "SLE 物理层支持两大类调制: 频移键控 (GFSK) 和相移键控 (PSK), 分别用于不同帧类型。"
+msgstr ""
+"The SLE physical layer supports two main modulation categories: frequency "
+"shift keying (GFSK) and phase shift keying (PSK), used for different frame "
+"types."
+
+#: ../../explanation/physical-layer.md:9
+msgid "GFSK 调制 (§6.2.1.1)"
+msgstr "GFSK Modulation (§6.2.1.1)"
+
+#: ../../explanation/physical-layer.md:11
+msgid "高斯频移键控是 FT1 帧的唯一调制方式。标准规定:"
+msgstr ""
+"Gaussian frequency shift keying is the only modulation scheme for FT1 "
+"frames. The standard specifies:"
+
+#: ../../explanation/physical-layer.md:13
+msgid "高斯滤波器带宽时间积 BT = 0.5"
+msgstr "Gaussian filter bandwidth-time product BT = 0.5"
+
+#: ../../explanation/physical-layer.md:14
+msgid "调制系数 h 在 0.45 至 0.55 范围内, 默认 0.5"
+msgstr "Modulation index h in the range 0.45 to 0.55, default 0.5"
+
+#: ../../explanation/physical-layer.md:15
+msgid "比特 1 对应正频偏, 比特 0 对应负频偏"
+msgstr "Bit 1 corresponds to positive frequency deviation, bit 0 to negative"
+
+#: ../../explanation/physical-layer.md:17
+msgid "SLE 定义了 7 种带宽配置, 从 0.1 MHz 到 4 MHz:"
+msgstr "SLE defines 7 bandwidth configurations, from 0.1 MHz to 4 MHz:"
+
+#: ../../explanation/physical-layer.md
+msgid "带宽"
+msgstr "Bandwidth"
+
+#: ../../explanation/physical-layer.md
+msgid "符号周期"
+msgstr "Symbol Period"
+
+#: ../../explanation/physical-layer.md
+msgid "最小频偏"
+msgstr "Minimum Frequency Deviation"
+
+#: ../../explanation/physical-layer.md
+msgid "0.1 MHz"
+msgstr "0.1 MHz"
+
+#: ../../explanation/physical-layer.md
+msgid "10 $\\mu$s"
+msgstr "10 $\\mu$s"
+
+#: ../../explanation/physical-layer.md
+msgid "23.125 kHz"
+msgstr "23.125 kHz"
+
+#: ../../explanation/physical-layer.md
+msgid "0.25 MHz"
+msgstr "0.25 MHz"
+
+#: ../../explanation/physical-layer.md
+msgid "4 $\\mu$s"
+msgstr "4 $\\mu$s"
+
+#: ../../explanation/physical-layer.md
+msgid "92.5 kHz"
+msgstr "92.5 kHz"
+
+#: ../../explanation/physical-layer.md
+msgid "1.0 MHz"
+msgstr "1.0 MHz"
+
+#: ../../explanation/physical-layer.md
+msgid "1 $\\mu$s"
+msgstr "1 $\\mu$s"
+
+#: ../../explanation/physical-layer.md
+msgid "185 kHz"
+msgstr "185 kHz"
+
+#: ../../explanation/physical-layer.md
+msgid "2.0 MHz"
+msgstr "2.0 MHz"
+
+#: ../../explanation/physical-layer.md
+msgid "0.5 $\\mu$s"
+msgstr "0.5 $\\mu$s"
+
+#: ../../explanation/physical-layer.md
+msgid "370 kHz"
+msgstr "370 kHz"
+
+#: ../../explanation/physical-layer.md
+msgid "4.0 MHz"
+msgstr "4.0 MHz"
+
+#: ../../explanation/physical-layer.md
+msgid "0.25 $\\mu$s"
+msgstr "0.25 $\\mu$s"
+
+#: ../../explanation/physical-layer.md
+msgid "740 kHz"
+msgstr "740 kHz"
+
+#: ../../explanation/physical-layer.md:27
+msgid ""
+"**代码实现**: `phy.gfsk.GFSKModulator` 类。调制过程为 NRZ 映射 → 上采样 → 高斯滤波 → 频率积分 → 复基带:"
+msgstr ""
+"**Implementation**: `phy.gfsk.GFSKModulator` class. The modulation chain is:"
+" NRZ mapping → upsampling → Gaussian filtering → frequency integration → "
+"complex baseband:"
+
+#: ../../explanation/physical-layer.md:29
+msgid ""
+"\n"
+"s(t) = \\exp\\!\\left(j \\cdot 2\\pi h \\int_0^t \\sum_k a_k \\cdot g(\\tau - kT)\\,d\\tau\\right)\n"
+msgstr ""
+"\n"
+"s(t) = \\exp\\!\\left(j \\cdot 2\\pi h \\int_0^t \\sum_k a_k \\cdot g(\\tau - kT)\\,d\\tau\\right)\n"
+
+#: ../../explanation/physical-layer.md:33
+msgid "解调采用非相干的频率鉴别器方案 (`GFSKDemodulator`), 通过相邻采样点的相位差提取瞬时频率。"
+msgstr ""
+"Demodulation uses a non-coherent frequency discriminator scheme "
+"(`GFSKDemodulator`), extracting instantaneous frequency from the phase "
+"difference between adjacent samples."
+
+#: ../../explanation/physical-layer.md:35
+msgid "PSK 调制 (§6.2.1.2)"
+msgstr "PSK Modulation (§6.2.1.2)"
+
+#: ../../explanation/physical-layer.md:37
+msgid "FT2-FT4 帧使用相移键控, 支持三种调制阶数:"
+msgstr ""
+"FT2-FT4 frames use phase shift keying, supporting three modulation orders:"
+
+#: ../../explanation/physical-layer.md:39
+msgid "**BPSK** (每符号 1 bit):"
+msgstr "**BPSK** (1 bit/symbol):"
+
+#: ../../explanation/physical-layer.md:41
+msgid "比特 0 → 相位 90°, 比特 1 → 相位 -90°"
+msgstr "Bit 0 → phase 90°, bit 1 → phase -90°"
+
+#: ../../explanation/physical-layer.md:42
+msgid "偶数位符号额外顺时针旋转 90°"
+msgstr "Even-position symbols additionally rotated 90° clockwise"
+
+#: ../../explanation/physical-layer.md:44
+msgid "**QPSK** (每符号 2 bit):"
+msgstr "**QPSK** (2 bits/symbol):"
+
+#: ../../explanation/physical-layer.md:46
+msgid "00→45°, 01→135°, 11→-135°, 10→-45°"
+msgstr "00→45°, 01→135°, 11→-135°, 10→-45°"
+
+#: ../../explanation/physical-layer.md:47
+msgid "偶数位额外 -45° 旋转"
+msgstr "Even-position symbols additionally rotated -45°"
+
+#: ../../explanation/physical-layer.md:49
+msgid "**8PSK** (每符号 3 bit):"
+msgstr "**8PSK** (3 bits/symbol):"
+
+#: ../../explanation/physical-layer.md:51
+msgid "Gray 编码, 22.5° 间隔"
+msgstr "Gray coded, 22.5° spacing"
+
+#: ../../explanation/physical-layer.md:52
+msgid "偶数位额外 -22.5° 旋转"
+msgstr "Even-position symbols additionally rotated -22.5°"
+
+#: ../../explanation/physical-layer.md:54
+msgid "\"偶数位\"的定义: 无线帧的第一个符号处于奇数位 (索引 0 = 奇), 索引 1 = 偶, 以此类推。这一额外旋转有助于改善时钟恢复性能。"
+msgstr ""
+"\"Even position\" definition: the first symbol in the radio frame is at an "
+"odd position (index 0 = odd), index 1 = even, and so on. This additional "
+"rotation improves clock recovery performance."
+
+#: ../../explanation/physical-layer.md:56
+msgid ""
+"脉冲成型使用平方根升余弦 (RRC) 滤波器, 滚降系数 $\\beta = 0.4$, 每符号采样数默认 4。收发两端各一个 RRC 滤波器, "
+"级联后满足 Nyquist 无码间干扰准则。"
+msgstr ""
+"Pulse shaping uses a root raised-cosine (RRC) filter with roll-off $\\beta ="
+" 0.4$ and 4 samples per symbol by default. An RRC filter at each end of the "
+"link satisfies the Nyquist ISI-free criterion when cascaded."
+
+#: ../../explanation/physical-layer.md:58
+msgid ""
+"**代码实现**: `phy.psk.PSKModulator` 类。星座映射定义在 `BPSK_MAP`, `QPSK_MAP`, "
+"`_8PSK_MAP` 等常量中。导频符号共用同一相位查找表, 由 `phy.pilot` 模块生成。"
+msgstr ""
+"**Implementation**: `phy.psk.PSKModulator` class. Constellation mappings are"
+" defined in constants `BPSK_MAP`, `QPSK_MAP`, `_8PSK_MAP`, etc. Pilot "
+"symbols share the same phase lookup table, generated by the `phy.pilot` "
+"module."
+
+#: ../../explanation/physical-layer.md:60
+msgid "此外还有一种**无旋转 BPSK** 映射 (0→0°, 1→180°), 用于同步信号 3/4 中的 m 序列调制, 不参与偶数位旋转。"
+msgstr ""
+"There is also a **non-rotated BPSK** mapping (0→0°, 1→180°) used for "
+"m-sequence modulation in sync signals 3/4, which does not participate in "
+"even-position rotation."
+
+#: ../../explanation/physical-layer.md:62
+msgid "多音信号 (§6.2.1.3)"
+msgstr "Multitone Signal (§6.2.1.3)"
+
+#: ../../explanation/physical-layer.md:64
+msgid "多音信号由 N 个单音叠加:"
+msgstr "Multitone signals are formed by superimposing N single tones:"
+
+#: ../../explanation/physical-layer.md:66
+#, python-brace-format
+msgid ""
+"\n"
+"S(t) = \\sum_{i=0}^{N-1} A_i \\cdot e^{j(\\omega_i t + \\phi_i)}\n"
+msgstr ""
+"\n"
+"S(t) = \\sum_{i=0}^{N-1} A_i \\cdot e^{j(\\omega_i t + \\phi_i)}\n"
+
+#: ../../explanation/physical-layer.md:70
+msgid "主要用于射频校准和测量场景。`phy.multitone` 模块实现了可配置音数、幅度和初始相位的多音信号生成。"
+msgstr ""
+"Primarily used for RF calibration and measurement scenarios. The "
+"`phy.multitone` module implements multitone signal generation with "
+"configurable number of tones, amplitudes, and initial phases."
+
+#: ../../explanation/physical-layer.md:72
+msgid "UWB 脉冲 (§6.2.1.4)"
+msgstr "UWB Pulse (§6.2.1.4)"
+
+#: ../../explanation/physical-layer.md:74
+msgid "超宽带脉冲信号采用 Kaiser 窗参考波形 ($\\beta = 10$), 支持两种带宽:"
+msgstr ""
+"UWB pulse signals use a Kaiser-window reference waveform ($\\beta = 10$), "
+"supporting two bandwidths:"
+
+#: ../../explanation/physical-layer.md
+msgid "信号带宽"
+msgstr "Signal Bandwidth"
+
+#: ../../explanation/physical-layer.md
+msgid "脉冲宽度 $T_p$"
+msgstr "Pulse Width $T_p$"
+
+#: ../../explanation/physical-layer.md
+msgid "窗口 $T_w$"
+msgstr "Window $T_w$"
+
+#: ../../explanation/physical-layer.md
+msgid "$\\geq$ 500 MHz"
+msgstr "$\\geq$ 500 MHz"
+
+#: ../../explanation/physical-layer.md
+msgid "2 ns"
+msgstr "2 ns"
+
+#: ../../explanation/physical-layer.md
+msgid "0.5 ns"
+msgstr "0.5 ns"
+
+#: ../../explanation/physical-layer.md
+msgid "$>$ 1300 MHz"
+msgstr "$>$ 1300 MHz"
+
+#: ../../explanation/physical-layer.md
+msgid "0.75 ns"
+msgstr "0.75 ns"
+
+#: ../../explanation/physical-layer.md
+msgid "0.2 ns"
+msgstr "0.2 ns"
+
+#: ../../explanation/physical-layer.md:81
+#, python-brace-format
+msgid "码片调制 $c(n) \\in \\{-1, 0, +1\\}$, 最大脉冲重复频率 499.2 MHz。"
+msgstr ""
+"Chip modulation $c(n) \\in \\{-1, 0, +1\\}$, maximum pulse repetition "
+"frequency 499.2 MHz."
+
+#: ../../explanation/physical-layer.md:83
+msgid "**代码实现**: `phy.uwb_pulse` 模块, 提供参考脉冲生成、码片调制和互相关验证。"
+msgstr ""
+"**Code implementation**: `phy.uwb_pulse` module, provides reference pulse "
+"generation, chip modulation, and cross-correlation verification."
+
+#: ../../explanation/physical-layer.md:85
+msgid "帧结构 (§6.3)"
+msgstr "Frame Structure (§6.3)"
+
+#: ../../explanation/physical-layer.md:87
+msgid "无线帧的组成"
+msgstr "Wireless Frame Composition"
+
+#: ../../explanation/physical-layer.md:89
+msgid "每个物理帧由帧头和数据两部分构成:"
+msgstr "Each physical frame consists of a header and data portion:"
+
+#: ../../explanation/physical-layer.md:97
+msgid "各帧类型的差异集中在帧头的编码和调制方式上:"
+msgstr ""
+"Differences between frame types are mainly in the header's coding and "
+"modulation schemes:"
+
+#: ../../explanation/physical-layer.md:99
+msgid "FT1 — 广播帧 (§6.3.2)"
+msgstr "FT1 — Broadcast Frame (§6.3.2)"
+
+#: ../../explanation/physical-layer.md:101
+msgid "**前导码**: GFSK, [0,1] 交替, 10 $\\mu$s"
+msgstr "**Preamble**: GFSK, [0,1] alternating, 10 $\\mu$s"
+
+#: ../../explanation/physical-layer.md:102
+msgid "**同步序列**: sync_signal_1, 32 位→32 个 GFSK 符号"
+msgstr "**Sync sequence**: sync_signal_1, 32-bit → 32 GFSK symbols"
+
+#: ../../explanation/physical-layer.md:103
+msgid "**控制信息**: A 组, 无 Polar 编码, GFSK 调制"
+msgstr "**Control info**: Group A, no Polar coding, GFSK modulation"
+
+#: ../../explanation/physical-layer.md:104
+msgid "**载荷**: 不经 Polar 编码, 直接 GFSK 调制"
+msgstr "**Payload**: no Polar coding, directly GFSK modulated"
+
+#: ../../explanation/physical-layer.md:105
+msgid "**典型用途**: 广播、发现、接入请求/响应"
+msgstr "**Typical use**: broadcast, discovery, access request/response"
+
+#: ../../explanation/physical-layer.md:107
+msgid "FT1 是最轻量的帧类型, 没有前向纠错编码开销。控制信息头部用 BCH 码保护, CRC 种子由同步序列低位确定。"
+msgstr ""
+"FT1 is the lightest frame type with no forward error correction coding "
+"overhead. The control information header is protected by BCH code; the CRC "
+"seed is determined by the lower bits of the sync sequence."
+
+#: ../../explanation/physical-layer.md:109
+msgid "FT2 — 短头数据帧 (§6.3.3)"
+msgstr "FT2 — Short-Header Data Frame (§6.3.3)"
+
+#: ../../explanation/physical-layer.md:111
+msgid "**前导码**: PSK, [$\\pi/4$, 0] 交替, 10 $\\mu$s"
+msgstr "**Preamble**: PSK, [$\\pi/4$, 0] alternating, 10 $\\mu$s"
+
+#: ../../explanation/physical-layer.md:112
+msgid "**同步序列**: sync_signal_2, 64 位→32 个 QPSK 符号"
+msgstr "**Sync sequence**: sync_signal_2, 64-bit → 32 QPSK symbols"
+
+#: ../../explanation/physical-layer.md:113
+msgid "**控制信息**: A 组, Polar(64,K) 编码→32 QPSK 符号, 导频间隔 16"
+msgstr ""
+"**Control info**: Group A, Polar(64,K) coded → 32 QPSK symbols, pilot "
+"interval 16"
+
+#: ../../explanation/physical-layer.md:114
+msgid "**载荷**: 码块分割 (无段内 CRC) → Polar 编码 → PSK 调制 + 导频"
+msgstr ""
+"**Payload**: code block segmentation (no intra-segment CRC) → Polar coding →"
+" PSK modulation + pilots"
+
+#: ../../explanation/physical-layer.md:115
+msgid "**导频**: 可选, 间隔 4/8/16"
+msgstr "**Pilots**: optional, interval 4/8/16"
+
+#: ../../explanation/physical-layer.md:117
+msgid "FT3 — 长头数据帧 (§6.3.4)"
+msgstr "FT3 — Long-Header Data Frame (§6.3.4)"
+
+#: ../../explanation/physical-layer.md:119
+msgid "**前导码**: PSK, [$\\pi/4$, 0] 交替, 12 $\\mu$s"
+msgstr "**Preamble**: PSK, [$\\pi/4$, 0] alternating, 12 $\\mu$s"
+
+#: ../../explanation/physical-layer.md:120
+msgid "**同步序列**: sync_signal_3, 31+31 位→62 个 BPSK 符号 (基于 m31 序列)"
+msgstr ""
+"**Sync sequence**: sync_signal_3, 31+31 bits → 62 BPSK symbols (based on m31"
+" sequence)"
+
+#: ../../explanation/physical-layer.md:121
+msgid "**控制信息**: B 组, Polar(256,K)→128 QPSK 符号, 导频间隔 4"
+msgstr ""
+"**Control info**: Group B, Polar(256,K) → 128 QPSK symbols, pilot interval 4"
+
+#: ../../explanation/physical-layer.md:122
+msgid "**载荷**: 码块分割 (含段内 CRC) → Polar 编码 → PSK 调制 + 导频"
+msgstr ""
+"**Payload**: code block segmentation (with intra-segment CRC) → Polar coding"
+" → PSK modulation + pilots"
+
+#: ../../explanation/physical-layer.md:123
+msgid "**特点**: B 组 CRC 种子 = `0x555555 ^ LLID`"
+msgstr "**Feature**: Group B CRC seed = `0x555555 ^ LLID`"
+
+#: ../../explanation/physical-layer.md:125
+msgid "FT4 — 扩展头数据帧 (§6.3.5)"
+msgstr "FT4 — Extended-Header Data Frame (§6.3.5)"
+
+#: ../../explanation/physical-layer.md:127
+msgid "**前导码**: PSK, [$\\pi/4$, 0] 交替, 16 $\\mu$s"
+msgstr "**Preamble**: PSK, [$\\pi/4$, 0] alternating, 16 $\\mu$s"
+
+#: ../../explanation/physical-layer.md:128
+msgid "**同步序列**: sync_signal_4, 63+63 位→126 个 BPSK 符号 (基于 m63 序列)"
+msgstr ""
+"**Sync sequence**: sync_signal_4, 63+63 bits → 126 BPSK symbols (based on "
+"m63 sequence)"
+
+#: ../../explanation/physical-layer.md:129
+msgid "**控制信息**: B 组, Polar(256,K)→256 BPSK 符号, 导频间隔 4"
+msgstr ""
+"**Control info**: Group B, Polar(256,K) → 256 BPSK symbols, pilot interval 4"
+
+#: ../../explanation/physical-layer.md:130
+msgid "**载荷**: 与 FT3 相同的编码方案, 但同步序列更长, 适合低信噪比场景"
+msgstr ""
+"**Payload**: same coding scheme as FT3, but longer sync sequence, suitable "
+"for low SNR scenarios"
+
+#: ../../explanation/physical-layer.md:132
+msgid "时序参数"
+msgstr "Timing Parameters"
+
+#: ../../explanation/physical-layer.md:134
+#, python-brace-format
+msgid ""
+"系统基础时隙 $T_{sys} = 125\\,\\mu s$, 由 30 位计数器表示当前时刻。调度时隙有 25/50/75/100/125 "
+"$\\mu$s 五种选择。帧的空口时长由以下公式决定:"
+msgstr ""
+"The system base slot $T_{sys} = 125\\,\\mu s$, represented by a 30-bit "
+"counter. Scheduling slots have five options: 25/50/75/100/125 $\\mu$s. The "
+"over-the-air frame duration is determined by:"
+
+#: ../../explanation/physical-layer.md:136
+#, python-brace-format
+msgid ""
+"\n"
+"T_{frame} = T_{preamble} + T_{sync} + T_{ctrl} + T_{data} + T_{guard}\n"
+msgstr ""
+"\n"
+"T_{frame} = T_{preamble} + T_{sync} + T_{ctrl} + T_{data} + T_{guard}\n"
+
+#: ../../explanation/physical-layer.md:140
+msgid ""
+"**代码实现**: `phy.frame` 模块的 `_SYNC_CONFIG` 和 `_CTRL_CONFIG` "
+"字典定义了四种帧类型的完整参数。`assemble_frame_bits()` 生成比特级帧结构, `frame_to_symbols()` "
+"完成到调制符号的转换。"
+msgstr ""
+"**Implementation**: The `_SYNC_CONFIG` and `_CTRL_CONFIG` dicts in "
+"`phy.frame` define the complete parameters for all four frame types. "
+"`assemble_frame_bits()` generates the bit-level frame structure; "
+"`frame_to_symbols()` converts it to modulation symbols."
+
+#: ../../explanation/physical-layer.md:142
+msgid "物理层控制信息 (§6.4)"
+msgstr "Physical Layer Control Information (§6.4)"
+
+#: ../../explanation/physical-layer.md:144
+msgid "控制信息是帧头中紧跟同步序列之后的结构化字段, 携带帧类型、载荷长度、MCS 等元信息。"
+msgstr ""
+"Control information is the structured field immediately following the sync "
+"sequence in the frame header, carrying frame type, payload length, MCS, and "
+"other metadata."
+
+#: ../../explanation/physical-layer.md:146
+msgid "A 组 (FT1/FT2)"
+msgstr "Group A (FT1/FT2)"
+
+#: ../../explanation/physical-layer.md:148
+msgid "A 组控制信息使用 CRC12 校验, 种子来自同步序列的低 12 位。定义了 7 种子类型:"
+msgstr ""
+"Group A control information uses CRC12 verification; the seed comes from the"
+" lower 12 bits of the sync sequence. Seven subtypes are defined:"
+
+#: ../../explanation/physical-layer.md
+msgid "类型"
+msgstr "Type"
+
+#: ../../explanation/physical-layer.md
+msgid "用途"
+msgstr "Purpose"
+
+#: ../../explanation/physical-layer.md
+msgid "A1"
+msgstr "A1"
+
+#: ../../explanation/physical-layer.md
+msgid "广播/发现/接入"
+msgstr "Broadcast/discovery/access"
+
+#: ../../explanation/physical-layer.md
+msgid "A2"
+msgstr "A2"
+
+#: ../../explanation/physical-layer.md
+msgid "异步数据 (控制面)"
+msgstr "Asynchronous data (control plane)"
+
+#: ../../explanation/physical-layer.md
+msgid "A3"
+msgstr "A3"
+
+#: ../../explanation/physical-layer.md
+msgid "异步数据 (数据面)"
+msgstr "Asynchronous data (data plane)"
+
+#: ../../explanation/physical-layer.md
+msgid "A4"
+msgstr "A4"
+
+#: ../../explanation/physical-layer.md
+msgid "异步数据 (复用)"
+msgstr "Asynchronous data (multiplex)"
+
+#: ../../explanation/physical-layer.md
+msgid "A5"
+msgstr "A5"
+
+#: ../../explanation/physical-layer.md
+msgid "同步等时"
+msgstr "Synchronous isochronous"
+
+#: ../../explanation/physical-layer.md
+msgid "A6"
+msgstr "A6"
+
+#: ../../explanation/physical-layer.md
+msgid "半可靠组播反馈"
+msgstr "Semi-reliable multicast feedback"
+
+#: ../../explanation/physical-layer.md
+msgid "A7"
+msgstr "A7"
+
+#: ../../explanation/physical-layer.md
+msgid "测量管理"
+msgstr "Measurement management"
+
+#: ../../explanation/physical-layer.md:160
+msgid "B 组 (FT3/FT4)"
+msgstr "Group B (FT3/FT4)"
+
+#: ../../explanation/physical-layer.md:162
+msgid ""
+"B 组使用 CRC24B 校验, 种子固定为 `0x555555`, CRC 结果与链路标识 LLID 异或。定义了 5 种子类型 (B1-B5), "
+"对应异步数据、同步等时和测量等场景。"
+msgstr ""
+"Group B uses CRC24B with a fixed seed `0x555555`; the CRC result is XOR-ed "
+"with link identifier LLID. Five subtypes are defined (B1-B5) for "
+"asynchronous data, synchronous isochronous, and measurement scenarios."
+
+#: ../../explanation/physical-layer.md:164
+msgid ""
+"**代码实现**: `phy.control_info` 模块提供 `ControlInfoA1` 至 `ControlInfoA7` 和 "
+"`ControlInfoB1` 至 `ControlInfoB5` 等数据类, 各自实现 `pack()` 和 `unpack()` 方法。"
+msgstr ""
+"**Implementation**: The `phy.control_info` module provides data classes "
+"`ControlInfoA1` through `ControlInfoA7` and `ControlInfoB1` through "
+"`ControlInfoB5`, each implementing `pack()` and `unpack()` methods."
+
+#: ../../explanation/physical-layer.md:166
+msgid "同步信号 (§6.2.3)"
+msgstr "Sync Signals (§6.2.3)"
+
+#: ../../explanation/physical-layer.md:168
+msgid "同步序列用于接收端定位帧起始位置。SLE 定义了 6 种同步信号:"
+msgstr ""
+"Sync sequences are used by the receiver to locate the frame start position. "
+"SLE defines 6 sync signals:"
+
+#: ../../explanation/physical-layer.md
+msgid "信号"
+msgstr "Signal"
+
+#: ../../explanation/physical-layer.md
+msgid "长度"
+msgstr "Length"
+
+#: ../../explanation/physical-layer.md
+msgid "调制"
+msgstr "Modulation"
+
+#: ../../explanation/physical-layer.md
+msgid "生成方式"
+msgstr "Generation Method"
+
+#: ../../explanation/physical-layer.md
+msgid "帧类型"
+msgstr "Frame Type"
+
+#: ../../explanation/physical-layer.md
+msgid "sync_signal_1"
+msgstr "sync_signal_1"
+
+#: ../../explanation/physical-layer.md
+msgid "32 bit"
+msgstr "32 bit"
+
+#: ../../explanation/physical-layer.md
+msgid "GFSK"
+msgstr "GFSK"
+
+#: ../../explanation/physical-layer.md
+msgid "GoldCode(32)"
+msgstr "GoldCode(32)"
+
+#: ../../explanation/physical-layer.md
+msgid "FT1"
+msgstr "FT1"
+
+#: ../../explanation/physical-layer.md
+msgid "sync_signal_2"
+msgstr "sync_signal_2"
+
+#: ../../explanation/physical-layer.md
+msgid "64 bit"
+msgstr "64 bit"
+
+#: ../../explanation/physical-layer.md
+msgid "QPSK"
+msgstr "QPSK"
+
+#: ../../explanation/physical-layer.md
+msgid "GoldCode(64)"
+msgstr "GoldCode(64)"
+
+#: ../../explanation/physical-layer.md
+msgid "FT2"
+msgstr "FT2"
+
+#: ../../explanation/physical-layer.md
+msgid "sync_signal_3"
+msgstr "sync_signal_3"
+
+#: ../../explanation/physical-layer.md
+msgid "62 bit"
+msgstr "62 bit"
+
+#: ../../explanation/physical-layer.md
+msgid "BPSK"
+msgstr "BPSK"
+
+#: ../../explanation/physical-layer.md
+msgid "m31+m31, pid 控制"
+msgstr "m31+m31, pid controlled"
+
+#: ../../explanation/physical-layer.md
+msgid "FT3"
+msgstr "FT3"
+
+#: ../../explanation/physical-layer.md
+msgid "sync_signal_4"
+msgstr "sync_signal_4"
+
+#: ../../explanation/physical-layer.md
+msgid "126 bit"
+msgstr "126 bit"
+
+#: ../../explanation/physical-layer.md
+msgid "m63+m63, pid 控制"
+msgstr "m63+m63, pid controlled"
+
+#: ../../explanation/physical-layer.md
+msgid "FT4"
+msgstr "FT4"
+
+#: ../../explanation/physical-layer.md
+msgid "sync_signal_5"
+msgstr "sync_signal_5"
+
+#: ../../explanation/physical-layer.md
+msgid "安全随机函数"
+msgstr "Secure random function"
+
+#: ../../explanation/physical-layer.md
+msgid "FT1 (安全)"
+msgstr "FT1 (secure)"
+
+#: ../../explanation/physical-layer.md
+msgid "sync_signal_6"
+msgstr "sync_signal_6"
+
+#: ../../explanation/physical-layer.md
+msgid "FT2 (安全)"
+msgstr "FT2 (secure)"
+
+#: ../../explanation/physical-layer.md:179
+msgid ""
+"sync_signal_3/4 的两段 m 序列由 PID (24 位) 通过哈希选择初始状态, "
+"使得不同链路的同步序列正交。sync_signal_5/6 使用密码学安全随机数生成, 防止被预测。"
+msgstr ""
+"The two m-sequences of sync_signal_3/4 select their initial states via a "
+"hash of the PID (24-bit), ensuring orthogonality between different links. "
+"sync_signal_5/6 use cryptographically secure random generation to prevent "
+"prediction."
+
+#: ../../explanation/physical-layer.md:181
+msgid ""
+"**代码实现**: `phy.sync_sequence` 模块实现全部 6 种信号的生成, `common.m_sequence` 提供底层 m "
+"序列算法。"
+msgstr ""
+"**Implementation**: The `phy.sync_sequence` module implements all 6 signal "
+"types; `common.m_sequence` provides the underlying m-sequence algorithm."
+
+#: ../../explanation/physical-layer.md:183
+msgid "前导码 (§6.2.2)"
+msgstr "Preamble (§6.2.2)"
+
+#: ../../explanation/physical-layer.md:185
+msgid "前导码位于帧最前端, 用于接收端的载波同步和符号定时恢复:"
+msgstr ""
+"The preamble is at the front of the frame, used by the receiver for carrier "
+"synchronization and symbol timing recovery:"
+
+#: ../../explanation/physical-layer.md
+msgid "波形"
+msgstr "Waveform"
+
+#: ../../explanation/physical-layer.md
+msgid "持续时间"
+msgstr "Duration"
+
+#: ../../explanation/physical-layer.md
+msgid "样式"
+msgstr "Pattern"
+
+#: ../../explanation/physical-layer.md
+msgid "[0,1,0,1...] 交替"
+msgstr "[0,1,0,1...] alternating"
+
+#: ../../explanation/physical-layer.md
+msgid "PSK"
+msgstr "PSK"
+
+#: ../../explanation/physical-layer.md
+msgid "[$\\pi/4$, 0, $\\pi/4$, 0...] 交替"
+msgstr "[$\\pi/4$, 0, $\\pi/4$, 0...] alternating"
+
+#: ../../explanation/physical-layer.md
+msgid "12 $\\mu$s"
+msgstr "12 $\\mu$s"
+
+#: ../../explanation/physical-layer.md
+msgid "同上"
+msgstr "Same as above"
+
+#: ../../explanation/physical-layer.md
+msgid "16 $\\mu$s"
+msgstr "16 $\\mu$s"
+
+#: ../../explanation/physical-layer.md:194
+msgid "前导码长度随帧类型递增, FT4 最长 (16 $\\mu$s), 提供更好的同步捕获性能。"
+msgstr ""
+"Preamble length increases with frame type; FT4 has the longest preamble (16 "
+"$\\mu$s), providing better synchronization acquisition performance."
+
+#: ../../explanation/physical-layer.md:196
+msgid "**代码实现**: `phy.preamble.generate_preamble()` 函数根据帧类型自动选择波形和时长。"
+msgstr ""
+"**Code implementation**: `phy.preamble.generate_preamble()` function "
+"automatically selects waveform and duration based on frame type."
+
+#: ../../explanation/physical-layer.md:198
+msgid "导频 (§6.7)"
+msgstr "Pilots (§6.7)"
+
+#: ../../explanation/physical-layer.md:200
+msgid "导频符号是已知相位的参考符号, 周期性插入数据符号流中, 用于接收端进行信道估计和相位跟踪。"
+msgstr ""
+"Pilot symbols are reference symbols with known phase, periodically inserted "
+"into the data symbol stream for channel estimation and phase tracking at the"
+" receiver."
+
+#: ../../explanation/physical-layer.md:202
+msgid "导频相位与该调制阶数的标准相位一致: BPSK 90°, QPSK 45°, 8PSK 22.5°。偶数位导频执行与数据符号相同的额外旋转。"
+msgstr ""
+"Pilot phase is aligned with the standard phase for the modulation order: "
+"BPSK 90°, QPSK 45°, 8PSK 22.5°. Even-position pilots undergo the same "
+"additional rotation as data symbols."
+
+#: ../../explanation/physical-layer.md:204
+msgid "插入规则: 每 $N$ 个数据符号后插入 1 个导频, $N$ 可选 4/8/16。帧末尾的导频可省略。"
+msgstr ""
+"Insertion rule: 1 pilot inserted after every $N$ data symbols; $N$ can be "
+"4/8/16. Pilots at the end of the frame may be omitted."
+
+#: ../../explanation/physical-layer.md:206
+msgid "FT1 不使用导频。FT2 导频可选 (默认间隔 16)。FT3/FT4 强制使用导频 (默认间隔 4)。"
+msgstr ""
+"FT1 does not use pilots. FT2 pilots are optional (default interval 16). "
+"FT3/FT4 mandate pilots (default interval 4)."
+
+#: ../../explanation/physical-layer.md:208
+msgid "**代码实现**: `phy.pilot.insert_pilots()` 和 `remove_pilots()` 函数。"
+msgstr ""
+"**Code implementation**: `phy.pilot.insert_pilots()` and `remove_pilots()` "
+"functions."
+
+#: ../../explanation/physical-layer.md:210
+msgid "信道编码 (§6.9-6.11)"
+msgstr "Channel Coding (§6.9-6.11)"
+
+#: ../../explanation/physical-layer.md:212
+msgid "CRC 校验 (§6.9)"
+msgstr "CRC Verification (§6.9)"
+
+#: ../../explanation/physical-layer.md:214
+msgid "SLE 使用四种 CRC:"
+msgstr "SLE uses four CRC variants:"
+
+#: ../../explanation/physical-layer.md
+msgid "生成多项式"
+msgstr "Generator Polynomial"
+
+#: ../../explanation/physical-layer.md
+msgid "CRC12"
+msgstr "CRC12"
+
+#: ../../explanation/physical-layer.md
+#, python-brace-format
+msgid "$D^{12}+D^{11}+D^3+D^2+D+1$"
+msgstr "$D^{12}+D^{11}+D^3+D^2+D+1$"
+
+#: ../../explanation/physical-layer.md
+msgid "A 组控制信息"
+msgstr "Group A control information"
+
+#: ../../explanation/physical-layer.md
+msgid "CRC24A"
+msgstr "CRC24A"
+
+#: ../../explanation/physical-layer.md
+#, python-brace-format
+msgid ""
+"$D^{24}+D^{23}+D^{18}+D^{17}+D^{14}+D^{11}+D^{10}+D^7+D^6+D^5+D^4+D^3+D+1$"
+msgstr ""
+"$D^{24}+D^{23}+D^{18}+D^{17}+D^{14}+D^{11}+D^{10}+D^7+D^6+D^5+D^4+D^3+D+1$"
+
+#: ../../explanation/physical-layer.md
+msgid "载荷段, B组"
+msgstr "Payload segment, Group B"
+
+#: ../../explanation/physical-layer.md
+msgid "CRC24B"
+msgstr "CRC24B"
+
+#: ../../explanation/physical-layer.md
+msgid "(同 24A 不同多项式)"
+msgstr "(different polynomial from 24A)"
+
+#: ../../explanation/physical-layer.md
+msgid "码块分割段内 CRC"
+msgstr "Code block segmentation intra-segment CRC"
+
+#: ../../explanation/physical-layer.md
+msgid "CRC32"
+msgstr "CRC32"
+
+#: ../../explanation/physical-layer.md
+msgid "标准 CRC-32"
+msgstr "Standard CRC-32"
+
+#: ../../explanation/physical-layer.md
+msgid "长载荷"
+msgstr "Long payload"
+
+#: ../../explanation/physical-layer.md:223
+msgid "CRC 计算支持种子值, A 组种子来自同步序列, B 组种子 = `0x555555 ^ LLID`。"
+msgstr ""
+"CRC computation supports seed values; Group A seed comes from the sync "
+"sequence, Group B seed = `0x555555 ^ LLID`."
+
+#: ../../explanation/physical-layer.md:225
+msgid ""
+"**代码实现**: `common.crc.crc_calculate()`, 支持 Rust 加速 (`_HAS_RUST_CRC` 自动检测)。"
+msgstr ""
+"**Code implementation**: `common.crc.crc_calculate()`, with Rust "
+"acceleration support (`_HAS_RUST_CRC` auto-detected)."
+
+#: ../../explanation/physical-layer.md:227
+msgid "Polar 编码 (§6.10.1)"
+msgstr "Polar Coding (§6.10.1)"
+
+#: ../../explanation/physical-layer.md:229
+msgid "SLE 的前向纠错采用 Polar 码, 核心参数:"
+msgstr ""
+"SLE uses Polar codes for forward error correction with the following core "
+"parameters:"
+
+#: ../../explanation/physical-layer.md:231
+msgid "母码长度 $N$: 32, 64, 128, 256, 512, 1024"
+msgstr "Mother code length $N$: 32, 64, 128, 256, 512, 1024"
+
+#: ../../explanation/physical-layer.md:232
+msgid "信息位数 $K$: 由 MCS 索引和载荷长度决定"
+msgstr "Information bit count $K$: determined by MCS index and payload length"
+
+#: ../../explanation/physical-layer.md:233
+msgid "可靠性序列: 标准附录 C 给出 1024 阶固定排序"
+msgstr ""
+"Reliability sequence: standard Appendix C provides 1024-level fixed ordering"
+
+#: ../../explanation/physical-layer.md:235
+msgid "编码器执行蝶形 GF(2) 变换, 解码器采用逐次消除 (SC) 算法, 辅以 SSC 剪枝 (rate-0/rate-1 子树快速路径)。"
+msgstr ""
+"The encoder performs butterfly GF(2) transform; the decoder uses successive "
+"cancellation (SC) algorithm with SSC pruning (fast paths for rate-0/rate-1 "
+"subtrees)."
+
+#: ../../explanation/physical-layer.md:237
+msgid ""
+"**代码实现**: `common.polar.PolarEncoder` / `PolarDecoder`, 均支持 Rust 加速 (PyO3 扩展"
+" `nearlink_sdr_accel`)。编码加速约 10 倍, 解码加速约 10 倍。"
+msgstr ""
+"**Implementation**: `common.polar.PolarEncoder` / `PolarDecoder`, both "
+"support Rust acceleration (PyO3 extension `nearlink_sdr_accel`). Encoding "
+"~10× faster, decoding ~10× faster."
+
+#: ../../explanation/physical-layer.md:239
+msgid "码块分割 (§6.10.2)"
+msgstr "Code Block Segmentation (§6.10.2)"
+
+#: ../../explanation/physical-layer.md:241
+msgid "当载荷超过单个 Polar 码块容量时, 进行码块分割:"
+msgstr ""
+"When payload exceeds a single Polar code block capacity, code block "
+"segmentation is performed:"
+
+#: ../../explanation/physical-layer.md:243
+msgid "**无段内 CRC** (FT2): 载荷等分为多个码块, 每块独立 Polar 编码"
+msgstr ""
+"**Without intra-segment CRC** (FT2): payload evenly divided into multiple "
+"code blocks, each independently Polar-coded"
+
+#: ../../explanation/physical-layer.md:244
+msgid "**含段内 CRC** (FT3/FT4): 每个码块附加额外 CRC, 增强可靠性"
+msgstr ""
+"**With intra-segment CRC** (FT3/FT4): each code block has an additional CRC "
+"appended, enhancing reliability"
+
+#: ../../explanation/physical-layer.md:246
+msgid ""
+"**代码实现**: `common.code_block_seg` 模块的 `segment_without_crc()` 和 "
+"`segment_with_crc()` 函数。"
+msgstr ""
+"**Implementation**: `segment_without_crc()` and `segment_with_crc()` "
+"functions in the `common.code_block_seg` module."
+
+#: ../../explanation/physical-layer.md:248
+msgid "BCH 编码 (§6.11)"
+msgstr "BCH Coding (§6.11)"
+
+#: ../../explanation/physical-layer.md:250
+msgid "FT1 控制信息头部使用 BCH 码保护:"
+msgstr "FT1 control information header is protected by BCH code:"
+
+#: ../../explanation/physical-layer.md:252
+msgid "BCH(31,26): 可纠正 1 位错误"
+msgstr "BCH(31,26): corrects 1-bit errors"
+
+#: ../../explanation/physical-layer.md:253
+msgid "BCH(63,24): 可纠正更多错误, 用于更长的控制字段"
+msgstr "BCH(63,24): corrects more errors, used for longer control fields"
+
+#: ../../explanation/physical-layer.md:255
+msgid "**代码实现**: `common.bch` 模块。"
+msgstr "**Code implementation**: `common.bch` module."
+
+#: ../../explanation/physical-layer.md:257
+msgid "信道比特加扰 (§6.10.4)"
+msgstr "Channel Bit Scrambling (§6.10.4)"
+
+#: ../../explanation/physical-layer.md:259
+msgid ""
+"加扰使用 7 位 Galois LFSR, 多项式 $x^7 + x^4 + 1$, 周期 127。种子 (whitening_seed) "
+"在控制信息中标明, 收发端使用相同种子即可还原。"
+msgstr ""
+"Scrambling uses a 7-bit Galois LFSR with polynomial $x^7 + x^4 + 1$ and "
+"period 127. The seed (whitening_seed) is indicated in the control "
+"information; both TX and RX use the same seed for recovery."
+
+#: ../../explanation/physical-layer.md:261
+msgid "**代码实现**: `common.scrambler.scramble()`, 内部预计算一个周期的加扰序列后用 tile 扩展。"
+msgstr ""
+"**Code implementation**: `common.scrambler.scramble()`, internally pre-"
+"computes one period of the scrambling sequence and extends with tile."
+
+#: ../../explanation/physical-layer.md:263
+msgid "MCS 表 (§6.10.5-6.10.6)"
+msgstr "MCS Table (§6.10.5-6.10.6)"
+
+#: ../../explanation/physical-layer.md:265
+msgid "调制与编码方案 (MCS) 索引决定了一次传输的调制阶数和码率:"
+msgstr ""
+"The Modulation and Coding Scheme (MCS) index determines the modulation order"
+" and code rate for a transmission:"
+
+#: ../../explanation/physical-layer.md
+msgid "MCS"
+msgstr "MCS"
+
+#: ../../explanation/physical-layer.md
+msgid "每符号比特"
+msgstr "Bits/Symbol"
+
+#: ../../explanation/physical-layer.md
+msgid "码率"
+msgstr "Code Rate"
+
+#: ../../explanation/physical-layer.md
+msgid "0"
+msgstr "0"
+
+#: ../../explanation/physical-layer.md
+msgid "1"
+msgstr "1"
+
+#: ../../explanation/physical-layer.md
+msgid "1/4"
+msgstr "1/4"
+
+#: ../../explanation/physical-layer.md
+msgid "1/3"
+msgstr "1/3"
+
+#: ../../explanation/physical-layer.md
+msgid "2"
+msgstr "2"
+
+#: ../../explanation/physical-layer.md
+msgid "1/2"
+msgstr "1/2"
+
+#: ../../explanation/physical-layer.md
+msgid "3"
+msgstr "3"
+
+#: ../../explanation/physical-layer.md
+msgid "2/3"
+msgstr "2/3"
+
+#: ../../explanation/physical-layer.md
+msgid "4"
+msgstr "4"
+
+#: ../../explanation/physical-layer.md
+msgid "3/4"
+msgstr "3/4"
+
+#: ../../explanation/physical-layer.md
+msgid "5"
+msgstr "5"
+
+#: ../../explanation/physical-layer.md
+msgid "6"
+msgstr "6"
+
+#: ../../explanation/physical-layer.md
+msgid "7"
+msgstr "7"
+
+#: ../../explanation/physical-layer.md
+msgid "8"
+msgstr "8"
+
+#: ../../explanation/physical-layer.md
+msgid "(无编码 FT1)"
+msgstr "(uncoded FT1)"
+
+#: ../../explanation/physical-layer.md
+msgid "9"
+msgstr "9"
+
+#: ../../explanation/physical-layer.md
+msgid "8PSK"
+msgstr "8PSK"
+
+#: ../../explanation/physical-layer.md
+msgid "10"
+msgstr "10"
+
+#: ../../explanation/physical-layer.md
+msgid "11"
+msgstr "11"
+
+#: ../../explanation/physical-layer.md:282
+msgid "MCS 8 用于 FT1 的不编码直通模式。速率匹配通过重复或打孔将 Polar 编码输出适配到目标资源数。"
+msgstr ""
+"MCS 8 is used for FT1's uncoded passthrough mode. Rate matching adapts the "
+"Polar coding output to the target resource count via repetition or "
+"puncturing."
+
+#: ../../explanation/physical-layer.md:284
+msgid "**代码实现**: `common.mcs` 模块定义了完整的 MCS 表和速率匹配参数。"
+msgstr ""
+"**Code implementation**: The `common.mcs` module defines the complete MCS "
+"table and rate matching parameters."
+
+#: ../../explanation/physical-layer.md:286
+msgid "跳频 (§6.10.3, §8.1)"
+msgstr "Frequency Hopping (§6.10.3, §8.1)"
+
+#: ../../explanation/physical-layer.md:288
+msgid ""
+"SLE 窄带系统在 2402-2480 MHz 频段内使用 79 个信道 (1 MHz 步进)。跳频序列由伪随机数生成器驱动, 每个调度点切换一次信道。"
+msgstr ""
+"The SLE narrowband system uses 79 channels in the 2402-2480 MHz band (1 MHz "
+"spacing). The hopping sequence is driven by a pseudo-random number "
+"generator, switching channel at each scheduling point."
+
+#: ../../explanation/physical-layer.md:290
+msgid "关键参数:"
+msgstr "Key parameters:"
+
+#: ../../explanation/physical-layer.md:292
+msgid "**跳频种子**: 24 位, 决定序列的随机性"
+msgstr "**Hopping seed**: 24-bit, determines sequence randomness"
+
+#: ../../explanation/physical-layer.md:293
+msgid "**跳频地图**: 79 位 bitmap, 标记每个信道的可用状态"
+msgstr ""
+"**Hopping map**: 79-bit bitmap, marks the availability of each channel"
+
+#: ../../explanation/physical-layer.md:294
+msgid "**最少可用信道**: 有下限门限, 防止可用信道过少"
+msgstr ""
+"**Minimum available channels**: has a lower threshold to prevent too few "
+"available channels"
+
+#: ../../explanation/physical-layer.md:296
+msgid "**代码实现**: `phy.freq_hopping` 模块的 `FreqTable`, 管理信道列表、跳频序列和屏蔽操作。"
+msgstr ""
+"**Code implementation**: `FreqTable` in the `phy.freq_hopping` module, "
+"manages the channel list, hopping sequences, and masking operations."
+
+#: ../../explanation/physical-layer.md:298
+msgid "发射流水线 (§6.10)"
+msgstr "Transmit Pipeline (§6.10)"
+
+#: ../../explanation/physical-layer.md:300
+msgid "完整的 TX 处理链路 (`phy.tx_pipeline.tx_chain`):"
+msgstr "Complete TX processing chain (`phy.tx_pipeline.tx_chain`):"
+
+#: ../../explanation/physical-layer.md:325
+msgid "发射参数通过 `TxConfig` 配置, 包含帧类型、MCS 索引、PID、加扰种子、CRC 长度和导频间隔等。"
+msgstr ""
+"Transmit parameters are configured via `TxConfig`, including frame type, MCS"
+" index, PID, scrambling seed, CRC length, and pilot interval."
+
+#: ../../explanation/physical-layer.md:327
+msgid "接收流水线 (§6.10)"
+msgstr "Receive Pipeline (§6.10)"
+
+#: ../../explanation/physical-layer.md:329
+msgid "RX 处理链路 (`phy.rx_pipeline.rx_chain`) 是发射的逆操作:"
+msgstr ""
+"The RX processing chain (`phy.rx_pipeline.rx_chain`) is the reverse of "
+"transmission:"
+
+#: ../../explanation/physical-layer.md:349
+msgid "帧同步通过滑动互相关检测同步序列的峰值位置, 超过门限则认为检测到帧。"
+msgstr ""
+"Frame synchronization detects the peak position of the sync sequence via "
+"sliding cross-correlation; a peak exceeding the threshold indicates a frame "
+"is detected."
+
+#: ../../explanation/physical-layer.md:351
+msgid "测量帧 (§6.3.6-6.3.11)"
+msgstr "Measurement Frames (§6.3.6-6.3.11)"
+
+#: ../../explanation/physical-layer.md:353
+msgid "SLE 定义了多种专用测量帧, 用于定位和感知:"
+msgstr ""
+"SLE defines several specialized measurement frames for positioning and "
+"sensing:"
+
+#: ../../explanation/physical-layer.md
+msgid "结构"
+msgstr "Structure"
+
+#: ../../explanation/physical-layer.md
+msgid "测量帧类型 1"
+msgstr "Measurement Frame Type 1"
+
+#: ../../explanation/physical-layer.md
+msgid "前导+同步+均衡保护+切换间隔+测量信号"
+msgstr ""
+"Preamble+sync+equalization guard+switching interval+measurement signal"
+
+#: ../../explanation/physical-layer.md
+msgid "窄带测距"
+msgstr "Narrowband ranging"
+
+#: ../../explanation/physical-layer.md
+msgid "测量帧类型 2"
+msgstr "Measurement Frame Type 2"
+
+#: ../../explanation/physical-layer.md
+msgid "仅测量信号"
+msgstr "Measurement signal only"
+
+#: ../../explanation/physical-layer.md
+msgid "简化测量"
+msgstr "Simplified measurement"
+
+#: ../../explanation/physical-layer.md
+msgid "测量帧类型 3"
+msgstr "Measurement Frame Type 3"
+
+#: ../../explanation/physical-layer.md
+msgid "前导+同步+均衡保护"
+msgstr "Preamble+sync+equalization guard"
+
+#: ../../explanation/physical-layer.md
+msgid "信道探测"
+msgstr "Channel sounding"
+
+#: ../../explanation/physical-layer.md
+msgid "测量帧类型 4"
+msgstr "Measurement Frame Type 4"
+
+#: ../../explanation/physical-layer.md
+msgid "完整数据帧+测量信号"
+msgstr "Complete data frame+measurement signal"
+
+#: ../../explanation/physical-layer.md
+msgid "通信+测量混合"
+msgstr "Communication+measurement hybrid"
+
+#: ../../explanation/physical-layer.md
+msgid "UWB 脉冲测量帧"
+msgstr "UWB Pulse Measurement Frame"
+
+#: ../../explanation/physical-layer.md
+msgid "UWB 脉冲序列"
+msgstr "UWB pulse sequence"
+
+#: ../../explanation/physical-layer.md
+msgid "超宽带测距"
+msgstr "UWB ranging"
+
+#: ../../explanation/physical-layer.md:363
+msgid ""
+"**代码实现**: `phy.measurement_frame`, `phy.measurement`, `phy.measurement_tx` "
+"模块。"
+msgstr ""
+"**Implementation**: `phy.measurement_frame`, `phy.measurement`, "
+"`phy.measurement_tx` modules."
+
+#: ../../explanation/physical-layer.md:365
+msgid "射频合规 (§8)"
+msgstr "RF Compliance (§8)"
+
+#: ../../explanation/physical-layer.md:367
+msgid "`phy.rf_compliance` 模块实现了标准第 8 章的射频参数校验:"
+msgstr ""
+"The `phy.rf_compliance` module implements RF parameter verification from "
+"standard Chapter 8:"
+
+#: ../../explanation/physical-layer.md:369
+msgid "**发射机**: 输出功率等级、GFSK 调制精度 (频偏容限)、PSK 调制精度 (EVM)、GFSK 杂散发射、PSK 频谱模板"
+msgstr ""
+"**Transmitter**: output power level, GFSK modulation accuracy (frequency "
+"deviation tolerance), PSK modulation accuracy (EVM), GFSK spurious "
+"emissions, PSK spectral template"
+
+#: ../../explanation/physical-layer.md:370
+msgid "**接收机**: 灵敏度与最大输入电平、信道选择性、杂散发射、RSSI 测量精度"
+msgstr ""
+"**Receiver**: sensitivity and maximum input level, channel selectivity, "
+"spurious emissions, RSSI measurement accuracy"
+
+#: ../../explanation/physical-layer.md:371
+msgid "**UWB**: 信道参数合规、频谱掩模、归一化均方根误差"
+msgstr ""
+"**UWB**: channel parameter compliance, spectral mask, normalized root mean "
+"square error"
+
+#: ../../explanation/physical-layer.md:373
+msgid "这些校验函数返回合规/不合规的判定, 可用于仿真结束后的自动验证。"
+msgstr ""
+"These verification functions return compliant/non-compliant judgments, "
+"suitable for automated verification after simulation."

@@ -1,0 +1,185 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the nearlink-sdr
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: nearlink-sdr 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-22 02:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: en <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.md:1
+#, python-brace-format
+msgid "{py:mod}`nearlink_sdr.phy.pilot`"
+msgstr "{py:mod}`nearlink_sdr.phy.pilot`"
+
+#: ../../../src/nearlink_sdr/phy/pilot.py:7
+msgid "导频符号插入与提取 -- TXS-10002-2025 标准 6.2.1.2 节。"
+msgstr ""
+"Pilot symbol insertion and extraction — TXS-10002-2025 standard section "
+"6.2.1.2."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.md:10
+msgid "Module Contents"
+msgstr "Module Contents"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.md:12
+msgid "Functions"
+msgstr "Functions"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.md:18
+#, python-brace-format
+msgid "{py:obj}`pilot_symbol <nearlink_sdr.phy.pilot.pilot_symbol>`"
+msgstr "{py:obj}`pilot_symbol <nearlink_sdr.phy.pilot.pilot_symbol>`"
+
+#: ../../../src/nearlink_sdr/phy/pilot.py:20
+#: ../../../src/nearlink_sdr/phy/pilot.py:74
+msgid "生成带适当相位旋转的单个导频符号。"
+msgstr "Generate a single pilot symbol with appropriate phase rotation."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.md:22
+#, python-brace-format
+msgid "{py:obj}`insert_pilots <nearlink_sdr.phy.pilot.insert_pilots>`"
+msgstr "{py:obj}`insert_pilots <nearlink_sdr.phy.pilot.insert_pilots>`"
+
+#: ../../../src/nearlink_sdr/phy/pilot.py:24
+#: ../../../src/nearlink_sdr/phy/pilot.py:81
+msgid "向数据符号流中插入导频符号。"
+msgstr "Insert pilot symbols into the data symbol stream."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.md:26
+#, python-brace-format
+msgid "{py:obj}`remove_pilots <nearlink_sdr.phy.pilot.remove_pilots>`"
+msgstr "{py:obj}`remove_pilots <nearlink_sdr.phy.pilot.remove_pilots>`"
+
+#: ../../../src/nearlink_sdr/phy/pilot.py:28
+#: ../../../src/nearlink_sdr/phy/pilot.py:88
+msgid "从接收符号流中移除导频符号。"
+msgstr "Remove pilot symbols from the received symbol stream."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.md:32
+msgid "Data"
+msgstr "Data"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.md:38
+#, python-brace-format
+msgid "{py:obj}`PILOT_PHASE_DEG <nearlink_sdr.phy.pilot.PILOT_PHASE_DEG>`"
+msgstr "{py:obj}`PILOT_PHASE_DEG <nearlink_sdr.phy.pilot.PILOT_PHASE_DEG>`"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.md:42
+#, python-brace-format
+msgid "{py:obj}`EVEN_ROTATION_DEG <nearlink_sdr.phy.pilot.EVEN_ROTATION_DEG>`"
+msgstr ""
+"{py:obj}`EVEN_ROTATION_DEG <nearlink_sdr.phy.pilot.EVEN_ROTATION_DEG>`"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.md:48
+msgid "API"
+msgstr "API"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.md:54
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.md:64
+msgid "None"
+msgstr "None"
+
+#: ../../../src/nearlink_sdr/phy/pilot.py:76
+msgid ""
+"参数:     mod_type: 调制方式，取 \"BPSK\"、\"QPSK\" 或 \"8PSK\"。     symbol_index: 帧内以"
+" 0 为基的符号索引（决定奇偶位置）。                  标准规定第一个符号处于奇数位置。"
+msgstr ""
+"parameter:     mod_type: modulation方式，取 \"BPSK\"、\"QPSK\" 或 \"8PSK\"。     "
+"symbol_index: frame内以 0 为基的符号索引（决定奇偶位置）。                  "
+"standard规定第一个符号处于奇数位置。"
+
+#: ../../../src/nearlink_sdr/phy/pilot.py:81
+msgid "返回:     复数导频符号。"
+msgstr "返回:     复数pilot符号。"
+
+#: ../../../src/nearlink_sdr/phy/pilot.py:83
+msgid "每隔 `pilot_interval` 个数据符号后插入一个导频符号。 按标准规定，帧中最后一个导频应省略。"
+msgstr ""
+"每隔 `pilot_interval` 个data符号后插入一个pilot符号。 按standard规定，frame中最后一个pilot应省略。"
+
+#: ../../../src/nearlink_sdr/phy/pilot.py:86
+msgid ""
+"参数:     data_symbols: 复数数据符号数组。     pilot_interval: 标准中的 N 值（4、8 或 16）。     "
+"mod_type: 导频相位所用的调制方式。     start_symbol_index: 帧内第一个数据符号的绝对符号索引。     "
+"omit_last_pilot: 是否省略最后一个导频符号。"
+msgstr ""
+"parameter:     data_symbols: 复数data符号数组。     pilot_interval: standard中的 N "
+"值（4、8 或 16）。     mod_type: pilot相位所用的modulation方式。     start_symbol_index: "
+"frame内第一个data符号的绝对符号索引。     omit_last_pilot: 是否省略最后一个pilot符号。"
+
+#: ../../../src/nearlink_sdr/phy/pilot.py:93
+msgid "返回:     (output_symbols, total_symbol_count) — 插入导频后的符号数组及总符号数。"
+msgstr "返回:     (output_symbols, total_symbol_count) — 插入pilot后的符号数组及总符号数。"
+
+#: ../../../src/nearlink_sdr/phy/pilot.py:90
+msgid ""
+"参数:     symbols: 含导频的接收符号。     pilot_interval: N 值（4、8 或 16）。     "
+"last_pilot_omitted: 发送侧是否已省略最后一个导频。"
+msgstr ""
+"parameter:     symbols: 含pilot的receive符号。     pilot_interval: N 值（4、8 或 16）。"
+"     last_pilot_omitted: transmit侧是否已省略最后一个pilot。"
+
+#: ../../../src/nearlink_sdr/phy/pilot.py:95
+msgid "返回:     移除导频后的数据符号。"
+msgstr "返回:     移除pilot后的data符号。"
+
+#~ msgid ""
+#~ "Pilot symbol insertion and extraction per TXS-10002-2025 section 6.2.1.2."
+#~ msgstr ""
+
+#~ msgid "Generate a single pilot symbol with appropriate phase rotation."
+#~ msgstr ""
+
+#~ msgid "Insert pilot symbols into data symbol stream."
+#~ msgstr ""
+
+#~ msgid "Remove pilot symbols from the received symbol stream."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Args:     mod_type: \"BPSK\", \"QPSK\", or \"8PSK\".     symbol_index: "
+#~ "0-based symbol index in the frame (determines odd/even).                  "
+#~ "The standard says the first symbol is at \"odd\" position."
+#~ msgstr ""
+
+#~ msgid "Returns:     Complex pilot symbol."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Every `pilot_interval` data symbols, one pilot symbol is inserted after "
+#~ "them. The last pilot in the frame should be omitted per standard."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Args:     data_symbols: complex data symbol array.     pilot_interval: N in "
+#~ "standard (4, 8, or 16).     mod_type: modulation type for pilot phase.     "
+#~ "start_symbol_index: the absolute symbol index of the first data symbol in "
+#~ "the frame.     omit_last_pilot: whether to omit the last pilot symbol."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Returns:     (output_symbols, total_symbol_count) — symbols with pilots "
+#~ "inserted, and count."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Args:     symbols: received symbols with pilots.     pilot_interval: N (4, "
+#~ "8, or 16).     last_pilot_omitted: whether the last pilot was omitted at TX."
+#~ msgstr ""
+
+#~ msgid "Returns:     Data symbols with pilots removed."
+#~ msgstr ""

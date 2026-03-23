@@ -1,0 +1,741 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the nearlink-sdr
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: nearlink-sdr 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: en <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../explanation/security.md:1
+msgid "安全子系统详解"
+msgstr "Security Subsystem Details"
+
+#: ../../explanation/security.md:3
+msgid ""
+"本文详细解释 SparkLink SLE 安全子系统的设计与实现, 涵盖配对鉴权、密钥派生、帧加密、隐私保护和 UWB 测量安全, 对标 "
+"TXS-10002-2025 标准第 9 章。"
+msgstr ""
+"This document explains the design and implementation of the SparkLink SLE "
+"security subsystem, covering pairing authentication, key derivation, frame "
+"encryption, privacy protection, and UWB measurement security, cross-"
+"referenced against Chapter 9 of TXS-10002-2025."
+
+#: ../../explanation/security.md:5
+msgid "安全架构"
+msgstr "Security Architecture"
+
+#: ../../explanation/security.md:7
+msgid "SLE 安全子系统分为三层:"
+msgstr "The SLE security subsystem is organized in three layers:"
+
+#: ../../explanation/security.md:9
+msgid "**配对鉴权层**: 建立信任关系, 交换密钥材料 (§9.2)"
+msgstr ""
+"**Pairing authentication layer**: establish trust relationships, exchange "
+"key material (§9.2)"
+
+#: ../../explanation/security.md:10
+msgid "**帧加密层**: 保护数据传输的机密性和完整性 (§9.3)"
+msgstr ""
+"**Frame encryption layer**: protect data transmission confidentiality and "
+"integrity (§9.3)"
+
+#: ../../explanation/security.md:11
+msgid "**隐私保护层**: 防止设备追踪 (§9.4)"
+msgstr "**Privacy protection layer**: prevent device tracking (§9.4)"
+
+#: ../../explanation/security.md:13
+msgid "安全的基础是 ECDH P-256 密钥协商, 派生出所有后续密钥。"
+msgstr ""
+"Security is built on ECDH P-256 key agreement, from which all subsequent "
+"keys are derived."
+
+#: ../../explanation/security.md:15
+msgid "配对流程 (§9.2)"
+msgstr "Pairing Procedure (§9.2)"
+
+#: ../../explanation/security.md:17
+msgid "配对是两个设备首次建立安全关联的过程。标准定义了 6 种鉴权方法:"
+msgstr ""
+"Pairing is the process by which two devices first establish a security "
+"association. The standard defines 6 authentication methods:"
+
+#: ../../explanation/security.md
+msgid "方法"
+msgstr "Method"
+
+#: ../../explanation/security.md
+msgid "适用场景"
+msgstr "Applicable Scenario"
+
+#: ../../explanation/security.md
+msgid "数值比较"
+msgstr "Numeric comparison"
+
+#: ../../explanation/security.md
+msgid "双方有显示和输入能力"
+msgstr "Both parties have display and input capability"
+
+#: ../../explanation/security.md
+msgid "密码输入"
+msgstr "Passkey entry"
+
+#: ../../explanation/security.md
+msgid "一方有输入能力"
+msgstr "One party has input capability"
+
+#: ../../explanation/security.md
+msgid "密码校验"
+msgstr "Passkey verification"
+
+#: ../../explanation/security.md
+msgid "预共享密码"
+msgstr "Pre-shared passkey"
+
+#: ../../explanation/security.md
+msgid "带外传输"
+msgstr "Out-of-band transfer"
+
+#: ../../explanation/security.md
+msgid "NFC 等侧信道"
+msgstr "NFC and other side channels"
+
+#: ../../explanation/security.md
+msgid "预共享密钥"
+msgstr "Pre-shared key"
+
+#: ../../explanation/security.md
+msgid "工厂预置密钥"
+msgstr "Factory-provisioned key"
+
+#: ../../explanation/security.md
+msgid "无输入"
+msgstr "No input"
+
+#: ../../explanation/security.md
+msgid "无交互能力 (Just Works)"
+msgstr "No interaction capability (Just Works)"
+
+#: ../../explanation/security.md:28
+msgid "鉴权方法的选择由双方 IO 能力 (无输入无输出、仅显示、仅键盘、显示+键盘、显示+是否) 协商决定。"
+msgstr ""
+"The authentication method is determined by negotiating the IO capabilities "
+"of both parties (no input/no output, display only, keyboard only, "
+"display+keyboard, display+yes/no)."
+
+#: ../../explanation/security.md:30
+msgid "配对状态机"
+msgstr "Pairing State Machine"
+
+#: ../../explanation/security.md:32
+msgid "配对流程由 9 个状态组成:"
+msgstr "The pairing procedure consists of 9 states:"
+
+#: ../../explanation/security.md:49
+msgid "G 节点视角:"
+msgstr "G node perspective:"
+
+#: ../../explanation/security.md:51
+msgid ""
+"**IDLE → REQUEST_SENT**: 发送 `PairingRequest`, 携带 IO 能力、密钥长度、安全分发信息、加密能力"
+msgstr ""
+"**IDLE → REQUEST_SENT**: send `PairingRequest`, carrying IO capabilities, "
+"key length, security distribution info, encryption capability"
+
+#: ../../explanation/security.md:52
+msgid ""
+"**REQUEST_SENT → CONFIRM_SENT**: 收到 `PairingResponse`, 发送 `PairingConfirm` "
+"(含 G 节点 P-256 公钥 X/Y 坐标, 各 32 字节)"
+msgstr ""
+"**REQUEST_SENT → CONFIRM_SENT**: received `PairingResponse`, sends "
+"`PairingConfirm` (containing G-node P-256 public key X/Y coordinates, 32 "
+"bytes each)"
+
+#: ../../explanation/security.md:53
+msgid ""
+"**CONFIRM_SENT → PUBLIC_KEY_EXCHANGED**: 收到 `PairingInitialInfo` (T 节点公钥), "
+"计算 ECDH 共享密钥, 发送 Ra 随机数"
+msgstr ""
+"**CONFIRM_SENT → PUBLIC_KEY_EXCHANGED**: received `PairingInitialInfo` "
+"(T-node public key), computes ECDH shared secret, sends Ra nonce"
+
+#: ../../explanation/security.md:54
+msgid ""
+"**PUBLIC_KEY_EXCHANGED → CONFIRM_CODE_SENT**: 收到 Rb, 发送 `GNodeConfirmCode`"
+msgstr ""
+"**PUBLIC_KEY_EXCHANGED → CONFIRM_CODE_SENT**: received Rb, send "
+"`GNodeConfirmCode`"
+
+#: ../../explanation/security.md:55
+msgid "**CONFIRM_CODE_SENT → COMPLETED**: 收到 `TNodeConfirmCode`, 验证确认码, 派生密钥"
+msgstr ""
+"**CONFIRM_CODE_SENT → COMPLETED**: received `TNodeConfirmCode`, verify "
+"confirmation code, derive keys"
+
+#: ../../explanation/security.md:57
+msgid "T 节点视角是上述流程的镜像:"
+msgstr "T node perspective is the mirror of the above procedure:"
+
+#: ../../explanation/security.md:59
+msgid "**IDLE → INITIATED**: 收到 `PairingInitiate`"
+msgstr "**IDLE → INITIATED**: received `PairingInitiate`"
+
+#: ../../explanation/security.md:60
+msgid ""
+"**INITIATED → RESPONSE_SENT**: 收到 `PairingRequest`, 发送 `PairingResponse`"
+msgstr ""
+"**INITIATED → RESPONSE_SENT**: received `PairingRequest`, send "
+"`PairingResponse`"
+
+#: ../../explanation/security.md:61
+msgid ""
+"**RESPONSE_SENT → PUBLIC_KEY_EXCHANGED**: 收到 `PairingConfirm`, 保存 G 公钥, "
+"发送自身公钥"
+msgstr ""
+"**RESPONSE_SENT → PUBLIC_KEY_EXCHANGED**: received `PairingConfirm`, saves "
+"G-node public key, sends its own public key"
+
+#: ../../explanation/security.md:62
+msgid "**PUBLIC_KEY_EXCHANGED → CONFIRM_CODE_SENT**: 收到 Ra, 计算 DH Key, 发送 Rb"
+msgstr ""
+"**PUBLIC_KEY_EXCHANGED → CONFIRM_CODE_SENT**: received Ra, compute DH Key, "
+"send Rb"
+
+#: ../../explanation/security.md:63
+msgid ""
+"**CONFIRM_CODE_SENT → COMPLETED**: 收到 `GNodeConfirmCode`, 验证后发送 "
+"`TNodeConfirmCode`, 派生密钥"
+msgstr ""
+"**CONFIRM_CODE_SENT → COMPLETED**: received `GNodeConfirmCode`, verifies and"
+" sends `TNodeConfirmCode`, derives session keys"
+
+#: ../../explanation/security.md:65
+msgid "失败处理"
+msgstr "Failure Handling"
+
+#: ../../explanation/security.md:67
+msgid "12 种失败原因:"
+msgstr "12 failure reasons:"
+
+#: ../../explanation/security.md:34
+msgid "代码"
+msgstr "Code"
+
+#: ../../explanation/security.md:34
+msgid "原因"
+msgstr "Reason"
+
+#: ../../explanation/security.md:34
+msgid "0x01"
+msgstr "0x01"
+
+#: ../../explanation/security.md:34
+msgid "密码输入失败"
+msgstr "Passkey entry failed"
+
+#: ../../explanation/security.md:34
+msgid "0x02"
+msgstr "0x02"
+
+#: ../../explanation/security.md:34
+msgid "带外数据不可用"
+msgstr "Out-of-band data unavailable"
+
+#: ../../explanation/security.md:34
+msgid "0x03"
+msgstr "0x03"
+
+#: ../../explanation/security.md:34
+msgid "鉴权要求不满足"
+msgstr "Authentication requirements not met"
+
+#: ../../explanation/security.md:34
+msgid "0x04"
+msgstr "0x04"
+
+#: ../../explanation/security.md:34
+msgid "确认值校验失败"
+msgstr "Confirm value check failed"
+
+#: ../../explanation/security.md:34
+msgid "0x05"
+msgstr "0x05"
+
+#: ../../explanation/security.md:34
+msgid "配对不支持"
+msgstr "Pairing not supported"
+
+#: ../../explanation/security.md:34
+msgid "0x06"
+msgstr "0x06"
+
+#: ../../explanation/security.md:34
+msgid "密钥长度不足"
+msgstr "Insufficient key length"
+
+#: ../../explanation/security.md:34
+msgid "0x07"
+msgstr "0x07"
+
+#: ../../explanation/security.md:34
+msgid "命令不支持"
+msgstr "Command not supported"
+
+#: ../../explanation/security.md:34
+msgid "0x08"
+msgstr "0x08"
+
+#: ../../explanation/security.md:34
+msgid "未指定原因"
+msgstr "Unspecified reason"
+
+#: ../../explanation/security.md:34
+msgid "0x09"
+msgstr "0x09"
+
+#: ../../explanation/security.md:34
+msgid "重复尝试"
+msgstr "Repeated attempts"
+
+#: ../../explanation/security.md:34
+msgid "0x0A"
+msgstr "0x0A"
+
+#: ../../explanation/security.md:34
+msgid "参数无效"
+msgstr "Invalid parameter"
+
+#: ../../explanation/security.md:34
+msgid "0x0B"
+msgstr "0x0B"
+
+#: ../../explanation/security.md:34
+msgid "DH Key 校验失败"
+msgstr "DH Key check failed"
+
+#: ../../explanation/security.md:34
+msgid "0x0C"
+msgstr "0x0C"
+
+#: ../../explanation/security.md:34
+msgid "数值比较失败"
+msgstr "Numeric comparison failed"
+
+#: ../../explanation/security.md:84
+msgid ""
+"**代码实现**: `mac.security_manager.PairingManager` 实现状态机, `mac.security` 模块定义 "
+"20 种配对信令消息类, `mac.security_manager.ECDHKeyPair` 封装 P-256 椭圆曲线运算。"
+msgstr ""
+"**Implementation**: `mac.security_manager.PairingManager` implements the "
+"state machine; `mac.security` defines 20 pairing signaling message classes; "
+"`mac.security_manager.ECDHKeyPair` encapsulates P-256 elliptic curve "
+"operations."
+
+#: ../../explanation/security.md:86
+msgid "密钥派生 (§9.3)"
+msgstr "Key Derivation (§9.3)"
+
+#: ../../explanation/security.md:88
+msgid "配对完成后, 通过 ECDH 共享密钥逐级派生出各功能密钥:"
+msgstr ""
+"After pairing is complete, functional keys are derived step by step from the"
+" ECDH shared secret:"
+
+#: ../../explanation/security.md:101
+msgid "KDF 算法"
+msgstr "KDF Algorithm"
+
+#: ../../explanation/security.md:103
+msgid "标准支持两种 KDF:"
+msgstr "The standard supports two KDFs:"
+
+#: ../../explanation/security.md:105
+msgid "**AES-CMAC**: 128 位密钥, 输出 128 位 MAC (§9.3.4)"
+msgstr "**AES-CMAC**: 128-bit key, 128-bit MAC output (§9.3.4)"
+
+#: ../../explanation/security.md:106
+msgid "**HMAC-SM3**: 256 位摘要取低 128 位 (§9.3.4)"
+msgstr "**HMAC-SM3**: 256-bit digest, lower 128 bits used (§9.3.4)"
+
+#: ../../explanation/security.md:108
+msgid "双方在配对阶段协商使用哪种 KDF。"
+msgstr "Both parties negotiate which KDF to use during the pairing phase."
+
+#: ../../explanation/security.md:110
+msgid "确认码生成 (§9.3.4.3)"
+msgstr "Confirmation Code Generation (§9.3.4.3)"
+
+#: ../../explanation/security.md:112
+msgid "确认码保证远端设备确实持有 DH Key。生成方式取决于鉴权方法:"
+msgstr ""
+"The confirmation code ensures the remote device actually holds the DH Key. "
+"Generation depends on the authentication method:"
+
+#: ../../explanation/security.md:114
+msgid "**数值比较**: KDF(PKax, PKax ‖ PKbx ‖ Ra ‖ 0)"
+msgstr "**Numeric comparison**: KDF(PKax, PKax ‖ PKbx ‖ Ra ‖ 0)"
+
+#: ../../explanation/security.md:115
+msgid "**密码输入**: KDF(PKax, PKax ‖ PKbx ‖ Ra ‖ Ri)"
+msgstr "**Passkey entry**: KDF(PKax, PKax ‖ PKbx ‖ Ra ‖ Ri)"
+
+#: ../../explanation/security.md:116
+msgid "**密码校验**: KDF(PKax, PKax ‖ PKbx ‖ Ra ‖ Pwd)"
+msgstr "**Passkey verification**: KDF(PKax, PKax ‖ PKbx ‖ Ra ‖ Pwd)"
+
+#: ../../explanation/security.md:117
+msgid "**带外/预共享/Just Works**: 类似数值比较"
+msgstr "**Out-of-band/Pre-shared/Just Works**: similar to numeric comparison"
+
+#: ../../explanation/security.md:119
+msgid "数值比较码 (§9.3.4.6)"
+msgstr "Numeric Comparison Code (§9.3.4.6)"
+
+#: ../../explanation/security.md:121
+msgid "从 KDF 输出取 4 字节, 对 $10^6$ 取模, 得到 6 位十进制数字, 双方显示给用户比对。"
+msgstr ""
+"Take 4 bytes from KDF output, modulo $10^6$, to get a 6-digit decimal number"
+" displayed to users on both sides for comparison."
+
+#: ../../explanation/security.md:123
+msgid "**代码实现**: `mac.crypto` 模块实现全部密钥派生函数:"
+msgstr ""
+"**Code implementation**: the `mac.crypto` module implements all key "
+"derivation functions:"
+
+#: ../../explanation/security.md:125
+msgid "`aes_cmac()`, `hmac_sm3()`, `kdf()`"
+msgstr "`aes_cmac()`, `hmac_sm3()`, `kdf()`"
+
+#: ../../explanation/security.md:126
+msgid "`derive_link_key()`, `derive_session_key()`, `derive_dh_verify_key()`"
+msgstr "`derive_link_key()`, `derive_session_key()`, `derive_dh_verify_key()`"
+
+#: ../../explanation/security.md:127
+msgid ""
+"`generate_confirm_code()`, `generate_dh_verify_code()`, "
+"`generate_numeric_code()`"
+msgstr ""
+"`generate_confirm_code()`, `generate_dh_verify_code()`, "
+"`generate_numeric_code()`"
+
+#: ../../explanation/security.md:128
+msgid "`obfuscate()` 混淆算法 (§9.3.4.7)"
+msgstr "`obfuscate()` obfuscation algorithm (§9.3.4.7)"
+
+#: ../../explanation/security.md:129
+msgid "`secure_random_256()` 安全随机函数 (§6.10.7)"
+msgstr "`secure_random_256()` secure random function (§6.10.7)"
+
+#: ../../explanation/security.md:131
+msgid "帧加密 (§9.3.1)"
+msgstr "Frame Encryption (§9.3.1)"
+
+#: ../../explanation/security.md:133
+msgid "AES-CCM"
+msgstr "AES-CCM"
+
+#: ../../explanation/security.md:135
+msgid "SLE 使用 AES-CCM (Counter with CBC-MAC) 进行帧加密, 同时保证机密性和完整性:"
+msgstr ""
+"SLE uses AES-CCM (Counter with CBC-MAC) for frame encryption, simultaneously"
+" ensuring confidentiality and integrity:"
+
+#: ../../explanation/security.md:137
+msgid "**机密性**: AES-CTR 模式加密载荷"
+msgstr "**Confidentiality**: AES-CTR mode encrypts payload"
+
+#: ../../explanation/security.md:138
+msgid "**完整性**: CBC-MAC 生成 MIC (消息完整性校验码), 长度 4/8/12/16 字节"
+msgstr ""
+"**Integrity**: CBC-MAC generates MIC (Message Integrity Code), 4/8/12/16 "
+"bytes in length"
+
+#: ../../explanation/security.md:140
+msgid "Nonce 构建"
+msgstr "Nonce Construction"
+
+#: ../../explanation/security.md:142
+msgid "Nonce 是 AES-CCM 的关键输入, 保证每个帧使用不同的计数器:"
+msgstr ""
+"The nonce is a critical input to AES-CCM, ensuring each frame uses a "
+"different counter:"
+
+#: ../../explanation/security.md:144
+msgid "**异步/同步单播和组播链路**:"
+msgstr "**Asynchronous/synchronous unicast and multicast links**:"
+
+#: ../../explanation/security.md:153
+msgid "`payload_count`: 单调递增计数器 (39 位), 防止 nonce 重用"
+msgstr ""
+"`payload_count`: monotonically increasing counter (39 bits), prevents nonce "
+"reuse"
+
+#: ../../explanation/security.md:154
+msgid "`Direction`: 0 = G→T, 1 = T→G"
+msgstr "`Direction`: 0 = G→T, 1 = T→G"
+
+#: ../../explanation/security.md:155
+msgid "`IV`: 由 IV 基值和帧参数计算得出"
+msgstr "`IV`: computed from the IV base value and frame parameters"
+
+#: ../../explanation/security.md:157
+msgid "**其他链路** (广播/SMF):"
+msgstr "**Other links** (broadcast/SMF):"
+
+#: ../../explanation/security.md:166
+msgid "IV 计算 (§9.3.1)"
+msgstr "IV Computation (§9.3.1)"
+
+#: ../../explanation/security.md:168
+msgid "IV 基值 (8 字节) 与不同参数异或:"
+msgstr "IV base value (8 bytes) XORed with different parameters:"
+
+#: ../../explanation/security.md:170
+msgid "**FT1/FT2**: IV = IV_base $\\oplus$ 同步序列号"
+msgstr "**FT1/FT2**: IV = IV_base $\\oplus$ sync sequence number"
+
+#: ../../explanation/security.md:171
+msgid "**FT3/FT4**: IV = IV_base $\\oplus$ 链路 ID"
+msgstr "**FT3/FT4**: IV = IV_base $\\oplus$ link ID"
+
+#: ../../explanation/security.md:173
+msgid ""
+"**代码实现**: `mac.security_manager.FrameCryptoContext` 管理加解密上下文, 维护 TX/RX "
+"payload_count, 调用 `mac.crypto.aes_ccm_encrypt()`/`aes_ccm_decrypt()`。"
+msgstr ""
+"**Implementation**: `mac.security_manager.FrameCryptoContext` manages the "
+"encryption/decryption context, maintains TX/RX payload_count, and calls "
+"`mac.crypto.aes_ccm_encrypt()`/`aes_ccm_decrypt()`."
+
+#: ../../explanation/security.md:175
+msgid "组播安全 (§9.3.2)"
+msgstr "Multicast Security (§9.3.2)"
+
+#: ../../explanation/security.md:177
+msgid "组播链路使用独立的密钥体系:"
+msgstr "Multicast links use a separate key hierarchy:"
+
+#: ../../explanation/security.md:188
+msgid "分发流程:"
+msgstr "Distribution procedure:"
+
+#: ../../explanation/security.md:190
+msgid "G 节点生成 RAND 和 KDF/加密/完整性算法参数, 通过 `MulticastAlgorithmConfig` 发送"
+msgstr ""
+"G node generates RAND and KDF/encryption/integrity algorithm parameters, "
+"sent via `MulticastAlgorithmConfig`"
+
+#: ../../explanation/security.md:191
+msgid ""
+"G 节点计算 $K_g$ = KDF(link_key, RAND), 发送 $C$ = $K_g \\oplus GK$ 通过 "
+"`MulticastKeyConfig`"
+msgstr ""
+"The G-node computes $K_g$ = KDF(link_key, RAND) and sends $C$ = $K_g \\oplus"
+" GK$ via `MulticastKeyConfig`"
+
+#: ../../explanation/security.md:192
+msgid "T 节点用自身 link_key 计算 $K_g$, 恢复 $GK$ = $C \\oplus K_g$"
+msgstr ""
+"The T-node computes $K_g$ from its own link_key to recover $GK$ = $C \\oplus"
+" K_g$"
+
+#: ../../explanation/security.md:194
+msgid ""
+"**代码实现**: `mac.crypto.generate_group_key()`, `derive_group_session_key()`, "
+"`derive_kg()`; `mac.security` 模块定义 `MulticastAlgorithmConfig` 和 "
+"`MulticastKeyConfig` 信令。"
+msgstr ""
+"**Implementation**: `mac.crypto.generate_group_key()`, "
+"`derive_group_session_key()`, `derive_kg()`; the `mac.security` module "
+"defines `MulticastAlgorithmConfig` and `MulticastKeyConfig` signaling "
+"messages."
+
+#: ../../explanation/security.md:196
+msgid "隐私保护 (§9.4)"
+msgstr "Privacy Protection (§9.4)"
+
+#: ../../explanation/security.md:198
+msgid "SLE 支持可解析随机地址, 防止第三方追踪设备:"
+msgstr ""
+"SLE supports resolvable random addresses to prevent third-party device "
+"tracking:"
+
+#: ../../explanation/security.md:200
+msgid "设备生成 IRK (身份解析密钥, 16 字节), 在配对阶段通过 `GNodeIRK`/`TNodeIRK` 交换"
+msgstr ""
+"Device generates IRK (Identity Resolving Key, 16 bytes), exchanged during "
+"pairing via `GNodeIRK`/`TNodeIRK`"
+
+#: ../../explanation/security.md:201
+msgid "设备使用 IRK 和随机数生成可解析地址 (48 位): 高 24 位为 hash(IRK, prand), 低 24 位为 prand"
+msgstr ""
+"Device uses IRK and a random number to generate a resolvable address (48 "
+"bits): upper 24 bits are hash(IRK, prand), lower 24 bits are prand"
+
+#: ../../explanation/security.md:202
+msgid "已知 IRK 的设备可以验证和解析该地址, 未知 IRK 的设备无法关联不同地址"
+msgstr ""
+"Devices knowing the IRK can verify and resolve the address; devices without "
+"the IRK cannot correlate different addresses"
+
+#: ../../explanation/security.md:204
+msgid ""
+"地址分发通过 `GNodeAddress`/`TNodeAddress` 信令完成, 携带地址类型 (联盟分配、第三方本地、联盟预留、私有) 和 6 "
+"字节地址。"
+msgstr ""
+"Address distribution is accomplished through `GNodeAddress`/`TNodeAddress` "
+"signaling, carrying the address type (consortium-assigned, third-party "
+"local, consortium-reserved, private) and a 6-byte address."
+
+#: ../../explanation/security.md:206
+msgid ""
+"**代码实现**: `mac.crypto.generate_resolvable_address(kdf_type, irk, rand_part)`"
+" 和 `resolve_address(kdf_type, irk, addr)`。"
+msgstr ""
+"**Implementation**: `mac.crypto.generate_resolvable_address(kdf_type, irk, "
+"rand_part)` and `resolve_address(kdf_type, irk, addr)`."
+
+#: ../../explanation/security.md:208
+msgid "UWB 测量安全 (§9.5)"
+msgstr "UWB Measurement Security (§9.5)"
+
+#: ../../explanation/security.md:210
+msgid "UWB 脉冲测量信号需要专用的安全机制, 防止距离欺骗攻击。"
+msgstr ""
+"UWB pulse measurement signals require dedicated security mechanisms to "
+"prevent distance spoofing attacks."
+
+#: ../../explanation/security.md:212
+msgid "CTS 密钥体系"
+msgstr "CTS Key System"
+
+#: ../../explanation/security.md:214
+msgid "从 Link Key 出发, 派生 UWB 测量专用密钥:"
+msgstr "Starting from the Link Key, derive UWB measurement-specific keys:"
+
+#: ../../explanation/security.md:229
+msgid "inputContext (§9.5, 表 71)"
+msgstr "inputContext (§9.5, Table 71)"
+
+#: ../../explanation/security.md:231
+msgid "128 位上下文参数, 编码测量会话的物理层配置:"
+msgstr ""
+"128-bit context parameter encoding the physical layer configuration of the "
+"measurement session:"
+
+#: ../../explanation/security.md:233
+msgid "物理信道号"
+msgstr "Physical channel number"
+
+#: ../../explanation/security.md:234
+msgid "测距方法和模式"
+msgstr "Ranging method and mode"
+
+#: ../../explanation/security.md:235
+msgid "NMSS 采样数"
+msgstr "NMSS sample count"
+
+#: ../../explanation/security.md:236
+msgid "G 节点 L2 ID"
+msgstr "G node L2 ID"
+
+#: ../../explanation/security.md:237
+msgid "天线配置"
+msgstr "Antenna configuration"
+
+#: ../../explanation/security.md:238
+msgid "其他保留位"
+msgstr "Other reserved bits"
+
+#: ../../explanation/security.md:240
+msgid "密钥更新"
+msgstr "Key Update"
+
+#: ../../explanation/security.md:242
+msgid "每次测量会话结束后, `ctsContent32Bit` 递增, 重新派生三个密钥。这确保每次测量使用不同的加扰序列。"
+msgstr ""
+"After each measurement session, `ctsContent32Bit` is incremented and three "
+"keys are re-derived. This ensures each measurement uses a different "
+"scrambling sequence."
+
+#: ../../explanation/security.md:244
+msgid "TGap 计算 (§9.5.4)"
+msgstr "TGap Computation (§9.5.4)"
+
+#: ../../explanation/security.md:246
+msgid "TGap 控制 CTS 符号间的时间间隔, 从 `ctsGap` 的 128 位值中按偏移截取 10 位:"
+msgstr ""
+"TGap controls the time interval between CTS symbols, extracting 10 bits at "
+"an offset from the 128-bit `ctsGap` value:"
+
+#: ../../explanation/security.md:248
+#, python-brace-format
+msgid "T_{gap} = T_{base} - T_{offset}"
+msgstr "T_{gap} = T_{base} - T_{offset}"
+
+#: ../../explanation/security.md:250
+#, python-brace-format
+msgid "其中 $T_{offset}$ 由 ctsGap 对应位计算。"
+msgstr "where $T_{offset}$ is computed from the corresponding bits of ctsGap."
+
+#: ../../explanation/security.md:252
+msgid "CTS 符号生成 (§9.5.5)"
+msgstr "CTS Symbol Generation (§9.5.5)"
+
+#: ../../explanation/security.md:254
+msgid "CTS 符号序列用于 UWB 测量帧的时域加扰:"
+msgstr ""
+"The CTS symbol sequence is used for time-domain scrambling of UWB "
+"measurement frames:"
+
+#: ../../explanation/security.md:256
+msgid "对每个符号, 用 ctsKey 进行 ECB 加密生成加扰块"
+msgstr ""
+"For each symbol, ECB encryption with ctsKey generates a scrambling block"
+
+#: ../../explanation/security.md:257
+msgid "提取符号索引和 SC 值 (+1 或 -1)"
+msgstr "Extract symbol index and SC value (+1 or -1)"
+
+#: ../../explanation/security.md:258
+msgid "ctsVCounter 逐符号递增"
+msgstr "ctsVCounter incremented per symbol"
+
+#: ../../explanation/security.md:260
+msgid "**代码实现**: `phy.uwb_measurement_security` 模块:"
+msgstr "**Code implementation**: `phy.uwb_measurement_security` module:"
+
+#: ../../explanation/security.md:262
+msgid "`UWBMeasInputContext`: 128 位上下文编码"
+msgstr "`UWBMeasInputContext`: 128-bit context encoding"
+
+#: ../../explanation/security.md:263
+msgid "`CTSKeys`: 密钥组容器"
+msgstr "`CTSKeys`: key set container"
+
+#: ../../explanation/security.md:264
+msgid "`derive_slp_key()`, `derive_cts_keys()`, `update_cts_keys()`"
+msgstr "`derive_slp_key()`, `derive_cts_keys()`, `update_cts_keys()`"
+
+#: ../../explanation/security.md:265
+msgid "`compute_tgap()`: TGap 时间间隔计算"
+msgstr "`compute_tgap()`: TGap time interval computation"
+
+#: ../../explanation/security.md:266
+msgid "`generate_cts_symbols()`: CTS 符号序列生成"
+msgstr "`generate_cts_symbols()`: CTS symbol sequence generation"

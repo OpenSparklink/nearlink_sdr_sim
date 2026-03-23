@@ -1,0 +1,568 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the nearlink-sdr
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: nearlink-sdr 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: en <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../explanation/data-flow.md:1
+msgid "端到端数据流"
+msgstr "End-to-End Data Flow"
+
+#: ../../explanation/data-flow.md:3
+msgid ""
+"本文从应用数据出发, 追踪一个数据包从发送端到接收端经过的完整处理链路, 涵盖 MAC "
+"层封装、信道编码、调制成型、空口传输、接收解调和数据恢复的全过程。"
+msgstr ""
+"Starting from application data, this article traces the complete processing "
+"pipeline of a data packet from the transmitter to the receiver, covering "
+"MAC-layer encapsulation, channel coding, modulation and pulse shaping, over-"
+"the-air transmission, reception and demodulation, and data recovery."
+
+#: ../../explanation/data-flow.md:5
+msgid "全局视图"
+msgstr "Global View"
+
+#: ../../explanation/data-flow.md:27
+msgid "发射流水线"
+msgstr "Transmit Pipeline"
+
+#: ../../explanation/data-flow.md:29
+msgid "第一步: QoS 决策"
+msgstr "Step 1: QoS Decision"
+
+#: ../../explanation/data-flow.md:31
+msgid "`SleNode.transmit()` 首先调用 `QosManager.prepare_tx()`, 从优先级队列中取出待发送数据:"
+msgstr ""
+"`SleNode.transmit()` first calls `QosManager.prepare_tx()`, which fetches "
+"data to send from the priority queue:"
+
+#: ../../explanation/data-flow.md:33
+msgid "五级优先级队列: CONTROL > REALTIME > HIGH > NORMAL > LOW"
+msgstr "Five-level priority queue: CONTROL > REALTIME > HIGH > NORMAL > LOW"
+
+#: ../../explanation/data-flow.md:34
+msgid "流控检查: 发送窗口是否有信用额度"
+msgstr "Flow control check: whether the transmit window has credit"
+
+#: ../../explanation/data-flow.md:35
+msgid "HARQ 检查: 是否有需要重传的码块"
+msgstr "HARQ check: whether there are code blocks requiring retransmission"
+
+#: ../../explanation/data-flow.md:37
+msgid "第二步: 帧加密 (可选)"
+msgstr "Step 2: Frame Encryption (optional)"
+
+#: ../../explanation/data-flow.md:39
+msgid "如果链路已开启加密, 调用 `FrameCryptoContext.encrypt()`:"
+msgstr ""
+"If encryption is enabled on the link, call `FrameCryptoContext.encrypt()`:"
+
+#: ../../explanation/data-flow.md:41
+msgid "计算 IV: `compute_iv(iv_base, sync_or_link_id, frame_type)`"
+msgstr "Compute IV: `compute_iv(iv_base, sync_or_link_id, frame_type)`"
+
+#: ../../explanation/data-flow.md:42
+msgid ""
+"构建 CCM nonce: `build_ccm_nonce_async(flag, payload_count, direction, iv, "
+"data_len)`, 取 B0[1:14] 作为 13 字节 nonce"
+msgstr ""
+"Build CCM nonce: `build_ccm_nonce_async(flag, payload_count, direction, iv, "
+"data_len)`, taking B0[1:14] as the 13-byte nonce"
+
+#: ../../explanation/data-flow.md:43
+msgid ""
+"AES-CCM 加密: `aes_ccm_encrypt(session_key, nonce, plaintext, aad, mic_len)` →"
+" 密文 + MIC"
+msgstr ""
+"AES-CCM encryption: `aes_ccm_encrypt(session_key, nonce, plaintext, aad, "
+"mic_len)` → ciphertext + MIC"
+
+#: ../../explanation/data-flow.md:44 ../../explanation/data-flow.md:176
+msgid "payload_count 递增"
+msgstr "payload_count incremented"
+
+#: ../../explanation/data-flow.md:46
+msgid "第三步: MAC 封帧"
+msgstr "Step 3: MAC Frame Encapsulation"
+
+#: ../../explanation/data-flow.md:48
+msgid "数据被封装为 `AsyncDataFrame`:"
+msgstr "Data is encapsulated into an `AsyncDataFrame`:"
+
+#: ../../explanation/data-flow.md:57
+msgid "如果数据超过最大 PDU 长度, 按 FIRST / MIDDLE / LAST 分段。"
+msgstr ""
+"If data exceeds the maximum PDU length, it is segmented as FIRST / MIDDLE / "
+"LAST."
+
+#: ../../explanation/data-flow.md:59
+msgid "第四步: 信道编码 (`tx_chain`)"
+msgstr "Step 4: Channel Coding (`tx_chain`)"
+
+#: ../../explanation/data-flow.md:61
+msgid "`mac_to_iq()` 将 MAC 字节转换为比特流, 构建控制信息, 然后调用 `tx_chain()`:"
+msgstr ""
+"`mac_to_iq()` converts MAC bytes to a bit stream, builds control "
+"information, then calls `tx_chain()`:"
+
+#: ../../explanation/data-flow.md:63
+msgid "头部编码 (`encode_head`)"
+msgstr "Header Coding (`encode_head`)"
+
+#: ../../explanation/data-flow.md:65
+msgid "控制信息比特 (28 或 44 位) 经过:"
+msgstr "Control information bits (28 or 44 bits) undergo:"
+
+#: ../../explanation/data-flow.md:67
+msgid "**Polar 编码**: 按可靠性序列选择信息位位置, 冻结位填零, 蝶形运算生成码字"
+msgstr ""
+"**Polar coding**: select information bit positions per the reliability "
+"sequence, freeze bits set to zero, butterfly operations generate codewords"
+
+#: ../../explanation/data-flow.md:68
+msgid "**加扰**: 7 位 Galois LFSR ($x^7 + x^4 + 1$), 异或每个比特"
+msgstr "**Scrambling**: 7-bit Galois LFSR ($x^7 + x^4 + 1$), XOR each bit"
+
+#: ../../explanation/data-flow.md:70
+msgid "载荷编码 (`encode_payload`)"
+msgstr "Payload Coding (`encode_payload`)"
+
+#: ../../explanation/data-flow.md:72
+msgid "用户数据比特经过:"
+msgstr "User data bits undergo:"
+
+#: ../../explanation/data-flow.md:74
+msgid "**CRC 附加**: 计算 CRC-24 或 CRC-32, 附加到数据尾部"
+msgstr "**CRC attachment**: compute CRC-24 or CRC-32, append to data tail"
+
+#: ../../explanation/data-flow.md:75
+msgid "**码块分割**: 当编码后比特数超过 Polar 码最大母码长度时, 将数据拆分为多个码块"
+msgstr ""
+"**Code block segmentation**: when the encoded bit count exceeds the maximum "
+"Polar mother code length, split data into multiple code blocks"
+
+#: ../../explanation/data-flow.md:76
+msgid "**Polar 编码**: 每个码块独立 Polar 编码, 按 MCS 指定的码率"
+msgstr ""
+"**Polar coding**: each code block is independently Polar-coded at the rate "
+"specified by MCS"
+
+#: ../../explanation/data-flow.md:77
+msgid "**加扰**: 与头部使用相同的 LFSR, 异或每个码字比特"
+msgstr ""
+"**Scrambling**: using the same LFSR as the header, XOR each codeword bit"
+
+#: ../../explanation/data-flow.md:79
+msgid "第五步: 帧组装"
+msgstr "Step 5: Frame Assembly"
+
+#: ../../explanation/data-flow.md:81
+msgid "编码后的比特按帧结构组装:"
+msgstr "The encoded bits are assembled according to the frame structure:"
+
+#: ../../explanation/data-flow.md:90
+msgid ""
+"**前导码**: m 序列, 不同帧类型使用不同长度 (FT1: 32 bit, FT2: 64 sym, FT3: 62 sym, FT4: 126 "
+"sym)"
+msgstr ""
+"**Preamble**: m-sequence; different frame types use different lengths (FT1: "
+"32 bit, FT2: 64 sym, FT3: 62 sym, FT4: 126 sym)"
+
+#: ../../explanation/data-flow.md:91
+msgid "**同步序列**: 由 PID 生成, 用于帧同步检测"
+msgstr ""
+"**Sync sequence**: generated from PID, used for frame synchronization "
+"detection"
+
+#: ../../explanation/data-flow.md:92
+msgid "**导频**: 按 `pilot_interval` 周期性插入已知符号, 用于信道估计"
+msgstr ""
+"**Pilots**: known symbols periodically inserted at `pilot_interval` "
+"intervals for channel estimation"
+
+#: ../../explanation/data-flow.md:94
+msgid "第六步: 调制成型"
+msgstr "Step 6: Modulation Shaping"
+
+#: ../../explanation/data-flow.md:96
+msgid "**FT1 (GFSK)**: 高斯频移键控, BT = 0.5, 直接调制为瞬时频率变化"
+msgstr ""
+"**FT1 (GFSK)**: Gaussian frequency shift keying, BT = 0.5, directly "
+"modulated as instantaneous frequency deviation"
+
+#: ../../explanation/data-flow.md:97
+msgid ""
+"**FT2-FT4 (PSK)**: 相移键控 (BPSK/QPSK/8PSK), 先映射星座点, 再经 RRC 脉冲成型滤波 (滚降系数 "
+"$\\beta = 0.4$)"
+msgstr ""
+"**FT2-FT4 (PSK)**: phase-shift keying (BPSK/QPSK/8PSK) — first map to "
+"constellation points, then apply RRC pulse-shaping filter (roll-off factor "
+"$\\beta = 0.4$)"
+
+#: ../../explanation/data-flow.md:99
+msgid "输出为复数基带 IQ 信号。"
+msgstr "Output is a complex baseband IQ signal."
+
+#: ../../explanation/data-flow.md:101
+msgid "第七步: 射频发送"
+msgstr "Step 7: RF Transmission"
+
+#: ../../explanation/data-flow.md:103
+msgid "**仿真模式**: IQ 直接进入信道模型"
+msgstr "**Simulation mode**: IQ fed directly into the channel model"
+
+#: ../../explanation/data-flow.md:104
+msgid "**USRP 模式**: IQ 通过 `SLETransceiver` 发送到 USRP E310 硬件, 上变频到 2.4 GHz 频段"
+msgstr ""
+"**USRP mode**: IQ sent via `SLETransceiver` to USRP E310 hardware, up-"
+"converted to the 2.4 GHz band"
+
+#: ../../explanation/data-flow.md:106
+msgid "空口传输"
+msgstr "Over-the-Air Transmission"
+
+#: ../../explanation/data-flow.md:108
+msgid "信道效应"
+msgstr "Channel Effects"
+
+#: ../../explanation/data-flow.md:110
+msgid "数据经过无线信道时受到:"
+msgstr "Data traversing the wireless channel is subject to:"
+
+#: ../../explanation/data-flow.md:112
+msgid "**多径衰落**: Rayleigh/Rician 衰落, 多径时延扩展"
+msgstr "**Multipath fading**: Rayleigh/Rician fading, multipath delay spread"
+
+#: ../../explanation/data-flow.md:113
+msgid "**频率偏移**: 本振不匹配导致的载波频偏"
+msgstr ""
+"**Frequency offset**: carrier frequency offset caused by local oscillator "
+"mismatch"
+
+#: ../../explanation/data-flow.md:114
+msgid "**多普勒扩展**: 相对运动引起的时变信道"
+msgstr "**Doppler spread**: time-varying channel caused by relative motion"
+
+#: ../../explanation/data-flow.md:115
+msgid "**噪声**: 高斯白噪声 (AWGN)"
+msgstr "**Noise**: additive white Gaussian noise (AWGN)"
+
+#: ../../explanation/data-flow.md:116
+msgid "**多用户干扰**: 其他设备同频信号干扰"
+msgstr ""
+"**Multi-user interference**: co-frequency signal interference from other "
+"devices"
+
+#: ../../explanation/data-flow.md:118
+msgid "跳频"
+msgstr "Frequency Hopping"
+
+#: ../../explanation/data-flow.md:120
+msgid "发射和接收两端按相同的跳频序列在 2402-2480 MHz 频段内切换信道, 每个时隙跳到不同频点, 改善频率分集增益并降低窄带干扰影响。"
+msgstr ""
+"Both transmitter and receiver switch channels in the 2402-2480 MHz band "
+"according to the same hopping sequence, jumping to a different frequency "
+"point each slot to improve frequency diversity gain and reduce narrowband "
+"interference."
+
+#: ../../explanation/data-flow.md:122
+msgid "接收流水线"
+msgstr "Receive Pipeline"
+
+#: ../../explanation/data-flow.md:124
+msgid "第一步: 射频接收"
+msgstr "Step 1: RF Reception"
+
+#: ../../explanation/data-flow.md:126
+msgid "**USRP 模式**: 硬件下变频, ADC 采样得到基带 IQ"
+msgstr ""
+"**USRP mode**: hardware down-conversion, ADC sampling yields baseband IQ"
+
+#: ../../explanation/data-flow.md:127
+msgid "**仿真模式**: 从信道模型输出获取 IQ 信号"
+msgstr "**Simulation mode**: IQ signal obtained from channel model output"
+
+#: ../../explanation/data-flow.md:129
+msgid "第二步: 匹配滤波"
+msgstr "Step 2: Matched Filtering"
+
+#: ../../explanation/data-flow.md:131
+msgid "**FT1 (GFSK)**: GFSK 解调器直接提取瞬时频率"
+msgstr ""
+"**FT1 (GFSK)**: GFSK demodulator directly extracts instantaneous frequency"
+
+#: ../../explanation/data-flow.md:132
+msgid "**FT2-FT4 (PSK)**: RRC 匹配滤波, 最大化信噪比, 然后降至 1 样本/符号"
+msgstr ""
+"**FT2-FT4 (PSK)**: RRC matched filtering to maximize SNR, then downsample to"
+" 1 sample/symbol"
+
+#: ../../explanation/data-flow.md:134
+msgid "第三步: 帧同步 (`frame_sync`)"
+msgstr "Step 3: Frame Synchronization (`frame_sync`)"
+
+#: ../../explanation/data-flow.md:136
+msgid "滑动互相关检测同步序列:"
+msgstr "Sliding cross-correlation detects the sync sequence:"
+
+#: ../../explanation/data-flow.md:138
+msgid "根据帧类型生成同步参考序列"
+msgstr "Generate sync reference sequence based on frame type"
+
+#: ../../explanation/data-flow.md:139
+msgid "计算接收信号与参考序列的互相关"
+msgstr ""
+"Compute cross-correlation between received signal and reference sequence"
+
+#: ../../explanation/data-flow.md:140
+msgid "峰值超过均值 2 倍时判定同步成功, 返回帧起始位置"
+msgstr ""
+"When peak exceeds twice the mean, synchronization is declared successful; "
+"return frame start position"
+
+#: ../../explanation/data-flow.md:142
+msgid "第四步: 帧结构解析"
+msgstr "Step 4: Frame Structure Parsing"
+
+#: ../../explanation/data-flow.md:144
+msgid "`symbols_to_data_bits()` 根据帧配置参数拆分各段:"
+msgstr ""
+"`symbols_to_data_bits()` splits the segments according to frame "
+"configuration parameters:"
+
+#: ../../explanation/data-flow.md:146
+msgid "跳过前导码和同步序列"
+msgstr "Skip preamble and sync sequence"
+
+#: ../../explanation/data-flow.md:147
+msgid "提取头部符号 (固定长度)"
+msgstr "Extract header symbols (fixed length)"
+
+#: ../../explanation/data-flow.md:148
+msgid "提取载荷符号 (长度由头部指示或预知)"
+msgstr ""
+"Extract payload symbols (length indicated by header or known in advance)"
+
+#: ../../explanation/data-flow.md:149
+msgid "移除导频符号"
+msgstr "Remove pilot symbols"
+
+#: ../../explanation/data-flow.md:151
+msgid "第五步: 头部解码 (`decode_head`)"
+msgstr "Step 5: Header Decoding (`decode_head`)"
+
+#: ../../explanation/data-flow.md:153
+msgid "**解扰**: 相同的 LFSR 异或恢复原始码字"
+msgstr "**Descrambling**: same LFSR XOR to recover the original codeword"
+
+#: ../../explanation/data-flow.md:154
+msgid "**Polar 解码**: SC (逐次消除) 解码, 恢复控制信息比特"
+msgstr ""
+"**Polar decoding**: SC (successive cancellation) decoding, recover control "
+"information bits"
+
+#: ../../explanation/data-flow.md:155
+msgid "**CRC-12 校验**: 验证头部完整性"
+msgstr "**CRC-12 check**: verify header integrity"
+
+#: ../../explanation/data-flow.md:157
+msgid "第六步: 载荷解码 (`decode_payload`)"
+msgstr "Step 6: Payload Decoding (`decode_payload`)"
+
+#: ../../explanation/data-flow.md:159
+msgid "**解扰**: LFSR 异或"
+msgstr "**Descrambling**: LFSR XOR"
+
+#: ../../explanation/data-flow.md:160
+msgid "**Polar 解码**: 每个码块独立解码"
+msgstr "**Polar decoding**: each code block decoded independently"
+
+#: ../../explanation/data-flow.md:161
+msgid "**码块重组**: 多个码块合并为完整数据"
+msgstr ""
+"**Code block reassembly**: multiple code blocks merged into complete data"
+
+#: ../../explanation/data-flow.md:162
+msgid "**CRC 校验**: CRC-24 或 CRC-32 验证数据完整性"
+msgstr "**CRC check**: CRC-24 or CRC-32 verifies data integrity"
+
+#: ../../explanation/data-flow.md:164
+msgid "第七步: MAC 解帧"
+msgstr "Step 7: MAC Frame Decapsulation"
+
+#: ../../explanation/data-flow.md:166
+msgid "比特流转换为字节: `bits_to_bytes()`"
+msgstr "Bit stream converted to bytes: `bits_to_bytes()`"
+
+#: ../../explanation/data-flow.md:167
+msgid "解析 `AsyncDataFrame`: 提取分段标志和载荷"
+msgstr "Parse `AsyncDataFrame`: extract segmentation flags and payload"
+
+#: ../../explanation/data-flow.md:168
+msgid "分段重组: 如有分段, 按序号拼接"
+msgstr "Segment reassembly: if segmented, concatenate by sequence number"
+
+#: ../../explanation/data-flow.md:170
+msgid "第八步: 帧解密 (可选)"
+msgstr "Step 8: Frame Decryption (optional)"
+
+#: ../../explanation/data-flow.md:172
+msgid "调用 `FrameCryptoContext.decrypt()`:"
+msgstr "Call `FrameCryptoContext.decrypt()`:"
+
+#: ../../explanation/data-flow.md:174
+msgid "用与发送端相同的参数构建 nonce"
+msgstr "Build nonce with the same parameters as the transmitter"
+
+#: ../../explanation/data-flow.md:175
+msgid "AES-CCM 解密并验证 MIC"
+msgstr "AES-CCM decrypt and verify MIC"
+
+#: ../../explanation/data-flow.md:177
+msgid "MIC 验证失败则丢弃"
+msgstr "Discard if MIC verification fails"
+
+#: ../../explanation/data-flow.md:179
+msgid "第九步: QoS 反馈"
+msgstr "Step 9: QoS Feedback"
+
+#: ../../explanation/data-flow.md:181
+msgid "ARQ: 发送 ACK/NACK"
+msgstr "ARQ: send ACK/NACK"
+
+#: ../../explanation/data-flow.md:182
+msgid "HARQ: 反馈 TB 或 CBG 粒度的确认"
+msgstr "HARQ: feedback TB or CBG granularity acknowledgement"
+
+#: ../../explanation/data-flow.md:183
+msgid "流控: 更新信用额度"
+msgstr "Flow control: update credit"
+
+#: ../../explanation/data-flow.md:184
+msgid "质量跟踪: 更新帧错误率统计, 推荐 MCS"
+msgstr "Quality tracking: update frame error rate statistics, recommend MCS"
+
+#: ../../explanation/data-flow.md:186
+msgid "MAC-PHY 适配层"
+msgstr "MAC-PHY Adaptation Layer"
+
+#: ../../explanation/data-flow.md:188
+msgid "`phy.mac_interface` 模块是 MAC 和 PHY 之间的桥接:"
+msgstr "The `phy.mac_interface` module bridges MAC and PHY:"
+
+#: ../../explanation/data-flow.md:7
+msgid "函数"
+msgstr "Function"
+
+#: ../../explanation/data-flow.md:7
+msgid "方向"
+msgstr "Direction"
+
+#: ../../explanation/data-flow.md:7
+msgid "说明"
+msgstr "Description"
+
+#: ../../explanation/data-flow.md:7
+msgid "`mac_to_iq()`"
+msgstr "`mac_to_iq()`"
+
+#: ../../explanation/data-flow.md:7
+msgid "TX"
+msgstr "TX"
+
+#: ../../explanation/data-flow.md:7
+msgid "MAC 字节 → IQ 信号"
+msgstr "MAC bytes → IQ signal"
+
+#: ../../explanation/data-flow.md:7
+msgid "`iq_to_mac()`"
+msgstr "`iq_to_mac()`"
+
+#: ../../explanation/data-flow.md:7
+msgid "RX"
+msgstr "RX"
+
+#: ../../explanation/data-flow.md:7
+msgid "IQ 信号 → MAC 字节"
+msgstr "IQ signal → MAC bytes"
+
+#: ../../explanation/data-flow.md:7
+msgid "`signaling_to_iq()`"
+msgstr "`signaling_to_iq()`"
+
+#: ../../explanation/data-flow.md:7
+msgid "信令对象 → IQ"
+msgstr "Signaling object → IQ"
+
+#: ../../explanation/data-flow.md:7
+msgid "`iq_to_signaling()`"
+msgstr "`iq_to_signaling()`"
+
+#: ../../explanation/data-flow.md:7
+msgid "IQ → 信令对象"
+msgstr "IQ → signaling object"
+
+#: ../../explanation/data-flow.md:7
+msgid "`bytes_to_bits()`"
+msgstr "`bytes_to_bits()`"
+
+#: ../../explanation/data-flow.md:7
+msgid "工具"
+msgstr "Utility"
+
+#: ../../explanation/data-flow.md:7
+msgid "字节 → 比特 (MSB)"
+msgstr "Bytes → bits (MSB)"
+
+#: ../../explanation/data-flow.md:7
+msgid "`bits_to_bytes()`"
+msgstr "`bits_to_bytes()`"
+
+#: ../../explanation/data-flow.md:7
+msgid "比特 → 字节"
+msgstr "Bits → bytes"
+
+#: ../../explanation/data-flow.md:199
+msgid "SleNode 集成"
+msgstr "SleNode Integration"
+
+#: ../../explanation/data-flow.md:201
+msgid "`SleNode` 是将所有功能集成到一个实体的节点类:"
+msgstr ""
+"`SleNode` is the node class integrating all functionality into a single "
+"entity:"
+
+#: ../../explanation/data-flow.md:216
+msgid "数据流路径:"
+msgstr "Data flow paths:"
+
+#: ../../explanation/data-flow.md:218
+msgid ""
+"**发送**: `send(data)` → 入队 → `transmit()` → QoS → 加密 → MAC → PHY → IQ → 空口"
+msgstr ""
+"**Transmit**: `send(data)` → enqueue → `transmit()` → QoS → encrypt → MAC → "
+"PHY → IQ → air"
+
+#: ../../explanation/data-flow.md:219
+msgid ""
+"**接收**: 空口 → IQ → `receive()` → PHY → MAC → 解密 → QoS 反馈 → "
+"`on_data_received()`"
+msgstr ""
+"**Receive**: air → IQ → `receive()` → PHY → MAC → decrypt → QoS feedback → "
+"`on_data_received()`"

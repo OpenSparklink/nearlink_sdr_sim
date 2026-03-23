@@ -1,0 +1,753 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the nearlink-sdr
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: nearlink-sdr 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: en <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:1
+#, python-brace-format
+msgid "{py:mod}`nearlink_sdr.mac.scheduler`"
+msgstr "{py:mod}`nearlink_sdr.mac.scheduler`"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:7
+msgid "时序调度器 -- TXS-10002-2025 标准 6.3/6.6/7.2。"
+msgstr "Timing scheduler — TXS-10002-2025 standard 6.3/6.6/7.2."
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:9
+msgid "管理 SLE 系统的基础时隙、调度时隙、超帧结构和事件组调度:"
+msgstr ""
+"Manages SLE system base slots, scheduling slots, superframe structure, and "
+"event group scheduling:"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:11
+msgid "系统基础时隙 (Tsys = 125 μs, 30 bit 计数器)"
+msgstr "System base slot (Tsys = 125 μs, 30-bit counter)"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:12
+#, python-brace-format
+msgid "系统调度时隙 (Tschedule = k × 25 μs, k ∈ {1,2,3,4,5})"
+msgstr "系统调度time slot (Tschedule = k × 25 μs, k ∈ {1,2,3,4,5})"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:13
+msgid "超帧: 两个相邻 SMF 之间的时间资源"
+msgstr "超frame: 两个相邻 SMF 之间的time资源"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:14
+msgid "事件组: 多个事件的容器, 以事件组周期重复"
+msgstr "事件组: 多个事件的容器, 以事件组period重复"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:15
+msgid "时间片: 超帧内的调度时间块 (偏移量 + 持续长度 + 周期 + 重复次数)"
+msgstr "time片: 超frame内的调度time块 (offset量 + 持续length + period + 重复次数)"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:10
+msgid "Module Contents"
+msgstr "Module Contents"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:12
+msgid "Classes"
+msgstr "Classes"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:18
+#, python-brace-format
+msgid ""
+"{py:obj}`ScheduleSlotType <nearlink_sdr.mac.scheduler.ScheduleSlotType>`"
+msgstr ""
+"{py:obj}`ScheduleSlotType <nearlink_sdr.mac.scheduler.ScheduleSlotType>`"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:20
+#: ../../../src/nearlink_sdr/mac/scheduler.py:168
+msgid "系统调度时隙类型枚举 (3 bit, 标准 6.3.1)。"
+msgstr "系统调度time slot类型枚举 (3 bit, standard 6.3.1)。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:22
+#, python-brace-format
+msgid ""
+"{py:obj}`SleepClockAccuracy <nearlink_sdr.mac.scheduler.SleepClockAccuracy>`"
+msgstr ""
+"{py:obj}`SleepClockAccuracy <nearlink_sdr.mac.scheduler.SleepClockAccuracy>`"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:24
+#: ../../../src/nearlink_sdr/mac/scheduler.py:252
+msgid "睡眠时钟精度枚举 (3 bit)。"
+msgstr "睡眠时钟精度枚举 (3 bit)。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:26
+#, python-brace-format
+msgid "{py:obj}`SlotCounter <nearlink_sdr.mac.scheduler.SlotCounter>`"
+msgstr "{py:obj}`SlotCounter <nearlink_sdr.mac.scheduler.SlotCounter>`"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:28
+#: ../../../src/nearlink_sdr/mac/scheduler.py:346
+msgid "30 bit 系统时隙计数器。"
+msgstr "30 bit 系统time slot计数器。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:30
+#, python-brace-format
+msgid ""
+"{py:obj}`EventTimingParams <nearlink_sdr.mac.scheduler.EventTimingParams>`"
+msgstr ""
+"{py:obj}`EventTimingParams <nearlink_sdr.mac.scheduler.EventTimingParams>`"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:32
+#: ../../../src/nearlink_sdr/mac/scheduler.py:405
+msgid "事件组计时参数 (标准 7.1.4.3 表29/30)。"
+msgstr "事件组计时parameter (standard 7.1.4.3 表29/30)。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:34
+#, python-brace-format
+msgid "{py:obj}`TimeSlice <nearlink_sdr.mac.scheduler.TimeSlice>`"
+msgstr "{py:obj}`TimeSlice <nearlink_sdr.mac.scheduler.TimeSlice>`"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:36
+#: ../../../src/nearlink_sdr/mac/scheduler.py:601
+msgid "超帧内时间片配置 (标准 6.6.2.2)。"
+msgstr "超frame内time片configuration (standard 6.6.2.2)。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:38
+#, python-brace-format
+msgid ""
+"{py:obj}`SmfScheduleConfig <nearlink_sdr.mac.scheduler.SmfScheduleConfig>`"
+msgstr ""
+"{py:obj}`SmfScheduleConfig <nearlink_sdr.mac.scheduler.SmfScheduleConfig>`"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:40
+#: ../../../src/nearlink_sdr/mac/scheduler.py:661
+msgid "SMF 调度信令参数 (标准 6.6.2.1)。"
+msgstr "SMF 调度signalingparameter (standard 6.6.2.1)。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:42
+#, python-brace-format
+msgid ""
+"{py:obj}`LinkScheduleEntry <nearlink_sdr.mac.scheduler.LinkScheduleEntry>`"
+msgstr ""
+"{py:obj}`LinkScheduleEntry <nearlink_sdr.mac.scheduler.LinkScheduleEntry>`"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:44
+#: ../../../src/nearlink_sdr/mac/scheduler.py:755
+msgid "链路信令: 链路在超帧内的时间资源配置 (标准 6.6.2.2)。"
+msgstr "linksignaling: link在超frame内的time资源configuration (standard 6.6.2.2)。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:46
+#, python-brace-format
+msgid "{py:obj}`Superframe <nearlink_sdr.mac.scheduler.Superframe>`"
+msgstr "{py:obj}`Superframe <nearlink_sdr.mac.scheduler.Superframe>`"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:48
+#: ../../../src/nearlink_sdr/mac/scheduler.py:818
+msgid "超帧: 两个相邻 SMF 之间的时间资源。"
+msgstr "超frame: 两个相邻 SMF 之间的time资源。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:50
+#, python-brace-format
+msgid ""
+"{py:obj}`EventGroupScheduler "
+"<nearlink_sdr.mac.scheduler.EventGroupScheduler>`"
+msgstr ""
+"{py:obj}`EventGroupScheduler "
+"<nearlink_sdr.mac.scheduler.EventGroupScheduler>`"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:52
+#: ../../../src/nearlink_sdr/mac/scheduler.py:906
+msgid "事件组调度器。"
+msgstr "事件组scheduler。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:54
+#, python-brace-format
+msgid ""
+"{py:obj}`TxRxIntervalType <nearlink_sdr.mac.scheduler.TxRxIntervalType>`"
+msgstr ""
+"{py:obj}`TxRxIntervalType <nearlink_sdr.mac.scheduler.TxRxIntervalType>`"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:56
+#: ../../../src/nearlink_sdr/mac/scheduler.py:997
+msgid "收发间隔类型枚举 (4 bit, 标准 7.2.1)。"
+msgstr "收发interval类型枚举 (4 bit, standard 7.2.1)。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:58
+#, python-brace-format
+msgid ""
+"{py:obj}`MultiLevelInterval <nearlink_sdr.mac.scheduler.MultiLevelInterval>`"
+msgstr ""
+"{py:obj}`MultiLevelInterval <nearlink_sdr.mac.scheduler.MultiLevelInterval>`"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:60
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1079
+msgid "31 级多级收发间隔 (标准 7.2.2)。"
+msgstr "31 级多级收发interval (standard 7.2.2)。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:62
+#, python-brace-format
+msgid "{py:obj}`ScheduleManager <nearlink_sdr.mac.scheduler.ScheduleManager>`"
+msgstr ""
+"{py:obj}`ScheduleManager <nearlink_sdr.mac.scheduler.ScheduleManager>`"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:64
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1131
+msgid "综合调度管理器。"
+msgstr "综合调度manager。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:68
+msgid "Functions"
+msgstr "Functions"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:74
+#, python-brace-format
+msgid ""
+"{py:obj}`schedule_slot_us <nearlink_sdr.mac.scheduler.schedule_slot_us>`"
+msgstr ""
+"{py:obj}`schedule_slot_us <nearlink_sdr.mac.scheduler.schedule_slot_us>`"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:76
+#: ../../../src/nearlink_sdr/mac/scheduler.py:242
+msgid "将调度时隙类型枚举转为微秒值。"
+msgstr "将调度time slot类型枚举转为微秒值。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:78
+#, python-brace-format
+msgid ""
+"{py:obj}`tx_rx_interval_us <nearlink_sdr.mac.scheduler.tx_rx_interval_us>`"
+msgstr ""
+"{py:obj}`tx_rx_interval_us <nearlink_sdr.mac.scheduler.tx_rx_interval_us>`"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:80
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1071
+msgid "收发间隔类型转微秒值。"
+msgstr "收发interval类型转微秒值。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:84
+msgid "Data"
+msgstr "Data"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:90
+#, python-brace-format
+msgid "{py:obj}`log <nearlink_sdr.mac.scheduler.log>`"
+msgstr "{py:obj}`log <nearlink_sdr.mac.scheduler.log>`"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:94
+#, python-brace-format
+msgid "{py:obj}`TSYS_US <nearlink_sdr.mac.scheduler.TSYS_US>`"
+msgstr "{py:obj}`TSYS_US <nearlink_sdr.mac.scheduler.TSYS_US>`"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:96
+#: ../../../src/nearlink_sdr/mac/scheduler.py:136
+msgid "系统基础时隙固定值 (μs)。"
+msgstr "系统基础time slot固定值 (μs)。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:98
+#, python-brace-format
+msgid ""
+"{py:obj}`SLOT_COUNTER_BITS <nearlink_sdr.mac.scheduler.SLOT_COUNTER_BITS>`"
+msgstr ""
+"{py:obj}`SLOT_COUNTER_BITS <nearlink_sdr.mac.scheduler.SLOT_COUNTER_BITS>`"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:100
+#: ../../../src/nearlink_sdr/mac/scheduler.py:147
+msgid "时隙计数器位宽。"
+msgstr "time slot计数器位宽。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:102
+#, python-brace-format
+msgid ""
+"{py:obj}`SLOT_COUNTER_MAX <nearlink_sdr.mac.scheduler.SLOT_COUNTER_MAX>`"
+msgstr ""
+"{py:obj}`SLOT_COUNTER_MAX <nearlink_sdr.mac.scheduler.SLOT_COUNTER_MAX>`"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:104
+#: ../../../src/nearlink_sdr/mac/scheduler.py:158
+msgid "时隙计数器最大值 (30 bit)。"
+msgstr "time slot计数器maximum值 (30 bit)。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:106
+#, python-brace-format
+msgid ""
+"{py:obj}`_SCHEDULE_SLOT_US <nearlink_sdr.mac.scheduler._SCHEDULE_SLOT_US>`"
+msgstr ""
+"{py:obj}`_SCHEDULE_SLOT_US <nearlink_sdr.mac.scheduler._SCHEDULE_SLOT_US>`"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:110
+#, python-brace-format
+msgid ""
+"{py:obj}`_TX_RX_INTERVAL_US <nearlink_sdr.mac.scheduler._TX_RX_INTERVAL_US>`"
+msgstr ""
+"{py:obj}`_TX_RX_INTERVAL_US <nearlink_sdr.mac.scheduler._TX_RX_INTERVAL_US>`"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:116
+msgid "API"
+msgstr "API"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:122
+msgid "'getLogger(...)'"
+msgstr "'getLogger(...)'"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:133
+msgid "125"
+msgstr "125"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:144
+msgid "30"
+msgstr "30"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:155
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:232
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:467
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:795
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:1061
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:1171
+msgid "None"
+msgstr "None"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:165
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:249
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:994
+#, python-brace-format
+msgid "Bases: {py:obj}`enum.IntEnum`"
+msgstr "Bases: {py:obj}`enum.IntEnum`"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:170
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:254
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:999
+msgid "Initialization"
+msgstr "Initialization"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:174
+#: ../../../src/nearlink_sdr/mac/scheduler.py:258
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1003
+msgid "Initialize self.  See help(type(self)) for accurate signature."
+msgstr "Initialize self. See help(type(self)) for accurate signature."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:180
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:264
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:353
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:412
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:423
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:434
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:445
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:456
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:489
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:500
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:533
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:608
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:619
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:630
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:668
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:701
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:712
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:723
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:762
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:773
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:924
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:935
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:1009
+msgid "0"
+msgstr "0"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:190
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:274
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:641
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:784
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:1019
+msgid "1"
+msgstr "1"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:200
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:284
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:690
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:1029
+msgid "2"
+msgstr "2"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:210
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:294
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:1039
+msgid "3"
+msgstr "3"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:220
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:304
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:1049
+msgid "4"
+msgstr "4"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:314
+msgid "5"
+msgstr "5"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:324
+msgid "6"
+msgstr "6"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:334
+msgid "7"
+msgstr "7"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:348
+msgid "以 Tsys = 125 μs 为最小递增单位, 30 bit 可表示约 37.3 小时。"
+msgstr "以 Tsys = 125 μs 为minimum递增单位, 30 bit 可表示约 37.3 小时。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:350
+msgid "Attributes:     value: 当前计数值 (0 ~ 2^30 - 1)。"
+msgstr "Attributes:     value: 当前计数值 (0 ~ 2^30 - 1)。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:364
+msgid "前进指定时隙数, 自动回绕。"
+msgstr "前进指定time slot数, 自动回绕。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:372
+msgid "当前计数值对应的绝对时间 (μs)。"
+msgstr "当前计数值对应的绝对time (μs)。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:380
+msgid "从微秒值设置计数器 (向下取整到时隙边界)。"
+msgstr "从微秒值设置计数器 (向下取整到time slot边界)。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:388
+msgid "计算到目标时隙的距离 (考虑回绕)。"
+msgstr "compute到目标time slot的距离 (考虑回绕)。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:407
+msgid "所有周期以调度时隙为单位, 间隔以 μs 为单位。"
+msgstr "所有period以调度time slot为单位, interval以 μs 为单位。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:478
+msgid "True"
+msgstr "True"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:511
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:522
+msgid "251"
+msgstr "251"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:544
+msgid "100"
+msgstr "100"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:556
+msgid "当前调度时隙的微秒值。"
+msgstr "当前调度time slot的微秒值。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:565
+msgid "事件组周期 (μs)。"
+msgstr "事件组period (μs)。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:574
+msgid "事件周期 (μs), 为 0 时由事件间间隔决定。"
+msgstr "事件period (μs), 为 0 时由事件间interval决定。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:583
+msgid "超时时间 (μs)。"
+msgstr "timeouttime (μs)。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:592
+msgid "单个事件的最大持续时间 (μs)。"
+msgstr "单个事件的maximum持续time (μs)。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:603
+msgid "描述一个链路在超帧内的时间资源分配。"
+msgstr "描述一个link在超frame内的time资源分配。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:605
+msgid ""
+"Attributes:     offset: 相对 SMF 起始点的偏移 (调度时隙)。     duration: 时间片持续长度 (调度时隙)。"
+"     period: 时间片重复周期 (调度时隙)。     repeat_count: 时间片重复次数。"
+msgstr ""
+"Attributes:     offset: 相对 SMF 起始点的offset (调度time slot)。     duration: "
+"time片持续length (调度time slot)。     period: time片重复period (调度time slot)。     "
+"repeat_count: time片重复次数。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:652
+msgid "计算此时间片展开后的所有绝对时间区间。"
+msgstr "compute此time片展开后的所有绝对time区间。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:654
+msgid "Args:     slot_us: 调度时隙的微秒值。"
+msgstr "Args:     slot_us: 调度time slot的微秒值。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:657
+msgid "Returns:     [(start_us, end_us), ...] 时间区间列表。"
+msgstr "Returns:     [(start_us, end_us), ...] time区间列表。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:663
+msgid ""
+"Attributes:     effective_slot: 信令生效时隙 (32 bit, 基础时隙)。     smf_interval: 两个 "
+"SMF 之间的间隔 (16 bit, 基础时隙)。     frame_type: 无线帧类型指示 (4 bit)。     bandwidth: "
+"带宽指示 (2 bit, 0=1M/1=2M/2=4M)。     pilot_density: 导频密度指示 (2 bit)。     "
+"channel_count: 可用频点个数 (8 bit)。     channel_table: 频点表。"
+msgstr ""
+"Attributes:     effective_slot: signaling生效time slot (32 bit, 基础time slot)。"
+"     smf_interval: 两个 SMF 之间的interval (16 bit, 基础time slot)。     frame_type:"
+" 无线frame typeindication (4 bit)。     bandwidth: bandwidthindication (2 bit, "
+"0=1M/1=2M/2=4M)。     pilot_density: pilot密度indication (2 bit)。     "
+"channel_count: 可用频点个数 (8 bit)。     channel_table: 频点表。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:679
+msgid "800"
+msgstr "800"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:734
+msgid "b''"
+msgstr "b''"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:746
+msgid "SMF 间隔 (μs)。"
+msgstr "SMF interval (μs)。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:757
+msgid ""
+"Attributes:     link_id: 逻辑链路标识 (24 bit)。     effective_slot: 信令生效时隙 (32 "
+"bit, 基础时隙)。     period_factor: 链路周期因子 (8 bit)。     schedule_slot_type: "
+"调度时隙长度 (3 bit)。     time_slices: 时间片配置列表。"
+msgstr ""
+"Attributes:     link_id: 逻辑link标识 (24 bit)。     effective_slot: "
+"signaling生效time slot (32 bit, 基础time slot)。     period_factor: linkperiod因子 "
+"(8 bit)。     schedule_slot_type: 调度time slotlength (3 bit)。     time_slices:"
+" time片configuration列表。"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:806
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:825
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:836
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:913
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:1086
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:1138
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:1149
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:1160
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:1182
+msgid "'field(...)'"
+msgstr "'field(...)'"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:820
+msgid "管理 SMF 周期内的链路调度, 活动区间和低功耗区间的划分。"
+msgstr "管理 SMF period内的link调度, 活动区间和低功耗区间的划分。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:822
+msgid "Attributes:     smf_config: SMF 调度参数。     link_entries: 已注册的链路调度条目。"
+msgstr ""
+"Attributes:     smf_config: SMF 调度parameter。     link_entries: 已注册的link调度条目。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:848
+msgid "超帧持续时间 (μs)。"
+msgstr "超frame持续time (μs)。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:857
+msgid "超帧持续时间 (基础时隙数)。"
+msgstr "超frame持续time (基础time slot数)。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:865
+msgid "注册一个链路的时间资源配置。"
+msgstr "注册一个link的time资源configuration。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:873
+msgid "移除一个链路的调度配置。"
+msgstr "移除一个link的调度configuration。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:881
+msgid "按链路标识查找调度条目。"
+msgstr "按link标识lookup调度条目。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:889
+msgid "计算活动区间 (从 SMF 到最后一个时间片结束)。"
+msgstr "compute活动区间 (从 SMF 到最后一个time片结束)。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:891
+msgid "Returns:     (start_us, end_us) 活动区间。start_us 始终为 0 (SMF 起始)。"
+msgstr "Returns:     (start_us, end_us) 活动区间。start_us 始终为 0 (SMF 起始)。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:897
+msgid "检测时间片冲突。"
+msgstr "检测time片冲突。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:899
+msgid ""
+"Returns:     冲突列表 [(link_id_a, link_id_b, overlap_start, overlap_end), ...]。"
+msgstr ""
+"Returns:     冲突列表 [(link_id_a, link_id_b, overlap_start, overlap_end), ...]。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:908
+msgid "管理一个链路上事件组的时间计算, 根据事件组参数 生成事件的调度时间表。"
+msgstr "管理一个link上事件组的timecompute, 根据事件组parameter generate事件的调度time表。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:911
+msgid ""
+"Attributes:     timing: 事件计时参数。     anchor_slot: 锚点时隙 (基础时隙顺序号)。     "
+"anchor_offset_us: 事件组起始偏移 (μs)。"
+msgstr ""
+"Attributes:     timing: 事件计时parameter。     anchor_slot: 锚点time slot (基础time "
+"slot顺序号)。     anchor_offset_us: 事件组起始offset (μs)。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:946
+msgid "锚点绝对时间 (μs)。"
+msgstr "锚点绝对time (μs)。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:954
+msgid "计算指定事件组内每个事件的起始时间。"
+msgstr "compute指定事件组内每个事件的起始time。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:956
+msgid "Args:     group_index: 第几个事件组 (从 0 开始)。"
+msgstr "Args:     group_index: 第几个事件组 (从 0 开始)。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:959
+msgid "Returns:     事件起始时间列表 (μs, 绝对时间)。"
+msgstr "Returns:     事件起始time列表 (μs, 绝对time)。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:962
+msgid "计算一个事件中先发窗口的时间区间。"
+msgstr "compute一个事件中先发窗口的time区间。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:964
+#: ../../../src/nearlink_sdr/mac/scheduler.py:972
+msgid "Args:     event_start_us: 事件起始时间 (μs)。"
+msgstr "Args:     event_start_us: 事件起始time (μs)。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:967
+msgid "Returns:     (start_us, end_us) 先发窗口区间。"
+msgstr "Returns:     (start_us, end_us) 先发窗口区间。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:970
+msgid "计算一个事件中后发窗口的时间区间。"
+msgstr "compute一个事件中后发窗口的time区间。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:975
+msgid "Returns:     (start_us, end_us) 后发窗口区间。"
+msgstr "Returns:     (start_us, end_us) 后发窗口区间。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:978
+msgid "生成完整的事件调度表。"
+msgstr "generate完整的事件调度表。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:980
+msgid "返回每个事件的起始时间、先发窗口和后发窗口。"
+msgstr "返回每个事件的起始time、先发窗口和后发窗口。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:982
+msgid "Args:     group_index: 事件组索引。"
+msgstr "Args:     group_index: 事件组索引。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:985
+#, python-brace-format
+msgid ""
+"Returns:     [{\"event_start\": int, \"tx_window\": (s, e), \"rx_window\": "
+"(s, e)}, ...]"
+msgstr ""
+"Returns:     [{\"event_start\": int, \"tx_window\": (s, e), \"rx_window\": "
+"(s, e)}, ...]"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:986
+msgid "计算下一个事件组的起始时间。"
+msgstr "compute下一个事件组的起始time。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:988
+msgid "Args:     current_us: 当前时间 (μs)。"
+msgstr "Args:     current_us: 当前time (μs)。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:991
+msgid "Returns:     下一个事件组起始时间 (μs)。"
+msgstr "Returns:     下一个事件组起始time (μs)。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1081
+msgid "Polar 编码分段 [00001]~[11111] 各对应一个 8 bit 间隔值 (μs)。"
+msgstr "Polar encodesegment [00001]~[11111] 各对应一个 8 bit interval值 (μs)。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1083
+msgid "Attributes:     levels: 31 个间隔值 (μs), 索引 0-30 对应级别 1-31。"
+msgstr "Attributes:     levels: 31 个interval值 (μs), 索引 0-30 对应级别 1-31。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1097
+msgid "获取指定级别的间隔 (μs)。level 从 1 开始。"
+msgstr "获取指定级别的interval (μs)。level 从 1 开始。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1105
+msgid "设置指定级别的间隔。"
+msgstr "设置指定级别的interval。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1113
+msgid "序列化为 31 字节。"
+msgstr "sequence化为 31 字节。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1122
+msgid "从 31 字节反序列化。"
+msgstr "从 31 字节反sequence化。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1133
+msgid "整合超帧管理、事件组调度和收发间隔控制, 提供链路时间资源的统一管理接口。"
+msgstr "整合超frame管理、事件组调度和收发interval控制, 提供linktime资源的统一管理interface。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1136
+msgid ""
+"Attributes:     superframe: 超帧结构。     event_schedulers: 按 link_id 索引的事件组调度器。"
+"     slot_counter: 全局时隙计数器。     tx_rx_interval: 当前收发间隔类型。     "
+"multi_interval: 多级收发间隔配置。"
+msgstr ""
+"Attributes:     superframe: 超frame structure。     event_schedulers: 按 "
+"link_id 索引的事件组scheduler。     slot_counter: 全局time slot计数器。     "
+"tx_rx_interval: 当前收发interval类型。     multi_interval: "
+"多级收发intervalconfiguration。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1193
+msgid "配置 SMF 调度参数。"
+msgstr "configuration SMF 调度parameter。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1201
+msgid "注册链路并配置事件组调度。"
+msgstr "注册link并configuration事件组调度。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1203
+msgid ""
+"Args:     link_id: 逻辑链路标识。     timing: 事件计时参数。     time_slices: 超帧内时间片列表 "
+"(可选)。     anchor_slot: 事件组锚点时隙。     anchor_offset_us: 事件组起始偏移 (μs)。"
+msgstr ""
+"Args:     link_id: 逻辑link标识。     timing: 事件计时parameter。     time_slices: "
+"超frame内time片列表 (optional)。     anchor_slot: 事件组锚点time slot。     "
+"anchor_offset_us: 事件组起始offset (μs)。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1209
+msgid "注销链路调度。"
+msgstr "注销link调度。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1217
+msgid "获取指定链路的事件调度表。"
+msgstr "获取指定link的事件调度表。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1225
+msgid "计算下一个 SMF 时隙号。"
+msgstr "compute下一个 SMF time slot号。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1233
+msgid "推进全局时钟。"
+msgstr "推进全局时钟。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1241
+msgid "更新收发间隔类型。"
+msgstr "update收发interval类型。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1243
+msgid "Returns:     更新后的间隔值 (μs)。"
+msgstr "Returns:     update后的interval值 (μs)。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1249
+msgid "检查链路是否超时。"
+msgstr "检查link是否timeout。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1251
+msgid "基于事件组调度器的超时参数判断当前时间 是否超过了锚点 + 超时时限。"
+msgstr "基于事件组scheduler的timeoutparameter判断当前time 是否超过了锚点 + timeout时限。"
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1254
+msgid "Returns:     True 表示已超时。"
+msgstr "Returns:     True 表示已timeout。"
