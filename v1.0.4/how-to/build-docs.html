@@ -437,6 +437,7 @@
 <section id="id4">
 <h3>编译 PDF<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="w">	</span>uv<span class="w"> </span>run<span class="w"> </span>sphinx-build<span class="w"> </span>-b<span class="w"> </span>latex<span class="w"> </span>docs<span class="w"> </span>docs/_build/latex
+<span class="w">	</span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/\\begin{longtable}{ll}/\\begin{longtable}{l p{0.55\\linewidth}}/g&#39;</span><span class="w"> </span>docs/_build/latex/nearlink-sdr.tex
 <span class="w">	</span><span class="nb">cd</span><span class="w"> </span>docs/_build/latex<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make
 </pre></div>
 </div>
