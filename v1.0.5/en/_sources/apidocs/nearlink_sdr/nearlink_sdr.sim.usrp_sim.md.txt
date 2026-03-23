@@ -1,0 +1,280 @@
+# {py:mod}`nearlink_sdr.sim.usrp_sim`
+
+```{py:module} nearlink_sdr.sim.usrp_sim
+```
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim
+:allowtitles:
+```
+
+## Module Contents
+
+### Classes
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`LoopbackResult <nearlink_sdr.sim.usrp_sim.LoopbackResult>`
+  - ```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.LoopbackResult
+    :summary:
+    ```
+* - {py:obj}`USRPSimResult <nearlink_sdr.sim.usrp_sim.USRPSimResult>`
+  - ```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult
+    :summary:
+    ```
+* - {py:obj}`USRPLoopbackSim <nearlink_sdr.sim.usrp_sim.USRPLoopbackSim>`
+  - ```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPLoopbackSim
+    :summary:
+    ```
+````
+
+### Data
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`logger <nearlink_sdr.sim.usrp_sim.logger>`
+  - ```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.logger
+    :summary:
+    ```
+````
+
+### API
+
+````{py:data} logger
+:canonical: nearlink_sdr.sim.usrp_sim.logger
+:value: >
+   'getLogger(...)'
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.logger
+```
+
+````
+
+`````{py:class} LoopbackResult
+:canonical: nearlink_sdr.sim.usrp_sim.LoopbackResult
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.LoopbackResult
+```
+
+````{py:attribute} tx_samples
+:canonical: nearlink_sdr.sim.usrp_sim.LoopbackResult.tx_samples
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.LoopbackResult.tx_samples
+```
+
+````
+
+````{py:attribute} rx_samples
+:canonical: nearlink_sdr.sim.usrp_sim.LoopbackResult.rx_samples
+:type: int
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.LoopbackResult.rx_samples
+```
+
+````
+
+````{py:attribute} crc_ok
+:canonical: nearlink_sdr.sim.usrp_sim.LoopbackResult.crc_ok
+:type: bool
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.LoopbackResult.crc_ok
+```
+
+````
+
+````{py:attribute} head_crc_ok
+:canonical: nearlink_sdr.sim.usrp_sim.LoopbackResult.head_crc_ok
+:type: bool
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.LoopbackResult.head_crc_ok
+```
+
+````
+
+````{py:attribute} ber
+:canonical: nearlink_sdr.sim.usrp_sim.LoopbackResult.ber
+:type: float
+:value: >
+   0.0
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.LoopbackResult.ber
+```
+
+````
+
+````{py:attribute} snr_db
+:canonical: nearlink_sdr.sim.usrp_sim.LoopbackResult.snr_db
+:type: float
+:value: >
+   0.0
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.LoopbackResult.snr_db
+```
+
+````
+
+`````
+
+`````{py:class} USRPSimResult
+:canonical: nearlink_sdr.sim.usrp_sim.USRPSimResult
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult
+```
+
+````{py:attribute} total_frames
+:canonical: nearlink_sdr.sim.usrp_sim.USRPSimResult.total_frames
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult.total_frames
+```
+
+````
+
+````{py:attribute} success_frames
+:canonical: nearlink_sdr.sim.usrp_sim.USRPSimResult.success_frames
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult.success_frames
+```
+
+````
+
+````{py:attribute} failed_frames
+:canonical: nearlink_sdr.sim.usrp_sim.USRPSimResult.failed_frames
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult.failed_frames
+```
+
+````
+
+````{py:attribute} avg_ber
+:canonical: nearlink_sdr.sim.usrp_sim.USRPSimResult.avg_ber
+:type: float
+:value: >
+   0.0
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult.avg_ber
+```
+
+````
+
+````{py:attribute} frame_results
+:canonical: nearlink_sdr.sim.usrp_sim.USRPSimResult.frame_results
+:type: list[nearlink_sdr.sim.usrp_sim.LoopbackResult]
+:value: >
+   'field(...)'
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult.frame_results
+```
+
+````
+
+````{py:property} fer
+:canonical: nearlink_sdr.sim.usrp_sim.USRPSimResult.fer
+:type: float
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPSimResult.fer
+```
+
+````
+
+`````
+
+`````{py:class} USRPLoopbackSim(snr_db: float = 30.0, channel_type: str = 'awgn', sample_rate_hz: float = 1000000.0, seed: int = 42)
+:canonical: nearlink_sdr.sim.usrp_sim.USRPLoopbackSim
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPLoopbackSim
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.__init__
+```
+
+````{py:method} close()
+:canonical: nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.close
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.close
+```
+
+````
+
+````{py:method} loopback_iq(iq_samples: numpy.ndarray) -> numpy.ndarray
+:canonical: nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.loopback_iq
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.loopback_iq
+```
+
+````
+
+````{py:method} loopback_phy(data_bits: numpy.ndarray, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig, ctrl_bits: numpy.ndarray | None = None) -> nearlink_sdr.sim.usrp_sim.LoopbackResult
+:canonical: nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.loopback_phy
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.loopback_phy
+```
+
+````
+
+````{py:method} loopback_mac_data(mac_payload: bytes, cfg: nearlink_sdr.phy.tx_pipeline.TxConfig | None = None) -> tuple[nearlink_sdr.phy.mac_interface.MacRxResult, nearlink_sdr.sim.usrp_sim.LoopbackResult]
+:canonical: nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.loopback_mac_data
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.loopback_mac_data
+```
+
+````
+
+````{py:method} loopback_hopping(iq_samples: numpy.ndarray, hop_sequence: list[int]) -> list[tuple[int, numpy.ndarray]]
+:canonical: nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.loopback_hopping
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.loopback_hopping
+```
+
+````
+
+````{py:method} run_batch(payloads: list[bytes], cfg: nearlink_sdr.phy.tx_pipeline.TxConfig | None = None) -> nearlink_sdr.sim.usrp_sim.USRPSimResult
+:canonical: nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.run_batch
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.run_batch
+```
+
+````
+
+````{py:property} device
+:canonical: nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.device
+:type: nearlink_sdr.phy.usrp.USRPDevice
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.device
+```
+
+````
+
+````{py:property} transceiver
+:canonical: nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.transceiver
+:type: nearlink_sdr.phy.usrp.SLETransceiver
+
+```{autodoc2-docstring} nearlink_sdr.sim.usrp_sim.USRPLoopbackSim.transceiver
+```
+
+````
+
+`````

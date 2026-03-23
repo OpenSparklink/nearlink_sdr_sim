@@ -1,0 +1,222 @@
+# {py:mod}`nearlink_sdr.phy.sync_sequence`
+
+```{py:module} nearlink_sdr.phy.sync_sequence
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence
+:allowtitles:
+```
+
+## Module Contents
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`_hex_to_bits_lsb <nearlink_sdr.phy.sync_sequence._hex_to_bits_lsb>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence._hex_to_bits_lsb
+    :summary:
+    ```
+* - {py:obj}`sync_signal_1 <nearlink_sdr.phy.sync_sequence.sync_signal_1>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence.sync_signal_1
+    :summary:
+    ```
+* - {py:obj}`sync_signal_2 <nearlink_sdr.phy.sync_sequence.sync_signal_2>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence.sync_signal_2
+    :summary:
+    ```
+* - {py:obj}`sync_signal_3 <nearlink_sdr.phy.sync_sequence.sync_signal_3>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence.sync_signal_3
+    :summary:
+    ```
+* - {py:obj}`sync_signal_4 <nearlink_sdr.phy.sync_sequence.sync_signal_4>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence.sync_signal_4
+    :summary:
+    ```
+* - {py:obj}`sync_signal_1_validate <nearlink_sdr.phy.sync_sequence.sync_signal_1_validate>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence.sync_signal_1_validate
+    :summary:
+    ```
+* - {py:obj}`_secure_random_sequence <nearlink_sdr.phy.sync_sequence._secure_random_sequence>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence._secure_random_sequence
+    :summary:
+    ```
+* - {py:obj}`_extract_sync_from_security_seq <nearlink_sdr.phy.sync_sequence._extract_sync_from_security_seq>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence._extract_sync_from_security_seq
+    :summary:
+    ```
+* - {py:obj}`sync_signal_5 <nearlink_sdr.phy.sync_sequence.sync_signal_5>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence.sync_signal_5
+    :summary:
+    ```
+* - {py:obj}`sync_signal_6 <nearlink_sdr.phy.sync_sequence.sync_signal_6>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence.sync_signal_6
+    :summary:
+    ```
+````
+
+### Data
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`SYNC1_BROADCAST <nearlink_sdr.phy.sync_sequence.SYNC1_BROADCAST>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence.SYNC1_BROADCAST
+    :summary:
+    ```
+* - {py:obj}`SYNC2_BROADCAST <nearlink_sdr.phy.sync_sequence.SYNC2_BROADCAST>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence.SYNC2_BROADCAST
+    :summary:
+    ```
+* - {py:obj}`_SYNC1_M_TAPS <nearlink_sdr.phy.sync_sequence._SYNC1_M_TAPS>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence._SYNC1_M_TAPS
+    :summary:
+    ```
+* - {py:obj}`_SYNC1_M_INIT <nearlink_sdr.phy.sync_sequence._SYNC1_M_INIT>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence._SYNC1_M_INIT
+    :summary:
+    ```
+* - {py:obj}`_SYNC2_M_TAPS <nearlink_sdr.phy.sync_sequence._SYNC2_M_TAPS>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence._SYNC2_M_TAPS
+    :summary:
+    ```
+* - {py:obj}`_SYNC2_M_INIT <nearlink_sdr.phy.sync_sequence._SYNC2_M_INIT>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence._SYNC2_M_INIT
+    :summary:
+    ```
+````
+
+### API
+
+````{py:data} SYNC1_BROADCAST
+:canonical: nearlink_sdr.phy.sync_sequence.SYNC1_BROADCAST
+:value: >
+   'array(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence.SYNC1_BROADCAST
+```
+
+````
+
+````{py:data} SYNC2_BROADCAST
+:canonical: nearlink_sdr.phy.sync_sequence.SYNC2_BROADCAST
+:value: >
+   'array(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence.SYNC2_BROADCAST
+```
+
+````
+
+````{py:data} _SYNC1_M_TAPS
+:canonical: nearlink_sdr.phy.sync_sequence._SYNC1_M_TAPS
+:value: >
+   41
+
+```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence._SYNC1_M_TAPS
+```
+
+````
+
+````{py:data} _SYNC1_M_INIT
+:canonical: nearlink_sdr.phy.sync_sequence._SYNC1_M_INIT
+:value: >
+   31
+
+```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence._SYNC1_M_INIT
+```
+
+````
+
+````{py:data} _SYNC2_M_TAPS
+:canonical: nearlink_sdr.phy.sync_sequence._SYNC2_M_TAPS
+:value: >
+   97
+
+```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence._SYNC2_M_TAPS
+```
+
+````
+
+````{py:data} _SYNC2_M_INIT
+:canonical: nearlink_sdr.phy.sync_sequence._SYNC2_M_INIT
+:value: >
+   63
+
+```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence._SYNC2_M_INIT
+```
+
+````
+
+````{py:function} _hex_to_bits_lsb(hex_val: int, n_bits: int) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.sync_sequence._hex_to_bits_lsb
+
+```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence._hex_to_bits_lsb
+```
+````
+
+````{py:function} sync_signal_1(link_id_24: int | None = None) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.sync_sequence.sync_signal_1
+
+```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence.sync_signal_1
+```
+````
+
+````{py:function} sync_signal_2(link_id_24: int | None = None) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.sync_sequence.sync_signal_2
+
+```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence.sync_signal_2
+```
+````
+
+````{py:function} sync_signal_3(m_seq_index: int = 0) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.sync_sequence.sync_signal_3
+
+```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence.sync_signal_3
+```
+````
+
+````{py:function} sync_signal_4(m_seq_index: int = 0) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.sync_sequence.sync_signal_4
+
+```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence.sync_signal_4
+```
+````
+
+````{py:function} sync_signal_1_validate(sync_32: numpy.ndarray) -> bool
+:canonical: nearlink_sdr.phy.sync_sequence.sync_signal_1_validate
+
+```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence.sync_signal_1_validate
+```
+````
+
+````{py:function} _secure_random_sequence(seed: bytes, time_param: int, kdf_type: int = 0) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.sync_sequence._secure_random_sequence
+
+```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence._secure_random_sequence
+```
+````
+
+````{py:function} _extract_sync_from_security_seq(security_seq: numpy.ndarray, n_sync: int, is_tx: bool = True) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.sync_sequence._extract_sync_from_security_seq
+
+```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence._extract_sync_from_security_seq
+```
+````
+
+````{py:function} sync_signal_5(seed: bytes, slot_number: int, n_sync: int = 32, is_tx: bool = True, kdf_type: int = 0) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.sync_sequence.sync_signal_5
+
+```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence.sync_signal_5
+```
+````
+
+````{py:function} sync_signal_6(seed: bytes, slot_number: int, n_sync: int = 32, is_tx: bool = True, kdf_type: int = 0) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.sync_sequence.sync_signal_6
+
+```{autodoc2-docstring} nearlink_sdr.phy.sync_sequence.sync_signal_6
+```
+````
