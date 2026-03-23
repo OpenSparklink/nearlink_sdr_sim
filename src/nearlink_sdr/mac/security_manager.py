@@ -161,11 +161,10 @@ class PairingManager:
     4. 链路密钥派生
     5. 会话密钥派生
 
-    Attributes:
-        is_g_node: 本端是否为 G 节点。
-        kdf_type: 密钥派生函数类型。
-        auth_method: 鉴权方式。
-        max_key_length: 最大密钥长度 (字节)。
+    :ivar is_g_node: 本端是否为 G 节点。
+    :ivar kdf_type: 密钥派生函数类型。
+    :ivar auth_method: 鉴权方式。
+    :ivar max_key_length: 最大密钥长度 (字节)。
     """
     is_g_node: bool = True
     kdf_type: KdfType = KdfType.AES_CMAC
@@ -438,13 +437,12 @@ class FrameCryptoContext:
     管理 payload_count 单调递增和 nonce 构建,
     为 MAC 帧提供加解密服务。
 
-    Attributes:
-        session_key: 会话密钥 (16 字节)。
-        iv_base: 初始化向量基底 (8 字节)。
-        direction: 传输方向 (0=G→T, 1=T→G)。
-        mic_len: MIC 长度 (字节, 4/8/12/16)。
-        frame_type: 帧类型 (用于 IV 计算)。
-        link_id: 链路标识 (用于 IV 计算)。
+    :ivar session_key: 会话密钥 (16 字节)。
+    :ivar iv_base: 初始化向量基底 (8 字节)。
+    :ivar direction: 传输方向 (0=G→T, 1=T→G)。
+    :ivar mic_len: MIC 长度 (字节, 4/8/12/16)。
+    :ivar frame_type: 帧类型 (用于 IV 计算)。
+    :ivar link_id: 链路标识 (用于 IV 计算)。
     """
     session_key: bytes = b"\x00" * 16
     iv_base: bytes = b"\x00" * 8

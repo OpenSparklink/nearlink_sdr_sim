@@ -92,8 +92,7 @@ class SlotCounter:
 
     以 Tsys = 125 μs 为最小递增单位, 30 bit 可表示约 37.3 小时。
 
-    Attributes:
-        value: 当前计数值 (0 ~ 2^30 - 1)。
+    :ivar value: 当前计数值 (0 ~ 2^30 - 1)。
     """
     value: int = 0
 
@@ -176,11 +175,10 @@ class TimeSlice:
 
     描述一个链路在超帧内的时间资源分配。
 
-    Attributes:
-        offset: 相对 SMF 起始点的偏移 (调度时隙)。
-        duration: 时间片持续长度 (调度时隙)。
-        period: 时间片重复周期 (调度时隙)。
-        repeat_count: 时间片重复次数。
+    :ivar offset: 相对 SMF 起始点的偏移 (调度时隙)。
+    :ivar duration: 时间片持续长度 (调度时隙)。
+    :ivar period: 时间片重复周期 (调度时隙)。
+    :ivar repeat_count: 时间片重复次数。
     """
     offset: int = 0
     duration: int = 0
@@ -211,14 +209,13 @@ class TimeSlice:
 class SmfScheduleConfig:
     """SMF 调度信令参数 (标准 6.6.2.1)。
 
-    Attributes:
-        effective_slot: 信令生效时隙 (32 bit, 基础时隙)。
-        smf_interval: 两个 SMF 之间的间隔 (16 bit, 基础时隙)。
-        frame_type: 无线帧类型指示 (4 bit)。
-        bandwidth: 带宽指示 (2 bit, 0=1M/1=2M/2=4M)。
-        pilot_density: 导频密度指示 (2 bit)。
-        channel_count: 可用频点个数 (8 bit)。
-        channel_table: 频点表。
+    :ivar effective_slot: 信令生效时隙 (32 bit, 基础时隙)。
+    :ivar smf_interval: 两个 SMF 之间的间隔 (16 bit, 基础时隙)。
+    :ivar frame_type: 无线帧类型指示 (4 bit)。
+    :ivar bandwidth: 带宽指示 (2 bit, 0=1M/1=2M/2=4M)。
+    :ivar pilot_density: 导频密度指示 (2 bit)。
+    :ivar channel_count: 可用频点个数 (8 bit)。
+    :ivar channel_table: 频点表。
     """
     effective_slot: int = 0
     smf_interval: int = 800          # 800 × 125 μs = 100 ms
@@ -241,12 +238,11 @@ class SmfScheduleConfig:
 class LinkScheduleEntry:
     """链路信令: 链路在超帧内的时间资源配置 (标准 6.6.2.2)。
 
-    Attributes:
-        link_id: 逻辑链路标识 (24 bit)。
-        effective_slot: 信令生效时隙 (32 bit, 基础时隙)。
-        period_factor: 链路周期因子 (8 bit)。
-        schedule_slot_type: 调度时隙长度 (3 bit)。
-        time_slices: 时间片配置列表。
+    :ivar link_id: 逻辑链路标识 (24 bit)。
+    :ivar effective_slot: 信令生效时隙 (32 bit, 基础时隙)。
+    :ivar period_factor: 链路周期因子 (8 bit)。
+    :ivar schedule_slot_type: 调度时隙长度 (3 bit)。
+    :ivar time_slices: 时间片配置列表。
     """
     link_id: int = 0
     effective_slot: int = 0
@@ -264,9 +260,8 @@ class Superframe:
 
     管理 SMF 周期内的链路调度, 活动区间和低功耗区间的划分。
 
-    Attributes:
-        smf_config: SMF 调度参数。
-        link_entries: 已注册的链路调度条目。
+    :ivar smf_config: SMF 调度参数。
+    :ivar link_entries: 已注册的链路调度条目。
     """
     smf_config: SmfScheduleConfig = field(default_factory=SmfScheduleConfig)
     link_entries: list[LinkScheduleEntry] = field(default_factory=list)
@@ -361,10 +356,9 @@ class EventGroupScheduler:
     管理一个链路上事件组的时间计算, 根据事件组参数
     生成事件的调度时间表。
 
-    Attributes:
-        timing: 事件计时参数。
-        anchor_slot: 锚点时隙 (基础时隙顺序号)。
-        anchor_offset_us: 事件组起始偏移 (μs)。
+    :ivar timing: 事件计时参数。
+    :ivar anchor_slot: 锚点时隙 (基础时隙顺序号)。
+    :ivar anchor_offset_us: 事件组起始偏移 (μs)。
     """
     timing: EventTimingParams = field(default_factory=EventTimingParams)
     anchor_slot: int = 0
@@ -503,8 +497,7 @@ class MultiLevelInterval:
 
     Polar 编码分段 [00001]~[11111] 各对应一个 8 bit 间隔值 (μs)。
 
-    Attributes:
-        levels: 31 个间隔值 (μs), 索引 0-30 对应级别 1-31。
+    :ivar levels: 31 个间隔值 (μs), 索引 0-30 对应级别 1-31。
     """
     levels: list[int] = field(default_factory=lambda: [125] * 31)
 
@@ -541,12 +534,11 @@ class ScheduleManager:
     整合超帧管理、事件组调度和收发间隔控制,
     提供链路时间资源的统一管理接口。
 
-    Attributes:
-        superframe: 超帧结构。
-        event_schedulers: 按 link_id 索引的事件组调度器。
-        slot_counter: 全局时隙计数器。
-        tx_rx_interval: 当前收发间隔类型。
-        multi_interval: 多级收发间隔配置。
+    :ivar superframe: 超帧结构。
+    :ivar event_schedulers: 按 link_id 索引的事件组调度器。
+    :ivar slot_counter: 全局时隙计数器。
+    :ivar tx_rx_interval: 当前收发间隔类型。
+    :ivar multi_interval: 多级收发间隔配置。
     """
     superframe: Superframe = field(default_factory=Superframe)
     event_schedulers: dict[int, EventGroupScheduler] = field(

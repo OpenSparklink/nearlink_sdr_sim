@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 06:20+0800\n"
+"POT-Creation-Date: 2026-03-24 06:45+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -102,7 +102,8 @@ msgstr "SparkLink SLE node entity."
 msgid "{py:obj}`TransportMode <nearlink_sdr.node.TransportMode>`"
 msgstr "{py:obj}`TransportMode <nearlink_sdr.node.TransportMode>`"
 
-#: ../../../src/nearlink_sdr/node.py:44 ../../../src/nearlink_sdr/node.py:956
+#: ../../../src/nearlink_sdr/node.py:44 ../../../src/nearlink_sdr/node.py:134
+#: ../../../src/nearlink_sdr/node.py:956
 msgid "传输模式。"
 msgstr "Transport mode."
 
@@ -119,32 +120,81 @@ msgstr "Transmit result."
 msgid "API"
 msgstr "API"
 
-#: ../../../src/nearlink_sdr/node.py:125
-msgid ""
-"Attributes:     address: 6 字节设备地址。     role: 角色偏好 (AUTO/G_NODE/T_NODE)。"
-"     frame_type: 帧类型 (1-4)。     mcs_index: MCS 索引 (0-12)。     "
-"bandwidth_mhz: 信道带宽 (1/2/4 MHz)。     pilot_interval: 导频插入间隔 (0/4/8/16)。"
-"     max_pdu: 最大 PDU 长度 (字节)。     max_retransmit: 最大重传次数。     "
-"enable_encryption: 是否启用加密。     transport: 传输模式。     band: 频段标识。     "
-"hop_param2: 跳频参数 2 (0 表示自动从地址派生)。     blocked_channels: 被阻塞的信道号集合。     "
-"tx_power_dbm: 初始发射功率 (dBm)。     max_power_dbm: 最大发射功率。     min_power_dbm:"
-" 最小发射功率。     channel_config: 仿真模式下的信道模型配置 (None 表示理想信道)。     usrp_config:"
-" USRP 硬件配置 (transport=USRP 时使用)。     smf_enabled: 是否启用系统管理帧调度。"
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md
+msgid "变量"
 msgstr ""
-"Attributes:     address: 6-byte device address.     role: Role preference"
-" (AUTO/G_NODE/T_NODE).     frame_type: Frame type (1-4).     mcs_index: "
-"MCS index (0-12).     bandwidth_mhz: Channel bandwidth (1/2/4 MHz).     "
-"pilot_interval: Pilot insertion interval (0/4/8/16).     max_pdu: Maximum"
-" PDU length (bytes).     max_retransmit: Maximum retransmission count."
-"     enable_encryption: Whether to enable encryption.     transport: "
-"Transport mode.     band: Band identifier.     hop_param2: Frequency-"
-"hopping parameter 2 (0 means auto-derived from address).     "
-"blocked_channels: Set of blocked channel numbers.     tx_power_dbm: "
-"Initial transmit power (dBm).     max_power_dbm: Maximum transmit power."
-"     min_power_dbm: Minimum transmit power.     channel_config: Channel "
-"model configuration for simulation mode (None for ideal channel).     "
-"usrp_config: USRP hardware configuration (used when transport=USRP).     "
-"smf_enabled: Whether to enable system management frame scheduling."
+
+#: ../../../src/nearlink_sdr/node.py:125
+msgid "6 字节设备地址。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/node.py:126
+msgid "角色偏好 (AUTO/G_NODE/T_NODE)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/node.py:127
+msgid "帧类型 (1-4)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/node.py:128
+msgid "MCS 索引 (0-12)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/node.py:129
+msgid "信道带宽 (1/2/4 MHz)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/node.py:130
+msgid "导频插入间隔 (0/4/8/16)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/node.py:131
+msgid "最大 PDU 长度 (字节)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/node.py:132
+msgid "最大重传次数。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/node.py:133
+msgid "是否启用加密。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/node.py:135
+msgid "频段标识。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/node.py:136
+msgid "跳频参数 2 (0 表示自动从地址派生)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/node.py:137
+msgid "被阻塞的信道号集合。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/node.py:138
+msgid "初始发射功率 (dBm)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/node.py:139
+msgid "最大发射功率。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/node.py:140
+msgid "最小发射功率。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/node.py:141
+msgid "仿真模式下的信道模型配置 (None 表示理想信道)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/node.py:142
+msgid "USRP 硬件配置 (transport=USRP 时使用)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/node.py:143
+msgid "是否启用系统管理帧调度。"
+msgstr ""
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:130
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:141
@@ -465,4 +515,46 @@ msgstr "Update the MCS index."
 
 #~ msgid "Bases: {py:obj}`nearlink_sdr.mac.link_manager.LinkManagerCallback`"
 #~ msgstr "Bases: {py:obj}`nearlink_sdr.mac.link_manager.LinkManagerCallback`"
+
+#~ msgid ""
+#~ "Attributes:     address: 6 字节设备地址。     role:"
+#~ " 角色偏好 (AUTO/G_NODE/T_NODE)。     frame_type: 帧类型"
+#~ " (1-4)。     mcs_index: MCS 索引 (0-12)。"
+#~ "     bandwidth_mhz: 信道带宽 (1/2/4 MHz)。     "
+#~ "pilot_interval: 导频插入间隔 (0/4/8/16)。     max_pdu: "
+#~ "最大 PDU 长度 (字节)。     max_retransmit: "
+#~ "最大重传次数。     enable_encryption: 是否启用加密。     "
+#~ "transport: 传输模式。     band: 频段标识。     "
+#~ "hop_param2: 跳频参数 2 (0 表示自动从地址派生)。     "
+#~ "blocked_channels: 被阻塞的信道号集合。     tx_power_dbm: "
+#~ "初始发射功率 (dBm)。     max_power_dbm: 最大发射功率。     "
+#~ "min_power_dbm: 最小发射功率。     channel_config: "
+#~ "仿真模式下的信道模型配置 (None 表示理想信道)。     usrp_config: "
+#~ "USRP 硬件配置 (transport=USRP 时使用)。     "
+#~ "smf_enabled: 是否启用系统管理帧调度。"
+#~ msgstr ""
+#~ "Attributes:     address: 6-byte device "
+#~ "address.     role: Role preference "
+#~ "(AUTO/G_NODE/T_NODE).     frame_type: Frame type "
+#~ "(1-4).     mcs_index: MCS index (0-12)."
+#~ "     bandwidth_mhz: Channel bandwidth (1/2/4 "
+#~ "MHz).     pilot_interval: Pilot insertion "
+#~ "interval (0/4/8/16).     max_pdu: Maximum PDU"
+#~ " length (bytes).     max_retransmit: Maximum "
+#~ "retransmission count.     enable_encryption: Whether"
+#~ " to enable encryption.     transport: "
+#~ "Transport mode.     band: Band identifier."
+#~ "     hop_param2: Frequency-hopping parameter "
+#~ "2 (0 means auto-derived from "
+#~ "address).     blocked_channels: Set of blocked"
+#~ " channel numbers.     tx_power_dbm: Initial "
+#~ "transmit power (dBm).     max_power_dbm: "
+#~ "Maximum transmit power.     min_power_dbm: "
+#~ "Minimum transmit power.     channel_config: "
+#~ "Channel model configuration for simulation "
+#~ "mode (None for ideal channel).     "
+#~ "usrp_config: USRP hardware configuration (used"
+#~ " when transport=USRP).     smf_enabled: Whether"
+#~ " to enable system management frame "
+#~ "scheduling."
 

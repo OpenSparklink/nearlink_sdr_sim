@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 06:20+0800\n"
+"POT-Creation-Date: 2026-03-24 06:45+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -242,15 +242,21 @@ msgstr ""
 "Manage the full frequency table and available frequency table, supporting"
 " 1M/2M/4M bandwidth scenarios."
 
-#: ../../../src/nearlink_sdr/phy/freq_hopping.py:167
-msgid ""
-"Attributes:     band: 频段标识, \"2400\" / \"5100\" / \"5800\"。     "
-"bandwidth_mhz: 信道带宽, 1 / 2 / 4 MHz。     blocked_channels: "
-"被阻塞(不可用)的物理信道号集合。"
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.freq_hopping.md
+msgid "变量"
 msgstr ""
-"Attributes:     band: Band identifier, \"2400\" / \"5100\" / \"5800\"."
-"     bandwidth_mhz: Channel bandwidth, 1 / 2 / 4 MHz.     "
-"blocked_channels: Set of blocked (unavailable) physical channel numbers."
+
+#: ../../../src/nearlink_sdr/phy/freq_hopping.py:167
+msgid "频段标识, \"2400\" / \"5100\" / \"5800\"。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/freq_hopping.py:168
+msgid "信道带宽, 1 / 2 / 4 MHz。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/freq_hopping.py:169
+msgid "被阻塞(不可用)的物理信道号集合。"
+msgstr ""
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.freq_hopping.md:170
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.freq_hopping.md:227
@@ -284,13 +290,20 @@ msgstr ""
 "empty."
 
 #: ../../../src/nearlink_sdr/phy/freq_hopping.py:225
-msgid ""
-"Attributes:     mode: 跳频模式, 0/1/2。     freq_table: 频率表对象。     hop_param2:"
-" 跳频参数 2 (方案 3 使用)。     init_channel: 初始化阶段频点 (可选)。"
+msgid "跳频模式, 0/1/2。"
 msgstr ""
-"Attributes:     mode: Hopping mode, 0/1/2.     freq_table: Frequency "
-"table object.     hop_param2: Hopping parameter 2 (used by scheme 3)."
-"     init_channel: Initialization phase frequency point (optional)."
+
+#: ../../../src/nearlink_sdr/phy/freq_hopping.py:226
+msgid "频率表对象。"
+msgstr "Channel frequency table management."
+
+#: ../../../src/nearlink_sdr/phy/freq_hopping.py:227
+msgid "跳频参数 2 (方案 3 使用)。"
+msgstr "current scheduling slot count (scheme 3 use)."
+
+#: ../../../src/nearlink_sdr/phy/freq_hopping.py:228
+msgid "初始化阶段频点 (可选)。"
+msgstr ""
 
 #: ../../../src/nearlink_sdr/phy/freq_hopping.py:271
 msgid "重置可用频点表为初始状态。"
@@ -568,4 +581,29 @@ msgstr ""
 
 #~ msgid "可用频点表为空。"
 #~ msgstr "Reset the available frequency table to the initial state."
+
+#~ msgid ""
+#~ "Attributes:     band: 频段标识, \"2400\" / "
+#~ "\"5100\" / \"5800\"。     bandwidth_mhz: 信道带宽,"
+#~ " 1 / 2 / 4 MHz。     "
+#~ "blocked_channels: 被阻塞(不可用)的物理信道号集合。"
+#~ msgstr ""
+#~ "Attributes:     band: Band identifier, "
+#~ "\"2400\" / \"5100\" / \"5800\".     "
+#~ "bandwidth_mhz: Channel bandwidth, 1 / 2"
+#~ " / 4 MHz.     blocked_channels: Set "
+#~ "of blocked (unavailable) physical channel "
+#~ "numbers."
+
+#~ msgid ""
+#~ "Attributes:     mode: 跳频模式, 0/1/2。     "
+#~ "freq_table: 频率表对象。     hop_param2: 跳频参数 2 "
+#~ "(方案 3 使用)。     init_channel: 初始化阶段频点 "
+#~ "(可选)。"
+#~ msgstr ""
+#~ "Attributes:     mode: Hopping mode, 0/1/2."
+#~ "     freq_table: Frequency table object.     "
+#~ "hop_param2: Hopping parameter 2 (used by"
+#~ " scheme 3).     init_channel: Initialization "
+#~ "phase frequency point (optional)."
 

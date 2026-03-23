@@ -5,7 +5,7 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/),
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
-## [1.0.9-rc.1] - 2026-03-24
+## [1.0.9-rc.2] - 2026-03-25
 
 ### Added
 
@@ -19,6 +19,8 @@
 
 ### Changed
 
+- 18 处 `Attributes:` Google 风格 docstring 转为 `:ivar` field list 格式
+- CI Node.js 运行时升级至 22, 全部 workflow 启用 `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24`
 - 7 处 blind except 替换为具体异常类型
 - 循环 append 改为列表推导式/extend (9 处)
 - 不必要的集合生成器、单元素 in 测试等代码质量优化

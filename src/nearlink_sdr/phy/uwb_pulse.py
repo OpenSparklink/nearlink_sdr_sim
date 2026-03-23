@@ -30,12 +30,11 @@ def _i0(x: float) -> float:
 class UWBPulseConfig:
     """UWB 脉冲配置参数。
 
-    Attributes:
-        tp_ns: 带宽参数 Tp (ns)
-        tw_ns: 归一化互相关函数参数 Tw (ns)
-        beta: Kaiser 波形形状参数
-        max_prf_mhz: 最大脉冲重复频率 (MHz)
-        sample_rate_ghz: 采样率 (GHz)
+    :ivar tp_ns: 带宽参数 Tp (ns)
+    :ivar tw_ns: 归一化互相关函数参数 Tw (ns)
+    :ivar beta: Kaiser 波形形状参数
+    :ivar max_prf_mhz: 最大脉冲重复频率 (MHz)
+    :ivar sample_rate_ghz: 采样率 (GHz)
     """
     tp_ns: float = 2.0
     tw_ns: float = 0.5

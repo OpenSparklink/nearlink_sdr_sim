@@ -214,20 +214,19 @@ def build_measurement_frame_4(config: MeasFrameConfig) -> np.ndarray:
 class UWBPulseConfig:
     """超宽带脉冲测量帧配置。
 
-    Attributes:
-        K: 码字长度。
-        L: 占空因子。
-        Tc: 码片时长 (秒)。
-        N_sync: 同步字段符号个数, 0 表示不发送同步字段。
-        symbol_seq: 同步符号序列 (+1/-1), 长度为 K。
-        M_seg: 测量子片段数。
-        N_seg: 每个测量子片段的 CTS 符号数。
-        N_gap: 测量子片段间隔的符号数。
-        scramble: 加扰 SC 序列 (+1/-1), 长度为 N_seg * M_seg。
-            普通模式下全 1, 安全模式下由安全算法确定。
-        L_cp: 循环前缀码片数 (安全模式)。
-        L_zero: 补零后缀码片数 (安全模式)。
-        N_offset: 安全模式偏移码片数, 默认 0 (普通模式)。
+    :ivar K: 码字长度。
+    :ivar L: 占空因子。
+    :ivar Tc: 码片时长 (秒)。
+    :ivar N_sync: 同步字段符号个数, 0 表示不发送同步字段。
+    :ivar symbol_seq: 同步符号序列 (+1/-1), 长度为 K。
+    :ivar M_seg: 测量子片段数。
+    :ivar N_seg: 每个测量子片段的 CTS 符号数。
+    :ivar N_gap: 测量子片段间隔的符号数。
+    :ivar scramble: 加扰 SC 序列 (+1/-1), 长度为 N_seg * M_seg。
+        普通模式下全 1, 安全模式下由安全算法确定。
+    :ivar L_cp: 循环前缀码片数 (安全模式)。
+    :ivar L_zero: 补零后缀码片数 (安全模式)。
+    :ivar N_offset: 安全模式偏移码片数, 默认 0 (普通模式)。
     """
     K: int = 31
     L: int = 4

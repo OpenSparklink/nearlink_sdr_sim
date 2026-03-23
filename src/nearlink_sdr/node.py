@@ -113,26 +113,25 @@ class TransportMode(IntEnum):
 class NodeConfig:
     """SLE 节点配置。
 
-    Attributes:
-        address: 6 字节设备地址。
-        role: 角色偏好 (AUTO/G_NODE/T_NODE)。
-        frame_type: 帧类型 (1-4)。
-        mcs_index: MCS 索引 (0-12)。
-        bandwidth_mhz: 信道带宽 (1/2/4 MHz)。
-        pilot_interval: 导频插入间隔 (0/4/8/16)。
-        max_pdu: 最大 PDU 长度 (字节)。
-        max_retransmit: 最大重传次数。
-        enable_encryption: 是否启用加密。
-        transport: 传输模式。
-        band: 频段标识。
-        hop_param2: 跳频参数 2 (0 表示自动从地址派生)。
-        blocked_channels: 被阻塞的信道号集合。
-        tx_power_dbm: 初始发射功率 (dBm)。
-        max_power_dbm: 最大发射功率。
-        min_power_dbm: 最小发射功率。
-        channel_config: 仿真模式下的信道模型配置 (None 表示理想信道)。
-        usrp_config: USRP 硬件配置 (transport=USRP 时使用)。
-        smf_enabled: 是否启用系统管理帧调度。
+    :ivar address: 6 字节设备地址。
+    :ivar role: 角色偏好 (AUTO/G_NODE/T_NODE)。
+    :ivar frame_type: 帧类型 (1-4)。
+    :ivar mcs_index: MCS 索引 (0-12)。
+    :ivar bandwidth_mhz: 信道带宽 (1/2/4 MHz)。
+    :ivar pilot_interval: 导频插入间隔 (0/4/8/16)。
+    :ivar max_pdu: 最大 PDU 长度 (字节)。
+    :ivar max_retransmit: 最大重传次数。
+    :ivar enable_encryption: 是否启用加密。
+    :ivar transport: 传输模式。
+    :ivar band: 频段标识。
+    :ivar hop_param2: 跳频参数 2 (0 表示自动从地址派生)。
+    :ivar blocked_channels: 被阻塞的信道号集合。
+    :ivar tx_power_dbm: 初始发射功率 (dBm)。
+    :ivar max_power_dbm: 最大发射功率。
+    :ivar min_power_dbm: 最小发射功率。
+    :ivar channel_config: 仿真模式下的信道模型配置 (None 表示理想信道)。
+    :ivar usrp_config: USRP 硬件配置 (transport=USRP 时使用)。
+    :ivar smf_enabled: 是否启用系统管理帧调度。
     """
     address: bytes = b"\x00" * 6
     role: NodeRole = NodeRole.AUTO

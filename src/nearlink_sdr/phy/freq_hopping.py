@@ -110,10 +110,9 @@ class FreqTable:
 
     管理完整频点表和可用频点表, 支持 1M/2M/4M 带宽场景。
 
-    Attributes:
-        band: 频段标识, "2400" / "5100" / "5800"。
-        bandwidth_mhz: 信道带宽, 1 / 2 / 4 MHz。
-        blocked_channels: 被阻塞(不可用)的物理信道号集合。
+    :ivar band: 频段标识, "2400" / "5100" / "5800"。
+    :ivar bandwidth_mhz: 信道带宽, 1 / 2 / 4 MHz。
+    :ivar blocked_channels: 被阻塞(不可用)的物理信道号集合。
     """
     band: str = BAND_2400
     bandwidth_mhz: int = 1
@@ -306,11 +305,10 @@ class MeasLinkHopper:
     标准 6.10.3.5: 支持三种跳频方案。
     方案 3 在使用后从可用频点表中删除已用频点, 表空时重置。
 
-    Attributes:
-        mode: 跳频模式, 0/1/2。
-        freq_table: 频率表对象。
-        hop_param2: 跳频参数 2 (方案 3 使用)。
-        init_channel: 初始化阶段频点 (可选)。
+    :ivar mode: 跳频模式, 0/1/2。
+    :ivar freq_table: 频率表对象。
+    :ivar hop_param2: 跳频参数 2 (方案 3 使用)。
+    :ivar init_channel: 初始化阶段频点 (可选)。
     """
     mode: int = MEAS_HOP_ASCENDING
     freq_table: FreqTable = field(default_factory=FreqTable)

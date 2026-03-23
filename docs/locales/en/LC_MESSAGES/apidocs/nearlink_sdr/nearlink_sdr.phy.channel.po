@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 06:20+0800\n"
+"POT-Creation-Date: 2026-03-24 06:45+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -160,24 +160,42 @@ msgstr "[(0, 0.0), (1,)]"
 msgid "[(0, 0.0), (1,), (2,), (3,), (4,), (5,)]"
 msgstr "[(0, 0.0), (1,), (2,), (3,), (4,), (5,)]"
 
-#: ../../../src/nearlink_sdr/phy/channel.py:93
-msgid ""
-"Attributes:     snr_db: 信噪比 (dB)。     channel_type: \"awgn\" | "
-"\"rayleigh\" | \"rician\" | \"multipath\"。     rician_k_db: Rician K 因子 "
-"(dB), 仅 \"rician\" 模式使用。     pdp: 功率时延谱 [(delay_samples, power_dB), ...],"
-" 仅 \"multipath\" 使用。     max_doppler_hz: 最大多普勒频移 (Hz)。0 表示准静态。     "
-"symbol_rate_hz: 符号速率 (Hz), 用于计算归一化 Doppler 频移。     n_sinusoids: Jakes "
-"模型正弦分量数, 值越大频谱越精确。     seed: 随机种子。"
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.md
+msgid "变量"
 msgstr ""
-"Attributes:     snr_db: Signal-to-noise ratio (dB).     channel_type: "
-"\"awgn\" | \"rayleigh\" | \"rician\" | \"multipath\".     rician_k_db: "
-"Rician K factor (dB), used only in \"rician\" mode.     pdp: Power delay "
-"profile [(delay_samples, power_dB), ...], used only in \"multipath\" "
-"mode.     max_doppler_hz: Maximum Doppler frequency shift (Hz). 0 means "
-"quasi-static.     symbol_rate_hz: Symbol rate (Hz), used to compute the "
-"normalized Doppler shift.     n_sinusoids: Number of sinusoidal "
-"components in the Jakes model; higher values yield a more accurate "
-"spectrum.     seed: Random seed."
+
+#: ../../../src/nearlink_sdr/phy/channel.py:93
+msgid "信噪比 (dB)。"
+msgstr "SINR (dB)."
+
+#: ../../../src/nearlink_sdr/phy/channel.py:94
+msgid "\"awgn\" | \"rayleigh\" | \"rician\" | \"multipath\"。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/channel.py:95
+msgid "Rician K 因子 (dB), 仅 \"rician\" 模式使用。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/channel.py:96
+msgid "功率时延谱 [(delay_samples, power_dB), ...], 仅 \"multipath\" 使用。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/channel.py:97
+msgid "最大多普勒频移 (Hz)。0 表示准静态。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/channel.py:98
+msgid "符号速率 (Hz), 用于计算归一化 Doppler 频移。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/channel.py:99
+msgid "Jakes 模型正弦分量数, 值越大频谱越精确。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/channel.py:100
+#: ../../../src/nearlink_sdr/phy/channel.py:266
+msgid "随机种子。"
+msgstr ""
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.md:98
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.channel.md:266
@@ -271,17 +289,16 @@ msgstr ""
 "verification."
 
 #: ../../../src/nearlink_sdr/phy/channel.py:261
-msgid ""
-"Attributes:     sir_db: 信号与干扰功率比 (dB), 即 S/I。     freq_offset_hz: "
-"干扰信号中心频率相对有用信号的偏移 (Hz)。         0 表示同信道干扰。     interferer_bw_hz: 干扰信号带宽 "
-"(Hz), 用于频谱成型。         0 表示与有用信号相同带宽 (不做滤波)。     seed: 随机种子。"
+msgid "信号与干扰功率比 (dB), 即 S/I。"
 msgstr ""
-"Attributes:     sir_db: Signal-to-interference power ratio (dB), i.e. "
-"S/I.     freq_offset_hz: Frequency offset of the interferer center "
-"frequency relative to the useful signal (Hz).         0 means co-channel "
-"interference.     interferer_bw_hz: Interferer signal bandwidth (Hz), "
-"used for spectral shaping.         0 means same bandwidth as the useful "
-"signal (no filtering).     seed: Random seed."
+
+#: ../../../src/nearlink_sdr/phy/channel.py:262
+msgid "干扰信号中心频率相对有用信号的偏移 (Hz)。 0 表示同信道干扰。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/channel.py:264
+msgid "干扰信号带宽 (Hz), 用于频谱成型。 0 表示与有用信号相同带宽 (不做滤波)。"
+msgstr ""
 
 #: ../../../src/nearlink_sdr/phy/channel.py:312
 msgid "每个干扰源独立生成与有用信号等长的随机 IQ 序列, 按 SIR 缩放后叠加。 支持同信道和邻信道干扰 (通过频率偏移实现)。"
@@ -422,4 +439,51 @@ msgstr "SINR (dB)."
 #~ "max_doppler_hz > 0, each path "
 #~ "independently uses the Jakes model to"
 #~ " generate time-varying coefficients."
+
+#~ msgid ""
+#~ "Attributes:     snr_db: 信噪比 (dB)。     "
+#~ "channel_type: \"awgn\" | \"rayleigh\" | "
+#~ "\"rician\" | \"multipath\"。     rician_k_db: "
+#~ "Rician K 因子 (dB), 仅 \"rician\" "
+#~ "模式使用。     pdp: 功率时延谱 [(delay_samples, "
+#~ "power_dB), ...], 仅 \"multipath\" 使用。     "
+#~ "max_doppler_hz: 最大多普勒频移 (Hz)。0 表示准静态。     "
+#~ "symbol_rate_hz: 符号速率 (Hz), 用于计算归一化 Doppler "
+#~ "频移。     n_sinusoids: Jakes 模型正弦分量数, 值越大频谱越精确。"
+#~ "     seed: 随机种子。"
+#~ msgstr ""
+#~ "Attributes:     snr_db: Signal-to-noise "
+#~ "ratio (dB).     channel_type: \"awgn\" | "
+#~ "\"rayleigh\" | \"rician\" | \"multipath\"."
+#~ "     rician_k_db: Rician K factor (dB), "
+#~ "used only in \"rician\" mode.     pdp:"
+#~ " Power delay profile [(delay_samples, "
+#~ "power_dB), ...], used only in "
+#~ "\"multipath\" mode.     max_doppler_hz: Maximum "
+#~ "Doppler frequency shift (Hz). 0 means"
+#~ " quasi-static.     symbol_rate_hz: Symbol "
+#~ "rate (Hz), used to compute the "
+#~ "normalized Doppler shift.     n_sinusoids: "
+#~ "Number of sinusoidal components in the"
+#~ " Jakes model; higher values yield a"
+#~ " more accurate spectrum.     seed: Random"
+#~ " seed."
+
+#~ msgid ""
+#~ "Attributes:     sir_db: 信号与干扰功率比 (dB), 即 "
+#~ "S/I。     freq_offset_hz: 干扰信号中心频率相对有用信号的偏移 (Hz)。"
+#~ "         0 表示同信道干扰。     interferer_bw_hz: 干扰信号带宽"
+#~ " (Hz), 用于频谱成型。         0 表示与有用信号相同带宽 "
+#~ "(不做滤波)。     seed: 随机种子。"
+#~ msgstr ""
+#~ "Attributes:     sir_db: Signal-to-interference"
+#~ " power ratio (dB), i.e. S/I.     "
+#~ "freq_offset_hz: Frequency offset of the "
+#~ "interferer center frequency relative to "
+#~ "the useful signal (Hz).         0 means"
+#~ " co-channel interference.     interferer_bw_hz:"
+#~ " Interferer signal bandwidth (Hz), used "
+#~ "for spectral shaping.         0 means "
+#~ "same bandwidth as the useful signal "
+#~ "(no filtering).     seed: Random seed."
 

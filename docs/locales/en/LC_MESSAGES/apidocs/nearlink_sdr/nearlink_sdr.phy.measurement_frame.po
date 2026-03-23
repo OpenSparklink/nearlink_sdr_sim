@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 06:20+0800\n"
+"POT-Creation-Date: 2026-03-24 06:45+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -279,24 +279,57 @@ msgstr "3"
 msgid "4"
 msgstr "4"
 
-#: ../../../src/nearlink_sdr/phy/measurement_frame.py:215
-msgid ""
-"Attributes:     K: 码字长度。     L: 占空因子。     Tc: 码片时长 (秒)。     N_sync: "
-"同步字段符号个数, 0 表示不发送同步字段。     symbol_seq: 同步符号序列 (+1/-1), 长度为 K。     M_seg: "
-"测量子片段数。     N_seg: 每个测量子片段的 CTS 符号数。     N_gap: 测量子片段间隔的符号数。     "
-"scramble: 加扰 SC 序列 (+1/-1), 长度为 N_seg * M_seg。         普通模式下全 1, "
-"安全模式下由安全算法确定。     L_cp: 循环前缀码片数 (安全模式)。     L_zero: 补零后缀码片数 (安全模式)。     "
-"N_offset: 安全模式偏移码片数, 默认 0 (普通模式)。"
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md
+msgid "变量"
 msgstr ""
-"Attributes:     K: Codeword length.     L: Duty factor.     Tc: Chip "
-"duration (seconds).     N_sync: Number of sync field symbols, 0 means no "
-"sync field is transmitted.     symbol_seq: Sync symbol sequence (+1/-1), "
-"length is K.     M_seg: Number of measurement sub-segments.     N_seg: "
-"Number of CTS symbols per measurement sub-segment.     N_gap: Number of "
-"symbols in the gap between measurement sub-segments.     scramble: "
-"Scrambling SC sequence (+1/-1), length is N_seg * M_seg.         All 1s "
-"in normal mode, determined by the security algorithm in security mode."
-"     L_cp: Cyclic prefix length.     L_zero: Zero-padding suffix length."
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:215
+msgid "码字长度。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:216
+msgid "占空因子。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:217
+msgid "码片时长 (秒)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:218
+msgid "同步字段符号个数, 0 表示不发送同步字段。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:219
+msgid "同步符号序列 (+1/-1), 长度为 K。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:220
+msgid "测量子片段数。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:221
+msgid "每个测量子片段的 CTS 符号数。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:222
+msgid "测量子片段间隔的符号数。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:223
+msgid "加扰 SC 序列 (+1/-1), 长度为 N_seg * M_seg。 普通模式下全 1, 安全模式下由安全算法确定。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:225
+msgid "循环前缀码片数 (安全模式)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:226
+msgid "补零后缀码片数 (安全模式)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/measurement_frame.py:227
+msgid "安全模式偏移码片数, 默认 0 (普通模式)。"
+msgstr ""
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement_frame.md:220
 msgid "31"
@@ -574,4 +607,34 @@ msgstr "4-bit equalization guard sequence."
 #~ "L_zero>0): after zero-insertion spreading, "
 #~ "multiply by scrambling, then add cyclic"
 #~ " prefix and zero-padding suffix."
+
+#~ msgid ""
+#~ "Attributes:     K: 码字长度。     L: 占空因子。     "
+#~ "Tc: 码片时长 (秒)。     N_sync: 同步字段符号个数, 0"
+#~ " 表示不发送同步字段。     symbol_seq: 同步符号序列 (+1/-1), "
+#~ "长度为 K。     M_seg: 测量子片段数。     N_seg: "
+#~ "每个测量子片段的 CTS 符号数。     N_gap: 测量子片段间隔的符号数。"
+#~ "     scramble: 加扰 SC 序列 (+1/-1), 长度为"
+#~ " N_seg * M_seg。         普通模式下全 1, "
+#~ "安全模式下由安全算法确定。     L_cp: 循环前缀码片数 (安全模式)。     "
+#~ "L_zero: 补零后缀码片数 (安全模式)。     N_offset: "
+#~ "安全模式偏移码片数, 默认 0 (普通模式)。"
+#~ msgstr ""
+#~ "Attributes:     K: Codeword length.     L: "
+#~ "Duty factor.     Tc: Chip duration "
+#~ "(seconds).     N_sync: Number of sync "
+#~ "field symbols, 0 means no sync "
+#~ "field is transmitted.     symbol_seq: Sync "
+#~ "symbol sequence (+1/-1), length is K."
+#~ "     M_seg: Number of measurement sub-"
+#~ "segments.     N_seg: Number of CTS "
+#~ "symbols per measurement sub-segment.     "
+#~ "N_gap: Number of symbols in the "
+#~ "gap between measurement sub-segments.     "
+#~ "scramble: Scrambling SC sequence (+1/-1), "
+#~ "length is N_seg * M_seg.         All "
+#~ "1s in normal mode, determined by "
+#~ "the security algorithm in security mode."
+#~ "     L_cp: Cyclic prefix length.     "
+#~ "L_zero: Zero-padding suffix length."
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 06:20+0800\n"
+"POT-Creation-Date: 2026-03-24 06:45+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -179,17 +179,33 @@ msgstr ""
 "Manage monotonically increasing payload_count and nonce construction, "
 "providing encryption/decryption services for MAC frames."
 
-#: ../../../src/nearlink_sdr/mac/security_manager.py:122
-msgid ""
-"Attributes:     session_key: 会话密钥 (16 字节)。     iv_base: 初始化向量基底 (8 字节)。"
-"     direction: 传输方向 (0=G→T, 1=T→G)。     mic_len: MIC 长度 (字节, 4/8/12/16)。"
-"     frame_type: 帧类型 (用于 IV 计算)。     link_id: 链路标识 (用于 IV 计算)。"
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md
+msgid "变量"
 msgstr ""
-"Attributes:     session_key: Session key (16 bytes).     iv_base: "
-"Initialization vector base (8 bytes).     direction: Transmission "
-"direction (0=G->T, 1=T->G).     mic_len: MIC length (bytes, 4/8/12/16)."
-"     frame_type: Frame type (for IV calculation).     link_id: Link "
-"identifier (for IV calculation)."
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:122
+msgid "会话密钥 (16 字节)。"
+msgstr "Shared key (32 bytes)."
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:123
+msgid "初始化向量基底 (8 字节)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:124
+msgid "传输方向 (0=G→T, 1=T→G)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:125
+msgid "MIC 长度 (字节, 4/8/12/16)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:126
+msgid "帧类型 (用于 IV 计算)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:127
+msgid "链路标识 (用于 IV 计算)。"
+msgstr ""
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:124
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:135
@@ -346,13 +362,20 @@ msgid "会话密钥派生"
 msgstr "Session key derivation"
 
 #: ../../../src/nearlink_sdr/mac/security_manager.py:378
-msgid ""
-"Attributes:     is_g_node: 本端是否为 G 节点。     kdf_type: 密钥派生函数类型。     "
-"auth_method: 鉴权方式。     max_key_length: 最大密钥长度 (字节)。"
+msgid "本端是否为 G 节点。"
 msgstr ""
-"Attributes:     is_g_node: Whether the local end is a G node.     "
-"kdf_type: Key derivation function type.     auth_method: Authentication "
-"method.     max_key_length: Maximum key length (bytes)."
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:379
+msgid "密钥派生函数类型。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:380
+msgid "鉴权方式。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/mac/security_manager.py:381
+msgid "最大密钥长度 (字节)。"
+msgstr "Shared key (32 bytes)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.security_manager.md:376
 msgid "True"
@@ -449,4 +472,32 @@ msgstr "(G node manager, T node manager)."
 #~ "block: flag(1B) | nonce(13B) | "
 #~ "data_length(2B) AESCCM requires the 13-byte"
 #~ " nonce part."
+
+#~ msgid ""
+#~ "Attributes:     session_key: 会话密钥 (16 字节)。"
+#~ "     iv_base: 初始化向量基底 (8 字节)。     "
+#~ "direction: 传输方向 (0=G→T, 1=T→G)。     mic_len:"
+#~ " MIC 长度 (字节, 4/8/12/16)。     frame_type:"
+#~ " 帧类型 (用于 IV 计算)。     link_id: 链路标识"
+#~ " (用于 IV 计算)。"
+#~ msgstr ""
+#~ "Attributes:     session_key: Session key (16"
+#~ " bytes).     iv_base: Initialization vector "
+#~ "base (8 bytes).     direction: Transmission"
+#~ " direction (0=G->T, 1=T->G).     mic_len: "
+#~ "MIC length (bytes, 4/8/12/16).     frame_type:"
+#~ " Frame type (for IV calculation).     "
+#~ "link_id: Link identifier (for IV "
+#~ "calculation)."
+
+#~ msgid ""
+#~ "Attributes:     is_g_node: 本端是否为 G 节点。     "
+#~ "kdf_type: 密钥派生函数类型。     auth_method: 鉴权方式。     "
+#~ "max_key_length: 最大密钥长度 (字节)。"
+#~ msgstr ""
+#~ "Attributes:     is_g_node: Whether the local"
+#~ " end is a G node.     kdf_type: "
+#~ "Key derivation function type.     auth_method:"
+#~ " Authentication method.     max_key_length: "
+#~ "Maximum key length (bytes)."
 

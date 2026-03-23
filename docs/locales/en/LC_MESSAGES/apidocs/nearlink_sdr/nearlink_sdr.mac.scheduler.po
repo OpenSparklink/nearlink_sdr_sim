@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 06:20+0800\n"
+"POT-Creation-Date: 2026-03-24 06:45+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -235,14 +235,23 @@ msgstr ""
 "Manage the time calculation of event groups on a link and generate event "
 "schedule tables based on event group parameters."
 
-#: ../../../src/nearlink_sdr/mac/scheduler.py:96
-msgid ""
-"Attributes:     timing: 事件计时参数。     anchor_slot: 锚点时隙 (基础时隙顺序号)。     "
-"anchor_offset_us: 事件组起始偏移 (μs)。"
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md
+msgid "变量"
 msgstr ""
-"Attributes:     timing: Event timing parameters.     anchor_slot: Anchor "
-"time slot (base time slot sequence number).     anchor_offset_us: Event "
-"group start offset (us)."
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:96
+#: ../../../src/nearlink_sdr/mac/scheduler.py:564
+msgid "事件计时参数。"
+msgstr "Event timing parameter."
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:97
+msgid "锚点时隙 (基础时隙顺序号)。"
+msgstr "Superframe duration (in base time slots)."
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:98
+#: ../../../src/nearlink_sdr/mac/scheduler.py:567
+msgid "事件组起始偏移 (μs)。"
+msgstr "Event group period (us)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:98
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:427
@@ -406,16 +415,25 @@ msgid "单个事件的最大持续时间 (μs)。"
 msgstr "Maximum duration of a single event (us)."
 
 #: ../../../src/nearlink_sdr/mac/scheduler.py:378
-msgid ""
-"Attributes:     link_id: 逻辑链路标识 (24 bit)。     effective_slot: 信令生效时隙 (32 "
-"bit, 基础时隙)。     period_factor: 链路周期因子 (8 bit)。     schedule_slot_type: "
-"调度时隙长度 (3 bit)。     time_slices: 时间片配置列表。"
+msgid "逻辑链路标识 (24 bit)。"
+msgstr "logical link identifier."
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:379
+#: ../../../src/nearlink_sdr/mac/scheduler.py:833
+msgid "信令生效时隙 (32 bit, 基础时隙)。"
 msgstr ""
-"Attributes:     link_id: Logical link identifier (24 bit).     "
-"effective_slot: Signaling effective time slot (32 bit, base time slot)."
-"     period_factor: Link period factor (8 bit).     schedule_slot_type: "
-"Scheduling time slot length (3 bit).     time_slices: Time slice "
-"configuration list."
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:380
+msgid "链路周期因子 (8 bit)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:381
+msgid "调度时隙长度 (3 bit)。"
+msgstr "Sleep clock accuracy enumeration (3 bit)."
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:382
+msgid "时间片配置列表。"
+msgstr ""
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:405
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:642
@@ -432,7 +450,7 @@ msgstr ""
 " value (us)."
 
 #: ../../../src/nearlink_sdr/mac/scheduler.py:443
-msgid "Attributes:     levels: 31 个间隔值 (μs), 索引 0-30 对应级别 1-31。"
+msgid "31 个间隔值 (μs), 索引 0-30 对应级别 1-31。"
 msgstr ""
 "Attributes:     levels: 31 interval values (us), indices 0-30 correspond "
 "to levels 1-31."
@@ -461,15 +479,24 @@ msgstr ""
 "resources."
 
 #: ../../../src/nearlink_sdr/mac/scheduler.py:496
-msgid ""
-"Attributes:     superframe: 超帧结构。     event_schedulers: 按 link_id "
-"索引的事件组调度器。     slot_counter: 全局时隙计数器。     tx_rx_interval: 当前收发间隔类型。     "
-"multi_interval: 多级收发间隔配置。"
+msgid "超帧结构。"
 msgstr ""
-"Attributes:     superframe: Superframe structure.     event_schedulers: "
-"Event group schedulers indexed by link_id.     slot_counter: Global time "
-"slot counter.     tx_rx_interval: Current transceive interval type.     "
-"multi_interval: Multi-level transceive interval configuration."
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:497
+msgid "按 link_id 索引的事件组调度器。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:498
+msgid "全局时隙计数器。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:499
+msgid "当前收发间隔类型。"
+msgstr "Update transceive interval type."
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:500
+msgid "多级收发间隔配置。"
+msgstr ""
 
 #: ../../../src/nearlink_sdr/mac/scheduler.py:553
 msgid "配置 SMF 调度参数。"
@@ -483,10 +510,6 @@ msgstr "Register a link and configure event group scheduling."
 msgid "逻辑链路标识。"
 msgstr "logical link identifier."
 
-#: ../../../src/nearlink_sdr/mac/scheduler.py:564
-msgid "事件计时参数。"
-msgstr "Event timing parameter."
-
 #: ../../../src/nearlink_sdr/mac/scheduler.py:565
 msgid "超帧内时间片列表 (可选)。"
 msgstr "Superframe duration (us)."
@@ -494,10 +517,6 @@ msgstr "Superframe duration (us)."
 #: ../../../src/nearlink_sdr/mac/scheduler.py:566
 msgid "事件组锚点时隙。"
 msgstr "Event group anchor slot."
-
-#: ../../../src/nearlink_sdr/mac/scheduler.py:567
-msgid "事件组起始偏移 (μs)。"
-msgstr "Event group period (us)."
 
 #: ../../../src/nearlink_sdr/mac/scheduler.py:569
 msgid "注销链路调度。"
@@ -594,7 +613,7 @@ msgstr ""
 "approximately 37.3 hours."
 
 #: ../../../src/nearlink_sdr/mac/scheduler.py:784
-msgid "Attributes:     value: 当前计数值 (0 ~ 2^30 - 1)。"
+msgid "当前计数值 (0 ~ 2^30 - 1)。"
 msgstr "Attributes:     value: current counter value (0 ~ 2^30 - 1)."
 
 #: ../../../src/nearlink_sdr/mac/scheduler.py:798
@@ -615,20 +634,29 @@ msgstr ""
 msgid "计算到目标时隙的距离 (考虑回绕)。"
 msgstr "Calculate the distance to the target time slot (considering wraparound)."
 
-#: ../../../src/nearlink_sdr/mac/scheduler.py:833
-msgid ""
-"Attributes:     effective_slot: 信令生效时隙 (32 bit, 基础时隙)。     smf_interval: "
-"两个 SMF 之间的间隔 (16 bit, 基础时隙)。     frame_type: 无线帧类型指示 (4 bit)。     "
-"bandwidth: 带宽指示 (2 bit, 0=1M/1=2M/2=4M)。     pilot_density: 导频密度指示 (2 "
-"bit)。     channel_count: 可用频点个数 (8 bit)。     channel_table: 频点表。"
+#: ../../../src/nearlink_sdr/mac/scheduler.py:834
+msgid "两个 SMF 之间的间隔 (16 bit, 基础时隙)。"
 msgstr ""
-"Attributes:     effective_slot: Signaling effective time slot (32 bit, "
-"base time slot).     smf_interval: Interval between two SMFs (16 bit, "
-"base time slot).     frame_type: Radio frame type indication (4 bit)."
-"     bandwidth: Bandwidth indication (2 bit, 0=1M/1=2M/2=4M).     "
-"pilot_density: Pilot density indication (2 bit).     channel_count: "
-"Number of available frequency points (8 bit).     channel_table: "
-"Frequency table."
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:835
+msgid "无线帧类型指示 (4 bit)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:836
+msgid "带宽指示 (2 bit, 0=1M/1=2M/2=4M)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:837
+msgid "导频密度指示 (2 bit)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:838
+msgid "可用频点个数 (8 bit)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:839
+msgid "频点表。"
+msgstr ""
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.scheduler.md:849
 msgid "800"
@@ -649,10 +677,12 @@ msgstr ""
 "and low-power interval partitioning."
 
 #: ../../../src/nearlink_sdr/mac/scheduler.py:929
-msgid "Attributes:     smf_config: SMF 调度参数。     link_entries: 已注册的链路调度条目。"
-msgstr ""
-"Attributes:     smf_config: SMF scheduling parameters.     link_entries: "
-"Registered link scheduling entries."
+msgid "SMF 调度参数。"
+msgstr "Configure SMF scheduling parameters."
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:930
+msgid "已注册的链路调度条目。"
+msgstr "Unregister link scheduling."
 
 #: ../../../src/nearlink_sdr/mac/scheduler.py:955
 msgid "超帧持续时间 (μs)。"
@@ -697,14 +727,20 @@ msgid "描述一个链路在超帧内的时间资源分配。"
 msgstr "Describe the time resource allocation of a link within a superframe."
 
 #: ../../../src/nearlink_sdr/mac/scheduler.py:1017
-msgid ""
-"Attributes:     offset: 相对 SMF 起始点的偏移 (调度时隙)。     duration: 时间片持续长度 "
-"(调度时隙)。     period: 时间片重复周期 (调度时隙)。     repeat_count: 时间片重复次数。"
+msgid "相对 SMF 起始点的偏移 (调度时隙)。"
 msgstr ""
-"Attributes:     offset: Offset relative to the SMF start point "
-"(scheduling time slots).     duration: Time slice duration (scheduling "
-"time slots).     period: Time slice repeat period (scheduling time "
-"slots).     repeat_count: Time slice repeat count."
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1018
+msgid "时间片持续长度 (调度时隙)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1019
+msgid "时间片重复周期 (调度时隙)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/mac/scheduler.py:1020
+msgid "时间片重复次数。"
+msgstr ""
 
 #: ../../../src/nearlink_sdr/mac/scheduler.py:1064
 msgid "计算此时间片展开后的所有绝对时间区间。"
@@ -803,4 +839,86 @@ msgstr "[(start_us, end_us), ...] list of time intervals."
 
 #~ msgid "30"
 #~ msgstr "30"
+
+#~ msgid ""
+#~ "Attributes:     timing: 事件计时参数。     anchor_slot: "
+#~ "锚点时隙 (基础时隙顺序号)。     anchor_offset_us: 事件组起始偏移 "
+#~ "(μs)。"
+#~ msgstr ""
+#~ "Attributes:     timing: Event timing "
+#~ "parameters.     anchor_slot: Anchor time slot"
+#~ " (base time slot sequence number).     "
+#~ "anchor_offset_us: Event group start offset "
+#~ "(us)."
+
+#~ msgid ""
+#~ "Attributes:     link_id: 逻辑链路标识 (24 bit)。"
+#~ "     effective_slot: 信令生效时隙 (32 bit, 基础时隙)。"
+#~ "     period_factor: 链路周期因子 (8 bit)。     "
+#~ "schedule_slot_type: 调度时隙长度 (3 bit)。     "
+#~ "time_slices: 时间片配置列表。"
+#~ msgstr ""
+#~ "Attributes:     link_id: Logical link "
+#~ "identifier (24 bit).     effective_slot: "
+#~ "Signaling effective time slot (32 bit,"
+#~ " base time slot).     period_factor: Link"
+#~ " period factor (8 bit).     "
+#~ "schedule_slot_type: Scheduling time slot "
+#~ "length (3 bit).     time_slices: Time "
+#~ "slice configuration list."
+
+#~ msgid ""
+#~ "Attributes:     superframe: 超帧结构。     "
+#~ "event_schedulers: 按 link_id 索引的事件组调度器。     "
+#~ "slot_counter: 全局时隙计数器。     tx_rx_interval: 当前收发间隔类型。"
+#~ "     multi_interval: 多级收发间隔配置。"
+#~ msgstr ""
+#~ "Attributes:     superframe: Superframe structure."
+#~ "     event_schedulers: Event group schedulers "
+#~ "indexed by link_id.     slot_counter: Global"
+#~ " time slot counter.     tx_rx_interval: "
+#~ "Current transceive interval type.     "
+#~ "multi_interval: Multi-level transceive "
+#~ "interval configuration."
+
+#~ msgid ""
+#~ "Attributes:     effective_slot: 信令生效时隙 (32 "
+#~ "bit, 基础时隙)。     smf_interval: 两个 SMF "
+#~ "之间的间隔 (16 bit, 基础时隙)。     frame_type: "
+#~ "无线帧类型指示 (4 bit)。     bandwidth: 带宽指示 (2"
+#~ " bit, 0=1M/1=2M/2=4M)。     pilot_density: 导频密度指示"
+#~ " (2 bit)。     channel_count: 可用频点个数 (8 "
+#~ "bit)。     channel_table: 频点表。"
+#~ msgstr ""
+#~ "Attributes:     effective_slot: Signaling effective"
+#~ " time slot (32 bit, base time "
+#~ "slot).     smf_interval: Interval between two"
+#~ " SMFs (16 bit, base time slot)."
+#~ "     frame_type: Radio frame type "
+#~ "indication (4 bit).     bandwidth: Bandwidth"
+#~ " indication (2 bit, 0=1M/1=2M/2=4M).     "
+#~ "pilot_density: Pilot density indication (2 "
+#~ "bit).     channel_count: Number of available"
+#~ " frequency points (8 bit).     "
+#~ "channel_table: Frequency table."
+
+#~ msgid "Attributes:     smf_config: SMF 调度参数。     link_entries: 已注册的链路调度条目。"
+#~ msgstr ""
+#~ "Attributes:     smf_config: SMF scheduling "
+#~ "parameters.     link_entries: Registered link "
+#~ "scheduling entries."
+
+#~ msgid ""
+#~ "Attributes:     offset: 相对 SMF 起始点的偏移 "
+#~ "(调度时隙)。     duration: 时间片持续长度 (调度时隙)。     "
+#~ "period: 时间片重复周期 (调度时隙)。     repeat_count: "
+#~ "时间片重复次数。"
+#~ msgstr ""
+#~ "Attributes:     offset: Offset relative to "
+#~ "the SMF start point (scheduling time "
+#~ "slots).     duration: Time slice duration "
+#~ "(scheduling time slots).     period: Time "
+#~ "slice repeat period (scheduling time "
+#~ "slots).     repeat_count: Time slice repeat"
+#~ " count."
 

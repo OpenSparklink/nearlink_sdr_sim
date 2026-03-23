@@ -94,22 +94,21 @@ DEFAULT_WIRE_FORMAT = "sc16"  # 16-bit signed complex on wire
 class USRPConfig:
     """USRP 设备配置参数。
 
-    Attributes:
-        device_args: UHD 设备地址参数, 空字符串表示自动发现。
-        channel_num: SLE 射频信道号。
-        band: 频段标识 ("2400" / "5100" / "5800")。
-        sample_rate_hz: 采样率 (Hz)。
-        rx_gain_db: 接收增益 (dB)。
-        tx_gain_db: 发射增益 (dB)。
-        bandwidth_hz: 前端模拟滤波器带宽 (Hz), 0 表示不设置。
-        rx_antenna: 接收天线端口名称。
-        tx_antenna: 发射天线端口名称。
-        clock_source: 参考时钟源。
-        time_source: PPS 时间源。
-        cpu_format: 主机端样本格式。
-        wire_format: 线缆端样本格式。
-        num_recv_frames: 接收缓冲区帧数, 增大可减少溢出。
-        stream_timeout_s: 流操作超时时间 (秒)。
+    :ivar device_args: UHD 设备地址参数, 空字符串表示自动发现。
+    :ivar channel_num: SLE 射频信道号。
+    :ivar band: 频段标识 ("2400" / "5100" / "5800")。
+    :ivar sample_rate_hz: 采样率 (Hz)。
+    :ivar rx_gain_db: 接收增益 (dB)。
+    :ivar tx_gain_db: 发射增益 (dB)。
+    :ivar bandwidth_hz: 前端模拟滤波器带宽 (Hz), 0 表示不设置。
+    :ivar rx_antenna: 接收天线端口名称。
+    :ivar tx_antenna: 发射天线端口名称。
+    :ivar clock_source: 参考时钟源。
+    :ivar time_source: PPS 时间源。
+    :ivar cpu_format: 主机端样本格式。
+    :ivar wire_format: 线缆端样本格式。
+    :ivar num_recv_frames: 接收缓冲区帧数, 增大可减少溢出。
+    :ivar stream_timeout_s: 流操作超时时间 (秒)。
     """
     device_args: str = ""
     channel_num: int = 0

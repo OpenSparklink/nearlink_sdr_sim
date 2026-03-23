@@ -53,15 +53,14 @@ PDP_INDOOR_OFFICE = [
 class ChannelConfig:
     """信道配置参数。
 
-    Attributes:
-        snr_db: 信噪比 (dB)。
-        channel_type: "awgn" | "rayleigh" | "rician" | "multipath"。
-        rician_k_db: Rician K 因子 (dB), 仅 "rician" 模式使用。
-        pdp: 功率时延谱 [(delay_samples, power_dB), ...], 仅 "multipath" 使用。
-        max_doppler_hz: 最大多普勒频移 (Hz)。0 表示准静态。
-        symbol_rate_hz: 符号速率 (Hz), 用于计算归一化 Doppler 频移。
-        n_sinusoids: Jakes 模型正弦分量数, 值越大频谱越精确。
-        seed: 随机种子。
+    :ivar snr_db: 信噪比 (dB)。
+    :ivar channel_type: "awgn" | "rayleigh" | "rician" | "multipath"。
+    :ivar rician_k_db: Rician K 因子 (dB), 仅 "rician" 模式使用。
+    :ivar pdp: 功率时延谱 [(delay_samples, power_dB), ...], 仅 "multipath" 使用。
+    :ivar max_doppler_hz: 最大多普勒频移 (Hz)。0 表示准静态。
+    :ivar symbol_rate_hz: 符号速率 (Hz), 用于计算归一化 Doppler 频移。
+    :ivar n_sinusoids: Jakes 模型正弦分量数, 值越大频谱越精确。
+    :ivar seed: 随机种子。
     """
     snr_db: float = 10.0
     channel_type: str = "awgn"
@@ -304,13 +303,12 @@ class ChannelModel:
 class InterferenceConfig:
     """干扰源配置。
 
-    Attributes:
-        sir_db: 信号与干扰功率比 (dB), 即 S/I。
-        freq_offset_hz: 干扰信号中心频率相对有用信号的偏移 (Hz)。
-            0 表示同信道干扰。
-        interferer_bw_hz: 干扰信号带宽 (Hz), 用于频谱成型。
-            0 表示与有用信号相同带宽 (不做滤波)。
-        seed: 随机种子。
+    :ivar sir_db: 信号与干扰功率比 (dB), 即 S/I。
+    :ivar freq_offset_hz: 干扰信号中心频率相对有用信号的偏移 (Hz)。
+        0 表示同信道干扰。
+    :ivar interferer_bw_hz: 干扰信号带宽 (Hz), 用于频谱成型。
+        0 表示与有用信号相同带宽 (不做滤波)。
+    :ivar seed: 随机种子。
     """
     sir_db: float = 10.0
     freq_offset_hz: float = 0.0

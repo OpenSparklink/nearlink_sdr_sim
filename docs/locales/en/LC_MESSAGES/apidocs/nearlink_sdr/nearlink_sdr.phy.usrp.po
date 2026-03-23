@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 06:20+0800\n"
+"POT-Creation-Date: 2026-03-24 06:45+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -434,22 +434,69 @@ msgstr "Total number of transmitted samples."
 msgid "关闭 TX streamer。"
 msgstr "close TX streamer."
 
-#: ../../../src/nearlink_sdr/phy/usrp.py:427
-msgid ""
-"Attributes:     device_args: UHD 设备地址参数, 空字符串表示自动发现。     channel_num: SLE"
-" 射频信道号。     band: 频段标识 (\"2400\" / \"5100\" / \"5800\")。     "
-"sample_rate_hz: 采样率 (Hz)。     rx_gain_db: 接收增益 (dB)。     tx_gain_db: 发射增益"
-" (dB)。     bandwidth_hz: 前端模拟滤波器带宽 (Hz), 0 表示不设置。     rx_antenna: "
-"接收天线端口名称。     tx_antenna: 发射天线端口名称。     clock_source: 参考时钟源。     "
-"time_source: PPS 时间源。     cpu_format: 主机端样本格式。     wire_format: 线缆端样本格式。"
-"     num_recv_frames: 接收缓冲区帧数, 增大可减少溢出。     stream_timeout_s: 流操作超时时间 "
-"(秒)。"
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.md
+msgid "变量"
 msgstr ""
-"Attributes:     device_args: UHD device address arguments, empty string "
-"for auto-discovery.     channel_num: SLE RF channel number.     band: "
-"Band identifier (\"2400\" / \"5100\" / \"5800\").     sample_rate_hz: "
-"Sample rate (Hz).     rx_gain_db: Receive gain (dB).     tx_gain_db: "
-"Transmit gain (dB)."
+
+#: ../../../src/nearlink_sdr/phy/usrp.py:427
+msgid "UHD 设备地址参数, 空字符串表示自动发现。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/usrp.py:428
+msgid "SLE 射频信道号。"
+msgstr "RF channel number."
+
+#: ../../../src/nearlink_sdr/phy/usrp.py:429
+msgid "频段标识 (\"2400\" / \"5100\" / \"5800\")。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/usrp.py:430
+msgid "采样率 (Hz)。"
+msgstr "Bandwidth (MHz)."
+
+#: ../../../src/nearlink_sdr/phy/usrp.py:431
+msgid "接收增益 (dB)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/usrp.py:432
+msgid "发射增益 (dB)。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/usrp.py:433
+msgid "前端模拟滤波器带宽 (Hz), 0 表示不设置。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/usrp.py:434
+msgid "接收天线端口名称。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/usrp.py:435
+msgid "发射天线端口名称。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/usrp.py:436
+msgid "参考时钟源。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/usrp.py:437
+msgid "PPS 时间源。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/usrp.py:438
+msgid "主机端样本格式。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/usrp.py:439
+msgid "线缆端样本格式。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/usrp.py:440
+msgid "接收缓冲区帧数, 增大可减少溢出。"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/usrp.py:441
+msgid "流操作超时时间 (秒)。"
+msgstr ""
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.usrp.md:442
 msgid "0"
@@ -729,4 +776,27 @@ msgstr "Return a human-readable device status summary."
 
 #~ msgid "设置中心频率。"
 #~ msgstr "Set center frequency."
+
+#~ msgid ""
+#~ "Attributes:     device_args: UHD 设备地址参数, "
+#~ "空字符串表示自动发现。     channel_num: SLE 射频信道号。     "
+#~ "band: 频段标识 (\"2400\" / \"5100\" / "
+#~ "\"5800\")。     sample_rate_hz: 采样率 (Hz)。     "
+#~ "rx_gain_db: 接收增益 (dB)。     tx_gain_db: 发射增益"
+#~ " (dB)。     bandwidth_hz: 前端模拟滤波器带宽 (Hz), 0"
+#~ " 表示不设置。     rx_antenna: 接收天线端口名称。     tx_antenna:"
+#~ " 发射天线端口名称。     clock_source: 参考时钟源。     "
+#~ "time_source: PPS 时间源。     cpu_format: 主机端样本格式。"
+#~ "     wire_format: 线缆端样本格式。     num_recv_frames: "
+#~ "接收缓冲区帧数, 增大可减少溢出。     stream_timeout_s: 流操作超时时间 "
+#~ "(秒)。"
+#~ msgstr ""
+#~ "Attributes:     device_args: UHD device "
+#~ "address arguments, empty string for "
+#~ "auto-discovery.     channel_num: SLE RF "
+#~ "channel number.     band: Band identifier "
+#~ "(\"2400\" / \"5100\" / \"5800\").     "
+#~ "sample_rate_hz: Sample rate (Hz).     "
+#~ "rx_gain_db: Receive gain (dB).     tx_gain_db:"
+#~ " Transmit gain (dB)."
 
