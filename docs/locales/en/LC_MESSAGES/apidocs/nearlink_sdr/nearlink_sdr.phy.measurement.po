@@ -9,15 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"POT-Creation-Date: 2026-03-23 22:54+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: en <LL@li.org>\n"
 "Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:1
@@ -31,8 +31,7 @@ msgstr "Positioning measurement signal — TXS-10002-2025 standard 6.2.4"
 
 #: ../../../src/nearlink_sdr/phy/measurement.py:9
 msgid "实现 SLE 位置信息测量所需的信号生成:"
-msgstr ""
-"Implements signal generation required for SLE positioning measurement:"
+msgstr "Implements signal generation required for SLE positioning measurement:"
 
 #: ../../../src/nearlink_sdr/phy/measurement.py:10
 msgid "窄带波形测量信号 1 (6.2.4.1)"
@@ -136,8 +135,7 @@ msgstr ""
 #: ../../../src/nearlink_sdr/phy/measurement.py:48
 #: ../../../src/nearlink_sdr/phy/measurement.py:187
 msgid "生成测量信号 2 的复数基带波形 (6.2.4.2)。"
-msgstr ""
-"Generate the complex baseband waveform for measurement signal 2 (6.2.4.2)."
+msgstr "Generate the complex baseband waveform for measurement signal 2 (6.2.4.2)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:50
 #, python-brace-format
@@ -177,17 +175,13 @@ msgstr "Data"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:66
 #, python-brace-format
-msgid ""
-"{py:obj}`_VALID_N_MEASUR <nearlink_sdr.phy.measurement._VALID_N_MEASUR>`"
-msgstr ""
-"{py:obj}`_VALID_N_MEASUR <nearlink_sdr.phy.measurement._VALID_N_MEASUR>`"
+msgid "{py:obj}`_VALID_N_MEASUR <nearlink_sdr.phy.measurement._VALID_N_MEASUR>`"
+msgstr "{py:obj}`_VALID_N_MEASUR <nearlink_sdr.phy.measurement._VALID_N_MEASUR>`"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:70
 #, python-brace-format
-msgid ""
-"{py:obj}`MULTITONE_PHASES <nearlink_sdr.phy.measurement.MULTITONE_PHASES>`"
-msgstr ""
-"{py:obj}`MULTITONE_PHASES <nearlink_sdr.phy.measurement.MULTITONE_PHASES>`"
+msgid "{py:obj}`MULTITONE_PHASES <nearlink_sdr.phy.measurement.MULTITONE_PHASES>`"
+msgstr "{py:obj}`MULTITONE_PHASES <nearlink_sdr.phy.measurement.MULTITONE_PHASES>`"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.measurement.md:76
 msgid "API"
@@ -238,20 +232,22 @@ msgid "无相位旋转 BPSK 调制, 返回比特序列。"
 msgstr "Non-rotated BPSK modulation, returns bit sequence."
 
 #: ../../../src/nearlink_sdr/phy/measurement.py:173
+#, fuzzy
 msgid ""
-"参数:     n_measur: 测量序列长度 [16, 32, 64, 128, 256, 512, 1024, 2048]     "
-"security_type: 安全类型 (1~4)     seed: 安全随机种子 (16 字节)     slot_number: 起始调度时隙号"
-"     is_tx: True=先发节点, False=后发节点     n_disturb_max: 最大扰动符号数配置 [0-11]     "
-"kdf_type: 0=AES-CMAC, 1=HMAC-SM3"
+"Args:     n_measur: 测量序列长度 [16, 32, 64, 128, 256, 512, 1024, 2048]     "
+"security_type: 安全类型 (1~4)     seed: 安全随机种子 (16 字节)     slot_number: "
+"起始调度时隙号     is_tx: True=先发节点, False=后发节点     n_disturb_max: 最大扰动符号数配置 "
+"[0-11]     kdf_type: 0=AES-CMAC, 1=HMAC-SM3"
 msgstr ""
-"Parameters:     n_measur: Measurement sequence length [16, 32, 64, 128, 256,"
-" 512, 1024, 2048].     security_type: Security type (1-4).     seed: "
-"Security random seed (16 bytes).     slot_number: Starting scheduling slot "
-"number.     is_tx: True=initiator node, False=responder node.     "
+"Parameters:     n_measur: Measurement sequence length [16, 32, 64, 128, "
+"256, 512, 1024, 2048].     security_type: Security type (1-4).     seed: "
+"Security random seed (16 bytes).     slot_number: Starting scheduling "
+"slot number.     is_tx: True=initiator node, False=responder node.     "
 "n_disturb_max: Maximum disturbance value."
 
 #: ../../../src/nearlink_sdr/phy/measurement.py:182
-msgid "返回:     np.ndarray, dtype=int, 长度 n_measur"
+#, fuzzy
+msgid "Returns:     np.ndarray, dtype=int, 长度 n_measur"
 msgstr "Returns:     np.ndarray, dtype=int, length n_measur."
 
 #: ../../../src/nearlink_sdr/phy/measurement.py:189
@@ -259,28 +255,32 @@ msgid "多音信号, 频率对称分布。"
 msgstr "Multi-tone signal with symmetric frequency distribution."
 
 #: ../../../src/nearlink_sdr/phy/measurement.py:191
+#, fuzzy
 msgid ""
-"参数:     n_tones: 音的个数 [1, 2, 4, 8]     bandwidth_mhz: SLE 带宽 [1, 2, 4] MHz"
-"     duration_us: 信号时长 (微秒)     sample_rate: 采样率 (Hz)     phase_set: 相位集合 "
-"[1, 2], N≥4 时有效"
+"Args:     n_tones: 音的个数 [1, 2, 4, 8]     bandwidth_mhz: SLE 带宽 [1, 2, 4] "
+"MHz     duration_us: 信号时长 (微秒)     sample_rate: 采样率 (Hz)     phase_set: "
+"相位集合 [1, 2], N≥4 时有效"
 msgstr ""
-"Parameters:     n_tones: Number of tones [1, 2, 4, 8].     bandwidth_mhz: "
-"SLE bandwidth [1, 2, 4] MHz.     duration_us: Signal duration "
-"(microseconds).     sample_rate: Sample rate (Hz).     phase_set: Phase set "
-"[1, 2], effective when N≥4."
+"Parameters:     n_tones: Number of tones [1, 2, 4, 8].     bandwidth_mhz:"
+" SLE bandwidth [1, 2, 4] MHz.     duration_us: Signal duration "
+"(microseconds).     sample_rate: Sample rate (Hz).     phase_set: Phase "
+"set [1, 2], effective when N≥4."
 
 #: ../../../src/nearlink_sdr/phy/measurement.py:198
-msgid "返回:     np.ndarray, dtype=complex128, 复数基带波形"
+#, fuzzy
+msgid "Returns:     np.ndarray, dtype=complex128, 复数基带波形"
 msgstr "Returns:     np.ndarray, dtype=complex128, complex baseband waveform."
 
 #: ../../../src/nearlink_sdr/phy/measurement.py:196
-msgid "参数:     m: 发送天线数     n: 接收天线数"
+#, fuzzy
+msgid "Args:     m: 发送天线数     n: 接收天线数"
 msgstr ""
 "Parameters:     m: Number of transmit antennas.     n: Number of receive "
 "antennas."
 
 #: ../../../src/nearlink_sdr/phy/measurement.py:200
-msgid "返回:     天线对列表 [(tx_ant, rx_ant), ...]"
+#, fuzzy
+msgid "Returns:     天线对列表 [(tx_ant, rx_ant), ...]"
 msgstr "returns: antennapairlist [(tx_ant, rx_ant), ...]"
 
 #: ../../../src/nearlink_sdr/phy/measurement.py:203
@@ -288,9 +288,10 @@ msgid "示例:     m=3, n=2: [(0,0), (0,1), (1,0), (1,1), (2,0), (2,1)]"
 msgstr "example:     m=3, n=2: [(0,0), (0,1), (1,0), (1,1), (2,0), (2,1)]"
 
 #: ../../../src/nearlink_sdr/phy/measurement.py:203
+#, fuzzy
 msgid ""
-"参数:     m: 发送天线数     n: 接收天线数     seed: 安全随机种子 (16 字节)     slot_number: "
-"起始调度时隙号     k: 随机数位宽     kdf_type: 0=AES-CMAC, 1=HMAC-SM3"
+"Args:     m: 发送天线数     n: 接收天线数     seed: 安全随机种子 (16 字节)     slot_number:"
+" 起始调度时隙号     k: 随机数位宽     kdf_type: 0=AES-CMAC, 1=HMAC-SM3"
 msgstr ""
 "Parameters:     m: Number of transmit antennas.     n: Number of receive "
 "antennas.     seed: Security random seed (16 bytes).     slot_number: "
@@ -298,6 +299,7 @@ msgstr ""
 "kdf_type: 0=AES-CMAC, 1=HMAC-SM3."
 
 #: ../../../src/nearlink_sdr/phy/measurement.py:211
-msgid "返回:     随机排列的天线对列表 [(tx_ant, rx_ant), ...]"
-msgstr ""
-"Returns:     Randomly permuted antenna pair list [(tx_ant, rx_ant), ...]."
+#, fuzzy
+msgid "Returns:     随机排列的天线对列表 [(tx_ant, rx_ant), ...]"
+msgstr "Returns:     Randomly permuted antenna pair list [(tx_ant, rx_ant), ...]."
+

@@ -2,7 +2,8 @@ name: Release
 
 on:
   push:
-    tags: ["v*"]
+    tags:
+      - "v[0-9]*.*.*"
 
 permissions:
   contents: write
@@ -11,7 +12,26 @@ jobs:
   build-docs:
     name: Build Docs
     runs-on: ubuntu-latest
+    outputs:
+      prerelease: ${{ steps.semver.outputs.prerelease }}
     steps:
+      - name: Validate semver tag
+        id: semver
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          SEMVER_RE='^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-([0-9A-Za-z-]+\.)*[0-9A-Za-z-]+)?(\+([0-9A-Za-z-]+\.)*[0-9A-Za-z-]+)?$'
+          if [[ ! "$TAG" =~ $SEMVER_RE ]]; then
+            echo "::error::Tag '$TAG' is not a valid semver (expected: vMAJOR.MINOR.PATCH[-PRERELEASE][+BUILD])"
+            exit 1
+          fi
+          if [[ -n "${BASH_REMATCH[4]}" ]]; then
+            echo "prerelease=true" >> "$GITHUB_OUTPUT"
+            echo "Tag '$TAG' detected as PRERELEASE"
+          else
+            echo "prerelease=false" >> "$GITHUB_OUTPUT"
+            echo "Tag '$TAG' detected as STABLE release"
+          fi
+
       - uses: actions/checkout@v4
 
       - uses: astral-sh/setup-uv@v6
@@ -96,6 +116,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           generate_release_notes: true
+          prerelease: ${{ needs.build-docs.outputs.prerelease == 'true' }}
           files: |
             dist/nearlink-sdr-zh-*.pdf
             dist/nearlink-sdr-en-*.pdf

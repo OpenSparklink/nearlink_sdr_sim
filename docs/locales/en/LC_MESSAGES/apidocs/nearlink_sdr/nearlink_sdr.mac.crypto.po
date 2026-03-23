@@ -9,15 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"POT-Creation-Date: 2026-03-23 22:54+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: en <LL@li.org>\n"
 "Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:1
@@ -151,17 +151,15 @@ msgstr "based on kdf_type select AES-CMAC or HMAC-SM3."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:46
 #, python-brace-format
-msgid ""
-"{py:obj}`secure_random_256 <nearlink_sdr.mac.crypto.secure_random_256>`"
-msgstr ""
-"{py:obj}`secure_random_256 <nearlink_sdr.mac.crypto.secure_random_256>`"
+msgid "{py:obj}`secure_random_256 <nearlink_sdr.mac.crypto.secure_random_256>`"
+msgstr "{py:obj}`secure_random_256 <nearlink_sdr.mac.crypto.secure_random_256>`"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:48
 #: ../../../src/nearlink_sdr/mac/crypto.py:259
 msgid "安全随机函数 (6.10.7), 生成256比特 (32字节) 安全序列。"
 msgstr ""
-"Secure random function (clause 6.10.7), generates a 256-bit (32-byte) secure"
-" sequence."
+"Secure random function (clause 6.10.7), generates a 256-bit (32-byte) "
+"secure sequence."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:50
 #, python-brace-format
@@ -225,10 +223,8 @@ msgstr "Compute the final IV (8 bytes)."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:70
 #, python-brace-format
-msgid ""
-"{py:obj}`derive_session_key <nearlink_sdr.mac.crypto.derive_session_key>`"
-msgstr ""
-"{py:obj}`derive_session_key <nearlink_sdr.mac.crypto.derive_session_key>`"
+msgid "{py:obj}`derive_session_key <nearlink_sdr.mac.crypto.derive_session_key>`"
+msgstr "{py:obj}`derive_session_key <nearlink_sdr.mac.crypto.derive_session_key>`"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:72
 #: ../../../src/nearlink_sdr/mac/crypto.py:301
@@ -313,10 +309,8 @@ msgstr "Obfuscation algorithm, returns 16-byte obfuscation code."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.mac.crypto.md:98
 #, python-brace-format
-msgid ""
-"{py:obj}`generate_group_key <nearlink_sdr.mac.crypto.generate_group_key>`"
-msgstr ""
-"{py:obj}`generate_group_key <nearlink_sdr.mac.crypto.generate_group_key>`"
+msgid "{py:obj}`generate_group_key <nearlink_sdr.mac.crypto.generate_group_key>`"
+msgstr "{py:obj}`generate_group_key <nearlink_sdr.mac.crypto.generate_group_key>`"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:100
 #: ../../../src/nearlink_sdr/mac/crypto.py:350
@@ -419,55 +413,60 @@ msgstr "5"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:261
 msgid ""
-"对 KDF 调用两次 (分别使用 time_param 和 time_param+1 作为消息), 拼接两个 128-bit 输出得到 256-bit "
-"安全序列。"
+"对 KDF 调用两次 (分别使用 time_param 和 time_param+1 作为消息), 拼接两个 128-bit 输出得到 "
+"256-bit 安全序列。"
 msgstr ""
-"Call KDF twice (using time_param and time_param+1 as messages respectively),"
-" concatenate two 128-bit outputs to obtain a 256-bit secure sequence."
+"Call KDF twice (using time_param and time_param+1 as messages "
+"respectively), concatenate two 128-bit outputs to obtain a 256-bit secure"
+" sequence."
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:264
+#, fuzzy
 msgid ""
-"参数:     seed: 128比特安全随机种子 (16字节)     time_param: 32比特时间参数 (如调度时隙号*2)     "
-"kdf_type: KDF 类型"
+"Args:     seed: 128比特安全随机种子 (16字节)     time_param: 32比特时间参数 (如调度时隙号*2)"
+"     kdf_type: KDF 类型"
 msgstr ""
-"Args:     seed: 128-bit secure random seed (16 bytes)     time_param: 32-bit"
-" time parameter (e.g., scheduling slot number * 2)     kdf_type: KDF type"
+"Args:     seed: 128-bit secure random seed (16 bytes)     time_param: "
+"32-bit time parameter (e.g., scheduling slot number * 2)     kdf_type: "
+"KDF type"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:269
-msgid "返回:     32 字节安全序列"
+#, fuzzy
+msgid "Returns:     32 字节安全序列"
 msgstr "Returns:     32-byte secure sequence"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:268
 msgid ""
-"布局: flag(1B) | payload_count[38:0] (39b) | direction (1b)       | IV[63:0] "
-"(64b) | data_len_hi(1B) | data_len_lo(1B)"
+"布局: flag(1B) | payload_count[38:0] (39b) | direction (1b)       | "
+"IV[63:0] (64b) | data_len_hi(1B) | data_len_lo(1B)"
 msgstr ""
 "layout: flag(1B) | payload_count[38:0] (39b) | direction (1b)       | "
 "IV[63:0] (64b) | data_len_hi(1B) | data_len_lo(1B)"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:275
 msgid ""
-"布局: flag(1B) | system_slot_seq[29:0] (30b) | day_count[9:0] (10b)       | "
-"IV[63:0] (64b) | data_len_hi(1B) | data_len_lo(1B)"
+"布局: flag(1B) | system_slot_seq[29:0] (30b) | day_count[9:0] (10b)       |"
+" IV[63:0] (64b) | data_len_hi(1B) | data_len_lo(1B)"
 msgstr ""
-"layout: flag(1B) | system_slot_seq[29:0] (30b) | day_count[9:0] (10b)       "
-"| IV[63:0] (64b) | data_len_hi(1B) | data_len_lo(1B)"
+"layout: flag(1B) | system_slot_seq[29:0] (30b) | day_count[9:0] (10b)"
+"       | IV[63:0] (64b) | data_len_hi(1B) | data_len_lo(1B)"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:296
 msgid ""
-"FT1/FT2: iv_base 低32位 XOR sync_seq 低32位 FT3/FT4: iv_base 低24位 XOR link_id "
-"24位"
+"FT1/FT2: iv_base 低32位 XOR sync_seq 低32位 FT3/FT4: iv_base 低24位 XOR link_id"
+" 24位"
 msgstr ""
-"FT1/FT2: iv_base low32bit XOR sync_seq low32bit FT3/FT4: iv_base low24bit "
-"XOR link_id 24bit"
+"FT1/FT2: iv_base low32bit XOR sync_seq low32bit FT3/FT4: iv_base low24bit"
+" XOR link_id 24bit"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:303
 msgid ""
 "认证加密: SK = KDF(link_key, g_div || t_div), 返回 (SK, None) 分离算法: EnK / InK "
 "分别派生, 返回 (EnK, InK)"
 msgstr ""
-"Authenticated encryption: SK = KDF(link_key, g_div || t_div), returns (SK, "
-"None) Split algorithm: EnK / InK derived separately, returns (EnK, InK)"
+"Authenticated encryption: SK = KDF(link_key, g_div || t_div), returns "
+"(SK, None) Split algorithm: EnK / InK derived separately, returns (EnK, "
+"InK)"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:324
 msgid ""
@@ -480,10 +479,11 @@ msgstr ""
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:338
 msgid ""
-"K = G节点公钥X 低128比特 (g_pubkey_x 后16字节) M = G节点公钥X 高128比特 || T节点公钥 || Ra || Rb"
+"K = G节点公钥X 低128比特 (g_pubkey_x 后16字节) M = G节点公钥X 高128比特 || T节点公钥 || Ra || "
+"Rb"
 msgstr ""
-"K = Gnodepublic keyX low128bit (g_pubkey_x next16byte) M = Gnodepublic keyX "
-"high128bit || Tnodepublic key || Ra || Rb"
+"K = Gnodepublic keyX low128bit (g_pubkey_x next16byte) M = Gnodepublic "
+"keyX high128bit || Tnodepublic key || Ra || Rb"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:345
 msgid "K = G节点公钥X 低128比特 (g_pubkey_x 后16字节) 输出 = KDF(K, value)"
@@ -496,12 +496,15 @@ msgid ""
 "认证加密: GSK = KDF(GK, \"gsk\"), 返回 (GSK, None) 分离算法: GEnK / GInK 分别派生, 返回 "
 "(GEnK, GInK)"
 msgstr ""
-"Authenticated encryption: GSK = KDF(GK, \"gsk\"), returns (GSK, None) Split "
-"algorithm: GEnK / GInK derived separately, returns (GEnK, GInK)"
+"Authenticated encryption: GSK = KDF(GK, \"gsk\"), returns (GSK, None) "
+"Split algorithm: GEnK / GInK derived separately, returns (GEnK, GInK)"
 
 #: ../../../src/nearlink_sdr/mac/crypto.py:373
+#, fuzzy
 msgid ""
-"hash_part = KDF(IRK, rand_part) mod 2^16 返回: 高16位标记 || 中16位随机 || 低16位hash"
+"hash_part = KDF(IRK, rand_part) mod 2^16 Returns: 高16位标记 || 中16位随机 || "
+"低16位hash"
 msgstr ""
-"hash_part = KDF(IRK, rand_part) mod 2^16 Returns: upper 16-bit tag || middle"
-" 16-bit random || lower 16-bit hash"
+"hash_part = KDF(IRK, rand_part) mod 2^16 Returns: upper 16-bit tag || "
+"middle 16-bit random || lower 16-bit hash"
+

@@ -71,6 +71,7 @@ docs-pdf:  ## 构建 PDF 文档 (需提前运行 make install)
 # [docs-pdf-start]
 	uv run sphinx-build -b latex docs docs/_build/latex
 	sed -i 's/\\begin{longtable}{ll}/\\begin{longtable}{l p{0.55\\linewidth}}/g' docs/_build/latex/nearlink-sdr.tex
+	for f in docs/_build/latex/mermaid-*.pdf; do [ -f "$$f" ] && pdfcrop "$$f" "$$f" >/dev/null 2>&1; done || true
 	cd docs/_build/latex && make
 # [docs-pdf-end]
 
@@ -79,6 +80,7 @@ docs-pdf-en:  ## 构建英文版 PDF 文档
 	uv run sphinx-intl build -d docs/locales
 	uv run sphinx-build -b latex -D language=en docs docs/_build/latex_en
 	sed -i 's/\\begin{longtable}{ll}/\\begin{longtable}{l p{0.55\\linewidth}}/g' docs/_build/latex_en/nearlink-sdr.tex
+	for f in docs/_build/latex_en/mermaid-*.pdf; do [ -f "$$f" ] && pdfcrop "$$f" "$$f" >/dev/null 2>&1; done || true
 	cd docs/_build/latex_en && make
 # [docs-pdf-en-end]
 

@@ -57,6 +57,80 @@ tests/            # 测试文件, 与 src 模块一一对应
 - 提交修改前更新 CHANGELOG.md
 - 添加新功能或修改要更新文档, 文档依据 [diataxis](https://diataxis.fr/) 标准
 
+### 版本与发布规范
+
+项目版本号遵循 [Semantic Versioning 2.0.0](https://semver.org/)。
+
+**版本格式**
+
+```
+MAJOR.MINOR.PATCH[-PRERELEASE][+BUILDMETADATA]
+```
+
+- MAJOR: 不兼容的 API 变更
+- MINOR: 向后兼容的功能新增
+- PATCH: 向后兼容的缺陷修复
+- PRERELEASE: 可选, 点分标识符, 如 `alpha.1`, `beta.2`, `rc.1`
+- BUILDMETADATA: 可选, 构建元数据, 如 `+build.20250101`
+
+**预发布标签约定**
+
+| 阶段 | 标签格式 | 用途 |
+|------|----------|------|
+| 内部验证 | `vX.Y.Z-alpha.N` | 功能开发中, 接口可能变更 |
+| 集成测试 | `vX.Y.Z-beta.N` | 功能冻结, 仅修复缺陷 |
+| 发布候选 | `vX.Y.Z-rc.N` | 准备正式发布, 仅修复阻塞性问题 |
+| 正式发布 | `vX.Y.Z` | 通过全部验证 |
+
+**发布流程**
+
+1. 开发完成后, 打预发布标签 (如 `v1.1.0-rc.1`) 触发 CI
+2. CI 自动校验标签是否符合 semver 正则, 不符合则构建失败
+3. 预发布标签生成 GitHub Pre-release, 正式标签生成 GitHub Release
+4. 预发布验证通过后, 去掉预发布后缀打正式标签 (如 `v1.1.0`)
+5. 禁止直接打正式标签, 必须先经过至少一个预发布版本
+
+**CI 标签正则**
+
+```
+^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-([0-9A-Za-z-]+\.)*[0-9A-Za-z-]+)?(\+([0-9A-Za-z-]+\.)*[0-9A-Za-z-]+)?$
+```
+
+- 匹配: `v1.0.0`, `v1.0.0-rc.1`, `v2.0.0-alpha.1+build.123`
+- 不匹配: `v1`, `v1.0`, `release-1.0.0`, `v01.0.0`
+
+**pyproject.toml 版本同步**
+
+- `pyproject.toml` 中的 `version` 字段始终与最新正式版本保持一致
+- 预发布阶段不修改 `pyproject.toml` 版本号, 正式发布时更新
+
+### 文档构建规范
+
+**字体配置**
+
+| 用途 | 字体 |
+|------|------|
+| 中文正文/无衬线 | HarmonyOS Sans SC |
+| 西文正文/无衬线 | HarmonyOS Sans |
+| 等宽代码 | DejaVu Sans Mono (Scale=0.85) |
+
+- 字体文件存放于 `fonts/` 目录, CI 通过 `make install-fonts` 安装
+- 代码块使用 DejaVu Sans Mono 以支持 box-drawing 等特殊字符
+
+**PDF 构建**
+
+- 引擎: XeLaTeX + latexmk
+- 中文 PDF: `make docs-pdf`
+- 英文 PDF: `make docs-pdf-en`
+- 长表格自动做列宽后处理 (sed), 代码块自动折行 (sphinxsetup)
+- Mermaid 图表预渲染为 PDF 后用 pdfcrop 裁剪白边
+
+**多语言**
+
+- 中文为源语言, 英文通过 sphinx-intl + gettext 翻译
+- `.po` 文件位于 `docs/locales/en/LC_MESSAGES/`
+- 翻译更新流程: `make docs-update-po` -> 翻译 -> `make docs-pdf-en`
+
 ## 性能要求
 
 - 测试时长不应该大于2mins,尽可能并行化测试压缩时长

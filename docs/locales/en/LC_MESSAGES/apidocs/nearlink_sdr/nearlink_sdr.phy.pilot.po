@@ -9,15 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-22 02:25+0000\n"
+"POT-Creation-Date: 2026-03-23 22:54+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: en <LL@li.org>\n"
 "Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.md:1
@@ -81,8 +81,7 @@ msgstr "{py:obj}`PILOT_PHASE_DEG <nearlink_sdr.phy.pilot.PILOT_PHASE_DEG>`"
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.md:42
 #, python-brace-format
 msgid "{py:obj}`EVEN_ROTATION_DEG <nearlink_sdr.phy.pilot.EVEN_ROTATION_DEG>`"
-msgstr ""
-"{py:obj}`EVEN_ROTATION_DEG <nearlink_sdr.phy.pilot.EVEN_ROTATION_DEG>`"
+msgstr "{py:obj}`EVEN_ROTATION_DEG <nearlink_sdr.phy.pilot.EVEN_ROTATION_DEG>`"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.pilot.md:48
 msgid "API"
@@ -94,58 +93,65 @@ msgid "None"
 msgstr "None"
 
 #: ../../../src/nearlink_sdr/phy/pilot.py:76
+#, fuzzy
 msgid ""
-"参数:     mod_type: 调制方式，取 \"BPSK\"、\"QPSK\" 或 \"8PSK\"。     symbol_index: 帧内以"
-" 0 为基的符号索引（决定奇偶位置）。                  标准规定第一个符号处于奇数位置。"
+"Args:     mod_type: 调制方式，取 \"BPSK\"、\"QPSK\" 或 \"8PSK\"。     "
+"symbol_index: 帧内以 0 为基的符号索引（决定奇偶位置）。                  标准规定第一个符号处于奇数位置。"
 msgstr ""
-"Parameters:     mod_type: Modulation scheme, one of \"BPSK\", \"QPSK\" or "
-"\"8PSK\".     symbol_index: Zero-based symbol index within the frame "
-"(determines odd/even position).                  The standard specifies that"
-" the first symbol is at an odd position."
+"Parameters:     mod_type: Modulation scheme, one of \"BPSK\", \"QPSK\" or"
+" \"8PSK\".     symbol_index: Zero-based symbol index within the frame "
+"(determines odd/even position).                  The standard specifies "
+"that the first symbol is at an odd position."
 
 #: ../../../src/nearlink_sdr/phy/pilot.py:81
-msgid "返回:     复数导频符号。"
+#, fuzzy
+msgid "Returns:     复数导频符号。"
 msgstr "Returns:     Complex pilot symbol."
 
 #: ../../../src/nearlink_sdr/phy/pilot.py:83
 msgid "每隔 `pilot_interval` 个数据符号后插入一个导频符号。 按标准规定，帧中最后一个导频应省略。"
 msgstr ""
-"Insert one pilot symbol after every `pilot_interval` data symbols. Per the "
-"standard, the last pilot in a frame shall be omitted."
+"Insert one pilot symbol after every `pilot_interval` data symbols. Per "
+"the standard, the last pilot in a frame shall be omitted."
 
 #: ../../../src/nearlink_sdr/phy/pilot.py:86
+#, fuzzy
 msgid ""
-"参数:     data_symbols: 复数数据符号数组。     pilot_interval: 标准中的 N 值（4、8 或 16）。     "
-"mod_type: 导频相位所用的调制方式。     start_symbol_index: 帧内第一个数据符号的绝对符号索引。     "
-"omit_last_pilot: 是否省略最后一个导频符号。"
+"Args:     data_symbols: 复数数据符号数组。     pilot_interval: 标准中的 N 值（4、8 或 16）。"
+"     mod_type: 导频相位所用的调制方式。     start_symbol_index: 帧内第一个数据符号的绝对符号索引。"
+"     omit_last_pilot: 是否省略最后一个导频符号。"
 msgstr ""
-"Parameters:     data_symbols: Complex data symbol array.     pilot_interval:"
-" N value from the standard (4, 8 or 16).     mod_type: Modulation scheme "
-"used for pilot phase.     start_symbol_index: Absolute symbol index of the "
-"first data symbol in the frame.     omit_last_pilot: Whether to omit the "
-"last pilot symbol."
+"Parameters:     data_symbols: Complex data symbol array.     "
+"pilot_interval: N value from the standard (4, 8 or 16).     mod_type: "
+"Modulation scheme used for pilot phase.     start_symbol_index: Absolute "
+"symbol index of the first data symbol in the frame.     omit_last_pilot: "
+"Whether to omit the last pilot symbol."
 
 #: ../../../src/nearlink_sdr/phy/pilot.py:93
-msgid "返回:     (output_symbols, total_symbol_count) — 插入导频后的符号数组及总符号数。"
+#, fuzzy
+msgid "Returns:     (output_symbols, total_symbol_count) — 插入导频后的符号数组及总符号数。"
 msgstr ""
-"Returns:     (output_symbols, total_symbol_count) — symbol array after pilot"
-" insertion and total symbol count."
+"Returns:     (output_symbols, total_symbol_count) — symbol array after "
+"pilot insertion and total symbol count."
 
 #: ../../../src/nearlink_sdr/phy/pilot.py:90
+#, fuzzy
 msgid ""
-"参数:     symbols: 含导频的接收符号。     pilot_interval: N 值（4、8 或 16）。     "
+"Args:     symbols: 含导频的接收符号。     pilot_interval: N 值（4、8 或 16）。     "
 "last_pilot_omitted: 发送侧是否已省略最后一个导频。"
 msgstr ""
 "Parameters:     symbols: Received symbols containing pilots.     "
-"pilot_interval: N value (4, 8 or 16).     last_pilot_omitted: Whether the "
-"transmitter has omitted the last pilot."
+"pilot_interval: N value (4, 8 or 16).     last_pilot_omitted: Whether the"
+" transmitter has omitted the last pilot."
 
 #: ../../../src/nearlink_sdr/phy/pilot.py:95
-msgid "返回:     移除导频后的数据符号。"
+#, fuzzy
+msgid "Returns:     移除导频后的数据符号。"
 msgstr "Returns:     Data symbols after pilot removal."
 
 #~ msgid ""
-#~ "Pilot symbol insertion and extraction per TXS-10002-2025 section 6.2.1.2."
+#~ "Pilot symbol insertion and extraction "
+#~ "per TXS-10002-2025 section 6.2.1.2."
 #~ msgstr ""
 
 #~ msgid "Generate a single pilot symbol with appropriate phase rotation."
@@ -158,35 +164,48 @@ msgstr "Returns:     Data symbols after pilot removal."
 #~ msgstr ""
 
 #~ msgid ""
-#~ "Args:     mod_type: \"BPSK\", \"QPSK\", or \"8PSK\".     symbol_index: "
-#~ "0-based symbol index in the frame (determines odd/even).                  "
-#~ "The standard says the first symbol is at \"odd\" position."
+#~ "Args:     mod_type: \"BPSK\", \"QPSK\", or "
+#~ "\"8PSK\".     symbol_index: 0-based symbol "
+#~ "index in the frame (determines "
+#~ "odd/even).                  The standard says "
+#~ "the first symbol is at \"odd\" "
+#~ "position."
 #~ msgstr ""
 
 #~ msgid "Returns:     Complex pilot symbol."
 #~ msgstr ""
 
 #~ msgid ""
-#~ "Every `pilot_interval` data symbols, one pilot symbol is inserted after "
-#~ "them. The last pilot in the frame should be omitted per standard."
+#~ "Every `pilot_interval` data symbols, one "
+#~ "pilot symbol is inserted after them. "
+#~ "The last pilot in the frame should"
+#~ " be omitted per standard."
 #~ msgstr ""
 
 #~ msgid ""
-#~ "Args:     data_symbols: complex data symbol array.     pilot_interval: N in "
-#~ "standard (4, 8, or 16).     mod_type: modulation type for pilot phase.     "
-#~ "start_symbol_index: the absolute symbol index of the first data symbol in "
-#~ "the frame.     omit_last_pilot: whether to omit the last pilot symbol."
+#~ "Args:     data_symbols: complex data symbol"
+#~ " array.     pilot_interval: N in standard"
+#~ " (4, 8, or 16).     mod_type: "
+#~ "modulation type for pilot phase.     "
+#~ "start_symbol_index: the absolute symbol index"
+#~ " of the first data symbol in "
+#~ "the frame.     omit_last_pilot: whether to "
+#~ "omit the last pilot symbol."
 #~ msgstr ""
 
 #~ msgid ""
-#~ "Returns:     (output_symbols, total_symbol_count) — symbols with pilots "
-#~ "inserted, and count."
+#~ "Returns:     (output_symbols, total_symbol_count) —"
+#~ " symbols with pilots inserted, and "
+#~ "count."
 #~ msgstr ""
 
 #~ msgid ""
-#~ "Args:     symbols: received symbols with pilots.     pilot_interval: N (4, "
-#~ "8, or 16).     last_pilot_omitted: whether the last pilot was omitted at TX."
+#~ "Args:     symbols: received symbols with "
+#~ "pilots.     pilot_interval: N (4, 8, or"
+#~ " 16).     last_pilot_omitted: whether the "
+#~ "last pilot was omitted at TX."
 #~ msgstr ""
 
 #~ msgid "Returns:     Data symbols with pilots removed."
 #~ msgstr ""
+

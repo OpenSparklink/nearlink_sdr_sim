@@ -116,6 +116,7 @@ latex_elements = {
 \setCJKmonofont{HarmonyOS Sans SC}
 \setmainfont{HarmonyOS Sans}
 \setsansfont{HarmonyOS Sans}
+\setmonofont{DejaVu Sans Mono}[Scale=0.85]
 
 % CJK 排版优化：行距、段落间距、断行策略
 \linespread{1.25}
@@ -192,7 +193,10 @@ def _builder_inited(app):
         if os.path.exists(_LOCAL_MMDC):
             app.config.mermaid_cmd = _LOCAL_MMDC
         if os.path.exists(_PUPPETEER_CFG):
-            app.config.mermaid_params = ["--puppeteerConfigFile", _PUPPETEER_CFG]
+            app.config.mermaid_params = [
+                "--puppeteerConfigFile", _PUPPETEER_CFG,
+                "--pdfFit",
+            ]
 
 
 def setup(app):

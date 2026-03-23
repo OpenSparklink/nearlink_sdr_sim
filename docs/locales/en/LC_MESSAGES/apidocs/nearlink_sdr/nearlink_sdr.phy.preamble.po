@@ -9,15 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-21 23:12+0000\n"
+"POT-Creation-Date: 2026-03-23 22:54+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: en <LL@li.org>\n"
 "Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.preamble.md:1
@@ -36,9 +36,11 @@ msgstr "Functions"
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.preamble.md:18
 #, python-brace-format
 msgid ""
-"{py:obj}`gfsk_preamble_bits <nearlink_sdr.phy.preamble.gfsk_preamble_bits>`"
+"{py:obj}`gfsk_preamble_bits "
+"<nearlink_sdr.phy.preamble.gfsk_preamble_bits>`"
 msgstr ""
-"{py:obj}`gfsk_preamble_bits <nearlink_sdr.phy.preamble.gfsk_preamble_bits>`"
+"{py:obj}`gfsk_preamble_bits "
+"<nearlink_sdr.phy.preamble.gfsk_preamble_bits>`"
 
 #: ../../../src/nearlink_sdr/phy/preamble.py:20
 #: ../../../src/nearlink_sdr/phy/preamble.py:68
@@ -75,10 +77,8 @@ msgstr "Generate PSK preamble complex symbol sequence."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.preamble.md:30
 #, python-brace-format
-msgid ""
-"{py:obj}`generate_preamble <nearlink_sdr.phy.preamble.generate_preamble>`"
-msgstr ""
-"{py:obj}`generate_preamble <nearlink_sdr.phy.preamble.generate_preamble>`"
+msgid "{py:obj}`generate_preamble <nearlink_sdr.phy.preamble.generate_preamble>`"
+msgstr "{py:obj}`generate_preamble <nearlink_sdr.phy.preamble.generate_preamble>`"
 
 #: ../../../src/nearlink_sdr/phy/preamble.py:32
 #: ../../../src/nearlink_sdr/phy/preamble.py:99
@@ -111,18 +111,20 @@ msgstr "None"
 #: ../../../src/nearlink_sdr/phy/preamble.py:70
 msgid "帧类型1使用 [0,1] 交替序列，第一个码元为0。"
 msgstr ""
-"Frame type 1 uses an alternating [0,1] sequence, with the first symbol being"
-" 0."
+"Frame type 1 uses an alternating [0,1] sequence, with the first symbol "
+"being 0."
 
 #: ../../../src/nearlink_sdr/phy/preamble.py:72
 #: ../../../src/nearlink_sdr/phy/preamble.py:84
-msgid "参数:     symbol_rate_mhz: 符号速率 (MHz)     duration_us: 前导码持续时间 (μs)"
+#, fuzzy
+msgid "Args:     symbol_rate_mhz: 符号速率 (MHz)     duration_us: 前导码持续时间 (μs)"
 msgstr ""
 "Parameters:     symbol_rate_mhz: Symbol rate (MHz).     duration_us: "
 "Preamble duration (μs)."
 
 #: ../../../src/nearlink_sdr/phy/preamble.py:76
-msgid "返回:     前导码比特序列, 值为 0/1"
+#, fuzzy
+msgid "Returns:     前导码比特序列, 值为 0/1"
 msgstr "Returns:     Preamble bit sequence, values 0/1."
 
 #: ../../../src/nearlink_sdr/phy/preamble.py:77
@@ -130,30 +132,38 @@ msgid "帧类型2/3/4使用 [π/4, 0] 交替相位。"
 msgstr "Frame types 2/3/4 use alternating [π/4, 0] phases."
 
 #: ../../../src/nearlink_sdr/phy/preamble.py:79
+#, fuzzy
 msgid ""
-"参数:     symbol_rate_mhz: 符号速率 (MHz)     duration_us: 前导码持续时间 "
+"Args:     symbol_rate_mhz: 符号速率 (MHz)     duration_us: 前导码持续时间 "
 "(μs)，帧类型2=10，帧类型3=12，帧类型4=16"
 msgstr ""
 "Parameters:     symbol_rate_mhz: Symbol rate (MHz).     duration_us: "
-"Preamble duration (μs), frame type 2=10, frame type 3=12, frame type 4=16."
+"Preamble duration (μs), frame type 2=10, frame type 3=12, frame type "
+"4=16."
 
 #: ../../../src/nearlink_sdr/phy/preamble.py:83
-msgid "返回:     前导码相位序列 (弧度)"
+#, fuzzy
+msgid "Returns:     前导码相位序列 (弧度)"
 msgstr "Returns:     Preamble phase sequence (radians)."
 
 #: ../../../src/nearlink_sdr/phy/preamble.py:88
-msgid "返回:     前导码复数符号, shape (N,)"
+#, fuzzy
+msgid "Returns:     前导码复数符号, shape (N,)"
 msgstr "Returns:     Preamble complex symbols, shape (N,)."
 
 #: ../../../src/nearlink_sdr/phy/preamble.py:101
-msgid "参数:     frame_type: 帧类型 1~4     symbol_rate_mhz: 符号速率 (MHz)"
+#, fuzzy
+msgid "Args:     frame_type: 帧类型 1~4     symbol_rate_mhz: 符号速率 (MHz)"
 msgstr ""
-"Parameters:     frame_type: Frame type 1-4.     symbol_rate_mhz: Symbol rate"
-" (MHz)."
+"Parameters:     frame_type: Frame type 1-4.     symbol_rate_mhz: Symbol "
+"rate (MHz)."
 
 #: ../../../src/nearlink_sdr/phy/preamble.py:105
+#, fuzzy
 msgid ""
-"返回:     帧类型1: 比特数组 (int ndarray)     帧类型2/3/4: 复数符号数组 (complex ndarray)"
+"Returns:     帧类型1: 比特数组 (int ndarray)     帧类型2/3/4: 复数符号数组 (complex "
+"ndarray)"
 msgstr ""
-"Returns:     Frame type 1: bit array (int ndarray).     Frame types 2/3/4: "
-"complex symbol array (complex ndarray)."
+"Returns:     Frame type 1: bit array (int ndarray).     Frame types "
+"2/3/4: complex symbol array (complex ndarray)."
+

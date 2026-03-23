@@ -5,6 +5,20 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/),
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.0.7-rc.1] - 2026-03-24
+
+### Fixed
+
+- PDF Mermaid 图表: 添加 pdfcrop 裁剪白边, 消除全页留白
+- PDF 代码块字体: 切换等宽字体为 DejaVu Sans Mono, 修复 box-drawing 字符缺失
+- PDF 特殊字符: 将源文件中 HarmonyOS Sans 不支持的 ↔ 替换为 `<->`
+
+### Changed
+
+- Release CI: 添加 semver 标签校验, 不合规标签构建失败
+- Release CI: 预发布标签自动标记为 GitHub Pre-release
+- AGENTS.md: 新增版本与发布规范、文档构建规范章节
+
 ## [1.0.6] - 2026-03-23
 
 ### Fixed
@@ -507,7 +521,7 @@
   - FrameCryptoContext: 帧级 AES-CCM 加解密上下文, 管理 payload_count
   - run_pairing_procedure: 端到端配对流程 (仿真/测试用)
 - `mac/link_manager.py`: 扩展链路状态机, 新增 PAIRING 状态
-  - LinkState.PAIRING: 配对态 (CONNECTED↔PAIRING)
+  - LinkState.PAIRING: 配对态 (CONNECTED<->PAIRING)
   - EventType: START_PAIRING, PAIRING_COMPLETE, PAIRING_FAILED 事件
 - `tests/test_security_manager.py`: 31 个安全流程集成测试
 - `sim/link_sim.py` Phase 11: 接入→配对→加密端到端仿真
