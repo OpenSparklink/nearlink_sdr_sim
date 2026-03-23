@@ -1,0 +1,228 @@
+# {py:mod}`nearlink_sdr.phy.psk`
+
+```{py:module} nearlink_sdr.phy.psk
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.psk
+:allowtitles:
+```
+
+## Module Contents
+
+### Classes
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`PSKModulator <nearlink_sdr.phy.psk.PSKModulator>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.psk.PSKModulator
+    :summary:
+    ```
+* - {py:obj}`PSKDemodulator <nearlink_sdr.phy.psk.PSKDemodulator>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.psk.PSKDemodulator
+    :summary:
+    ```
+````
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`rrc_filter <nearlink_sdr.phy.psk.rrc_filter>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.psk.rrc_filter
+    :summary:
+    ```
+````
+
+### Data
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`SLE_RRC_BETA <nearlink_sdr.phy.psk.SLE_RRC_BETA>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.psk.SLE_RRC_BETA
+    :summary:
+    ```
+* - {py:obj}`BPSK_MAP <nearlink_sdr.phy.psk.BPSK_MAP>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.psk.BPSK_MAP
+    :summary:
+    ```
+* - {py:obj}`BPSK_ROTATION <nearlink_sdr.phy.psk.BPSK_ROTATION>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.psk.BPSK_ROTATION
+    :summary:
+    ```
+* - {py:obj}`QPSK_MAP <nearlink_sdr.phy.psk.QPSK_MAP>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.psk.QPSK_MAP
+    :summary:
+    ```
+* - {py:obj}`QPSK_ROTATION <nearlink_sdr.phy.psk.QPSK_ROTATION>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.psk.QPSK_ROTATION
+    :summary:
+    ```
+* - {py:obj}`_8PSK_MAP <nearlink_sdr.phy.psk._8PSK_MAP>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.psk._8PSK_MAP
+    :summary:
+    ```
+* - {py:obj}`_8PSK_ROTATION <nearlink_sdr.phy.psk._8PSK_ROTATION>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.psk._8PSK_ROTATION
+    :summary:
+    ```
+* - {py:obj}`BPSK_NOROT_MAP <nearlink_sdr.phy.psk.BPSK_NOROT_MAP>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.psk.BPSK_NOROT_MAP
+    :summary:
+    ```
+````
+
+### API
+
+````{py:data} SLE_RRC_BETA
+:canonical: nearlink_sdr.phy.psk.SLE_RRC_BETA
+:value: >
+   0.4
+
+```{autodoc2-docstring} nearlink_sdr.phy.psk.SLE_RRC_BETA
+```
+
+````
+
+````{py:function} rrc_filter(beta: float, sps: int, span: int = 10) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.psk.rrc_filter
+
+```{autodoc2-docstring} nearlink_sdr.phy.psk.rrc_filter
+```
+````
+
+````{py:data} BPSK_MAP
+:canonical: nearlink_sdr.phy.psk.BPSK_MAP
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.psk.BPSK_MAP
+```
+
+````
+
+````{py:data} BPSK_ROTATION
+:canonical: nearlink_sdr.phy.psk.BPSK_ROTATION
+:value: >
+   'exp(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.psk.BPSK_ROTATION
+```
+
+````
+
+````{py:data} QPSK_MAP
+:canonical: nearlink_sdr.phy.psk.QPSK_MAP
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.psk.QPSK_MAP
+```
+
+````
+
+````{py:data} QPSK_ROTATION
+:canonical: nearlink_sdr.phy.psk.QPSK_ROTATION
+:value: >
+   'exp(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.psk.QPSK_ROTATION
+```
+
+````
+
+````{py:data} _8PSK_MAP
+:canonical: nearlink_sdr.phy.psk._8PSK_MAP
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.psk._8PSK_MAP
+```
+
+````
+
+````{py:data} _8PSK_ROTATION
+:canonical: nearlink_sdr.phy.psk._8PSK_ROTATION
+:value: >
+   'exp(...)'
+
+```{autodoc2-docstring} nearlink_sdr.phy.psk._8PSK_ROTATION
+```
+
+````
+
+````{py:data} BPSK_NOROT_MAP
+:canonical: nearlink_sdr.phy.psk.BPSK_NOROT_MAP
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.psk.BPSK_NOROT_MAP
+```
+
+````
+
+`````{py:class} PSKModulator(mod_type: str = 'QPSK', sps: int = 4, beta: float = SLE_RRC_BETA, rrc_span: int = 10)
+:canonical: nearlink_sdr.phy.psk.PSKModulator
+
+```{autodoc2-docstring} nearlink_sdr.phy.psk.PSKModulator
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.psk.PSKModulator.__init__
+```
+
+````{py:property} bits_per_symbol
+:canonical: nearlink_sdr.phy.psk.PSKModulator.bits_per_symbol
+:type: int
+
+```{autodoc2-docstring} nearlink_sdr.phy.psk.PSKModulator.bits_per_symbol
+```
+
+````
+
+````{py:method} map_symbols(bits: numpy.ndarray) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.psk.PSKModulator.map_symbols
+
+```{autodoc2-docstring} nearlink_sdr.phy.psk.PSKModulator.map_symbols
+```
+
+````
+
+````{py:method} modulate(bits: numpy.ndarray) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.psk.PSKModulator.modulate
+
+```{autodoc2-docstring} nearlink_sdr.phy.psk.PSKModulator.modulate
+```
+
+````
+
+`````
+
+`````{py:class} PSKDemodulator(mod_type: str = 'QPSK', sps: int = 4, beta: float = SLE_RRC_BETA, rrc_span: int = 10)
+:canonical: nearlink_sdr.phy.psk.PSKDemodulator
+
+```{autodoc2-docstring} nearlink_sdr.phy.psk.PSKDemodulator
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.psk.PSKDemodulator.__init__
+```
+
+````{py:method} demodulate(signal: numpy.ndarray) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.psk.PSKDemodulator.demodulate
+
+```{autodoc2-docstring} nearlink_sdr.phy.psk.PSKDemodulator.demodulate
+```
+
+````
+
+`````
