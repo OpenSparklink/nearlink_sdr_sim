@@ -15,6 +15,20 @@
 
 ### Added
 
+- DLI 指令集扩展至 50+ 处理器 (60 个 Rust 单元测试)
+  - 基本指令: READ_CMD_LEN / READ_CTRL_BUF / SET/READ_SLB_ROLE / SET/READ_SLB_CHANNEL
+  - 广播指令: SET_BROADCAST_PARAM / SET_BROADCAST_DATA / SET_SCAN_RSP_DATA
+  - 扫描指令: SET_SCAN_PARAM
+  - 链路控制: READ_PEER_FEAT / READ_PEER_VER / READ_PHY_PARAM / CONN_PARAM_UPDATE / CONN_PARAM_RSP / READ_AVAIL_CHANNEL / READ_PEER_POWER / POWER_REPORT_CONFIG
+  - 安全指令: GEN_RANDOM / READ_LOCAL_ENC_ALG
+  - 测试指令: TEST_MODE_ENABLE / TEST_RX_RESULT
+  - SET_SLB_CHANNEL 直接控制 AD9361 RF 信道 (0-78 → 2402-2480 MHz)
+- AD9361 axi 地址修复: integrate_ad9361.tcl 显式分配 0x79020000 匹配 PlutoSDR 设备树
+- 部署自动化
+  - deploy.sh: 一键编译/部署/启动 (build→stop→deploy→start)
+  - S99sle 重写: 适配 composite_gadget 的 FFS 原子启动序列
+  - 安全停止流程: unbind UDC → kill → cleanup → rebind
+- USB DLI 测试扩展至 16 项 (信道/PHY/广播/随机数/加密/测试模式/TX 数据通路)
 - USB DLI 端到端通信验证通过
   - FunctionFS 事件循环重构: 正确处理 BIND/ENABLE/DISABLE 生命周期
   - FFS composite gadget 集成: ffs.sle_dli + rndis/acm/iio/msd 五合一
