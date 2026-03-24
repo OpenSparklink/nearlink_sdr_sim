@@ -25,6 +25,10 @@
   - generate_p256_keypair() 密钥对生成 (SEC1 未压缩 65 字节公钥)
   - exchange_key() 计算 DH 共享密钥, 失败自动设置 PairingFailureReason
   - 新增 2 个 ECDH 测试 (双向交换验证 + 非法公钥拒绝)
+- BSP 集成 (antsdr-fw-patch buildroot)
+  - integrate_bsp.sh 自动集成脚本: 编译 Rust 固件 + 复制到 board/ant/ + 修改 post-build.sh
+  - S99sle 启动脚本: UIO 加载 → 设备树覆盖 → USB Gadget → sle_ctrl 守护进程
+  - 支持 DFU 烧录和在线 frm 更新
 - FPGA 硬件加速工程脚手架 (`nearlink_sdr_zynq/`)
   - RTL 模块: CRC-24, 加扰器, 同步 FIFO, PHY 顶层骨架 (SystemVerilog, AXI-Stream 接口)
   - 全局参数头 `sle_params.svh`: 时钟/RF/调制/Polar/帧结构参数
