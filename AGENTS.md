@@ -4,15 +4,15 @@
 
 ## 项目概述
 
-构建符合 TXS-10002-2025 SparkLink SLE 标准的软件无线电系统, 目标硬件平台为 USRP E310。
+构建符合 TXS-10002-2025 SparkLink SLE 标准的软件无线电系统, 目标硬件平台为 ANTSDR E310 (Zynq XC7Z020)。
 
 ## 技术栈
 
-- 语言: Python 3.14+, Rust (加速扩展)
+- 语言: Python 3.14+, Rust (加速扩展), SystemVerilog (FPGA RTL)
 - 包管理: uv
-- 构建: hatchling (Python, src layout), maturin + PyO3 (Rust 扩展)
-- 测试: pytest + pytest-cov
-- Lint: ruff
+- 构建: hatchling (Python, src layout), maturin + PyO3 (Rust 扩展), Vivado 2025.2 (FPGA)
+- 测试: pytest + pytest-cov (Python), cocotb + iverilog (RTL 仿真)
+- Lint: ruff (Python), Verible (SystemVerilog)
 - 标准文档: `../Summary-of-Sparkling-Information/Standard/TXS-10002-2025.md`
 
 ## 目录结构
@@ -24,6 +24,12 @@ src/nearlink_sdr/
 ├── mac/          # MAC 层 (功率控制信令, 帧结构, 信令注册)
 └── sim/          # 链路仿真
 tests/            # 测试文件, 与 src 模块一一对应
+nearlink_sdr_zynq/
+├── rtl/          # FPGA RTL 源码 (SystemVerilog)
+├── tb/           # cocotb 仿真测试
+├── constraints/  # Vivado 约束 (XDC)
+├── scripts/      # Vivado Tcl 脚本
+└── ip/           # Xilinx IP 核
 ```
 
 ## 开发规范

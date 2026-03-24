@@ -9,6 +9,14 @@
 
 ### Added
 
+- FPGA 硬件加速工程脚手架 (`nearlink_sdr_zynq/`)
+  - RTL 模块: CRC-24, 加扰器, 同步 FIFO, PHY 顶层骨架 (SystemVerilog, AXI-Stream 接口)
+  - 全局参数头 `sle_params.svh`: 时钟/RF/调制/Polar/帧结构参数
+  - cocotb 仿真测试: CRC-24 (3 项) + 加扰器 (1 项), 全部通过 (iverilog 11 + cocotb 2.0.1)
+  - ANTSDR E310 引脚约束 (`constraints/antsdr_e310.xdc`): AD9361 LVDS/SPI/GPIO
+  - Vivado Tcl 脚本: 创建工程 / 综合实现 / 下载 bitstream
+  - 构建系统: Makefile (sim/lint/build/program), pyproject.toml, .editorconfig
+  - Verible lint 配置 + VS Code Verilog LSP 设置
 - SDR 硬件后端抽象层: `SDRDevice` 基类 + `SDRConfig` 配置 + `create_device()` 工厂函数
 - Mock 后端 (`mock_backend.py`): 带环回的无硬件仿真, 从 `usrp.py` 提取独立
 - PlutoSDR 后端 (`pluto_backend.py`): 基于 pyadi-iio, 支持 ANTSDR E310 / ADALM-Pluto
