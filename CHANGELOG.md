@@ -15,6 +15,12 @@
 
 ### Added
 
+- USB DLI 端到端通信验证通过
+  - FunctionFS 事件循环重构: 正确处理 BIND/ENABLE/DISABLE 生命周期
+  - FFS composite gadget 集成: ffs.sle_dli + rndis/acm/iio/msd 五合一
+  - DLI 事件通道: mpsc 通道连接 DliHandler → EP1 interrupt IN
+  - 主机 pyusb 测试: READ_LOCAL_VER / READ_LOCAL_FEAT / SET+READ_MAC_ADDR 三项通过
+- RF 初始化超时保护: IIO 驱动卡住时 5 秒超时跳过, 避免 sle_ctrl 阻塞
 - E310 硬件部署全链路验证
   - SLE 比特流运行时加载: .bit→.bin 字节交换转换 + FPGA Manager sysfs 加载
   - PHY 寄存器读写验证通过: PARAM/SCRAMBLER/MODULATION 写回一致
