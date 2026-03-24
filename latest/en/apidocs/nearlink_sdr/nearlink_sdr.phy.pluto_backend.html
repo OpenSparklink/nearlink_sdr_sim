@@ -399,9 +399,9 @@
         <article role="main" id="furo-main-content">
           <section class="tex2jax_ignore mathjax_ignore" id="module-nearlink_sdr.phy.pluto_backend">
 <span id="nearlink-sdr-phy-pluto-backend"></span><h1><a class="reference internal" href="#module-nearlink_sdr.phy.pluto_backend" title="nearlink_sdr.phy.pluto_backend"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.pluto_backend</span></code></a><a class="headerlink" href="#module-nearlink_sdr.phy.pluto_backend" title="Link to this heading">¶</a></h1>
-<p>PlutoSDR / ANTSDR 后端 – 基于 pyadi-iio。</p>
-<p>支持 MicroPhase ANTSDR E310 及 Analog Devices ADALM-Pluto 等
-基于 AD9361 + libiio 的 SDR 设备。</p>
+<p>PlutoSDR / ANTSDR backend – based on pyadi-iio.</p>
+<p>Supports MicroPhase ANTSDR E310, Analog Devices ADALM-Pluto, and other
+AD9361 + libiio based SDR devices.</p>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
 <section id="classes">
@@ -410,7 +410,7 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.pluto_backend.PlutoDevice" title="nearlink_sdr.phy.pluto_backend.PlutoDevice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlutoDevice</span></code></a></p></td>
-<td><p>PlutoSDR / ANTSDR E310 设备接口。</p></td>
+<td><p>PlutoSDR / ANTSDR E310 device interface.</p></td>
 </tr>
 </tbody>
 </table>
@@ -422,7 +422,7 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.pluto_backend.adi_available" title="nearlink_sdr.phy.pluto_backend.adi_available"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adi_available</span></code></a></p></td>
-<td><p>检查当前环境是否安装了 pyadi-iio。</p></td>
+<td><p>Checks whether pyadi-iio is installed in the current environment.</p></td>
 </tr>
 </tbody>
 </table>
@@ -506,8 +506,8 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.pluto_backend.PlutoDevice">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.pluto_backend.</span></span><span class="sig-name descname"><span class="pre">PlutoDevice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.phy.sdr_backend.html#nearlink_sdr.phy.sdr_backend.SDRConfig" title="nearlink_sdr.phy.sdr_backend.SDRConfig"><span class="pre">nearlink_sdr.phy.sdr_backend.SDRConfig</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/pluto_backend.html#PlutoDevice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.pluto_backend.PlutoDevice" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="nearlink_sdr.phy.sdr_backend.html#nearlink_sdr.phy.sdr_backend.SDRDevice" title="nearlink_sdr.phy.sdr_backend.SDRDevice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sdr_backend.SDRDevice</span></code></a></p>
-<p>PlutoSDR / ANTSDR E310 设备接口。</p>
-<p>基于 pyadi-iio 的 adi.Pluto 类, 提供 SDRDevice 统一接口。</p>
+<p>PlutoSDR / ANTSDR E310 device interface.</p>
+<p>Based on the pyadi-iio adi.Pluto class, providing the unified SDRDevice interface.</p>
 <p class="rubric">Initialization</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.pluto_backend.PlutoDevice.configure">
@@ -562,7 +562,7 @@
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.pluto_backend.PlutoDevice.sdr">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sdr</span></span><a class="headerlink" href="#nearlink_sdr.phy.pluto_backend.PlutoDevice.sdr" title="Link to this definition">¶</a></dt>
-<dd><p>获取底层 adi.Pluto 对象, 用于高级操作。</p>
+<dd><p>Returns the underlying adi.Pluto object for advanced operations.</p>
 </dd></dl>
 
 </dd></dl>
@@ -570,7 +570,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.pluto_backend.adi_available">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.pluto_backend.</span></span><span class="sig-name descname"><span class="pre">adi_available</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/pluto_backend.html#adi_available"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.pluto_backend.adi_available" title="Link to this definition">¶</a></dt>
-<dd><p>检查当前环境是否安装了 pyadi-iio。</p>
+<dd><p>Checks whether pyadi-iio is installed in the current environment.</p>
 </dd></dl>
 
 </section>

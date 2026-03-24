@@ -497,19 +497,14 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">get_kcb</span><span class="p">(</span><span class="n">code_rate</span><span class="p">:</span> <span class="n">Fraction</span><span class="p">,</span> <span class="n">code_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">table</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;查询速率适配信息比特数 Kcb。</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    code_rate : Fraction</span>
-<span class="sd">        编码速率, 如 Fraction(1, 4)。</span>
-<span class="sd">    code_length : int</span>
-<span class="sd">        码长, 必须为 64, 128, 256, 512, 1024 之一。</span>
-<span class="sd">    table : int</span>
-<span class="sd">        1 = 第一表格 (表23), 2 = 第二表格 (表24)。</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    int</span>
-<span class="sd">        信息比特数 Kcb。</span>
+<span class="sd">    :param code_rate: 编码速率, 如 Fraction(1, 4)。</span>
+<span class="sd">    :type code_rate: Fraction</span>
+<span class="sd">    :param code_length: 码长, 必须为 64, 128, 256, 512, 1024 之一。</span>
+<span class="sd">    :type code_length: int</span>
+<span class="sd">    :param table: 1 = 第一表格 (表23), 2 = 第二表格 (表24)。</span>
+<span class="sd">    :type table: int</span>
+<span class="sd">    :returns: 信息比特数 Kcb。</span>
+<span class="sd">    :rtype: int</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">code_length</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">CODE_LENGTHS</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;码长必须为 </span><span class="si">{</span><span class="n">CODE_LENGTHS</span><span class="si">}</span><span class="s2"> 之一, 收到 </span><span class="si">{</span><span class="n">code_length</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>

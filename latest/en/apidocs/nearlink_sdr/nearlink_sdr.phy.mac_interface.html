@@ -489,8 +489,15 @@
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.mac_interface.</span></span><span class="sig-name descname"><span class="pre">QosLink</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html#nearlink_sdr.phy.tx_pipeline.TxConfig" title="nearlink_sdr.phy.tx_pipeline.TxConfig"><span class="pre">nearlink_sdr.phy.tx_pipeline.TxConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_pdu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">256</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/mac_interface.html#QosLink"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.mac_interface.QosLink" title="Link to this definition">¶</a></dt>
 <dd><p>End-to-end data link with QoS management.</p>
 <p>Encapsulate ARQ sequence number management, HARQ feedback, flow control and link quality tracking. Callers drive automatic retransmission via submit / transmit / receive methods.</p>
-<p class="rubric" id="id7">Parameters</p>
-<p>cfg : Transmit parameter configuration. frame_type : Frame type (1-4), determines ARQ SN bit width. max_pdu : Maximum byte count per PDU.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cfg</strong> – Transmission parameter configuration.</p></li>
+<li><p><strong>frame_type</strong> – Frame type (1-4), determines ARQ SN bit width.</p></li>
+<li><p><strong>max_pdu</strong> – Maximum bytes per PDU.</p></li>
+</ul>
+</dd>
+</dl>
 <p class="rubric">Initialization</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.mac_interface.QosLink.submit">
@@ -502,16 +509,22 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.mac_interface.QosLink.transmit">
 <span class="sig-name descname"><span class="pre">transmit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="nearlink_sdr.mac.qos.html#nearlink_sdr.mac.qos.TxDecision" title="nearlink_sdr.mac.qos.TxDecision"><span class="pre">nearlink_sdr.mac.qos.TxDecision</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/mac_interface.html#QosLink.transmit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.mac_interface.QosLink.transmit" title="Link to this definition">¶</a></dt>
 <dd><p>Fetch data from the queue and generate an IQ signal.</p>
-<p class="rubric" id="id8">Returns</p>
-<p>(IQ signal or None, transmit decision).</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(IQ 信号或 None, 发送决策)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.mac_interface.QosLink.receive">
 <span class="sig-name descname"><span class="pre">receive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_mac_bytes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/mac_interface.html#QosLink.receive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.mac_interface.QosLink.receive" title="Link to this definition">¶</a></dt>
 <dd><p>Receive IQ signal and process ARQ feedback.</p>
-<p class="rubric" id="id9">Returns</p>
-<p>(Recovered data, whether CRC passed).</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(恢复的数据, CRC 是否通过)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -556,36 +569,58 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.mac_interface.iq_to_mac">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.mac_interface.</span></span><span class="sig-name descname"><span class="pre">iq_to_mac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iq_signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html#nearlink_sdr.phy.tx_pipeline.TxConfig" title="nearlink_sdr.phy.tx_pipeline.TxConfig"><span class="pre">nearlink_sdr.phy.tx_pipeline.TxConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_mac_bytes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.phy.mac_interface.MacRxResult" title="nearlink_sdr.phy.mac_interface.MacRxResult"><span class="pre">nearlink_sdr.phy.mac_interface.MacRxResult</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/mac_interface.html#iq_to_mac"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.mac_interface.iq_to_mac" title="Link to this definition">¶</a></dt>
 <dd><p>Baseband IQ signal → MAC layer payload bytes.</p>
-<p class="rubric" id="id10">Parameters</p>
-<p>iq_signal : IQ sample array. cfg : Same configuration as the transmitter. n_mac_bytes : MAC layer payload byte count (must be known in advance).</p>
-<p class="rubric" id="id11">Returns</p>
-<p>MacRxResult</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>iq_signal</strong> – IQ sample array.</p></li>
+<li><p><strong>cfg</strong> – Same configuration as the transmitter.</p></li>
+<li><p><strong>n_mac_bytes</strong> – MAC-layer payload byte count (must be known in advance).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>MacRxResult。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.mac_interface.iq_to_signaling">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.mac_interface.</span></span><span class="sig-name descname"><span class="pre">iq_to_signaling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iq_signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html#nearlink_sdr.phy.tx_pipeline.TxConfig" title="nearlink_sdr.phy.tx_pipeline.TxConfig"><span class="pre">nearlink_sdr.phy.tx_pipeline.TxConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_mac_bytes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><span class="pre">object</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/mac_interface.html#iq_to_signaling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.mac_interface.iq_to_signaling" title="Link to this definition">¶</a></dt>
 <dd><p>Baseband IQ signal → signaling object.</p>
-<p class="rubric" id="id12">Returns</p>
-<p>(Signaling object, whether CRC passed).</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(信令对象, CRC是否通过)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.mac_interface.mac_to_iq">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.mac_interface.</span></span><span class="sig-name descname"><span class="pre">mac_to_iq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mac_payload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html#nearlink_sdr.phy.tx_pipeline.TxConfig" title="nearlink_sdr.phy.tx_pipeline.TxConfig"><span class="pre">nearlink_sdr.phy.tx_pipeline.TxConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctrl_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.phy.control_info.html#nearlink_sdr.phy.control_info.ControlInfoA2" title="nearlink_sdr.phy.control_info.ControlInfoA2"><span class="pre">nearlink_sdr.phy.control_info.ControlInfoA2</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/mac_interface.html#mac_to_iq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.mac_interface.mac_to_iq" title="Link to this definition">¶</a></dt>
 <dd><p>MAC layer payload → baseband IQ signal.</p>
-<p class="rubric" id="id13">Parameters</p>
-<p>mac_payload : Byte stream produced by MAC frame pack(). cfg : Transmit parameter configuration. ctrl_info : Physical layer control information. If None, the default A2 configuration is used.</p>
-<p class="rubric" id="id14">Returns</p>
-<p>IQ sample array (complex128).</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mac_payload</strong> – Byte stream produced by MAC frame pack().</p></li>
+<li><p><strong>cfg</strong> – Transmission parameter configuration.</p></li>
+<li><p><strong>ctrl_info</strong> – Physical-layer control information. If None, the default A2 configuration is used.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>IQ 采样数组 (complex128)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.mac_interface.roundtrip_data">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.mac_interface.</span></span><span class="sig-name descname"><span class="pre">roundtrip_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html#nearlink_sdr.phy.tx_pipeline.TxConfig" title="nearlink_sdr.phy.tx_pipeline.TxConfig"><span class="pre">nearlink_sdr.phy.tx_pipeline.TxConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/mac_interface.html#roundtrip_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.mac_interface.roundtrip_data" title="Link to this definition">¶</a></dt>
 <dd><p>Asynchronous data frame encode → IQ → decode full-link test.</p>
-<p class="rubric" id="id15">Returns</p>
-<p>(Recovered data, whether CRC passed).</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(恢复的数据, CRC是否通过)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -593,8 +628,11 @@
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.mac_interface.</span></span><span class="sig-name descname"><span class="pre">roundtrip_signaling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><span class="pre">object</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html#nearlink_sdr.phy.tx_pipeline.TxConfig" title="nearlink_sdr.phy.tx_pipeline.TxConfig"><span class="pre">nearlink_sdr.phy.tx_pipeline.TxConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><span class="pre">object</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/mac_interface.html#roundtrip_signaling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.mac_interface.roundtrip_signaling" title="Link to this definition">¶</a></dt>
 <dd><p>Signaling encode → IQ → decode full-link test.</p>
 <p>No channel (direct connection), verify MAC → PHY → MAC data integrity.</p>
-<p class="rubric" id="id16">Returns</p>
-<p>(Recovered signaling object, whether CRC passed).</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(恢复的信令对象, CRC是否通过)。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">

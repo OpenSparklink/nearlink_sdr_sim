@@ -453,17 +453,12 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">scramble_sequence</span><span class="p">(</span><span class="n">length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;生成指定长度的加扰序列。</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    length : int</span>
-<span class="sd">        需要的加扰比特数。</span>
-<span class="sd">    seed : int</span>
-<span class="sd">        7bit 初始种子 (0 ~ 127)。</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    NDArray[np.uint8]</span>
-<span class="sd">        加扰序列, 元素为 0 或 1。</span>
+<span class="sd">    :param length: 需要的加扰比特数。</span>
+<span class="sd">    :type length: int</span>
+<span class="sd">    :param seed: 7bit 初始种子 (0 ~ 127)。</span>
+<span class="sd">    :type seed: int</span>
+<span class="sd">    :returns: 加扰序列, 元素为 0 或 1。</span>
+<span class="sd">    :rtype: NDArray[np.uint8]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">seed</span> <span class="o">&lt;=</span> <span class="mi">127</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;seed 必须在 0..127 范围内, 收到 </span><span class="si">{</span><span class="n">seed</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -484,17 +479,12 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">scramble</span><span class="p">(</span><span class="n">bits</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">],</span> <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;对比特序列进行加扰 (XOR)。</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    bits : NDArray[np.uint8]</span>
-<span class="sd">        待加扰比特, 元素为 0 或 1。</span>
-<span class="sd">    seed : int</span>
-<span class="sd">        7bit 初始种子。</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    NDArray[np.uint8]</span>
-<span class="sd">        加扰后的比特序列。</span>
+<span class="sd">    :param bits: 待加扰比特, 元素为 0 或 1。</span>
+<span class="sd">    :type bits: NDArray[np.uint8]</span>
+<span class="sd">    :param seed: 7bit 初始种子。</span>
+<span class="sd">    :type seed: int</span>
+<span class="sd">    :returns: 加扰后的比特序列。</span>
+<span class="sd">    :rtype: NDArray[np.uint8]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">seq</span> <span class="o">=</span> <span class="n">scramble_sequence</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bits</span><span class="p">),</span> <span class="n">seed</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">bits</span> <span class="o">^</span> <span class="n">seq</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span></div>
@@ -514,15 +504,10 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">broadcast_seed</span><span class="p">(</span><span class="n">physical_channel</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;广播帧的加扰种子: 物理信道号。</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    physical_channel : int</span>
-<span class="sd">        物理信道号 (0..397)。取低 7 位。</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    int</span>
-<span class="sd">        7bit 种子。</span>
+<span class="sd">    :param physical_channel: 物理信道号 (0..397)。取低 7 位。</span>
+<span class="sd">    :type physical_channel: int</span>
+<span class="sd">    :returns: 7bit 种子。</span>
+<span class="sd">    :rtype: int</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">physical_channel</span> <span class="o">&amp;</span> <span class="mh">0x7F</span></div>
 
@@ -536,15 +521,10 @@
 <span class="sd">    将事件起始时刻调度时隙序号的低 6 位设为寄存器 0..5,</span>
 <span class="sd">    寄存器 6 设为 1。</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    slot_number : int</span>
-<span class="sd">        调度时隙序号。</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    int</span>
-<span class="sd">        7bit 种子。</span>
+<span class="sd">    :param slot_number: 调度时隙序号。</span>
+<span class="sd">    :type slot_number: int</span>
+<span class="sd">    :returns: 7bit 种子。</span>
+<span class="sd">    :rtype: int</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">6</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">slot_number</span> <span class="o">&amp;</span> <span class="mh">0x3F</span><span class="p">)</span></div>
 

@@ -399,9 +399,9 @@
         <article role="main" id="furo-main-content">
           <section class="tex2jax_ignore mathjax_ignore" id="module-nearlink_sdr.phy.mock_backend">
 <span id="nearlink-sdr-phy-mock-backend"></span><h1><a class="reference internal" href="#module-nearlink_sdr.phy.mock_backend" title="nearlink_sdr.phy.mock_backend"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.mock_backend</span></code></a><a class="headerlink" href="#module-nearlink_sdr.phy.mock_backend" title="Link to this heading">¶</a></h1>
-<p>Mock SDR 后端 – 无硬件仿真。</p>
-<p>从原 usrp.py 中的 MockUSRP / LoopbackBuffer 逻辑提取而来,
-实现 SDRDevice 接口, 用于无硬件环境的开发与测试。</p>
+<p>Mock SDR backend – hardware-free simulation.</p>
+<p>Extracted from the MockUSRP/LoopbackBuffer logic in the original usrp.py,
+implementing the SDRDevice interface for hardware-free development and testing.</p>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
 <section id="classes">
@@ -410,10 +410,10 @@
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.mock_backend.LoopbackBuffer" title="nearlink_sdr.phy.mock_backend.LoopbackBuffer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LoopbackBuffer</span></code></a></p></td>
-<td><p>TX-&gt;RX 环回缓冲区, 可选信道损伤。</p></td>
+<td><p>TX→RX loopback buffer with optional channel impairments.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.mock_backend.MockDevice" title="nearlink_sdr.phy.mock_backend.MockDevice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MockDevice</span></code></a></p></td>
-<td><p>模拟 SDR 设备, 用于无硬件测试。</p></td>
+<td><p>Simulated SDR device for hardware-free testing.</p></td>
 </tr>
 </tbody>
 </table>
@@ -424,18 +424,18 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.mock_backend.LoopbackBuffer">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.mock_backend.</span></span><span class="sig-name descname"><span class="pre">LoopbackBuffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><span class="pre">object</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/mock_backend.html#LoopbackBuffer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.mock_backend.LoopbackBuffer" title="Link to this definition">¶</a></dt>
-<dd><p>TX-&gt;RX 环回缓冲区, 可选信道损伤。</p>
+<dd><p>TX→RX loopback buffer with optional channel impairments.</p>
 <p class="rubric">Initialization</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.mock_backend.LoopbackBuffer.push">
 <span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/mock_backend.html#LoopbackBuffer.push"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.mock_backend.LoopbackBuffer.push" title="Link to this definition">¶</a></dt>
-<dd><p>TX 端写入样本。</p>
+<dd><p>Write samples from the TX side.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.mock_backend.LoopbackBuffer.pull">
 <span class="sig-name descname"><span class="pre">pull</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/mock_backend.html#LoopbackBuffer.pull"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.mock_backend.LoopbackBuffer.pull" title="Link to this definition">¶</a></dt>
-<dd><p>RX 端读取最多 n 个样本。</p>
+<dd><p>Read up to n samples from the RX side.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -454,8 +454,8 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.mock_backend.MockDevice">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.mock_backend.</span></span><span class="sig-name descname"><span class="pre">MockDevice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.phy.sdr_backend.html#nearlink_sdr.phy.sdr_backend.SDRConfig" title="nearlink_sdr.phy.sdr_backend.SDRConfig"><span class="pre">nearlink_sdr.phy.sdr_backend.SDRConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">loopback</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.mock_backend.LoopbackBuffer" title="nearlink_sdr.phy.mock_backend.LoopbackBuffer"><span class="pre">nearlink_sdr.phy.mock_backend.LoopbackBuffer</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/mock_backend.html#MockDevice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.mock_backend.MockDevice" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="nearlink_sdr.phy.sdr_backend.html#nearlink_sdr.phy.sdr_backend.SDRDevice" title="nearlink_sdr.phy.sdr_backend.SDRDevice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sdr_backend.SDRDevice</span></code></a></p>
-<p>模拟 SDR 设备, 用于无硬件测试。</p>
-<p>支持环回模式: TX 发射的数据经可选信道模型后送入 RX。</p>
+<p>Simulated SDR device for hardware-free testing.</p>
+<p>Supports loopback mode: data transmitted by TX is fed into RX after optional channel modelling.</p>
 <p class="rubric">Initialization</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.mock_backend.MockDevice.configure">

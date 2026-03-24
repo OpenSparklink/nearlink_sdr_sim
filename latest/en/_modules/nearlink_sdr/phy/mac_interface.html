@@ -477,15 +477,10 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;MAC 层载荷 → 基带 IQ 信号。</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    mac_payload : MAC 帧 pack() 产生的字节流</span>
-<span class="sd">    cfg : 发射参数配置</span>
-<span class="sd">    ctrl_info : 物理层控制信息。若为 None 则使用默认 A2 配置。</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    IQ 采样数组 (complex128)</span>
+<span class="sd">    :param mac_payload: MAC 帧 pack() 产生的字节流。</span>
+<span class="sd">    :param cfg: 发射参数配置。</span>
+<span class="sd">    :param ctrl_info: 物理层控制信息。若为 None 则使用默认 A2 配置。</span>
+<span class="sd">    :returns: IQ 采样数组 (complex128)。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">data_bits</span> <span class="o">=</span> <span class="n">bytes_to_bits</span><span class="p">(</span><span class="n">mac_payload</span><span class="p">)</span>
 
@@ -545,15 +540,10 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MacRxResult</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;基带 IQ 信号 → MAC 层载荷字节。</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    iq_signal : IQ 采样数组</span>
-<span class="sd">    cfg : 与发射端相同的配置</span>
-<span class="sd">    n_mac_bytes : MAC 层载荷字节数（需要预先知道）</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    MacRxResult</span>
+<span class="sd">    :param iq_signal: IQ 采样数组。</span>
+<span class="sd">    :param cfg: 与发射端相同的配置。</span>
+<span class="sd">    :param n_mac_bytes: MAC 层载荷字节数（需要预先知道）。</span>
+<span class="sd">    :returns: MacRxResult。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">rx_chain</span><span class="p">(</span><span class="n">iq_signal</span><span class="p">,</span> <span class="n">cfg</span><span class="p">,</span> <span class="n">n_mac_bytes</span><span class="p">)</span>
     <span class="n">mac_payload</span> <span class="o">=</span> <span class="n">bits_to_bytes</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">data_bits</span><span class="p">[:</span><span class="n">n_mac_bytes</span> <span class="o">*</span> <span class="mi">8</span><span class="p">])</span>
@@ -575,9 +565,7 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">object</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;基带 IQ 信号 → 信令对象。</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    (信令对象, CRC是否通过)</span>
+<span class="sd">    :returns: (信令对象, CRC是否通过)。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">rx</span> <span class="o">=</span> <span class="n">iq_to_mac</span><span class="p">(</span><span class="n">iq_signal</span><span class="p">,</span> <span class="n">cfg</span><span class="p">,</span> <span class="n">n_mac_bytes</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">rx</span><span class="o">.</span><span class="n">crc_ok</span><span class="p">:</span>
@@ -602,9 +590,7 @@
 
 <span class="sd">    无信道（直连），验证 MAC → PHY → MAC 数据完整性。</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    (恢复的信令对象, CRC是否通过)</span>
+<span class="sd">    :returns: (恢复的信令对象, CRC是否通过)。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">cfg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">cfg</span> <span class="o">=</span> <span class="n">TxConfig</span><span class="p">(</span><span class="n">frame_type</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">mcs_index</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
@@ -627,9 +613,7 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;异步数据帧编码 → IQ → 解码全链路测试。</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    (恢复的数据, CRC是否通过)</span>
+<span class="sd">    :returns: (恢复的数据, CRC是否通过)。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">cfg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">cfg</span> <span class="o">=</span> <span class="n">TxConfig</span><span class="p">(</span><span class="n">frame_type</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">mcs_index</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
@@ -662,11 +646,9 @@
 <span class="sd">    封装 ARQ 序列号管理、HARQ 反馈、流控和链路质量跟踪。</span>
 <span class="sd">    调用方通过 submit / transmit / receive 方法实现自动重传驱动。</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    cfg : 发射参数配置</span>
-<span class="sd">    frame_type : 帧类型 (1-4), 决定 ARQ SN 位宽</span>
-<span class="sd">    max_pdu : 单 PDU 最大字节数</span>
+<span class="sd">    :param cfg: 发射参数配置。</span>
+<span class="sd">    :param frame_type: 帧类型 (1-4), 决定 ARQ SN 位宽。</span>
+<span class="sd">    :param max_pdu: 单 PDU 最大字节数。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -704,9 +686,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">transmit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">TxDecision</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;从队列取数据并生成 IQ 信号。</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        (IQ 信号或 None, 发送决策)</span>
+<span class="sd">        :returns: (IQ 信号或 None, 发送决策)。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">decision</span><span class="p">,</span> <span class="n">item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">qos</span><span class="o">.</span><span class="n">prepare_tx</span><span class="p">()</span>
 
@@ -751,9 +731,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">receive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iq</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">n_mac_bytes</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;接收 IQ 信号并处理 ARQ 反馈。</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        (恢复的数据, CRC 是否通过)</span>
+<span class="sd">        :returns: (恢复的数据, CRC 是否通过)。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">rx</span> <span class="o">=</span> <span class="n">iq_to_mac</span><span class="p">(</span><span class="n">iq</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="p">,</span> <span class="n">n_mac_bytes</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_rx_count</span> <span class="o">+=</span> <span class="mi">1</span>

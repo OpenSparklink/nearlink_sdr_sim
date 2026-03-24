@@ -399,9 +399,8 @@
         <article role="main" id="furo-main-content">
           <section class="tex2jax_ignore mathjax_ignore" id="module-nearlink_sdr.phy.sdr_backend">
 <span id="nearlink-sdr-phy-sdr-backend"></span><h1><a class="reference internal" href="#module-nearlink_sdr.phy.sdr_backend" title="nearlink_sdr.phy.sdr_backend"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nearlink_sdr.phy.sdr_backend</span></code></a><a class="headerlink" href="#module-nearlink_sdr.phy.sdr_backend" title="Link to this heading">¶</a></h1>
-<p>SDR 硬件后端抽象层。</p>
-<p>定义与具体 SDR 硬件无关的统一接口, 支持 UHD (USRP), pyadi-iio (PlutoSDR/ANTSDR),
-Mock (无硬件仿真) 三种后端。所有后端实现 SDRDevice 接口后即可接入 SLETransceiver。</p>
+<p>SDR hardware backend abstraction layer.</p>
+<p>Defines a hardware-agnostic unified interface supporting three backends: UHD (USRP), pyadi-iio (PlutoSDR/ANTSDR), and Mock (no-hardware simulation). Any backend implementing the SDRDevice interface integrates with SLETransceiver.</p>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
 <section id="classes">
@@ -410,10 +409,10 @@ Mock (无硬件仿真) 三种后端。所有后端实现 SDRDevice 接口后即�
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.sdr_backend.SDRConfig" title="nearlink_sdr.phy.sdr_backend.SDRConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SDRConfig</span></code></a></p></td>
-<td><p>SDR 设备配置参数 (后端无关)。</p></td>
+<td><p>SDR device configuration parameters (backend-agnostic).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nearlink_sdr.phy.sdr_backend.SDRDevice" title="nearlink_sdr.phy.sdr_backend.SDRDevice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SDRDevice</span></code></a></p></td>
-<td><p>SDR 设备抽象基类。</p></td>
+<td><p>SDR device abstract base class.</p></td>
 </tr>
 </tbody>
 </table>
@@ -425,7 +424,7 @@ Mock (无硬件仿真) 三种后端。所有后端实现 SDRDevice 接口后即�
 <table class="autosummary longtable docutils align-left">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nearlink_sdr.phy.sdr_backend.create_device" title="nearlink_sdr.phy.sdr_backend.create_device"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_device</span></code></a></p></td>
-<td><p>根据配置创建对应的 SDR 设备实例。</p></td>
+<td><p>Creates the corresponding SDR device instance from the configuration.</p></td>
 </tr>
 </tbody>
 </table>
@@ -436,22 +435,22 @@ Mock (无硬件仿真) 三种后端。所有后端实现 SDRDevice 接口后即�
 <dl class="py class">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sdr_backend.SDRConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.sdr_backend.</span></span><span class="sig-name descname"><span class="pre">SDRConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sdr_backend.html#SDRConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sdr_backend.SDRConfig" title="Link to this definition">¶</a></dt>
-<dd><p>SDR 设备配置参数 (后端无关)。</p>
+<dd><p>SDR device configuration parameters (backend-agnostic).</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Variables<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>backend</strong> – 后端类型 (“uhd” / “pluto” / “mock”)。</p></li>
-<li><p><strong>device_args</strong> – 设备地址参数。UHD: 如 “addr=192.168.10.2”; Pluto: 如 “ip:192.168.2.1”。</p></li>
-<li><p><strong>channel_num</strong> – SLE 射频信道号。</p></li>
-<li><p><strong>band</strong> – 频段标识 (“2400” / “5100” / “5800”)。</p></li>
-<li><p><strong>sample_rate_hz</strong> – 采样率 (Hz)。</p></li>
-<li><p><strong>rx_gain_db</strong> – 接收增益 (dB)。</p></li>
-<li><p><strong>tx_gain_db</strong> – 发射增益 (dB)。</p></li>
-<li><p><strong>bandwidth_hz</strong> – 前端模拟滤波器带宽 (Hz), 0 表示自动。</p></li>
-<li><p><strong>rx_antenna</strong> – 接收天线端口名称。</p></li>
-<li><p><strong>tx_antenna</strong> – 发射天线端口名称。</p></li>
-<li><p><strong>stream_timeout_s</strong> – 流操作超时时间 (秒)。</p></li>
-<li><p><strong>rx_buffer_size</strong> – 接收缓冲区大小 (样本数)。</p></li>
+<li><p><strong>backend</strong> – Backend type (“uhd” / “pluto” / “mock”).</p></li>
+<li><p><strong>device_args</strong> – Device address parameter. UHD: e.g. “addr=192.168.10.2”; Pluto: e.g. “ip:192.168.2.1”.</p></li>
+<li><p><strong>channel_num</strong> – SLE RF channel number.</p></li>
+<li><p><strong>band</strong> – Band identifier (“2400” / “5100” / “5800”).</p></li>
+<li><p><strong>sample_rate_hz</strong> – Sample rate (Hz).</p></li>
+<li><p><strong>rx_gain_db</strong> – Receive gain (dB).</p></li>
+<li><p><strong>tx_gain_db</strong> – Transmit gain (dB).</p></li>
+<li><p><strong>bandwidth_hz</strong> – Front-end analogue filter bandwidth (Hz), 0 = auto.</p></li>
+<li><p><strong>rx_antenna</strong> – Receive antenna port name.</p></li>
+<li><p><strong>tx_antenna</strong> – Transmit antenna port name.</p></li>
+<li><p><strong>stream_timeout_s</strong> – Stream operation timeout (seconds).</p></li>
+<li><p><strong>rx_buffer_size</strong> – Receive buffer size (number of samples).</p></li>
 </ul>
 </dd>
 </dl>
@@ -527,7 +526,7 @@ Mock (无硬件仿真) 三种后端。所有后端实现 SDRDevice 接口后即�
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sdr_backend.SDRConfig.center_freq_hz">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">center_freq_hz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.sdr_backend.SDRConfig.center_freq_hz" title="Link to this definition">¶</a></dt>
-<dd><p>根据信道号和频段计算中心频率 (Hz)。</p>
+<dd><p>Calculates the centre frequency (Hz) from the channel number and band.</p>
 </dd></dl>
 
 </dd></dl>
@@ -536,8 +535,8 @@ Mock (无硬件仿真) 三种后端。所有后端实现 SDRDevice 接口后即�
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sdr_backend.SDRDevice">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.sdr_backend.</span></span><span class="sig-name descname"><span class="pre">SDRDevice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.sdr_backend.SDRConfig" title="nearlink_sdr.phy.sdr_backend.SDRConfig"><span class="pre">nearlink_sdr.phy.sdr_backend.SDRConfig</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sdr_backend.html#SDRDevice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sdr_backend.SDRDevice" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
-<p>SDR 设备抽象基类。</p>
-<p>所有后端 (UHD, Pluto, Mock) 必须实现此接口。</p>
+<p>SDR device abstract base class.</p>
+<p>All backends (UHD, Pluto, Mock) must implement this interface.</p>
 <p class="rubric">Initialization</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sdr_backend.SDRDevice.config">
@@ -547,48 +546,48 @@ Mock (无硬件仿真) 三种后端。所有后端实现 SDRDevice 接口后即�
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sdr_backend.SDRDevice.configure">
 <em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">configure</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sdr_backend.html#SDRDevice.configure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sdr_backend.SDRDevice.configure" title="Link to this definition">¶</a></dt>
-<dd><p>将配置参数应用到设备。</p>
+<dd><p>Applies configuration parameters to the device.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sdr_backend.SDRDevice.set_frequency">
 <em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_frequency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sdr_backend.html#SDRDevice.set_frequency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sdr_backend.SDRDevice.set_frequency" title="Link to this definition">¶</a></dt>
-<dd><p>设置 TX/RX 中心频率。</p>
+<dd><p>Sets the TX/RX centre frequency.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sdr_backend.SDRDevice.set_sample_rate">
 <em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_sample_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rate_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sdr_backend.html#SDRDevice.set_sample_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sdr_backend.SDRDevice.set_sample_rate" title="Link to this definition">¶</a></dt>
-<dd><p>设置收发采样率。</p>
+<dd><p>Sets the transceiver sample rate.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sdr_backend.SDRDevice.set_rx_gain">
 <em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_rx_gain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gain_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sdr_backend.html#SDRDevice.set_rx_gain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sdr_backend.SDRDevice.set_rx_gain" title="Link to this definition">¶</a></dt>
-<dd><p>设置接收增益。</p>
+<dd><p>Sets the receive gain.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sdr_backend.SDRDevice.set_tx_gain">
 <em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_tx_gain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gain_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sdr_backend.html#SDRDevice.set_tx_gain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sdr_backend.SDRDevice.set_tx_gain" title="Link to this definition">¶</a></dt>
-<dd><p>设置发射增益。</p>
+<dd><p>Sets the transmit gain.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sdr_backend.SDRDevice.set_bandwidth">
 <em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_bandwidth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bw_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sdr_backend.html#SDRDevice.set_bandwidth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sdr_backend.SDRDevice.set_bandwidth" title="Link to this definition">¶</a></dt>
-<dd><p>设置前端模拟滤波器带宽。</p>
+<dd><p>Sets the front-end analogue filter bandwidth.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sdr_backend.SDRDevice.tune_channel">
 <span class="sig-name descname"><span class="pre">tune_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">band</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sdr_backend.html#SDRDevice.tune_channel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sdr_backend.SDRDevice.tune_channel" title="Link to this definition">¶</a></dt>
-<dd><p>切换到指定 SLE 射频信道。</p>
+<dd><p>Switches to the specified SLE RF channel.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>channel_num</strong> – 射频信道号。</p></li>
-<li><p><strong>band</strong> – 频段标识, None 沿用当前配置。</p></li>
+<li><p><strong>channel_num</strong> – RF channel number.</p></li>
+<li><p><strong>band</strong> – Band identifier; None retains the current configuration.</p></li>
 </ul>
 </dd>
 </dl>
@@ -597,13 +596,13 @@ Mock (无硬件仿真) 三种后端。所有后端实现 SDRDevice 接口后即�
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sdr_backend.SDRDevice.transmit">
 <em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transmit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sdr_backend.html#SDRDevice.transmit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sdr_backend.SDRDevice.transmit" title="Link to this definition">¶</a></dt>
-<dd><p>发射 IQ 样本。</p>
+<dd><p>Transmit IQ samples.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>samples</strong> – 复基带样本, dtype=complex64。</p>
+<dd class="field-odd"><p><strong>samples</strong> – Complex baseband samples, dtype=complex64.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>实际发射的样本数。</p>
+<dd class="field-even"><p>Actual number of samples transmitted.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -611,13 +610,13 @@ Mock (无硬件仿真) 三种后端。所有后端实现 SDRDevice 接口后即�
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sdr_backend.SDRDevice.receive">
 <em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">receive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_samps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sdr_backend.html#SDRDevice.receive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sdr_backend.SDRDevice.receive" title="Link to this definition">¶</a></dt>
-<dd><p>接收指定数量的 IQ 样本。</p>
+<dd><p>Receive a specified number of IQ samples.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>num_samps</strong> – 要接收的样本数。</p>
+<dd class="field-odd"><p><strong>num_samps</strong> – Number of samples to receive.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>复基带样本数组, dtype=complex64。</p>
+<dd class="field-even"><p>Complex baseband sample array, dtype=complex64.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -625,19 +624,19 @@ Mock (无硬件仿真) 三种后端。所有后端实现 SDRDevice 接口后即�
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sdr_backend.SDRDevice.close">
 <em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sdr_backend.html#SDRDevice.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sdr_backend.SDRDevice.close" title="Link to this definition">¶</a></dt>
-<dd><p>释放设备资源。</p>
+<dd><p>Release device resources.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sdr_backend.SDRDevice.status_string">
 <em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status_string</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sdr_backend.html#SDRDevice.status_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sdr_backend.SDRDevice.status_string" title="Link to this definition">¶</a></dt>
-<dd><p>返回可读的设备状态摘要。</p>
+<dd><p>Returns a human-readable device status summary.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sdr_backend.SDRDevice.is_mock">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_mock</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.sdr_backend.SDRDevice.is_mock" title="Link to this definition">¶</a></dt>
-<dd><p>是否为无硬件模拟模式。</p>
+<dd><p>Whether this is a no-hardware simulation mode.</p>
 </dd></dl>
 
 </dd></dl>
@@ -645,13 +644,13 @@ Mock (无硬件仿真) 三种后端。所有后端实现 SDRDevice 接口后即�
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.sdr_backend.create_device">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.sdr_backend.</span></span><span class="sig-name descname"><span class="pre">create_device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.sdr_backend.SDRConfig" title="nearlink_sdr.phy.sdr_backend.SDRConfig"><span class="pre">nearlink_sdr.phy.sdr_backend.SDRConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.phy.sdr_backend.SDRDevice" title="nearlink_sdr.phy.sdr_backend.SDRDevice"><span class="pre">nearlink_sdr.phy.sdr_backend.SDRDevice</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/sdr_backend.html#create_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.sdr_backend.create_device" title="Link to this definition">¶</a></dt>
-<dd><p>根据配置创建对应的 SDR 设备实例。</p>
+<dd><p>Creates the corresponding SDR device instance from the configuration.</p>
 <dl class="myst field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>config</strong> – SDR 配置, 通过 backend 字段选择后端。</p>
+<dd class="field-odd"><p><strong>config</strong> – SDR configuration; the backend field selects the backend.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>SDRDevice 实例。</p>
+<dd class="field-even"><p>SDRDevice instance.</p>
 </dd>
 </dl>
 </dd></dl>

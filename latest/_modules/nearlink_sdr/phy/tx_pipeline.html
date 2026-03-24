@@ -448,18 +448,16 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">TxConfig</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;发射参数配置。</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    frame_type : 帧类型 (1-4)</span>
-<span class="sd">    mcs_index : 编码调制索引 (0-12)</span>
-<span class="sd">    pid : 24-bit PID, 用于生成同步字</span>
-<span class="sd">    whitening_seed : 7-bit 加扰种子</span>
-<span class="sd">    crc_seed : CRC 初始值</span>
-<span class="sd">    crc_len : CRC 比特长度 (24 或 32)</span>
-<span class="sd">    ctrl_bits_len : 控制信息有效比特数 (不含 CRC12)</span>
-<span class="sd">    pilot_interval : 导频间隔 (4/8/16), 0 表示无导频</span>
-<span class="sd">    sps : 每符号采样数 (脉冲成型用)</span>
-<span class="sd">    symbol_rate_mhz : 符号速率 (MHz)</span>
+<span class="sd">    :ivar frame_type: 帧类型 (1-4)</span>
+<span class="sd">    :ivar mcs_index: 编码调制索引 (0-12)</span>
+<span class="sd">    :ivar pid: 24-bit PID, 用于生成同步字</span>
+<span class="sd">    :ivar whitening_seed: 7-bit 加扰种子</span>
+<span class="sd">    :ivar crc_seed: CRC 初始值</span>
+<span class="sd">    :ivar crc_len: CRC 比特长度 (24 或 32)</span>
+<span class="sd">    :ivar ctrl_bits_len: 控制信息有效比特数 (不含 CRC12)</span>
+<span class="sd">    :ivar pilot_interval: 导频间隔 (4/8/16), 0 表示无导频</span>
+<span class="sd">    :ivar sps: 每符号采样数 (脉冲成型用)</span>
+<span class="sd">    :ivar symbol_rate_mhz: 符号速率 (MHz)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">frame_type</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span>
     <span class="n">mcs_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">7</span>
@@ -507,14 +505,9 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">encode_payload</span><span class="p">(</span><span class="n">data_bits</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">TxConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;载荷编码: CRC → [分段 → Polar] → 加扰。</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    data_bits : 原始载荷比特 (不含 CRC)</span>
-<span class="sd">    cfg : 发射配置</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    txPyLdW : 加扰后的载荷比特</span>
+<span class="sd">    :param data_bits: 原始载荷比特 (不含 CRC)。</span>
+<span class="sd">    :param cfg: 发射配置。</span>
+<span class="sd">    :returns: 加扰后的载荷比特 (txPyLdW)。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># CRC</span>
     <span class="n">with_crc</span> <span class="o">=</span> <span class="n">crc_attach</span><span class="p">(</span>
@@ -549,14 +542,9 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">encode_head</span><span class="p">(</span><span class="n">ctrl_info_bits</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">TxConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;控制信息头部编码: [Polar(64, K)] → 加扰。</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    ctrl_info_bits : 控制信息 + CRC12 比特 (已 pack 好的)</span>
-<span class="sd">    cfg : 发射配置</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    txHeadW : 加扰后的头部比特</span>
+<span class="sd">    :param ctrl_info_bits: 控制信息 + CRC12 比特 (已 pack 好的)。</span>
+<span class="sd">    :param cfg: 发射配置。</span>
+<span class="sd">    :returns: 加扰后的头部比特 (txHeadW)。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">frame_type</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="c1"># FT1: 不经过 Polar 编码</span>
@@ -583,15 +571,10 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;完整发射链路: 头部编码 + 载荷编码 → 帧组装 → 调制。</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    ctrl_info_bits : 控制信息 + CRC12 比特</span>
-<span class="sd">    data_bits : 原始数据比特 (不含 CRC)</span>
-<span class="sd">    cfg : 发射配置</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    iq : 基带 IQ 信号 (complex128), 长度 = 帧符号数 × sps</span>
+<span class="sd">    :param ctrl_info_bits: 控制信息 + CRC12 比特。</span>
+<span class="sd">    :param data_bits: 原始数据比特 (不含 CRC)。</span>
+<span class="sd">    :param cfg: 发射配置。</span>
+<span class="sd">    :returns: 基带 IQ 信号 (complex128), 长度 = 帧符号数 × sps。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># 编码</span>
     <span class="n">head_w</span> <span class="o">=</span> <span class="n">encode_head</span><span class="p">(</span><span class="n">ctrl_info_bits</span><span class="p">,</span> <span class="n">cfg</span><span class="p">)</span>

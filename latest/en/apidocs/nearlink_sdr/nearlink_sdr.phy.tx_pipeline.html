@@ -439,8 +439,22 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.tx_pipeline.TxConfig">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.tx_pipeline.</span></span><span class="sig-name descname"><span class="pre">TxConfig</span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/tx_pipeline.html#TxConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.tx_pipeline.TxConfig" title="Link to this definition">¶</a></dt>
 <dd><p>Transmit parameter configuration.</p>
-<p class="rubric" id="id6">Parameters</p>
-<p>frame_type : Frame type (1-4). mcs_index : MCS index (0-12). pid : 24-bit PID, used to generate the sync word. whitening_seed : 7-bit scrambling seed. crc_seed : CRC initial value. crc_len : CRC bit length (24 or 32). ctrl_bits_len : Control information effective bit count (excluding CRC12). pilot_interval : Pilot interval.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frame_type</strong> – Frame type (1-4)</p></li>
+<li><p><strong>mcs_index</strong> – MCS index (0-12)</p></li>
+<li><p><strong>pid</strong> – 24-bit PID, used to generate the sync word</p></li>
+<li><p><strong>whitening_seed</strong> – 7-bit scrambling seed</p></li>
+<li><p><strong>crc_seed</strong> – CRC initial value</p></li>
+<li><p><strong>crc_len</strong> – CRC bit length (24 or 32)</p></li>
+<li><p><strong>ctrl_bits_len</strong> – Control information effective bit count (excluding CRC12)</p></li>
+<li><p><strong>pilot_interval</strong> – Pilot interval (4/8/16), 0 means no pilot</p></li>
+<li><p><strong>sps</strong> – Samples per symbol (for pulse shaping)</p></li>
+<li><p><strong>symbol_rate_mhz</strong> – Symbol rate (MHz)</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.tx_pipeline.TxConfig.frame_type">
 <span class="sig-name descname"><span class="pre">frame_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#nearlink_sdr.phy.tx_pipeline.TxConfig.frame_type" title="Link to this definition">¶</a></dt>
@@ -537,30 +551,52 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.tx_pipeline.encode_head">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.tx_pipeline.</span></span><span class="sig-name descname"><span class="pre">encode_head</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctrl_info_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.tx_pipeline.TxConfig" title="nearlink_sdr.phy.tx_pipeline.TxConfig"><span class="pre">nearlink_sdr.phy.tx_pipeline.TxConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/tx_pipeline.html#encode_head"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.tx_pipeline.encode_head" title="Link to this definition">¶</a></dt>
 <dd><p>Control information header encoding: [Polar(64, K)] → scrambling.</p>
-<p class="rubric" id="id7">Parameters</p>
-<p>ctrl_info_bits : Control information + CRC12 bits (already packed). cfg : Transmit configuration.</p>
-<p class="rubric" id="id8">Returns</p>
-<p>txHeadW : Scrambled header bits.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctrl_info_bits</strong> – 控制信息 + CRC12 比特 (已 pack 好的)。</p></li>
+<li><p><strong>cfg</strong> – 发射配置。</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Scrambled header bits (txHeadW).</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.tx_pipeline.encode_payload">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.tx_pipeline.</span></span><span class="sig-name descname"><span class="pre">encode_payload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.tx_pipeline.TxConfig" title="nearlink_sdr.phy.tx_pipeline.TxConfig"><span class="pre">nearlink_sdr.phy.tx_pipeline.TxConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/tx_pipeline.html#encode_payload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.tx_pipeline.encode_payload" title="Link to this definition">¶</a></dt>
 <dd><p>Payload encoding: CRC → [segmentation → Polar] → scrambling.</p>
-<p class="rubric" id="id9">Parameters</p>
-<p>data_bits : Original payload bits (excluding CRC). cfg : Transmit configuration.</p>
-<p class="rubric" id="id10">Returns</p>
-<p>txPyLdW : scrambled payload bits</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_bits</strong> – 原始载荷比特 (不含 CRC)。</p></li>
+<li><p><strong>cfg</strong> – 发射配置。</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Scrambled payload bits (txPyLdW).</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.tx_pipeline.tx_chain">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.tx_pipeline.</span></span><span class="sig-name descname"><span class="pre">tx_chain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctrl_info_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nearlink_sdr.phy.tx_pipeline.TxConfig" title="nearlink_sdr.phy.tx_pipeline.TxConfig"><span class="pre">nearlink_sdr.phy.tx_pipeline.TxConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/tx_pipeline.html#tx_chain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.tx_pipeline.tx_chain" title="Link to this definition">¶</a></dt>
 <dd><p>Complete transmit chain: header encoding + payload encoding → frame assembly → modulation.</p>
-<p class="rubric" id="id11">Parameters</p>
-<p>ctrl_info_bits : Control information + CRC12 bits. data_bits : Original data bits (excluding CRC). cfg : Transmit configuration.</p>
-<p class="rubric" id="id12">Returns</p>
-<p>iq : Baseband IQ signal (complex128), length = frame symbol count × sps.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctrl_info_bits</strong> – 控制信息 + CRC12 比特。</p></li>
+<li><p><strong>data_bits</strong> – 原始数据比特 (不含 CRC)。</p></li>
+<li><p><strong>cfg</strong> – 发射配置。</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>基带 IQ 信号 (complex128), 长度 = 帧符号数 × sps。</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

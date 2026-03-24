@@ -472,40 +472,70 @@
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rx_pipeline.decode_head">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rx_pipeline.</span></span><span class="sig-name descname"><span class="pre">decode_head</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scrambled_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html#nearlink_sdr.phy.tx_pipeline.TxConfig" title="nearlink_sdr.phy.tx_pipeline.TxConfig"><span class="pre">nearlink_sdr.phy.tx_pipeline.TxConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rx_pipeline.html#decode_head"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rx_pipeline.decode_head" title="Link to this definition">¶</a></dt>
 <dd><p>Header decoding: descramble → [Polar decode] → return control information bits.</p>
-<p class="rubric" id="id7">Parameters</p>
-<p>scrambled_bits : Scrambled header bits (txHeadW). cfg : Transmit/receive configuration.</p>
-<p class="rubric" id="id8">Returns</p>
-<p>(ctrl_bits, crc12_ok) : Control information + CRC12 bits, CRC12 check result.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scrambled_bits</strong> – Scrambled header bits (txHeadW).</p></li>
+<li><p><strong>cfg</strong> – Transmit/receive configuration.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(ctrl_bits, crc12_ok) — 控制信息 + CRC12 比特、CRC12 校验结果。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rx_pipeline.decode_payload">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rx_pipeline.</span></span><span class="sig-name descname"><span class="pre">decode_payload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scrambled_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html#nearlink_sdr.phy.tx_pipeline.TxConfig" title="nearlink_sdr.phy.tx_pipeline.TxConfig"><span class="pre">nearlink_sdr.phy.tx_pipeline.TxConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_info_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rx_pipeline.html#decode_payload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rx_pipeline.decode_payload" title="Link to this definition">¶</a></dt>
 <dd><p>Payload decoding: descrambling → [Polar decoding] → CRC verification.</p>
-<p class="rubric" id="id9">Parameters</p>
-<p>scrambled_bits : Scrambled payload bits (txPyLdW). cfg : Transmit/receive configuration. n_info_bits : Original information bit count (data_bytes * 8, excluding CRC).</p>
-<p class="rubric" id="id10">Returns</p>
-<p>(data_bits, crc_ok) : Original data bits and CRC check result.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scrambled_bits</strong> – Scrambled payload bits (txPyLdW).</p></li>
+<li><p><strong>cfg</strong> – Transmit/receive configuration.</p></li>
+<li><p><strong>n_info_bits</strong> – Raw information bit count (data_bytes * 8, excluding CRC).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(data_bits, crc_ok) — 原始数据比特和 CRC 校验结果。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rx_pipeline.frame_sync">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rx_pipeline.</span></span><span class="sig-name descname"><span class="pre">frame_sync</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iq_signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html#nearlink_sdr.phy.tx_pipeline.TxConfig" title="nearlink_sdr.phy.tx_pipeline.TxConfig"><span class="pre">nearlink_sdr.phy.tx_pipeline.TxConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rx_pipeline.html#frame_sync"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rx_pipeline.frame_sync" title="Link to this definition">¶</a></dt>
 <dd><p>Frame synchronization: cross-correlation peak search using the sync word.</p>
-<p class="rubric" id="id11">Parameters</p>
-<p>iq_signal : Received baseband IQ signal (matched-filtered + downsampled to 1 sps). cfg : Configuration (pid needed to generate the sync word).</p>
-<p class="rubric" id="id12">Returns</p>
-<p>sync_start : Start symbol position of the sync word, -1 if not detected.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>iq_signal</strong> – 接收到的基带 IQ 信号 (已匹配滤波 + 下采样到 1 sps)。</p></li>
+<li><p><strong>cfg</strong> – Configuration (requires pid to generate the sync sequence).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>同步序列起始符号位置, -1 表示未检测到。</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.phy.rx_pipeline.rx_chain">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.phy.rx_pipeline.</span></span><span class="sig-name descname"><span class="pre">rx_chain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iq_signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nearlink_sdr.phy.tx_pipeline.html#nearlink_sdr.phy.tx_pipeline.TxConfig" title="nearlink_sdr.phy.tx_pipeline.TxConfig"><span class="pre">nearlink_sdr.phy.tx_pipeline.TxConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_data_bytes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nearlink_sdr.phy.rx_pipeline.RxResult" title="nearlink_sdr.phy.rx_pipeline.RxResult"><span class="pre">nearlink_sdr.phy.rx_pipeline.RxResult</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/phy/rx_pipeline.html#rx_chain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.phy.rx_pipeline.rx_chain" title="Link to this definition">¶</a></dt>
 <dd><p>Complete receive chain: IQ → frame parsing → decoding → CRC check.</p>
-<p class="rubric" id="id13">Parameters</p>
-<p>iq_signal : Baseband IQ signal. cfg : Transmit/receive parameter configuration (same as the transmitter). n_data_bytes : Data length (bytes), used to determine code block segmentation.</p>
-<p class="rubric" id="id14">Returns</p>
-<p>RxResult : Contains recovered data, control information and check results.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>iq_signal</strong> – Baseband IQ signal.</p></li>
+<li><p><strong>cfg</strong> – Transmit/receive parameter configuration (same as the transmitter).</p></li>
+<li><p><strong>n_data_bytes</strong> – Data length (bytes), used to determine code block segmentation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An RxResult containing the recovered data, control information, and verification results.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

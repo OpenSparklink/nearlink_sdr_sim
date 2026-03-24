@@ -426,14 +426,20 @@ PRBS17: x^17 + x^3 + 1, 周期 131071, 用于测试干扰信号数据。</p>
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.common.prbs.</span></span><span class="sig-name descname"><span class="pre">prbs11</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2047</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.uint8</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/common/prbs.html#prbs11"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.common.prbs.prbs11" title="Link to this definition">¶</a></dt>
 <dd><p>PRBS11 序列生成。</p>
 <p>多项式 x^11 + x^2 + 1。输出端 stage 10, 反馈 stage[10] XOR stage[1] → stage[0]。</p>
-<p class="rubric" id="id3">Parameters</p>
-<p>length : int
-输出比特数。
-seed : int
-11 位初始种子 (默认全 1)。</p>
-<p class="rubric" id="id4">Returns</p>
-<p>NDArray[np.uint8]
-PRBS11 序列。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><em>int</em></a>) -- 输出比特数。</p></li>
+<li><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><em>int</em></a>) -- 11 位初始种子 (默认全 1)。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>PRBS11 序列。</p>
+</dd>
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>NDArray[np.uint8]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -441,14 +447,20 @@ PRBS11 序列。</p>
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.common.prbs.</span></span><span class="sig-name descname"><span class="pre">prbs17</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">131071</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.uint8</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/common/prbs.html#prbs17"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#nearlink_sdr.common.prbs.prbs17" title="Link to this definition">¶</a></dt>
 <dd><p>PRBS17 序列生成。</p>
 <p>多项式 x^17 + x^3 + 1。输出端 stage 16, 反馈 stage[16] XOR stage[2] → stage[0]。</p>
-<p class="rubric" id="id5">Parameters</p>
-<p>length : int
-输出比特数。
-seed : int
-17 位初始种子 (默认全 1)。</p>
-<p class="rubric" id="id6">Returns</p>
-<p>NDArray[np.uint8]
-PRBS17 序列。</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><em>int</em></a>) -- 输出比特数。</p></li>
+<li><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><em>int</em></a>) -- 17 位初始种子 (默认全 1)。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>PRBS17 序列。</p>
+</dd>
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>NDArray[np.uint8]</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

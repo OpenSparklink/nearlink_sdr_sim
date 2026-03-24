@@ -433,10 +433,17 @@
 <dt class="sig sig-object py" id="nearlink_sdr.common.scrambler.broadcast_seed">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.common.scrambler.</span></span><span class="sig-name descname"><span class="pre">broadcast_seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">physical_channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/common/scrambler.html#broadcast_seed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.common.scrambler.broadcast_seed" title="Link to this definition">¶</a></dt>
 <dd><p>Scrambling seed for broadcast frames: physical channel number.</p>
-<p class="rubric" id="id7">Parameters</p>
-<p>physical_channel : int     Physical channel number (0..397). Uses lower 7 bits.</p>
-<p class="rubric" id="id8">Returns</p>
-<p>int     7-bit seed.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>physical_channel</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Physical channel number (0..397). Uses the lower 7 bits.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>7-bit seed.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -444,10 +451,17 @@
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.common.scrambler.</span></span><span class="sig-name descname"><span class="pre">data_link_seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/common/scrambler.html#data_link_seed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.common.scrambler.data_link_seed" title="Link to this definition">¶</a></dt>
 <dd><p>Scrambling seed for data links.</p>
 <p>Sets the lower 6 bits of the event start time scheduling slot number to registers 0..5; register 6 is set to 1.</p>
-<p class="rubric" id="id9">Parameters</p>
-<p>slot_number : int     Scheduling slot number.</p>
-<p class="rubric" id="id10">Returns</p>
-<p>int     7-bit seed.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>slot_number</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Scheduling slot number.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>7-bit seed.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -460,20 +474,40 @@
 <dt class="sig sig-object py" id="nearlink_sdr.common.scrambler.scramble">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.common.scrambler.</span></span><span class="sig-name descname"><span class="pre">scramble</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.uint8</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.uint8</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/common/scrambler.html#scramble"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.common.scrambler.scramble" title="Link to this definition">¶</a></dt>
 <dd><p>Scramble a bit sequence (XOR).</p>
-<p class="rubric" id="id11">Parameters</p>
-<p>bits : NDArray[np.uint8]     Bits to be scrambled, elements are 0 or 1. seed : int     7-bit initial seed.</p>
-<p class="rubric" id="id12">Returns</p>
-<p>NDArray[np.uint8]     Scrambled bit sequence.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bits</strong> (<em>NDArray</em><em>[</em><em>np.uint8</em><em>]</em>) – Bits to scramble, elements are 0 or 1.</p></li>
+<li><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – 7-bit initial seed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Scrambled bit sequence.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>NDArray[np.uint8]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nearlink_sdr.common.scrambler.scramble_sequence">
 <span class="sig-prename descclassname"><span class="pre">nearlink_sdr.common.scrambler.</span></span><span class="sig-name descname"><span class="pre">scramble_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.uint8</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nearlink_sdr/common/scrambler.html#scramble_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nearlink_sdr.common.scrambler.scramble_sequence" title="Link to this definition">¶</a></dt>
 <dd><p>Generate a scrambling sequence of the specified length.</p>
-<p class="rubric" id="id13">Parameters</p>
-<p>length : int     Number of scrambling bits needed. seed : int     7-bit initial seed (0 ~ 127).</p>
-<p class="rubric" id="id14">Returns</p>
-<p>NDArray[np.uint8]     Scrambling sequence, elements are 0 or 1.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Number of scrambling bits required.</p></li>
+<li><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – 7-bit initial seed (0 ~ 127).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Scrambling sequence, elements are 0 or 1.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>NDArray[np.uint8]</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
