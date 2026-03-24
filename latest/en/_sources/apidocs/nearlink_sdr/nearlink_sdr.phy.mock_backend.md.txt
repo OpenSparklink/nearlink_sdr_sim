@@ -1,0 +1,150 @@
+# {py:mod}`nearlink_sdr.phy.mock_backend`
+
+```{py:module} nearlink_sdr.phy.mock_backend
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.mock_backend
+:allowtitles:
+```
+
+## Module Contents
+
+### Classes
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`LoopbackBuffer <nearlink_sdr.phy.mock_backend.LoopbackBuffer>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.mock_backend.LoopbackBuffer
+    :summary:
+    ```
+* - {py:obj}`MockDevice <nearlink_sdr.phy.mock_backend.MockDevice>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.mock_backend.MockDevice
+    :summary:
+    ```
+````
+
+### API
+
+`````{py:class} LoopbackBuffer(channel_model: object | None = None, seed: int = 42)
+:canonical: nearlink_sdr.phy.mock_backend.LoopbackBuffer
+
+```{autodoc2-docstring} nearlink_sdr.phy.mock_backend.LoopbackBuffer
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.mock_backend.LoopbackBuffer.__init__
+```
+
+````{py:method} push(samples: numpy.ndarray) -> None
+:canonical: nearlink_sdr.phy.mock_backend.LoopbackBuffer.push
+
+```{autodoc2-docstring} nearlink_sdr.phy.mock_backend.LoopbackBuffer.push
+```
+
+````
+
+````{py:method} pull(n: int) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.mock_backend.LoopbackBuffer.pull
+
+```{autodoc2-docstring} nearlink_sdr.phy.mock_backend.LoopbackBuffer.pull
+```
+
+````
+
+````{py:property} available
+:canonical: nearlink_sdr.phy.mock_backend.LoopbackBuffer.available
+:type: int
+
+```{autodoc2-docstring} nearlink_sdr.phy.mock_backend.LoopbackBuffer.available
+```
+
+````
+
+````{py:method} clear() -> None
+:canonical: nearlink_sdr.phy.mock_backend.LoopbackBuffer.clear
+
+```{autodoc2-docstring} nearlink_sdr.phy.mock_backend.LoopbackBuffer.clear
+```
+
+````
+
+`````
+
+`````{py:class} MockDevice(config: nearlink_sdr.phy.sdr_backend.SDRConfig, loopback: nearlink_sdr.phy.mock_backend.LoopbackBuffer | None = None)
+:canonical: nearlink_sdr.phy.mock_backend.MockDevice
+
+Bases: {py:obj}`nearlink_sdr.phy.sdr_backend.SDRDevice`
+
+```{autodoc2-docstring} nearlink_sdr.phy.mock_backend.MockDevice
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.mock_backend.MockDevice.__init__
+```
+
+````{py:method} configure() -> None
+:canonical: nearlink_sdr.phy.mock_backend.MockDevice.configure
+
+````
+
+````{py:method} set_frequency(freq_hz: float) -> None
+:canonical: nearlink_sdr.phy.mock_backend.MockDevice.set_frequency
+
+````
+
+````{py:method} set_sample_rate(rate_hz: float) -> None
+:canonical: nearlink_sdr.phy.mock_backend.MockDevice.set_sample_rate
+
+````
+
+````{py:method} set_rx_gain(gain_db: float) -> None
+:canonical: nearlink_sdr.phy.mock_backend.MockDevice.set_rx_gain
+
+````
+
+````{py:method} set_tx_gain(gain_db: float) -> None
+:canonical: nearlink_sdr.phy.mock_backend.MockDevice.set_tx_gain
+
+````
+
+````{py:method} set_bandwidth(bw_hz: float) -> None
+:canonical: nearlink_sdr.phy.mock_backend.MockDevice.set_bandwidth
+
+````
+
+````{py:method} transmit(samples: numpy.ndarray) -> int
+:canonical: nearlink_sdr.phy.mock_backend.MockDevice.transmit
+
+````
+
+````{py:method} receive(num_samps: int) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.mock_backend.MockDevice.receive
+
+````
+
+````{py:method} close() -> None
+:canonical: nearlink_sdr.phy.mock_backend.MockDevice.close
+
+````
+
+````{py:method} status_string() -> str
+:canonical: nearlink_sdr.phy.mock_backend.MockDevice.status_string
+
+````
+
+````{py:property} loopback
+:canonical: nearlink_sdr.phy.mock_backend.MockDevice.loopback
+:type: nearlink_sdr.phy.mock_backend.LoopbackBuffer | None
+
+```{autodoc2-docstring} nearlink_sdr.phy.mock_backend.MockDevice.loopback
+```
+
+````
+
+`````

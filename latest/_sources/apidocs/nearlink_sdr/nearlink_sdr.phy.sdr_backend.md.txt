@@ -1,0 +1,325 @@
+# {py:mod}`nearlink_sdr.phy.sdr_backend`
+
+```{py:module} nearlink_sdr.phy.sdr_backend
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend
+:allowtitles:
+```
+
+## Module Contents
+
+### Classes
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`SDRConfig <nearlink_sdr.phy.sdr_backend.SDRConfig>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRConfig
+    :summary:
+    ```
+* - {py:obj}`SDRDevice <nearlink_sdr.phy.sdr_backend.SDRDevice>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRDevice
+    :summary:
+    ```
+````
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`create_device <nearlink_sdr.phy.sdr_backend.create_device>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.create_device
+    :summary:
+    ```
+````
+
+### API
+
+`````{py:class} SDRConfig
+:canonical: nearlink_sdr.phy.sdr_backend.SDRConfig
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRConfig
+```
+
+````{py:attribute} backend
+:canonical: nearlink_sdr.phy.sdr_backend.SDRConfig.backend
+:type: str
+:value: >
+   'mock'
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRConfig.backend
+```
+
+````
+
+````{py:attribute} device_args
+:canonical: nearlink_sdr.phy.sdr_backend.SDRConfig.device_args
+:type: str
+:value: <Multiline-String>
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRConfig.device_args
+```
+
+````
+
+````{py:attribute} channel_num
+:canonical: nearlink_sdr.phy.sdr_backend.SDRConfig.channel_num
+:type: int
+:value: >
+   0
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRConfig.channel_num
+```
+
+````
+
+````{py:attribute} band
+:canonical: nearlink_sdr.phy.sdr_backend.SDRConfig.band
+:type: str
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRConfig.band
+```
+
+````
+
+````{py:attribute} sample_rate_hz
+:canonical: nearlink_sdr.phy.sdr_backend.SDRConfig.sample_rate_hz
+:type: float
+:value: >
+   1000000.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRConfig.sample_rate_hz
+```
+
+````
+
+````{py:attribute} rx_gain_db
+:canonical: nearlink_sdr.phy.sdr_backend.SDRConfig.rx_gain_db
+:type: float
+:value: >
+   30.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRConfig.rx_gain_db
+```
+
+````
+
+````{py:attribute} tx_gain_db
+:canonical: nearlink_sdr.phy.sdr_backend.SDRConfig.tx_gain_db
+:type: float
+:value: >
+   20.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRConfig.tx_gain_db
+```
+
+````
+
+````{py:attribute} bandwidth_hz
+:canonical: nearlink_sdr.phy.sdr_backend.SDRConfig.bandwidth_hz
+:type: float
+:value: >
+   0.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRConfig.bandwidth_hz
+```
+
+````
+
+````{py:attribute} rx_antenna
+:canonical: nearlink_sdr.phy.sdr_backend.SDRConfig.rx_antenna
+:type: str
+:value: <Multiline-String>
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRConfig.rx_antenna
+```
+
+````
+
+````{py:attribute} tx_antenna
+:canonical: nearlink_sdr.phy.sdr_backend.SDRConfig.tx_antenna
+:type: str
+:value: <Multiline-String>
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRConfig.tx_antenna
+```
+
+````
+
+````{py:attribute} stream_timeout_s
+:canonical: nearlink_sdr.phy.sdr_backend.SDRConfig.stream_timeout_s
+:type: float
+:value: >
+   3.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRConfig.stream_timeout_s
+```
+
+````
+
+````{py:attribute} rx_buffer_size
+:canonical: nearlink_sdr.phy.sdr_backend.SDRConfig.rx_buffer_size
+:type: int
+:value: >
+   4096
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRConfig.rx_buffer_size
+```
+
+````
+
+````{py:property} center_freq_hz
+:canonical: nearlink_sdr.phy.sdr_backend.SDRConfig.center_freq_hz
+:type: float
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRConfig.center_freq_hz
+```
+
+````
+
+`````
+
+`````{py:class} SDRDevice(config: nearlink_sdr.phy.sdr_backend.SDRConfig)
+:canonical: nearlink_sdr.phy.sdr_backend.SDRDevice
+
+Bases: {py:obj}`abc.ABC`
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRDevice
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRDevice.__init__
+```
+
+````{py:property} config
+:canonical: nearlink_sdr.phy.sdr_backend.SDRDevice.config
+:type: nearlink_sdr.phy.sdr_backend.SDRConfig
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRDevice.config
+```
+
+````
+
+````{py:method} configure() -> None
+:canonical: nearlink_sdr.phy.sdr_backend.SDRDevice.configure
+:abstractmethod:
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRDevice.configure
+```
+
+````
+
+````{py:method} set_frequency(freq_hz: float) -> None
+:canonical: nearlink_sdr.phy.sdr_backend.SDRDevice.set_frequency
+:abstractmethod:
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRDevice.set_frequency
+```
+
+````
+
+````{py:method} set_sample_rate(rate_hz: float) -> None
+:canonical: nearlink_sdr.phy.sdr_backend.SDRDevice.set_sample_rate
+:abstractmethod:
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRDevice.set_sample_rate
+```
+
+````
+
+````{py:method} set_rx_gain(gain_db: float) -> None
+:canonical: nearlink_sdr.phy.sdr_backend.SDRDevice.set_rx_gain
+:abstractmethod:
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRDevice.set_rx_gain
+```
+
+````
+
+````{py:method} set_tx_gain(gain_db: float) -> None
+:canonical: nearlink_sdr.phy.sdr_backend.SDRDevice.set_tx_gain
+:abstractmethod:
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRDevice.set_tx_gain
+```
+
+````
+
+````{py:method} set_bandwidth(bw_hz: float) -> None
+:canonical: nearlink_sdr.phy.sdr_backend.SDRDevice.set_bandwidth
+:abstractmethod:
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRDevice.set_bandwidth
+```
+
+````
+
+````{py:method} tune_channel(channel_num: int, band: str | None = None) -> None
+:canonical: nearlink_sdr.phy.sdr_backend.SDRDevice.tune_channel
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRDevice.tune_channel
+```
+
+````
+
+````{py:method} transmit(samples: numpy.ndarray) -> int
+:canonical: nearlink_sdr.phy.sdr_backend.SDRDevice.transmit
+:abstractmethod:
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRDevice.transmit
+```
+
+````
+
+````{py:method} receive(num_samps: int) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.sdr_backend.SDRDevice.receive
+:abstractmethod:
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRDevice.receive
+```
+
+````
+
+````{py:method} close() -> None
+:canonical: nearlink_sdr.phy.sdr_backend.SDRDevice.close
+:abstractmethod:
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRDevice.close
+```
+
+````
+
+````{py:method} status_string() -> str
+:canonical: nearlink_sdr.phy.sdr_backend.SDRDevice.status_string
+:abstractmethod:
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRDevice.status_string
+```
+
+````
+
+````{py:property} is_mock
+:canonical: nearlink_sdr.phy.sdr_backend.SDRDevice.is_mock
+:type: bool
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.SDRDevice.is_mock
+```
+
+````
+
+`````
+
+````{py:function} create_device(config: nearlink_sdr.phy.sdr_backend.SDRConfig) -> nearlink_sdr.phy.sdr_backend.SDRDevice
+:canonical: nearlink_sdr.phy.sdr_backend.create_device
+
+```{autodoc2-docstring} nearlink_sdr.phy.sdr_backend.create_device
+```
+````

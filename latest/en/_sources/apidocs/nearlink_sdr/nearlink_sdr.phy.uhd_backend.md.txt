@@ -1,0 +1,109 @@
+# {py:mod}`nearlink_sdr.phy.uhd_backend`
+
+```{py:module} nearlink_sdr.phy.uhd_backend
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.uhd_backend
+:allowtitles:
+```
+
+## Module Contents
+
+### Classes
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`UHDDevice <nearlink_sdr.phy.uhd_backend.UHDDevice>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uhd_backend.UHDDevice
+    :summary:
+    ```
+````
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`uhd_available <nearlink_sdr.phy.uhd_backend.uhd_available>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.uhd_backend.uhd_available
+    :summary:
+    ```
+````
+
+### API
+
+`````{py:class} UHDDevice(config: nearlink_sdr.phy.sdr_backend.SDRConfig)
+:canonical: nearlink_sdr.phy.uhd_backend.UHDDevice
+
+Bases: {py:obj}`nearlink_sdr.phy.sdr_backend.SDRDevice`
+
+```{autodoc2-docstring} nearlink_sdr.phy.uhd_backend.UHDDevice
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.uhd_backend.UHDDevice.__init__
+```
+
+````{py:method} configure() -> None
+:canonical: nearlink_sdr.phy.uhd_backend.UHDDevice.configure
+
+````
+
+````{py:method} set_frequency(freq_hz: float) -> None
+:canonical: nearlink_sdr.phy.uhd_backend.UHDDevice.set_frequency
+
+````
+
+````{py:method} set_sample_rate(rate_hz: float) -> None
+:canonical: nearlink_sdr.phy.uhd_backend.UHDDevice.set_sample_rate
+
+````
+
+````{py:method} set_rx_gain(gain_db: float) -> None
+:canonical: nearlink_sdr.phy.uhd_backend.UHDDevice.set_rx_gain
+
+````
+
+````{py:method} set_tx_gain(gain_db: float) -> None
+:canonical: nearlink_sdr.phy.uhd_backend.UHDDevice.set_tx_gain
+
+````
+
+````{py:method} set_bandwidth(bw_hz: float) -> None
+:canonical: nearlink_sdr.phy.uhd_backend.UHDDevice.set_bandwidth
+
+````
+
+````{py:method} transmit(samples: numpy.ndarray) -> int
+:canonical: nearlink_sdr.phy.uhd_backend.UHDDevice.transmit
+
+````
+
+````{py:method} receive(num_samps: int) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.uhd_backend.UHDDevice.receive
+
+````
+
+````{py:method} close() -> None
+:canonical: nearlink_sdr.phy.uhd_backend.UHDDevice.close
+
+````
+
+````{py:method} status_string() -> str
+:canonical: nearlink_sdr.phy.uhd_backend.UHDDevice.status_string
+
+````
+
+`````
+
+````{py:function} uhd_available() -> bool
+:canonical: nearlink_sdr.phy.uhd_backend.uhd_available
+
+```{autodoc2-docstring} nearlink_sdr.phy.uhd_backend.uhd_available
+```
+````

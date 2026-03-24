@@ -1,0 +1,223 @@
+# {py:mod}`nearlink_sdr.phy.pluto_backend`
+
+```{py:module} nearlink_sdr.phy.pluto_backend
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.pluto_backend
+:allowtitles:
+```
+
+## Module Contents
+
+### Classes
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`PlutoDevice <nearlink_sdr.phy.pluto_backend.PlutoDevice>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.pluto_backend.PlutoDevice
+    :summary:
+    ```
+````
+
+### Functions
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`adi_available <nearlink_sdr.phy.pluto_backend.adi_available>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.pluto_backend.adi_available
+    :summary:
+    ```
+````
+
+### Data
+
+````{list-table}
+:class: autosummary longtable
+:align: left
+
+* - {py:obj}`PLUTO_FREQ_MAX_HZ <nearlink_sdr.phy.pluto_backend.PLUTO_FREQ_MAX_HZ>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.pluto_backend.PLUTO_FREQ_MAX_HZ
+    :summary:
+    ```
+* - {py:obj}`PLUTO_FREQ_MIN_HZ <nearlink_sdr.phy.pluto_backend.PLUTO_FREQ_MIN_HZ>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.pluto_backend.PLUTO_FREQ_MIN_HZ
+    :summary:
+    ```
+* - {py:obj}`PLUTO_RX_GAIN_MAX <nearlink_sdr.phy.pluto_backend.PLUTO_RX_GAIN_MAX>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.pluto_backend.PLUTO_RX_GAIN_MAX
+    :summary:
+    ```
+* - {py:obj}`PLUTO_RX_GAIN_MIN <nearlink_sdr.phy.pluto_backend.PLUTO_RX_GAIN_MIN>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.pluto_backend.PLUTO_RX_GAIN_MIN
+    :summary:
+    ```
+* - {py:obj}`PLUTO_SAMPLE_RATE_MAX <nearlink_sdr.phy.pluto_backend.PLUTO_SAMPLE_RATE_MAX>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.pluto_backend.PLUTO_SAMPLE_RATE_MAX
+    :summary:
+    ```
+* - {py:obj}`PLUTO_TX_ATTN_MAX <nearlink_sdr.phy.pluto_backend.PLUTO_TX_ATTN_MAX>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.pluto_backend.PLUTO_TX_ATTN_MAX
+    :summary:
+    ```
+* - {py:obj}`PLUTO_TX_ATTN_MIN <nearlink_sdr.phy.pluto_backend.PLUTO_TX_ATTN_MIN>`
+  - ```{autodoc2-docstring} nearlink_sdr.phy.pluto_backend.PLUTO_TX_ATTN_MIN
+    :summary:
+    ```
+````
+
+### API
+
+````{py:data} PLUTO_FREQ_MAX_HZ
+:canonical: nearlink_sdr.phy.pluto_backend.PLUTO_FREQ_MAX_HZ
+:value: >
+   6000000000.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.pluto_backend.PLUTO_FREQ_MAX_HZ
+```
+
+````
+
+````{py:data} PLUTO_FREQ_MIN_HZ
+:canonical: nearlink_sdr.phy.pluto_backend.PLUTO_FREQ_MIN_HZ
+:value: >
+   70000000.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.pluto_backend.PLUTO_FREQ_MIN_HZ
+```
+
+````
+
+````{py:data} PLUTO_RX_GAIN_MAX
+:canonical: nearlink_sdr.phy.pluto_backend.PLUTO_RX_GAIN_MAX
+:value: >
+   71.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.pluto_backend.PLUTO_RX_GAIN_MAX
+```
+
+````
+
+````{py:data} PLUTO_RX_GAIN_MIN
+:canonical: nearlink_sdr.phy.pluto_backend.PLUTO_RX_GAIN_MIN
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.pluto_backend.PLUTO_RX_GAIN_MIN
+```
+
+````
+
+````{py:data} PLUTO_SAMPLE_RATE_MAX
+:canonical: nearlink_sdr.phy.pluto_backend.PLUTO_SAMPLE_RATE_MAX
+:value: >
+   61440000.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.pluto_backend.PLUTO_SAMPLE_RATE_MAX
+```
+
+````
+
+````{py:data} PLUTO_TX_ATTN_MAX
+:canonical: nearlink_sdr.phy.pluto_backend.PLUTO_TX_ATTN_MAX
+:value: >
+   0.0
+
+```{autodoc2-docstring} nearlink_sdr.phy.pluto_backend.PLUTO_TX_ATTN_MAX
+```
+
+````
+
+````{py:data} PLUTO_TX_ATTN_MIN
+:canonical: nearlink_sdr.phy.pluto_backend.PLUTO_TX_ATTN_MIN
+:value: >
+   None
+
+```{autodoc2-docstring} nearlink_sdr.phy.pluto_backend.PLUTO_TX_ATTN_MIN
+```
+
+````
+
+`````{py:class} PlutoDevice(config: nearlink_sdr.phy.sdr_backend.SDRConfig)
+:canonical: nearlink_sdr.phy.pluto_backend.PlutoDevice
+
+Bases: {py:obj}`nearlink_sdr.phy.sdr_backend.SDRDevice`
+
+```{autodoc2-docstring} nearlink_sdr.phy.pluto_backend.PlutoDevice
+```
+
+```{rubric} Initialization
+```
+
+```{autodoc2-docstring} nearlink_sdr.phy.pluto_backend.PlutoDevice.__init__
+```
+
+````{py:method} configure() -> None
+:canonical: nearlink_sdr.phy.pluto_backend.PlutoDevice.configure
+
+````
+
+````{py:method} set_frequency(freq_hz: float) -> None
+:canonical: nearlink_sdr.phy.pluto_backend.PlutoDevice.set_frequency
+
+````
+
+````{py:method} set_sample_rate(rate_hz: float) -> None
+:canonical: nearlink_sdr.phy.pluto_backend.PlutoDevice.set_sample_rate
+
+````
+
+````{py:method} set_rx_gain(gain_db: float) -> None
+:canonical: nearlink_sdr.phy.pluto_backend.PlutoDevice.set_rx_gain
+
+````
+
+````{py:method} set_tx_gain(gain_db: float) -> None
+:canonical: nearlink_sdr.phy.pluto_backend.PlutoDevice.set_tx_gain
+
+````
+
+````{py:method} set_bandwidth(bw_hz: float) -> None
+:canonical: nearlink_sdr.phy.pluto_backend.PlutoDevice.set_bandwidth
+
+````
+
+````{py:method} transmit(samples: numpy.ndarray) -> int
+:canonical: nearlink_sdr.phy.pluto_backend.PlutoDevice.transmit
+
+````
+
+````{py:method} receive(num_samps: int) -> numpy.ndarray
+:canonical: nearlink_sdr.phy.pluto_backend.PlutoDevice.receive
+
+````
+
+````{py:method} close() -> None
+:canonical: nearlink_sdr.phy.pluto_backend.PlutoDevice.close
+
+````
+
+````{py:method} status_string() -> str
+:canonical: nearlink_sdr.phy.pluto_backend.PlutoDevice.status_string
+
+````
+
+````{py:property} sdr
+:canonical: nearlink_sdr.phy.pluto_backend.PlutoDevice.sdr
+
+```{autodoc2-docstring} nearlink_sdr.phy.pluto_backend.PlutoDevice.sdr
+```
+
+````
+
+`````
+
+````{py:function} adi_available() -> bool
+:canonical: nearlink_sdr.phy.pluto_backend.adi_available
+
+```{autodoc2-docstring} nearlink_sdr.phy.pluto_backend.adi_available
+```
+````
