@@ -15,6 +15,16 @@
 
 ### Added
 
+- Rust 固件信令全量覆盖: signaling.rs 从 16 种扩展到 111 种, 覆盖 TXS-10002-2025 第 7.3.2 节全部条款 (0x0000~0x0070)
+  - 6 种宏模式: zero_payload / opaque / fixed_opaque / action / feedback / single_u8
+  - 38 种手工编解码 (精确位域), 28 种复杂位域暂存原始字节
+  - 注册表自动注册全部 111 种解码器
+  - 新增 10 个 roundtrip 测试
+- ECDH P-256 密钥交换完整实现 (security.rs)
+  - 基于 p256 crate SecretKey + ecdh::diffie_hellman
+  - generate_p256_keypair() 密钥对生成 (SEC1 未压缩 65 字节公钥)
+  - exchange_key() 计算 DH 共享密钥, 失败自动设置 PairingFailureReason
+  - 新增 2 个 ECDH 测试 (双向交换验证 + 非法公钥拒绝)
 - FPGA 硬件加速工程脚手架 (`nearlink_sdr_zynq/`)
   - RTL 模块: CRC-24, 加扰器, 同步 FIFO, PHY 顶层骨架 (SystemVerilog, AXI-Stream 接口)
   - 全局参数头 `sle_params.svh`: 时钟/RF/调制/Polar/帧结构参数
