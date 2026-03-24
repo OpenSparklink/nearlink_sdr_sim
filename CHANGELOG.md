@@ -15,6 +15,17 @@
 
 ### Added
 
+- E310 硬件部署全链路验证
+  - SLE 比特流运行时加载: .bit→.bin 字节交换转换 + FPGA Manager sysfs 加载
+  - PHY 寄存器读写验证通过: PARAM/SCRAMBLER/MODULATION 写回一致
+  - AXI DMA 控制器正常响应 (halted/IOC)
+  - devmem 物理地址直接映射: UioDevice::open_devmem() 回退方案 (内核无 OF_OVERLAY 支持时)
+  - bit_to_bin.py 转换脚本 + Makefile bitstream/deploy-bitstream 目标
+- sle_ctrl 三子系统全部在线:
+  - PHY: /dev/mem 映射 0x40000000 (SLE PHY) + 0x40400000 (AXI DMA)
+  - RF: AD9361 IIO 频率设置 2402 MHz (SLE channel 0)
+  - USB: FunctionFS 描述符写入成功, 端点 ep0~ep3 就绪
+
 - Rust 固件信令全量覆盖: signaling.rs 从 16 种扩展到 111 种, 覆盖 TXS-10002-2025 第 7.3.2 节全部条款 (0x0000~0x0070)
   - 6 种宏模式: zero_payload / opaque / fixed_opaque / action / feedback / single_u8
   - 38 种手工编解码 (精确位域), 28 种复杂位域暂存原始字节
