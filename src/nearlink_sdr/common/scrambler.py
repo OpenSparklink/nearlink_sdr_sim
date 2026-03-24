@@ -58,17 +58,12 @@ def _precompute_period(seed: int) -> NDArray[np.uint8]:
 def scramble_sequence(length: int, seed: int) -> NDArray[np.uint8]:
     """生成指定长度的加扰序列。
 
-    Parameters
-    ----------
-    length : int
-        需要的加扰比特数。
-    seed : int
-        7bit 初始种子 (0 ~ 127)。
-
-    Returns
-    -------
-    NDArray[np.uint8]
-        加扰序列, 元素为 0 或 1。
+    :param length: 需要的加扰比特数。
+    :type length: int
+    :param seed: 7bit 初始种子 (0 ~ 127)。
+    :type seed: int
+    :returns: 加扰序列, 元素为 0 或 1。
+    :rtype: NDArray[np.uint8]
     """
     if not 0 <= seed <= 127:
         raise ValueError(f"seed 必须在 0..127 范围内, 收到 {seed}")
@@ -86,17 +81,12 @@ def scramble_sequence(length: int, seed: int) -> NDArray[np.uint8]:
 def scramble(bits: NDArray[np.uint8], seed: int) -> NDArray[np.uint8]:
     """对比特序列进行加扰 (XOR)。
 
-    Parameters
-    ----------
-    bits : NDArray[np.uint8]
-        待加扰比特, 元素为 0 或 1。
-    seed : int
-        7bit 初始种子。
-
-    Returns
-    -------
-    NDArray[np.uint8]
-        加扰后的比特序列。
+    :param bits: 待加扰比特, 元素为 0 或 1。
+    :type bits: NDArray[np.uint8]
+    :param seed: 7bit 初始种子。
+    :type seed: int
+    :returns: 加扰后的比特序列。
+    :rtype: NDArray[np.uint8]
     """
     seq = scramble_sequence(len(bits), seed)
     return (bits ^ seq).astype(np.uint8)
@@ -110,15 +100,10 @@ def descramble(bits: NDArray[np.uint8], seed: int) -> NDArray[np.uint8]:
 def broadcast_seed(physical_channel: int) -> int:
     """广播帧的加扰种子: 物理信道号。
 
-    Parameters
-    ----------
-    physical_channel : int
-        物理信道号 (0..397)。取低 7 位。
-
-    Returns
-    -------
-    int
-        7bit 种子。
+    :param physical_channel: 物理信道号 (0..397)。取低 7 位。
+    :type physical_channel: int
+    :returns: 7bit 种子。
+    :rtype: int
     """
     return physical_channel & 0x7F
 
@@ -129,14 +114,9 @@ def data_link_seed(slot_number: int) -> int:
     将事件起始时刻调度时隙序号的低 6 位设为寄存器 0..5,
     寄存器 6 设为 1。
 
-    Parameters
-    ----------
-    slot_number : int
-        调度时隙序号。
-
-    Returns
-    -------
-    int
-        7bit 种子。
+    :param slot_number: 调度时隙序号。
+    :type slot_number: int
+    :returns: 7bit 种子。
+    :rtype: int
     """
     return (1 << 6) | (slot_number & 0x3F)

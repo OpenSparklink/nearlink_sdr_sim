@@ -7,6 +7,12 @@
 
 ## [Unreleased]
 
+### Changed
+
+- 全量 docstring 格式从 NumPy 风格统一为 RST field list 风格 (`:param:` / `:returns:` / `:rtype:` / `:ivar:`)，修复 autodoc2 解析失败和 "Duplicate implicit target name" 警告
+  - 涉及模块: `scrambler.py`, `prbs.py`, `mcs.py`, `tx_pipeline.py`, `rx_pipeline.py`, `mac_interface.py`
+- 通过 `sphinx-intl update` 重建所有 `.po` 翻译文件，同步新增/变更的 `msgid` 并补齐英文翻译
+
 ### Added
 
 - FPGA 硬件加速工程脚手架 (`nearlink_sdr_zynq/`)

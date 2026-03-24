@@ -1,0 +1,282 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the nearlink-sdr
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: nearlink-sdr 1.0.9\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-24 11:41+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: en <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sdr_backend.md:1
+#, python-brace-format
+msgid "{py:mod}`nearlink_sdr.phy.sdr_backend`"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:7
+msgid "SDR 硬件后端抽象层。"
+msgstr "SDR hardware backend abstraction layer."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:9
+msgid ""
+"定义与具体 SDR 硬件无关的统一接口, 支持 UHD (USRP), pyadi-iio (PlutoSDR/ANTSDR), Mock "
+"(无硬件仿真) 三种后端。所有后端实现 SDRDevice 接口后即可接入 SLETransceiver。"
+msgstr ""
+"Defines a hardware-agnostic unified interface supporting three backends: UHD"
+" (USRP), pyadi-iio (PlutoSDR/ANTSDR), and Mock (no-hardware simulation). Any"
+" backend implementing the SDRDevice interface integrates with "
+"SLETransceiver."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sdr_backend.md:10
+msgid "Module Contents"
+msgstr ""
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sdr_backend.md:12
+msgid "Classes"
+msgstr ""
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sdr_backend.md:18
+#, python-brace-format
+msgid "{py:obj}`SDRConfig <nearlink_sdr.phy.sdr_backend.SDRConfig>`"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:20
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:47
+msgid "SDR 设备配置参数 (后端无关)。"
+msgstr "SDR device configuration parameters (backend-agnostic)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sdr_backend.md:22
+#, python-brace-format
+msgid "{py:obj}`SDRDevice <nearlink_sdr.phy.sdr_backend.SDRDevice>`"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:24
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:195
+msgid "SDR 设备抽象基类。"
+msgstr "SDR device abstract base class."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sdr_backend.md:28
+msgid "Functions"
+msgstr ""
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sdr_backend.md:34
+#, python-brace-format
+msgid "{py:obj}`create_device <nearlink_sdr.phy.sdr_backend.create_device>`"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:36
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:324
+msgid "根据配置创建对应的 SDR 设备实例。"
+msgstr "Creates the corresponding SDR device instance from the configuration."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sdr_backend.md:40
+msgid "API"
+msgstr ""
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sdr_backend.md
+msgid "变量"
+msgstr "Variables"
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:49
+msgid "后端类型 (\"uhd\" / \"pluto\" / \"mock\")。"
+msgstr "Backend type (\"uhd\" / \"pluto\" / \"mock\")."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:50
+msgid "设备地址参数。UHD: 如 \"addr=192.168.10.2\"; Pluto: 如 \"ip:192.168.2.1\"。"
+msgstr ""
+"Device address parameter. UHD: e.g. \"addr=192.168.10.2\"; Pluto: e.g. "
+"\"ip:192.168.2.1\"."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:51
+msgid "SLE 射频信道号。"
+msgstr "SLE RF channel number."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:52
+msgid "频段标识 (\"2400\" / \"5100\" / \"5800\")。"
+msgstr "Band identifier (\"2400\" / \"5100\" / \"5800\")."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:53
+msgid "采样率 (Hz)。"
+msgstr "Sample rate (Hz)."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:54
+msgid "接收增益 (dB)。"
+msgstr "Receive gain (dB)."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:55
+msgid "发射增益 (dB)。"
+msgstr "Transmit gain (dB)."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:56
+msgid "前端模拟滤波器带宽 (Hz), 0 表示自动。"
+msgstr "Front-end analogue filter bandwidth (Hz), 0 = auto."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:57
+msgid "接收天线端口名称。"
+msgstr "Receive antenna port name."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:58
+msgid "发射天线端口名称。"
+msgstr "Transmit antenna port name."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:59
+msgid "流操作超时时间 (秒)。"
+msgstr "Stream operation timeout (seconds)."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:60
+msgid "接收缓冲区大小 (样本数)。"
+msgstr "Receive buffer size (number of samples)."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sdr_backend.md:54
+msgid "'mock'"
+msgstr ""
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sdr_backend.md:75
+msgid "0"
+msgstr ""
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sdr_backend.md:86
+msgid "None"
+msgstr ""
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sdr_backend.md:97
+msgid "1000000.0"
+msgstr ""
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sdr_backend.md:108
+msgid "30.0"
+msgstr ""
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sdr_backend.md:119
+msgid "20.0"
+msgstr ""
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sdr_backend.md:130
+msgid "0.0"
+msgstr ""
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sdr_backend.md:161
+msgid "3.0"
+msgstr ""
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sdr_backend.md:172
+msgid "4096"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:184
+msgid "根据信道号和频段计算中心频率 (Hz)。"
+msgstr ""
+"Calculates the centre frequency (Hz) from the channel number and band."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sdr_backend.md:192
+#, python-brace-format
+msgid "Bases: {py:obj}`abc.ABC`"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:197
+msgid "所有后端 (UHD, Pluto, Mock) 必须实现此接口。"
+msgstr "All backends (UHD, Pluto, Mock) must implement this interface."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sdr_backend.md:197
+msgid "Initialization"
+msgstr ""
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:218
+msgid "将配置参数应用到设备。"
+msgstr "Applies configuration parameters to the device."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:227
+msgid "设置 TX/RX 中心频率。"
+msgstr "Sets the TX/RX centre frequency."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:236
+msgid "设置收发采样率。"
+msgstr "Sets the transceiver sample rate."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:245
+msgid "设置接收增益。"
+msgstr "Sets the receive gain."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:254
+msgid "设置发射增益。"
+msgstr "Sets the transmit gain."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:263
+msgid "设置前端模拟滤波器带宽。"
+msgstr "Sets the front-end analogue filter bandwidth."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:271
+msgid "切换到指定 SLE 射频信道。"
+msgstr "Switches to the specified SLE RF channel."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sdr_backend.md
+msgid "参数"
+msgstr "Parameters"
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:273
+msgid "射频信道号。"
+msgstr "RF channel number."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:274
+msgid "频段标识, None 沿用当前配置。"
+msgstr "Band identifier; None retains the current configuration."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:280
+msgid "发射 IQ 样本。"
+msgstr "Transmit IQ samples."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:282
+msgid "复基带样本, dtype=complex64。"
+msgstr "Complex baseband samples, dtype=complex64."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.phy.sdr_backend.md
+msgid "返回"
+msgstr "Returns"
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:284
+msgid "实际发射的样本数。"
+msgstr "Actual number of samples transmitted."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:289
+msgid "接收指定数量的 IQ 样本。"
+msgstr "Receive a specified number of IQ samples."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:291
+msgid "要接收的样本数。"
+msgstr "Number of samples to receive."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:293
+msgid "复基带样本数组, dtype=complex64。"
+msgstr "Complex baseband sample array, dtype=complex64."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:298
+msgid "释放设备资源。"
+msgstr "Release device resources."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:307
+msgid "返回可读的设备状态摘要。"
+msgstr "Returns a human-readable device status summary."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:316
+msgid "是否为无硬件模拟模式。"
+msgstr "Whether this is a no-hardware simulation mode."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:326
+msgid "SDR 配置, 通过 backend 字段选择后端。"
+msgstr "SDR configuration; the backend field selects the backend."
+
+#: ../../../src/nearlink_sdr/phy/sdr_backend.py:328
+msgid "SDRDevice 实例。"
+msgstr "SDRDevice instance."

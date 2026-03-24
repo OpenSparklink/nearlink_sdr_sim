@@ -93,19 +93,14 @@ RATE_ADAPT_TABLE_2: dict[Fraction, dict[int, int]] = {
 def get_kcb(code_rate: Fraction, code_length: int, *, table: int = 1) -> int:
     """查询速率适配信息比特数 Kcb。
 
-    Parameters
-    ----------
-    code_rate : Fraction
-        编码速率, 如 Fraction(1, 4)。
-    code_length : int
-        码长, 必须为 64, 128, 256, 512, 1024 之一。
-    table : int
-        1 = 第一表格 (表23), 2 = 第二表格 (表24)。
-
-    Returns
-    -------
-    int
-        信息比特数 Kcb。
+    :param code_rate: 编码速率, 如 Fraction(1, 4)。
+    :type code_rate: Fraction
+    :param code_length: 码长, 必须为 64, 128, 256, 512, 1024 之一。
+    :type code_length: int
+    :param table: 1 = 第一表格 (表23), 2 = 第二表格 (表24)。
+    :type table: int
+    :returns: 信息比特数 Kcb。
+    :rtype: int
     """
     if code_length not in CODE_LENGTHS:
         raise ValueError(f"码长必须为 {CODE_LENGTHS} 之一, 收到 {code_length}")

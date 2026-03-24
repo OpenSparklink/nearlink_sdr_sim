@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 06:45+0800\n"
+"POT-Creation-Date: 2026-03-24 11:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: en\n"
 "Language-Team: en <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:1
@@ -31,9 +31,9 @@ msgstr "SLE node entity — unified TX/RX interface."
 #: ../../../src/nearlink_sdr/node.py:9
 msgid "将 MAC/PHY 各模块整合为单一 SLE 节点, 提供完整的链路生命周期管理 和数据收发能力。支持仿真模式和 USRP 硬件模式。"
 msgstr ""
-"Integrates all MAC/PHY modules into a single SLE node, providing complete"
-" link lifecycle management and data TX/RX capability. Supports simulation"
-" mode and USRP hardware mode."
+"Integrates all MAC/PHY modules into a single SLE node, providing complete "
+"link lifecycle management and data TX/RX capability. Supports simulation "
+"mode and USRP hardware mode."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:10
 msgid "Module Contents"
@@ -66,7 +66,7 @@ msgstr "SLE node configuration."
 msgid "{py:obj}`NodeRole <nearlink_sdr.node.NodeRole>`"
 msgstr "{py:obj}`NodeRole <nearlink_sdr.node.NodeRole>`"
 
-#: ../../../src/nearlink_sdr/node.py:28 ../../../src/nearlink_sdr/node.py:342
+#: ../../../src/nearlink_sdr/node.py:28 ../../../src/nearlink_sdr/node.py:353
 msgid "节点初始角色偏好。"
 msgstr "Node initial role preference."
 
@@ -75,7 +75,7 @@ msgstr "Node initial role preference."
 msgid "{py:obj}`NodeState <nearlink_sdr.node.NodeState>`"
 msgstr "{py:obj}`NodeState <nearlink_sdr.node.NodeState>`"
 
-#: ../../../src/nearlink_sdr/node.py:32 ../../../src/nearlink_sdr/node.py:388
+#: ../../../src/nearlink_sdr/node.py:32 ../../../src/nearlink_sdr/node.py:399
 msgid "节点高层状态, 简化自 LinkState。"
 msgstr "High-level node state, simplified from LinkState."
 
@@ -84,7 +84,7 @@ msgstr "High-level node state, simplified from LinkState."
 msgid "{py:obj}`RxResult <nearlink_sdr.node.RxResult>`"
 msgstr "{py:obj}`RxResult <nearlink_sdr.node.RxResult>`"
 
-#: ../../../src/nearlink_sdr/node.py:36 ../../../src/nearlink_sdr/node.py:472
+#: ../../../src/nearlink_sdr/node.py:36 ../../../src/nearlink_sdr/node.py:483
 msgid "接收结果。"
 msgstr "Receive result."
 
@@ -93,7 +93,7 @@ msgstr "Receive result."
 msgid "{py:obj}`SleNode <nearlink_sdr.node.SleNode>`"
 msgstr "{py:obj}`SleNode <nearlink_sdr.node.SleNode>`"
 
-#: ../../../src/nearlink_sdr/node.py:40 ../../../src/nearlink_sdr/node.py:513
+#: ../../../src/nearlink_sdr/node.py:40 ../../../src/nearlink_sdr/node.py:524
 msgid "SparkLink SLE 节点实体。"
 msgstr "SparkLink SLE node entity."
 
@@ -103,7 +103,7 @@ msgid "{py:obj}`TransportMode <nearlink_sdr.node.TransportMode>`"
 msgstr "{py:obj}`TransportMode <nearlink_sdr.node.TransportMode>`"
 
 #: ../../../src/nearlink_sdr/node.py:44 ../../../src/nearlink_sdr/node.py:134
-#: ../../../src/nearlink_sdr/node.py:956
+#: ../../../src/nearlink_sdr/node.py:976
 msgid "传输模式。"
 msgstr "Transport mode."
 
@@ -112,7 +112,7 @@ msgstr "Transport mode."
 msgid "{py:obj}`TxResult <nearlink_sdr.node.TxResult>`"
 msgstr "{py:obj}`TxResult <nearlink_sdr.node.TxResult>`"
 
-#: ../../../src/nearlink_sdr/node.py:48 ../../../src/nearlink_sdr/node.py:990
+#: ../../../src/nearlink_sdr/node.py:48 ../../../src/nearlink_sdr/node.py:1010
 msgid "发射结果。"
 msgstr "Transmit result."
 
@@ -122,79 +122,89 @@ msgstr "API"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md
 msgid "变量"
-msgstr ""
+msgstr "Variables"
 
 #: ../../../src/nearlink_sdr/node.py:125
 msgid "6 字节设备地址。"
-msgstr ""
+msgstr "6-byte device address."
 
 #: ../../../src/nearlink_sdr/node.py:126
 msgid "角色偏好 (AUTO/G_NODE/T_NODE)。"
-msgstr ""
+msgstr "Role preference (AUTO/G_NODE/T_NODE)."
 
 #: ../../../src/nearlink_sdr/node.py:127
 msgid "帧类型 (1-4)。"
-msgstr ""
+msgstr "Frame type (1-4)."
 
 #: ../../../src/nearlink_sdr/node.py:128
 msgid "MCS 索引 (0-12)。"
-msgstr ""
+msgstr "MCS index (0-12)."
 
 #: ../../../src/nearlink_sdr/node.py:129
 msgid "信道带宽 (1/2/4 MHz)。"
-msgstr ""
+msgstr "Channel bandwidth (1/2/4 MHz)."
 
 #: ../../../src/nearlink_sdr/node.py:130
 msgid "导频插入间隔 (0/4/8/16)。"
-msgstr ""
+msgstr "Pilot insertion interval (0/4/8/16)."
 
 #: ../../../src/nearlink_sdr/node.py:131
 msgid "最大 PDU 长度 (字节)。"
-msgstr ""
+msgstr "Maximum PDU length (bytes)."
 
 #: ../../../src/nearlink_sdr/node.py:132
 msgid "最大重传次数。"
-msgstr ""
+msgstr "Maximum number of retransmissions."
 
 #: ../../../src/nearlink_sdr/node.py:133
 msgid "是否启用加密。"
-msgstr ""
+msgstr "Whether encryption is enabled."
 
 #: ../../../src/nearlink_sdr/node.py:135
 msgid "频段标识。"
-msgstr ""
+msgstr "Band identifier."
 
 #: ../../../src/nearlink_sdr/node.py:136
 msgid "跳频参数 2 (0 表示自动从地址派生)。"
-msgstr ""
+msgstr "Frequency hopping parameter 2 (0 means auto-derived from address)."
 
 #: ../../../src/nearlink_sdr/node.py:137
 msgid "被阻塞的信道号集合。"
-msgstr ""
+msgstr "Set of blocked channel numbers."
 
 #: ../../../src/nearlink_sdr/node.py:138
 msgid "初始发射功率 (dBm)。"
-msgstr ""
+msgstr "Initial transmit power (dBm)."
 
 #: ../../../src/nearlink_sdr/node.py:139
 msgid "最大发射功率。"
-msgstr ""
+msgstr "Maximum transmit power."
 
 #: ../../../src/nearlink_sdr/node.py:140
 msgid "最小发射功率。"
-msgstr ""
+msgstr "Minimum transmit power."
 
 #: ../../../src/nearlink_sdr/node.py:141
 msgid "仿真模式下的信道模型配置 (None 表示理想信道)。"
 msgstr ""
+"Channel model configuration in simulation mode (None indicates ideal "
+"channel)."
 
 #: ../../../src/nearlink_sdr/node.py:142
-msgid "USRP 硬件配置 (transport=USRP 时使用)。"
+msgid "SDR 硬件配置 (transport=USRP 时使用, 支持 mock/uhd/pluto 后端)。"
 msgstr ""
+"SDR hardware configuration (used when transport=USRP; supports "
+"mock/uhd/pluto backends)."
 
 #: ../../../src/nearlink_sdr/node.py:143
-msgid "是否启用系统管理帧调度。"
+msgid "(已废弃) USRP 配置, 保留向后兼容; 优先使用 sdr_config。"
 msgstr ""
+"(Deprecated) USRP configuration, retained for backward compatibility; prefer"
+" sdr_config."
+
+#: ../../../src/nearlink_sdr/node.py:144
+msgid "是否启用系统管理帧调度。"
+msgstr "Whether system management frame scheduling is enabled."
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:130
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:141
@@ -202,17 +212,18 @@ msgstr ""
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:295
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:306
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:317
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:479
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:328
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:490
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:997
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:1008
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:1019
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:1041
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:501
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:1017
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:1028
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:1039
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:1061
 msgid "None"
 msgstr "None"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:152
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:374
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:385
 msgid "2"
 msgstr "2"
 
@@ -221,7 +232,7 @@ msgid "7"
 msgstr "7"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:174
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:364
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:375
 msgid "1"
 msgstr "1"
 
@@ -238,9 +249,9 @@ msgid "3"
 msgstr "3"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:218
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:328
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:501
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:1030
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:339
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:512
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:1050
 msgid "False"
 msgstr "False"
 
@@ -249,14 +260,14 @@ msgid "'2400'"
 msgstr "'2400'"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:251
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:354
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:400
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:365
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:411
 msgid "0"
 msgstr "0"
 
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:262
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:520
 #: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:531
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:542
 msgid "'field(...)'"
 msgstr "'field(...)'"
 
@@ -268,59 +279,59 @@ msgstr "0.0"
 msgid "20.0"
 msgstr "20.0"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:339
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:385
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:953
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:350
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:396
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:973
 #, python-brace-format
 msgid "Bases: {py:obj}`enum.IntEnum`"
 msgstr "Bases: {py:obj}`enum.IntEnum`"
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:344
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:390
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:958
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:355
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:401
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:978
 msgid "Initialization"
 msgstr "Initialization"
 
-#: ../../../src/nearlink_sdr/node.py:348 ../../../src/nearlink_sdr/node.py:394
-#: ../../../src/nearlink_sdr/node.py:962
+#: ../../../src/nearlink_sdr/node.py:359 ../../../src/nearlink_sdr/node.py:405
+#: ../../../src/nearlink_sdr/node.py:982
 msgid "Initialize self.  See help(type(self)) for accurate signature."
 msgstr "Initialize self. See help(type(self)) for accurate signature."
 
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:410
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:420
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:430
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:440
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:450
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:460
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:968
-#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:978
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:421
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:431
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:441
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:451
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:461
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:471
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:988
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.node.md:998
 msgid "'auto(...)'"
 msgstr "'auto(...)'"
 
-#: ../../../src/nearlink_sdr/node.py:515
+#: ../../../src/nearlink_sdr/node.py:526
 msgid "整合链路管理、安全、QoS、PHY 流水线、跳频、功率控制、 时序调度、接入流程、信道模型为统一收发接口。"
 msgstr ""
-"Integrates link management, security, QoS, PHY pipeline, frequency "
-"hopping, power control, timing scheduling, access procedures, and channel"
-" model into a unified transceive interface."
+"Integrates link management, security, QoS, PHY pipeline, frequency hopping, "
+"power control, timing scheduling, access procedures, and channel model into "
+"a unified transceive interface."
 
-#: ../../../src/nearlink_sdr/node.py:518
+#: ../../../src/nearlink_sdr/node.py:529
 msgid "用法::"
 msgstr "usage::"
 
-#: ../../../src/nearlink_sdr/node.py:587
+#: ../../../src/nearlink_sdr/node.py:598
 msgid "进入广播态, 构建并返回扩展广播帧。"
 msgstr "Enter broadcast state and build an extended broadcast frame."
 
-#: ../../../src/nearlink_sdr/node.py:595
+#: ../../../src/nearlink_sdr/node.py:606
 msgid "进入扫描态, 搜索广播节点。"
 msgstr "Enter scanning state and search for broadcasting nodes."
 
-#: ../../../src/nearlink_sdr/node.py:603
+#: ../../../src/nearlink_sdr/node.py:614
 msgid "处理收到的广播帧。"
 msgstr "Process a received broadcast frame."
 
-#: ../../../src/nearlink_sdr/node.py:605
+#: ../../../src/nearlink_sdr/node.py:616
 msgid "在扫描态时, 通过发现管理器和广播过滤器处理帧。"
 msgstr ""
 "In scanning state, process the frame through the discovery manager and "
@@ -330,153 +341,156 @@ msgstr ""
 msgid "返回"
 msgstr "Returns"
 
-#: ../../../src/nearlink_sdr/node.py:607
+#: ../../../src/nearlink_sdr/node.py:618
 msgid "True 表示该帧包含有效的接入资源配置。"
 msgstr "True if the frame contains a valid access resource configuration."
 
-#: ../../../src/nearlink_sdr/node.py:611
+#: ../../../src/nearlink_sdr/node.py:622
 msgid "发起接入请求。"
 msgstr "Initiate an access request."
 
-#: ../../../src/nearlink_sdr/node.py:619
+#: ../../../src/nearlink_sdr/node.py:630
 msgid "接受接入请求, 直接进入链接态。"
 msgstr "Accept an access request and enter linked state directly."
 
-#: ../../../src/nearlink_sdr/node.py:621
+#: ../../../src/nearlink_sdr/node.py:632
 msgid "接入完成后自动注册链路调度资源。"
-msgstr "Automatically register link scheduling resources after access completion."
+msgstr ""
+"Automatically register link scheduling resources after access completion."
 
-#: ../../../src/nearlink_sdr/node.py:627
+#: ../../../src/nearlink_sdr/node.py:638
 msgid "执行完整接入编排流程。"
 msgstr "Execute the full access orchestration procedure."
 
-#: ../../../src/nearlink_sdr/node.py:635
+#: ../../../src/nearlink_sdr/node.py:646
 msgid "断开连接。"
 msgstr "Disconnect."
 
-#: ../../../src/nearlink_sdr/node.py:643
+#: ../../../src/nearlink_sdr/node.py:654
 msgid "重置到初始状态。"
 msgstr "Reset to initial state."
 
-#: ../../../src/nearlink_sdr/node.py:651
+#: ../../../src/nearlink_sdr/node.py:662
 msgid "发起配对流程。"
 msgstr "Initiate pairing procedure."
 
-#: ../../../src/nearlink_sdr/node.py:653
+#: ../../../src/nearlink_sdr/node.py:664
 msgid "待发送给对端的配对信令列表。"
 msgstr "List of pairing signaling messages to send to the peer."
 
-#: ../../../src/nearlink_sdr/node.py:659
+#: ../../../src/nearlink_sdr/node.py:670
 msgid "处理收到的配对信令。"
 msgstr "Process a received pairing signaling message."
 
-#: ../../../src/nearlink_sdr/node.py:661
+#: ../../../src/nearlink_sdr/node.py:672
 msgid "待发送的响应信令列表。"
 msgstr "List of response signaling messages to send."
 
-#: ../../../src/nearlink_sdr/node.py:667
+#: ../../../src/nearlink_sdr/node.py:678
 msgid "提交数据到发送队列。"
 msgstr "Submit data to the transmit queue."
 
-#: ../../../src/nearlink_sdr/node.py:675
+#: ../../../src/nearlink_sdr/node.py:686
 msgid "从发送队列取出数据, 构建帧并生成 IQ 信号。"
 msgstr ""
 "Dequeue data from the transmit queue, build a frame, and generate IQ "
 "signals."
 
-#: ../../../src/nearlink_sdr/node.py:677
+#: ../../../src/nearlink_sdr/node.py:688
 msgid "自动选择当前跳频信道, 更新发射功率。"
 msgstr ""
-"Automatically select the current hopping channel and update transmit "
-"power."
+"Automatically select the current hopping channel and update transmit power."
 
-#: ../../../src/nearlink_sdr/node.py:683
+#: ../../../src/nearlink_sdr/node.py:694
 msgid "从 IQ 信号解码数据。"
 msgstr "from IQ signaldecodedata."
 
-#: ../../../src/nearlink_sdr/node.py:685
+#: ../../../src/nearlink_sdr/node.py:696
 msgid "如果配置了信道模型, 会在解码前应用信道效应。"
 msgstr ""
 "If a channel model is configured, channel effects are applied before "
 "decoding."
 
-#: ../../../src/nearlink_sdr/node.py:691
+#: ../../../src/nearlink_sdr/node.py:702
 msgid "处理对端 ACK/NACK 反馈。"
 msgstr "Process ACK/NACK feedback from the peer."
 
-#: ../../../src/nearlink_sdr/node.py:709
+#: ../../../src/nearlink_sdr/node.py:720
 msgid "当前跳频信道号。"
 msgstr "Current frequency hopping channel number."
 
-#: ../../../src/nearlink_sdr/node.py:717
+#: ../../../src/nearlink_sdr/node.py:728
 msgid "阻塞指定信道。"
 msgstr "Block a specified channel."
 
-#: ../../../src/nearlink_sdr/node.py:725
+#: ../../../src/nearlink_sdr/node.py:736
 msgid "解除信道阻塞。"
 msgstr "Unblock a channel."
 
-#: ../../../src/nearlink_sdr/node.py:751
+#: ../../../src/nearlink_sdr/node.py:762
 msgid "调整发射功率, 返回调整后的功率值。"
 msgstr "Adjust transmit power and return the adjusted power value."
 
-#: ../../../src/nearlink_sdr/node.py:768
+#: ../../../src/nearlink_sdr/node.py:779
 msgid "推进时隙计数器。"
 msgstr "Advance the slot counter."
 
-#: ../../../src/nearlink_sdr/node.py:785
+#: ../../../src/nearlink_sdr/node.py:796
 msgid "配置 SMF 调度参数。"
 msgstr "Configure SMF scheduling parameters."
 
-#: ../../../src/nearlink_sdr/node.py:820
+#: ../../../src/nearlink_sdr/node.py:831
 msgid "设置广播帧过滤器。"
 msgstr "Set the broadcast frame filter."
 
-#: ../../../src/nearlink_sdr/node.py:828
+#: ../../../src/nearlink_sdr/node.py:839
 msgid "发送非链接态广播数据帧。"
 msgstr "Send non-connected state broadcast data frame."
 
-#: ../../../src/nearlink_sdr/node.py:845
+#: ../../../src/nearlink_sdr/node.py:856
 msgid "配置仿真信道模型。"
 msgstr "Configure the simulation channel model."
 
-#: ../../../src/nearlink_sdr/node.py:853
+#: ../../../src/nearlink_sdr/node.py:864
 msgid "清除信道模型 (恢复理想信道)。"
 msgstr "Clear the channel model (restore ideal channel)."
 
-#: ../../../src/nearlink_sdr/node.py:870
-msgid "打开 USRP 硬件收发器。"
+#: ../../../src/nearlink_sdr/node.py:890
+#, fuzzy
+msgid "打开 SDR/USRP 硬件收发器。"
 msgstr "open USRP hardware transceiver."
 
-#: ../../../src/nearlink_sdr/node.py:878
-msgid "关闭 USRP 硬件收发器。"
+#: ../../../src/nearlink_sdr/node.py:898
+#, fuzzy
+msgid "关闭 SDR/USRP 硬件收发器。"
 msgstr "close USRP hardware transceiver."
 
-#: ../../../src/nearlink_sdr/node.py:886
-msgid "从 USRP 接收 IQ 采样。"
+#: ../../../src/nearlink_sdr/node.py:906
+#, fuzzy
+msgid "从 SDR/USRP 接收 IQ 采样。"
 msgstr "Receive IQ samples from USRP."
 
-#: ../../../src/nearlink_sdr/node.py:894
+#: ../../../src/nearlink_sdr/node.py:914
 msgid "生成窄带测量信号 (标准 6.2.4)。"
 msgstr "Generate a narrowband measurement signal (standard clause 6.2.4)."
 
-#: ../../../src/nearlink_sdr/node.py:911
+#: ../../../src/nearlink_sdr/node.py:931
 msgid "通过链路管理器发送控制面信令。"
 msgstr "Send control-plane signaling through the link manager."
 
-#: ../../../src/nearlink_sdr/node.py:919
+#: ../../../src/nearlink_sdr/node.py:939
 msgid "处理收到的控制面信令。"
 msgstr "Process received control-plane signaling."
 
-#: ../../../src/nearlink_sdr/node.py:928
+#: ../../../src/nearlink_sdr/node.py:948
 msgid "返回节点统计信息。"
 msgstr "Return node statistics."
 
-#: ../../../src/nearlink_sdr/node.py:937
+#: ../../../src/nearlink_sdr/node.py:957
 msgid "基于链路质量建议的 MCS 索引。"
 msgstr "Recommended MCS index based on link quality."
 
-#: ../../../src/nearlink_sdr/node.py:945
+#: ../../../src/nearlink_sdr/node.py:965
 msgid "更新 MCS 索引。"
 msgstr "Update the MCS index."
 
@@ -517,44 +531,30 @@ msgstr "Update the MCS index."
 #~ msgstr "Bases: {py:obj}`nearlink_sdr.mac.link_manager.LinkManagerCallback`"
 
 #~ msgid ""
-#~ "Attributes:     address: 6 字节设备地址。     role:"
-#~ " 角色偏好 (AUTO/G_NODE/T_NODE)。     frame_type: 帧类型"
-#~ " (1-4)。     mcs_index: MCS 索引 (0-12)。"
-#~ "     bandwidth_mhz: 信道带宽 (1/2/4 MHz)。     "
-#~ "pilot_interval: 导频插入间隔 (0/4/8/16)。     max_pdu: "
-#~ "最大 PDU 长度 (字节)。     max_retransmit: "
-#~ "最大重传次数。     enable_encryption: 是否启用加密。     "
-#~ "transport: 传输模式。     band: 频段标识。     "
-#~ "hop_param2: 跳频参数 2 (0 表示自动从地址派生)。     "
-#~ "blocked_channels: 被阻塞的信道号集合。     tx_power_dbm: "
-#~ "初始发射功率 (dBm)。     max_power_dbm: 最大发射功率。     "
-#~ "min_power_dbm: 最小发射功率。     channel_config: "
-#~ "仿真模式下的信道模型配置 (None 表示理想信道)。     usrp_config: "
-#~ "USRP 硬件配置 (transport=USRP 时使用)。     "
-#~ "smf_enabled: 是否启用系统管理帧调度。"
+#~ "Attributes:     address: 6 字节设备地址。     role: 角色偏好 (AUTO/G_NODE/T_NODE)。     "
+#~ "frame_type: 帧类型 (1-4)。     mcs_index: MCS 索引 (0-12)。     bandwidth_mhz: 信道带宽"
+#~ " (1/2/4 MHz)。     pilot_interval: 导频插入间隔 (0/4/8/16)。     max_pdu: 最大 PDU 长度 "
+#~ "(字节)。     max_retransmit: 最大重传次数。     enable_encryption: 是否启用加密。     "
+#~ "transport: 传输模式。     band: 频段标识。     hop_param2: 跳频参数 2 (0 表示自动从地址派生)。     "
+#~ "blocked_channels: 被阻塞的信道号集合。     tx_power_dbm: 初始发射功率 (dBm)。     "
+#~ "max_power_dbm: 最大发射功率。     min_power_dbm: 最小发射功率。     channel_config: "
+#~ "仿真模式下的信道模型配置 (None 表示理想信道)。     usrp_config: USRP 硬件配置 (transport=USRP 时使用)。"
+#~ "     smf_enabled: 是否启用系统管理帧调度。"
 #~ msgstr ""
-#~ "Attributes:     address: 6-byte device "
-#~ "address.     role: Role preference "
-#~ "(AUTO/G_NODE/T_NODE).     frame_type: Frame type "
-#~ "(1-4).     mcs_index: MCS index (0-12)."
-#~ "     bandwidth_mhz: Channel bandwidth (1/2/4 "
-#~ "MHz).     pilot_interval: Pilot insertion "
-#~ "interval (0/4/8/16).     max_pdu: Maximum PDU"
-#~ " length (bytes).     max_retransmit: Maximum "
-#~ "retransmission count.     enable_encryption: Whether"
-#~ " to enable encryption.     transport: "
-#~ "Transport mode.     band: Band identifier."
-#~ "     hop_param2: Frequency-hopping parameter "
-#~ "2 (0 means auto-derived from "
-#~ "address).     blocked_channels: Set of blocked"
-#~ " channel numbers.     tx_power_dbm: Initial "
-#~ "transmit power (dBm).     max_power_dbm: "
-#~ "Maximum transmit power.     min_power_dbm: "
-#~ "Minimum transmit power.     channel_config: "
-#~ "Channel model configuration for simulation "
-#~ "mode (None for ideal channel).     "
-#~ "usrp_config: USRP hardware configuration (used"
-#~ " when transport=USRP).     smf_enabled: Whether"
-#~ " to enable system management frame "
-#~ "scheduling."
+#~ "Attributes:     address: 6-byte device address.     role: Role preference "
+#~ "(AUTO/G_NODE/T_NODE).     frame_type: Frame type (1-4).     mcs_index: MCS "
+#~ "index (0-12).     bandwidth_mhz: Channel bandwidth (1/2/4 MHz).     "
+#~ "pilot_interval: Pilot insertion interval (0/4/8/16).     max_pdu: Maximum "
+#~ "PDU length (bytes).     max_retransmit: Maximum retransmission count.     "
+#~ "enable_encryption: Whether to enable encryption.     transport: Transport "
+#~ "mode.     band: Band identifier.     hop_param2: Frequency-hopping parameter"
+#~ " 2 (0 means auto-derived from address).     blocked_channels: Set of blocked"
+#~ " channel numbers.     tx_power_dbm: Initial transmit power (dBm).     "
+#~ "max_power_dbm: Maximum transmit power.     min_power_dbm: Minimum transmit "
+#~ "power.     channel_config: Channel model configuration for simulation mode "
+#~ "(None for ideal channel).     usrp_config: USRP hardware configuration (used"
+#~ " when transport=USRP).     smf_enabled: Whether to enable system management "
+#~ "frame scheduling."
 
+#~ msgid "USRP 硬件配置 (transport=USRP 时使用)。"
+#~ msgstr ""

@@ -62,15 +62,10 @@ def decode_payload(scrambled_bits: np.ndarray, cfg: TxConfig,
                    n_info_bits: int) -> tuple[np.ndarray, bool]:
     """载荷解码: 解扰 → [Polar 解码] → CRC 校验。
 
-    Parameters
-    ----------
-    scrambled_bits : 加扰后的载荷比特 (txPyLdW)
-    cfg : 发射/接收配置
-    n_info_bits : 原始信息比特数 (data_bytes * 8, 不含 CRC)
-
-    Returns
-    -------
-    (data_bits, crc_ok) : 原始数据比特 和 CRC 校验结果
+    :param scrambled_bits: 加扰后的载荷比特 (txPyLdW)。
+    :param cfg: 发射/接收配置。
+    :param n_info_bits: 原始信息比特数 (data_bytes * 8, 不含 CRC)。
+    :returns: (data_bits, crc_ok) — 原始数据比特和 CRC 校验结果。
     """
     # 解扰
     offset = _HEAD_CODED_LEN[cfg.frame_type]
@@ -133,14 +128,9 @@ def decode_payload(scrambled_bits: np.ndarray, cfg: TxConfig,
 def decode_head(scrambled_bits: np.ndarray, cfg: TxConfig) -> tuple[np.ndarray, bool]:
     """头部解码: 解扰 → [Polar 解码] → 返回控制信息比特。
 
-    Parameters
-    ----------
-    scrambled_bits : 加扰后的头部比特 (txHeadW)
-    cfg : 发射/接收配置
-
-    Returns
-    -------
-    (ctrl_bits, crc12_ok) : 控制信息 + CRC12 比特, CRC12 校验结果
+    :param scrambled_bits: 加扰后的头部比特 (txHeadW)。
+    :param cfg: 发射/接收配置。
+    :returns: (ctrl_bits, crc12_ok) — 控制信息 + CRC12 比特、CRC12 校验结果。
     """
     # 解扰
     sc = scramble_sequence(len(scrambled_bits), cfg.whitening_seed)
@@ -161,14 +151,9 @@ def decode_head(scrambled_bits: np.ndarray, cfg: TxConfig) -> tuple[np.ndarray, 
 def frame_sync(iq_signal: np.ndarray, cfg: TxConfig) -> int:
     """帧同步: 同步序列互相关峰值搜索。
 
-    Parameters
-    ----------
-    iq_signal : 接收到的基带 IQ 信号 (已匹配滤波 + 下采样到 1 sps)
-    cfg : 配置 (需要 pid 生成同步序列)
-
-    Returns
-    -------
-    sync_start : 同步序列起始符号位置, -1 表示未检测到
+    :param iq_signal: 接收到的基带 IQ 信号 (已匹配滤波 + 下采样到 1 sps)。
+    :param cfg: 配置 (需要 pid 生成同步序列)。
+    :returns: 同步序列起始符号位置, -1 表示未检测到。
     """
     if cfg.frame_type == 1:
         # FT1: 32 比特同步序列
@@ -226,15 +211,10 @@ def rx_chain(
 ) -> RxResult:
     """完整接收链路: IQ → 帧解析 → 解码 → CRC 校验。
 
-    Parameters
-    ----------
-    iq_signal : 基带 IQ 信号
-    cfg : 发射/接收参数配置 (与发射端相同)
-    n_data_bytes : 数据长度 (字节), 用于确定码块分割
-
-    Returns
-    -------
-    RxResult : 包含恢复数据、控制信息和校验结果
+    :param iq_signal: 基带 IQ 信号。
+    :param cfg: 发射/接收参数配置 (与发射端相同)。
+    :param n_data_bytes: 数据长度 (字节), 用于确定码块分割。
+    :returns: 包含恢复数据、控制信息和校验结果的 RxResult。
     """
     # 匹配滤波 + 下采样 → 符号级
     if cfg.frame_type == 1:

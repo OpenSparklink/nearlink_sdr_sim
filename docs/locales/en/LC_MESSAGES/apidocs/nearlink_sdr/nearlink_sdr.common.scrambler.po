@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nearlink-sdr 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-24 06:20+0800\n"
+"POT-Creation-Date: 2026-03-24 11:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -102,32 +102,26 @@ msgstr "Generate a scrambling sequence of the specified length."
 msgid "API"
 msgstr "API"
 
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.md
+msgid "参数"
+msgstr "Parameters"
+
 #: ../../../src/nearlink_sdr/common/scrambler.py:48
-msgid ""
-"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/common/scrambler.py:48:"
-" (INFO/1) Duplicate implicit target name: \"parameters\"."
-msgstr ""
-"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/common/scrambler.py:142:"
-" (INFO/1) Duplicate implicit target name: \"parameters\"."
+msgid "物理信道号 (0..397)。取低 7 位。"
+msgstr "Physical channel number (0..397). Uses the lower 7 bits."
+
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.md
+msgid "返回"
+msgstr "Returns"
 
 #: ../../../src/nearlink_sdr/common/scrambler.py:50
-msgid "physical_channel : int     物理信道号 (0..397)。取低 7 位。"
-msgstr ""
-"physical_channel : int     Physical channel number (0..397). Uses lower 7"
-" bits."
+#: ../../../src/nearlink_sdr/common/scrambler.py:60
+msgid "7bit 种子。"
+msgstr "7-bit seed."
 
-#: ../../../src/nearlink_sdr/common/scrambler.py:53
-msgid ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/common/scrambler.py:53:"
-" (INFO/1) Duplicate implicit target name: \"returns\"."
-msgstr ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/common/scrambler.py:157:"
-" (INFO/1) Duplicate implicit target name: \"returns\"."
-
-#: ../../../src/nearlink_sdr/common/scrambler.py:55
-#: ../../../src/nearlink_sdr/common/scrambler.py:65
-msgid "int     7bit 种子。"
-msgstr "int     7-bit seed."
+#: ../../apidocs/nearlink_sdr/nearlink_sdr.common.scrambler.md
+msgid "返回类型"
+msgstr "Return type"
 
 #: ../../../src/nearlink_sdr/common/scrambler.py:55
 msgid "将事件起始时刻调度时隙序号的低 6 位设为寄存器 0..5, 寄存器 6 设为 1。"
@@ -136,76 +130,32 @@ msgstr ""
 "registers 0..5; register 6 is set to 1."
 
 #: ../../../src/nearlink_sdr/common/scrambler.py:58
-msgid ""
-"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/common/scrambler.py:58:"
-" (INFO/1) Duplicate implicit target name: \"parameters\"."
-msgstr ""
-"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/common/scrambler.py:152:"
-" (INFO/1) Duplicate implicit target name: \"parameters\"."
-
-#: ../../../src/nearlink_sdr/common/scrambler.py:60
-msgid "slot_number : int     调度时隙序号。"
-msgstr "slot_number : int     Scheduling slot number."
-
-#: ../../../src/nearlink_sdr/common/scrambler.py:63
-msgid ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/common/scrambler.py:63:"
-" (INFO/1) Duplicate implicit target name: \"returns\"."
-msgstr ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/common/scrambler.py:135:"
-" (INFO/1) Duplicate implicit target name: \"returns\"."
+msgid "调度时隙序号。"
+msgstr "Scheduling slot number."
 
 #: ../../../src/nearlink_sdr/common/scrambler.py:69
-msgid ""
-"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/common/scrambler.py:69:"
-" (INFO/1) Duplicate implicit target name: \"parameters\"."
-msgstr ""
-"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/common/scrambler.py:152:"
-" (INFO/1) Duplicate implicit target name: \"parameters\"."
+msgid "待加扰比特, 元素为 0 或 1。"
+msgstr "Bits to scramble, elements are 0 or 1."
 
 #: ../../../src/nearlink_sdr/common/scrambler.py:71
-msgid "bits : NDArray[np.uint8]     待加扰比特, 元素为 0 或 1。 seed : int     7bit 初始种子。"
-msgstr ""
-"bits : NDArray[np.uint8]     Bits to be scrambled, elements are 0 or 1. "
-"seed : int     7-bit initial seed."
+msgid "7bit 初始种子。"
+msgstr "7-bit initial seed."
+
+#: ../../../src/nearlink_sdr/common/scrambler.py:73
+msgid "加扰后的比特序列。"
+msgstr "Scrambled bit sequence."
 
 #: ../../../src/nearlink_sdr/common/scrambler.py:76
-msgid ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/common/scrambler.py:76:"
-" (INFO/1) Duplicate implicit target name: \"returns\"."
-msgstr ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/common/scrambler.py:157:"
-" (INFO/1) Duplicate implicit target name: \"returns\"."
+msgid "需要的加扰比特数。"
+msgstr "Number of scrambling bits required."
 
 #: ../../../src/nearlink_sdr/common/scrambler.py:78
-msgid "NDArray[np.uint8]     加扰后的比特序列。"
-msgstr "NDArray[np.uint8]     Scrambled bit sequence."
+msgid "7bit 初始种子 (0 ~ 127)。"
+msgstr "7-bit initial seed (0 ~ 127)."
 
-#: ../../../src/nearlink_sdr/common/scrambler.py:76
-msgid ""
-"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/common/scrambler.py:76:"
-" (INFO/1) Duplicate implicit target name: \"parameters\"."
-msgstr ""
-"Parameters/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/common/scrambler.py:152:"
-" (INFO/1) Duplicate implicit target name: \"parameters\"."
-
-#: ../../../src/nearlink_sdr/common/scrambler.py:78
-msgid "length : int     需要的加扰比特数。 seed : int     7bit 初始种子 (0 ~ 127)。"
-msgstr ""
-"length : int     Number of scrambling bits needed. seed : int     7-bit "
-"initial seed (0 ~ 127)."
-
-#: ../../../src/nearlink_sdr/common/scrambler.py:83
-msgid ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/common/scrambler.py:83:"
-" (INFO/1) Duplicate implicit target name: \"returns\"."
-msgstr ""
-"Returns/home/sanchuanhehe/Documents/nearlink_sdr/src/nearlink_sdr/common/scrambler.py:135:"
-" (INFO/1) Duplicate implicit target name: \"returns\"."
-
-#: ../../../src/nearlink_sdr/common/scrambler.py:85
-msgid "NDArray[np.uint8]     加扰序列, 元素为 0 或 1。"
-msgstr "NDArray[np.uint8]     Scrambling sequence, elements are 0 or 1."
+#: ../../../src/nearlink_sdr/common/scrambler.py:80
+msgid "加扰序列, 元素为 0 或 1。"
+msgstr "Scrambling sequence, elements are 0 or 1."
 
 #~ msgid "Parameters"
 #~ msgstr "Parameters"

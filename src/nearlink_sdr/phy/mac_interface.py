@@ -76,15 +76,10 @@ def mac_to_iq(
 ) -> np.ndarray:
     """MAC 层载荷 → 基带 IQ 信号。
 
-    Parameters
-    ----------
-    mac_payload : MAC 帧 pack() 产生的字节流
-    cfg : 发射参数配置
-    ctrl_info : 物理层控制信息。若为 None 则使用默认 A2 配置。
-
-    Returns
-    -------
-    IQ 采样数组 (complex128)
+    :param mac_payload: MAC 帧 pack() 产生的字节流。
+    :param cfg: 发射参数配置。
+    :param ctrl_info: 物理层控制信息。若为 None 则使用默认 A2 配置。
+    :returns: IQ 采样数组 (complex128)。
     """
     data_bits = bytes_to_bits(mac_payload)
 
@@ -135,15 +130,10 @@ def iq_to_mac(
 ) -> MacRxResult:
     """基带 IQ 信号 → MAC 层载荷字节。
 
-    Parameters
-    ----------
-    iq_signal : IQ 采样数组
-    cfg : 与发射端相同的配置
-    n_mac_bytes : MAC 层载荷字节数（需要预先知道）
-
-    Returns
-    -------
-    MacRxResult
+    :param iq_signal: IQ 采样数组。
+    :param cfg: 与发射端相同的配置。
+    :param n_mac_bytes: MAC 层载荷字节数（需要预先知道）。
+    :returns: MacRxResult。
     """
     result = rx_chain(iq_signal, cfg, n_mac_bytes)
     mac_payload = bits_to_bytes(result.data_bits[:n_mac_bytes * 8])
@@ -162,9 +152,7 @@ def iq_to_signaling(
 ) -> tuple[object, bool]:
     """基带 IQ 信号 → 信令对象。
 
-    Returns
-    -------
-    (信令对象, CRC是否通过)
+    :returns: (信令对象, CRC是否通过)。
     """
     rx = iq_to_mac(iq_signal, cfg, n_mac_bytes)
     if not rx.crc_ok:
@@ -186,9 +174,7 @@ def roundtrip_signaling(
 
     无信道（直连），验证 MAC → PHY → MAC 数据完整性。
 
-    Returns
-    -------
-    (恢复的信令对象, CRC是否通过)
+    :returns: (恢复的信令对象, CRC是否通过)。
     """
     if cfg is None:
         cfg = TxConfig(frame_type=2, mcs_index=7)
@@ -208,9 +194,7 @@ def roundtrip_data(
 ) -> tuple[bytes, bool]:
     """异步数据帧编码 → IQ → 解码全链路测试。
 
-    Returns
-    -------
-    (恢复的数据, CRC是否通过)
+    :returns: (恢复的数据, CRC是否通过)。
     """
     if cfg is None:
         cfg = TxConfig(frame_type=2, mcs_index=7)
@@ -240,11 +224,9 @@ class QosLink:
     封装 ARQ 序列号管理、HARQ 反馈、流控和链路质量跟踪。
     调用方通过 submit / transmit / receive 方法实现自动重传驱动。
 
-    Parameters
-    ----------
-    cfg : 发射参数配置
-    frame_type : 帧类型 (1-4), 决定 ARQ SN 位宽
-    max_pdu : 单 PDU 最大字节数
+    :param cfg: 发射参数配置。
+    :param frame_type: 帧类型 (1-4), 决定 ARQ SN 位宽。
+    :param max_pdu: 单 PDU 最大字节数。
     """
 
     def __init__(
@@ -277,9 +259,7 @@ class QosLink:
     def transmit(self) -> tuple[np.ndarray | None, TxDecision]:
         """从队列取数据并生成 IQ 信号。
 
-        Returns
-        -------
-        (IQ 信号或 None, 发送决策)
+        :returns: (IQ 信号或 None, 发送决策)。
         """
         decision, item = self.qos.prepare_tx()
 
@@ -321,9 +301,7 @@ class QosLink:
     def receive(self, iq: np.ndarray, n_mac_bytes: int) -> tuple[bytes, bool]:
         """接收 IQ 信号并处理 ARQ 反馈。
 
-        Returns
-        -------
-        (恢复的数据, CRC 是否通过)
+        :returns: (恢复的数据, CRC 是否通过)。
         """
         rx = iq_to_mac(iq, self.cfg, n_mac_bytes)
         self._rx_count += 1

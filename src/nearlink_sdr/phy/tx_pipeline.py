@@ -53,18 +53,16 @@ _MOD_STR = {
 class TxConfig:
     """发射参数配置。
 
-    Parameters
-    ----------
-    frame_type : 帧类型 (1-4)
-    mcs_index : 编码调制索引 (0-12)
-    pid : 24-bit PID, 用于生成同步字
-    whitening_seed : 7-bit 加扰种子
-    crc_seed : CRC 初始值
-    crc_len : CRC 比特长度 (24 或 32)
-    ctrl_bits_len : 控制信息有效比特数 (不含 CRC12)
-    pilot_interval : 导频间隔 (4/8/16), 0 表示无导频
-    sps : 每符号采样数 (脉冲成型用)
-    symbol_rate_mhz : 符号速率 (MHz)
+    :ivar frame_type: 帧类型 (1-4)
+    :ivar mcs_index: 编码调制索引 (0-12)
+    :ivar pid: 24-bit PID, 用于生成同步字
+    :ivar whitening_seed: 7-bit 加扰种子
+    :ivar crc_seed: CRC 初始值
+    :ivar crc_len: CRC 比特长度 (24 或 32)
+    :ivar ctrl_bits_len: 控制信息有效比特数 (不含 CRC12)
+    :ivar pilot_interval: 导频间隔 (4/8/16), 0 表示无导频
+    :ivar sps: 每符号采样数 (脉冲成型用)
+    :ivar symbol_rate_mhz: 符号速率 (MHz)
     """
     frame_type: int = 2
     mcs_index: int = 7
@@ -109,14 +107,9 @@ class TxConfig:
 def encode_payload(data_bits: np.ndarray, cfg: TxConfig) -> np.ndarray:
     """载荷编码: CRC → [分段 → Polar] → 加扰。
 
-    Parameters
-    ----------
-    data_bits : 原始载荷比特 (不含 CRC)
-    cfg : 发射配置
-
-    Returns
-    -------
-    txPyLdW : 加扰后的载荷比特
+    :param data_bits: 原始载荷比特 (不含 CRC)。
+    :param cfg: 发射配置。
+    :returns: 加扰后的载荷比特 (txPyLdW)。
     """
     # CRC
     with_crc = crc_attach(
@@ -148,14 +141,9 @@ def encode_payload(data_bits: np.ndarray, cfg: TxConfig) -> np.ndarray:
 def encode_head(ctrl_info_bits: np.ndarray, cfg: TxConfig) -> np.ndarray:
     """控制信息头部编码: [Polar(64, K)] → 加扰。
 
-    Parameters
-    ----------
-    ctrl_info_bits : 控制信息 + CRC12 比特 (已 pack 好的)
-    cfg : 发射配置
-
-    Returns
-    -------
-    txHeadW : 加扰后的头部比特
+    :param ctrl_info_bits: 控制信息 + CRC12 比特 (已 pack 好的)。
+    :param cfg: 发射配置。
+    :returns: 加扰后的头部比特 (txHeadW)。
     """
     if cfg.frame_type == 1:
         # FT1: 不经过 Polar 编码
@@ -179,15 +167,10 @@ def tx_chain(
 ) -> np.ndarray:
     """完整发射链路: 头部编码 + 载荷编码 → 帧组装 → 调制。
 
-    Parameters
-    ----------
-    ctrl_info_bits : 控制信息 + CRC12 比特
-    data_bits : 原始数据比特 (不含 CRC)
-    cfg : 发射配置
-
-    Returns
-    -------
-    iq : 基带 IQ 信号 (complex128), 长度 = 帧符号数 × sps
+    :param ctrl_info_bits: 控制信息 + CRC12 比特。
+    :param data_bits: 原始数据比特 (不含 CRC)。
+    :param cfg: 发射配置。
+    :returns: 基带 IQ 信号 (complex128), 长度 = 帧符号数 × sps。
     """
     # 编码
     head_w = encode_head(ctrl_info_bits, cfg)
