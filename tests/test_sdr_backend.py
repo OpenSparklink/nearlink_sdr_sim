@@ -10,8 +10,7 @@ import numpy as np
 import pytest
 
 from nearlink_sdr.phy.mock_backend import LoopbackBuffer, MockDevice
-from nearlink_sdr.phy.sdr_backend import SDRConfig, SDRDevice, create_device
-
+from nearlink_sdr.phy.sdr_backend import SDRConfig, create_device
 
 # ── SDRConfig ──
 
