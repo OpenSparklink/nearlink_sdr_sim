@@ -406,6 +406,17 @@
 <section id="added">
 <h3>Added<a class="headerlink" href="#added" title="Link to this heading">¶</a></h3>
 <ul class="simple">
+<li><p>FPGA 硬件加速工程脚手架 (<code class="docutils literal notranslate"><span class="pre">nearlink_sdr_zynq/</span></code>)</p>
+<ul>
+<li><p>RTL 模块: CRC-24, 加扰器, 同步 FIFO, PHY 顶层骨架 (SystemVerilog, AXI-Stream 接口)</p></li>
+<li><p>全局参数头 <code class="docutils literal notranslate"><span class="pre">sle_params.svh</span></code>: 时钟/RF/调制/Polar/帧结构参数</p></li>
+<li><p>cocotb 仿真测试: CRC-24 (3 项) + 加扰器 (1 项), 全部通过 (iverilog 11 + cocotb 2.0.1)</p></li>
+<li><p>ANTSDR E310 引脚约束 (<code class="docutils literal notranslate"><span class="pre">constraints/antsdr_e310.xdc</span></code>): AD9361 LVDS/SPI/GPIO</p></li>
+<li><p>Vivado Tcl 脚本: 创建工程 / 综合实现 / 下载 bitstream</p></li>
+<li><p>构建系统: Makefile (sim/lint/build/program), pyproject.toml, .editorconfig</p></li>
+<li><p>Verible lint 配置 + VS Code Verilog LSP 设置</p></li>
+</ul>
+</li>
 <li><p>SDR 硬件后端抽象层: <code class="docutils literal notranslate"><span class="pre">SDRDevice</span></code> 基类 + <code class="docutils literal notranslate"><span class="pre">SDRConfig</span></code> 配置 + <code class="docutils literal notranslate"><span class="pre">create_device()</span></code> 工厂函数</p></li>
 <li><p>Mock 后端 (<code class="docutils literal notranslate"><span class="pre">mock_backend.py</span></code>): 带环回的无硬件仿真, 从 <code class="docutils literal notranslate"><span class="pre">usrp.py</span></code> 提取独立</p></li>
 <li><p>PlutoSDR 后端 (<code class="docutils literal notranslate"><span class="pre">pluto_backend.py</span></code>): 基于 pyadi-iio, 支持 ANTSDR E310 / ADALM-Pluto</p></li>
