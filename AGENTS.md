@@ -328,6 +328,7 @@ MAJOR.MINOR.PATCH[-PRERELEASE][+BUILDMETADATA]
 | - | FPGA MAC HDR 插拔 (1-bit AXI-Stream TX 插入/RX 提取) | 完成 | `nearlink_sdr_zynq/rtl/phy/sle_mac_hdr.sv` |
 | - | FPGA ARQ 控制器 (8-bit AXI-Stream SN/ACK/NACK/重传) | 完成 | `nearlink_sdr_zynq/rtl/phy/sle_arq_ctrl.sv` |
 | - | FPGA 前导码生成器 (FSM 前导码+同步序列注入, FT1/FT3/FT4 ROM, AXI-Lite) | 完成 | `nearlink_sdr_zynq/rtl/phy/sle_preamble_gen.sv` |
+| - | FPGA AES-CCM 加速器 (内置 AES 核全硬件 CBC-MAC + CTR 编排, 13B nonce / 4B MIC / 14B AAD / 512B payload) | 完成 | `nearlink_sdr_zynq/rtl/common/sle_aes_ccm.sv` |
 
 ## 测试质量
 
