@@ -321,6 +321,12 @@ MAJOR.MINOR.PATCH[-PRERELEASE][+BUILDMETADATA]
 | 10-11 | 协议一致性测试 (FT1-FT4/控制面/流程) | 完成 | `tests/conformance/test_protocol.py` |
 | 12 | 射频一致性测试 (TX/RX/UWB) | 完成 | `tests/conformance/test_rf.py` |
 | 13 | 安全一致性测试 (配对/加密/隐私/UWB) | 完成 | `tests/conformance/test_security.py` |
+| - | FPGA TDD 调度器 (4 状态 FSM, AXI-Lite, AD9361 控制) | 完成 | `nearlink_sdr_zynq/rtl/phy/sle_tdd_scheduler.sv` |
+| - | FPGA 帧同步检测器 (BPSK 匹配滤波, FT1/FT3/FT4, IRQ) | 完成 | `nearlink_sdr_zynq/rtl/phy/sle_frame_sync.sv` |
+| - | FPGA AES-128 加密核心 (迭代 11 周期/块, 16 并行 S-box) | 完成 | `nearlink_sdr_zynq/rtl/common/sle_aes_core.sv` |
+| - | FPGA AES-128 加速引擎 (AXI-Lite 寄存器, CCM 软件编排) | 完成 | `nearlink_sdr_zynq/rtl/common/sle_aes_engine.sv` |
+| - | FPGA MAC HDR 插拔 (1-bit AXI-Stream TX 插入/RX 提取) | 完成 | `nearlink_sdr_zynq/rtl/phy/sle_mac_hdr.sv` |
+| - | FPGA ARQ 控制器 (8-bit AXI-Stream SN/ACK/NACK/重传) | 完成 | `nearlink_sdr_zynq/rtl/phy/sle_arq_ctrl.sv` |
 
 ## 测试质量
 
