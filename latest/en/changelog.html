@@ -417,6 +417,87 @@
 <section id="added">
 <h3>Added<a class="headerlink" href="#added" title="Link to this heading">¶</a></h3>
 <ul class="simple">
+<li><p>DLI 指令集完整实现 122 个 opcode, 29 个单元测试全部通过</p>
+<ul>
+<li><p>基本指令补全: READ_SLB_CTRL_BUF / CONFIG_FISA_CHAN / ENABLE_FISA / CONFIG_SLB_SYNC / READ_SLB_SYNC / READ_SLB_POWER / TIME_SYNC_STATUS / TIME_SYNC_REQ / TIME_SYNC_RSP / ADD_WL_DEVICE_EXT</p></li>
+<li><p>广播指令补全: READ_BC_SET_SIZE / DELETE_BC_SET / CONFIG_SLB_DOMAIN / READ_SLB_DOMAIN / CONFIG_SLB_BC_PARAM / READ_SLB_BC_PARAM</p></li>
+<li><p>扫描指令补全: SET_SCAN_REQ_DATA / SET_SLB_SCAN_PARAM</p></li>
+<li><p>连接指令补全: SLB_CREATE_CONN</p></li>
+<li><p>链路控制补全: SET_CTRL_SIGNALING / ENABLE_RSSI_PC / SET_SLB_MCS / READ_SLB_MCS</p></li>
+<li><p>安全指令补全: HASH_CALC / REPLY_ENC_PARAM / REJECT_ENC_PARAM / PAIR_INFO_REPLY / PAIR_OPT_CONFIRM / PAIR_OPT_ACCEPT / PAIR_EXT_DATA / PAIR_PASSKEY / PAIR_RANDOM / PAIR_CONFIRM / DHKEY_VERIFY / ADD_RAL_DEVICE / DEL_RAL_DEVICE / CLEAR_RAL / READ_RAL_SIZE / READ_PEER_RPA / READ_LOCAL_RPA / SET_RPA_ENABLE / SET_RPA_TIMEOUT / START_MCAST_ENCRYPT</p></li>
+<li><p>测量指令组 (全新): READ_LOCAL_MEAS_CAP / READ_PEER_MEAS_CAP / SET_MEAS_LINK_PARAM / READ_MEAS_PARAM / MEAS_ACTION / READ_MEAS_CAP / CONFIG_MEAS_INST / DELETE_MEAS_INST / CONFIG_MEAS_REPORT / DELETE_MEAS_REPORT / ENABLE_MEAS / CONFIG_SLB_MEAS</p></li>
+<li><p>同步链路指令组 (全新): SYNC_UCAST_PARAM / SYNC_UCAST_FIXED / SYNC_UCAST_REMOVE / SYNC_UCAST_ACCEPT / SYNC_UCAST_REJECT / SYNC_MCAST_PARAM / SYNC_MCAST_FIXED / SYNC_MCAST_CREATE / SYNC_MCAST_REMOVE / SYNC_MCAST_ACCEPT / SYNC_MCAST_REJECT / SYNC_DATA_PATH_CFG / SYNC_DATA_PATH_DEL</p></li>
+<li><p>测试指令补全: TEST_SLB_TX_POWER</p></li>
+</ul>
+</li>
+<li><p>DLI 指令集扩展至 50+ 处理器 (60 个 Rust 单元测试)</p>
+<ul>
+<li><p>基本指令: READ_CMD_LEN / READ_CTRL_BUF / SET/READ_SLB_ROLE / SET/READ_SLB_CHANNEL</p></li>
+<li><p>广播指令: SET_BROADCAST_PARAM / SET_BROADCAST_DATA / SET_SCAN_RSP_DATA</p></li>
+<li><p>扫描指令: SET_SCAN_PARAM</p></li>
+<li><p>链路控制: READ_PEER_FEAT / READ_PEER_VER / READ_PHY_PARAM / CONN_PARAM_UPDATE / CONN_PARAM_RSP / READ_AVAIL_CHANNEL / READ_PEER_POWER / POWER_REPORT_CONFIG</p></li>
+<li><p>安全指令: GEN_RANDOM / READ_LOCAL_ENC_ALG</p></li>
+<li><p>测试指令: TEST_MODE_ENABLE / TEST_RX_RESULT</p></li>
+<li><p>SET_SLB_CHANNEL 直接控制 AD9361 RF 信道 (0-78 → 2402-2480 MHz)</p></li>
+</ul>
+</li>
+<li><p>AD9361 axi 地址修复: integrate_ad9361.tcl 显式分配 0x79020000 匹配 PlutoSDR 设备树</p></li>
+<li><p>部署自动化</p>
+<ul>
+<li><p>deploy.sh: 一键编译/部署/启动 (build→stop→deploy→start)</p></li>
+<li><p>S99sle 重写: 适配 composite_gadget 的 FFS 原子启动序列</p></li>
+<li><p>安全停止流程: unbind UDC → kill → cleanup → rebind</p></li>
+</ul>
+</li>
+<li><p>USB DLI 测试扩展至 16 项 (信道/PHY/广播/随机数/加密/测试模式/TX 数据通路)</p></li>
+<li><p>USB DLI 端到端通信验证通过</p>
+<ul>
+<li><p>FunctionFS 事件循环重构: 正确处理 BIND/ENABLE/DISABLE 生命周期</p></li>
+<li><p>FFS composite gadget 集成: ffs.sle_dli + rndis/acm/iio/msd 五合一</p></li>
+<li><p>DLI 事件通道: mpsc 通道连接 DliHandler → EP1 interrupt IN</p></li>
+<li><p>主机 pyusb 测试: READ_LOCAL_VER / READ_LOCAL_FEAT / SET+READ_MAC_ADDR 三项通过</p></li>
+</ul>
+</li>
+<li><p>RF 初始化超时保护: IIO 驱动卡住时 5 秒超时跳过, 避免 sle_ctrl 阻塞</p></li>
+<li><p>E310 硬件部署全链路验证</p>
+<ul>
+<li><p>SLE 比特流运行时加载: .bit→.bin 字节交换转换 + FPGA Manager sysfs 加载</p></li>
+<li><p>PHY 寄存器读写验证通过: PARAM/SCRAMBLER/MODULATION 写回一致</p></li>
+<li><p>AXI DMA 控制器正常响应 (halted/IOC)</p></li>
+<li><p>devmem 物理地址直接映射: UioDevice::open_devmem() 回退方案 (内核无 OF_OVERLAY 支持时)</p></li>
+<li><p>bit_to_bin.py 转换脚本 + Makefile bitstream/deploy-bitstream 目标</p></li>
+</ul>
+</li>
+<li><p>sle_ctrl 三子系统全部在线:</p>
+<ul>
+<li><p>PHY: /dev/mem 映射 0x40000000 (SLE PHY) + 0x40400000 (AXI DMA)</p></li>
+<li><p>RF: AD9361 IIO 频率设置 2402 MHz (SLE channel 0)</p></li>
+<li><p>USB: FunctionFS 描述符写入成功, 端点 ep0~ep3 就绪</p></li>
+</ul>
+</li>
+<li><p>Rust 固件信令全量覆盖: signaling.rs 从 16 种扩展到 111 种, 覆盖 TXS-10002-2025 第 7.3.2 节全部条款 (0x0000~0x0070)</p>
+<ul>
+<li><p>6 种宏模式: zero_payload / opaque / fixed_opaque / action / feedback / single_u8</p></li>
+<li><p>38 种手工编解码 (精确位域), 28 种复杂位域暂存原始字节</p></li>
+<li><p>注册表自动注册全部 111 种解码器</p></li>
+<li><p>新增 10 个 roundtrip 测试</p></li>
+</ul>
+</li>
+<li><p>ECDH P-256 密钥交换完整实现 (security.rs)</p>
+<ul>
+<li><p>基于 p256 crate SecretKey + ecdh::diffie_hellman</p></li>
+<li><p>generate_p256_keypair() 密钥对生成 (SEC1 未压缩 65 字节公钥)</p></li>
+<li><p>exchange_key() 计算 DH 共享密钥, 失败自动设置 PairingFailureReason</p></li>
+<li><p>新增 2 个 ECDH 测试 (双向交换验证 + 非法公钥拒绝)</p></li>
+</ul>
+</li>
+<li><p>BSP 集成 (antsdr-fw-patch buildroot)</p>
+<ul>
+<li><p>integrate_bsp.sh 自动集成脚本: 编译 Rust 固件 + 复制到 board/ant/ + 修改 post-build.sh</p></li>
+<li><p>S99sle 启动脚本: UIO 加载 → 设备树覆盖 → USB Gadget → sle_ctrl 守护进程</p></li>
+<li><p>支持 DFU 烧录和在线 frm 更新</p></li>
+</ul>
+</li>
 <li><p>FPGA 硬件加速工程脚手架 (<code class="docutils literal notranslate"><span class="pre">nearlink_sdr_zynq/</span></code>)</p>
 <ul>
 <li><p>RTL 模块: CRC-24, 加扰器, 同步 FIFO, PHY 顶层骨架 (SystemVerilog, AXI-Stream 接口)</p></li>
