@@ -109,6 +109,12 @@ docs-live:  ## 实时预览文档 (自动刷新)
 
 # -- 仿真 --------------------------------------------------------------------
 
+sim-all:  ## 运行所有仿真阶段 (Phase 1-16)
+	@for p in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16; do \
+		echo "Running sim-phase$$p..."; \
+		$(MAKE) sim-phase$$p || exit 1; \
+	done
+
 sim-%:  ## 运行仿真阶段, 如 make sim-phase1
 # [sim-start]
 	uv run python -m nearlink_sdr.sim.link_sim $*
