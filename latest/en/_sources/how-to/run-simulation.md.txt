@@ -59,6 +59,16 @@ make sim-phase1
 # 结果保存到 ber_phase1.png
 ```
 
+## 一次性运行所有仿真
+
+如果需要批量运行 Phase 1 到 Phase 16 的所有仿真场景，可以使用以下命令：
+
+```bash
+make sim-all
+```
+
+该命令会按顺序执行各个阶段的仿真程序。
+
 ## 全链路 Pipeline 仿真
 
 使用 `sim_pipeline_link` 运行端到端 Pipeline 仿真, 内部调用完整的 `tx_chain` -> AWGN 信道 -> `rx_chain` 链路:
