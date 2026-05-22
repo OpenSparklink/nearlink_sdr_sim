@@ -54,4 +54,4 @@ docs/             # Sphinx 文档 (Diataxis 四象限)
 
 ## 许可证
 
-MIT
+AGPL
